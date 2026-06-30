@@ -33,9 +33,9 @@
     --radius-lg: 20px;
     font-size: 16px;
   }
- 
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
   body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     background: var(--sand);
@@ -43,13 +43,13 @@
     line-height: 1.6;
     min-height: 100vh;
   }
- 
+
   /* ===== LAYOUT ===== */
   .app-shell {
     display: flex;
     min-height: 100vh;
   }
- 
+
   /* ===== SIDEBAR NAV ===== */
   .sidebar {
     width: 220px;
@@ -62,12 +62,12 @@
     z-index: 100;
     overflow-y: auto;
   }
- 
+
   .sidebar-brand {
     padding: 24px 20px 20px;
     border-bottom: 1px solid rgba(255,255,255,0.1);
   }
- 
+
   .sidebar-brand .level-badge {
     display: inline-block;
     background: var(--mint);
@@ -79,26 +79,26 @@
     margin-bottom: 6px;
     letter-spacing: 0.5px;
   }
- 
+
   .sidebar-brand h2 {
     color: var(--white);
     font-size: 15px;
     font-weight: 700;
     line-height: 1.3;
   }
- 
+
   .sidebar-brand p {
     color: var(--mint);
     font-size: 12px;
     margin-top: 4px;
     opacity: 0.8;
   }
- 
+
   .sidebar-nav {
     flex: 1;
     padding: 12px 0;
   }
- 
+
   .nav-section-label {
     padding: 12px 20px 4px;
     font-size: 10px;
@@ -107,7 +107,7 @@
     color: rgba(168,201,127,0.6);
     text-transform: uppercase;
   }
- 
+
   .nav-item {
     display: flex;
     align-items: center;
@@ -121,43 +121,43 @@
     transition: all 0.2s;
     text-decoration: none;
   }
- 
+
   .nav-item:hover {
     background: rgba(255,255,255,0.06);
     color: var(--white);
   }
- 
+
   .nav-item.active {
     background: rgba(168,201,127,0.15);
     color: var(--mint);
     border-left-color: var(--mint);
   }
- 
+
   .nav-item .nav-icon {
     font-size: 16px;
     width: 20px;
     text-align: center;
     flex-shrink: 0;
   }
- 
+
   .nav-progress {
     padding: 16px 20px;
     border-top: 1px solid rgba(255,255,255,0.1);
   }
- 
+
   .nav-progress-label {
     color: rgba(255,255,255,0.5);
     font-size: 11px;
     margin-bottom: 6px;
   }
- 
+
   .progress-bar-track {
     background: rgba(255,255,255,0.1);
     border-radius: 99px;
     height: 6px;
     overflow: hidden;
   }
- 
+
   .progress-bar-fill {
     background: var(--mint);
     height: 100%;
@@ -165,36 +165,36 @@
     width: 0%;
     transition: width 0.5s ease;
   }
- 
+
   .progress-pct {
     color: var(--mint);
     font-size: 11px;
     font-weight: 700;
     margin-top: 4px;
   }
- 
+
   /* ===== MAIN CONTENT ===== */
   .main-content {
     margin-left: 220px;
     flex: 1;
     padding: 0;
   }
- 
+
   /* ===== PAGES ===== */
   .page {
     display: none;
     animation: fadeIn 0.3s ease;
   }
- 
+
   .page.active {
     display: block;
   }
- 
+
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
   }
- 
+
   /* ===== HERO ===== */
   .hero {
     background: linear-gradient(135deg, var(--forest) 0%, var(--moss) 60%, #5A9E3A 100%);
@@ -203,7 +203,7 @@
     position: relative;
     overflow: hidden;
   }
- 
+
   .hero::before {
     content: '✈';
     position: absolute;
@@ -213,14 +213,14 @@
     opacity: 0.08;
     transform: rotate(-20deg);
   }
- 
+
   .hero-meta {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
     margin-bottom: 16px;
   }
- 
+
   .badge {
     display: inline-flex;
     align-items: center;
@@ -230,7 +230,7 @@
     font-size: 12px;
     font-weight: 600;
   }
- 
+
   .badge-mint { background: rgba(168,201,127,0.2); color: var(--mint); border: 1px solid rgba(168,201,127,0.3); }
   .badge-white { background: rgba(255,255,255,0.15); color: var(--white); }
   .badge-blue { background: var(--blue-light); color: var(--blue); }
@@ -238,14 +238,14 @@
   .badge-green { background: var(--green-light); color: var(--green-success); }
   .badge-red { background: var(--red-light); color: var(--red); }
   .badge-forest { background: var(--sage); color: var(--forest); }
- 
+
   .hero h1 {
     font-size: 36px;
     font-weight: 800;
     margin-bottom: 8px;
     letter-spacing: -0.5px;
   }
- 
+
   .hero-sub {
     font-size: 16px;
     opacity: 0.85;
@@ -253,28 +253,28 @@
     max-width: 520px;
     line-height: 1.5;
   }
- 
+
   .hero-outcomes {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
   }
- 
+
   /* ===== SECTION ===== */
   .section {
     padding: 40px 48px;
     border-bottom: 1px solid var(--border);
   }
- 
+
   .section:last-child { border-bottom: none; }
- 
+
   .section-header {
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: 28px;
   }
- 
+
   .part-label {
     display: inline-block;
     background: var(--forest);
@@ -286,19 +286,19 @@
     letter-spacing: 1px;
     text-transform: uppercase;
   }
- 
+
   .section-title {
     font-size: 22px;
     font-weight: 800;
     color: var(--forest);
   }
- 
+
   .section-subtitle {
     font-size: 14px;
     color: var(--text-soft);
     margin-top: 4px;
   }
- 
+
   /* ===== TABS ===== */
   .tab-bar {
     display: flex;
@@ -307,7 +307,7 @@
     margin-bottom: 28px;
     overflow-x: auto;
   }
- 
+
   .tab-btn {
     padding: 10px 18px;
     font-size: 13px;
@@ -321,26 +321,26 @@
     transition: all 0.2s;
     white-space: nowrap;
   }
- 
+
   .tab-btn.active {
     color: var(--forest);
     border-bottom-color: var(--forest);
   }
- 
+
   .tab-btn:hover:not(.active) {
     color: var(--moss);
   }
- 
+
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
- 
+
   /* ===== VOCAB CARDS ===== */
   .vocab-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 16px;
   }
- 
+
   .vocab-card {
     background: var(--white);
     border: 1px solid var(--border);
@@ -350,27 +350,27 @@
     transition: all 0.2s;
     position: relative;
   }
- 
+
   .vocab-card:hover {
     box-shadow: var(--shadow-md);
     transform: translateY(-2px);
     border-color: var(--mint);
   }
- 
+
   .vocab-card .word {
     font-size: 17px;
     font-weight: 700;
     color: var(--forest);
     margin-bottom: 4px;
   }
- 
+
   .vocab-card .ipa {
     font-size: 13px;
     color: var(--blue);
     font-style: italic;
     margin-bottom: 4px;
   }
- 
+
   .vocab-card .pos {
     display: inline-block;
     font-size: 11px;
@@ -381,14 +381,14 @@
     font-weight: 600;
     margin-bottom: 10px;
   }
- 
+
   .vocab-card .vi {
     font-size: 14px;
     color: var(--text-mid);
     font-weight: 600;
     margin-bottom: 8px;
   }
- 
+
   .vocab-card .example {
     font-size: 13px;
     color: var(--text-soft);
@@ -397,7 +397,7 @@
     border-top: 1px solid var(--sage);
     display: none;
   }
- 
+
   .vocab-card.flipped .example { display: block; }
   .vocab-card .flip-hint {
     position: absolute;
@@ -407,14 +407,14 @@
     color: var(--text-soft);
     opacity: 0.5;
   }
- 
+
   /* ===== PHRASE CARDS ===== */
   .phrase-list {
     display: flex;
     flex-direction: column;
     gap: 12px;
   }
- 
+
   .phrase-card {
     background: var(--white);
     border: 1px solid var(--border);
@@ -424,19 +424,19 @@
     align-items: flex-start;
     gap: 16px;
   }
- 
+
   .phrase-en {
     font-size: 15px;
     font-weight: 700;
     color: var(--forest);
     min-width: 250px;
   }
- 
+
   .phrase-vi {
     font-size: 14px;
     color: var(--text-soft);
   }
- 
+
   /* ===== PRONUNCIATION ===== */
   .pronun-rule {
     background: var(--blue-light);
@@ -445,21 +445,21 @@
     padding: 20px 24px;
     margin-bottom: 16px;
   }
- 
+
   .pronun-rule h4 {
     color: var(--blue);
     font-size: 15px;
     font-weight: 700;
     margin-bottom: 12px;
   }
- 
+
   .pronun-example {
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: 8px;
   }
- 
+
   .arrow-badge {
     background: var(--blue);
     color: white;
@@ -468,7 +468,7 @@
     font-size: 12px;
     font-weight: 700;
   }
- 
+
   .practice-sentence {
     background: var(--sage);
     border-left: 4px solid var(--moss);
@@ -479,7 +479,7 @@
     color: var(--text-dark);
     line-height: 1.6;
   }
- 
+
   /* ===== EXERCISES ===== */
   .exercise-container {
     background: var(--white);
@@ -488,14 +488,14 @@
     padding: 28px;
     margin-bottom: 20px;
   }
- 
+
   .exercise-title {
     font-size: 16px;
     font-weight: 700;
     color: var(--forest);
     margin-bottom: 6px;
   }
- 
+
   .exercise-instruction {
     font-size: 13px;
     color: var(--text-soft);
@@ -504,29 +504,29 @@
     background: var(--sand);
     border-radius: var(--radius-sm);
   }
- 
+
   /* MCQ */
   .mcq-question {
     margin-bottom: 20px;
     padding-bottom: 20px;
     border-bottom: 1px solid var(--sage);
   }
- 
+
   .mcq-question:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
- 
+
   .mcq-q-text {
     font-size: 15px;
     font-weight: 600;
     margin-bottom: 12px;
     color: var(--text-dark);
   }
- 
+
   .mcq-options {
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
- 
+
   .mcq-option {
     display: flex;
     align-items: center;
@@ -538,14 +538,14 @@
     transition: all 0.2s;
     font-size: 14px;
   }
- 
+
   .mcq-option:hover { border-color: var(--mint); background: var(--sage); }
   .mcq-option.selected { border-color: var(--blue); background: var(--blue-light); }
   .mcq-option.correct { border-color: var(--green-success); background: var(--green-light); }
   .mcq-option.incorrect { border-color: var(--red); background: var(--red-light); }
- 
+
   .mcq-option input[type=radio] { accent-color: var(--forest); }
- 
+
   /* Fill in blank */
   .fill-blank {
     display: flex;
@@ -556,7 +556,7 @@
     font-size: 15px;
     line-height: 2;
   }
- 
+
   .blank-input {
     border: none;
     border-bottom: 2px solid var(--forest);
@@ -569,11 +569,11 @@
     outline: none;
     transition: border-color 0.2s;
   }
- 
+
   .blank-input:focus { border-bottom-color: var(--blue); }
   .blank-input.correct { border-bottom-color: var(--green-success); background: var(--green-light); }
   .blank-input.incorrect { border-bottom-color: var(--red); background: var(--red-light); }
- 
+
   /* Drag & Drop */
   .drag-pool {
     display: flex;
@@ -586,7 +586,7 @@
     padding: 12px;
     margin-bottom: 16px;
   }
- 
+
   .drag-item {
     padding: 6px 14px;
     background: var(--white);
@@ -599,11 +599,11 @@
     color: var(--text-dark);
     font-weight: 500;
   }
- 
+
   .drag-item:hover { border-color: var(--mint); box-shadow: var(--shadow-sm); }
   .drag-item.dragging { opacity: 0.4; }
   .drag-item.placed { background: var(--sage); border-color: var(--moss); }
- 
+
   .drop-zone {
     min-height: 44px;
     border: 2px dashed var(--border);
@@ -616,11 +616,11 @@
     flex-wrap: wrap;
     gap: 6px;
   }
- 
+
   .drop-zone.over { border-color: var(--moss); background: var(--sage); }
   .drop-zone.correct-zone { border-color: var(--green-success); background: var(--green-light); }
   .drop-zone.incorrect-zone { border-color: var(--red); background: var(--red-light); }
- 
+
   /* ===== BUTTONS ===== */
   .btn {
     display: inline-flex;
@@ -635,35 +635,35 @@
     transition: all 0.2s;
     letter-spacing: 0.2px;
   }
- 
+
   .btn-primary {
     background: var(--forest);
     color: var(--white);
   }
   .btn-primary:hover { background: var(--moss); transform: translateY(-1px); }
- 
+
   .btn-secondary {
     background: var(--sage);
     color: var(--forest);
   }
   .btn-secondary:hover { background: var(--mint); }
- 
+
   .btn-outline {
     background: transparent;
     color: var(--forest);
     border: 1.5px solid var(--border);
   }
   .btn-outline:hover { border-color: var(--moss); background: var(--sage); }
- 
+
   .btn-sm { padding: 6px 14px; font-size: 13px; }
- 
+
   .btn-group {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
     margin-top: 20px;
   }
- 
+
   /* ===== FEEDBACK ===== */
   .feedback-box {
     padding: 14px 18px;
@@ -675,12 +675,12 @@
     align-items: center;
     gap: 10px;
   }
- 
+
   .feedback-box.show { display: flex; }
   .feedback-box.success { background: var(--green-light); color: var(--green-success); border: 1px solid #BBF7D0; }
   .feedback-box.error { background: var(--red-light); color: var(--red); border: 1px solid #FECACA; }
   .feedback-box.info { background: var(--blue-light); color: var(--blue); border: 1px solid #BFDBFE; }
- 
+
   .score-badge {
     display: inline-flex;
     align-items: center;
@@ -693,7 +693,7 @@
     background: var(--white);
     flex-shrink: 0;
   }
- 
+
   /* ===== LISTENING SECTION ===== */
   .listening-notice {
     background: var(--amber-light);
@@ -707,7 +707,7 @@
     align-items: center;
     gap: 8px;
   }
- 
+
   /* Listening 2 Table */
   .listen2-item {
     background: var(--white);
@@ -716,27 +716,27 @@
     padding: 20px;
     margin-bottom: 14px;
   }
- 
+
   .listen2-q {
     font-size: 15px;
     font-weight: 600;
     color: var(--text-dark);
     margin-bottom: 12px;
   }
- 
+
   .listen2-options {
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
- 
+
   /* Listening 3 Table */
   .listen3-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
   }
- 
+
   .listen3-table th {
     background: var(--forest);
     color: var(--white);
@@ -745,22 +745,22 @@
     font-weight: 700;
     font-size: 13px;
   }
- 
+
   .listen3-table th:first-child { text-align: left; }
- 
+
   .listen3-table td {
     padding: 10px 16px;
     border-bottom: 1px solid var(--sage);
     vertical-align: middle;
   }
- 
+
   .listen3-table tr:nth-child(even) td { background: var(--sand); }
- 
+
   .listen3-table td:first-child {
     font-weight: 600;
     color: var(--text-dark);
   }
- 
+
   .listen3-group-header td {
     background: var(--sage) !important;
     color: var(--forest);
@@ -768,13 +768,13 @@
     font-size: 13px;
     padding: 8px 16px;
   }
- 
+
   .radio-group {
     display: flex;
     gap: 8px;
     justify-content: center;
   }
- 
+
   .radio-opt {
     display: flex;
     align-items: center;
@@ -786,21 +786,21 @@
     border-radius: 99px;
     transition: all 0.2s;
   }
- 
+
   .radio-opt:hover { border-color: var(--mint); background: var(--sage); }
   .radio-opt.selected-opt { border-color: var(--blue); background: var(--blue-light); }
   .radio-opt.correct-opt { border-color: var(--green-success); background: var(--green-light); color: var(--green-success); }
   .radio-opt.incorrect-opt { border-color: var(--red); background: var(--red-light); color: var(--red); }
- 
+
   /* ===== TRANSCRIPT ===== */
   .transcript-block {
     display: none;
     margin-top: 16px;
     animation: fadeIn 0.3s ease;
   }
- 
+
   .transcript-block.revealed { display: block; }
- 
+
   .transcript-card {
     background: var(--sand);
     border: 1px solid var(--border);
@@ -808,7 +808,7 @@
     overflow: hidden;
     margin-bottom: 12px;
   }
- 
+
   .transcript-header {
     background: var(--forest);
     color: var(--white);
@@ -818,30 +818,30 @@
     display: flex;
     justify-content: space-between;
   }
- 
+
   .transcript-body {
     padding: 16px;
   }
- 
+
   .dialogue-line {
     margin-bottom: 10px;
     font-size: 14px;
     line-height: 1.6;
   }
- 
+
   .dialogue-line .speaker {
     font-weight: 700;
     color: var(--forest);
     margin-right: 6px;
   }
- 
+
   .dialogue-line.vi {
     color: var(--text-soft);
     font-size: 13px;
     margin-top: -6px;
     padding-left: 22px;
   }
- 
+
   /* ===== SPEAKING ===== */
   .scenario-card {
     background: var(--white);
@@ -850,7 +850,7 @@
     overflow: hidden;
     margin-bottom: 20px;
   }
- 
+
   .scenario-header {
     background: linear-gradient(135deg, var(--forest), var(--moss));
     color: var(--white);
@@ -859,20 +859,20 @@
     align-items: center;
     gap: 12px;
   }
- 
+
   .scenario-emoji {
     font-size: 28px;
   }
- 
+
   .scenario-header h3 {
     font-size: 17px;
     font-weight: 700;
   }
- 
+
   .scenario-body {
     padding: 24px;
   }
- 
+
   .scenario-situation {
     background: var(--sand);
     border-left: 4px solid var(--moss);
@@ -882,14 +882,14 @@
     font-size: 14px;
     line-height: 1.6;
   }
- 
+
   .scenario-hints {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     margin-bottom: 16px;
   }
- 
+
   .hint-chip {
     background: var(--sage);
     color: var(--moss);
@@ -898,7 +898,7 @@
     font-size: 13px;
     font-weight: 600;
   }
- 
+
   .sample-response {
     background: var(--blue-light);
     border: 1px solid #BFDBFE;
@@ -907,7 +907,7 @@
     display: none;
     margin-top: 12px;
   }
- 
+
   .sample-response.revealed { display: block; }
   .sample-response-title {
     color: var(--blue);
@@ -915,14 +915,14 @@
     font-weight: 700;
     margin-bottom: 8px;
   }
- 
+
   /* ===== CHECKLIST ===== */
   .checklist {
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
- 
+
   .check-item {
     display: flex;
     align-items: center;
@@ -933,9 +933,9 @@
     transition: background 0.2s;
     font-size: 14px;
   }
- 
+
   .check-item:hover { background: var(--sage); }
- 
+
   .check-item input[type=checkbox] {
     width: 18px;
     height: 18px;
@@ -943,7 +943,7 @@
     cursor: pointer;
     flex-shrink: 0;
   }
- 
+
   /* ===== REVIEW ===== */
   .review-grid {
     display: grid;
@@ -951,7 +951,7 @@
     gap: 16px;
     margin-bottom: 24px;
   }
- 
+
   .stat-card {
     background: var(--white);
     border: 1px solid var(--border);
@@ -959,33 +959,33 @@
     padding: 20px 24px;
     text-align: center;
   }
- 
+
   .stat-number {
     font-size: 36px;
     font-weight: 800;
     color: var(--forest);
   }
- 
+
   .stat-label {
     font-size: 13px;
     color: var(--text-soft);
     margin-top: 4px;
   }
- 
+
   /* ===== ANSWER REVEAL ===== */
   .answer-hidden {
     filter: blur(5px);
     user-select: none;
     transition: filter 0.3s;
   }
- 
+
   .answer-hidden.revealed { filter: none; }
- 
+
   .reveal-btn-wrapper {
     text-align: center;
     margin: 16px 0;
   }
- 
+
   /* ===== RESET BUTTON ===== */
   .reset-fab {
     position: fixed;
@@ -1006,16 +1006,16 @@
     z-index: 200;
     transition: all 0.2s;
   }
- 
+
   .reset-fab:hover { background: #B91C1C; transform: scale(1.05); }
- 
+
   /* ===== DIVIDER ===== */
   .divider {
     border: none;
     border-top: 1px solid var(--border);
     margin: 28px 0;
   }
- 
+
   /* ===== INFO BOX ===== */
   .info-box {
     background: var(--sage);
@@ -1026,32 +1026,32 @@
     color: var(--text-mid);
     margin-bottom: 20px;
   }
- 
+
   /* ===== SUMMARY CARD ===== */
   .summary-table {
     width: 100%;
     border-collapse: collapse;
   }
- 
+
   .summary-table tr td {
     padding: 10px 16px;
     border-bottom: 1px solid var(--sage);
     font-size: 14px;
   }
- 
+
   .summary-table tr td:first-child {
     font-weight: 700;
     color: var(--forest);
     width: 40%;
   }
- 
+
   .listen2-task2-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 12px;
     font-size: 14px;
   }
- 
+
   .listen2-task2-table th {
     background: var(--forest);
     color: white;
@@ -1060,18 +1060,18 @@
     font-size: 13px;
   }
   .listen2-task2-table th:first-child { text-align: left; }
- 
+
   .listen2-task2-table td {
     padding: 10px 16px;
     border-bottom: 1px solid var(--sage);
     text-align: center;
   }
- 
+
   .listen2-task2-table td:first-child { text-align: left; font-weight: 600; }
 </style>
 </head>
 <body>
- 
+
 <div class="app-shell">
   <!-- SIDEBAR -->
   <aside class="sidebar">
@@ -1126,10 +1126,10 @@
       <div class="progress-pct" id="globalProgressPct">0%</div>
     </div>
   </aside>
- 
+
   <!-- MAIN -->
   <main class="main-content">
- 
+
     <!-- ===== HERO PAGE ===== -->
     <div class="page active" id="page-hero">
       <div class="hero">
@@ -1183,7 +1183,7 @@
         </div>
       </div>
     </div>
- 
+
     <!-- ===== VOCABULARY PAGE ===== -->
     <div class="page" id="page-vocab">
       <div class="hero" style="padding:32px 48px;">
@@ -1200,7 +1200,7 @@
           <button class="tab-btn" onclick="switchTab(this,'vocab-tab','vt-people')">People & Places</button>
           <button class="tab-btn" onclick="switchTab(this,'vocab-tab','vt-inflight')">In-flight</button>
         </div>
- 
+
         <div class="tab-panel active" id="vt-onboard">
           <div class="vocab-grid" id="vocabGrid1"></div>
         </div>
@@ -1210,14 +1210,14 @@
         <div class="tab-panel" id="vt-inflight">
           <div class="vocab-grid" id="vocabGrid3"></div>
         </div>
- 
+
         <div class="btn-group" style="margin-top:32px;">
           <button class="btn btn-primary" onclick="goTo('phrases')">Next: Useful Phrases →</button>
           <button class="btn btn-outline" onclick="goTo('hero')">← Overview</button>
         </div>
       </div>
     </div>
- 
+
     <!-- ===== PHRASES PAGE ===== -->
     <div class="page" id="page-phrases">
       <div class="hero" style="padding:32px 48px;">
@@ -1234,7 +1234,7 @@
           <button class="tab-btn" onclick="switchTab(this,'phrases-tab','pt-during')">In-flight</button>
           <button class="tab-btn" onclick="switchTab(this,'phrases-tab','pt-after')">Landing</button>
         </div>
- 
+
         <div class="tab-panel active" id="pt-before">
           <div class="phrase-list" id="phrasesBefore"></div>
         </div>
@@ -1244,14 +1244,14 @@
         <div class="tab-panel" id="pt-after">
           <div class="phrase-list" id="phrasesAfter"></div>
         </div>
- 
+
         <div class="btn-group" style="margin-top:28px;">
           <button class="btn btn-primary" onclick="goTo('pronun')">Next: Pronunciation →</button>
           <button class="btn btn-outline" onclick="goTo('vocab')">← Vocabulary</button>
         </div>
       </div>
     </div>
- 
+
     <!-- ===== PRONUNCIATION PAGE ===== -->
     <div class="page" id="page-pronun">
       <div class="hero" style="padding:32px 48px;">
@@ -1277,7 +1277,7 @@
           </div>
           <p style="font-size:13px;color:var(--text-soft);margin-top:12px;">In natural, relaxed English, "could you" and "would you" are often reduced when speaking. The letters blur together — this is called <strong>connected speech</strong>. You don't need to sound exactly like this, but you should be able to recognize and understand it!</p>
         </div>
- 
+
         <h3 style="font-size:16px;font-weight:700;color:var(--forest);margin-bottom:14px;">Practice Sentences</h3>
         <div class="practice-sentence">
           <strong>Could</strong> you <em>put your seat forward</em> now, sir? We'll be <em>landing</em> shortly.
@@ -1307,14 +1307,14 @@
         <div class="practice-sentence">
           I should be in <em>business class</em>, but this seat number is for a seat in <em>economy class</em>.
         </div>
- 
+
         <div class="btn-group" style="margin-top:28px;">
           <button class="btn btn-primary" onclick="goTo('practice')">Next: Quick Practice →</button>
           <button class="btn btn-outline" onclick="goTo('phrases')">← Useful Phrases</button>
         </div>
       </div>
     </div>
- 
+
     <!-- ===== QUICK PRACTICE PAGE ===== -->
     <div class="page" id="page-practice">
       <div class="hero" style="padding:32px 48px;">
@@ -1326,7 +1326,7 @@
         <p class="hero-sub" style="margin-bottom:0;">Test your vocabulary and phrases before speaking.</p>
       </div>
       <div class="section">
- 
+
         <!-- Exercise 1: Matching -->
         <div class="exercise-container">
           <div class="exercise-title">Exercise 1 — Match the Word</div>
@@ -1338,7 +1338,7 @@
           </div>
           <div class="feedback-box" id="matchFeedback"></div>
         </div>
- 
+
         <!-- Exercise 2: Fill in the blank -->
         <div class="exercise-container">
           <div class="exercise-title">Exercise 2 — Complete the Sentence</div>
@@ -1351,7 +1351,7 @@
           </div>
           <div class="feedback-box" id="fillFeedback"></div>
         </div>
- 
+
         <!-- Exercise 3: MCQ -->
         <div class="exercise-container">
           <div class="exercise-title">Exercise 3 — Choose the Best Word</div>
@@ -1363,14 +1363,14 @@
           </div>
           <div class="feedback-box" id="mcqFeedback"></div>
         </div>
- 
+
         <div class="btn-group" style="margin-top:8px;">
           <button class="btn btn-primary" onclick="goTo('speaking')">Next: Speaking →</button>
           <button class="btn btn-outline" onclick="goTo('pronun')">← Pronunciation</button>
         </div>
       </div>
     </div>
- 
+
     <!-- ===== SPEAKING PAGE ===== -->
     <div class="page" id="page-speaking">
       <div class="hero" style="padding:32px 48px;">
@@ -1383,7 +1383,7 @@
       </div>
       <div class="section">
         <div id="speakingScenarios"></div>
- 
+
         <hr class="divider">
         <h3 style="font-size:16px;font-weight:700;color:var(--forest);margin-bottom:14px;">🗒 Speaking Checklist</h3>
         <div class="checklist">
@@ -1393,14 +1393,14 @@
           <label class="check-item"><input type="checkbox"> I spoke confidently without long pauses</label>
           <label class="check-item"><input type="checkbox"> I listened and responded naturally</label>
         </div>
- 
+
         <div class="btn-group" style="margin-top:28px;">
           <button class="btn btn-primary" onclick="goTo('listen2')">Next: Listening 2 →</button>
           <button class="btn btn-outline" onclick="goTo('practice')">← Quick Practice</button>
         </div>
       </div>
     </div>
- 
+
     <!-- ===== LISTENING 2 PAGE ===== -->
     <div class="page" id="page-listen2">
       <div class="hero" style="padding:32px 48px;">
@@ -1415,27 +1415,27 @@
         <div class="listening-notice">
           🔊 <strong>Note:</strong> Use your CD 1-34 or course audio to listen. Then answer the questions below.
         </div>
- 
+
         <!-- Task 1 -->
         <h3 style="font-size:17px;font-weight:700;color:var(--forest);margin-bottom:6px;">Task 1 — Circle the correct answer</h3>
         <p style="font-size:13px;color:var(--text-soft);margin-bottom:20px;">Listen and choose the best answer for each conversation.</p>
- 
+
         <div id="l2task1"></div>
- 
+
         <!-- Task 2 -->
         <hr class="divider">
         <h3 style="font-size:17px;font-weight:700;color:var(--forest);margin-bottom:6px;">Task 2 — Now or Later?</h3>
         <p style="font-size:13px;color:var(--text-soft);margin-bottom:20px;">Listen again. Will the flight attendant help each passenger <strong>now</strong> or <strong>later</strong>?</p>
- 
+
         <div id="l2task2"></div>
- 
+
         <!-- Check answers -->
         <div class="btn-group">
           <button class="btn btn-primary" onclick="checkL2()">Check Answers</button>
           <button class="btn btn-secondary btn-sm" onclick="resetL2()">Reset</button>
         </div>
         <div class="feedback-box" id="l2Feedback"></div>
- 
+
         <!-- Transcripts -->
         <hr class="divider">
         <div class="reveal-btn-wrapper">
@@ -1445,14 +1445,14 @@
           <div class="info-box">💡 Read the transcripts after you answer to check your understanding.</div>
           <div id="l2TranscriptContent"></div>
         </div>
- 
+
         <div class="btn-group" style="margin-top:28px;">
           <button class="btn btn-primary" onclick="goTo('listen3')">Next: Listening 3 →</button>
           <button class="btn btn-outline" onclick="goTo('speaking')">← Speaking</button>
         </div>
       </div>
     </div>
- 
+
     <!-- ===== LISTENING 3 PAGE ===== -->
     <div class="page" id="page-listen3">
       <div class="hero" style="padding:32px 48px;">
@@ -1467,15 +1467,15 @@
         <div class="listening-notice">
           🔊 <strong>Note:</strong> Use your CD 1-35 or course audio to listen. Then mark the table below.
         </div>
- 
+
         <div id="l3task1"></div>
- 
+
         <div class="btn-group" style="margin-top:20px;">
           <button class="btn btn-primary" onclick="checkL3()">Check Answers</button>
           <button class="btn btn-secondary btn-sm" onclick="resetL3()">Reset</button>
         </div>
         <div class="feedback-box" id="l3Feedback"></div>
- 
+
         <hr class="divider">
         <div class="reveal-btn-wrapper">
           <button class="btn btn-outline" onclick="toggleTranscripts('l3Transcripts', this)">📄 Show Transcripts & Answers</button>
@@ -1484,14 +1484,14 @@
           <div class="info-box">💡 Read these transcripts after attempting the exercises.</div>
           <div id="l3TranscriptContent"></div>
         </div>
- 
+
         <div class="btn-group" style="margin-top:28px;">
           <button class="btn btn-primary" onclick="goTo('discussion')">Next: Discussion →</button>
           <button class="btn btn-outline" onclick="goTo('listen2')">← Listening 2</button>
         </div>
       </div>
     </div>
- 
+
     <!-- ===== DISCUSSION PAGE ===== -->
     <div class="page" id="page-discussion">
       <div class="hero" style="padding:32px 48px;">
@@ -1504,14 +1504,14 @@
       </div>
       <div class="section">
         <div id="discussionScenarios"></div>
- 
+
         <div class="btn-group" style="margin-top:8px;">
           <button class="btn btn-primary" onclick="goTo('review')">Next: Final Review →</button>
           <button class="btn btn-outline" onclick="goTo('listen3')">← Listening 3</button>
         </div>
       </div>
     </div>
- 
+
     <!-- ===== REVIEW PAGE ===== -->
     <div class="page" id="page-review">
       <div class="hero" style="padding:32px 48px;">
@@ -1523,7 +1523,7 @@
         <p class="hero-sub" style="margin-bottom:0;">Consolidate everything you have learned today.</p>
       </div>
       <div class="section">
- 
+
         <!-- Vocabulary Review: Quick Match -->
         <div class="exercise-container">
           <div class="exercise-title">🔄 Vocabulary Challenge — Quick Review</div>
@@ -1535,7 +1535,7 @@
           </div>
           <div class="feedback-box" id="reviewFeedback"></div>
         </div>
- 
+
         <!-- Reading / Research task -->
         <div class="exercise-container">
           <div class="exercise-title">📰 Real-World Task — News Research</div>
@@ -1550,7 +1550,7 @@
           </div>
           <textarea style="width:100%;height:120px;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:14px;font-family:inherit;font-size:14px;resize:vertical;outline:none;color:var(--text-dark);" placeholder="Write your article summary here using flight vocabulary..."></textarea>
         </div>
- 
+
         <!-- Self-Assessment -->
         <div class="exercise-container">
           <div class="exercise-title">✅ Self-Assessment Checklist</div>
@@ -1563,7 +1563,7 @@
             <label class="check-item"><input type="checkbox"> I feel more confident using English in an airplane context</label>
           </div>
         </div>
- 
+
         <!-- Lesson Summary -->
         <div class="exercise-container">
           <div class="exercise-title">📋 Lesson Summary</div>
@@ -1577,20 +1577,20 @@
             <tr><td>🤝 Activities</td><td>Matching, Fill-in-the-blank, MCQ, Role Play, Listening Tasks, Research</td></tr>
           </table>
         </div>
- 
+
         <div class="btn-group" style="margin-top:8px;">
           <button class="btn btn-primary" onclick="goTo('hero')">🔁 Review from Start</button>
           <button class="btn btn-outline" onclick="goTo('discussion')">← Discussion</button>
         </div>
       </div>
     </div>
- 
+
   </main>
 </div>
- 
+
 <!-- Reset FAB -->
 <button class="reset-fab" onclick="resetAll()">🔄 Reset All</button>
- 
+
 <script>
 // ===== DATA =====
 const vocabOnboard = [
@@ -1607,7 +1607,7 @@ const vocabOnboard = [
   { word: '"No Smoking" sign', ipa: '/ˈnoʊ ˈsmoʊkɪŋ saɪn/', pos: "noun phrase", vi: 'Biển báo "Cấm hút thuốc"', ex: "You can see the No Smoking sign light up above your seat." },
   { word: '"Fasten Seat Belt" sign', ipa: '/ˈfæsn ˈsiːt belt saɪn/', pos: "noun phrase", vi: 'Biển báo "Thắt dây an toàn"', ex: "The pilot has turned on the Fasten Seat Belt sign due to the weather." },
 ];
- 
+
 const vocabPeople = [
   { word: "Flight attendant", ipa: "/ˈflaɪt əˈtendənt/", pos: "noun phrase", vi: "Tiếp viên hàng không", ex: "The flight attendants did their best to make everyone feel comfortable." },
   { word: "Pilot", ipa: "/ˈpaɪlət/", pos: "noun", vi: "Cơ trưởng / Phi công", ex: "The pilot made an announcement about the flight path." },
@@ -1622,7 +1622,7 @@ const vocabPeople = [
   { word: "Ticket", ipa: "/ˈtɪkɪt/", pos: "noun", vi: "Vé máy bay", ex: "Could I check your ticket to verify your seat location, please?" },
   { word: "Seat number", ipa: "/ˈsiːt ˌnʌmbər/", pos: "noun phrase", vi: "Số ghế", ex: "Excuse me, I think there is a problem with my seat number." },
 ];
- 
+
 const vocabInflight = [
   { word: "Turbulence", ipa: "/ˈtɜːrbjələns/", pos: "noun", vi: "Nhiễu động không khí (rung lắc)", ex: "We may be having some turbulence, so please remain seated." },
   { word: "Bad weather", ipa: "/bæd ˈweðər/", pos: "noun phrase", vi: "Thời tiết xấu", ex: "The flight became very bumpy because we ran into bad weather." },
@@ -1632,7 +1632,7 @@ const vocabInflight = [
   { word: "Magazine", ipa: "/ˈmæɡəziːn/", pos: "noun", vi: "Tạp chí", ex: "There is a magazine in the seat pocket for you to read." },
   { word: "Weather report", ipa: "/ˈweðər rɪˈpɔːrt/", pos: "noun phrase", vi: "Bản tin thời tiết", ex: "I will check the weather report before booking my flight ticket." },
 ];
- 
+
 const phrasesBefore = [
   { en: "Board the airplane", vi: "Bước lên máy bay" },
   { en: "Check your ticket", vi: "Kiểm tra vé của bạn" },
@@ -1642,7 +1642,7 @@ const phrasesBefore = [
   { en: "Fasten your seat belt", vi: "Thắt dây an toàn của bạn" },
   { en: "Take off", vi: "(Máy bay) Cất cánh" },
 ];
- 
+
 const phrasesDuring = [
   { en: "Run into bad weather", vi: "Gặp phải thời tiết xấu trên lộ trình" },
   { en: "Have some turbulence", vi: "Gặp phải sự nhiễu động không khí (máy bay bị rung lắc)" },
@@ -1652,7 +1652,7 @@ const phrasesDuring = [
   { en: "Finish serving the drinks", vi: "Hoàn thành việc phục vụ đồ uống" },
   { en: "Choose my own movies", vi: "Tự chọn bộ phim của riêng mình trên màn hình" },
 ];
- 
+
 const phrasesAfter = [
   { en: "Put your seat forward", vi: "Dựng thẳng lưng ghế của bạn ra phía trước (chuẩn bị hạ cánh)" },
   { en: "Landing shortly / Landing in a few minutes", vi: "Sắp hạ cánh / Hạ cánh trong vòng vài phút nữa" },
@@ -1661,7 +1661,7 @@ const phrasesAfter = [
   { en: "Pass the headphones to me", vi: "Chuyền / đưa tai nghe cho tôi" },
   { en: "Go through immigration", vi: "Đi qua khu vực làm thủ tục nhập cảnh" },
 ];
- 
+
 // Listening 2 data
 const l2Task1Questions = [
   {
@@ -1701,9 +1701,9 @@ const l2Task1Questions = [
     answer: 1
   }
 ];
- 
+
 const l2Task2Answers = ["later","now","now","now"]; // 0=later, 1=now, 2=later, 3=now
- 
+
 const l2Transcripts = [
   {
     num: "1",
@@ -1770,7 +1770,7 @@ const l2Transcripts = [
     ]
   }
 ];
- 
+
 // Listening 3 data
 const l3Speakers = [
   { num: 1, opinions: { airport: "Not good", flight: "Okay", food: "Not good", service: "Good" } },
@@ -1778,7 +1778,7 @@ const l3Speakers = [
   { num: 3, opinions: { airport: "Okay", flight: "Good", food: "Good", service: "Not good" } },
   { num: 4, opinions: { airport: "Okay", flight: "Not good", food: "Good", service: "Good" } },
 ];
- 
+
 const l3Transcripts = [
   {
     num: "1",
@@ -1801,7 +1801,7 @@ const l3Transcripts = [
     vi: "Không phải sân bay yêu thích nhưng cũng tạm được — luôn đông và mất nhiều thời gian check-in và làm thủ tục nhập cảnh. Chuyến bay thì khá tồi tệ — vừa cất cánh đã gặp thời tiết xấu, rất xóc. Đồ ăn thì tuyệt — một món gà rất ngon. Tiếp viên thì tốt bụng."
   }
 ];
- 
+
 // Speaking scenarios
 const speakingScenarios = [
   {
@@ -1910,9 +1910,46 @@ const speakingScenarios = [
     model_en: "The service on this flight was fantastic. The flight attendants did their best to make every passenger feel comfortable."
   }
 ];
- 
-const discussionScenarios = speakingScenarios; // reuse same structure
- 
+
+const discussionScenarios = [
+  {
+    emoji: "🛫",
+    title: "SITUATION 1: Looking for the Seat",
+    vi: "Tìm chỗ ngồi",
+    situation: "You board the airplane but cannot find your seat. You need to ask a flight attendant for help.",
+    hints: ["seat number", "window seat", "overhead compartment", "seat belt"],
+    model_en: "I'm a passenger on a big airplane today. First, I look at my ticket to find my seat number. But the cabin is very crowded. I don't know where my window seat is. So I talk to a flight attendant. I say: 'Excuse me, could you help me find my seat?' She is very kind. She shows me to my seat. Then I put my bag in the overhead compartment, sit down, and fasten my seat belt. Problem solved!",
+    model_vi: "Tôi là một hành khách trên một chiếc máy bay lớn hôm nay. Đầu tiên, tôi nhìn vào vé để tìm số ghế của mình. Nhưng khoang máy bay rất đông. Tôi không biết chiếc ghế gần cửa sổ của mình ở đâu. Vì vậy, tôi nói chuyện với một tiếp viên hàng không. Tôi nói: 'Xin lỗi, cô có thể giúp tôi tìm ghế được không?'. Cô ấy rất tốt bụng. Cô ấy chỉ ghế cho tôi. Sau đó, tôi cất túi vào khoang hành lý phía trên đầu, ngồi xuống và thắt dây an toàn. Vấn đề đã được giải quyết!"
+  },
+  {
+    emoji: "💼",
+    title: "SITUATION 2: No Space for Luggage",
+    vi: "Hết chỗ để hành lý",
+    situation: "You found your aisle seat, but the overhead compartment is completely full — there is no space for your bag.",
+    hints: ["aisle seat", "overhead compartment", "flight attendant", "seat belt", "flight"],
+    model_en: "I'm sitting in an aisle seat on the plane. I want to put my heavy bag away. But when I open the overhead compartment, it's already full! There's no room for my bag. To solve this, I call a flight attendant. I ask her for help. She takes my bag and finds another place for it. Finally, I can sit down comfortably, fasten my seat belt, and enjoy the flight.",
+    model_vi: "Tôi đang ngồi ở một chiếc ghế gần lối đi trên máy bay. Tôi muốn cất chiếc túi nặng của mình đi. Nhưng khi tôi mở khoang hành lý phía trên đầu ra, nó đã đầy rồi! Không có chỗ cho túi của tôi. Để giải quyết việc này, tôi gọi một tiếp viên hàng không. Tôi nhờ cô ấy giúp đỡ. Cô ấy lấy túi của tôi và tìm một nơi khác cho nó. Cuối cùng, tôi có thể ngồi xuống thoải mái, thắt dây an toàn và tận hưởng chuyến bay."
+  },
+  {
+    emoji: "⚡",
+    title: "SITUATION 3: The Seat Belt is Stuck",
+    vi: "Dây an toàn bị kẹt",
+    situation: "You have checked in, boarded the plane, and stored your luggage, but your seat belt is stuck and won't fasten.",
+    hints: ["overhead compartment", "seat belt", "pilot", "flight attendant", '"Fasten Seat Belt" sign'],
+    model_en: "I board the plane and find my seat. I put my luggage in the overhead compartment and sit down. But now I have a problem — my seat belt is broken. I can't fasten it! I need help because the pilot has turned on the 'Fasten Seat Belt' sign. I quickly press the call button for the flight attendant. She comes and fixes it right away. Now I feel safe.",
+    model_vi: "Tôi lên máy bay và tìm thấy chỗ ngồi. Tôi cất hành lý vào khoang hành lý phía trên đầu và ngồi xuống. Nhưng bây giờ, tôi có một vấn đề: dây an toàn của tôi bị hỏng. Tôi không thể thắt nó được! Tôi cần giúp đỡ vì cơ trưởng đã bật biển báo 'Thắt dây an toàn'. Tôi nhanh chóng bấm nút gọi tiếp viên hàng không. Cô ấy đến và giúp tôi sửa nó ngay lập tức. Bây giờ tôi thấy an toàn rồi."
+  },
+  {
+    emoji: "🚨",
+    title: "SITUATION 4: Wrong Seat Number",
+    vi: "Ngồi nhầm số ghế",
+    situation: "You boarded the plane and sat comfortably in a window seat. But another passenger comes and says you are sitting in their seat.",
+    hints: ["window seat", "overhead compartment", "ticket", "seat number", "aisle seat"],
+    model_en: "I board the plane and find a lovely window seat. I put my bag in the overhead compartment, sit down, and fasten my seat belt. But then another passenger comes. He says: 'Excuse me, I think you're in my seat.' Oh no! I check my ticket again. My seat number is 15B, but this is 15A. I'm in the wrong seat! I say: 'Oh, I'm so sorry!' Then I quickly stand up, take my bag, and move to the correct seat — an aisle seat. But that's okay!",
+    model_vi: "Tôi lên máy bay và tìm thấy một chiếc ghế gần cửa sổ rất đẹp. Tôi cất túi vào khoang hành lý phía trên đầu, ngồi xuống và thắt dây an toàn. Nhưng sau đó, một hành khách khác đến. Anh ấy nói: 'Xin lỗi, bạn đang ngồi ghế của tôi.' Ôi không! Tôi kiểm tra lại vé của mình. Số ghế của tôi là 15B, nhưng đây là 15A. Tôi ngồi nhầm ghế rồi! Tôi nói: 'Ồ, tôi xin lỗi!' Sau đó, tôi nhanh chóng đứng dậy, lấy túi và chuyển sang đúng ghế. Đó là một chiếc ghế gần lối đi, nhưng không sao cả!"
+  }
+];
+
 // MCQ Exercise data
 const mcqData = [
   { q: "Please fasten your _______ because we are having some turbulence.", options: ["ticket","seat belt","headphones","menu"], answer: 1 },
@@ -1921,7 +1958,7 @@ const mcqData = [
   { q: "These _______ don't seem to be working properly — the sound isn't clear.", options: ["TV screens","headphones","customs forms","tickets"], answer: 1 },
   { q: "We may have some _______, so please remain seated with your seat belt fastened.", options: ["immigration","facilities","turbulence","service"], answer: 2 },
 ];
- 
+
 // Fill-in-blank data
 const fillData = [
   { before: "You can", blank: "plug in", after: "your headphones to watch a movie.", answer: "plug in", hint: "plug in" },
@@ -1930,9 +1967,9 @@ const fillData = [
   { before: "I prefer an aisle seat because it is easier to", blank: "get up", after: "and walk around.", answer: "get up", hint: "get up" },
   { before: "After you board, you should", blank: "fasten", after: "your seat belt.", answer: "fasten", hint: "fasten" },
 ];
- 
+
 const wordBankWords = ["plug in","fill out","turned on","get up","fasten","boarded","collect","check"];
- 
+
 // Matching data
 const matchPairs = [
   { en: "turbulence", vi: "nhiễu động không khí" },
@@ -1942,7 +1979,7 @@ const matchPairs = [
   { en: "flight attendant", vi: "tiếp viên hàng không" },
   { en: "immigration", vi: "khu vực nhập cảnh" },
 ];
- 
+
 // Review MCQ
 const reviewMCQData = [
   { q: "What is 'turbulence'?", options: ["Dây an toàn","Nhiễu động không khí","Thẻ hướng dẫn an toàn","Tiếp viên hàng không"], answer: 1 },
@@ -1951,15 +1988,15 @@ const reviewMCQData = [
   { q: "What does 'fasten your seat belt' mean?", options: ["Cất hành lý vào khoang trên đầu","Điền vào tờ khai hải quan","Bật màn hình TV","Thắt dây an toàn"], answer: 3 },
   { q: "What is the 'overhead compartment'?", options: ["Màn hình TV","Khoang hành lý phía trên đầu","Túi đựng đồ phía sau ghế","Hàng ghế thoát hiểm"], answer: 1 },
 ];
- 
+
 // ===== STATE =====
 let matchSelected = null;
 let matchPairsState = [];
 let matchMatched = [];
- 
+
 // ===== NAVIGATION =====
 let visitedPages = new Set(['hero']);
- 
+
 function goTo(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -1969,7 +2006,7 @@ function goTo(page) {
   updateProgress();
   window.scrollTo(0, 0);
 }
- 
+
 function updateProgress() {
   const total = document.querySelectorAll('.nav-item').length;
   const visited = visitedPages.size;
@@ -1977,7 +2014,7 @@ function updateProgress() {
   document.getElementById('globalProgress').style.width = pct + '%';
   document.getElementById('globalProgressPct').textContent = pct + '%';
 }
- 
+
 function switchTab(btn, group, panelId) {
   const container = btn.closest('.section');
   container.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1985,7 +2022,7 @@ function switchTab(btn, group, panelId) {
   btn.classList.add('active');
   document.getElementById(panelId).classList.add('active');
 }
- 
+
 // ===== VOCAB RENDER =====
 function renderVocab(data, containerId) {
   const el = document.getElementById(containerId);
@@ -2000,7 +2037,7 @@ function renderVocab(data, containerId) {
     </div>
   `).join('');
 }
- 
+
 function renderPhrases(data, containerId) {
   const el = document.getElementById(containerId);
   el.innerHTML = data.map(p => `
@@ -2010,7 +2047,7 @@ function renderPhrases(data, containerId) {
     </div>
   `).join('');
 }
- 
+
 // ===== MATCH EXERCISE =====
 function renderMatch() {
   const shuffledEn = [...matchPairs].sort(() => Math.random() - 0.5);
@@ -2018,7 +2055,7 @@ function renderMatch() {
   matchPairsState = { en: shuffledEn, vi: shuffledVi };
   matchMatched = [];
   matchSelected = null;
- 
+
   const html = `
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
       <div>
@@ -2031,12 +2068,12 @@ function renderMatch() {
   `;
   document.getElementById('matchExercise').innerHTML = html;
 }
- 
+
 let matchSel = { side: null, idx: null, key: null };
 function selectMatch(side, idx, key) {
   const elId = (side === 'en' ? 'men-' : 'mvi-') + idx;
   const el = document.getElementById(elId);
- 
+
   if (matchSel.side === null) {
     matchSel = { side, idx, key };
     el.style.background = 'var(--sage)';
@@ -2075,7 +2112,7 @@ function selectMatch(side, idx, key) {
     matchSel = { side: null, idx: null, key: null };
   }
 }
- 
+
 function checkMatch() {
   const fb = document.getElementById('matchFeedback');
   const score = matchMatched.length;
@@ -2083,17 +2120,17 @@ function checkMatch() {
   fb.className = 'feedback-box show ' + (score === total ? 'success' : 'info');
   fb.innerHTML = `<div class="score-badge">${score}/${total}</div> ${score === total ? '🎉 Perfect! All pairs matched correctly!' : `${score} of ${total} matched. Keep trying!`}`;
 }
- 
+
 function resetMatch() {
   document.getElementById('matchFeedback').className = 'feedback-box';
   renderMatch();
 }
- 
+
 // ===== FILL BLANK =====
 function renderFill() {
   const wb = document.getElementById('wordBank2');
   wb.innerHTML = wordBankWords.map(w => `<span class="hint-chip">${w}</span>`).join('');
- 
+
   const el = document.getElementById('fillBlanks');
   el.innerHTML = fillData.map((f, i) => `
     <div class="fill-blank">
@@ -2103,7 +2140,7 @@ function renderFill() {
     </div>
   `).join('');
 }
- 
+
 function checkFill() {
   let score = 0;
   fillData.forEach((f, i) => {
@@ -2119,7 +2156,7 @@ function checkFill() {
   fb.className = 'feedback-box show ' + (score === fillData.length ? 'success' : 'error');
   fb.innerHTML = `<div class="score-badge">${score}/${fillData.length}</div> ${score === fillData.length ? '🎉 Excellent! All correct!' : `${score} correct. Check the word bank and try again.`}`;
 }
- 
+
 function resetFill() {
   fillData.forEach((_, i) => {
     const inp = document.getElementById('fb-' + i);
@@ -2128,7 +2165,7 @@ function resetFill() {
   });
   document.getElementById('fillFeedback').className = 'feedback-box';
 }
- 
+
 // ===== MCQ EXERCISE =====
 function renderMCQ() {
   const el = document.getElementById('mcqExercise');
@@ -2145,14 +2182,14 @@ function renderMCQ() {
     </div>
   `).join('');
 }
- 
+
 function selectMCQOpt(qi, oi) {
   mcqData[qi].options.forEach((_, i) => {
     document.getElementById(`mcq-${qi}-${i}`).classList.remove('selected');
   });
   document.getElementById(`mcq-${qi}-${oi}`).classList.add('selected');
 }
- 
+
 function checkMCQ() {
   let score = 0;
   mcqData.forEach((q, qi) => {
@@ -2176,7 +2213,7 @@ function checkMCQ() {
   fb.className = 'feedback-box show ' + (score === mcqData.length ? 'success' : 'info');
   fb.innerHTML = `<div class="score-badge">${score}/${mcqData.length}</div> ${score === mcqData.length ? '🎉 Well done! Perfect score!' : `${score}/${mcqData.length} correct. Green = correct answer.`}`;
 }
- 
+
 function resetMCQ() {
   mcqData.forEach((q, qi) => {
     q.options.forEach((_, oi) => {
@@ -2188,7 +2225,7 @@ function resetMCQ() {
   });
   document.getElementById('mcqFeedback').className = 'feedback-box';
 }
- 
+
 // ===== SPEAKING SCENARIOS =====
 function renderSpeaking() {
   const el = document.getElementById('speakingScenarios');
@@ -2218,7 +2255,7 @@ function renderSpeaking() {
     </div>
   `).join('');
 }
- 
+
 function renderDiscussion() {
   const el = document.getElementById('discussionScenarios');
   el.innerHTML = discussionScenarios.map((s, i) => `
@@ -2248,7 +2285,7 @@ function renderDiscussion() {
     </div>
   `).join('');
 }
- 
+
 function toggleSample(id, btn) {
   const el = document.getElementById(id);
   if (el.classList.contains('revealed')) {
@@ -2259,7 +2296,7 @@ function toggleSample(id, btn) {
     btn.textContent = '🙈 Hide Sample Answer';
   }
 }
- 
+
 // ===== LISTENING 2 =====
 function renderL2Task1() {
   const el = document.getElementById('l2task1');
@@ -2276,7 +2313,7 @@ function renderL2Task1() {
     </div>
   `).join('');
 }
- 
+
 function renderL2Task2() {
   const el = document.getElementById('l2task2');
   const html = `
@@ -2305,16 +2342,16 @@ function renderL2Task2() {
   `;
   el.innerHTML = html;
 }
- 
+
 function selectL2T2(qi, val) {
   ['now','later'].forEach(v => document.getElementById(`l2t2-${qi}-${v}`).classList.remove('selected-opt'));
   document.getElementById(`l2t2-${qi}-${val}`).classList.add('selected-opt');
 }
- 
+
 function checkL2() {
   let score = 0;
   let total = l2Task1Questions.length + l2Task2Answers.length;
- 
+
   // Task 1
   l2Task1Questions.forEach((q, qi) => {
     q.options.forEach((_, oi) => {
@@ -2333,7 +2370,7 @@ function checkL2() {
       document.getElementById(`l2t1-${qi}-${q.answer}`).classList.add('correct');
     }
   });
- 
+
   // Task 2
   l2Task2Answers.forEach((ans, i) => {
     ['now','later'].forEach(v => {
@@ -2353,12 +2390,12 @@ function checkL2() {
       if (correctEl) correctEl.classList.add('correct-opt');
     }
   });
- 
+
   const fb = document.getElementById('l2Feedback');
   fb.className = 'feedback-box show ' + (score === total ? 'success' : 'info');
   fb.innerHTML = `<div class="score-badge">${score}/${total}</div> ${score === total ? '🎉 Perfect! All answers correct!' : `${score} of ${total} correct. Check the transcripts below for help!`}`;
 }
- 
+
 function resetL2() {
   l2Task1Questions.forEach((q, qi) => {
     q.options.forEach((_, oi) => {
@@ -2378,7 +2415,7 @@ function resetL2() {
   });
   document.getElementById('l2Feedback').className = 'feedback-box';
 }
- 
+
 function renderL2Transcripts() {
   const el = document.getElementById('l2TranscriptContent');
   el.innerHTML = l2Transcripts.map(t => `
@@ -2398,16 +2435,16 @@ function renderL2Transcripts() {
     </div>
   `).join('');
 }
- 
+
 function getL2T1Answer(qi) {
   return ['c','b','b','b'][qi].toUpperCase();
 }
- 
+
 // ===== LISTENING 3 =====
 function renderL3Task1() {
   const opts = ['Good','Okay','Not good'];
   const cats = ['the airport','the flight','the food','the service'];
- 
+
   let html = `<table class="listen3-table"><thead><tr><th>Speaker / Category</th><th>Good</th><th>Okay</th><th>Not good</th></tr></thead><tbody>`;
   l3Speakers.forEach(sp => {
     html += `<tr class="listen3-group-header"><td colspan="4">Speaker ${sp.num}</td></tr>`;
@@ -2429,7 +2466,7 @@ function renderL3Task1() {
   html += '</tbody></table>';
   document.getElementById('l3task1').innerHTML = html;
 }
- 
+
 function selectL3(sp, cat, val) {
   const opts = ['Good','Okay','Not good'];
   const id = `l3-${sp}-${cat}`;
@@ -2440,13 +2477,13 @@ function selectL3(sp, cat, val) {
   const selEl = document.getElementById(`${id}-${val.toLowerCase().replace(' ','-')}`);
   if (selEl) selEl.classList.add('selected-opt');
 }
- 
+
 function checkL3() {
   let score = 0;
   let total = 0;
   const cats = ['airport','flight','food','service'];
   const opts = ['Good','Okay','Not good'];
- 
+
   l3Speakers.forEach(sp => {
     cats.forEach(cat => {
       total++;
@@ -2472,12 +2509,12 @@ function checkL3() {
       }
     });
   });
- 
+
   const fb = document.getElementById('l3Feedback');
   fb.className = 'feedback-box show ' + (score === total ? 'success' : 'info');
   fb.innerHTML = `<div class="score-badge">${score}/${total}</div> ${score === total ? '🎉 Excellent! All correct!' : `${score} of ${total} correct. Green = correct answer.`}`;
 }
- 
+
 function resetL3() {
   const cats = ['airport','flight','food','service'];
   const opts = ['Good','Okay','Not good'];
@@ -2494,7 +2531,7 @@ function resetL3() {
   });
   document.getElementById('l3Feedback').className = 'feedback-box';
 }
- 
+
 function renderL3Transcripts() {
   const el = document.getElementById('l3TranscriptContent');
   el.innerHTML = l3Transcripts.map(t => `
@@ -2512,11 +2549,11 @@ function renderL3Transcripts() {
     </div>
   `).join('');
 }
- 
+
 function getSp(num, cat) {
   return l3Speakers.find(s => s.num == num)?.opinions[cat] || '';
 }
- 
+
 function toggleTranscripts(id, btn) {
   const el = document.getElementById(id);
   if (el.classList.contains('revealed')) {
@@ -2527,7 +2564,7 @@ function toggleTranscripts(id, btn) {
     btn.textContent = btn.textContent.replace('Show','Hide').replace('📄','🙈');
   }
 }
- 
+
 // ===== REVIEW MCQ =====
 function renderReviewMCQ() {
   const el = document.getElementById('reviewMCQ');
@@ -2544,7 +2581,7 @@ function renderReviewMCQ() {
     </div>
   `).join('');
 }
- 
+
 function checkReviewMCQ() {
   let score = 0;
   reviewMCQData.forEach((q, qi) => {
@@ -2565,7 +2602,7 @@ function checkReviewMCQ() {
   fb.className = 'feedback-box show ' + (score === reviewMCQData.length ? 'success' : 'info');
   fb.innerHTML = `<div class="score-badge">${score}/${reviewMCQData.length}</div> ${score === reviewMCQData.length ? '🎉 Perfect Review Score!' : `${score}/${reviewMCQData.length}. Review the vocabulary section for help.`}`;
 }
- 
+
 function resetReviewMCQ() {
   reviewMCQData.forEach((_, qi) => {
     document.querySelectorAll(`.mcq-option[id^="rmcq-${qi}"]`).forEach(el => el.classList.remove('correct','incorrect'));
@@ -2574,7 +2611,7 @@ function resetReviewMCQ() {
   });
   document.getElementById('reviewFeedback').className = 'feedback-box';
 }
- 
+
 // ===== GLOBAL RESET =====
 function resetAll() {
   if (!confirm('Reset all exercises? Your answers will be cleared.')) return;
@@ -2594,7 +2631,7 @@ function resetAll() {
   updateProgress();
   goTo('hero');
 }
- 
+
 function renderAll() {
   renderVocab(vocabOnboard, 'vocabGrid1');
   renderVocab(vocabPeople, 'vocabGrid2');
@@ -2614,7 +2651,7 @@ function renderAll() {
   renderL3Transcripts();
   renderReviewMCQ();
 }
- 
+
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
   renderAll();
