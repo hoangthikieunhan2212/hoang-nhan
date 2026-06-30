@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gift-Giving — English Communication Lesson</title>
+<style>
+:root{
+  --forest:#2D5016; --moss:#4A7C2F; --mint:#A8C97F; --sage:#D4E8B8; --sand:#F5F0E8; --white:#FFFFFF;
+  --blue:#2563EB; --blue-light:#EFF6FF;
+  --amber:#D97706; --amber-light:#FFFBEB;
+  --red:#DC2626; --red-light:#FEF2F2;
+  --green-success:#16A34A; --green-light:#F0FDF4;
+  --text-dark:#1A2E0A; --text-mid:#3D5C20; --text-soft:#6B8C4A;
+  --border:#C8DFA0;
+  --shadow-sm:0 1px 3px rgba(45,80,22,0.08);
+  --shadow-md:0 4px 16px rgba(45,80,22,0.12);
+  --shadow-lg:0 8px 32px rgba(45,80,22,0.16);
+  --radius:12px; --radius-sm:8px; --radius-lg:20px;
+  font-size:16px;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif; color:var(--text-dark); line-height:1.6; background:var(--sand);}
+.app-shell{display:flex; min-height:100vh;}
+
+/* SIDEBAR */
+.sidebar{width:220px; background:var(--forest); position:fixed; top:0; left:0; bottom:0; display:flex; flex-direction:column; z-index:100;}
+.brand{padding:24px 18px; border-bottom:1px solid rgba(255,255,255,0.1);}
+.brand .level-badge{display:inline-block; background:var(--mint); color:var(--forest); font-size:10px; font-weight:800; padding:3px 9px; border-radius:99px; margin-bottom:10px;}
+.brand h1{color:white; font-size:17px; font-weight:800; line-height:1.3;}
+.brand p{color:var(--mint); opacity:0.8; font-size:12px; margin-top:4px;}
+.nav-scroll{flex:1; overflow-y:auto; padding:14px 0;}
+.nav-label{font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(168,201,127,0.6); padding:14px 18px 6px;}
+.nav-item{display:flex; align-items:center; gap:10px; padding:9px 18px; color:rgba(255,255,255,0.7); font-size:13px; font-weight:500; cursor:pointer; border-left:3px solid transparent; transition:all 0.2s;}
+.nav-item:hover{color:white; background:rgba(168,201,127,0.08);}
+.nav-item.active{color:white; border-left-color:var(--mint); background:rgba(168,201,127,0.15);}
+.nav-item .ic{width:20px; font-size:15px; text-align:center;}
+.progress-wrap{padding:16px 18px 20px;}
+.progress-track{height:6px; background:rgba(255,255,255,0.1); border-radius:99px; overflow:hidden;}
+.progress-fill{height:100%; background:var(--mint); width:0%; border-radius:99px; transition:width 0.5s ease;}
+.progress-wrap span{display:block; color:rgba(255,255,255,0.6); font-size:11px; margin-top:6px;}
+
+/* MAIN */
+.main-content{margin-left:220px; flex:1; min-width:0;}
+.page{display:none;}
+.page.active{display:block; animation:fadeIn 0.3s ease;}
+@keyframes fadeIn{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
+
+.hero-block{background:linear-gradient(135deg,var(--forest),var(--moss),#5A9E3A); padding:48px; color:white;}
+.hero-meta{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px;}
+.hero-block h1{font-size:36px; font-weight:800; margin-bottom:12px;}
+.hero-block .subtitle{max-width:560px; opacity:0.92; font-size:15px; margin-bottom:20px;}
+.outcomes{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px;}
+.section-hero{padding:32px 48px;}
+.section-hero h1{font-size:26px; font-weight:800; margin-bottom:8px;}
+.section-hero p{opacity:0.9; font-size:14px; max-width:560px;}
+
+.section-block{padding:40px 48px; border-bottom:1px solid var(--border);}
+.section-header{margin-bottom:24px;}
+.part-label{display:inline-block; background:var(--forest); color:var(--mint); font-size:10px; font-weight:800; padding:4px 10px; border-radius:99px; margin-bottom:10px; letter-spacing:0.5px;}
+.section-title{font-size:22px; font-weight:800; color:var(--forest); margin-bottom:6px;}
+.section-subtitle{font-size:14px; color:var(--text-soft);}
+
+.badge{display:inline-block; padding:5px 12px; border-radius:99px; font-size:12px; font-weight:700;}
+.badge-mint{background:rgba(168,201,127,0.2); color:var(--mint); border:1px solid rgba(168,201,127,0.3);}
+.badge-white{background:rgba(255,255,255,0.15); color:white;}
+.badge-blue{background:var(--blue-light); color:var(--blue);}
+.badge-amber{background:var(--amber-light); color:var(--amber);}
+.badge-green{background:var(--green-light); color:var(--green-success);}
+.badge-red{background:var(--red-light); color:var(--red);}
+.badge-forest{background:var(--sage); color:var(--forest);}
+
+/* TABS */
+.tab-bar{display:flex; gap:4px; border-bottom:2px solid var(--border); overflow-x:auto; margin-bottom:20px;}
+.tab-btn{padding:10px 18px; font-size:13px; font-weight:600; color:var(--text-soft); border-bottom:2px solid transparent; cursor:pointer; white-space:nowrap; background:none; border-top:none; border-left:none; border-right:none;}
+.tab-btn.active{color:var(--forest); border-bottom-color:var(--forest);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block; animation:fadeIn 0.3s ease;}
+
+/* VOCAB */
+.vocab-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px;}
+.vocab-card{background:white; border:1px solid var(--border); border-radius:var(--radius); padding:16px 18px; cursor:pointer; transition:all 0.2s; position:relative;}
+.vocab-card:hover{box-shadow:var(--shadow-md); transform:translateY(-2px); border-color:var(--mint);}
+.vocab-card .tap-hint{position:absolute; top:12px; right:14px; font-size:10px; color:var(--text-soft); opacity:0.6;}
+.vocab-card .word{color:var(--forest); font-size:17px; font-weight:700;}
+.vocab-card .ipa{color:var(--blue); font-style:italic; font-size:13px; margin-top:2px;}
+.vocab-card .vi{color:var(--text-mid); font-weight:600; font-size:14px; margin-top:6px;}
+.vocab-card .example{display:none; margin-top:10px; padding-top:10px; border-top:1px solid var(--sage); color:var(--text-soft); font-size:13px;}
+.vocab-card.flipped .example{display:block; animation:fadeIn 0.2s ease;}
+
+/* PHRASE CARD */
+.phrase-card{display:flex; flex-wrap:wrap; gap:8px 16px; background:white; border:1px solid var(--border); border-radius:var(--radius); padding:14px 18px; align-items:center; margin-bottom:10px;}
+.phrase-en{color:var(--forest); font-weight:700; min-width:230px; font-size:14px;}
+.phrase-vi{color:var(--text-soft); font-size:13px;}
+
+/* INFO / WARNING BOX */
+.info-box{background:var(--sage); border-left:4px solid var(--moss); border-radius:0 var(--radius-sm) var(--radius-sm) 0; padding:14px 18px; font-size:14px; color:var(--text-mid); margin-bottom:16px;}
+.listening-notice{background:var(--amber-light); border:1px solid #FDE68A; color:var(--amber); padding:12px 16px; font-size:13px; border-radius:var(--radius-sm); margin-bottom:16px;}
+.rule-box{background:var(--blue-light); border:1px solid #BFDBFE; border-radius:var(--radius); padding:18px; margin-bottom:16px;}
+.rule-box h4{color:var(--blue); font-weight:700; font-size:15px; margin-bottom:10px;}
+
+/* EXERCISE CONTAINER */
+.exercise-container{background:white; border:1px solid var(--border); border-radius:var(--radius); padding:28px; margin-bottom:20px;}
+.exercise-title{color:var(--forest); font-weight:700; font-size:16px; margin-bottom:10px;}
+.exercise-instruction{color:var(--text-soft); font-size:13px; background:var(--sand); padding:10px 14px; border-radius:var(--radius-sm); margin-bottom:18px;}
+
+/* MCQ */
+.mcq-item{margin-bottom:20px; padding-bottom:18px; border-bottom:1px solid var(--sage);}
+.mcq-item:last-child{border-bottom:none; margin-bottom:0; padding-bottom:0;}
+.mcq-q{font-size:14px; font-weight:600; color:var(--text-dark); margin-bottom:10px;}
+.mcq-options{display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:8px;}
+.mcq-option{border:1.5px solid var(--border); border-radius:var(--radius-sm); padding:10px 14px; font-size:13.5px; cursor:pointer; transition:all 0.2s;}
+.mcq-option:hover{border-color:var(--mint); background:var(--sage);}
+.mcq-option.selected{border-color:var(--blue); background:var(--blue-light);}
+.mcq-option.correct{border-color:var(--green-success); background:var(--green-light);}
+.mcq-option.incorrect{border-color:var(--red); background:var(--red-light);}
+
+/* BUTTONS */
+.btn-group{display:flex; gap:10px; flex-wrap:wrap; margin-top:20px;}
+.btn{padding:10px 20px; border-radius:var(--radius-sm); font-size:14px; font-weight:700; border:none; cursor:pointer; transition:all 0.2s;}
+.btn-primary{background:var(--forest); color:white;}
+.btn-primary:hover{background:var(--moss); transform:translateY(-1px);}
+.btn-secondary{background:var(--sage); color:var(--forest);}
+.btn-secondary:hover{background:var(--mint);}
+.btn-outline{background:transparent; color:var(--forest); border:1.5px solid var(--border);}
+.btn-outline:hover{border-color:var(--moss); background:var(--sage);}
+.btn-sm{padding:6px 14px; font-size:13px;}
+
+/* FEEDBACK */
+.feedback-box{padding:14px 18px; border-radius:var(--radius-sm); display:none; align-items:center; gap:10px; margin-top:16px; border:1px solid;}
+.feedback-box.show{display:flex;}
+.feedback-box.success{background:var(--green-light); color:var(--green-success); border-color:#BBF7D0;}
+.feedback-box.error{background:var(--red-light); color:var(--red); border-color:#FECACA;}
+.feedback-box.info{background:var(--blue-light); color:var(--blue); border-color:#BFDBFE;}
+.score-badge{width:48px; height:48px; border-radius:50%; background:white; color:var(--forest); font-weight:800; font-size:15px; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+
+/* FILL BLANK */
+.blank-input{border:none; border-bottom:2px solid var(--forest); background:transparent; min-width:110px; font-size:15px; padding:2px 4px; text-align:center; font-family:inherit; color:var(--text-dark);}
+.blank-input:focus{outline:none; border-color:var(--blue);}
+.blank-input.correct{border-color:var(--green-success); background:var(--green-light);}
+.blank-input.incorrect{border-color:var(--red); background:var(--red-light);}
+
+/* TABLES */
+table.lesson-table{width:100%; border-collapse:collapse; font-size:13.5px;}
+table.lesson-table th{background:var(--sage); color:var(--forest); padding:10px 12px; text-align:left; font-size:12px;}
+table.lesson-table td{padding:10px 12px; border-bottom:1px solid var(--sage);}
+table.lesson-table tr:last-child td{border-bottom:none;}
+.opinion-table td.center, table.lesson-table th.center{text-align:center;}
+.opinion-table input[type=checkbox]{accent-color:var(--forest); width:16px; height:16px;}
+
+/* SCENARIO / SPEAKING CARDS */
+.scenario-card{background:white; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:18px;}
+.scenario-header{background:linear-gradient(135deg,var(--forest),var(--moss)); color:white; padding:14px 18px; font-weight:700; font-size:14px; display:flex; gap:10px; align-items:center;}
+.scenario-body{padding:18px;}
+.scenario-situation{background:var(--sand); border-left:4px solid var(--moss); border-radius:0 var(--radius-sm) var(--radius-sm) 0; padding:12px 16px; font-size:13.5px; margin-bottom:12px;}
+.hint-chip{display:inline-block; background:var(--sage); color:var(--moss); padding:5px 12px; border-radius:99px; font-size:12px; font-weight:600; margin:3px 4px 3px 0;}
+.sample-response{display:none; background:var(--blue-light); border:1px solid #BFDBFE; border-radius:var(--radius-sm); padding:14px; margin-top:12px; font-size:13.5px; color:var(--text-dark);}
+.sample-response.revealed{display:block; animation:fadeIn 0.3s ease;}
+textarea.answer-area{width:100%; border:1.5px solid var(--border); border-radius:var(--radius-sm); padding:12px; font-family:inherit; font-size:14px; min-height:90px; resize:vertical;}
+textarea.answer-area:focus{outline:none; border-color:var(--blue);}
+
+/* CHECKLIST */
+.check-item{display:flex; align-items:center; gap:10px; padding:10px 14px; border-radius:var(--radius-sm); cursor:pointer; font-size:14px;}
+.check-item:hover{background:var(--sage);}
+.check-item input{accent-color:var(--forest); width:17px; height:17px;}
+
+/* TRANSCRIPT */
+.transcript-block{display:none;}
+.transcript-block.revealed{display:block; animation:fadeIn 0.3s ease;}
+.transcript-card{background:var(--sand); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-top:10px;}
+.transcript-card .t-head{background:var(--forest); color:white; padding:10px 16px; font-size:13px; font-weight:700;}
+.transcript-card .t-body{padding:14px 18px;}
+.dialogue-line{font-size:13.5px; margin-bottom:4px;}
+.dialogue-line .speaker{color:var(--forest); font-weight:700;}
+
+/* SUMMARY TABLE */
+.summary-table td{padding:10px 16px; border-bottom:1px solid var(--sage); font-size:14px;}
+.summary-table td:first-child{font-weight:700; color:var(--forest); width:35%;}
+
+/* MISC */
+.note{font-size:13px; color:var(--text-soft); margin-top:8px;}
+.flex-row{display:flex; gap:16px; flex-wrap:wrap;}
+.col{flex:1; min-width:220px;}
+ol.kw-list{padding-left:18px; font-size:14px; margin-bottom:10px;}
+ol.kw-list li{margin-bottom:6px;}
+input.kw-input{width:100%; border:1.5px solid var(--border); border-radius:var(--radius-sm); padding:8px 10px; font-family:inherit; font-size:13.5px; margin-top:4px;}
+
+.reset-fab{position:fixed; bottom:24px; right:24px; background:var(--red); color:white; border:none; border-radius:99px; padding:12px 20px; font-size:13px; font-weight:700; box-shadow:var(--shadow-lg); cursor:pointer; z-index:200; transition:transform 0.2s;}
+.reset-fab:hover{transform:scale(1.05);}
+
+@media(max-width:768px){
+  .sidebar{width:100%; height:auto; position:relative; flex-direction:row; overflow-x:auto;}
+  .main-content{margin-left:0;}
+  .nav-scroll{display:flex; padding:0;}
+  .nav-label{display:none;}
+  .progress-wrap{display:none;}
+  .brand{display:none;}
+  .hero-block, .section-hero{padding:24px;}
+  .section-block{padding:24px;}
+  .vocab-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="level-badge">A2 → B1</span>
+      <h1>Gift-Giving in English</h1>
+      <p>Vocabulary · Speaking · Listening</p>
+    </div>
+    <nav class="nav-scroll" id="navScroll">
+      <div class="nav-label">Overview</div>
+      <div class="nav-item" data-page="hero"><span class="ic">🏠</span>Home</div>
+      <div class="nav-label">Part 1 — Getting Ready</div>
+      <div class="nav-item" data-page="vocab"><span class="ic">📚</span>Vocabulary</div>
+      <div class="nav-item" data-page="phrases"><span class="ic">💬</span>Useful Phrases</div>
+      <div class="nav-item" data-page="pronun"><span class="ic">🔊</span>Pronunciation</div>
+      <div class="nav-item" data-page="practice"><span class="ic">✏️</span>Quick Practice</div>
+      <div class="nav-label">Part 2 — Speaking</div>
+      <div class="nav-item" data-page="speaking"><span class="ic">🗣️</span>Speaking</div>
+      <div class="nav-label">Part 3 — Listening</div>
+      <div class="nav-item" data-page="listen"><span class="ic">🎧</span>Listening</div>
+      <div class="nav-label">Part 4 — Discussion</div>
+      <div class="nav-item" data-page="discuss"><span class="ic">🤝</span>Discussion</div>
+      <div class="nav-label">Part 5 — Review</div>
+      <div class="nav-item" data-page="review"><span class="ic">🏆</span>Final Review</div>
+    </nav>
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <span id="progressLabel">0% complete</span>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <!-- ===================== HERO ===================== -->
+    <div class="page active" id="page-hero">
+      <div class="hero-block">
+        <div class="hero-meta">
+          <span class="badge badge-white">🎁 Gift-Giving</span>
+          <span class="badge badge-white">A2 → B1</span>
+          <span class="badge badge-white">⏱ 60 min</span>
+        </div>
+        <h1>Gift-Giving in English</h1>
+        <p class="subtitle">Learn how to talk naturally about buying, choosing, and giving gifts for birthdays, weddings, Mother's Day, and other special occasions — with real conversations and pronunciation practice.</p>
+        <div class="outcomes">
+          <span class="badge badge-mint">Vocabulary</span>
+          <span class="badge badge-mint">Speaking</span>
+          <span class="badge badge-mint">Listening</span>
+          <span class="badge badge-mint">Pronunciation</span>
+          <span class="badge badge-mint">Communication</span>
+          <span class="badge badge-mint">Review</span>
+        </div>
+        <button class="btn btn-secondary" onclick="goTo('vocab')">Start Lesson →</button>
+      </div>
+      <div class="section-block">
+        <div class="section-header">
+          <span class="part-label">LESSON MAP</span>
+          <h2 class="section-title">What you'll do today</h2>
+        </div>
+        <table class="lesson-table">
+          <tr><td style="font-weight:700;color:var(--forest);width:30%">Part 1 — Getting Ready</td><td>Vocabulary, useful phrases, pronunciation (linking & weak forms), quick practice</td></tr>
+          <tr><td style="font-weight:700;color:var(--forest)">Part 2 — Speaking</td><td>Talk about feelings when receiving gifts using stative verbs and adverbs of intensity</td></tr>
+          <tr><td style="font-weight:700;color:var(--forest)">Part 3 — Listening</td><td>Three listening tasks about choosing and describing gifts, with full tapescript</td></tr>
+          <tr><td style="font-weight:700;color:var(--forest)">Part 4 — Discussion</td><td>Tell your own shopping story and discuss gift-giving experiences</td></tr>
+          <tr><td style="font-weight:700;color:var(--forest)">Part 5 — Review</td><td>Vocabulary challenge and self-assessment checklist</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ===================== PART 1: VOCAB ===================== -->
+    <div class="page" id="page-vocab">
+      <div class="section-hero" style="background:linear-gradient(135deg,var(--forest),var(--moss))">
+        <h1>A. Vocabulary</h1>
+        <p>Tap any card to flip it and see an example sentence.</p>
+      </div>
+      <div class="section-block">
+        <div class="tab-bar" id="vocabTabBar"></div>
+        <div id="vocabTabContent"></div>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="goTo('phrases')">Next: Useful Phrases →</button>
+          <button class="btn btn-outline" onclick="goTo('hero')">← Home</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== PART 1: PHRASES ===================== -->
+    <div class="page" id="page-phrases">
+      <div class="section-hero" style="background:linear-gradient(135deg,var(--forest),var(--moss))">
+        <h1>B. Useful Phrases</h1>
+        <p>Stative verbs + gerund / to-infinitive for talking about gift preferences.</p>
+      </div>
+      <div class="section-block">
+        <div class="section-header">
+          <span class="part-label">GRAMMAR NOTE</span>
+          <h2 class="section-title">Stative verbs: love, like, prefer, hate, want, need</h2>
+        </div>
+        <div class="info-box">
+          These verbs describe feelings, not actions. Use them with <strong>-ing</strong> (gerund) or <strong>to + verb</strong> (to-infinitive). <strong>want, need, love to, like to, prefer to, hate to</strong> often go with <strong>to + verb</strong>.
+        </div>
+        <div class="flex-row">
+          <div class="col exercise-container">
+            <div class="exercise-title">✅ Correct</div>
+            <p style="font-size:14px">I <strong>want</strong> a new laptop. <span class="note">(simple form is fine)</span></p>
+          </div>
+          <div class="col exercise-container">
+            <div class="exercise-title">❌ Common mistake</div>
+            <p style="font-size:14px">I <strong style="color:var(--red)">am wanting</strong> to buy a new laptop for my sister's birthday. <span class="note">(stative verbs are not used in continuous form)</span></p>
+          </div>
+        </div>
+
+        <div class="section-header" style="margin-top:32px">
+          <span class="part-label">EXERCISE</span>
+          <h2 class="section-title">Multiple Choice — Choose the Correct Answer</h2>
+        </div>
+        <div class="exercise-container">
+          <div class="exercise-instruction">Choose gerund (-ing) or to-infinitive correctly for each stative verb.</div>
+          <div id="phrasesMcq"></div>
+          <div class="btn-group">
+            <button class="btn btn-primary" onclick="checkMcq('phrasesMcq', phrasesData)">Check Answers</button>
+            <button class="btn btn-outline" onclick="resetMcq('phrasesMcq', phrasesData)">Reset</button>
+          </div>
+          <div class="feedback-box" id="phrasesMcq-feedback"></div>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="goTo('pronun')">Next: Pronunciation →</button>
+          <button class="btn btn-outline" onclick="goTo('vocab')">← Vocabulary</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== PART 1: PRONUNCIATION ===================== -->
+    <div class="page" id="page-pronun">
+      <div class="section-hero" style="background:linear-gradient(135deg,var(--forest),var(--moss))">
+        <h1>C. Pronunciation Focus</h1>
+        <p>Connected speech — linking, weak forms, and reductions for natural, fluent English.</p>
+      </div>
+      <div class="section-block">
+        <div class="tab-bar">
+          <button class="tab-btn active" data-ptab="rule" onclick="switchPronunTab('rule')">Rules</button>
+          <button class="tab-btn" data-ptab="practice" onclick="switchPronunTab('practice')">Practice</button>
+          <button class="tab-btn" data-ptab="drill" onclick="switchPronunTab('drill')">Fluency Drill</button>
+        </div>
+
+        <div class="tab-panel active" id="ptab-rule">
+          <div class="info-box">To sound natural and fluent, focus on four core features: <strong>Reductions</strong> (want to → wanna), <strong>Weak Forms</strong> (to, for, a, the, her), <strong>Linking</strong> (buy a, choose a), and <strong>H-dropping</strong> (wear her, help her).</div>
+          <div class="rule-box">
+            <h4>Rule 1 — Link Words Together</h4>
+            <table class="lesson-table" id="linkTable"></table>
+          </div>
+          <div class="rule-box">
+            <h4>Rule 2 — Use Weak Forms</h4>
+            <p style="font-size:13.5px;color:var(--text-mid);margin-bottom:10px">Function words are usually unstressed and reduce to a weak vowel <strong>/ə/</strong> or <strong>/ər/</strong>. Content words (nouns, verbs, adjectives) are stressed.</p>
+            <table class="lesson-table">
+              <tr><td><strong>to</strong></td><td>/tə/</td></tr>
+              <tr><td><strong>for</strong></td><td>/fər/</td></tr>
+              <tr><td><strong>a</strong></td><td>/ə/</td></tr>
+              <tr><td><strong>the</strong></td><td>/ðə/</td></tr>
+              <tr><td><strong>her</strong></td><td>/ər/ <span class="note">(/h/ often disappears)</span></td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="ptab-practice">
+          <div class="exercise-instruction">Practise reading these sentences aloud, focusing on the linking and weak forms shown.</div>
+          <div id="pronunSentences"></div>
+        </div>
+
+        <div class="tab-panel" id="ptab-drill">
+          <div class="exercise-container">
+            <div class="exercise-title">🎯 Fluency Drill</div>
+            <p style="font-size:14px;margin-bottom:14px">Choose <strong>3 sentences</strong> from the Practice tab and follow this 3-round process:</p>
+            <table class="lesson-table">
+              <tr><td style="width:90px;font-weight:700;color:var(--forest)">Round 1</td><td>Read slowly and clearly, word by word, to fix your pronunciation.</td></tr>
+              <tr><td style="font-weight:700;color:var(--forest)">Round 2</td><td>Apply all the linking rules and weak forms you marked.</td></tr>
+              <tr><td style="font-weight:700;color:var(--forest)">Round 3</td><td>Say the whole sentence naturally, keeping steady breath, without stopping between words.</td></tr>
+            </table>
+            <div class="info-box" style="margin-top:14px">🎯 Goal: the aim is to sound <strong>smooth</strong>, not to speak as fast as possible.</div>
+          </div>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="goTo('practice')">Next: Quick Practice →</button>
+          <button class="btn btn-outline" onclick="goTo('phrases')">← Useful Phrases</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== PART 1: QUICK PRACTICE ===================== -->
+    <div class="page" id="page-practice">
+      <div class="section-hero" style="background:linear-gradient(135deg,var(--forest),var(--moss))">
+        <h1>D. Quick Practice</h1>
+        <p>Reinforce vocabulary and verb patterns from this section.</p>
+      </div>
+      <div class="section-block">
+        <div class="exercise-container">
+          <div class="exercise-title">Multiple Choice — Choose the Correct Answer</div>
+          <div class="exercise-instruction">15 questions. Click an option, then check your score.</div>
+          <div id="quickMcq"></div>
+          <div class="btn-group">
+            <button class="btn btn-primary" onclick="checkMcq('quickMcq', quickData)">Check Score</button>
+            <button class="btn btn-outline" onclick="resetMcq('quickMcq', quickData)">Reset</button>
+          </div>
+          <div class="feedback-box" id="quickMcq-feedback"></div>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="goTo('speaking')">Next: Speaking →</button>
+          <button class="btn btn-outline" onclick="goTo('pronun')">← Pronunciation</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== PART 2: SPEAKING ===================== -->
+    <div class="page" id="page-speaking">
+      <div class="section-hero" style="background:linear-gradient(135deg,var(--forest),var(--moss))">
+        <h1>Part 2 — Speaking</h1>
+        <p>Talk about your feelings when you receive a gift.</p>
+      </div>
+      <div class="section-block">
+        <div class="tab-bar">
+          <button class="tab-btn active" data-stab="grammar" onclick="switchSpeakTab('grammar')">Grammar Focus</button>
+          <button class="tab-btn" data-stab="practice" onclick="switchSpeakTab('practice')">Practice</button>
+        </div>
+
+        <div class="tab-panel active" id="stab-grammar">
+          <div class="section-header">
+            <h2 class="section-title" style="font-size:17px">1. Talking About Personal Feelings</h2>
+          </div>
+          <div class="info-box">💡 <strong>Tip:</strong> "Feel" is normally a stative verb, but in everyday spoken English it can also be used in the continuous form to describe a feeling happening right now — the basic meaning doesn't change.</div>
+          <div class="rule-box">
+            <h4>Formula 1</h4>
+            <p style="font-size:14px">S + am/is/are + <strong>feeling</strong> + adjective</p>
+            <p class="note">e.g. I <strong>am feeling</strong> amused when my mom gives me 5 million on my birthday.</p>
+          </div>
+          <div class="rule-box">
+            <h4>Formula 2</h4>
+            <p style="font-size:14px">S + am/is/are + adjective</p>
+            <p class="note">e.g. I <strong>am</strong> amused when my mom gives me 5 million on my birthday.</p>
+          </div>
+          <div class="section-header" style="margin-top:28px">
+            <h2 class="section-title" style="font-size:17px">2. Adverbs of Intensity</h2>
+          </div>
+          <div class="rule-box">
+            <h4>Formula</h4>
+            <p style="font-size:14px">S + am/is/are + [adverb] + adjective</p>
+            <p class="note">e.g. I am <strong>very</strong> amused when my mom gives me 5 million on my birthday.</p>
+          </div>
+          <table class="lesson-table">
+            <tr><td><strong>very</strong></td><td>rất</td><td><strong>really</strong></td><td>thực sự</td></tr>
+            <tr><td><strong>so</strong></td><td>quá, đến mức</td><td><strong>pretty</strong></td><td>khá</td></tr>
+            <tr><td><strong>extremely</strong></td><td>cực kỳ, vô cùng</td><td></td><td></td></tr>
+          </table>
+        </div>
+
+        <div class="tab-panel" id="stab-practice">
+          <div class="section-header">
+            <h2 class="section-title" style="font-size:17px">Emotions When Receiving a Gift</h2>
+          </div>
+          <div class="vocab-grid" id="emotionGrid" style="margin-bottom:24px"></div>
+
+          <div class="exercise-container">
+            <div class="exercise-title">Speaking Task</div>
+            <div class="exercise-instruction">Look at the emotion word and the idea given. Speak a full sentence using "S + tobe + adverb + adjective + when...".</div>
+            <div class="info-box">Example — Emotion: furious. Idea: "Bạn trai không tặng quà sinh nhật" → <em>I am very angry when my boyfriend doesn't give me a birthday gift.</em></div>
+            <div id="speakingTasks"></div>
+          </div>
+
+          <div class="exercise-container">
+            <div class="exercise-title">✅ Speaking Checklist</div>
+            <div class="check-item"><input type="checkbox"><span>I used today's vocabulary.</span></div>
+            <div class="check-item"><input type="checkbox"><span>I used complete sentences.</span></div>
+            <div class="check-item"><input type="checkbox"><span>My pronunciation was clear.</span></div>
+            <div class="check-item"><input type="checkbox"><span>I answered naturally.</span></div>
+            <div class="check-item"><input type="checkbox"><span>I spoke confidently.</span></div>
+          </div>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="goTo('listen')">Next: Listening →</button>
+          <button class="btn btn-outline" onclick="goTo('practice')">← Quick Practice</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== PART 3: LISTENING ===================== -->
+    <div class="page" id="page-listen">
+      <div class="section-hero" style="background:linear-gradient(135deg,var(--forest),var(--moss))">
+        <h1>Part 3 — Listening</h1>
+        <p>Recognize gift-giving language in real conversations.</p>
+      </div>
+      <div class="section-block">
+        <div class="listening-notice">🎧 No audio file is provided — read each conversation in the Tapescript tab as your "listening" input, then answer the questions.</div>
+        <div class="tab-bar">
+          <button class="tab-btn active" data-ltab="l1" onclick="switchListenTab('l1')">Listening 1</button>
+          <button class="tab-btn" data-ltab="l2" onclick="switchListenTab('l2')">Listening 2</button>
+          <button class="tab-btn" data-ltab="l3" onclick="switchListenTab('l3')">Listening 3</button>
+          <button class="tab-btn" data-ltab="script" onclick="switchListenTab('script')">Tapescript</button>
+        </div>
+
+        <!-- LISTENING 1 -->
+        <div class="tab-panel active" id="ltab-l1">
+          <div class="section-header"><h2 class="section-title" style="font-size:16px">Vocabulary</h2></div>
+          <div class="vocab-grid" id="l1Vocab" style="margin-bottom:24px"></div>
+          <div class="exercise-container">
+            <div class="exercise-title">Exercise: Gift Choices</div>
+            <div class="exercise-instruction">Listen (read the tapescript) and complete the table. No more than two words for each answer.</div>
+            <table class="lesson-table" id="l1Table"></table>
+            <div class="btn-group">
+              <button class="btn btn-primary" onclick="checkBlanks('l1Table')">Check Answers</button>
+              <button class="btn btn-outline" onclick="resetBlanks('l1Table')">Reset</button>
+            </div>
+            <div class="feedback-box" id="l1Table-feedback"></div>
+          </div>
+        </div>
+
+        <!-- LISTENING 2 -->
+        <div class="tab-panel" id="ltab-l2">
+          <div class="section-header"><h2 class="section-title" style="font-size:16px">Vocabulary</h2></div>
+          <div class="vocab-grid" id="l2Vocab" style="margin-bottom:24px"></div>
+          <div class="exercise-container">
+            <div class="exercise-title">Exercise: Opinion Check</div>
+            <div class="exercise-instruction">For each conversation, tick (✓) the correct opinion box for each feature, then check your answers.</div>
+            <div id="l2Tables"></div>
+            <div class="btn-group">
+              <button class="btn btn-primary" onclick="checkOpinion()">Check Answers</button>
+              <button class="btn btn-outline" onclick="resetOpinion()">Reset</button>
+            </div>
+            <div class="feedback-box" id="l2-feedback"></div>
+          </div>
+        </div>
+
+        <!-- LISTENING 3 -->
+        <div class="tab-panel" id="ltab-l3">
+          <div class="section-header"><h2 class="section-title" style="font-size:16px">Vocabulary</h2></div>
+          <div class="vocab-grid" id="l3Vocab" style="margin-bottom:24px"></div>
+          <div class="exercise-container">
+            <div class="exercise-title">Exercise: Gift Details</div>
+            <div class="exercise-instruction">Fill in the missing words. No more than two words and/or a number for each answer.</div>
+            <div id="l3Body"></div>
+            <div class="btn-group">
+              <button class="btn btn-primary" onclick="checkBlanks('l3Body')">Check Answers</button>
+              <button class="btn btn-outline" onclick="resetBlanks('l3Body')">Reset</button>
+            </div>
+            <div class="feedback-box" id="l3Body-feedback"></div>
+          </div>
+        </div>
+
+        <!-- TAPESCRIPT -->
+        <div class="tab-panel" id="ltab-script">
+          <button class="btn btn-secondary btn-sm" onclick="toggleTranscript()">👁 Show / Hide Tapescript</button>
+          <div class="transcript-block" id="transcriptBlock"></div>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="goTo('discuss')">Next: Discussion →</button>
+          <button class="btn btn-outline" onclick="goTo('speaking')">← Speaking</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== PART 4: DISCUSSION ===================== -->
+    <div class="page" id="page-discuss">
+      <div class="section-hero" style="background:linear-gradient(135deg,var(--forest),var(--moss))">
+        <h1>Part 4 — Discussion</h1>
+        <p>Apply today's language to real communication.</p>
+      </div>
+      <div class="section-block">
+        <div class="tab-bar">
+          <button class="tab-btn active" data-dtab="p1" onclick="switchDiscussTab('p1')">Part 1: My Shopping Story</button>
+          <button class="tab-btn" data-dtab="p2" onclick="switchDiscussTab('p2')">Part 2: Conversation Practice</button>
+        </div>
+
+        <div class="tab-panel active" id="dtab-p1">
+          <div class="scenario-card">
+            <div class="scenario-header">🛍️ My Shopping Story</div>
+            <div class="scenario-body">
+              <div class="scenario-situation">Think about a recent shopping trip. Describe the first item you planned to buy, then explain why you changed your mind and chose something more suitable instead. Describe the final item using <strong>the style, the color, the size</strong>.</div>
+              <div style="margin-bottom:6px"><span class="hint-chip">When</span><span class="hint-chip">Reason for buying</span><span class="hint-chip">Who</span><span class="hint-chip">First item & why</span><span class="hint-chip">Why change</span><span class="hint-chip">Final item & why</span></div>
+              <button class="btn btn-secondary btn-sm" onclick="toggleSample('sample1')">💡 Show Sample Answer</button>
+              <div class="sample-response" id="sample1">Last week, I went shopping for a birthday present for my best friend. At first, I wanted to buy a bracelet because it looked beautiful. However, I wasn't sure if she liked jewelry. Finally, I bought a backpack because it was useful, had a great style, and was a good price. She really liked it, so I think I made the right choice.</div>
+            </div>
+          </div>
+          <div class="exercise-container">
+            <div class="exercise-title">Your Answer — write key words for your own story</div>
+            <ol class="kw-list">
+              <li>When / Reason for buying / Who: <input class="kw-input" placeholder="e.g. Last month, a birthday gift for my brother"></li>
+              <li>First item & reason: <input class="kw-input" placeholder="At first, I wanted to buy... because..."></li>
+              <li>Why change: <input class="kw-input" placeholder="However, I think that..."></li>
+              <li>Final item & reason: <input class="kw-input" placeholder="Finally, I bought... because..."></li>
+              <li>Extra: Did they like it? Would you buy it again? <input class="kw-input" placeholder="Your extra ideas..."></li>
+            </ol>
+            <p class="note">Now say your full story aloud using these notes.</p>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="dtab-p2">
+          <div class="exercise-instruction" style="margin-bottom:18px">Practice speaking each conversation. Try answering first, then compare with the sample.</div>
+          <div id="discussConvos"></div>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="goTo('review')">Next: Final Review →</button>
+          <button class="btn btn-outline" onclick="goTo('listen')">← Listening</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== PART 5: REVIEW ===================== -->
+    <div class="page" id="page-review">
+      <div class="section-hero" style="background:linear-gradient(135deg,var(--forest),var(--moss))">
+        <h1>Part 5 — Final Review</h1>
+        <p>Consolidate everything you learned today.</p>
+      </div>
+      <div class="section-block">
+        <div class="exercise-container">
+          <div class="exercise-title">🏆 Vocabulary Challenge</div>
+          <div class="exercise-instruction">Final mixed-review quiz covering vocabulary, verb patterns, and gift-related language.</div>
+          <div id="reviewMcq"></div>
+          <div class="btn-group">
+            <button class="btn btn-primary" onclick="checkMcq('reviewMcq', reviewData)">Check Score</button>
+            <button class="btn btn-outline" onclick="resetMcq('reviewMcq', reviewData)">Reset</button>
+          </div>
+          <div class="feedback-box" id="reviewMcq-feedback"></div>
+        </div>
+
+        <div class="exercise-container">
+          <div class="exercise-title">✅ Self-Assessment Checklist</div>
+          <div class="check-item"><input type="checkbox"><span>I understand today's vocabulary.</span></div>
+          <div class="check-item"><input type="checkbox"><span>I can use today's phrases (stative verbs + gerund/to-infinitive).</span></div>
+          <div class="check-item"><input type="checkbox"><span>I understand spoken English about gift-giving.</span></div>
+          <div class="check-item"><input type="checkbox"><span>I can communicate naturally about feelings and gifts.</span></div>
+          <div class="check-item"><input type="checkbox"><span>I can describe a shopping experience in English.</span></div>
+          <div class="check-item"><input type="checkbox"><span>I feel more confident discussing this topic.</span></div>
+        </div>
+
+        <div class="section-header" style="margin-top:8px">
+          <span class="part-label">LESSON SUMMARY</span>
+          <h2 class="section-title">Today's Lesson at a Glance</h2>
+        </div>
+        <table class="lesson-table summary-table">
+          <tr><td>Estimated Duration</td><td>60 minutes</td></tr>
+          <tr><td>Vocabulary Learned</td><td>~40 words: gift types, occasions, gift-related verbs, emotion adjectives</td></tr>
+          <tr><td>Grammar Focus</td><td>Stative verbs + gerund/to-infinitive; S + tobe (+ feeling) + adjective; adverbs of intensity</td></tr>
+          <tr><td>Pronunciation Focus</td><td>Linking, weak forms, reductions (wanna, needa), h-dropping</td></tr>
+          <tr><td>Communication Functions</td><td>Expressing preferences, describing feelings, narrating a shopping experience</td></tr>
+          <tr><td>Skills Practiced</td><td>Vocabulary, grammar, pronunciation, speaking, listening, discussion</td></tr>
+          <tr><td>Interaction Types</td><td>Multiple choice, gap-fill, opinion table, speaking tasks, role-play, free writing</td></tr>
+        </table>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="goTo('hero')">🏠 Back to Home</button>
+          <button class="btn btn-outline" onclick="goTo('discuss')">← Discussion</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<button class="reset-fab" onclick="resetAll()">🔄 Reset All</button>
+
+<script>
+/* ============ DATA ============ */
+const vocabTabsData = [
+{label:"Gift Types", items:[
+  {word:"gift",ipa:"/ɡɪft/",vi:"quà tặng",en:"Something you give to another person, often for a special occasion."},
+  {word:"present",ipa:"/ˈprez.ənt/",vi:"quà tặng",en:"Another word for a gift."},
+  {word:"souvenir",ipa:"/ˌsuːvəˈnɪr/",vi:"quà lưu niệm",en:"A small gift that reminds you of a place you visited."},
+  {word:"flowers",ipa:"/ˈflaʊ.ərz/",vi:"hoa",en:"Plants people give as a kind, beautiful gift."},
+  {word:"jewelry",ipa:"/ˈdʒuːəlri/",vi:"trang sức",en:"Rings, necklaces, and bracelets people wear."},
+  {word:"bracelet",ipa:"/ˈbreɪslət/",vi:"vòng tay",en:"A piece of jewelry worn around the wrist."},
+  {word:"necklace",ipa:"/ˈnek.ləs/",vi:"dây chuyền",en:"A piece of jewelry worn around the neck."},
+  {word:"key chain",ipa:"/ˈkiː tʃeɪn/",vi:"móc khóa",en:"A small ring that holds keys together."},
+  {word:"pen",ipa:"/pen/",vi:"bút",en:"A tool used for writing."},
+  {word:"tie / necktie",ipa:"/taɪ/",vi:"cà vạt",en:"A long piece of cloth worn around the neck, mostly by men."},
+  {word:"teapot",ipa:"/ˈtiːˌpɑːt/",vi:"ấm trà",en:"A pot used for making and serving tea."},
+  {word:"glasses",ipa:"/ˈɡlæsɪz/",vi:"bộ ly",en:"Drinking cups made of glass."},
+  {word:"chocolates",ipa:"/ˈtʃɑːkləts/",vi:"sô-cô-la",en:"A sweet food many people enjoy giving as a gift."},
+  {word:"candles",ipa:"/ˈkændəlz/",vi:"nến",en:"Wax sticks with a flame, often given for new homes."},
+  {word:"watch",ipa:"/wɑːtʃ/",vi:"đồng hồ",en:"A small device worn on the wrist to tell the time."},
+]},
+{label:"Occasions", items:[
+  {word:"birthday",ipa:"/ˈbɝːθdeɪ/",vi:"sinh nhật",en:"The day someone celebrates the day they were born."},
+  {word:"Mother's Day",ipa:"/ˈmʌðərz deɪ/",vi:"Ngày của Mẹ",en:"A special day to celebrate and thank mothers."},
+  {word:"Father's Day",ipa:"/ˈfɑːðərz deɪ/",vi:"Ngày của Cha",en:"A special day to celebrate and thank fathers."},
+  {word:"graduation",ipa:"/ˌɡrædʒuˈeɪʃən/",vi:"tốt nghiệp",en:"The time when you finish school or university."},
+  {word:"wedding",ipa:"/ˈwedɪŋ/",vi:"đám cưới",en:"A ceremony where two people get married."},
+  {word:"dinner party",ipa:"/ˈdɪnər ˈpɑːrti/",vi:"tiệc tối",en:"A party where people eat dinner together."},
+  {word:"housewarming party",ipa:"/ˈhaʊsˌwɔːrmɪŋ ˈpɑːrti/",vi:"tiệc tân gia",en:"A party to celebrate moving into a new home."},
+  {word:"school project",ipa:"/skuːl ˈprɑːdʒekt/",vi:"dự án ở trường",en:"A piece of work that students do for school."},
+  {word:"thank you",ipa:"/ˈθæŋk juː/",vi:"lời cảm ơn",en:"Words you say to show you are grateful."},
+]},
+{label:"Actions", items:[
+  {word:"buy",ipa:"/baɪ/",vi:"mua",en:"To pay money to get something."},
+  {word:"get",ipa:"/ɡet/",vi:"mua, lấy, nhận",en:"To obtain or receive something."},
+  {word:"give",ipa:"/ɡɪv/",vi:"tặng, cho",en:"To hand something to another person."},
+  {word:"bring",ipa:"/brɪŋ/",vi:"mang theo",en:"To take something with you to a place."},
+  {word:"pick out",ipa:"/pɪk aʊt/",vi:"chọn",en:"To choose one thing from many."},
+  {word:"choose",ipa:"/tʃuːz/",vi:"lựa chọn",en:"To decide which thing you want."},
+  {word:"wrap",ipa:"/ræp/",vi:"gói quà",en:"To cover a gift with paper."},
+  {word:"open",ipa:"/ˈoʊpən/",vi:"mở",en:"To remove the cover from something."},
+  {word:"receive",ipa:"/rɪˈsiːv/",vi:"nhận",en:"To get something from someone."},
+  {word:"wear",ipa:"/wer/",vi:"mặc, đeo",en:"To have clothes, shoes, or jewelry on your body."},
+  {word:"invite",ipa:"/ɪnˈvaɪt/",vi:"mời",en:"To ask someone to come to an event."},
+  {word:"help",ipa:"/help/",vi:"giúp",en:"To make something easier for someone."},
+  {word:"recommend",ipa:"/ˌrekəˈmend/",vi:"gợi ý, đề xuất",en:"To tell someone what you think is a good choice."},
+  {word:"look for",ipa:"/lʊk fɔːr/",vi:"tìm kiếm",en:"To try to find someone or something."},
+  {word:"think of",ipa:"/θɪŋk əv/",vi:"nghĩ ra",en:"To have an idea about something."},
+  {word:"agree",ipa:"/əˈɡriː/",vi:"đồng ý",en:"To have the same opinion as another person."},
+]},
+{label:"Emotions", items:[
+  {word:"excited",ipa:"/ɪkˈsaɪtɪd/",vi:"hưng phấn",en:"Feeling very happy and full of energy."},
+  {word:"surprised",ipa:"/sərˈpraɪzd/",vi:"ngạc nhiên",en:"Feeling something unexpected happened."},
+  {word:"amused",ipa:"/əˈmjuːzd/",vi:"vui thích",en:"Feeling entertained or finding something funny."},
+  {word:"grateful",ipa:"/ˈɡreɪtfəl/",vi:"biết ơn",en:"Feeling thankful for something."},
+  {word:"curious",ipa:"/ˈkjʊriəs/",vi:"tò mò",en:"Wanting to know more about something."},
+  {word:"furious",ipa:"/ˈfjʊriəs/",vi:"điên tiết",en:"Feeling extremely angry."},
+  {word:"irritated",ipa:"/ˈɪrɪteɪtɪd/",vi:"bực mình",en:"Feeling annoyed."},
+  {word:"terrified",ipa:"/ˈterəfaɪd/",vi:"sợ chết khiếp",en:"Feeling extremely afraid."},
+  {word:"jealous",ipa:"/ˈdʒeləs/",vi:"ghen tức, ghen tị",en:"Feeling unhappy because someone has something you want."},
+]}
+];
+
+const phrasesData = [
+{q:"I like ________ flowers for my mom on Mother's Day.",opts:["buy","buying","to buying","bought"],a:1},
+{q:"My dad loves ________ a new tie on Father's Day.",opts:["receive","receiving","to receiving","received"],a:1},
+{q:"I prefer ________ handmade souvenirs to my friends on their birthdays.",opts:["give","giving","to giving","gave"],a:1},
+{q:"She hates ________ chocolates because she isn't good at it.",opts:["wrap","wrapping","to wrapping","wrapped"],a:1},
+{q:"We like ________ for small gifts before a housewarming party.",opts:["look","looking","to looking","looked"],a:1},
+{q:"I want ________ a beautiful bracelet for my sister's birthday.",opts:["buy","buying","to buy","bought"],a:2},
+{q:"My brother needs ________ a nice watch for his teacher as a thank-you gift.",opts:["choose","choosing","to choose","chose"],a:2},
+{q:"They prefer ________ flowers to every wedding.",opts:["bring","bringing","to bring","brought"],a:2},
+{q:"I like ________ my friend pick out a necklace for his wife.",opts:["help","helping","to help","helped"],a:2},
+{q:"She wants ________ her parents a new teapot for their housewarming party.",opts:["give","giving","to give","gave"],a:2},
+{q:"We love ________ our grandparents to every dinner party.",opts:["invite","inviting","to inviting","invited"],a:1},
+{q:"I need ________ a special present before my cousin's graduation.",opts:["look for","looking for","to look for","looked for"],a:2},
+{q:"My friends love ________ useful gifts for a school project about special occasions.",opts:["recommend","recommending","to recommend","recommended"],a:2},
+{q:"I hate ________ cheap jewelry because it breaks easily.",opts:["get","getting","to getting","got"],a:1},
+{q:"We prefer ________ candles and glasses as housewarming gifts because they are useful.",opts:["buy","buying","to buy","bought"],a:2},
+];
+
+const quickData = [
+{q:"We avoid ________ expensive jewelry because it costs too much.",opts:["buy","buying","to buy","bought"],a:1},
+{q:"She enjoys ________ gifts for her friends before Christmas.",opts:["choose","choosing","to choose","chose"],a:1},
+{q:"My sister finished ________ her mother's birthday present yesterday.",opts:["wrap","wrapping","to wrap","wrapped"],a:1},
+{q:"They keep ________ local souvenirs whenever they travel.",opts:["collect","collecting","to collect","collected"],a:1},
+{q:"My cousin suggested ________ flowers instead of chocolates.",opts:["buy","buying","to buy","bought"],a:1},
+{q:"I want ________ a beautiful bracelet for my sister.",opts:["buy","buying","to buy","bought"],a:2},
+{q:"My brother needs ________ a thank-you gift for his teacher.",opts:["choose","choosing","to choose","chose"],a:2},
+{q:"We decided ________ handmade souvenirs for our grandparents.",opts:["give","giving","to give","gave"],a:2},
+{q:"She hopes ________ a special necklace for her mother.",opts:["find","finding","to find","found"],a:2},
+{q:"They plan ________ flowers before the wedding.",opts:["bring","bringing","to bring","brought"],a:2},
+{q:"We need ________ a present before the birthday party.",opts:["look for","looking for","to look for","looked for"],a:2},
+{q:"He wants ________ his grandparents something useful.",opts:["buy","buying","to buy","bought"],a:2},
+{q:"My parents decided ________ organic food for the housewarming party.",opts:["prepare","preparing","to prepare","prepared"],a:2},
+{q:"We enjoy ________ gifts together before Christmas.",opts:["pick out","picking out","to pick out","picked out"],a:1},
+{q:"My uncle avoids ________ imported products whenever possible.",opts:["buy","buying","to buy","bought"],a:1},
+];
+
+const reviewData = [
+{q:"A small gift that reminds you of a place you visited is a ________.",opts:["souvenir","necklace","key chain","candle"],a:0},
+{q:"My friend is ________ because she got a surprise birthday party.",opts:["jealous","amused","surprised","irritated"],a:2},
+{q:"I really love ________ gifts for my family every Christmas.",opts:["choose","choosing","chose","to choosing"],a:1},
+{q:"We need ________ a present before the housewarming party.",opts:["look for","to look for","looking","looked"],a:1},
+{q:"A ceremony where two people get married is called a ________.",opts:["graduation","wedding","dinner party","housewarming party"],a:1},
+{q:"She was ________ when she opened the box and saw a toy cockroach inside!",opts:["grateful","terrified","curious","excited"],a:1},
+{q:"I am very ________ when my best friend makes me a gift by hand.",opts:["grateful","furious","jealous","irritated"],a:0},
+{q:"He gave me a ________ to wear around my wrist.",opts:["tie","bracelet","key chain","teapot"],a:1},
+{q:"They prefer ________ flowers to every wedding rather than buying home items.",opts:["bring","bringing","to bring","brought"],a:1},
+{q:"My dad ________ wear his new watch to work every day.",opts:["loves","loving","to love","loved"],a:0},
+];
+
+const pronunSentences = [
+{en:"I want to buy gold for my mom on Mother's Day.",focus:["want to → wanna","buy a → buy-a","for my → fər my"]},
+{en:"We need to pick out a nice present for Dad before Father's Day.",focus:["need to → needa","pick out → pickout","for Dad → fər Dad"]},
+{en:"My lover likes to give flowers to her on her birthday.",focus:["likes to","to her"]},
+{en:"She loves to wear her new necklace after her wedding.",focus:["loves to → loves tə","wear her → wear-er (h-dropping)"]},
+{en:"We prefer to bring wine to every dinner party.",focus:["prefer to → prefer tə","to every → tə every"]},
+{en:"I want to choose a watch for my teacher as a thank-you gift.",focus:["want to → wanna","choose a → chooza","as a → əzə"]},
+{en:"They need to wrap the gift before the graduation party.",focus:["need to → needa","the gift → thə gift","before the → before thə"]},
+{en:"My sister likes to look for unique souvenirs when she travels.",focus:["likes to → likes tə","look for → look fər"]},
+{en:"I love to recommend a beautiful teapot for a housewarming party.",focus:["love to → love tə","recommenda","for a → fərə"]},
+{en:"We want to invite our friends to the dinner party.",focus:["want to → wanna","to the → tə thə"]},
+{en:"I need to get some candles before the birthday dinner.",focus:["need to → needa","before the → before thə"]},
+{en:"She likes to help her brother choose a new tie.",focus:["likes to → likes tə","help her → help-er (h-dropping)","choose a → chooza"]},
+{en:"I prefer to receive practical gifts like glasses or a teapot.",focus:["prefer to → prefer tə","or a → orə"]},
+{en:"We don't want to give anything that makes people furious or irritated.",focus:["don't want to → don't wanna","give anything → give-anything"]},
+{en:"I love to see my friends feel excited, surprised, and grateful when they open my present.",focus:["love to → love tə","see my → see-my"]},
+];
+
+const linkRows = [
+["buy a","buy-a","Link the final /aɪ/ to /ə/."],
+["choose a","chooza","The /z/ links to /ə/."],
+["pick out","pick-out","/k/ links directly to /aʊ/."],
+["recommend a","recommenda","/d/ links to /ə/."],
+["give a","give-a","/v/ links to /ə/."],
+["look for","look-fer","'for' weakens to /fər/."],
+["want to","wanna","Common reduction in speech."],
+["need to","needa","/d/ links to /tə/, sounds like 'needa'."],
+["have to","hafta","Common reduction in speech."],
+["wrap the","wrap-the","/p/ links to /ð/."],
+["open it","open-it","/n/ links to /ɪ/."],
+["thank you","thank-you","Read together in natural speech."],
+];
+
+const emotionList = [
+{word:"excited",ipa:"/ɪkˈsaɪtɪd/",vi:"hưng phấn, hào hứng",pos:"Positive"},
+{word:"surprised",ipa:"/sərˈpraɪzd/",vi:"ngạc nhiên",pos:"Neutral"},
+{word:"amused",ipa:"/əˈmjuːzd/",vi:"vui thích, thích thú",pos:"Positive"},
+{word:"grateful",ipa:"/ˈɡreɪtfəl/",vi:"biết ơn",pos:"Positive"},
+{word:"curious",ipa:"/ˈkjʊriəs/",vi:"tò mò",pos:"Neutral"},
+{word:"furious",ipa:"/ˈfjʊriəs/",vi:"điên tiết",pos:"Negative"},
+{word:"irritated",ipa:"/ˈɪrɪteɪtɪd/",vi:"bực mình",pos:"Negative"},
+{word:"terrified",ipa:"/ˈterəfaɪd/",vi:"sợ chết khiếp",pos:"Negative"},
+{word:"jealous",ipa:"/ˈdʒeləs/",vi:"ghen tức, ghen tị",pos:"Negative"},
+];
+
+const speakingPrompts = [
+{e:"Excited",vi:"Được bố mẹ tặng một chiếc điện thoại mới"},
+{e:"Grateful",vi:"Bạn thân tự làm một món quà nhỏ tặng mình"},
+{e:"Surprised",vi:"Nhận được một hộp quà rất to ở trước cửa nhà"},
+{e:"Irritated",vi:"Bạn thân tặng một món quà đùa vô tri (a silly gift), không dùng được"},
+{e:"Terrified",vi:"Mở hộp quà ra và thấy một con gián đồ chơi (a toy cockroach)"},
+];
+
+const l1VocabData = [
+{word:"bracelet",ipa:"/ˈbreɪslət/",vi:"vòng tay",en:"A piece of jewelry that you wear around your wrist."},
+{word:"I wonder if...",ipa:"/aɪ ˈwʌndər ɪf/",vi:"Tôi tự hỏi liệu...",en:"Used when you are not sure about something."},
+{word:"jewelry",ipa:"/ˈdʒuːəlri/",vi:"trang sức",en:"Things like rings, necklaces, and bracelets."},
+{word:"present",ipa:"/ˈprez.ənt/",vi:"quà tặng",en:"Something you give for a special occasion."},
+{word:"pick out",ipa:"/pɪk aʊt/",vi:"chọn",en:"To choose one thing from many."},
+{word:"sound expensive",ipa:"/saʊnd ɪkˈspensɪv/",vi:"nghe có vẻ đắt",en:"To seem like it costs a lot."},
+{word:"special",ipa:"/ˈspeʃəl/",vi:"đặc biệt",en:"Better or different from usual."},
+{word:"think of (doing)",ipa:"/θɪŋk əv/",vi:"nghĩ đến việc làm gì",en:"To have an idea to do something."},
+{word:"teapot",ipa:"/ˈtiːˌpɑːt/",vi:"ấm trà",en:"A pot used for making and serving tea."},
+];
+
+const l1Rows = [
+["1","Annie","School project (thank-you gift)","key chain"],
+["2","Mom","Mother's Day","bracelet"],
+["3","Brandon","Graduation party","pen"],
+["4","Jason & Alison","Wedding","teapot"],
+["5","The Roberts","Dinner party","flowers"],
+["6","Dad","Father's Day","tie / necktie"],
+];
+
+const l2VocabData = [
+{word:"go with (something)",ipa:"/ɡoʊ wɪð/",vi:"hợp với",en:"To look good or match something else."},
+{word:"glasses",ipa:"/ˈɡlæsɪz/",vi:"bộ ly",en:"Drinking cups made of glass."},
+{word:"shirt",ipa:"/ʃɝːt/",vi:"áo sơ mi",en:"A piece of clothing for the upper body."},
+{word:"the price is right",ipa:"/ðə praɪs ɪz raɪt/",vi:"giá hợp lý",en:"The price is good, not too expensive."},
+{word:"necklace",ipa:"/ˈnek.ləs/",vi:"dây chuyền",en:"A piece of jewelry worn around the neck."},
+];
+
+const l2Convos = [
+{title:"Conversation 1 (Mother's Day Gift — Necklace)",ans:["good","good","okay"]},
+{title:"Conversation 2 (Father's Day Gift — Shirt)",ans:["okay","good","not good"]},
+{title:"Conversation 3 (Wedding Gift — Glasses)",ans:["good","not good","okay"]},
+{title:"Conversation 4 (Graduation Gift — Jacket)",ans:["not good","okay","good"]},
+];
+
+const l3VocabData = [
+{word:"allergic to",ipa:"/əˈlɝːdʒɪk tə/",vi:"dị ứng với",en:"Having a bad reaction to something."},
+{word:"convenient",ipa:"/kənˈviːniənt/",vi:"tiện lợi",en:"Easy and helpful to use."},
+{word:"housewarming party",ipa:"/ˈhaʊsˌwɔːrmɪŋ ˈpɑːrti/",vi:"tiệc tân gia",en:"A party for a new home."},
+{word:"imported",ipa:"/ɪmˈpɔːrtɪd/",vi:"nhập khẩu",en:"Brought from another country."},
+{word:"local",ipa:"/ˈloʊkəl/",vi:"địa phương",en:"From the area nearby."},
+{word:"natural ingredients",ipa:"/ˈnætʃərəl ɪnˈɡriːdiənts/",vi:"nguyên liệu tự nhiên",en:"Things from nature used to make something."},
+{word:"organic",ipa:"/ɔːrˈɡænɪk/",vi:"hữu cơ",en:"Grown without chemicals."},
+{word:"souvenir",ipa:"/ˌsuːvəˈnɪr/",vi:"quà lưu niệm",en:"A gift that reminds you of a place."},
+{word:"wrapped",ipa:"/ræpt/",vi:"được gói",en:"Covered with paper."},
+];
+
+const l3Sections = [
+{title:"1. Chocolates (Sô-cô-la)",lines:[
+  ["It is a perfect gift for a","dinner"," party, but bad for a souvenir because they can melt."],
+  ["They are made from","local"," ingredients."],
+  ["They only have","one"," size (two-pound boxes)."],
+  ["Be careful! Some chocolates have","nuts",", so some people can be allergic."]
+]},
+{title:"2. Candles (Nến)",lines:[
+  ["This is a good gift for a","housewarming"," party."],
+  ["There are","two"," candles in a box. (Giving 4 is bad luck)."],
+  ["There are three sizes. These candles are","medium"," sized."],
+  ["The wrapping paper is","yellow",", which means \"happiness\"."],
+  ["They are 100% natural and made of","beeswax","."]
+]},
+{title:"3. T-shirts (Áo thun)",lines:[
+  ["They are good souvenirs for","teenagers","."],
+  ["There are","two"," styles/colors of T-shirts."],
+  ["They have small, medium, and large sizes. They do NOT have","extra large"," size."],
+  ["They are made from 100% organic","cotton","."]
+]},
+{title:"4. Watches (Đồng hồ)",lines:[
+  ["They are popular souvenirs for girls or","women","."],
+  ["The beads are made from local","stones","."],
+  ["The watch part comes from","Japan"," and has very good quality."],
+  ["Because the band is elastic,","one size"," fits all."]
+]}
+];
+
+const tapescript1 = [
+["1",["A: Who are you buying a gift for?","B: It's a present for Annie. To say thank you for helping me with a school project. Any ideas?","A: I think some jewelry would be nice. Maybe a bracelet.","B: I don't know. A bracelet sounds expensive.","A: How about this key chain?","B: That's a great idea!"]],
+["2",["A: Are we getting Mom a Mother's Day present this year?","B: Of course! I was thinking of getting her some flowers.","A: Oh, flowers are nice, but it's our Mom! We should get her something really special!","B: I know. Let's get her some really nice jewelry.","A: I agree. Let's get her that bracelet we saw last week."]],
+["3",["A: Are you going to Brandon's graduation party, too?","B: Yes, and I think we need to bring a gift.","A: Oh, that's right. For Brandon, hmm... How about a necktie?","B: I don't know. I wonder if a tie is really useful.","A: You're right. I know! A pen!","B: Perfect! Let's get him a pen."]],
+["4",["A: Do you see anything here that we can get to take to Jason and Alison's wedding?","B: Not really. Can't we just bring them some flowers?","A: No. Flowers aren't right for a wedding. We have to bring them something nice for their home.","B: Oh, I see. Hey, how about this teapot?","A: Yeah, that looks nice. Let's get it."]],
+["5",["A: That was nice of the Roberts to invite us to dinner.","B: Yes, and we need to bring something.","A: Like a \"hostess\" gift?","B: Exactly.","A: What about that teapot we saw at the store today?","B: Well, for dinner, you usually bring something a little less expensive, like, uhm...","A: Like flowers?","B: Perfect!"]],
+["6",["A: I'm trying to think of a gift for my dad for Father's Day. Any ideas?","B: How about a pen?","A: That's a good idea, but he has so many pens.","B: I see. What about a tie?","A: Um, yeah. He certainly needs ties to wear to work...","B: Okay. Let's go to the department store. I'll help you pick one out."]],
+];
+const tapescript2 = [
+["1",["A: What do you think of this necklace for Mother's Day?","B: Well, the style is good.","A: Is it too big for her, though—is it too wide?","B: No, the size is okay. How much is it?","A: It's, uhm, Wow—$150! That's pretty expensive.","B: Well, how about the color?","A: The color is perfect. So is the style.","B: You should just put it on your credit card. It is Mother's Day, after all!"]],
+["2",["A: Wow! Look at this shirt! What a great color!","B: Yes, the color is nice. Is it his style?","A: Yeah, the style is okay. And Dad can use a shirt this color.","B: How much is it?","A: It's $50.","B: Hmm, that's okay—not great, but okay.","A: Yeah, I see what you mean. What about the size, though?","B: Yeah, it's too big. And this is the only size.","A: Well, should we buy it?","B: No. The color is good, but the size isn't right, so even though the price is okay, let's keep looking."]],
+["3",["A: How about these glasses for Laura and David's wedding?","B: The style is good. They have a nice shape.","A: Let's see, they're $60 for four glasses.","B: Doesn't that seem expensive? They're awfully small.","A: No, the size is okay, and the price is actually okay, too, for a really nice set like this.","B: Okay, but do they only have that color?","A: Hmm, yeah, it looks like they're all blue.","B: Are blue glasses useful? I mean, will they go with their other stuff?","A: Now that you mention it, I don't think blue is a good idea.","B: Yeah, let's look for something similar in another color."]],
+["4",["A: I have to get my brother a graduation present. He loves clothes. What do you think about this jacket? It's exactly his size.","B: Hmm, I would prefer blue, but I guess brown is okay for him.","A: That's what I thought. And the price is right.","B: How much is it?","A: It's only $29.99.","B: Well, that's a great price, and the size is good, but what about the style?","A: Hmm, you don't like the style?","B: No, the sleeves are wrong. I don't like that style at all.","A: Yeah, I agree, but I'm going to get it anyway because the price is so good.","B: Okay, he's your brother!"]],
+];
+const tapescript3 = [
+["1. Chocolates",["I see you're looking at the chocolates. That's a perfect gift to take your host for a dinner here, but not a good idea to take home as a souvenir. They'll melt. But these chocolates are very high-quality. And they aren't imported. They're made right here from local ingredients. There are two kinds—dark chocolate and light chocolate, but only one size. They're all two-pound boxes, but they might not be right for everyone because some have nuts. You have to be careful because some people are allergic to nuts."]],
+["2. Candles",["These candles are a good gift if you are going to a housewarming party. They come two to a box, so the number is perfect. You don't want to give four of anything—it's bad luck. There are three sizes—these are medium sized, but you can get shorter and taller ones, too. They're really convenient because they come already wrapped. And, notice the wrapping paper is yellow. Yellow is a perfect paper color for wrapping this kind of gift because it means \"happiness.\" Oh, and they're completely natural. They're made of beeswax and other natural ingredients."]],
+["3. T-shirts",["Let's see. . . if you want to get some souvenirs for teenagers, I recommend these T-shirts. T-shirts with pictures and writing on them are very popular with young people. There are two styles—red with black writing and black with red writing. As for sizes, we have, uhm, let's see . . . small, medium, large . . . Uh, I'm afraid they don't come in extra large. Anyway, they're made from 100 percent organic cotton, too. They're a great deal for the price."]],
+["4. Watches",["These watches are very popular souvenirs for any girls or women on your gift list. They're quite pretty, aren't they? They're more like jewelry than just watches. Local artists make the wristbands. The beads in the bands are all made from stones that come from the local region. And they're all different. Notice? Here's one with mostly green stones, and here's one with mostly blue stones. The watch part itself comes from Japan—it's very good quality. And the great thing about these—because the band is elastic, one size fits all."]],
+];
+
+const discussConvoData = [
+{q:"What is the best gift you have received?",a:"I have received many different gifts, but my favorite and I think the best is definitely the engagement ring my boyfriend at the time, now husband, gave me. It is shiny, beautiful, and golden — a really amazing gift, and it was given to me on an airplane, which made it really special. I really like it."},
+{q:"Do you like to give gifts or to get gifts?",a:"I like both, but I would rather give gifts than receive them, because I feel like it's a talent and a challenge — you have to know that person very well, know what he likes or dislikes, and his interests, and try to find something special for him. The main goal is that he likes it and feels that you really thought about him."},
+{q:"How important do you think it is to give gifts on special occasions?",a:"Giving gifts on special occasions is incredibly important because it adds excitement and sentimentality to the event. A carefully chosen gift becomes a keepsake, a way to express love, appreciation, and thoughtfulness. It can make someone feel over the moon with joy, and it strengthens the bond between the giver and the recipient, creating unforgettable, memorable moments."},
+];
+
+/* ============ STATE ============ */
+let progressPages = ["hero","vocab","phrases","pronun","practice","speaking","listen","discuss","review"];
+let visited = new Set(["hero"]);
+
+/* ============ NAV ============ */
+function goTo(page){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById("page-"+page).classList.add("active");
+  document.querySelectorAll(".nav-item").forEach(n=>n.classList.toggle("active", n.dataset.page===page));
+  visited.add(page);
+  updateProgress();
+  window.scrollTo(0,0);
+}
+document.querySelectorAll(".nav-item").forEach(item=>{
+  item.addEventListener("click",()=>goTo(item.dataset.page));
+});
+function updateProgress(){
+  const pct = Math.round((visited.size/progressPages.length)*100);
+  document.getElementById("progressFill").style.width = pct+"%";
+  document.getElementById("progressLabel").innerText = pct+"% complete";
+}
+
+/* ============ VOCAB TABS ============ */
+function renderVocabTabs(){
+  const tabBar = document.getElementById("vocabTabBar");
+  const content = document.getElementById("vocabTabContent");
+  vocabTabsData.forEach((tab,i)=>{
+    const btn = document.createElement("button");
+    btn.className = "tab-btn"+(i===0?" active":"");
+    btn.innerText = tab.label;
+    btn.onclick = ()=>switchVocabTab(i);
+    tabBar.appendChild(btn);
+
+    const panel = document.createElement("div");
+    panel.className = "tab-panel"+(i===0?" active":"");
+    panel.id = "vocabPanel"+i;
+    const grid = document.createElement("div");
+    grid.className = "vocab-grid";
+    tab.items.forEach(it=>grid.appendChild(makeVocabCard(it)));
+    panel.appendChild(grid);
+    content.appendChild(panel);
+  });
+}
+function switchVocabTab(i){
+  document.querySelectorAll("#vocabTabBar .tab-btn").forEach((b,idx)=>b.classList.toggle("active",idx===i));
+  document.querySelectorAll("#vocabTabContent .tab-panel").forEach((p,idx)=>p.classList.toggle("active",idx===i));
+}
+function makeVocabCard(it){
+  const card = document.createElement("div");
+  card.className = "vocab-card";
+  card.innerHTML = `<span class="tap-hint">tap ↻</span>
+    <div class="word">${it.word}</div>
+    <div class="ipa">${it.ipa}</div>
+    <div class="vi">${it.vi}</div>
+    <div class="example">${it.en}</div>`;
+  card.onclick = ()=>card.classList.toggle("flipped");
+  return card;
+}
+
+/* ============ MCQ ENGINE ============ */
+function renderMcq(containerId, data){
+  const c = document.getElementById(containerId);
+  c.innerHTML = "";
+  data.forEach((item,qi)=>{
+    const div = document.createElement("div");
+    div.className = "mcq-item";
+    div.innerHTML = `<div class="mcq-q">${qi+1}. ${item.q}</div>
+      <div class="mcq-options">${item.opts.map((o,oi)=>`<div class="mcq-option" data-q="${qi}" data-o="${oi}">${String.fromCharCode(65+oi)}. ${o}</div>`).join("")}</div>`;
+    c.appendChild(div);
+  });
+  c.querySelectorAll(".mcq-option").forEach(opt=>{
+    opt.addEventListener("click",()=>{
+      const q = opt.dataset.q;
+      c.querySelectorAll(`.mcq-option[data-q="${q}"]`).forEach(o=>o.classList.remove("selected"));
+      opt.classList.add("selected");
+    });
+  });
+}
+function checkMcq(containerId, data){
+  const c = document.getElementById(containerId);
+  let score = 0;
+  data.forEach((item,qi)=>{
+    const opts = c.querySelectorAll(`.mcq-option[data-q="${qi}"]`);
+    opts.forEach((o,oi)=>{
+      o.classList.remove("correct","incorrect");
+      if(oi===item.a) o.classList.add("correct");
+      else if(o.classList.contains("selected")) o.classList.add("incorrect");
+    });
+    const sel = c.querySelector(`.mcq-option[data-q="${qi}"].selected`);
+    if(sel && parseInt(sel.dataset.o)===item.a) score++;
+  });
+  const fb = document.getElementById(containerId+"-feedback");
+  fb.className = "feedback-box show " + (score===data.length?"success":(score>=data.length/2?"info":"error"));
+  fb.innerHTML = `<div class="score-badge">${score}/${data.length}</div><div>${score===data.length?"Excellent! Perfect score.":(score>=data.length/2?"Good job! Review the highlighted answers.":"Keep practicing — check the correct answers above.")}</div>`;
+}
+function resetMcq(containerId, data){
+  renderMcq(containerId, data);
+  document.getElementById(containerId+"-feedback").className = "feedback-box";
+}
+
+/* ============ PRONUNCIATION ============ */
+function renderLinkTable(){
+  const t = document.getElementById("linkTable");
+  t.innerHTML = "<tr><th>Phrase</th><th>Sounds like</th><th>Note</th></tr>" +
+    linkRows.map(r=>`<tr><td><strong>${r[0]}</strong></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("");
+}
+function renderPronunSentences(){
+  const c = document.getElementById("pronunSentences");
+  c.innerHTML = pronunSentences.map((s,i)=>`
+    <div class="info-box" style="margin-bottom:12px">
+      <strong>${i+1}.</strong> ${s.en}<br>
+      <span style="font-size:12.5px;color:var(--text-soft)">✅ ${s.focus.join(" &nbsp;|&nbsp; ")}</span>
+    </div>`).join("");
+}
+function switchPronunTab(tab){
+  document.querySelectorAll("[data-ptab]").forEach(b=>b.classList.toggle("active",b.dataset.ptab===tab));
+  document.querySelectorAll("#page-pronun .tab-panel").forEach(p=>p.classList.toggle("active",p.id==="ptab-"+tab));
+}
+
+/* ============ SPEAKING ============ */
+function renderEmotions(){
+  const grid = document.getElementById("emotionGrid");
+  emotionList.forEach(it=>{
+    const badgeClass = it.pos==="Positive"?"badge-green":(it.pos==="Negative"?"badge-red":"badge-blue");
+    const card = document.createElement("div");
+    card.className = "vocab-card";
+    card.innerHTML = `<span class="tap-hint">tap ↻</span>
+      <div class="word">${it.word}</div>
+      <div class="ipa">${it.ipa}</div>
+      <div class="vi">${it.vi}</div>
+      <div class="example"><span class="badge ${badgeClass}">${it.pos}</span></div>`;
+    card.onclick = ()=>card.classList.toggle("flipped");
+    grid.appendChild(card);
+  });
+}
+function renderSpeakingTasks(){
+  const c = document.getElementById("speakingTasks");
+  c.innerHTML = speakingPrompts.map((p,i)=>`
+    <div class="mcq-item">
+      <div class="mcq-q">${i+1}. Emotion: <strong>${p.e}</strong> — Idea: "${p.vi}"</div>
+      <textarea class="answer-area" placeholder="Speak your full sentence, then type it here to check yourself..."></textarea>
+    </div>`).join("");
+}
+function switchSpeakTab(tab){
+  document.querySelectorAll("[data-stab]").forEach(b=>b.classList.toggle("active",b.dataset.stab===tab));
+  document.querySelectorAll("#page-speaking .tab-panel").forEach(p=>p.classList.toggle("active",p.id==="stab-"+tab));
+}
+
+/* ============ LISTENING ============ */
+function renderVocabGrid(targetId, items){
+  const grid = document.getElementById(targetId);
+  items.forEach(it=>{
+    const card = document.createElement("div");
+    card.className = "vocab-card";
+    card.innerHTML = `<span class="tap-hint">tap ↻</span>
+      <div class="word">${it.word}</div>
+      <div class="ipa">${it.ipa}</div>
+      <div class="vi">${it.vi}</div>
+      <div class="example">${it.en}</div>`;
+    card.onclick = ()=>card.classList.toggle("flipped");
+    grid.appendChild(card);
+  });
+}
+function renderL1Table(){
+  const t = document.getElementById("l1Table");
+  t.innerHTML = "<tr><th>#</th><th>Receiver</th><th>Occasion</th><th>Chosen Gift</th></tr>" +
+    l1Rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>A <input class="blank-input" data-answer="${r[3]}" style="min-width:90px"></td></tr>`).join("");
+}
+function renderL2(){
+  const c = document.getElementById("l2Tables");
+  c.innerHTML = l2Convos.map((conv,ci)=>`
+    <div style="margin-bottom:20px">
+      <div style="font-weight:700;color:var(--forest);font-size:14px;margin-bottom:8px">${conv.title}</div>
+      <table class="lesson-table opinion-table">
+        <tr><th>Feature</th><th class="center">Good</th><th class="center">Okay</th><th class="center">Not good</th></tr>
+        ${["the style","the color","the size"].map((feat,fi)=>`
+          <tr>
+            <td>${feat}</td>
+            <td class="center"><input type="radio" name="l2-${ci}-${fi}" value="good"></td>
+            <td class="center"><input type="radio" name="l2-${ci}-${fi}" value="okay"></td>
+            <td class="center"><input type="radio" name="l2-${ci}-${fi}" value="not good"></td>
+          </tr>`).join("")}
+      </table>
+    </div>`).join("");
+}
+function checkOpinion(){
+  let score=0, total=0;
+  l2Convos.forEach((conv,ci)=>{
+    conv.ans.forEach((ans,fi)=>{
+      total++;
+      const sel = document.querySelector(`input[name="l2-${ci}-${fi}"]:checked`);
+      if(sel && sel.value===ans) score++;
+    });
+  });
+  const fb = document.getElementById("l2-feedback");
+  fb.className = "feedback-box show " + (score===total?"success":(score>=total/2?"info":"error"));
+  fb.innerHTML = `<div class="score-badge">${score}/${total}</div><div>${score===total?"Perfect! You caught every opinion correctly.":"Compare your answers with the Tapescript tab for details."}</div>`;
+}
+function resetOpinion(){
+  document.querySelectorAll('input[name^="l2-"]').forEach(r=>r.checked=false);
+  document.getElementById("l2-feedback").className = "feedback-box";
+}
+function renderL3(){
+  const c = document.getElementById("l3Body");
+  let counter = 0;
+  c.innerHTML = l3Sections.map(sec=>{
+    const lines = sec.lines.map(l=>{
+      counter++;
+      return `<p style="font-size:14px;margin-bottom:8px">(${counter}) ${l[0]} <input class="blank-input" data-answer="${l[1]}">${l[2]}</p>`;
+    }).join("");
+    return `<div style="margin-bottom:18px"><div style="font-weight:700;color:var(--forest);font-size:14px;margin-bottom:8px">${sec.title}</div>${lines}</div>`;
+  }).join("");
+}
+function checkBlanks(containerId){
+  const c = document.getElementById(containerId);
+  const inputs = c.querySelectorAll(".blank-input");
+  let score = 0;
+  inputs.forEach(inp=>{
+    const val = inp.value.trim().toLowerCase();
+    const ans = inp.dataset.answer.toLowerCase();
+    const ansAlt = ans.replace("necktie","tie").replace("tie","necktie");
+    inp.classList.remove("correct","incorrect");
+    if(val===ans || val===ansAlt || (ans.includes("/") && ans.split("/").map(s=>s.trim()).includes(val))){
+      inp.classList.add("correct"); score++;
+    } else {
+      inp.classList.add("incorrect");
+    }
+  });
+  const fb = document.getElementById(containerId+"-feedback");
+  fb.className = "feedback-box show " + (score===inputs.length?"success":(score>=inputs.length/2?"info":"error"));
+  fb.innerHTML = `<div class="score-badge">${score}/${inputs.length}</div><div>${score===inputs.length?"Perfect! All answers correct.":"Check the highlighted blanks and try again."}</div>`;
+}
+function resetBlanks(containerId){
+  const c = document.getElementById(containerId);
+  c.querySelectorAll(".blank-input").forEach(inp=>{inp.value=""; inp.classList.remove("correct","incorrect");});
+  const fb = document.getElementById(containerId+"-feedback");
+  if(fb) fb.className = "feedback-box";
+}
+function switchListenTab(tab){
+  document.querySelectorAll("[data-ltab]").forEach(b=>b.classList.toggle("active",b.dataset.ltab===tab));
+  document.querySelectorAll("#page-listen .tab-panel").forEach(p=>p.classList.toggle("active",p.id==="ltab-"+tab));
+}
+function renderTranscript(){
+  const block = document.getElementById("transcriptBlock");
+  function buildCard(title, convos){
+    return `<div class="transcript-card">
+      <div class="t-head">${title}</div>
+      <div class="t-body">
+        ${convos.map(c=>`<div style="margin-bottom:14px"><div style="font-weight:700;color:var(--moss);font-size:12.5px;margin-bottom:4px">Conversation ${c[0]}</div>${c[1].map(l=>`<div class="dialogue-line">${l.replace(/^([AB]):/,'<span class="speaker">$1:</span>')}</div>`).join("")}</div>`).join("")}
+      </div>
+    </div>`;
+  }
+  block.innerHTML =
+    buildCard("Listening 1 — Gift Choices", tapescript1) +
+    buildCard("Listening 2 — Opinion Check", tapescript2) +
+    buildCard("Listening 3 — Gift Details", tapescript3);
+}
+function toggleTranscript(){
+  document.getElementById("transcriptBlock").classList.toggle("revealed");
+}
+
+/* ============ DISCUSSION ============ */
+function toggleSample(id){
+  document.getElementById(id).classList.toggle("revealed");
+}
+function renderDiscussConvos(){
+  const c = document.getElementById("discussConvos");
+  c.innerHTML = discussConvoData.map((d,i)=>`
+    <div class="scenario-card">
+      <div class="scenario-header">💬 Conversation ${i+1}</div>
+      <div class="scenario-body">
+        <div class="scenario-situation">${d.q}</div>
+        <textarea class="answer-area" placeholder="Speak your answer aloud, then jot down key points here..."></textarea>
+        <button class="btn btn-secondary btn-sm" style="margin-top:10px" onclick="toggleSample('dsample${i}')">💡 Show Sample Answer</button>
+        <div class="sample-response" id="dsample${i}">${d.a}</div>
+      </div>
+    </div>`).join("");
+}
+function switchDiscussTab(tab){
+  document.querySelectorAll("[data-dtab]").forEach(b=>b.classList.toggle("active",b.dataset.dtab===tab));
+  document.querySelectorAll("#page-discuss .tab-panel").forEach(p=>p.classList.toggle("active",p.id==="dtab-"+tab));
+}
+
+/* ============ RESET ALL ============ */
+function resetAll(){
+  if(!confirm("Reset all answers and progress?")) return;
+  resetMcq("phrasesMcq", phrasesData);
+  resetMcq("quickMcq", quickData);
+  resetMcq("reviewMcq", reviewData);
+  resetBlanks("l1Table");
+  resetBlanks("l3Body");
+  resetOpinion();
+  document.querySelectorAll(".vocab-card.flipped").forEach(c=>c.classList.remove("flipped"));
+  document.querySelectorAll(".answer-area").forEach(t=>t.value="");
+  document.querySelectorAll(".kw-input").forEach(i=>i.value="");
+  document.querySelectorAll(".sample-response.revealed").forEach(s=>s.classList.remove("revealed"));
+  document.querySelectorAll(".check-item input").forEach(cb=>cb.checked=false);
+  document.getElementById("transcriptBlock").classList.remove("revealed");
+  visited = new Set(["hero"]);
+  updateProgress();
+  goTo("hero");
+}
+
+/* ============ INIT ============ */
+renderVocabTabs();
+renderMcq("phrasesMcq", phrasesData);
+renderMcq("quickMcq", quickData);
+renderMcq("reviewMcq", reviewData);
+renderLinkTable();
+renderPronunSentences();
+renderEmotions();
+renderSpeakingTasks();
+renderVocabGrid("l1Vocab", l1VocabData);
+renderVocabGrid("l2Vocab", l2VocabData);
+renderVocabGrid("l3Vocab", l3VocabData);
+renderL1Table();
+renderL2();
+renderL3();
+renderTranscript();
+renderDiscussConvos();
+updateProgress();
+</script>
+</body>
+</html>
