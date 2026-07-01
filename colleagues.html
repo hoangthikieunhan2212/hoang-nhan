@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Getting to Know Colleagues — English Communication Lesson</title>
+<style>
+:root{
+  --forest:#2D5016; --moss:#4A7C2F; --mint:#A8C97F; --sage:#D4E8B8; --sand:#F5F0E8; --white:#FFFFFF;
+  --blue:#2563EB; --blue-light:#EFF6FF;
+  --amber:#D97706; --amber-light:#FFFBEB;
+  --red:#DC2626; --red-light:#FEF2F2;
+  --green-success:#16A34A; --green-light:#F0FDF4;
+  --text-dark:#1A2E0A; --text-mid:#3D5C20; --text-soft:#6B8C4A;
+  --border:#C8DFA0;
+  --shadow-sm:0 1px 3px rgba(45,80,22,0.08);
+  --shadow-md:0 4px 16px rgba(45,80,22,0.12);
+  --shadow-lg:0 8px 32px rgba(45,80,22,0.16);
+  --radius:12px; --radius-sm:8px; --radius-lg:20px;
+  font-size:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--sand);}
+img{max-width:100%;display:block;}
+
+/* ===== APP SHELL ===== */
+.app-shell{display:flex;min-height:100vh;}
+.sidebar{
+  width:220px;background:var(--forest);color:#fff;position:fixed;top:0;left:0;bottom:0;
+  display:flex;flex-direction:column;z-index:100;
+}
+.brand{padding:24px 20px 20px;border-bottom:1px solid rgba(255,255,255,0.1);}
+.brand .level-badge{display:inline-block;background:var(--mint);color:var(--forest);font-size:10px;font-weight:800;
+  padding:3px 10px;border-radius:99px;letter-spacing:0.5px;margin-bottom:10px;}
+.brand h2{font-size:16px;font-weight:800;line-height:1.3;}
+.brand .cat{font-size:11px;color:var(--mint);opacity:0.8;margin-top:4px;}
+.nav-scroll{flex:1;overflow-y:auto;padding:16px 0;}
+.nav-group-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:rgba(168,201,127,0.6);padding:14px 20px 6px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 20px;font-size:13px;font-weight:500;
+  color:rgba(255,255,255,0.7);cursor:pointer;border-left:3px solid transparent;transition:all 0.2s;}
+.nav-item .ic{width:20px;font-size:16px;text-align:center;}
+.nav-item:hover{color:#fff;background:rgba(168,201,127,0.08);}
+.nav-item.active{color:#fff;border-left-color:var(--mint);background:rgba(168,201,127,0.15);}
+.progress-wrap{padding:16px 20px 20px;border-top:1px solid rgba(255,255,255,0.1);}
+.progress-label{font-size:11px;color:rgba(255,255,255,0.6);margin-bottom:6px;display:flex;justify-content:space-between;}
+.progress-track{background:rgba(255,255,255,0.1);height:6px;border-radius:99px;overflow:hidden;}
+.progress-fill{background:var(--mint);height:100%;border-radius:99px;transition:width 0.5s ease;width:11%;}
+
+.main-content{margin-left:220px;flex:1;min-width:0;}
+
+/* ===== PAGES ===== */
+.page{display:none;}
+.page.active{display:block;animation:fadeIn 0.3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+.hero-block{background:linear-gradient(135deg,var(--forest),var(--moss) 60%,#5A9E3A);color:#fff;padding:48px;}
+.hero-block.compact{padding:32px 48px;}
+.meta-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.badge-white{background:rgba(255,255,255,0.15);color:#fff;font-size:12px;font-weight:700;padding:5px 12px;border-radius:99px;}
+.hero-block h1{font-size:36px;font-weight:800;margin-bottom:14px;}
+.hero-block.compact h1{font-size:26px;}
+.hero-block .subtitle{max-width:560px;font-size:15px;color:rgba(255,255,255,0.9);margin-bottom:20px;}
+.outcome-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+.badge-mint{background:rgba(168,201,127,0.2);color:var(--mint);border:1px solid rgba(168,201,127,0.3);
+  font-size:12px;font-weight:700;padding:5px 12px;border-radius:99px;}
+
+.section-block{padding:40px 48px;border-bottom:1px solid var(--border);}
+.section-header{margin-bottom:22px;}
+.part-label{display:inline-block;background:var(--forest);color:var(--mint);font-size:10px;font-weight:800;
+  letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:99px;margin-bottom:10px;}
+.section-title{font-size:22px;font-weight:800;color:var(--forest);margin-bottom:6px;}
+.section-subtitle{font-size:14px;color:var(--text-soft);}
+
+/* ===== TABS ===== */
+.tab-bar{border-bottom:2px solid var(--border);display:flex;gap:4px;overflow-x:auto;margin-bottom:24px;}
+.tab-btn{padding:10px 18px;font-size:13px;font-weight:600;color:var(--text-soft);background:none;border:none;
+  border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all 0.2s;}
+.tab-btn.active{color:var(--forest);border-bottom-color:var(--forest);}
+.tab-btn:hover{color:var(--forest);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;animation:fadeIn 0.3s ease;}
+
+/* ===== VOCAB ===== */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.vocab-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:18px;cursor:pointer;
+  position:relative;transition:all 0.2s;}
+.vocab-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--mint);}
+.vocab-card .tap-hint{position:absolute;top:12px;right:14px;font-size:11px;color:var(--text-soft);}
+.vocab-card .word{font-size:17px;font-weight:700;color:var(--forest);margin-bottom:4px;padding-right:40px;}
+.vocab-card .ipa{font-size:13px;font-style:italic;color:var(--blue);margin-bottom:8px;}
+.vocab-card .vi{font-size:14px;font-weight:600;color:var(--text-mid);margin-bottom:4px;}
+.vocab-card .simple{font-size:13px;color:var(--text-soft);}
+.vocab-card .example{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--sage);font-size:13px;color:var(--text-soft);font-style:italic;}
+.vocab-card.flipped .example{display:block;animation:fadeIn 0.3s ease;}
+
+/* ===== PHRASE CARD ===== */
+.phrase-card{display:flex;gap:16px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+  padding:16px 18px;margin-bottom:12px;flex-wrap:wrap;}
+.phrase-en{font-weight:700;color:var(--forest);min-width:250px;font-size:15px;}
+.phrase-vi{color:var(--text-soft);font-size:14px;}
+
+/* ===== PRONUNCIATION ===== */
+.rule-box{background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius);padding:18px 20px;margin-bottom:14px;}
+.rule-box h4{color:var(--blue);font-weight:700;font-size:15px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.sound-pill{background:var(--blue);color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;}
+.rule-box p{font-size:14px;color:var(--text-dark);margin-bottom:6px;}
+.practice-sentence{background:var(--sage);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:10px 14px;margin-top:8px;font-size:14px;color:var(--text-mid);}
+.practice-sentence b{color:var(--forest);}
+
+/* ===== NOTE INPUT (Listening) ===== */
+.note-input{width:100%;border:none;border-bottom:2px solid var(--border);background:transparent;
+  font-family:inherit;font-size:14px;color:var(--text-dark);padding:6px 4px;transition:border-color 0.2s;}
+.note-input:focus{outline:none;border-bottom-color:var(--blue);}
+.note-input::placeholder{color:var(--text-soft);font-style:italic;}
+
+/* ===== TENSE CARD ===== */
+.tense-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;
+  margin-bottom:16px;box-shadow:var(--shadow-sm);transition:all 0.2s;}
+.tense-card:hover{box-shadow:var(--shadow-md);}
+.tense-name{font-size:18px;font-weight:800;color:var(--forest);margin-bottom:12px;padding-bottom:10px;
+  border-bottom:1px solid var(--sage);}
+.tense-row{display:flex;gap:14px;padding:9px 0;font-size:14px;align-items:flex-start;}
+.tense-label{min-width:120px;flex-shrink:0;font-weight:700;color:var(--moss);}
+.tense-value{color:var(--text-dark);}
+.tense-formula{display:inline-block;background:var(--sage);color:var(--forest);font-weight:700;
+  padding:4px 12px;border-radius:var(--radius-sm);font-size:14px;}
+.tense-example{background:var(--sand);border-left:3px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:8px 12px;font-style:italic;color:var(--text-mid);}
+.tense-example.simple{border-left-color:var(--blue);background:var(--blue-light);color:var(--blue);font-style:normal;}
+
+/* ===== EXERCISE ===== */
+.exercise-container{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:20px;}
+.exercise-title{font-weight:700;font-size:16px;color:var(--forest);margin-bottom:10px;}
+.exercise-instruction{color:var(--text-soft);font-size:13px;background:var(--sand);border-radius:var(--radius-sm);
+  padding:10px 14px;margin-bottom:18px;}
+.mcq-question{margin-bottom:22px;}
+.mcq-question:last-child{margin-bottom:0;}
+.mcq-q-text{font-size:14px;font-weight:600;color:var(--text-dark);margin-bottom:10px;}
+.mcq-options{display:flex;flex-direction:column;gap:8px;}
+.mcq-option{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;font-size:14px;
+  cursor:pointer;transition:all 0.2s;}
+.mcq-option:hover{border-color:var(--mint);background:var(--sage);}
+.mcq-option.selected{border-color:var(--blue);background:var(--blue-light);}
+.mcq-option.correct{border-color:var(--green-success);background:var(--green-light);font-weight:700;}
+.mcq-option.incorrect{border-color:var(--red);background:var(--red-light);}
+.mcq-option.disabled{cursor:default;}
+
+/* ===== BUTTONS ===== */
+.btn{padding:10px 20px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;border:none;cursor:pointer;transition:all 0.2s;}
+.btn-primary{background:var(--forest);color:#fff;}
+.btn-primary:hover{background:var(--moss);transform:translateY(-1px);}
+.btn-secondary{background:var(--sage);color:var(--forest);}
+.btn-secondary:hover{background:var(--mint);}
+.btn-outline{background:transparent;color:var(--forest);border:1.5px solid var(--border);}
+.btn-outline:hover{border-color:var(--moss);background:var(--sage);}
+.btn-sm{padding:6px 14px;font-size:13px;}
+.btn-group{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+
+/* ===== FEEDBACK ===== */
+.feedback-box{padding:14px 18px;border-radius:var(--radius-sm);display:none;align-items:center;gap:12px;margin-top:16px;border:1px solid transparent;}
+.feedback-box.show{display:flex;}
+.feedback-box.success{background:var(--green-light);color:var(--green-success);border-color:#BBF7D0;}
+.feedback-box.error{background:var(--red-light);color:var(--red);border-color:#FECACA;}
+.feedback-box.info{background:var(--blue-light);color:var(--blue);border-color:#BFDBFE;}
+.score-badge{min-width:48px;height:48px;border-radius:50%;background:#fff;color:var(--forest);font-weight:800;
+  font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+/* ===== CHECKLIST ===== */
+.check-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--radius-sm);
+  cursor:pointer;font-size:14px;transition:background 0.2s;}
+.check-item:hover{background:var(--sage);}
+.check-item input{accent-color:var(--forest);width:16px;height:16px;}
+
+/* ===== TRANSCRIPT ===== */
+.transcript-block{display:none;}
+.transcript-block.revealed{display:block;animation:fadeIn 0.3s ease;}
+.transcript-card{background:var(--sand);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:14px;}
+.transcript-header{background:var(--forest);color:#fff;padding:10px 16px;display:flex;justify-content:space-between;
+  font-size:13px;font-weight:700;}
+.transcript-body{padding:16px;}
+.dialogue-line{margin-bottom:10px;font-size:14px;}
+.dialogue-line .speaker{color:var(--forest);font-weight:700;}
+.dialogue-line.vi{color:var(--text-soft);font-size:13px;padding-left:12px;font-style:italic;}
+
+/* ===== SCENARIO ===== */
+.scenario-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:20px;}
+.scenario-header{background:linear-gradient(135deg,var(--forest),var(--moss));color:#fff;padding:16px 20px;
+  display:flex;align-items:center;gap:12px;font-weight:700;font-size:15px;}
+.scenario-body{padding:20px;}
+.scenario-situation{background:var(--sand);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:14px 16px;font-size:14px;margin-bottom:14px;}
+.scenario-goal{font-size:14px;margin-bottom:14px;}
+.scenario-goal b{color:var(--forest);}
+.hint-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.hint-chip{background:var(--sage);color:var(--moss);padding:6px 14px;border-radius:99px;font-size:13px;font-weight:600;}
+.sample-response{background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius-sm);padding:14px 16px;
+  font-size:14px;display:none;margin-top:10px;}
+.sample-response.revealed{display:block;animation:fadeIn 0.3s ease;}
+
+/* ===== INFO / WARNING ===== */
+.info-box{background:var(--sage);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:14px 18px;font-size:14px;color:var(--text-mid);margin-bottom:16px;}
+.listening-notice{background:var(--amber-light);border:1px solid #FDE68A;color:var(--amber);padding:12px 16px;
+  font-size:13px;border-radius:var(--radius-sm);margin-bottom:16px;}
+
+/* ===== TABLE ===== */
+.summary-table{width:100%;border-collapse:collapse;}
+.summary-table td{padding:10px 16px;border-bottom:1px solid var(--sage);font-size:14px;}
+.summary-table td:first-child{font-weight:700;color:var(--forest);width:38%;}
+.data-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px;}
+.data-table th{background:var(--sage);color:var(--forest);text-align:left;padding:8px 12px;font-size:12px;}
+.data-table td{padding:8px 12px;border-bottom:1px solid var(--border);}
+
+/* ===== RESET FAB ===== */
+.reset-fab{position:fixed;bottom:24px;right:24px;background:var(--red);color:#fff;border:none;
+  border-radius:99px;padding:12px 20px;font-size:13px;font-weight:700;box-shadow:var(--shadow-lg);
+  z-index:200;cursor:pointer;transition:transform 0.2s;}
+.reset-fab:hover{transform:scale(1.05);}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:768px){
+  .sidebar{width:100%;position:relative;height:auto;flex-direction:row;overflow-x:auto;}
+  .main-content{margin-left:0;}
+  .brand{display:none;}
+  .nav-scroll{display:flex;padding:8px;}
+  .nav-group-label{display:none;}
+  .nav-item{border-left:none;border-bottom:3px solid transparent;white-space:nowrap;}
+  .nav-item.active{border-bottom-color:var(--mint);}
+  .progress-wrap{display:none;}
+  .hero-block,.section-block{padding:24px;}
+  .vocab-grid{grid-template-columns:1fr;}
+  .phrase-card{flex-direction:column;gap:4px;}
+}
+</style>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="level-badge">A2 → B1</span>
+      <h2>Getting to Know Colleagues</h2>
+      <div class="cat">Workplace Communication</div>
+    </div>
+    <nav class="nav-scroll" id="navScroll">
+      <div class="nav-group-label">Overview</div>
+      <div class="nav-item" data-page="hero"><span class="ic">🏠</span><span>Start</span></div>
+
+      <div class="nav-group-label">Part 1 · Getting Ready</div>
+      <div class="nav-item" data-page="vocab"><span class="ic">📚</span><span>Vocabulary</span></div>
+      <div class="nav-item" data-page="phrases"><span class="ic">💬</span><span>Useful Phrases</span></div>
+      <div class="nav-item" data-page="pronun"><span class="ic">🔊</span><span>Pronunciation</span></div>
+      <div class="nav-item" data-page="quickpractice"><span class="ic">✏️</span><span>Quick Practice</span></div>
+
+      <div class="nav-group-label">Part 2 · Speaking</div>
+      <div class="nav-item" data-page="speaking"><span class="ic">🗣️</span><span>Speaking</span></div>
+
+      <div class="nav-group-label">Part 3 · Listening</div>
+      <div class="nav-item" data-page="listening"><span class="ic">🎧</span><span>Listening</span></div>
+
+      <div class="nav-group-label">Part 4 · Discussion</div>
+      <div class="nav-item" data-page="discussion"><span class="ic">🤝</span><span>Discussion</span></div>
+
+      <div class="nav-group-label">Part 5 · Review</div>
+      <div class="nav-item" data-page="review"><span class="ic">🏆</span><span>Review</span></div>
+    </nav>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Progress</span><span id="progressPct">11%</span></div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <!-- ============ HERO / OVERVIEW ============ -->
+    <div class="page active" data-page="hero">
+      <div class="hero-block">
+        <div class="meta-badges">
+          <span class="badge-white">Workplace Communication</span>
+          <span class="badge-white">Level A2 → B1</span>
+          <span class="badge-white">~50 minutes</span>
+        </div>
+        <h1>Getting to Know Colleagues</h1>
+        <p class="subtitle">Learn how to talk naturally about departments, job roles, and past work experience —
+        the language you need for your first day at a new job, a networking event, or a job interview.</p>
+        <div class="outcome-badges">
+          <span class="badge-mint">Vocabulary</span>
+          <span class="badge-mint">Speaking</span>
+          <span class="badge-mint">Listening</span>
+          <span class="badge-mint">Pronunciation</span>
+          <span class="badge-mint">Communication</span>
+          <span class="badge-mint">Review</span>
+        </div>
+      </div>
+      <div class="section-block">
+        <div class="section-header">
+          <span class="part-label">What you will learn</span>
+          <div class="section-title">By the end of this lesson, you will be able to...</div>
+        </div>
+        <div class="vocab-grid">
+          <div class="phrase-card" style="flex-direction:column;gap:6px;">
+            <div class="phrase-en">🏢 Name departments &amp; job roles</div>
+            <div style="font-size:14px;color:var(--text-soft);">Talk naturally about company departments and job titles.</div>
+          </div>
+          <div class="phrase-card" style="flex-direction:column;gap:6px;">
+            <div class="phrase-en">💬 Describe past work experience</div>
+            <div style="font-size:14px;color:var(--text-soft);">Use "work as / work in / responsible for" to talk about a previous job.</div>
+          </div>
+          <div class="phrase-card" style="flex-direction:column;gap:6px;">
+            <div class="phrase-en">🗣️ Use three past tenses correctly</div>
+            <div style="font-size:14px;color:var(--text-soft);">Distinguish Past Simple, Past Continuous, and Present Perfect when telling a work story.</div>
+          </div>
+          <div class="phrase-card" style="flex-direction:column;gap:6px;">
+            <div class="phrase-en">🎧 Recognize different English accents</div>
+            <div style="font-size:14px;color:var(--text-soft);">Understand British, American, and regional accents.</div>
+          </div>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="goToPage('vocab')">Start Learning →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PART 1A VOCABULARY ============ -->
+    <div class="page" data-page="vocab">
+      <div class="hero-block compact">
+        <div class="meta-badges"><span class="badge-white">Part 1 · Getting Ready</span></div>
+        <h1>A. Vocabulary</h1>
+        <p class="subtitle">Tap each card to flip it and see an example sentence.</p>
+      </div>
+      <div class="section-block">
+        <div class="tab-bar" data-tab-group="vocabTabs">
+          <button class="tab-btn active" data-tab="department">Department</button>
+          <button class="tab-btn" data-tab="roles">Roles</button>
+          <button class="tab-btn" data-tab="actionverbs">Action Verbs</button>
+        </div>
+
+        <div class="tab-panel active" data-tab-group="vocabTabs" data-tab="department">
+          <div class="vocab-grid" id="vocabDepartment"></div>
+        </div>
+        <div class="tab-panel" data-tab-group="vocabTabs" data-tab="roles">
+          <div class="vocab-grid" id="vocabRoles"></div>
+        </div>
+        <div class="tab-panel" data-tab-group="vocabTabs" data-tab="actionverbs">
+          <div class="vocab-grid" id="vocabAction"></div>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="goToPage('phrases')">Next: Useful Phrases →</button>
+          <button class="btn btn-outline" onclick="goToPage('hero')">← Start</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PART 1B PHRASES ============ -->
+    <div class="page" data-page="phrases">
+      <div class="hero-block compact">
+        <div class="meta-badges"><span class="badge-white">Part 1 · Getting Ready</span></div>
+        <h1>B. Useful Phrases</h1>
+        <p class="subtitle">Natural structures for describing your job and past responsibilities.</p>
+      </div>
+      <div class="section-block">
+        <div class="section-header">
+          <div class="section-title">Talking about your job</div>
+          <div class="section-subtitle">Các cấu trúc giúp bạn mô tả trách nhiệm công việc một cách chuyên nghiệp.</div>
+        </div>
+        <div id="phraseList"></div>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="goToPage('pronun')">Next: Pronunciation →</button>
+          <button class="btn btn-outline" onclick="goToPage('vocab')">← Vocabulary</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PART 1C PRONUNCIATION ============ -->
+    <div class="page" data-page="pronun">
+      <div class="hero-block compact">
+        <div class="meta-badges"><span class="badge-white">Part 1 · Getting Ready</span></div>
+        <h1>C. Pronunciation Focus</h1>
+        <p class="subtitle">The three sounds of the "-ed" ending, and how it connects to the next word.</p>
+      </div>
+      <div class="section-block">
+        <div class="tab-bar" data-tab-group="pronunTabs">
+          <button class="tab-btn active" data-tab="ed">-ed Endings</button>
+          <button class="tab-btn" data-tab="linking">Connected Speech</button>
+        </div>
+
+        <div class="tab-panel active" data-tab-group="pronunTabs" data-tab="ed">
+          <p style="font-size:14px;color:var(--text-mid);margin-bottom:16px;">The <b>-ed</b> ending of regular past
+          tense verbs has <b>3 different pronunciations</b>, depending on the <b>final sound</b> of the base verb —
+          not the final letter.</p>
+
+          <div class="rule-box">
+            <h4><span class="sound-pill">/ɪd/</span> after /t/ or /d/</h4>
+            <p>Used when the verb ends in the sound <b>/t/</b> or <b>/d/</b>.</p>
+            <div class="practice-sentence">e.g. invest<b>ed</b>, start<b>ed</b></div>
+          </div>
+          <div class="rule-box">
+            <h4><span class="sound-pill">/t/</span> after voiceless sounds</h4>
+            <p>Used when the verb ends in: <b>/p/, /k/, /f/, /s/, /ʃ/, /tʃ/, /θ/</b>.</p>
+            <div class="practice-sentence">e.g. work<b>ed</b>, fix<b>ed</b></div>
+          </div>
+          <div class="rule-box">
+            <h4><span class="sound-pill">/d/</span> after voiced sounds &amp; vowels</h4>
+            <p>Used for all other cases: <b>/b/, /g/, /v/, /z/, /m/, /n/, /l/, /r/</b>... and every vowel sound.</p>
+            <div class="practice-sentence">e.g. manag<b>ed</b>, train<b>ed</b></div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-tab-group="pronunTabs" data-tab="linking">
+          <div class="rule-box">
+            <h4>🔗 Linking -ed to a vowel sound</h4>
+            <p>When a word ending in <b>-ed</b> is followed by a word that starts with a <b>vowel sound</b>,
+            native speakers link the ending sound (/t/, /d/, /ɪd/) to that vowel, making speech smoother and more natural.</p>
+          </div>
+          <div id="linkingExamples"></div>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="goToPage('quickpractice')">Next: Quick Practice →</button>
+          <button class="btn btn-outline" onclick="goToPage('phrases')">← Useful Phrases</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PART 1D QUICK PRACTICE ============ -->
+    <div class="page" data-page="quickpractice">
+      <div class="hero-block compact">
+        <div class="meta-badges"><span class="badge-white">Part 1 · Getting Ready</span></div>
+        <h1>D. Quick Practice</h1>
+        <p class="subtitle">Choose the best answer to complete each sentence.</p>
+      </div>
+      <div class="section-block">
+        <div class="exercise-container">
+          <div class="exercise-title">Complete the sentences</div>
+          <div class="exercise-instruction">Select an answer for each question, then tap "Show Answers" to check your score.</div>
+          <div id="quickPracticeQuestions"></div>
+          <div class="btn-group" style="margin-top:14px;">
+            <button class="btn btn-primary btn-sm" onclick="checkMcqSet('quickPractice')">Show Answers</button>
+            <button class="btn btn-outline btn-sm" onclick="resetMcqSet('quickPractice')">↺ Reset</button>
+          </div>
+          <div class="feedback-box info" id="quickPracticeFeedback">
+            <div class="score-badge" id="quickPracticeScore">0/6</div>
+            <div id="quickPracticeFeedbackText">Answer all questions, then tap "Show Answers".</div>
+          </div>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="goToPage('speaking')">Next: Speaking →</button>
+          <button class="btn btn-outline" onclick="goToPage('pronun')">← Pronunciation</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PART 2 SPEAKING ============ -->
+    <div class="page" data-page="speaking">
+      <div class="hero-block compact">
+        <div class="meta-badges"><span class="badge-white">Part 2 · Speaking</span></div>
+        <h1>Grammar &amp; Speaking Practice</h1>
+        <p class="subtitle">Use the right tense and the right accent awareness to talk about your work.</p>
+      </div>
+
+      <div class="section-block">
+        <div class="section-header">
+          <span class="part-label">A. Grammar Focus</span>
+          <div class="section-title">Tense &amp; Accents</div>
+        </div>
+        <div class="tab-bar" data-tab-group="grammarTabs">
+          <button class="tab-btn active" data-tab="tense">Tense</button>
+          <button class="tab-btn" data-tab="accents">Accents</button>
+        </div>
+
+        <div class="tab-panel active" data-tab-group="grammarTabs" data-tab="tense">
+          <p style="font-size:14px;color:var(--text-mid);margin-bottom:14px;">To talk about past work experience,
+          you need to clearly distinguish between these three tenses:</p>
+
+          <div class="tense-card">
+            <div class="tense-name">Past Simple</div>
+            <div class="tense-row"><span class="tense-label">Explain</span>
+              <span class="tense-value">Describes an action that is completely finished in the past.</span></div>
+            <div class="tense-row"><span class="tense-label">Formula</span>
+              <span class="tense-formula">S + V2/ed</span></div>
+            <div class="tense-row"><span class="tense-label">Example</span>
+              <span class="tense-example">"I ran my own construction company."</span></div>
+            <div class="tense-row"><span class="tense-label">Simple Example</span>
+              <span class="tense-example simple">"I worked at a bank for five years."</span></div>
+          </div>
+
+          <div class="tense-card">
+            <div class="tense-name">Past Continuous</div>
+            <div class="tense-row"><span class="tense-label">Explain</span>
+              <span class="tense-value">Describes an action that was in progress, or continued around a specific point in the past.</span></div>
+            <div class="tense-row"><span class="tense-label">Formula</span>
+              <span class="tense-formula">S + was/were + V-ing</span></div>
+            <div class="tense-row"><span class="tense-label">Example</span>
+              <span class="tense-example">"I was working 60 hours a week before I came here."</span></div>
+            <div class="tense-row"><span class="tense-label">Simple Example</span>
+              <span class="tense-example simple">"I was studying English when she called me."</span></div>
+          </div>
+
+          <div class="tense-card">
+            <div class="tense-name">Present Perfect</div>
+            <div class="tense-row"><span class="tense-label">Explain</span>
+              <span class="tense-value">Describes experience up to the present moment, without a specific time being important.</span></div>
+            <div class="tense-row"><span class="tense-label">Formula</span>
+              <span class="tense-formula">S + have/has + V3/ed</span></div>
+            <div class="tense-row"><span class="tense-label">Example</span>
+              <span class="tense-example">"I have worked in a few different teams."</span></div>
+            <div class="tense-row"><span class="tense-label">Simple Example</span>
+              <span class="tense-example simple">"I have visited three countries this year."</span></div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-tab-group="grammarTabs" data-tab="accents">
+          <div class="rule-box">
+            <h4>Section 1 · Polite Requests &amp; Desires</h4>
+            <p>In interviews or on the first day of a new job, people often use <b>Past Simple</b> with stative verbs
+            (want, wonder) to make a request or offer sound more polite and gentle.</p>
+            <div class="practice-sentence">"<b>Did you want</b> a tour of the office?"</div>
+            <div class="practice-sentence">"<b>I wanted to ask</b> about the company's history."</div>
+          </div>
+
+          <div class="rule-box">
+            <h4>Section 2 · British English (BrE) vs American English (AmE)</h4>
+            <table class="data-table">
+              <tr><th>Feature</th><th>British English</th><th>American English</th></tr>
+              <tr><td>/t/ between vowels</td><td>Clear, sharp /t/</td><td>Flapped, sounds like /d/</td></tr>
+              <tr><td>/r/ sound</td><td>Often silent, vowel lengthens</td><td>Strongly pronounced</td></tr>
+              <tr><td>/j/ sound (e.g. Tuesday)</td><td>Added before vowel</td><td>Dropped</td></tr>
+              <tr><td>Word stress (address)</td><td>ad-DRESS</td><td>AD-dress</td></tr>
+              <tr><td>Intonation</td><td>Falls at end of statement</td><td>Often rises at end</td></tr>
+            </table>
+          </div>
+
+          <div class="rule-box">
+            <h4>Section 3 · Regional Accents in the UK (BBC vs Birmingham)</h4>
+            <table class="data-table">
+              <tr><th>Word</th><th>BBC (standard)</th><th>Birmingham</th></tr>
+              <tr><td>tonight</td><td>/aɪ/ — "tu-nait"</td><td>/ɔɪ/ — "tu-noit"</td></tr>
+              <tr><td>those</td><td>/əʊ/ — "đôuz"</td><td>/aʊ/ — "đauz"</td></tr>
+              <tr><td>brother</td><td>/ʌ/</td><td>/ʊ/ (like "would")</td></tr>
+              <tr><td>-ing (smoking)</td><td>/ŋ/ only</td><td>/ŋɡ/ — "g" is heard</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <div class="section-header">
+          <span class="part-label">B. Practice</span>
+          <div class="section-title">Test &amp; Speak</div>
+        </div>
+        <div class="tab-bar" data-tab-group="speakPracticeTabs">
+          <button class="tab-btn active" data-tab="mcq">Exercise 1 — Multiple Choice</button>
+          <button class="tab-btn" data-tab="speak">Exercise 2 — Speaking</button>
+        </div>
+
+        <div class="tab-panel active" data-tab-group="speakPracticeTabs" data-tab="mcq">
+          <div class="exercise-container">
+            <div class="exercise-title">Choose the correct tense</div>
+            <div class="exercise-instruction">Select an answer for each question, then tap "Show Answers" to check your score.</div>
+            <div id="speakingMcqQuestions"></div>
+            <div class="btn-group" style="margin-top:14px;">
+              <button class="btn btn-primary btn-sm" onclick="checkMcqSet('speakingMcq')">Show Answers</button>
+              <button class="btn btn-outline btn-sm" onclick="resetMcqSet('speakingMcq')">↺ Reset</button>
+            </div>
+            <div class="feedback-box info" id="speakingMcqFeedback">
+              <div class="score-badge" id="speakingMcqScore">0/5</div>
+              <div id="speakingMcqFeedbackText">Answer all questions, then tap "Show Answers".</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-tab-group="speakPracticeTabs" data-tab="speak">
+          <div class="exercise-instruction" style="margin-bottom:16px;">Practice saying each sentence aloud.
+          Tap "Show Vietnamese" only if you need help understanding the meaning.</div>
+          <div id="speakingCards"></div>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="goToPage('listening')">Next: Listening →</button>
+          <button class="btn btn-outline" onclick="goToPage('quickpractice')">← Quick Practice</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PART 3 LISTENING ============ -->
+    <div class="page" data-page="listening">
+      <div class="hero-block compact">
+        <div class="meta-badges"><span class="badge-white">Part 3 · Listening</span></div>
+        <h1>Listening: Accents Around the World</h1>
+        <p class="subtitle">Practice recognizing different English accents while talking about spare time.</p>
+      </div>
+      <div class="section-block">
+        <div class="listening-notice">🎧 Imagine listening to native speakers as you read each script. Then check your notes against the answer key.</div>
+        <div class="tab-bar" data-tab-group="listenTabs">
+          <button class="tab-btn active" data-tab="s1">Section 1.1</button>
+          <button class="tab-btn" data-tab="s2">Section 1.2</button>
+          <button class="tab-btn" data-tab="s3">Section 1.3</button>
+        </div>
+
+        <!-- 1.1 -->
+        <div class="tab-panel active" data-tab-group="listenTabs" data-tab="s1">
+          <div class="exercise-container">
+            <div class="exercise-title">Speakers from around the world</div>
+            <p style="font-size:14px;margin-bottom:14px;">Listen (read the tapescript) to speakers from Britain, the USA,
+            Canada, Australia and South Africa talking about their spare time.</p>
+            <ol style="padding-left:20px;font-size:14px;margin-bottom:14px;">
+              <li style="margin-bottom:6px;">What does each speaker enjoy doing in their spare time?</li>
+              <li>Which accent are you most familiar with? Is one easier to understand than the others?</li>
+            </ol>
+            <div class="btn-group" style="margin-top:0;">
+              <button class="btn btn-secondary btn-sm" onclick="toggleTranscript('t1')">📄 Show Tapescript</button>
+              <button class="btn btn-outline btn-sm" onclick="toggleReveal('a1')">✅ Show Answer Key</button>
+            </div>
+            <div class="transcript-block" id="t1">
+              <div class="transcript-card"><div class="transcript-header"><span>Tapescript 1.1</span></div>
+                <div class="transcript-body" id="t1body"></div>
+              </div>
+            </div>
+            <div class="transcript-block" id="a1">
+              <div class="transcript-card"><div class="transcript-header"><span>Answer Key</span></div>
+                <div class="transcript-body" id="a1body"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1.2 -->
+        <div class="tab-panel" data-tab-group="listenTabs" data-tab="s2">
+          <div class="exercise-container">
+            <div class="exercise-title">British vs American pronunciation</div>
+            <p style="font-size:14px;margin-bottom:14px;">Here is a short text, imagined read first by a British English
+            speaker and then an American English speaker. Notice the pronunciation differences.</p>
+            <div class="info-box">I was reading in a magazine the other day about how common obesity is now. Some new
+            research has found that over forty percent of the population is overweight. Most people in the survey said
+            they'd rather drive than walk, and that it's better to spend leisure time at home than outside. That's
+            understandable in the winter, I guess, but surely everyone can build some exercise into their daily schedule?</div>
+            <div class="btn-group" style="margin-top:0;">
+              <button class="btn btn-outline btn-sm" onclick="toggleReveal('a2')">✅ Show Pronunciation Differences</button>
+            </div>
+            <div class="transcript-block" id="a2">
+              <div class="transcript-card"><div class="transcript-header"><span>BrE vs AmE — Answer Key</span></div>
+                <div class="transcript-body">
+                  <table class="data-table">
+                    <tr><th>Word</th><th>British</th><th>American</th></tr>
+                    <tr><td>magazine</td><td>maga-ZINE</td><td>MAGA-zine</td></tr>
+                    <tr><td>research</td><td>re-SEARCH</td><td>RE-search</td></tr>
+                    <tr><td>forty / better</td><td>clear /t/</td><td>flapped /t/ → sounds like /d/</td></tr>
+                    <tr><td>over / survey / exercise</td><td>no /r/ sound</td><td>strong /r/ sound</td></tr>
+                    <tr><td>schedule</td><td>/ʃ/ "she-dule"</td><td>/sk/ "sked-jule"</td></tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1.3 -->
+        <div class="tab-panel" data-tab-group="listenTabs" data-tab="s3">
+          <div class="exercise-container">
+            <div class="exercise-title">Regional accents of the UK</div>
+            <p style="font-size:14px;margin-bottom:14px;">Four more speakers, from Northern England, Scotland, Wales
+            and Northern Ireland, talk about their spare time. Write brief notes about what each person says.</p>
+            <table class="data-table" style="margin-bottom:14px;">
+              <tr><th>Region</th><th>Your notes</th></tr>
+              <tr><td>Northern England</td><td><input type="text" class="note-input" id="listenNote0" placeholder="Type your notes here..."></td></tr>
+              <tr><td>Scotland</td><td><input type="text" class="note-input" id="listenNote1" placeholder="Type your notes here..."></td></tr>
+              <tr><td>Wales</td><td><input type="text" class="note-input" id="listenNote2" placeholder="Type your notes here..."></td></tr>
+              <tr><td>Northern Ireland</td><td><input type="text" class="note-input" id="listenNote3" placeholder="Type your notes here..."></td></tr>
+            </table>
+            <div class="btn-group" style="margin-top:0;">
+              <button class="btn btn-secondary btn-sm" onclick="toggleTranscript('t3')">📄 Show Tapescript</button>
+              <button class="btn btn-outline btn-sm" onclick="toggleReveal('a3')">✅ Show Answer Key</button>
+            </div>
+            <div class="transcript-block" id="t3">
+              <div class="transcript-card"><div class="transcript-header"><span>Tapescript 1.3</span></div>
+                <div class="transcript-body" id="t3body"></div>
+              </div>
+            </div>
+            <div class="transcript-block" id="a3">
+              <div class="transcript-card"><div class="transcript-header"><span>Answer Key</span></div>
+                <div class="transcript-body" id="a3body"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="goToPage('discussion')">Next: Discussion →</button>
+          <button class="btn btn-outline" onclick="goToPage('speaking')">← Speaking</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PART 4 DISCUSSION ============ -->
+    <div class="page" data-page="discussion">
+      <div class="hero-block compact">
+        <div class="meta-badges"><span class="badge-white">Part 4 · Discussion</span></div>
+        <h1>Role Play: Meeting a New Colleague</h1>
+        <p class="subtitle">Apply everything you've learned in a realistic conversation.</p>
+      </div>
+      <div class="section-block">
+        <div class="scenario-card">
+          <div class="scenario-header"><span>🤝</span><span>Job Interview / Networking Event</span></div>
+          <div class="scenario-body">
+            <div class="scenario-situation">You are at a job interview, or a networking event. A new colleague or
+            interviewer asks: <b>"What did you do before you came here?"</b></div>
+            <div class="scenario-goal"><b>Goal:</b> Prepare a short answer (3–5 sentences) describing your previous job.</div>
+            <div class="hint-chips">
+              <span class="hint-chip">work as / work in</span>
+              <span class="hint-chip">was in charge of</span>
+              <span class="hint-chip">responsible for</span>
+              <span class="hint-chip">Past Continuous for busy periods</span>
+            </div>
+            <p style="font-size:14px;color:var(--text-mid);margin-bottom:6px;"><b>Suggested flow:</b></p>
+            <ol style="padding-left:20px;font-size:14px;color:var(--text-mid);margin-bottom:6px;">
+              <li>Say your old job title and department (Past Simple + work as / work in).</li>
+              <li>Say your main responsibility (was in charge of / responsible for).</li>
+              <li>Add an experience or how busy it was (Past Continuous, optional).</li>
+            </ol>
+            <div class="btn-group" style="margin-top:0;">
+              <button class="btn btn-outline btn-sm" onclick="toggleReveal('sample1')">💡 Show Sample Response</button>
+            </div>
+            <div class="sample-response" id="sample1">"Before I came here, I <b>worked as</b> an IT assistant. I
+            <b>was in charge of</b> ensuring all technological systems were maintained. It was a tough job — I
+            <b>was working</b> nearly 50 hours a week before I decided to look for a new environment."</div>
+          </div>
+        </div>
+
+        <div class="exercise-container">
+          <div class="exercise-title">Extension questions</div>
+          <ul style="padding-left:20px;font-size:14px;color:var(--text-mid);">
+            <li style="margin-bottom:8px;">What was the most interesting part of your previous job?</li>
+            <li style="margin-bottom:8px;">Why did you decide to change jobs or companies?</li>
+            <li>What skills from your old job do you still use today?</li>
+          </ul>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="goToPage('review')">Next: Review →</button>
+          <button class="btn btn-outline" onclick="goToPage('listening')">← Listening</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ PART 5 REVIEW ============ -->
+    <div class="page" data-page="review">
+      <div class="hero-block compact">
+        <div class="meta-badges"><span class="badge-white">Part 5 · Review</span></div>
+        <h1>Final Review</h1>
+        <p class="subtitle">Consolidate everything you've learned today.</p>
+      </div>
+
+      <div class="section-block">
+        <div class="section-header">
+          <span class="part-label">Vocabulary Challenge</span>
+          <div class="section-title">Quick recap quiz</div>
+        </div>
+        <div class="exercise-container">
+          <div class="exercise-instruction">Select an answer for each question, then tap "Show Answers" to check your score.</div>
+          <div id="reviewQuestions"></div>
+          <div class="btn-group" style="margin-top:14px;">
+            <button class="btn btn-primary btn-sm" onclick="checkMcqSet('review')">Show Answers</button>
+            <button class="btn btn-outline btn-sm" onclick="resetMcqSet('review')">↺ Reset</button>
+          </div>
+          <div class="feedback-box info" id="reviewFeedback">
+            <div class="score-badge" id="reviewScore">0/5</div>
+            <div id="reviewFeedbackText">Answer all questions, then tap "Show Answers".</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <div class="section-header">
+          <span class="part-label">Self-assessment</span>
+          <div class="section-title">Checklist</div>
+        </div>
+        <div id="checklist"></div>
+      </div>
+
+      <div class="section-block">
+        <div class="section-header">
+          <span class="part-label">Lesson Summary</span>
+          <div class="section-title">What you covered today</div>
+        </div>
+        <table class="summary-table">
+          <tr><td>Estimated Duration</td><td>~50 minutes</td></tr>
+          <tr><td>Vocabulary Learned</td><td>20 words — departments, roles, action verbs</td></tr>
+          <tr><td>Grammar Focus</td><td>Past Simple · Past Continuous · Present Perfect</td></tr>
+          <tr><td>Pronunciation Focus</td><td>-ed endings (/ɪd/ /t/ /d/) · connected speech</td></tr>
+          <tr><td>Communication Functions</td><td>Describing job roles, past responsibilities, polite requests</td></tr>
+          <tr><td>Skills Practiced</td><td>Vocabulary · Speaking · Listening · Reading</td></tr>
+          <tr><td>Interaction Types Used</td><td>Flip cards · MCQ · Role play · Transcript reveal</td></tr>
+        </table>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="goToPage('hero')">🔁 Restart Lesson</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<button class="reset-fab" onclick="resetAll()">🔄 Reset All</button>
+
+<script>
+/* ============================================================
+   DATA
+============================================================ */
+const vocabDepartment = [
+  {word:"administration", ipa:"/ədˌmɪnɪˈstreɪʃən/", vi:"hành chính", simple:"the department that organizes office work and paperwork.", ex:"She works in administration."},
+  {word:"human resources (HR)", ipa:"/ˌhjuːmən rɪˈzɔːrsɪz/", vi:"nhân sự", simple:"the department that hires and helps employees.", ex:"HR is interviewing new candidates today."},
+  {word:"accounts", ipa:"/əˈkaʊnts/", vi:"kế toán", simple:"the department that records money coming in and going out.", ex:"Please send the invoice to accounts."},
+  {word:"finance", ipa:"/ˈfaɪnæns/", vi:"tài chính", simple:"the department that manages the company's money.", ex:"The finance team approved the new budget."},
+  {word:"marketing", ipa:"/ˈmɑːrkɪtɪŋ/", vi:"tiếp thị", simple:"the department that tells people about products and services.", ex:"Marketing launched a new campaign this week."},
+  {word:"information technology (IT)", ipa:"/ˌɪnfərˈmeɪʃən tekˈnɑːlədʒi/", vi:"công nghệ thông tin (CNTT)", simple:"the department that works with computers and technology.", ex:"IT fixed my laptop this morning."},
+];
+
+const vocabRoles = [
+  {word:"employer", ipa:"/ɪmˈplɔɪər/", vi:"chủ lao động, người tuyển dụng", simple:"a person or company that gives people jobs.", ex:"My employer offers great training programs."},
+  {word:"CEO (chief executive officer)", ipa:"/ˌtʃiːf ɪɡˈzekjətɪv ˈɔːfɪsər/", vi:"giám đốc điều hành", simple:"the highest manager in a company.", ex:"The CEO announced the new strategy."},
+  {word:"employee", ipa:"/ɪmˈplɔɪiː/", vi:"nhân viên", simple:"a person who works for a company.", ex:"Every employee received a bonus this year."},
+  {word:"staff", ipa:"/stæf/", vi:"nhân viên (nói chung)", simple:"a group of people who work for an organization.", ex:"All staff must attend the meeting."},
+  {word:"manager", ipa:"/ˈmænɪdʒər/", vi:"quản lý", simple:"a person who leads a team or department.", ex:"My manager gave me useful feedback."},
+  {word:"assistant", ipa:"/əˈsɪstənt/", vi:"trợ lý", simple:"a person who helps someone with their work.", ex:"I worked as an assistant for two years."},
+];
+
+const vocabAction = [
+  {word:"manage", ipa:"/ˈmænɪdʒ/", vi:"quản lý", simple:"to control or organize people or work.", ex:"She manages a team of ten people."},
+  {word:"employ", ipa:"/ɪmˈplɔɪ/", vi:"tuyển dụng", simple:"to give someone a job.", ex:"The company employs 200 workers."},
+  {word:"train", ipa:"/treɪn/", vi:"đào tạo", simple:"to teach someone how to do a job.", ex:"I trained the new employee last week."},
+  {word:"approve", ipa:"/əˈpruːv/", vi:"phê duyệt, chấp thuận", simple:"to say 'yes' to something.", ex:"My boss approved the budget."},
+  {word:"fix", ipa:"/fɪks/", vi:"sửa chữa; khắc phục", simple:"to repair something that is broken.", ex:"IT fixed the printer this morning."},
+  {word:"run", ipa:"/rʌn/", vi:"điều hành, vận hành", simple:"to control or operate a business or activity.", ex:"He runs his own construction company."},
+  {word:"invest", ipa:"/ɪnˈvest/", vi:"đầu tư", simple:"to put money into something to make more money.", ex:"We invested in new equipment."},
+  {word:"promote", ipa:"/prəˈmoʊt/", vi:"quảng bá; thăng chức", simple:"to help people know about something, or to give someone a higher job.", ex:"She was promoted to senior manager."},
+];
+
+const phrases = [
+  {en:"To work for [a company]", vi:"Làm việc cho ai/công ty nào", ex:"I worked for TCE Consultants."},
+  {en:"To work in [a department/area]", vi:"Làm việc ở bộ phận/lĩnh vực nào", ex:"I work in event management."},
+  {en:"To work as [a job/role]", vi:"Làm việc với vị trí là gì", ex:"She works as a fashion designer."},
+  {en:"To look after [something]", vi:"Chịu trách nhiệm, chăm lo cho việc gì", ex:"He looks after our salaries."},
+  {en:"To be responsible for [something]", vi:"Chịu trách nhiệm cho việc gì", ex:"They are responsible for office maintenance."},
+  {en:"To be in charge of [something]", vi:"Quản lý, đứng đầu việc gì", ex:"I'm in charge of administration."},
+];
+
+const linkingExamples = [
+  "I <b>worked in</b> marketing.",
+  "I <b>worked as</b> a legal assistant.",
+  "I <b>fixed a</b> laptop.",
+  "I <b>managed accounts</b> for seven years.",
+  "I <b>trained a</b> new employee.",
+  "I <b>started in</b> 2015.",
+  "Julia <b>managed accounts</b> in the Marketing department.",
+  "I <b>started in</b> 2009 and <b>invested in</b> this company.",
+];
+
+const quickPracticeQuestions = [
+  {q:"Before I came here, I worked _____ a legal assistant for two years.", options:["for","in","as","of"], correct:2},
+  {q:"In my previous job, I worked _____ TCE Consultants, a well-known international firm.", options:["for","as","in","responsible"], correct:0},
+  {q:"She has a lot of experience because she used to work _____ event management.", options:["as","for","of","in"], correct:3},
+  {q:"As a senior manager, Mr. David was responsible _____ office maintenance and manufacturing stages.", options:["of","for","in","as"], correct:1},
+  {q:"I am applying for this position because I want to be _____ charge of the Administration department.", options:["for","in","at","responsible"], correct:1},
+  {q:"\"Who looks after our salaries and wages?\" — \"The Finance team is _____ that.\"", options:["work as","work in","responsible for","in charge"], correct:2},
+];
+
+const speakingMcqQuestions = [
+  {q:"Susan _____ here since she graduated from college five years ago.", options:["worked","was working","has worked"], correct:2},
+  {q:"In 2014, I _____ the company to an investor.", options:["sold","was selling","has sold"], correct:0},
+  {q:"Awful! I _____ 60 hours a week before I came here.", options:["worked","was working","have worked"], correct:1},
+  {q:"We moved here when my wife _____ a new job two years ago.", options:["finds","was finding","found"], correct:2},
+  {q:"I _____ in a few different teams throughout my career, so I adapt very quickly.", options:["worked","was working","have worked"], correct:2},
+];
+
+const speakingCards = [
+  {en:"Hi, I was hoping you could share the onboarding documents with me when you have a free moment.", vi:"Chào anh/chị, tôi đã hy vọng anh/chị có thể chia sẻ tài liệu định hướng công việc cho tôi khi nào anh/chị có chút thời gian rảnh."},
+  {en:"I was thinking we could sit down for 10 minutes today to review my tasks for this week?", vi:"Tôi đã nghĩ là hôm nay chúng ta có thể ngồi lại khoảng 10 phút để xem qua các đầu việc của tôi tuần này được không ạ?"},
+  {en:"I wanted to check who I should contact to get approval for these Marketing expenses.", vi:"Tôi đã muốn kiểm tra xem mình nên liên hệ ai để xin phê duyệt cho các khoản chi phí Tiếp thị này."},
+  {en:"I was wondering if anyone wanted to try that new restaurant down the street for lunch today?", vi:"Tôi đã băn khoăn không biết có ai muốn đi ăn thử cái nhà hàng mới ở cuối phố trưa nay không nhỉ?"},
+  {en:"I'm heading to the pantry. Did you want to grab a quick coffee with me and stretch your legs?", vi:"Tôi đang đi ra phòng ăn đây. Bạn có muốn đi làm cốc cà phê nhanh với tôi rồi vận động chân tay chút không?"},
+];
+
+const tapescript1 = [
+  {sp:"Speaker 1 (Britain)", line:"I don't get a lot of time to myself these days, but if I have a couple of hours to spare then I go down to the tennis club. I've just joined a tennis club near me — the courts are right outside the back of my garden, so I just walk down and spend a couple of hours knocking balls about."},
+  {sp:"Speaker 2 (USA)", line:"When I've got some free time I like to read. Usually I avoid the latest fiction and look for novels I've always wanted to read. But occasionally I just stroll through a bookshop and sometimes it's just the cover of a book that makes me grab it and take it home."},
+  {sp:"Speaker 3 (Canada)", line:"When I've got spare time I like to go to the lake. It's about a twenty minute drive and when I get there I go water skiing. Afterward, if I've got enough energy, I pick Saskatoon berries on the lane behind the cabin, and later in the week I make some pies."},
+  {sp:"Speaker 4 (Australia)", line:"My favourite thing to do on a sunny day is to go to the beach. It takes about an hour from my house — I have to get the train and a bus — but it's worth it. Lots of my friends live near the beach, so it's the perfect way to catch up and enjoy the sunshine."},
+  {sp:"Speaker 5 (South Africa)", line:"One of my favourite things to do when I've got spare time is to go fishing with my friends. We pack the fishing rods into the back of a four-by-four and head up into the mountains. There are wonderful streams up there, well stocked with trout, carp and bream. We usually take a picnic too."},
+];
+
+const answerKey1 = [
+  {region:"Speaker 1 (Britain)", note:"Plays tennis at a local tennis club."},
+  {region:"Speaker 2 (USA)", note:"Reads books (especially novels) and browses bookshops."},
+  {region:"Speaker 3 (Canada)", note:"Goes water skiing, picks Saskatoon berries, and makes pies."},
+  {region:"Speaker 4 (Australia)", note:"Goes to the beach, meets friends, and enjoys the sunshine."},
+  {region:"Speaker 5 (South Africa)", note:"Goes fishing with friends in the mountains and has a picnic."},
+];
+
+const tapescript3 = [
+  {sp:"Northern England", line:"When I get a day off, I like to go up into the Yorkshire Dales — hills about twenty miles from where I live. I'll set off while it's still dark and walk for about eight hours, and finish up in a village somewhere for a nice meal."},
+  {sp:"Scotland", line:"I live in the country, on top of a range of low, flat hills, so it's quite windy. On good days I take my children out and we go and fly kites. They thoroughly enjoy being out in the fresh air."},
+  {sp:"Wales", line:"In my spare time I really like visiting gardens, usually of big houses. At every time of year there's something different to see — spring is the best, when everything comes into bud, and later into full flower."},
+  {sp:"Northern Ireland", line:"The only day off I have is Sunday. We like to get up early, make a big breakfast, and if the weather's good I take my kids for a long walk in the country — sometimes down to the local stream to try and catch a few tiddlers."},
+];
+
+const answerKey3 = [
+  {region:"Northern England", note:"Walks (hikes) in the Yorkshire Dales and finishes the day with a meal in a village."},
+  {region:"Scotland", note:"Takes the children out to fly kites and enjoy the fresh air."},
+  {region:"Wales", note:"Visits the gardens of large houses, especially in spring and summer."},
+  {region:"Northern Ireland", note:"Has a big Sunday breakfast, walks in the countryside with the children, and sometimes goes fishing."},
+];
+
+const reviewQuestions = [
+  {q:"The department that manages a company's money is called _____.", options:["marketing","finance","administration"], correct:1},
+  {q:"\"To help someone know about something, or give someone a higher job\" describes the verb _____.", options:["approve","promote","employ"], correct:1},
+  {q:"Choose the correct sentence: ", options:["I have worked in a few different teams, which helped me develop strong communication skills.","I have working in a few different team.","I has worked in a few different teams."], correct:0},
+  {q:"\"Chịu trách nhiệm cho việc gì\" is best translated as _____.", options:["to work for","to be responsible for","to employ"], correct:1},
+  {q:"In American English, the /t/ in words like 'better' usually sounds like _____.", options:["/d/","/θ/","silent"], correct:0},
+];
+
+const checklistItems = [
+  "I understand today's vocabulary (departments, roles, action verbs).",
+  "I can use phrases like 'work as / work in / responsible for'.",
+  "I understand the three sounds of -ed endings.",
+  "I can use Past Simple, Past Continuous, and Present Perfect correctly.",
+  "I can recognize differences between British and American English.",
+  "I feel more confident talking about my work experience.",
+];
+
+/* ============================================================
+   RENDER FUNCTIONS
+============================================================ */
+function renderVocabGrid(containerId, data){
+  const el = document.getElementById(containerId);
+  el.innerHTML = data.map(v => `
+    <div class="vocab-card" onclick="this.classList.toggle('flipped')">
+      <span class="tap-hint">tap ↻</span>
+      <div class="word">${v.word}</div>
+      <div class="ipa">${v.ipa}</div>
+      <div class="simple">${v.simple}</div>
+      <div class="example">
+        <div>"${v.ex}"</div>
+        <div class="vi" style="margin-top:6px;">🇻🇳 ${v.vi}</div>
+      </div>
+    </div>`).join('');
+}
+
+function renderPhrases(){
+  document.getElementById('phraseList').innerHTML = phrases.map((p, i) => `
+    <div class="phrase-card" style="flex-direction:column;align-items:flex-start;">
+      <div class="phrase-en">${p.en}</div>
+      <div style="font-size:14px;color:var(--text-soft);font-style:italic;">"${p.ex}"</div>
+      <button class="btn btn-outline btn-sm" style="margin-top:8px;" onclick="toggleReveal('phraseVi${i}')">🇻🇳 Show Meaning</button>
+      <div class="sample-response" id="phraseVi${i}" style="margin-top:8px;width:100%;">${p.vi}</div>
+    </div>`).join('');
+}
+
+function renderLinking(){
+  document.getElementById('linkingExamples').innerHTML = linkingExamples.map(s => `
+    <div class="practice-sentence">${s}</div>`).join('');
+}
+
+function renderMcqSet(containerId, questions, storeKey){
+  const el = document.getElementById(containerId);
+  el.innerHTML = questions.map((item, qi) => `
+    <div class="mcq-question" data-qindex="${qi}">
+      <div class="mcq-q-text">${qi+1}. ${item.q}</div>
+      <div class="mcq-options">
+        ${item.options.map((opt, oi) => `
+          <div class="mcq-option" data-oi="${oi}" onclick="selectMcq('${storeKey}', ${qi}, ${oi}, this)">${opt}</div>
+        `).join('')}
+      </div>
+    </div>`).join('');
+}
+
+const mcqState = {quickPractice:{}, speakingMcq:{}, review:{}};
+const mcqChecked = {quickPractice:false, speakingMcq:false, review:false};
+const mcqData = {quickPractice:quickPracticeQuestions, speakingMcq:speakingMcqQuestions, review:reviewQuestions};
+const mcqScoreEl = {quickPractice:'quickPracticeScore', speakingMcq:'speakingMcqScore', review:'reviewScore'};
+const mcqFeedbackBox = {quickPractice:'quickPracticeFeedback', speakingMcq:'speakingMcqFeedback', review:'reviewFeedback'};
+const mcqFeedbackText = {quickPractice:'quickPracticeFeedbackText', speakingMcq:'speakingMcqFeedbackText', review:'reviewFeedbackText'};
+const mcqContainerId = {quickPractice:'quickPracticeQuestions', speakingMcq:'speakingMcqQuestions', review:'reviewQuestions'};
+
+function selectMcq(storeKey, qi, oi, el){
+  if(mcqChecked[storeKey]) return; // locked after answers are shown
+  mcqState[storeKey][qi] = oi;
+  const optionEls = el.parentElement.querySelectorAll('.mcq-option');
+  optionEls.forEach((o, idx) => o.classList.toggle('selected', idx === oi));
+}
+
+function checkMcqSet(storeKey){
+  const total = mcqData[storeKey].length;
+  const answered = Object.keys(mcqState[storeKey]).length;
+  if(answered < total){
+    const boxEl = document.getElementById(mcqFeedbackBox[storeKey]);
+    const textEl = document.getElementById(mcqFeedbackText[storeKey]);
+    boxEl.classList.add('show');
+    boxEl.classList.remove('success','error');
+    boxEl.classList.add('info');
+    textEl.textContent = `Please answer all questions first (${answered}/${total} done).`;
+    return;
+  }
+  mcqChecked[storeKey] = true;
+  let correct = 0;
+  const container = document.getElementById(mcqContainerId[storeKey]);
+  container.querySelectorAll('.mcq-question').forEach(qEl => {
+    const qi = qEl.dataset.qindex;
+    const question = mcqData[storeKey][qi];
+    const selectedOi = mcqState[storeKey][qi];
+    if(selectedOi === question.correct) correct++;
+    qEl.querySelectorAll('.mcq-option').forEach((o, idx) => {
+      o.classList.add('disabled');
+      if(idx === question.correct) o.classList.add('correct');
+      if(idx === selectedOi && idx !== question.correct) o.classList.add('incorrect');
+    });
+  });
+  updateMcqScore(storeKey, correct, total);
+}
+
+function resetMcqSet(storeKey){
+  mcqState[storeKey] = {};
+  mcqChecked[storeKey] = false;
+  renderMcqSet(mcqContainerId[storeKey], mcqData[storeKey], storeKey);
+  const boxEl = document.getElementById(mcqFeedbackBox[storeKey]);
+  boxEl.classList.remove('show','success','error','info');
+  document.getElementById(mcqScoreEl[storeKey]).textContent = `0/${mcqData[storeKey].length}`;
+  document.getElementById(mcqFeedbackText[storeKey]).textContent = 'Answer all questions, then tap "Show Answers".';
+}
+
+function updateMcqScore(storeKey, correct, total){
+  const scoreEl = document.getElementById(mcqScoreEl[storeKey]);
+  const boxEl = document.getElementById(mcqFeedbackBox[storeKey]);
+  const textEl = document.getElementById(mcqFeedbackText[storeKey]);
+  scoreEl.textContent = `${correct}/${total}`;
+  const pct = Math.round((correct/total)*100);
+  boxEl.classList.add('show');
+  boxEl.classList.remove('info','success','error');
+  boxEl.classList.add(pct >= 70 ? 'success' : 'error');
+  textEl.textContent = pct >= 70
+    ? `Great job! You scored ${correct} out of ${total} (${pct}%).`
+    : `You scored ${correct} out of ${total} (${pct}%). Review the correct answers above, then tap Reset to try again.`;
+}
+
+function renderSpeakingCards(){
+  const el = document.getElementById('speakingCards');
+  el.innerHTML = speakingCards.map((c, i) => `
+    <div class="scenario-card">
+      <div class="scenario-body">
+        <div class="phrase-en" style="margin-bottom:10px;font-size:15px;">${i+1}. ${c.en}</div>
+        <button class="btn btn-outline btn-sm" onclick="toggleReveal('speak${i}')">🇻🇳 Show Vietnamese</button>
+        <div class="sample-response" id="speak${i}">${c.vi}</div>
+      </div>
+    </div>`).join('');
+}
+
+function renderTranscript(bodyId, data){
+  document.getElementById(bodyId).innerHTML = data.map(d => `
+    <div class="dialogue-line"><span class="speaker">${d.sp}:</span> ${d.line}</div>`).join('');
+}
+
+function renderAnswerKey(bodyId, data){
+  document.getElementById(bodyId).innerHTML = `<table class="data-table">
+    <tr><th>Speaker / Region</th><th>Answer</th></tr>
+    ${data.map(d => `<tr><td>${d.region}</td><td>${d.note}</td></tr>`).join('')}
+  </table>`;
+}
+
+function renderChecklist(){
+  document.getElementById('checklist').innerHTML = checklistItems.map((c, i) => `
+    <label class="check-item">
+      <input type="checkbox" id="check${i}">
+      <span>${c}</span>
+    </label>`).join('');
+}
+
+function toggleReveal(id){
+  document.getElementById(id).classList.toggle('revealed');
+}
+function toggleTranscript(id){
+  document.getElementById(id).classList.toggle('revealed');
+}
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+const pageOrder = ['hero','vocab','phrases','pronun','quickpractice','speaking','listening','discussion','review'];
+
+function goToPage(pageId){
+  document.querySelectorAll('.page').forEach(p => p.classList.toggle('active', p.dataset.page === pageId));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.page === pageId));
+  const idx = pageOrder.indexOf(pageId);
+  const pct = Math.round(((idx+1)/pageOrder.length)*100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressPct').textContent = pct + '%';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => goToPage(item.dataset.page));
+});
+
+/* Tabs */
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.tab-btn');
+  if(!btn) return;
+  const bar = btn.closest('.tab-bar');
+  const group = bar ? bar.dataset.tabGroup : null;
+  const tab = btn.dataset.tab;
+  if(!group) return;
+  document.querySelectorAll(`.tab-bar[data-tab-group="${group}"] .tab-btn`).forEach(b => b.classList.toggle('active', b === btn));
+  document.querySelectorAll(`.tab-panel[data-tab-group="${group}"]`).forEach(p => p.classList.toggle('active', p.dataset.tab === tab));
+});
+
+/* ============================================================
+   RESET
+============================================================ */
+function resetAll(){
+  // clear mcq state
+  resetMcqSet('quickPractice');
+  resetMcqSet('speakingMcq');
+  resetMcqSet('review');
+  // clear vocab flips
+  document.querySelectorAll('.vocab-card.flipped').forEach(c => c.classList.remove('flipped'));
+  // clear reveals
+  document.querySelectorAll('.transcript-block.revealed, .sample-response.revealed').forEach(el => el.classList.remove('revealed'));
+  // clear checklist
+  document.querySelectorAll('#checklist input[type="checkbox"]').forEach(cb => cb.checked = false);
+  // clear listening notes
+  document.querySelectorAll('.note-input').forEach(inp => inp.value = '');
+  goToPage('hero');
+}
+
+/* ============================================================
+   INIT
+============================================================ */
+renderVocabGrid('vocabDepartment', vocabDepartment);
+renderVocabGrid('vocabRoles', vocabRoles);
+renderVocabGrid('vocabAction', vocabAction);
+renderPhrases();
+renderLinking();
+renderMcqSet('quickPracticeQuestions', quickPracticeQuestions, 'quickPractice');
+renderMcqSet('speakingMcqQuestions', speakingMcqQuestions, 'speakingMcq');
+renderMcqSet('reviewQuestions', reviewQuestions, 'review');
+renderSpeakingCards();
+renderTranscript('t1body', tapescript1);
+renderAnswerKey('a1body', answerKey1);
+renderTranscript('t3body', tapescript3);
+renderAnswerKey('a3body', answerKey3);
+renderChecklist();
+goToPage('hero');
+</script>
+</body>
+</html>
