@@ -680,28 +680,47 @@ function updateTimerUI(pid, remaining){
 function setupHighlight(pid){
   const panel = document.getElementById('passagePanel-'+pid);
   const toolbar = document.getElementById('hlToolbar');
+  
   panel.addEventListener('mouseup', ()=>{
     const sel = window.getSelection();
     if(sel.isCollapsed || !sel.toString().trim()){ toolbar.classList.add('hidden'); return; }
+    
     const range = sel.getRangeAt(0);
     if(!panel.contains(range.commonAncestorContainer)){ toolbar.classList.add('hidden'); return; }
+    
     const rect = range.getBoundingClientRect();
     toolbar.style.top = (window.scrollY + rect.top - 40) + 'px';
     toolbar.style.left = (window.scrollX + rect.left) + 'px';
     toolbar.classList.remove('hidden');
     toolbar.onmousedown = (e)=> e.preventDefault();
+    
     document.getElementById('hlAddBtn').onclick = ()=>{
-      try{
+      try {
         const span = document.createElement('span');
-        span.className='user-highlight';
-        span.onclick = function(){ const t=document.createTextNode(this.textContent); this.replaceWith(t); };
-        range.surroundContents(span);
-      }catch(e){ /* multi-node selection: skip silently */ }
+        span.className = 'user-highlight';
+        
+        // Thêm tính năng: click vào vùng đã highlight để xóa highlight đó đi
+        span.onclick = function() { 
+          const t = document.createTextNode(this.textContent); 
+          this.replaceWith(t); 
+        };
+        
+        // Thay vì dùng surroundContents (bị lỗi khi bôi đen qua nhiều thẻ HTML như <b>, <i>...)
+        // Sử dụng extractContents() để cắt nội dung một cách an toàn và chèn vào span
+        span.appendChild(range.extractContents());
+        range.insertNode(span);
+        
+      } catch(e) { 
+        console.error("Lỗi highlight:", e); 
+      }
       toolbar.classList.add('hidden');
       sel.removeAllRanges();
     };
   });
-  panel.addEventListener('mousedown', (e)=>{ if(!e.target.closest('#hlToolbar')) toolbar.classList.add('hidden'); });
+  
+  panel.addEventListener('mousedown', (e)=>{ 
+    if(!e.target.closest('#hlToolbar')) toolbar.classList.add('hidden'); 
+  });
 }
 
 /* ===================== SUBMIT FLOW ===================== */
