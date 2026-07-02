@@ -194,9 +194,92 @@ select.blank-select.incorrect{border-color:var(--red);color:var(--red);}
 .coming-soon{text-align:center;padding:60px 20px;color:var(--text-soft);}
 .coming-soon .cs-icon{font-size:36px;margin-bottom:12px;}
 .reset-fab{position:fixed;bottom:80px;right:24px;background:var(--forest);color:#fff;border-radius:99px;padding:12px 20px;font-size:13px;font-weight:700;box-shadow:var(--shadow-lg);z-index:190;}
+
+/* ===== ACCESSIBILITY ===== */
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,.nav-item:focus-visible,.vocab-card:focus-visible,.option:focus-visible{
+  outline:2px solid var(--mint);outline-offset:2px;
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+}
+
+/* ===== NAV LOCK STATE ===== */
+.nav-item.locked{opacity:.4;cursor:not-allowed;}
+.nav-item .soon,.nav-item .lock-icon{margin-left:auto;font-size:9px;background:rgba(255,255,255,.15);padding:2px 6px;border-radius:99px;}
+
+/* ===== HAMBURGER TOPBAR (mobile) ===== */
+.topbar{display:none;}
+.hamburger-btn{font-size:20px;background:none;border:none;color:#fff;}
+.sidebar-overlay{position:fixed;inset:0;top:56px;background:var(--forest);z-index:299;overflow-y:auto;transform:translateX(-100%);transition:transform .25s ease;}
+.sidebar-overlay.open{transform:translateX(0);}
+@media(max-width:768px){
+  .sidebar{display:none;}
+  .topbar{display:flex;align-items:center;gap:12px;position:fixed;top:0;left:0;right:0;height:56px;background:var(--forest);color:#fff;padding:0 16px;z-index:300;}
+  .main-content{margin-left:0;padding-top:72px;}
+}
+
+/* ===== Q-DROPDOWN (TFNG / YNNG / Matching) ===== */
+select.q-dropdown{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;font-size:14px;font-weight:600;color:var(--forest);width:100%;background:var(--white);}
+select.q-dropdown.correct{border-color:var(--green-success);color:var(--green-success);}
+select.q-dropdown.incorrect{border-color:var(--red);color:var(--red);}
+
+/* ===== PART 1 — LEARNING OUTCOMES ===== */
+.outcomes-hero{background:linear-gradient(135deg,var(--forest),var(--moss));color:#fff;border-radius:var(--radius-lg);padding:32px;}
+.outcomes-hero h2{color:#fff;}
+.outcomes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:16px;}
+.outcomes-col{background:rgba(255,255,255,.08);border-radius:var(--radius);padding:18px;}
+.outcomes-col .tag{display:inline-block;background:var(--mint);color:var(--forest);font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;margin-bottom:10px;}
+.outcomes-col ul{margin:0;padding-left:18px;}
+.outcomes-col li{margin-bottom:10px;font-size:13px;line-height:1.5;}
+.outcomes-col li b{display:block;color:#fff;font-size:14px;}
+.outcomes-col li .ex{opacity:.85;font-style:italic;}
+
+/* ===== PARAPHRASE MAPPING TABLE ===== */
+.pmap-table{width:100%;border-collapse:collapse;}
+.pmap-table th{font-size:11px;text-transform:uppercase;color:var(--text-soft);text-align:left;padding:8px 10px;border-bottom:1.5px solid var(--border);}
+.pmap-table td{padding:10px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:top;}
+.pmap-q{color:var(--forest);font-weight:700;}
+.pmap-arrow{color:var(--mint);font-weight:700;text-align:center;}
+.pmap-p{color:var(--green-success);font-weight:600;}
+.pmap-logic{color:var(--text-soft);}
+
+/* ===== PART 4 — QUICK PRACTICE & QUIZ ENGINE ===== */
+.quiz-progress{height:8px;background:var(--sage);border-radius:99px;margin-bottom:8px;}
+.quiz-progress-fill{height:100%;background:var(--forest);border-radius:99px;transition:width .3s ease;}
+.quiz-progress-label{font-size:12px;color:var(--text-soft);margin-bottom:20px;}
+.quiz-question-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;max-width:640px;margin:0 auto;}
+.quiz-question-card h3{font-size:18px;}
+.quiz-option{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:10px;cursor:pointer;font-weight:600;}
+.quiz-option:hover{border-color:var(--mint);background:var(--sage);}
+.quiz-option.selected.correct{border-color:var(--green-success);background:var(--green-light);color:var(--green-success);}
+.quiz-option.selected.incorrect{border-color:var(--red);background:var(--red-light);color:var(--red);}
+.quiz-option.reveal-correct{border-color:var(--green-success);}
+.quiz-score-chip{display:inline-block;background:var(--sage);color:var(--forest);font-size:12px;font-weight:700;padding:4px 12px;border-radius:99px;margin-bottom:14px;}
+.quiz-complete{text-align:center;padding:40px 20px;}
+
+/* ===== PART 5 — REFLECTION & REVIEW ===== */
+.mastery-bar{display:flex;height:28px;border-radius:99px;overflow:hidden;margin-bottom:8px;}
+.mastery-bar .seg-correct{background:var(--green-success);}
+.mastery-bar .seg-incorrect{background:var(--red);}
+.mastery-bar .seg-skipped{background:var(--border);}
+.mastery-legend{display:flex;gap:16px;font-size:12px;color:var(--text-soft);margin-bottom:20px;}
+.mastery-legend span::before{content:'●';margin-right:4px;}
+.mastery-legend .lg-correct::before{color:var(--green-success);}
+.mastery-legend .lg-incorrect::before{color:var(--red);}
+.mastery-legend .lg-skipped::before{color:var(--border);}
+.review-item{display:flex;justify-content:space-between;align-items:center;background:var(--red-light);border-left:4px solid var(--red);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;margin-bottom:8px;}
+.review-item.skipped{background:var(--sand);border-left-color:var(--text-soft);}
+.review-item .rw-word{font-weight:700;color:var(--forest);}
+.review-item .rw-vi{color:var(--text-mid);font-size:13px;}
 </style>
 </head>
 <body>
+
+<div class="topbar">
+  <button class="hamburger-btn" id="hamburgerBtn" aria-label="Mở menu điều hướng">☰</button>
+  <span>Diagram Completion</span>
+</div>
+<nav class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></nav>
 
 <div class="app-shell">
   <aside class="sidebar">
@@ -206,29 +289,68 @@ select.blank-select.incorrect{border-color:var(--red);color:var(--red);}
       <div class="cat">Reading · ~20 min/passage</div>
     </div>
 
-    <div class="nav-group-label">Theory</div>
-    <button class="nav-item active" data-view="t-overview">Tổng quan</button>
+    <div class="nav-group-label">Part 1</div>
+    <button class="nav-item active" data-view="p1-outcomes">Learning Outcomes</button>
+
+    <div class="nav-group-label">Part 2 — Theory</div>
+    <button class="nav-item" data-view="t-overview">Tổng quan</button>
     <button class="nav-item" data-view="t-strategy">Phương pháp làm bài</button>
     <button class="nav-item" data-view="t-notes">Khó khăn &amp; Lưu ý</button>
     <button class="nav-item" data-view="t-application">Vận dụng</button>
 
-    <div class="nav-group-label">Practice</div>
+    <div class="nav-group-label">Part 3 — Practice</div>
     <button class="nav-item" data-view="p-0">Passage 1</button>
     <button class="nav-item" data-view="p-1">Passage 2</button>
     <button class="nav-item" data-view="p-2">Passage 3</button>
     <button class="nav-item" data-view="p-3">Passage 4 <span class="soon">Soon</span></button>
     <button class="nav-item" data-view="p-4">Passage 5 <span class="soon">Soon</span></button>
 
+    <div class="nav-group-label">Part 4</div>
+    <button class="nav-item" data-view="p4-quiz">Quick Practice &amp; Quiz</button>
+
+    <div class="nav-group-label">Part 5</div>
+    <button class="nav-item locked" data-view="p5-reflection" id="reflectionNavBtn">Reflection &amp; Review <span class="lock-icon" id="reflectionLockIcon">🔒</span></button>
+
     <div class="sidebar-progress">
-      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:11%;"></div></div>
-      <div class="progress-label" id="progressLabel">1 / 9 mục đã xem</div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:8%;"></div></div>
+      <div class="progress-label" id="progressLabel">1 / 12 mục đã xem</div>
     </div>
   </aside>
 
   <main class="main-content">
 
+    <!-- ============ PART 1: LEARNING OUTCOMES ============ -->
+    <div id="p1-outcomes" class="view active">
+      <span class="section-badge">Part 1</span>
+      <h2>Learning Outcomes</h2>
+      <div class="outcomes-hero">
+        <h2>Trước khi bắt đầu, bạn sẽ...</h2>
+        <p style="opacity:.85;">Nắm được cách làm dạng Diagram Completion, đồng thời làm quen với chủ đề học thuật và cấu trúc ngữ pháp xuất hiện trong 3 bài đọc của Part 3.</p>
+        <div class="outcomes-grid">
+          <div class="outcomes-col">
+            <span class="tag">Academic Topics</span>
+            <ul>
+              <li><b>Engineering &amp; Infrastructure</b> — The Falkirk Wheel (Passage 1): công trình cơ khí nâng thuyền bằng bánh xe quay.</li>
+              <li><b>Marine Archaeology</b> — Raising the Mary Rose (Passage 2): trục vớt xác tàu chiến thế kỷ 16.</li>
+              <li><b>Marine Biology &amp; Animal Behaviour</b> — Whale Strandings (Passage 3): hiện tượng cá voi mắc cạn.</li>
+            </ul>
+          </div>
+          <div class="outcomes-col">
+            <span class="tag">Grammar Focus</span>
+            <ul>
+              <li><b>Passive Voice</b><span class="ex">"The various parts... were all constructed and assembled... at Butterley Engineering's Steelworks." (P1)</span></li>
+              <li><b>Non-defining Relative Clauses</b><span class="ex">"A hydraulic clamp, which prevents the arms of the Wheel moving..., is removed." (P1)</span></li>
+              <li><b>Past Participle Clauses</b><span class="ex">"Built in Portsmouth some 35 years earlier, she had had a long and successful fighting career." (P2)</span></li>
+              <li><b>Passive with Modal Verbs</b><span class="ex">"The Wheel could not be constructed to elevate boats over the full 35-metre difference..." (P1)</span></li>
+              <li><b>Gerund as Subject/Object</b><span class="ex">"...noise pollution from offshore industry, shipping and sonar can impair underwater communication." (P3)</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- ============ THEORY ============ -->
-    <div id="t-overview" class="view active">
+    <div id="t-overview" class="view">
       <span class="section-badge">Lý thuyết</span>
       <h2>Tổng quan</h2>
       <div class="card">
@@ -300,6 +422,12 @@ select.blank-select.incorrect{border-color:var(--red);color:var(--red);}
 
     <!-- ============ PRACTICE ============ -->
     <div id="practiceRoot"></div>
+
+    <!-- ============ PART 4: QUICK PRACTICE & QUIZ ENGINE ============ -->
+    <div id="p4-quiz" class="view"></div>
+
+    <!-- ============ PART 5: REFLECTION & REVIEW ============ -->
+    <div id="p5-reflection" class="view"></div>
 
   </main>
 </div>
@@ -456,37 +584,71 @@ function pState(pid){
   if(!STATE[pid]) STATE[pid] = {answers:{}, bookmarks:{}, submitted:false, startedAt:null};
   return STATE[pid];
 }
-let visited = new Set(['t-overview']);
+let visited = new Set(['p1-outcomes']);
 let currentPassageIdx = null;
 let timerIntervals = {};
 
 /* ===================== SIDEBAR NAV ===================== */
-document.querySelectorAll('.nav-item').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const view = btn.dataset.view;
-    visited.add(view);
-    updateProgress();
-    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-    if(view.startsWith('t-')){
-      document.getElementById(view).classList.add('active');
-      document.getElementById('resetBtn').classList.add('hidden');
-      document.getElementById('bottomNavHolder')?.remove();
-      clearAllTimers();
-    } else {
-      const idx = parseInt(view.split('-')[1],10);
-      currentPassageIdx = idx;
-      renderPractice(idx);
-      document.getElementById('resetBtn').classList.remove('hidden');
-    }
-  });
-});
-function updateProgress(){
-  const pct = Math.round(visited.size/9*100);
-  document.getElementById('progressFill').style.width = pct+'%';
-  document.getElementById('progressLabel').textContent = visited.size+' / 9 mục đã xem';
+function goToView(btn){
+  const view = btn.dataset.view;
+  if(btn.classList.contains('locked')) return; // Part 5 khoá tới khi Quick Practice xong 50/50
+
+  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+  // đánh dấu active trên cả nav trong sidebar lẫn bản sao trong overlay mobile
+  document.querySelectorAll(`.nav-item[data-view="${view}"]`).forEach(b=>b.classList.add('active'));
+  visited.add(view);
+  updateProgress();
+
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('bottomNavHolder')?.remove();
+  clearAllTimers();
+  document.getElementById('resetBtn').classList.add('hidden');
+
+  if(view==='p1-outcomes'){
+    document.getElementById('p1-outcomes').classList.add('active');
+  } else if(view.startsWith('t-')){
+    document.getElementById(view).classList.add('active');
+  } else if(view==='p4-quiz'){
+    renderQuizEngine();
+  } else if(view==='p5-reflection'){
+    renderReflection();
+  } else {
+    const idx = parseInt(view.split('-')[1],10);
+    currentPassageIdx = idx;
+    renderPractice(idx);
+    document.getElementById('resetBtn').classList.remove('hidden');
+  }
+  document.getElementById('sidebarOverlay').classList.remove('open');
 }
+document.querySelectorAll('.nav-item').forEach(btn=> btn.addEventListener('click', ()=>goToView(btn)));
+
+// Hamburger topbar (mobile): overlay chứa bản sao nội dung sidebar để điều hướng tương đương desktop
+function buildSidebarOverlay(){
+  const overlay = document.getElementById('sidebarOverlay');
+  overlay.innerHTML = document.querySelector('.sidebar').innerHTML;
+  overlay.querySelectorAll('.nav-item').forEach(btn=> btn.addEventListener('click', ()=>goToView(btn)));
+}
+buildSidebarOverlay();
+document.getElementById('hamburgerBtn').addEventListener('click', ()=>{
+  const overlay = document.getElementById('sidebarOverlay');
+  overlay.classList.toggle('open');
+  overlay.setAttribute('aria-hidden', overlay.classList.contains('open') ? 'false' : 'true');
+});
+
+function updateProgress(){
+  const TOTAL_ITEMS = 12; // 1 (Outcomes) + 4 (Theory) + 5 (Practice) + 1 (Quiz) + 1 (Reflection)
+  const pct = Math.round(visited.size/TOTAL_ITEMS*100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressLabel').textContent = visited.size+' / '+TOTAL_ITEMS+' mục đã xem';
+}
+function unlockReflection(){
+  document.querySelectorAll('[data-view="p5-reflection"]').forEach(b=>{
+    b.classList.remove('locked');
+    const icon = b.querySelector('.lock-icon');
+    if(icon) icon.textContent = '✓';
+  });
+}
+
 
 /* ===================== PRACTICE RENDER ===================== */
 function typeLabel(t){ return {tfng:'True/False/Not Given', match:'Matching', diagram:'Diagram Completion', short:'Short Answer'}[t]; }
@@ -532,14 +694,18 @@ function renderPractice(idx){
             <div class="vocab-example"><div class="en">"${v.en}"</div><div class="vi">${v.vitrans}</div></div>
           </div>`).join('')}</div></div>
       </div>
-      <div class="accordion" id="skillsAcc-${p.id}">
-        <div class="accordion-header">Reading Skills Analysis <span class="chevron">▾</span></div>
+      <div class="accordion" id="pmapAcc-${p.id}">
+        <div class="accordion-header">Paraphrase Mapping <span class="chevron">▾</span></div>
         <div class="accordion-body">
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
-            <span class="hl-keyword" style="padding:3px 8px;border-radius:99px;font-size:11px;">keyword</span>
-            <span class="hl-synonym" style="padding:3px 8px;border-radius:99px;font-size:11px;">synonym/paraphrase</span>
-          </div>
-          ${p.skills.map(s=>`<div class="note-card info"><b>Q${s.q}: ${s.kw}</b>Tìm thấy trong bài: <span class="hl-synonym">${s.found}</span><br>${s.map}</div>`).join('')}
+          <table class="pmap-table">
+            <thead><tr><th>Cụm từ trong câu hỏi</th><th></th><th>Cụm từ trong bài đọc</th><th>Giải thích logic</th></tr></thead>
+            <tbody>${p.skills.map(s=>`<tr>
+              <td class="pmap-q">Q${s.q}: ${s.kw}</td>
+              <td class="pmap-arrow">↔</td>
+              <td class="pmap-p">${s.found}</td>
+              <td class="pmap-logic">${s.map}</td>
+            </tr>`).join('')}</tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -570,15 +736,24 @@ function renderQuestions(p){
   qPanel.innerHTML = p.questions.map(q=>{
     let body='';
     if(q.type==='tfng'){
-      body = ['TRUE','FALSE','NOT GIVEN'].map(opt=>`<div class="option" data-val="${opt}" onclick="selectOption('${p.id}',${q.id},'${opt}')">${opt}</div>`).join('');
+      // Pattern Library 4.1: TFNG = Dropdown, đúng 3 lựa chọn, mặc định trống
+      body = `<select class="q-dropdown" onchange="selectAnswer('${p.id}',${q.id}, this.value)">
+        <option value="">— chọn —</option>
+        <option value="TRUE">TRUE</option>
+        <option value="FALSE">FALSE</option>
+        <option value="NOT GIVEN">NOT GIVEN</option>
+      </select>`;
     } else if(q.type==='match'){
-      body = `<select class="blank-select" onchange="selectAnswer('${p.id}',${q.id}, this.value)">
-        <option value="">— choose —</option>
+      // Pattern Library 4.3/4.4/4.5/4.6: Matching = Dropdown, giữ đúng thứ tự lựa chọn gốc
+      body = `<select class="q-dropdown" onchange="selectAnswer('${p.id}',${q.id}, this.value)">
+        <option value="">— chọn —</option>
         ${q.options.map(o=>`<option value="${o[0]}">${o[0]} — ${o[1]}</option>`).join('')}
       </select>`;
     } else if(q.type==='diagram'){
+      // Pattern Library 4.10: Diagram Labelling = Text Input
       body = `<div class="q-body-text">${q.prompt.replace('______', `<input type="text" class="blank-input" id="blank-${p.id}-${q.id}" oninput="selectAnswer('${p.id}',${q.id}, this.value)"/>`)}</div>`;
     } else if(q.type==='short'){
+      // Pattern Library 4.9: Short Answer = Text Input
       body = `<p class="q-body-text">${q.prompt}</p><input type="text" class="blank-input blank-input-full" id="blank-${p.id}-${q.id}" oninput="selectAnswer('${p.id}',${q.id}, this.value)" placeholder="Type your answer..."/>`;
     }
     const promptText = (q.type==='tfng') ? `<p class="q-body-text">${q.prompt}</p>` : '';
@@ -586,7 +761,7 @@ function renderQuestions(p){
       <div class="q-head">
         <span class="question-number">${q.id}</span>
         <span class="q-type-chip">${typeLabel(q.type)}</span>
-        <span class="bookmark-icon ${st.bookmarks[q.id]?'active':''}" onclick="toggleBookmark('${p.id}',${q.id})">🔖</span>
+        <span class="bookmark-icon ${st.bookmarks[q.id]?'active':''}" onclick="toggleBookmark('${p.id}',${q.id})" role="button" aria-label="Đánh dấu câu ${q.id}">🔖</span>
       </div>
       ${promptText}
       ${body}
@@ -596,10 +771,7 @@ function renderQuestions(p){
   p.questions.forEach(q=>{
     const val = st.answers[q.id];
     if(val===undefined) return;
-    if(q.type==='tfng'){
-      const opt = document.querySelector(`#qcard-${p.id}-${q.id} .option[data-val="${val}"]`);
-      if(opt) opt.classList.add('selected');
-    } else if(q.type==='match'){
+    if(q.type==='tfng' || q.type==='match'){
       const sel = document.querySelector(`#qcard-${p.id}-${q.id} select`);
       if(sel) sel.value = val;
     } else {
@@ -609,13 +781,6 @@ function renderQuestions(p){
   });
 }
 
-function selectOption(pid, qid, val){
-  const st = pState(pid);
-  st.answers[qid] = val;
-  saveState();
-  document.querySelectorAll(`#qcard-${pid}-${qid} .option`).forEach(o=>o.classList.toggle('selected', o.dataset.val===val));
-  renderBottomNav(PASSAGES.find(p=>p.id===pid));
-}
 function selectAnswer(pid, qid, val){
   const st = pState(pid);
   st.answers[qid] = val;
@@ -935,6 +1100,194 @@ document.getElementById('resetBtn').addEventListener('click', ()=>{
     retryPassage(p.id);
   }
 });
+
+/* ===================== PART 4 — QUICK PRACTICE & QUIZ ENGINE =====================
+   AppState.quiz sống trong bộ nhớ (không localStorage). Kho câu hỏi được SINH tự động từ
+   chính Vocabulary Intelligence đã có ở Part 3 (18 từ) theo 3 góc hỏi khác nhau/từ = 54 biến
+   thể, cắt đúng 50 câu cố định — không tự bịa thêm từ vựng mới. */
+const AppState = { quiz: { questions:[], currentIndex:0, answers:{}, completed:false } };
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+function getAllVocab(){
+  const all = [];
+  PASSAGES.forEach(p=>{ if(!p.comingSoon) p.vocab.forEach(v=> all.push(v)); });
+  return all;
+}
+
+function buildQuizPool(){
+  const vocab = getAllVocab();
+  const words = vocab.map(v=>v.w);
+  const meanings = vocab.map(v=>v.vi);
+  const variants = [];
+  vocab.forEach(v=>{
+    // Góc 1: Nghĩa tiếng Việt -> chọn đúng từ tiếng Anh
+    variants.push({
+      id:'qz'+variants.length, type:'mcq',
+      instruction:'Choose the correct word.',
+      prompt:`Which word means "${v.vi}"?`,
+      answer:v.w, poolType:'word', choicesPool:words
+    });
+    // Góc 2: Điền từ vào đúng câu thật trong bài đọc
+    const blanked = v.en.replace(new RegExp(v.w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'i'), '_____');
+    variants.push({
+      id:'qz'+variants.length, type:'mcq',
+      instruction:'Choose the correct word.',
+      prompt:`Complete the sentence from the passage: "${blanked}"`,
+      answer:v.w, poolType:'word', choicesPool:words
+    });
+    // Góc 3: Từ tiếng Anh -> chọn đúng nghĩa tiếng Việt
+    variants.push({
+      id:'qz'+variants.length, type:'mcq',
+      instruction:'Choose the correct meaning.',
+      prompt:`What is the Vietnamese meaning of "${v.w}"?`,
+      answer:v.vi, poolType:'vi', choicesPool:meanings
+    });
+  });
+  // Cắt cố định còn đúng 50 câu (đủ 18*3=54 biến thể, bỏ 4 biến thể cuối để giữ số lượng ổn định)
+  const fixed50 = variants.slice(0,50);
+  // Sinh 4 đáp án nhiễu cho từng câu (loại trùng đáp án đúng), rồi shuffle thứ tự đáp án
+  return fixed50.map(q=>{
+    const pool = q.choicesPool.filter(c=>c!==q.answer);
+    const distractors = shuffle(pool).slice(0,3);
+    const choices = shuffle([q.answer, ...distractors]);
+    return {id:q.id, type:q.type, instruction:q.instruction, prompt:q.prompt, choices, answer:q.answer};
+  });
+}
+
+function renderQuizEngine(){
+  clearAllTimers();
+  document.getElementById('bottomNavHolder')?.remove();
+  document.getElementById('resetBtn').classList.remove('hidden');
+  if(AppState.quiz.questions.length===0){
+    AppState.quiz.questions = shuffle(buildQuizPool());
+  }
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion(){
+  const root = document.getElementById('p4-quiz');
+  root.className = 'view active';
+  const { questions, currentIndex, answers } = AppState.quiz;
+  const total = questions.length;
+
+  if(currentIndex>=total){
+    const correct = Object.values(answers).filter(a=>a.isCorrect).length;
+    root.innerHTML = `
+      <span class="section-badge">Part 4</span>
+      <div class="quiz-complete card">
+        <h2>Hoàn thành Quick Practice! 🎉</h2>
+        <p>Bạn đã trả lời đúng <b>${correct}/${total}</b> câu.</p>
+        <button class="btn btn-primary" onclick="goToViewById('p5-reflection')">Xem Reflection &amp; Review →</button>
+      </div>`;
+    AppState.quiz.completed = true;
+    unlockReflection();
+    return;
+  }
+
+  const q = questions[currentIndex];
+  const pct = Math.round((currentIndex)/total*100);
+  const answered = answers[q.id];
+
+  root.innerHTML = `
+    <span class="section-badge">Part 4 — Quick Practice &amp; Quiz Engine</span>
+    <div class="quiz-progress"><div class="quiz-progress-fill" style="width:${pct}%;"></div></div>
+    <div class="quiz-progress-label">Câu ${currentIndex+1} / ${total}</div>
+    <div class="quiz-question-card" role="radiogroup" aria-label="Câu hỏi trắc nghiệm ${currentIndex+1}">
+      <span class="quiz-score-chip">Điểm: ${Object.values(answers).filter(a=>a.isCorrect).length}/${Object.keys(answers).length}</span>
+      <h3>${q.prompt}</h3>
+      <div id="quizOptions">
+        ${q.choices.map(c=>`<div class="quiz-option" role="radio" aria-checked="false" tabindex="0" data-choice="${c}" onclick="answerQuiz('${c}')">${c}</div>`).join('')}
+      </div>
+      <div style="margin-top:16px;text-align:right;">
+        <button class="btn btn-primary btn-sm" id="quizNextBtn" ${answered?'':'disabled'} onclick="nextQuiz()">Next →</button>
+      </div>
+    </div>`;
+
+  if(answered){ showQuizAnswerState(q, answered.selected); }
+}
+
+function answerQuiz(selected){
+  const { questions, currentIndex, answers } = AppState.quiz;
+  const q = questions[currentIndex];
+  if(answers[q.id]) return; // đã chấm câu này rồi, không cho đổi (chấm ngay khi chọn — mục 5)
+  const isCorrect = selected===q.answer;
+  answers[q.id] = { selected, isCorrect };
+  showQuizAnswerState(q, selected);
+  document.getElementById('quizNextBtn').disabled = false;
+  document.querySelector('.quiz-score-chip').textContent = `Điểm: ${Object.values(answers).filter(a=>a.isCorrect).length}/${Object.keys(answers).length}`;
+}
+function showQuizAnswerState(q, selected){
+  document.querySelectorAll('#quizOptions .quiz-option').forEach(el=>{
+    const c = el.dataset.choice;
+    el.setAttribute('aria-checked', c===selected ? 'true':'false');
+    if(c===selected){ el.classList.add('selected', c===q.answer?'correct':'incorrect'); }
+    if(c===q.answer){ el.classList.add('reveal-correct'); }
+  });
+}
+function nextQuiz(){
+  AppState.quiz.currentIndex++;
+  renderQuizQuestion();
+}
+function goToViewById(view){
+  const btn = document.querySelector(`.nav-item[data-view="${view}"]`);
+  if(btn) goToView(btn);
+}
+
+/* ===================== PART 5 — REFLECTION & REVIEW =====================
+   Không chứa câu hỏi làm bài — chỉ đọc trực tiếp AppState.quiz.answers (đã có sẵn từ Part 4)
+   và tính lại số liệu mỗi lần render, không cần bước "đồng bộ" riêng. */
+function renderReflection(){
+  clearAllTimers();
+  document.getElementById('bottomNavHolder')?.remove();
+  document.getElementById('resetBtn').classList.add('hidden');
+  const root = document.getElementById('p5-reflection');
+  root.className = 'view active';
+
+  const { questions, answers } = AppState.quiz;
+  const total = questions.length;
+  const correct = questions.filter(q=>answers[q.id]?.isCorrect).length;
+  const incorrect = questions.filter(q=>answers[q.id] && !answers[q.id].isCorrect).length;
+  const skipped = total - correct - incorrect;
+  const pct = n => total? Math.round(n/total*100) : 0;
+
+  const wrongOrSkipped = questions.filter(q=> !answers[q.id] || !answers[q.id].isCorrect);
+
+  root.innerHTML = `
+    <span class="section-badge">Part 5</span>
+    <h2>Reflection &amp; Review</h2>
+    <div class="card">
+      <h3>Vocabulary Mastery State</h3>
+      <div class="mastery-bar">
+        <div class="seg-correct" style="width:${pct(correct)}%;"></div>
+        <div class="seg-incorrect" style="width:${pct(incorrect)}%;"></div>
+        <div class="seg-skipped" style="width:${pct(skipped)}%;"></div>
+      </div>
+      <div class="mastery-legend">
+        <span class="lg-correct">Đúng: ${correct}/${total}</span>
+        <span class="lg-incorrect">Sai: ${incorrect}/${total}</span>
+        <span class="lg-skipped">Bỏ qua: ${skipped}/${total}</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Smart Recommendations — Từ cần ôn lại</h3>
+      ${wrongOrSkipped.length===0 ? '<p style="color:var(--green-success);font-weight:700;">🎉 Bạn đã nắm vững toàn bộ từ vựng!</p>' :
+        wrongOrSkipped.map(q=>{
+          const isSkipped = !answers[q.id];
+          return `<div class="review-item ${isSkipped?'skipped':''}">
+            <div><div class="rw-word">${q.answer}</div><div class="rw-vi">${isSkipped?'Chưa làm':'Đã trả lời sai'} — ${q.prompt}</div></div>
+          </div>`;
+        }).join('')}
+    </div>
+  `;
+}
 
 /* ===================== INIT ===================== */
 updateProgress();
