@@ -445,10 +445,13 @@ const PASSAGES = [
 {id:'p5', comingSoon:true}
 ];
 
-/* ===================== STATE ===================== */
-const STORE_KEY='diagramCompletionStateV2';
-let STATE = JSON.parse(localStorage.getItem(STORE_KEY) || '{}');
-function saveState(){ localStorage.setItem(STORE_KEY, JSON.stringify(STATE)); }
+/* ===================== STATE =====================
+   Lưu ý: state chỉ tồn tại trong bộ nhớ (KHÔNG dùng localStorage) — mỗi lần mở mới file này
+   (load lại trang) sẽ luôn bắt đầu từ trạng thái sạch, đúng yêu cầu "mở mới lesson thì reset
+   hết". Việc chuyển qua lại giữa các mục trong sidebar không làm mất state vì toàn bộ vẫn nằm
+   trong cùng một trang, không có tải lại trang. */
+let STATE = {};
+function saveState(){ /* no-op: không còn persist ra localStorage theo yêu cầu reset-on-open */ }
 function pState(pid){
   if(!STATE[pid]) STATE[pid] = {answers:{}, bookmarks:{}, submitted:false, startedAt:null};
   return STATE[pid];
@@ -698,20 +701,18 @@ function setupHighlight(pid){
       try {
         const span = document.createElement('span');
         span.className = 'user-highlight';
-        
-        // Thêm tính năng: click vào vùng đã highlight để xóa highlight đó đi
+        // Cho phép click vào vùng đã highlight để xóa highlight đó đi
         span.onclick = function() { 
           const t = document.createTextNode(this.textContent); 
           this.replaceWith(t); 
         };
         
-        // Thay vì dùng surroundContents (bị lỗi khi bôi đen qua nhiều thẻ HTML như <b>, <i>...)
-        // Sử dụng extractContents() để cắt nội dung một cách an toàn và chèn vào span
+        // Thay thế surroundContents bằng cơ chế trích xuất nội dung an toàn hơn
         span.appendChild(range.extractContents());
         range.insertNode(span);
         
       } catch(e) { 
-        console.error("Lỗi highlight:", e); 
+        console.error("Highlight lỗi:", e); // In lỗi ra console nếu có để dễ debug
       }
       toolbar.classList.add('hidden');
       sel.removeAllRanges();
