@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagram Completion — IELTS Academic Reading</title>
+<style>
+:root{
+  --forest:#2D5016;--moss:#4A7C2F;--mint:#A8C97F;--sage:#D4E8B8;--sand:#F5F0E8;--white:#FFFFFF;
+  --blue:#2563EB;--blue-light:#EFF6FF;
+  --amber:#D97706;--amber-light:#FFFBEB;
+  --red:#DC2626;--red-light:#FEF2F2;
+  --green-success:#16A34A;--green-light:#F0FDF4;
+  --highlight-user:#fff59d;
+  --timer-normal:var(--forest);--timer-warning:var(--amber);--timer-danger:var(--red);
+  --text-dark:#1A2E0A;--text-mid:#3D5C20;--text-soft:#6B8C4A;
+  --border:#C8DFA0;
+  --shadow-sm:0 1px 3px rgba(45,80,22,0.08);--shadow-md:0 4px 16px rgba(45,80,22,0.12);--shadow-lg:0 8px 32px rgba(45,80,22,0.16);
+  --radius:12px;--radius-sm:8px;--radius-lg:20px;
+  font-size:16px;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--sand);}
+h1,h2,h3,h4{color:var(--forest);margin:0 0 10px;}
+p{margin:0 0 12px;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+.hidden{display:none !important;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ===== APP SHELL / SIDEBAR ===== */
+.app-shell{display:flex;min-height:100vh;}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:240px;background:var(--forest);color:#fff;display:flex;flex-direction:column;overflow-y:auto;z-index:150;}
+.sidebar-brand{padding:22px 20px 16px;border-bottom:1px solid rgba(255,255,255,0.1);}
+.level-badge{display:inline-block;background:var(--mint);color:var(--forest);font-size:10px;font-weight:800;padding:3px 10px;border-radius:99px;margin-bottom:10px;letter-spacing:0.5px;}
+.sidebar-brand h1{color:#fff;font-size:17px;margin-bottom:4px;}
+.sidebar-brand .cat{color:rgba(168,201,127,0.9);font-size:12px;}
+.nav-group-label{padding:16px 20px 6px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(168,201,127,0.6);}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 20px;font-size:13px;font-weight:500;color:rgba(255,255,255,0.7);border-left:3px solid transparent;width:100%;text-align:left;}
+.nav-item:hover{color:#fff;background:rgba(168,201,127,0.1);}
+.nav-item.active{color:#fff;border-left-color:var(--mint);background:rgba(168,201,127,0.15);font-weight:700;}
+.nav-item .soon{margin-left:auto;font-size:9px;background:rgba(255,255,255,0.15);padding:2px 6px;border-radius:99px;}
+.sidebar-progress{margin-top:auto;padding:16px 20px;}
+.progress-track{height:6px;background:rgba(255,255,255,0.1);border-radius:99px;}
+.progress-fill{height:100%;background:var(--mint);border-radius:99px;transition:width .5s ease;}
+.progress-label{font-size:10px;color:rgba(255,255,255,0.6);margin-top:6px;}
+
+.main-content{margin-left:240px;flex:1;padding:32px 40px 100px;max-width:1100px;}
+@media(max-width:768px){
+  .sidebar{position:static;width:100%;height:auto;flex-direction:row;flex-wrap:wrap;overflow-x:auto;}
+  .main-content{margin-left:0;padding:20px 16px 100px;}
+  .sidebar-progress{display:none;}
+}
+
+.view{display:none;}
+.view.active{display:block;animation:fadeIn .25s ease;}
+.section-badge{display:inline-block;background:var(--sage);color:var(--forest);font-size:11px;font-weight:700;padding:4px 12px;border-radius:99px;margin-bottom:10px;}
+
+/* ===== CARD ===== */
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm);margin-bottom:16px;}
+.card:hover{box-shadow:var(--shadow-md);}
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-bottom:16px;}
+.overview-card .oc-icon{font-size:18px;margin-bottom:6px;}
+
+/* Strategy */
+.strategy-steps{position:relative;padding-left:28px;}
+.strategy-steps::before{content:'';position:absolute;left:13px;top:8px;bottom:8px;width:2px;background:var(--border);}
+.step{position:relative;margin-bottom:22px;}
+.step-num{position:absolute;left:-28px;top:0;width:28px;height:28px;border-radius:99px;background:var(--forest);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;}
+.step-title{font-weight:700;color:var(--forest);margin-bottom:6px;font-size:16px;}
+.step-example{background:var(--sage);border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;margin:8px 0;color:var(--text-mid);}
+
+/* Note cards */
+.note-card{border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:14px 18px;margin-bottom:12px;font-size:14px;}
+.note-card.warning{background:var(--amber-light);border-left:4px solid var(--amber);}
+.note-card.success{background:var(--green-light);border-left:4px solid var(--green-success);}
+.note-card.info{background:var(--blue-light);border-left:4px solid var(--blue);}
+.note-card.mistake{background:var(--red-light);border-left:4px solid var(--red);}
+.note-card b{display:block;margin-bottom:4px;color:var(--forest);}
+
+/* Demo */
+.demo-block{background:var(--forest);color:#fff;border-radius:var(--radius);padding:20px;}
+.demo-block h4{color:#fff;}
+.demo-block .demo-passage{background:rgba(255,255,255,0.08);border-radius:var(--radius-sm);padding:14px;font-size:14px;line-height:1.7;margin-bottom:14px;}
+.demo-block .demo-step{background:rgba(255,255,255,0.06);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:8px;font-size:13px;}
+.demo-block .demo-answer{background:var(--mint);color:var(--forest);border-radius:var(--radius-sm);padding:10px 14px;font-weight:700;margin-top:10px;}
+.hl-keyword{background:rgba(255,255,255,.2);}
+.hl-synonym{background:var(--mint);color:var(--forest);padding:1px 4px;border-radius:4px;}
+
+/* ===== PRACTICE ===== */
+.passage-toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;position:sticky;top:0;background:var(--sand);padding:8px 0;z-index:50;}
+.passage-toolbar h2{font-size:22px;margin:0;}
+.timer{display:inline-flex;align-items:center;gap:6px;background:var(--white);border:1.5px solid var(--border);border-radius:99px;padding:8px 16px;font-weight:700;font-size:14px;color:var(--timer-normal);}
+.timer.warning{border-color:var(--timer-warning);color:var(--timer-warning);background:var(--amber-light);}
+.timer.danger{border-color:var(--timer-danger);color:var(--timer-danger);background:var(--red-light);animation:pulseTimer 1s ease-in-out infinite;}
+@keyframes pulseTimer{0%,100%{opacity:1;}50%{opacity:0.6;}}
+
+.practice-layout{display:grid;grid-template-columns:55% 45%;gap:16px;align-items:start;}
+@media(max-width:1024px){.practice-layout{grid-template-columns:1fr;}}
+.passage-panel{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px;font-size:16px;line-height:1.85;max-height:calc(100vh - 160px);overflow-y:auto;position:sticky;top:56px;}
+@media(max-width:1024px){.passage-panel{max-height:none;position:static;}}
+.user-highlight{background:var(--highlight-user);border-radius:2px;cursor:pointer;}
+.user-highlight:hover{box-shadow:inset 0 -2px 0 rgba(0,0,0,0.25);} /* gợi ý có thể bấm — không đổi màu, đúng yêu cầu chỉ 1 màu duy nhất */
+.hl-toolbar{position:fixed;background:var(--forest);border-radius:var(--radius-sm);padding:6px 10px;display:flex;gap:8px;box-shadow:var(--shadow-md);z-index:250;}
+.hl-toolbar button{color:#fff;font-size:12px;font-weight:600;}
+
+.question-panel{display:flex;flex-direction:column;gap:12px;}
+.question-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;scroll-margin-top:70px;}
+.q-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.question-number{background:var(--forest);color:#fff;width:28px;height:28px;border-radius:99px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;}
+.q-type-chip{background:var(--sage);color:var(--forest);font-size:11px;font-weight:600;padding:3px 10px;border-radius:99px;}
+.bookmark-icon{margin-left:auto;color:var(--text-soft);font-size:16px;}
+.bookmark-icon.active{color:var(--amber);}
+.option{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;cursor:pointer;margin-bottom:8px;font-size:14px;font-weight:600;}
+.option:hover{border-color:var(--mint);background:var(--sage);}
+.option.selected{border-color:var(--forest);background:var(--sage);}
+.option.correct{border-color:var(--green-success);background:var(--green-light);color:var(--green-success);}
+.option.incorrect{border-color:var(--red);background:var(--red-light);color:var(--red);}
+select.blank-select{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:8px 12px;font-size:14px;font-weight:600;color:var(--forest);width:100%;background:var(--white);}
+select.blank-select.correct{border-color:var(--green-success);color:var(--green-success);}
+select.blank-select.incorrect{border-color:var(--red);color:var(--red);}
+.blank-input{border:none;border-bottom:2px solid var(--forest);background:transparent;min-width:110px;font-size:15px;font-weight:600;color:var(--forest);text-align:center;padding:2px 4px;}
+.blank-input:focus{border-bottom-color:var(--moss);outline:none;}
+.blank-input.correct{color:var(--green-success);border-bottom-color:var(--green-success);}
+.blank-input.incorrect{color:var(--red);border-bottom-color:var(--red);}
+.blank-input-full{width:100%;border:1.5px solid var(--border);border-radius:var(--radius-sm);text-align:left;padding:8px 12px;}
+.explain-toggle{color:var(--forest);font-size:12px;text-decoration:underline;margin-top:8px;display:inline-block;}
+.explain-box{display:none;background:var(--blue-light);border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;margin-top:8px;}
+.explain-box.open{display:block;}
+
+/* Bottom navigator */
+.question-nav{position:fixed;bottom:0;left:240px;right:0;height:64px;z-index:200;background:var(--white);border-top:1px solid var(--border);display:flex;align-items:center;gap:8px;padding:0 20px;overflow-x:auto;}
+@media(max-width:768px){.question-nav{left:0;}}
+.nav-dot{width:32px;height:32px;border-radius:99px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;border:1.5px solid var(--border);color:var(--text-soft);background:var(--white);position:relative;}
+.nav-dot.answered{background:var(--forest);border-color:var(--forest);color:#fff;}
+.nav-dot.current{border-color:var(--forest);border-width:2px;color:var(--forest);}
+.nav-dot.bookmarked::after{content:'';position:absolute;width:7px;height:7px;border-radius:50%;background:var(--amber);top:-2px;right:-2px;}
+.question-nav .submit-btn{margin-left:auto;flex-shrink:0;}
+
+/* Buttons */
+.btn{height:44px;padding:0 20px;border-radius:var(--radius-sm);font-weight:700;font-size:14px;display:inline-flex;align-items:center;justify-content:center;gap:6px;}
+.btn-primary{background:var(--forest);color:#fff;}
+.btn-primary:hover{background:var(--moss);}
+.btn-secondary{background:var(--sage);color:var(--forest);}
+.btn-outline{background:transparent;color:var(--forest);border:1.5px solid var(--border);}
+.btn-sm{height:36px;padding:0 14px;font-size:13px;}
+
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(26,46,10,0.5);z-index:300;display:none;align-items:center;justify-content:center;}
+.modal-overlay.show{display:flex;}
+.modal-card{background:var(--white);border-radius:var(--radius);padding:28px;max-width:420px;box-shadow:var(--shadow-lg);text-align:center;}
+.modal-card .modal-progress{color:var(--text-soft);font-size:13px;margin-bottom:6px;}
+.modal-card .modal-progress.warn{color:var(--amber);font-weight:700;}
+.modal-actions{display:flex;gap:10px;justify-content:center;margin-top:14px;}
+
+/* Results */
+.results-summary{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px;align-items:center;}
+.score-badge{width:64px;height:64px;border-radius:99px;background:var(--forest);color:#fff;font-weight:700;font-size:18px;display:flex;align-items:center;justify-content:center;}
+.stats-table{width:100%;border-collapse:collapse;margin-bottom:20px;}
+.stats-table th{text-align:left;font-size:12px;color:var(--text-soft);text-transform:uppercase;letter-spacing:0.5px;padding:8px 12px;border-bottom:1.5px solid var(--border);}
+.stats-table td{padding:10px 12px;border-bottom:1px solid var(--border);font-weight:600;font-size:14px;}
+.stat-correct{color:var(--green-success);}
+.stat-incorrect{color:var(--red);}
+.stat-skipped{color:var(--text-soft);}
+.answer-key-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);margin-bottom:8px;flex-wrap:wrap;}
+.answer-key-row.correct{background:var(--green-light);}
+.answer-key-row.incorrect{background:var(--red-light);}
+.answer-key-row.skipped{background:var(--sand);}
+.akr-left{font-weight:700;color:var(--forest);}
+.akr-mid{font-size:13px;color:var(--text-soft);}
+.akr-mid b{color:var(--forest);}
+
+/* Accordion */
+.accordion{border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:10px;overflow:hidden;}
+.accordion-header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:var(--white);cursor:pointer;font-weight:700;color:var(--forest);}
+.accordion-header .chevron{transition:transform .2s;}
+.accordion.open .chevron{transform:rotate(180deg);}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 18px;}
+.accordion.open .accordion-body{max-height:3000px;padding:0 18px 16px;}
+
+/* Vocab — click-to-expand */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+.vocab-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;cursor:pointer;position:relative;}
+.vocab-card:hover{box-shadow:var(--shadow-md);border-color:var(--mint);}
+.vocab-word{color:var(--forest);font-weight:700;font-size:17px;}
+.vocab-ipa{color:var(--blue);font-style:italic;font-size:13px;margin-left:6px;}
+.vocab-pos{background:var(--sage);color:var(--forest);font-size:11px;padding:2px 8px;border-radius:99px;margin-left:6px;}
+.vocab-vi{color:var(--text-mid);font-weight:700;margin:8px 0 4px;font-size:14px;}
+.vocab-tap{position:absolute;top:14px;right:14px;font-size:10px;color:var(--text-soft);}
+.vocab-example{display:none;border-top:1px solid var(--sage);padding-top:8px;margin-top:8px;font-size:13px;}
+.vocab-example .en{color:var(--text-dark);}
+.vocab-example .vi{color:var(--text-soft);font-style:italic;margin-top:4px;}
+.vocab-card.open .vocab-example{display:block;animation:fadeIn .2s ease;}
+
+.coming-soon{text-align:center;padding:60px 20px;color:var(--text-soft);}
+.coming-soon .cs-icon{font-size:36px;margin-bottom:12px;}
+.reset-fab{position:fixed;bottom:80px;right:24px;background:var(--forest);color:#fff;border-radius:99px;padding:12px 20px;font-size:13px;font-weight:700;box-shadow:var(--shadow-lg);z-index:190;}
+
+/* ===== ACCESSIBILITY ===== */
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,.nav-item:focus-visible,.vocab-card:focus-visible,.option:focus-visible{
+  outline:2px solid var(--mint);outline-offset:2px;
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+}
+
+/* ===== NAV LOCK STATE ===== */
+.nav-item.locked{opacity:.4;cursor:not-allowed;}
+.nav-item .soon,.nav-item .lock-icon{margin-left:auto;font-size:9px;background:rgba(255,255,255,.15);padding:2px 6px;border-radius:99px;}
+
+/* ===== HAMBURGER TOPBAR (mobile) ===== */
+.topbar{display:none;}
+.hamburger-btn{font-size:20px;background:none;border:none;color:#fff;}
+.sidebar-overlay{position:fixed;inset:0;top:56px;background:var(--forest);z-index:299;overflow-y:auto;transform:translateX(-100%);transition:transform .25s ease;}
+.sidebar-overlay.open{transform:translateX(0);}
+@media(max-width:768px){
+  .sidebar{display:none;}
+  .topbar{display:flex;align-items:center;gap:12px;position:fixed;top:0;left:0;right:0;height:56px;background:var(--forest);color:#fff;padding:0 16px;z-index:300;}
+  .main-content{margin-left:0;padding-top:72px;}
+}
+
+/* ===== Q-DROPDOWN (TFNG / YNNG / Matching) ===== */
+select.q-dropdown{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;font-size:14px;font-weight:600;color:var(--forest);width:100%;background:var(--white);}
+select.q-dropdown.correct{border-color:var(--green-success);color:var(--green-success);}
+select.q-dropdown.incorrect{border-color:var(--red);color:var(--red);}
+
+/* ===== PART 1 — LEARNING OUTCOMES ===== */
+.outcomes-hero{background:linear-gradient(135deg,var(--forest),var(--moss));color:#fff;border-radius:var(--radius-lg);padding:32px;}
+.outcomes-hero h2{color:#fff;}
+.outcomes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:16px;}
+.outcomes-col{background:rgba(255,255,255,.08);border-radius:var(--radius);padding:18px;}
+.outcomes-col .tag{display:inline-block;background:var(--mint);color:var(--forest);font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;margin-bottom:10px;}
+.outcomes-col ul{margin:0;padding-left:18px;}
+.outcomes-col li{margin-bottom:10px;font-size:13px;line-height:1.5;}
+.outcomes-col li b{display:block;color:#fff;font-size:14px;}
+.outcomes-col li .ex{opacity:.85;font-style:italic;}
+
+/* ===== PARAPHRASE MAPPING TABLE ===== */
+.pmap-table{width:100%;border-collapse:collapse;}
+.pmap-table th{font-size:11px;text-transform:uppercase;color:var(--text-soft);text-align:left;padding:8px 10px;border-bottom:1.5px solid var(--border);}
+.pmap-table td{padding:10px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:top;}
+.pmap-q{color:var(--forest);font-weight:700;}
+.pmap-arrow{color:var(--mint);font-weight:700;text-align:center;}
+.pmap-p{color:var(--green-success);font-weight:600;}
+.pmap-logic{color:var(--text-soft);}
+
+/* ===== PART 4 — QUICK PRACTICE & QUIZ ENGINE ===== */
+.quiz-progress{height:8px;background:var(--sage);border-radius:99px;margin-bottom:8px;}
+.quiz-progress-fill{height:100%;background:var(--forest);border-radius:99px;transition:width .3s ease;}
+.quiz-progress-label{font-size:12px;color:var(--text-soft);margin-bottom:20px;}
+.quiz-question-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;max-width:640px;margin:0 auto;}
+.quiz-question-card h3{font-size:18px;}
+.quiz-option{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:10px;cursor:pointer;font-weight:600;}
+.quiz-option:hover{border-color:var(--mint);background:var(--sage);}
+.quiz-option.selected.correct{border-color:var(--green-success);background:var(--green-light);color:var(--green-success);}
+.quiz-option.selected.incorrect{border-color:var(--red);background:var(--red-light);color:var(--red);}
+.quiz-option.reveal-correct{border-color:var(--green-success);}
+.quiz-score-chip{display:inline-block;background:var(--sage);color:var(--forest);font-size:12px;font-weight:700;padding:4px 12px;border-radius:99px;margin-bottom:14px;}
+.quiz-complete{text-align:center;padding:40px 20px;}
+
+/* ===== PART 5 — REFLECTION & REVIEW ===== */
+.mastery-bar{display:flex;height:28px;border-radius:99px;overflow:hidden;margin-bottom:8px;}
+.mastery-bar .seg-correct{background:var(--green-success);}
+.mastery-bar .seg-incorrect{background:var(--red);}
+.mastery-bar .seg-skipped{background:var(--border);}
+.mastery-legend{display:flex;gap:16px;font-size:12px;color:var(--text-soft);margin-bottom:20px;}
+.mastery-legend span::before{content:'●';margin-right:4px;}
+.mastery-legend .lg-correct::before{color:var(--green-success);}
+.mastery-legend .lg-incorrect::before{color:var(--red);}
+.mastery-legend .lg-skipped::before{color:var(--border);}
+.review-item{display:flex;justify-content:space-between;align-items:center;background:var(--red-light);border-left:4px solid var(--red);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;margin-bottom:8px;}
+.review-item.skipped{background:var(--sand);border-left-color:var(--text-soft);}
+.review-item .rw-word{font-weight:700;color:var(--forest);}
+.review-item .rw-vi{color:var(--text-mid);font-size:13px;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <button class="hamburger-btn" id="hamburgerBtn" aria-label="Mở menu điều hướng">☰</button>
+  <span>Diagram Completion</span>
+</div>
+<nav class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></nav>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <span class="level-badge">IELTS ACADEMIC</span>
+      <h1>Diagram Completion</h1>
+      <div class="cat">Reading · ~20 min/passage</div>
+    </div>
+
+    <div class="nav-group-label">Part 1</div>
+    <button class="nav-item active" data-view="p1-outcomes">Learning Outcomes</button>
+
+    <div class="nav-group-label">Part 2 — Theory</div>
+    <button class="nav-item" data-view="t-overview">Tổng quan</button>
+    <button class="nav-item" data-view="t-strategy">Phương pháp làm bài</button>
+    <button class="nav-item" data-view="t-notes">Khó khăn &amp; Lưu ý</button>
+    <button class="nav-item" data-view="t-application">Vận dụng</button>
+
+    <div class="nav-group-label">Part 3 — Practice</div>
+    <button class="nav-item" data-view="p-0">Passage 1</button>
+    <button class="nav-item" data-view="p-1">Passage 2</button>
+    <button class="nav-item" data-view="p-2">Passage 3</button>
+    <button class="nav-item" data-view="p-3">Passage 4 <span class="soon">Soon</span></button>
+    <button class="nav-item" data-view="p-4">Passage 5 <span class="soon">Soon</span></button>
+
+    <div class="nav-group-label">Part 4</div>
+    <button class="nav-item" data-view="p4-quiz">Quick Practice &amp; Quiz</button>
+
+    <div class="nav-group-label">Part 5</div>
+    <button class="nav-item locked" data-view="p5-reflection" id="reflectionNavBtn">Reflection &amp; Review <span class="lock-icon" id="reflectionLockIcon">🔒</span></button>
+
+    <div class="sidebar-progress">
+      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:8%;"></div></div>
+      <div class="progress-label" id="progressLabel">1 / 12 mục đã xem</div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <!-- ============ PART 1: LEARNING OUTCOMES ============ -->
+    <div id="p1-outcomes" class="view active">
+      <span class="section-badge">Part 1</span>
+      <h2>Learning Outcomes</h2>
+      <div class="outcomes-hero">
+        <h2>Trước khi bắt đầu, bạn sẽ...</h2>
+        <p style="opacity:.85;">Nắm được cách làm dạng Diagram Completion, đồng thời làm quen với chủ đề học thuật và cấu trúc ngữ pháp xuất hiện trong 3 bài đọc của Part 3.</p>
+        <div class="outcomes-grid">
+          <div class="outcomes-col">
+            <span class="tag">Academic Topics</span>
+            <ul>
+              <li><b>Engineering &amp; Infrastructure</b> — The Falkirk Wheel (Passage 1): công trình cơ khí nâng thuyền bằng bánh xe quay.</li>
+              <li><b>Marine Archaeology</b> — Raising the Mary Rose (Passage 2): trục vớt xác tàu chiến thế kỷ 16.</li>
+              <li><b>Marine Biology &amp; Animal Behaviour</b> — Whale Strandings (Passage 3): hiện tượng cá voi mắc cạn.</li>
+            </ul>
+          </div>
+          <div class="outcomes-col">
+            <span class="tag">Grammar Focus</span>
+            <ul>
+              <li><b>Passive Voice</b><span class="ex">"The various parts... were all constructed and assembled... at Butterley Engineering's Steelworks." (P1)</span></li>
+              <li><b>Non-defining Relative Clauses</b><span class="ex">"A hydraulic clamp, which prevents the arms of the Wheel moving..., is removed." (P1)</span></li>
+              <li><b>Past Participle Clauses</b><span class="ex">"Built in Portsmouth some 35 years earlier, she had had a long and successful fighting career." (P2)</span></li>
+              <li><b>Passive with Modal Verbs</b><span class="ex">"The Wheel could not be constructed to elevate boats over the full 35-metre difference..." (P1)</span></li>
+              <li><b>Gerund as Subject/Object</b><span class="ex">"...noise pollution from offshore industry, shipping and sonar can impair underwater communication." (P3)</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ THEORY ============ -->
+    <div id="t-overview" class="view">
+      <span class="section-badge">Lý thuyết</span>
+      <h2>Tổng quan</h2>
+      <div class="card">
+        <p>Dạng bài <b>Diagram label completion</b> là một dạng bài khá phổ biến trong IELTS Reading, dạng bài này cung cấp cho người đọc một đoạn văn kèm theo một biểu đồ (diagram) tương ứng.</p>
+        <p>Nhiệm vụ của người đọc ở dạng này là đọc đoạn văn và điền các từ còn thiếu để hoàn thành biểu đồ. Nói cách khác, dạng bài yêu cầu người đọc phải hoàn thành chú thích cho biểu đồ được đưa ra.</p>
+        <p><b>Ba loại biểu đồ thường gặp:</b></p>
+        <div class="overview-grid">
+          <div class="overview-card"><div class="oc-icon">⚙️</div><b>Bản vẽ kĩ thuật</b><br>Về một loại máy móc hay sáng chế nào đó.</div>
+          <div class="overview-card"><div class="oc-icon">🌱</div><b>Quá trình tự nhiên</b><br>Biểu đồ liên quan đến một quá trình tự nhiên.</div>
+          <div class="overview-card"><div class="oc-icon">📐</div><b>Bản vẽ thiết kế</b><br>Một bản vẽ thiết kế công trình hay hệ thống.</div>
+        </div>
+        <p><b>Dạng câu hỏi này kiểm tra khả năng của bạn trong việc:</b></p>
+        <ul>
+          <li>Đọc lướt và quét (skimming and scanning) để xác định ý chính của bài và tìm keyword;</li>
+          <li>Nắm được cách đọc sơ đồ;</li>
+          <li>Nhận diện từ đồng nghĩa và các cách paraphrase.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="t-strategy" class="view">
+      <span class="section-badge">Lý thuyết</span>
+      <h2>Phương pháp làm bài</h2>
+      <div class="strategy-steps">
+        <div class="step"><div class="step-num">1</div><div class="step-title">Đọc kỹ yêu cầu đề bài để xác định số từ cần điền (word limit)</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-title">Nghiên cứu biểu đồ để hiểu được nội dung tổng quát được minh họa</div>Tuy nhiên, người đọc không nên dành quá nhiều thời gian vào bước này.</div>
+        <div class="step"><div class="step-num">3</div><div class="step-title">Xác định từ khóa</div>Đọc qua các văn bản và lưu ý các keyword nổi bật. Các keyword này có thể là các từ, cụm từ thể hiện ý chung của đoạn văn, hoặc liên quan đến sơ đồ. Từ khóa được chia thành 2 dạng: cố định và biến đổi.
+          <div class="step-example"><b>Từ khóa cố định</b> là những từ khóa không thể bị biến đổi như: tên riêng, số liệu, ngày tháng, tên khoa học.<br><b>Từ khóa biến đổi</b> là những từ có khả năng bị paraphrase hoặc các từ như danh từ, động từ, tính từ.</div>
+        </div>
+        <div class="step"><div class="step-num">4</div><div class="step-title">Dự đoán đáp án cần điền</div>Dựa vào những từ xung quanh chỗ trống, người đọc có thể dự đoán được về từ loại (danh từ, động từ, tính từ, …) hay thậm chí cả nội dung của từ cần điền (tích cực hay tiêu cực, chỉ người hay địa điểm,...). Để xác định được từ loại cần tìm, người đọc cần phân tích những từ hoặc cụm từ ở liền trước hoặc liền sau chỗ trống cần điền. Cần đặc biệt chú ý trường hợp danh từ số ít hay số nhiều, động từ được chia hay không chia.</div>
+        <div class="step"><div class="step-num">5</div><div class="step-title">Đọc lướt văn bản và xác định vị trí những từ khóa</div>Khoanh vùng vị trí thông tin cần tìm.</div>
+        <div class="step"><div class="step-num">6</div><div class="step-title">Đọc kỹ phần văn bản đã xác định</div>Để tìm ra từ hoặc cụm từ cần điền để hoàn thành chú thích cho biểu đồ.</div>
+        <div class="step"><div class="step-num">7</div><div class="step-title">Kiểm tra lại ngữ pháp, chính tả</div></div>
+      </div>
+    </div>
+
+    <div id="t-notes" class="view">
+      <span class="section-badge">Lý thuyết</span>
+      <h2>Khó khăn &amp; Một số lưu ý</h2>
+      <h3 style="font-size:16px;">Khó khăn</h3>
+      <div class="note-card mistake"><b>✕</b>Người đọc quá tập trung vào biểu đồ để cố gắng hiểu mọi thứ trong biểu đồ. Điều này dễ khiến ta cảm thấy lo lắng và mất thời gian khi gặp phải những biểu đồ phức tạp và mới lạ. Bài thi IELTS reading không kiểm tra về kiến thức kỹ thuật mà là kỹ năng đọc hiểu. Vì vậy, bạn chỉ cần hiểu được tổng quan về biểu đồ, còn mối quan hệ giữa văn bản và biểu đồ mới là điều quan trọng.</div>
+      <div class="note-card warning"><b>⚠</b>Không xác định được vị trí câu trả lời trong văn bản và mất thời gian đọc toàn bộ bài đọc.</div>
+      <div class="note-card mistake"><b>✕</b>Thí sinh cũng dễ mắc phải lỗi điền quá số từ cho phép hoặc sai chính tả dẫn tới mất điểm đáng tiếc.</div>
+      <h3 style="font-size:16px;margin-top:20px;">Một số lưu ý</h3>
+      <div class="note-card info"><b>ℹ Đọc kỹ đề và xác định rõ số từ cần điền</b>Tuy đây là một bước đơn giản nhưng đối với dạng bài điền từ như diagram labelling, một bộ phận thí sinh thường mất điểm phần này vì vượt quá số từ quy định, gây mất điểm một cách đáng tiếc.</div>
+      <div class="note-card info"><b>ℹ Đáp án có thể không theo thứ tự thông tin được đưa ra trong bài đọc</b></div>
+      <div class="note-card success"><b>✓ Làm những câu hỏi đơn giản nhất trước</b>Bạn có nhiều khả năng để có được những câu trả lời chính xác. Nếu bạn không thể tìm thấy câu trả lời cho một câu hỏi khó, chuyển qua câu khác và quay lại sau.</div>
+      <div class="note-card success"><b>✓ Dùng kiến thức bản thân để phỏng đoán</b>Dùng những kiến thức của bản thân về chủ đề hoặc tư duy, suy luận logic để phỏng đoán các từ cần điền, đặc biệt khi hết thời gian nhưng vẫn chưa tìm được đáp án.</div>
+    </div>
+
+    <div id="t-application" class="view">
+      <span class="section-badge">Lý thuyết</span>
+      <h2>Vận dụng</h2>
+      <p style="font-size:13px;color:var(--text-soft);"><i>Practice 1: Label the diagram below. Choose ONE WORD ONLY from the passage for each answer. (Practice test 9 - Reading passage 1 - Question 1-6)</i></p>
+      <div class="demo-block">
+        <h4>Đoạn văn</h4>
+        <div class="demo-passage">The Persians, who lived in present-day Iran, were one of the first civilizations to build tunnels that provided a reliable supply of water to human settlements in dry areas. In the early first millennium BCE, they introduced the qanat method of tunnel construction, which consisted of <span class="hl-synonym">placing posts</span> over a hill in a straight line, to ensure that the tunnel kept to its route, and then digging vertical shafts down into the ground at regular intervals. Underground, workers removed the earth from between the ends of the shafts, creating a tunnel. The excavated soil was taken up to the surface using the shafts, which also <span class="hl-synonym">provided ventilation</span> during the work.</div>
+        <h4>Bước 1: Đọc đề bài</h4>
+        <div class="demo-step">ONE WORD ONLY → Chỉ điền 1 từ</div>
+        <h4>Bước 2+3+4: Đọc đề, xác định keyword, dự đoán đáp án</h4>
+        <div class="demo-step"><b>1. ______ to direct the tunnel</b> (______ để điều hướng cho đường hầm) ⇒ Cần <b>N (số nhiều)</b> vì mũi tên chỉ vào nhiều cột</div>
+        <div class="demo-step"><b>3. vertical shafts to remove earth for ______</b> (các cột dọc để loại bỏ đất cho việc _____) ⇒ Cần <b>N/V-ing</b></div>
+        <h4>Bước 5+6: Xác định vị trí thông tin và tìm ra đáp án</h4>
+        <div class="demo-step">"...placing posts over a hill in a straight line, to ensure that the tunnel kept to its route" ⇒ Q1 = <b>posts</b></div>
+        <div class="demo-step">"...which also provided ventilation during the work." ⇒ Q3 = <b>ventilation</b></div>
+        <div class="demo-answer">Đáp án: Q1 = posts &nbsp;|&nbsp; Q3 = ventilation</div>
+      </div>
+    </div>
+
+    <!-- ============ PRACTICE ============ -->
+    <div id="practiceRoot"></div>
+
+    <!-- ============ PART 4: QUICK PRACTICE & QUIZ ENGINE ============ -->
+    <div id="p4-quiz" class="view"></div>
+
+    <!-- ============ PART 5: REFLECTION & REVIEW ============ -->
+    <div id="p5-reflection" class="view"></div>
+
+  </main>
+</div>
+
+<button class="reset-fab hidden" id="resetBtn">↺ Reset Practice</button>
+
+<div class="modal-overlay" id="submitModal">
+  <div class="modal-card">
+    <h3>Bạn có chắc chắn muốn nộp bài?</h3>
+    <p id="modalProgressText" class="modal-progress">Đã trả lời 0/0 câu.</p>
+    <div class="modal-actions">
+      <button class="btn btn-outline" id="modalReview">Xem lại</button>
+      <button class="btn btn-primary" id="modalSubmit">Nộp bài</button>
+    </div>
+  </div>
+</div>
+
+<div class="hl-toolbar hidden" id="hlToolbar"><button id="hlAddBtn">🖍 Highlight</button></div>
+
+<script>
+/* ===================== DATA ===================== */
+const PASSAGES = [
+{
+  id:'p1', title:'The Falkirk Wheel', time:20*60,
+  html: `<h4>The Falkirk Wheel</h4>
+  <p><b>A unique engineering achievement</b></p>
+  <p>The Falkirk Wheel in Scotland is the world's first and only rotating boat lift. Opened in 2002, it is central to the ambitious £84.5m Millennium Link project to restore navigability across Scotland by reconnecting the historic waterways of the Forth &amp; Clyde and Union Canals.</p>
+  <p>The major challenge of the project lays in the fact that the Forth &amp; Clyde Canal is situated 35 metres below the level of the Union Canal. Historically, the two canals had been joined near the town of Falkirk by a sequence of 11 locks - enclosed sections of canal in which the water level could be raised or lowered - that stepped down across a distance of 1.5 km. This had been dismantled in 1933, thereby breaking the link. When the project was launched in 1994, the British Waterways authority were keen to create a dramatic twenty first-century landmark which would not only be a fitting commemoration of the Millennium, but also a lasting symbol of the economic regeneration of the region.</p>
+  <p>Numerous ideas were submitted for the project, including concepts ranging from rolling eggs to tilting tanks, from giant seesaws to overhead monorails. The eventual winner was a plan for the huge rotating steel boat lift which was to become The Falkirk Wheel. The unique shape of the structure is claimed to have been inspired by various sources, both manmade and natural, most notably a Celtic double headed axe, but also the vast turning propeller of a ship, the ribcage of a whale or the spine of a fish.</p>
+  <p>The various parts of The Falkirk Wheel were all constructed and assembled, like one giant toy building set, at Butterley Engineering's Steelworks in Derbyshire, some 400 km from Falkirk. A team there carefully assembled the 1,200 tonnes of steel, painstakingly fitting the pieces together to an accuracy of just 10 mm to ensure a perfect final fit. In the summer of 2001, the structure was then dismantled and transported on 35 lorries to Falkirk, before all being bolted back together again on the ground, and finally lifted into position in five large sections by crane. The Wheel would need to withstand immense and constantly changing stresses as it rotated, so to make the structure more robust, the steel sections were bolted rather than welded together. Over 45,000 bolt holes were matched with their bolts, and each bolt was hand-tightened.</p>
+  <p>The Wheel consists of two sets of opposing axe-shaped arms, attached about 25 metres apart to a fixed central spine. Two diametrically opposed water-filled 'gondolas', each with a capacity of 360,000 litres, are fitted between the ends of the arms. These gondolas always weigh the same, whether or not they are carrying boats. This is because, according to Archimedes' principle of displacement, floating objects displace their own weight in water. So when a boat enters a gondola, the amount of water leaving the gondola weighs exactly the same as the boat. This keeps the Wheel balanced and so, despite its enormous mass, it rotates through 180° in five and a half minutes while using very little power. It takes just 1.5 kilowatt-hours (5.4 MJ) of energy to rotate the Wheel — roughly the same as boiling eight small domestic kettles of water.</p>
+  <p>Boats needing to be lifted up enter the canal basin at the level of the Forth &amp; Clyde Canal and then enter the lower gondola of the Wheel. Two hydraulic steel gates are raised, so as to seal the gondola off from the water in the canal basin. The water between the gates is then pumped out. A hydraulic clamp, which prevents the arms of the Wheel moving while the gondola is docked, is removed, allowing the Wheel to turn. In the central machine room an array of ten hydraulic motors then begins to rotate the central axle. The axle connects to the outer arms of the Wheel, which begin to rotate at a speed of 1/8 of a revolution per minute. As the wheel rotates, the gondolas are kept in the upright position by a simple gearing system. Two eight-metre-wide cogs orbit a fixed inner cog of the same width, connected by two smaller cogs travelling in the opposite direction to the outer cogs — so ensuring that the gondolas always remain level. When the gondola reaches the top, the boat passes straight onto the aqueduct situated 24 metres above the canal basin.</p>
+  <p>The remaining 11 metres of lift needed to reach the Union Canal is achieved by means of a pair of locks. The Wheel could not be constructed to elevate boats over the full 35-metre difference between the two canals, owing to the presence of the historically important Antonine Wall, which was built by the Romans in the second century AD. Boats travel under this wall via a tunnel, then through the locks, and finally on to the Union Canal.</p>`,
+  vocab:[
+    {w:'rotating',ipa:'/roʊˈteɪtɪŋ/',pos:'adj.',vi:'quay, xoay vòng',en:'The Falkirk Wheel in Scotland is the world\'s first and only rotating boat lift.',vitrans:'Falkirk Wheel ở Scotland là thiết bị nâng thuyền dạng quay đầu tiên và duy nhất trên thế giới.'},
+    {w:'canal',ipa:'/kəˈnæl/',pos:'n.',vi:'kênh đào',en:'The Forth & Clyde Canal is situated 35 metres below the level of the Union Canal.',vitrans:'Kênh đào Forth & Clyde nằm thấp hơn kênh đào Union tới 35 mét.'},
+    {w:'gondola',ipa:'/ˈɡɒndələ/',pos:'n.',vi:'khoang chứa nước (bồn nâng thuyền)',en:'Two diametrically opposed water-filled \'gondolas\', each with a capacity of 360,000 litres, are fitted between the ends of the arms.',vitrans:'Hai "gondola" chứa nước đối xứng nhau, mỗi cái chứa được 360.000 lít, được lắp giữa các đầu cánh tay.'},
+    {w:'hydraulic',ipa:'/haɪˈdrɔːlɪk/',pos:'adj.',vi:'thủy lực',en:'Two hydraulic steel gates are raised, so as to seal the gondola off from the water in the canal basin.',vitrans:'Hai cánh cổng thép thủy lực được nâng lên để ngăn gondola khỏi nước trong bể kênh.'},
+    {w:'displacement',ipa:'/dɪsˈpleɪsmənt/',pos:'n.',vi:'sự choán chỗ (nước)',en:'According to Archimedes\' principle of displacement, floating objects displace their own weight in water.',vitrans:'Theo nguyên lý choán chỗ của Archimedes, vật nổi choán chỗ đúng bằng trọng lượng của chính nó trong nước.'},
+    {w:'aqueduct',ipa:'/ˈækwɪdʌkt/',pos:'n.',vi:'máng dẫn nước, cầu dẫn nước',en:'When the gondola reaches the top, the boat passes straight onto the aqueduct situated 24 metres above the canal basin.',vitrans:'Khi gondola lên đến đỉnh, thuyền đi thẳng lên máng dẫn nước nằm ở độ cao 24 mét so với bể kênh.'}
+  ],
+  skills:[
+    {q:'7', kw:'lifted... to shut out water', found:'"Two hydraulic steel gates are raised, so as to seal the gondola off from the water"', map:'"lifted" ≈ "raised" (đồng nghĩa) · "shut out water" ≈ "seal off from the water" (paraphrase)'},
+    {q:'8', kw:'taken out, enabling Wheel to rotate', found:'"A hydraulic clamp... is removed, allowing the Wheel to turn"', map:'"taken out" ≈ "removed" (đồng nghĩa) · "enabling" ≈ "allowing" (đồng nghĩa)'},
+    {q:'11', kw:'reaches top... moves onto', found:'"When the gondola reaches the top, the boat passes straight onto the aqueduct"', map:'"moves onto" ≈ "passes onto" (đồng nghĩa)'}
+  ],
+  questions:[
+    {id:1,type:'tfng',prompt:'The Falkirk Wheel has linked the Forth & Clyde Canal with the Union Canal for the first time in their history.',answer:'FALSE',explain:'Bài đọc nói hai kênh trước đó đã từng nối với nhau bằng 11 âu thuyền (locks), bị tháo dỡ năm 1933 — nên đây không phải lần đầu tiên.'},
+    {id:2,type:'tfng',prompt:'There was some opposition to the design of the Falkirk Wheel at first.',answer:'NOT GIVEN',explain:'Bài đọc liệt kê các ý tưởng thiết kế được đề xuất, nhưng không hề nhắc đến sự phản đối với thiết kế được chọn.'},
+    {id:3,type:'tfng',prompt:'The Falkirk Wheel was initially put together at the location where its components were manufactured.',answer:'TRUE',explain:'"The various parts... were all constructed and assembled... at Butterley Engineering\'s Steelworks."'},
+    {id:4,type:'tfng',prompt:'The Falkirk Wheel is the only boat lift in the world which has steel sections bolted together by hand.',answer:'NOT GIVEN',explain:'Bài đọc nói các bu-lông được siết bằng tay, nhưng không hề so sánh với các thiết bị nâng thuyền khác trên thế giới.'},
+    {id:5,type:'tfng',prompt:'The weight of the gondolas varies according to the size of boat being carried.',answer:'FALSE',explain:'"These gondolas always weigh the same, whether or not they are carrying boats."'},
+    {id:6,type:'tfng',prompt:'The construction of the Falkirk Wheel site took into account the presence of a nearby ancient monument.',answer:'TRUE',explain:'Antonine Wall (một di tích La Mã quan trọng) đã ảnh hưởng đến cách xây dựng Wheel.'},
+    {id:7,type:'diagram',prompt:'A pair of ______ are lifted in order to shut out water from the canal basin.',answer:'gates',explain:'"Two hydraulic steel gates are raised, so as to seal the gondola off from the water in the canal basin."'},
+    {id:8,type:'diagram',prompt:'A ______ is taken out, enabling the Wheel to rotate.',answer:'clamp',explain:'"A hydraulic clamp... is removed, allowing the Wheel to turn."'},
+    {id:9,type:'diagram',prompt:'Hydraulic motors drive the ______.',answer:'axle',explain:'"An array of ten hydraulic motors then begins to rotate the central axle."'},
+    {id:10,type:'diagram',prompt:'A range of different-sized ______ ensures the boat keeps upright.',answer:'cogs',explain:'"Two eight-metre-wide cogs orbit a fixed inner cog... ensuring that the gondolas always remain level."'},
+    {id:11,type:'diagram',prompt:'The boat reaches the top of the Wheel, then moves directly onto the ______.',answer:'aqueduct',explain:'"The boat passes straight onto the aqueduct situated 24 metres above the canal basin."'},
+    {id:12,type:'diagram',prompt:'The boat travels through a tunnel beneath the Roman ______.',answer:'wall',explain:'"Boats travel under this wall via a tunnel" — nói đến Antonine Wall.'},
+    {id:13,type:'diagram',prompt:'______ raise the boat 11m to the level of the Union Canal.',answer:'locks',explain:'"The remaining 11 metres of lift needed to reach the Union Canal is achieved by means of a pair of locks."'}
+  ]
+},
+{
+  id:'p2', title:'Raising the Mary Rose', time:20*60,
+  html: `<h4>Raising the Mary Rose</h4>
+  <p><b>How a sixteenth-century warship was recovered from the seabed</b></p>
+  <p>On 19 July 1545, English and French fleets were engaged in a sea battle off the coast of southern England in the area of water called the Solent, between Portsmouth and the Isle of Wight. Among the English vessels was a warship by the name of Mary Rose. Built in Portsmouth some 35 years earlier, she had had a long and successful fighting career, and was a favourite of King Henry VIII. Accounts of what happened to the ship vary: while witnesses agree that she was not hit by the French, some maintain that she was outdated, overladen and sailing too low in the water, others that she was mishandled by undisciplined crew. What is undisputed, however, is that the Mary Rose sank into the Solent that day, taking at least 500 men with her. After the battle, attempts were made to recover the ship, but these failed.</p>
+  <p>The Mary Rose came to rest on the seabed, lying on her starboard (right) side at an angle of approximately 60 degrees. The hull (the body of the ship) acted as a trap for the sand and mud carried by Solent currents. As a result, the starboard side filled rapidly, leaving the exposed port (left) side to be eroded by marine organisms and mechanical degradation. Because of the way the ship sank, nearly all of the starboard half survived intact. During the seventeenth and eighteenth centuries, the entire site became covered with a layer of hard grey clay, which minimised further erosion.</p>
+  <p>Then, on 16 June 1836, some fishermen in the Solent found that their equipment was caught on an underwater obstruction, which turned out to be the Mary Rose. Diver John Deane happened to be exploring another sunken ship nearby, and the fishermen approached him, asking him to free their gear. Deane dived down, and found the equipment caught on a timber protruding slightly from the seabed. Exploring further, he uncovered several other timbers and a bronze gun. Deane continued diving on the site intermittently until 1840, recovering several more guns, two bows, various timbers, part of a pump and various other small finds.</p>
+  <p>The Mary Rose then faded into obscurity for another hundred years. But in 1965, military historian and amateur diver Alexander McKee, in conjunction with the British Sub-Aqua Club, initiated a project called 'Solent Ships'. While on paper this was a plan to examine a number of known wrecks in the Solent, what McKee really hoped for was to find the Mary Rose. Ordinary search techniques proved unsatisfactory, so McKee entered into collaboration with Harold E. Edgerton, professor of electrical engineering at the Massachusetts Institute of Technology.</p>
+  <p>In 1967, Edgerton's side-scan sonar systems revealed a large, unusually shaped object, which McKee believed was the Mary Rose. Further excavations revealed stray pieces of timber and an iron gun. But the climax to the operation came when, on 5 May 1971, part of the ship's frame was uncovered. McKee and his team now knew for certain that they had found the wreck, but were as yet unaware that it also housed a treasure trove of beautifully preserved artefacts. Interest in the project grew, and in 1979, The Mary Rose Trust was formed, with Prince Charles as its President and Dr Margaret Rule its Archaeological Director. The decision whether or not to salvage the wreck was not an easy one, although an excavation in 1978 had shown that it might be possible to raise the hull. While the original aim was to raise the hull if at all feasible, the operation was not given the go-ahead until January 1982, when all the necessary information was available.</p>
+  <p>An important factor in trying to salvage the Mary Rose was that the remaining hull was an open shell. This led to an important decision being taken: namely to carry out the lifting operation in three very distinct stages. The hull was attached to a lifting frame via a network of bolts and lifting wires. The problem of the hull being sucked back downwards into the mud was overcome by using 12 hydraulic jacks. These raised it a few centimetres over a period of several days, as the lifting frame rose slowly up its four legs. It was only when the hull was hanging freely from the lifting frame, clear of the seabed and the suction effect of the surrounding mud, that the salvage operation progressed to the second stage. In this stage, the lifting frame was fixed to a hook attached to a crane, and the hull was lifted completely clear of the seabed and transferred underwater into the lifting cradle. This required precise positioning to locate the legs into the 'stabbing guides' of the lifting cradle. The lifting cradle was designed to fit the hull using archaeological survey drawings, and was fitted with air bags to provide additional cushioning for the hull's delicate timber framework. The third and final stage was to lift the entire structure into the air, by which time the hull was also supported from below. Finally, on 11 October 1982, millions of people around the world held their breath as the timber skeleton of the Mary Rose was lifted clear of the water, ready to be returned home to Portsmouth.</p>`,
+  vocab:[
+    {w:'salvage',ipa:'/ˈsælvɪdʒ/',pos:'v./n.',vi:'trục vớt',en:'The decision whether or not to salvage the wreck was not an easy one.',vitrans:'Quyết định có nên trục vớt xác tàu hay không không hề dễ dàng.'},
+    {w:'hull',ipa:'/hʌl/',pos:'n.',vi:'thân tàu',en:'The hull (the body of the ship) acted as a trap for the sand and mud carried by Solent currents.',vitrans:'Thân tàu hoạt động như một cái bẫy giữ lại cát và bùn do dòng chảy Solent mang tới.'},
+    {w:'erode',ipa:'/ɪˈroʊd/',pos:'v.',vi:'xói mòn',en:'The exposed port (left) side was eroded by marine organisms and mechanical degradation.',vitrans:'Mạn trái bị lộ ra đã bị xói mòn bởi sinh vật biển và sự phân hủy cơ học.'},
+    {w:'artefact',ipa:'/ˈɑːtɪfækt/',pos:'n.',vi:'hiện vật, cổ vật',en:'They were as yet unaware that it also housed a treasure trove of beautifully preserved artefacts.',vitrans:'Họ vẫn chưa biết rằng con tàu còn chứa một kho báu hiện vật được bảo quản tuyệt đẹp.'},
+    {w:'excavation',ipa:'/ˌekskəˈveɪʃn/',pos:'n.',vi:'cuộc khai quật',en:'An excavation in 1978 had shown that it might be possible to raise the hull.',vitrans:'Một cuộc khai quật năm 1978 đã cho thấy có thể trục vớt được thân tàu.'},
+    {w:'intact',ipa:'/ɪnˈtækt/',pos:'adj.',vi:'còn nguyên vẹn',en:'Because of the way the ship sank, nearly all of the starboard half survived intact.',vitrans:'Do cách con tàu bị chìm, gần như toàn bộ nửa mạn phải còn nguyên vẹn.'}
+  ],
+  skills:[
+    {q:'9', kw:'attached to hull by wires', found:'"The hull was attached to a lifting frame via a network of bolts and lifting wires."', map:'"attached... by wires" ≈ "attached... via... lifting wires" (paraphrase)'},
+    {q:'10', kw:'to prevent hull being sucked into mud', found:'"The problem of the hull being sucked back downwards into the mud was overcome by using 12 hydraulic jacks."', map:'"to prevent" ≈ "the problem... was overcome by" (paraphrase)'}
+  ],
+  questions:[
+    {id:1,type:'tfng',prompt:'There is some doubt about what caused the Mary Rose to sink.',answer:'TRUE',explain:'"Accounts of what happened to the ship vary" — các nhân chứng bất đồng về nguyên nhân.'},
+    {id:2,type:'tfng',prompt:'The Mary Rose was the only ship to sink in the battle of 19 July 1545.',answer:'NOT GIVEN',explain:'Bài đọc không hề đề cập việc có tàu nào khác bị chìm ngày hôm đó không.'},
+    {id:3,type:'tfng',prompt:'Most of one side of the Mary Rose lay undamaged under the sea.',answer:'TRUE',explain:'"Nearly all of the starboard half survived intact."'},
+    {id:4,type:'tfng',prompt:'Alexander McKee knew that the wreck would contain many valuable historical objects.',answer:'FALSE',explain:'"...but were as yet unaware that it also housed a treasure trove of beautifully preserved artefacts."'},
+    {id:5,type:'match',prompt:'A search for the Mary Rose was launched.',answer:'C',options:[['A','1836'],['B','1840'],['C','1965'],['D','1967'],['E','1971'],['F','1979'],['G','1982']],explain:'Năm 1965, Alexander McKee khởi động dự án "Solent Ships" với hy vọng tìm ra Mary Rose.'},
+    {id:6,type:'match',prompt:'One person\'s exploration of the Mary Rose site stopped.',answer:'B',options:[['A','1836'],['B','1840'],['C','1965'],['D','1967'],['E','1971'],['F','1979'],['G','1982']],explain:'"Deane continued diving on the site intermittently until 1840."'},
+    {id:7,type:'match',prompt:'It was agreed that the hull of the Mary Rose should be raised.',answer:'G',options:[['A','1836'],['B','1840'],['C','1965'],['D','1967'],['E','1971'],['F','1979'],['G','1982']],explain:'"...the operation was not given the go-ahead until January 1982."'},
+    {id:8,type:'match',prompt:'The site of the Mary Rose was found by chance.',answer:'A',options:[['A','1836'],['B','1840'],['C','1965'],['D','1967'],['E','1971'],['F','1979'],['G','1982']],explain:'"On 16 June 1836, some fishermen... found that their equipment was caught on an underwater obstruction."'},
+    {id:9,type:'diagram',prompt:'A ______ attached to hull by wires.',answer:'lifting frame',explain:'"The hull was attached to a lifting frame via a network of bolts and lifting wires."'},
+    {id:10,type:'diagram',prompt:'______ used to prevent the hull being sucked into the mud.',answer:'hydraulic jacks',explain:'"The problem of the hull being sucked back downwards into the mud was overcome by using 12 hydraulic jacks."'},
+    {id:11,type:'diagram',prompt:'The legs are placed into ______.',answer:'stabbing guides',explain:'"...to locate the legs into the \'stabbing guides\' of the lifting cradle."'},
+    {id:12,type:'diagram',prompt:'The hull is lowered into the ______.',answer:'lifting cradle',explain:'"...the hull was lifted completely clear of the seabed and transferred underwater into the lifting cradle."'},
+    {id:13,type:'diagram',prompt:'______ used as extra protection for the hull.',answer:'air bags',explain:'"...was fitted with air bags to provide additional cushioning for the hull\'s delicate timber framework."'}
+  ]
+},
+{
+  id:'p3', title:'Whale Strandings', time:20*60,
+  html: `<h4>Whale Strandings</h4>
+  <p><b>Why do whales leave the ocean and become stuck on beaches?</b></p>
+  <p>When the last stranded whale of a group eventually dies, the story does not end there. A team of researchers begins to investigate, collecting skin samples for instance, recording anything that could help them answer the crucial question: why? Theories abound, some more convincing than others. In recent years, navy sonar has been accused of causing certain whales to strand. It is known that noise pollution from offshore industry, shipping and sonar can impair underwater communication, but can it really drive whales onto our beaches?</p>
+  <p>In 1998, researchers at the Pelagos Cetacean Research Institute, a Greek nonprofit scientific group, linked whale strandings with low frequency sonar tests being carried out by the North Atlantic Treaty Organisation (NATO). They recorded the stranding of 12 Cuvier's beaked whales over 38.2 kilometres of coastline. NATO later admitted it had been testing new sonar technology in the same area at the time as the strandings had occurred. 'Mass' whale strandings involve four or more animals. Typically they all wash ashore together, but in mass atypical strandings (such as the one in Greece), the whales don't strand as a group; they are scattered over a larger area.</p>
+  <p>For humans, hearing a sudden loud noise might prove frightening, but it does not induce mass fatality. For whales, on the other hand, there is a theory on how sonar can kill. The noise can surprise the animal, causing it to swim too quickly to the surface. The result is decompression sickness, a hazard human divers know all too well. If a diver ascends too quickly from a high-pressure underwater environment to a lower-pressure one, gases dissolved in blood and tissue expand and form bubbles. The bubbles block the flow of blood to vital organs, and can ultimately lead to death.</p>
+  <p>Plausible as this seems, it is still a theory and based on our more comprehensive knowledge of land based animals. For this reason, some scientists are wary. Whale expert Karen Evans is one such scientist. Another is Rosemary Gales, a leading expert on whale strandings. She says sonar technology cannot always be blamed for mass strandings. "It's a case by case situation. Whales have been stranding for a very long time pre-sonar." And when 80% of all Australian whale strandings occur around Tasmania, Gales and her team must continue in the search for answers.</p>
+  <p>When animals beach next to each other at the same time, the most common cause has nothing to do with humans at all. "They're highly social creatures," says Gales. "When they mass strand it's complete panic and chaos. If one of the group strands and sounds the alarm, others will try to swim to its aid, and become stuck themselves."</p>
+  <p>Activities such as sonar testing can hint at when a stranding may occur, but if conservationists are to reduce the number of strandings, or improve rescue operations, they need information on where strandings are likely to occur as well. With this in mind, Ralph James, physicist at the University of Western Australia in Perth, thinks he may have discovered why whales turn up only on some beaches. In 1986 he went to Augusta, Western Australia, where more than 100 false killer whales had beached. "I found out from chatting to the locals that whales had been stranding there for decades. So I asked myself, what is it about this beach?" From this question that James pondered over 20 years ago, grew the university's Whale Stranding Analysis Project. Data has since revealed that all mass strandings around Australia occur on gently sloping sandy beaches, some with inclines of less than 0.5%. For whale species that depend on an echolocation system to navigate, this kind of beach spells disaster. Usually, as they swim, they make clicking noises, and the resulting sound waves are reflected in an echo and travel back to them. However, these just fade out on shallow beaches, so the whale doesn't hear an echo and it crashes onto the shore.</p>
+  <p>But that is not all. Physics, it appears, can help with the when as well as the where. The ocean is full of bubbles. Larger ones rise quickly to the surface and disappear, whilst smaller ones — called microbubbles — can last for days. It is these that absorb whale 'clicks'. "Rough weather generates more bubbles than usual," James adds. So, during and after a storm, echolocating whales are essentially swimming blind.</p>
+  <p>Last year was a bad one for strandings in Australia. Can we predict if this — or any other year — will be any better? Some scientists believe we can. They have found trends which could be used to forecast 'bad years' for strandings in the future. In 2005, a survey by Klaus Vanselow and Klaus Ricklefs of sperm whale strandings in the North Sea even found a correlation between these and the sunspot cycle, and suggested that changes in the Earth's magnetic field might be involved. But others are sceptical. "Their study was interesting ... but the analyses they used were flawed on a number of levels," says Evans. In the same year, she coauthored a study on Australian strandings that uncovered a completely different trend. "We analysed data from 1920 to 2002 ... and observed a clear periodicity in the number of whales stranded each year that coincides with a major climatic cycle." To put it more simply, she says, in the years when strong westerly and southerly winds bring cool water rich in nutrients closer to the Australia coast, there is an increase in the number of fish. The whales follow.</p>
+  <p>So what causes mass strandings? "It's probably many different components," says James. And he is probably right. But the point is we now know what many of those components are.</p>`,
+  vocab:[
+    {w:'stranding',ipa:'/ˈstrændɪŋ/',pos:'n.',vi:'sự mắc cạn',en:'\'Mass\' whale strandings involve four or more animals.',vitrans:'Các vụ "mắc cạn" hàng loạt của cá voi liên quan đến bốn cá thể trở lên.'},
+    {w:'echolocation',ipa:'/ˌekoʊloʊˈkeɪʃn/',pos:'n.',vi:'định vị bằng tiếng vang (dội âm)',en:'For whale species that depend on an echolocation system to navigate, this kind of beach spells disaster.',vitrans:'Đối với các loài cá voi phụ thuộc vào hệ thống định vị bằng tiếng vang để di chuyển, loại bãi biển này là một thảm họa.'},
+    {w:'decompression',ipa:'/ˌdiːkəmˈpreʃn/',pos:'n.',vi:'sự giảm áp',en:'The result is decompression sickness, a hazard human divers know all too well.',vitrans:'Kết quả là bệnh giảm áp, một mối nguy mà thợ lặn con người biết rất rõ.'},
+    {w:'sonar',ipa:'/ˈsoʊnɑːr/',pos:'n.',vi:'sonar (thiết bị định vị bằng sóng âm)',en:'In recent years, navy sonar has been accused of causing certain whales to strand.',vitrans:'Trong những năm gần đây, sonar của hải quân bị cáo buộc là nguyên nhân khiến một số cá voi mắc cạn.'},
+    {w:'periodicity',ipa:'/ˌpɪəriəˈdɪsəti/',pos:'n.',vi:'tính chu kỳ',en:'They observed a clear periodicity in the number of whales stranded each year that coincides with a major climatic cycle.',vitrans:'Họ quan sát thấy một tính chu kỳ rõ rệt trong số lượng cá voi mắc cạn mỗi năm, trùng khớp với một chu kỳ khí hậu lớn.'},
+    {w:'correlation',ipa:'/ˌkɒrəˈleɪʃn/',pos:'n.',vi:'mối tương quan',en:'A survey found a correlation between these and the sunspot cycle.',vitrans:'Một khảo sát tìm ra mối tương quan giữa các vụ mắc cạn này và chu kỳ vết đen mặt trời.'}
+  ],
+  skills:[
+    {q:'5', kw:'sound waves disappear on shallow beaches', found:'"...these just fade out on shallow beaches" (chỉ sound waves/echo)', map:'"disappear" ≈ "fade out" (đồng nghĩa)'},
+    {q:'7', kw:'created by storms, absorb clicks', found:'"microbubbles... absorb whale \'clicks\'... Rough weather generates more bubbles than usual"', map:'"created by storms" ≈ "rough weather generates" (paraphrase)'}
+  ],
+  questions:[
+    {id:1,type:'short',prompt:'What do researchers often take from the bodies of whales?',answer:'skin samples',explain:'"A team of researchers begins to investigate, collecting skin samples..."'},
+    {id:2,type:'short',prompt:'What do some industries and shipping create that is harmful to whales?',answer:'noise pollution',explain:'"It is known that noise pollution from offshore industry, shipping and sonar can impair underwater communication."'},
+    {id:3,type:'short',prompt:'In which geographical region do most whale strandings in Australia happen?',answer:'Tasmania',explain:'"80% of all Australian whale strandings occur around Tasmania."'},
+    {id:4,type:'short',prompt:'Which kind of whale was the subject of a study in the North Sea?',answer:'sperm whale',explain:'"...a survey by Klaus Vanselow and Klaus Ricklefs of sperm whale strandings in the North Sea..."'},
+    {id:5,type:'diagram',prompt:'Because ______ disappear on shallow beaches, whales don\'t realise the beach is near.',answer:'sound waves',explain:'Sound waves/echo "fade out on shallow beaches, so the whale doesn\'t hear an echo".'},
+    {id:6,type:'diagram',prompt:'Extra ______ in the water attract fish and therefore whales to the coast.',answer:'nutrients',explain:'"...bring cool water rich in nutrients closer to the Australia coast, there is an increase in the number of fish. The whales follow."'},
+    {id:7,type:'diagram',prompt:'Storms create ______ which absorb whales\' clicks.',answer:'microbubbles',explain:'"...smaller ones — called microbubbles — can last for days. It is these that absorb whale \'clicks\'."'},
+    {id:8,type:'diagram',prompt:'Sonar may result in a blocked supply of ______ in whale bodies.',answer:'blood',explain:'"The bubbles block the flow of blood to vital organs."'},
+    {id:9,type:'tfng',prompt:'The aim of the research by the Pelagos Institute in 1998 was to prove that navy sonar was responsible for whale strandings.',answer:'NOT GIVEN',explain:'Bài đọc nói họ liên kết các vụ mắc cạn với thử nghiệm sonar, nhưng không nói đây là mục tiêu cụ thể của nghiên cứu.'},
+    {id:10,type:'tfng',prompt:'The whales stranded in Greece were found at different points along the coast.',answer:'TRUE',explain:'"...in mass atypical strandings (such as the one in Greece), the whales don\'t strand as a group; they are scattered over a larger area."'},
+    {id:11,type:'tfng',prompt:'Rosemary Gales has questioned the research techniques used by the Greek scientists.',answer:'NOT GIVEN',explain:'Gales nghi ngờ liệu sonar có phải luôn là nguyên nhân, nhưng bài đọc không nói bà chỉ trích kỹ thuật nghiên cứu của nhóm Hy Lạp.'},
+    {id:12,type:'tfng',prompt:'According to Gales, whales are likely to try to help another whale in trouble.',answer:'TRUE',explain:'"If one of the group strands and sounds the alarm, others will try to swim to its aid."'},
+    {id:13,type:'tfng',prompt:'There is now agreement amongst scientists that changes in the Earth\'s magnetic fields contribute to whale strandings.',answer:'FALSE',explain:'Evans hoài nghi: "Their study was interesting ... but the analyses they used were flawed on a number of levels."'}
+  ]
+},
+{id:'p4', comingSoon:true},
+{id:'p5', comingSoon:true}
+];
+
+/* ===================== STATE =====================
+   Lưu ý: state chỉ tồn tại trong bộ nhớ (KHÔNG dùng localStorage) — mỗi lần mở mới file này
+   (load lại trang) sẽ luôn bắt đầu từ trạng thái sạch, đúng yêu cầu "mở mới lesson thì reset
+   hết". Việc chuyển qua lại giữa các mục trong sidebar không làm mất state vì toàn bộ vẫn nằm
+   trong cùng một trang, không có tải lại trang. */
+let STATE = {};
+function saveState(){ /* no-op: không còn persist ra localStorage theo yêu cầu reset-on-open */ }
+function pState(pid){
+  if(!STATE[pid]) STATE[pid] = {answers:{}, bookmarks:{}, submitted:false, startedAt:null};
+  return STATE[pid];
+}
+let visited = new Set(['p1-outcomes']);
+let currentPassageIdx = null;
+let timerIntervals = {};
+
+/* ===================== SIDEBAR NAV ===================== */
+function goToView(btn){
+  const view = btn.dataset.view;
+  if(btn.classList.contains('locked')) return; // Part 5 khoá tới khi Quick Practice xong 50/50
+
+  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+  // đánh dấu active trên cả nav trong sidebar lẫn bản sao trong overlay mobile
+  document.querySelectorAll(`.nav-item[data-view="${view}"]`).forEach(b=>b.classList.add('active'));
+  visited.add(view);
+  updateProgress();
+
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('bottomNavHolder')?.remove();
+  clearAllTimers();
+  document.getElementById('resetBtn').classList.add('hidden');
+
+  if(view==='p1-outcomes'){
+    document.getElementById('p1-outcomes').classList.add('active');
+  } else if(view.startsWith('t-')){
+    document.getElementById(view).classList.add('active');
+  } else if(view==='p4-quiz'){
+    renderQuizEngine();
+  } else if(view==='p5-reflection'){
+    renderReflection();
+  } else {
+    const idx = parseInt(view.split('-')[1],10);
+    currentPassageIdx = idx;
+    renderPractice(idx);
+    document.getElementById('resetBtn').classList.remove('hidden');
+  }
+  document.getElementById('sidebarOverlay').classList.remove('open');
+}
+document.querySelectorAll('.nav-item').forEach(btn=> btn.addEventListener('click', ()=>goToView(btn)));
+
+// Hamburger topbar (mobile): overlay chứa bản sao nội dung sidebar để điều hướng tương đương desktop
+function buildSidebarOverlay(){
+  const overlay = document.getElementById('sidebarOverlay');
+  overlay.innerHTML = document.querySelector('.sidebar').innerHTML;
+  overlay.querySelectorAll('.nav-item').forEach(btn=> btn.addEventListener('click', ()=>goToView(btn)));
+}
+buildSidebarOverlay();
+document.getElementById('hamburgerBtn').addEventListener('click', ()=>{
+  const overlay = document.getElementById('sidebarOverlay');
+  overlay.classList.toggle('open');
+  overlay.setAttribute('aria-hidden', overlay.classList.contains('open') ? 'false' : 'true');
+});
+
+function updateProgress(){
+  const TOTAL_ITEMS = 12; // 1 (Outcomes) + 4 (Theory) + 5 (Practice) + 1 (Quiz) + 1 (Reflection)
+  const pct = Math.round(visited.size/TOTAL_ITEMS*100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressLabel').textContent = visited.size+' / '+TOTAL_ITEMS+' mục đã xem';
+}
+function unlockReflection(){
+  document.querySelectorAll('[data-view="p5-reflection"]').forEach(b=>{
+    b.classList.remove('locked');
+    const icon = b.querySelector('.lock-icon');
+    if(icon) icon.textContent = '✓';
+  });
+}
+
+
+/* ===================== PRACTICE RENDER ===================== */
+function typeLabel(t){ return {tfng:'True/False/Not Given', match:'Matching', diagram:'Diagram Completion', short:'Short Answer'}[t]; }
+
+function renderPractice(idx){
+  clearAllTimers();
+  const p = PASSAGES[idx];
+  const root = document.getElementById('practiceRoot');
+  root.className='view active';
+  if(p.comingSoon){
+    root.innerHTML = `<span class="section-badge">Practice</span><div class="coming-soon"><div class="cs-icon">🚧</div><h3>Passage ${idx+1} — Sắp có</h3><p>Passage này sẽ được thêm khi có đủ nội dung.</p></div>`;
+    document.getElementById('bottomNavHolder')?.remove();
+    return;
+  }
+  const st = pState(p.id);
+  if(!st.startedAt) st.startedAt = Date.now();
+  saveState();
+
+  if(st.submitted){
+    renderResults(p, root);
+    document.getElementById('bottomNavHolder')?.remove();
+    return;
+  }
+
+  root.innerHTML = `
+    <span class="section-badge">Practice</span>
+    <div class="passage-toolbar">
+      <h2>${p.title}</h2>
+      <span class="timer" id="timer-${p.id}">⏱ 20:00</span>
+    </div>
+    <div class="practice-layout">
+      <div class="passage-panel" id="passagePanel-${p.id}">${p.html}</div>
+      <div class="question-panel" id="qPanel-${p.id}"></div>
+    </div>
+    <div class="card" style="margin-top:16px;">
+      <div class="accordion" id="vocabAcc-${p.id}">
+        <div class="accordion-header">Vocabulary <span class="chevron">▾</span></div>
+        <div class="accordion-body"><div class="vocab-grid">${p.vocab.map((v,i)=>`
+          <div class="vocab-card" data-vc="${p.id}-${i}">
+            <span class="vocab-tap">tap ↻</span>
+            <span class="vocab-word">${v.w}</span><span class="vocab-ipa">${v.ipa}</span><span class="vocab-pos">${v.pos}</span>
+            <div class="vocab-vi">${v.vi}</div>
+            <div class="vocab-example"><div class="en">"${v.en}"</div><div class="vi">${v.vitrans}</div></div>
+          </div>`).join('')}</div></div>
+      </div>
+      <div class="accordion" id="pmapAcc-${p.id}">
+        <div class="accordion-header">Paraphrase Mapping <span class="chevron">▾</span></div>
+        <div class="accordion-body">
+          <table class="pmap-table">
+            <thead><tr><th>Cụm từ trong câu hỏi</th><th></th><th>Cụm từ trong bài đọc</th><th>Giải thích logic</th></tr></thead>
+            <tbody>${p.skills.map(s=>`<tr>
+              <td class="pmap-q">Q${s.q}: ${s.kw}</td>
+              <td class="pmap-arrow">↔</td>
+              <td class="pmap-p">${s.found}</td>
+              <td class="pmap-logic">${s.map}</td>
+            </tr>`).join('')}</tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  `;
+
+  renderQuestions(p);
+  setupHighlight(p.id);
+  renderBottomNav(p);
+  startTimer(p);
+  setupAccordions();
+  setupVocabCards();
+}
+
+function setupAccordions(){
+  document.querySelectorAll('.accordion-header').forEach(h=>{
+    h.onclick = ()=> h.parentElement.classList.toggle('open');
+  });
+}
+function setupVocabCards(){
+  document.querySelectorAll('.vocab-card').forEach(c=>{
+    c.onclick = ()=> c.classList.toggle('open');
+  });
+}
+
+function renderQuestions(p){
+  const st = pState(p.id);
+  const qPanel = document.getElementById('qPanel-'+p.id);
+  qPanel.innerHTML = p.questions.map(q=>{
+    let body='';
+    if(q.type==='tfng'){
+      // Pattern Library 4.1: TFNG = Dropdown, đúng 3 lựa chọn, mặc định trống
+      body = `<select class="q-dropdown" onchange="selectAnswer('${p.id}',${q.id}, this.value)">
+        <option value="">— chọn —</option>
+        <option value="TRUE">TRUE</option>
+        <option value="FALSE">FALSE</option>
+        <option value="NOT GIVEN">NOT GIVEN</option>
+      </select>`;
+    } else if(q.type==='match'){
+      // Pattern Library 4.3/4.4/4.5/4.6: Matching = Dropdown, giữ đúng thứ tự lựa chọn gốc
+      body = `<select class="q-dropdown" onchange="selectAnswer('${p.id}',${q.id}, this.value)">
+        <option value="">— chọn —</option>
+        ${q.options.map(o=>`<option value="${o[0]}">${o[0]} — ${o[1]}</option>`).join('')}
+      </select>`;
+    } else if(q.type==='diagram'){
+      // Pattern Library 4.10: Diagram Labelling = Text Input
+      body = `<div class="q-body-text">${q.prompt.replace('______', `<input type="text" class="blank-input" id="blank-${p.id}-${q.id}" oninput="selectAnswer('${p.id}',${q.id}, this.value)"/>`)}</div>`;
+    } else if(q.type==='short'){
+      // Pattern Library 4.9: Short Answer = Text Input
+      body = `<p class="q-body-text">${q.prompt}</p><input type="text" class="blank-input blank-input-full" id="blank-${p.id}-${q.id}" oninput="selectAnswer('${p.id}',${q.id}, this.value)" placeholder="Type your answer..."/>`;
+    }
+    const promptText = (q.type==='tfng') ? `<p class="q-body-text">${q.prompt}</p>` : '';
+    return `<div class="question-card" id="qcard-${p.id}-${q.id}">
+      <div class="q-head">
+        <span class="question-number">${q.id}</span>
+        <span class="q-type-chip">${typeLabel(q.type)}</span>
+        <span class="bookmark-icon ${st.bookmarks[q.id]?'active':''}" onclick="toggleBookmark('${p.id}',${q.id})" role="button" aria-label="Đánh dấu câu ${q.id}">🔖</span>
+      </div>
+      ${promptText}
+      ${body}
+    </div>`;
+  }).join('');
+
+  p.questions.forEach(q=>{
+    const val = st.answers[q.id];
+    if(val===undefined) return;
+    if(q.type==='tfng' || q.type==='match'){
+      const sel = document.querySelector(`#qcard-${p.id}-${q.id} select`);
+      if(sel) sel.value = val;
+    } else {
+      const inp = document.getElementById(`blank-${p.id}-${q.id}`);
+      if(inp) inp.value = val;
+    }
+  });
+}
+
+function selectAnswer(pid, qid, val){
+  const st = pState(pid);
+  st.answers[qid] = val;
+  saveState();
+  renderBottomNav(PASSAGES.find(p=>p.id===pid));
+}
+function toggleBookmark(pid, qid){
+  const st = pState(pid);
+  st.bookmarks[qid] = !st.bookmarks[qid];
+  saveState();
+  document.querySelector(`#qcard-${pid}-${qid} .bookmark-icon`).classList.toggle('active', st.bookmarks[qid]);
+  renderBottomNav(PASSAGES.find(p=>p.id===pid));
+}
+
+/* ===================== BOTTOM NAV ===================== */
+function renderBottomNav(p){
+  let holder = document.getElementById('bottomNavHolder');
+  if(!holder){
+    holder = document.createElement('div');
+    holder.id = 'bottomNavHolder';
+    document.body.appendChild(holder);
+  }
+  const st = pState(p.id);
+  holder.innerHTML = `<div class="question-nav">
+    ${p.questions.map(q=>{
+      const answered = st.answers[q.id]!==undefined && st.answers[q.id]!=='';
+      return `<div class="nav-dot ${answered?'answered':''} ${st.bookmarks[q.id]?'bookmarked':''}" onclick="scrollToQ('${p.id}',${q.id})">${q.id}</div>`;
+    }).join('')}
+    <button class="btn btn-primary btn-sm submit-btn" onclick="openSubmitModal('${p.id}')">Submit</button>
+  </div>`;
+}
+function scrollToQ(pid, qid){
+  document.getElementById(`qcard-${pid}-${qid}`)?.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+/* ===================== TIMER ===================== */
+function startTimer(p){
+  const st = pState(p.id);
+  const elapsed = Math.floor((Date.now()-st.startedAt)/1000);
+  let remaining = p.time - elapsed;
+  updateTimerUI(p.id, remaining);
+  timerIntervals[p.id] = setInterval(()=>{
+    remaining -= 1;
+    updateTimerUI(p.id, remaining);
+    if(remaining<=0){
+      clearInterval(timerIntervals[p.id]);
+      submitPassage(p.id, true);
+    }
+  },1000);
+}
+function clearAllTimers(){ Object.values(timerIntervals).forEach(clearInterval); timerIntervals={}; }
+function updateTimerUI(pid, remaining){
+  const el = document.getElementById('timer-'+pid);
+  if(!el) return;
+  remaining = Math.max(0, remaining);
+  const m = String(Math.floor(remaining/60)).padStart(2,'0');
+  const s = String(remaining%60).padStart(2,'0');
+  el.textContent = `⏱ ${m}:${s}`;
+  el.classList.remove('warning','danger');
+  if(remaining<=60) el.classList.add('danger');
+  else if(remaining<=300) el.classList.add('warning');
+}
+
+/* ===================== HIGHLIGHT (state-based text offset, unlimited overlap) =====================
+   Kiến trúc: mỗi passage lưu (1) văn bản gốc bất biến của từng đoạn <p> và (2) danh sách các
+   vùng highlight dưới dạng offset [start,end]. KHÔNG bao giờ sửa DOM trực tiếp khi bôi/xoá —
+   mọi thay đổi chỉ thêm/bớt phần tử trong danh sách offset, sau đó render lại toàn bộ đoạn văn
+   từ (văn bản gốc + danh sách offset). Cách này tránh hoàn toàn "nested wrapper hell" vì DOM
+   luôn được dựng lại sạch từ dữ liệu, không bao giờ có <span> lồng nhau tích tụ qua nhiều lần
+   bôi. Overlap được xử lý tự nhiên vì offset chỉ là số — nhiều vùng đè lên nhau vẫn hợp lệ. */
+const HL_STATE = {}; // pid -> { blocks: [{el, text, wrap}], ranges: [{id, blockIdx, start, end}] }
+let hlCounter = 0;
+
+function escapeHtml(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// Đọc văn bản gốc 1 lần duy nhất từ các thẻ <p> trong passage panel. Nếu cả đoạn nằm trong
+// <b>/<strong> (vd. dòng subtitle in đậm), ghi nhớ để bọc lại đúng định dạng khi render.
+function initHighlightEngine(pid){
+  const panel = document.getElementById('passagePanel-'+pid);
+  const blocks = [];
+  panel.querySelectorAll('p').forEach(p=>{
+    let wrap = null, text = p.textContent;
+    if(p.children.length===1 && ['B','STRONG'].includes(p.children[0].tagName) && p.children[0].textContent===p.textContent){
+      wrap = p.children[0].tagName.toLowerCase();
+    }
+    blocks.push({el:p, text, wrap});
+  });
+  HL_STATE[pid] = { blocks, ranges: [] };
+}
+
+// Khi renderPractice() dựng lại HTML của passage panel (vd. quay lại tab sau khi rời đi), các
+// node <p> cũ đã bị thay thế — remap tham chiếu .el sang node mới theo đúng thứ tự, giữ nguyên
+// text/wrap/ranges đã lưu để highlight không bị mất khi chuyển qua lại giữa các mục.
+function remapHighlightBlocks(pid){
+  const panel = document.getElementById('passagePanel-'+pid);
+  const newPs = Array.from(panel.querySelectorAll('p'));
+  HL_STATE[pid].blocks.forEach((b,i)=>{ if(newPs[i]) b.el = newPs[i]; });
+}
+
+// Quy đổi 1 điểm trong Selection (node + offset trong node đó) thành "số ký tự tính từ đầu
+// đoạn văn" — cách chuẩn và ổn định để làm việc này là dựng 1 Range tạm từ đầu container tới
+// điểm đó rồi đo độ dài chuỗi text của Range đó.
+function getOffsetWithin(container, node, offset){
+  const r = document.createRange();
+  r.selectNodeContents(container);
+  r.setEnd(node, offset);
+  return r.toString().length;
+}
+function closestBlockEl(pid, node){
+  const blocks = HL_STATE[pid].blocks;
+  let el = node.nodeType===3 ? node.parentElement : node;
+  while(el && !blocks.some(b=>b.el===el)) el = el.parentElement;
+  return el;
+}
+function findBlockIndex(pid, el){
+  return HL_STATE[pid].blocks.findIndex(b=>b.el===el);
+}
+
+function addHighlightRange(pid, blockIdx, start, end){
+  if(start===end || blockIdx<0) return;
+  HL_STATE[pid].ranges.push({id:'h'+(++hlCounter), blockIdx, start, end});
+}
+function removeHighlightsByIds(pid, ids){
+  const state = HL_STATE[pid];
+  state.ranges = state.ranges.filter(r=>!ids.includes(r.id));
+}
+
+// Dựng lại HTML của 1 đoạn <p> từ (text gốc + các vùng offset đang active). Cắt văn bản tại
+// mọi điểm bắt đầu/kết thúc của mọi vùng (breakpoints) để mỗi đoạn nhỏ có 1 tập "id đang phủ"
+// cố định, rồi bọc đoạn nào có id phủ (>=1, tức có overlap cũng chỉ 1 màu) trong <span>.
+function renderHighlightsForBlock(pid, blockIdx){
+  const state = HL_STATE[pid];
+  const block = state.blocks[blockIdx];
+  const text = block.text;
+  const ranges = state.ranges.filter(r=>r.blockIdx===blockIdx);
+
+  const points = new Set([0, text.length]);
+  ranges.forEach(r=>{ points.add(r.start); points.add(r.end); });
+  const sorted = Array.from(points).sort((a,b)=>a-b);
+
+  let html = '';
+  for(let i=0;i<sorted.length-1;i++){
+    const segStart = sorted[i], segEnd = sorted[i+1];
+    if(segStart>=segEnd) continue;
+    const segText = escapeHtml(text.slice(segStart, segEnd));
+    const coveringIds = ranges.filter(r=>r.start<=segStart && r.end>=segEnd).map(r=>r.id);
+    html += coveringIds.length
+      ? `<span class="user-highlight" data-hids="${coveringIds.join(',')}">${segText}</span>`
+      : segText;
+  }
+  block.el.innerHTML = block.wrap ? `<${block.wrap}>${html}</${block.wrap}>` : html;
+}
+function renderAllHighlights(pid){
+  HL_STATE[pid].blocks.forEach((b,idx)=>renderHighlightsForBlock(pid, idx));
+}
+
+// Bôi 1 vùng chọn mới. Selection có thể vắt qua nhiều đoạn <p> — tách thành nhiều vùng offset
+// riêng (1 vùng mỗi đoạn liên quan) để không bao giờ phải cắt ngang qua ranh giới đoạn.
+function applySelectionAsHighlight(pid, range){
+  const state = HL_STATE[pid];
+  const startBlockIdx = findBlockIndex(pid, closestBlockEl(pid, range.startContainer));
+  const endBlockIdx = findBlockIndex(pid, closestBlockEl(pid, range.endContainer));
+  if(startBlockIdx===-1 || endBlockIdx===-1) return;
+
+  if(startBlockIdx===endBlockIdx){
+    const block = state.blocks[startBlockIdx];
+    const a = getOffsetWithin(block.el, range.startContainer, range.startOffset);
+    const b = getOffsetWithin(block.el, range.endContainer, range.endOffset);
+    addHighlightRange(pid, startBlockIdx, Math.min(a,b), Math.max(a,b));
+  } else {
+    const firstBlock = state.blocks[startBlockIdx];
+    const firstStart = getOffsetWithin(firstBlock.el, range.startContainer, range.startOffset);
+    addHighlightRange(pid, startBlockIdx, firstStart, firstBlock.text.length);
+    for(let i=startBlockIdx+1;i<endBlockIdx;i++){
+      addHighlightRange(pid, i, 0, state.blocks[i].text.length);
+    }
+    const lastBlock = state.blocks[endBlockIdx];
+    const lastEnd = getOffsetWithin(lastBlock.el, range.endContainer, range.endOffset);
+    addHighlightRange(pid, endBlockIdx, 0, lastEnd);
+  }
+  renderAllHighlights(pid);
+}
+
+function setupHighlight(pid){
+  if(!HL_STATE[pid]) initHighlightEngine(pid);
+  else remapHighlightBlocks(pid);
+  renderAllHighlights(pid); // vẽ lại highlight đã có (nếu quay lại passage này trong cùng phiên)
+
+  const panel = document.getElementById('passagePanel-'+pid);
+  const toolbar = document.getElementById('hlToolbar');
+
+  panel.addEventListener('mouseup', ()=>{
+    const sel = window.getSelection();
+    if(sel.isCollapsed || !sel.toString().trim()){ toolbar.classList.add('hidden'); return; }
+    const range = sel.getRangeAt(0);
+    if(!panel.contains(range.commonAncestorContainer)){ toolbar.classList.add('hidden'); return; }
+
+    const rect = range.getBoundingClientRect();
+    toolbar.style.top = (window.scrollY + rect.top - 40) + 'px';
+    toolbar.style.left = (window.scrollX + rect.left) + 'px';
+    toolbar.classList.remove('hidden');
+    toolbar.onmousedown = (e)=> e.preventDefault();
+
+    document.getElementById('hlAddBtn').onclick = ()=>{
+      try{ applySelectionAsHighlight(pid, range); }
+      catch(e){ console.error('Highlight lỗi:', e); }
+      toolbar.classList.add('hidden');
+      sel.removeAllRanges();
+    };
+  });
+
+  panel.addEventListener('mousedown', (e)=>{
+    if(!e.target.closest('#hlToolbar')) toolbar.classList.add('hidden');
+  });
+
+  // Click để gỡ — dùng event delegation nên vẫn hoạt động đúng sau mỗi lần render lại.
+  // Nếu điểm click nằm trong vùng nhiều highlight chồng nhau, gỡ TẤT CẢ các vùng phủ tại đó
+  // (vì màu đồng nhất nên không thể phân biệt để chọn xoá riêng lẻ 1 trong số đó).
+  panel.addEventListener('click', (e)=>{
+    const span = e.target.closest('.user-highlight');
+    if(!span) return;
+    const ids = (span.dataset.hids||'').split(',').filter(Boolean);
+    if(!ids.length) return;
+    removeHighlightsByIds(pid, ids);
+    renderAllHighlights(pid);
+  });
+}
+
+/* ===================== SUBMIT FLOW ===================== */
+function openSubmitModal(pid){
+  const p = PASSAGES.find(x=>x.id===pid);
+  const st = pState(pid);
+  const total = p.questions.length;
+  const answered = p.questions.filter(q=> st.answers[q.id]!==undefined && st.answers[q.id]!=='').length;
+  const modal = document.getElementById('submitModal');
+  const txt = document.getElementById('modalProgressText');
+  txt.textContent = `Đã trả lời ${answered}/${total} câu.`;
+  txt.classList.toggle('warn', answered<total);
+  modal.classList.add('show');
+  document.getElementById('modalReview').onclick = ()=> modal.classList.remove('show');
+  document.getElementById('modalSubmit').onclick = ()=>{ modal.classList.remove('show'); submitPassage(pid,false); };
+}
+function submitPassage(pid, timedOut){
+  clearInterval(timerIntervals[pid]);
+  const st = pState(pid);
+  st.submitted = true;
+  saveState();
+  if(currentPassageIdx===PASSAGES.findIndex(p=>p.id===pid)) renderPractice(currentPassageIdx);
+}
+
+/* ===================== RESULTS DASHBOARD ===================== */
+function renderResults(p, el){
+  const st = pState(p.id);
+  const byType = {};
+  let correctCount=0;
+  p.questions.forEach(q=>{
+    const userVal = (st.answers[q.id]||'').toString().trim();
+    const correctVal = q.answer.toString().trim();
+    let status;
+    if(!userVal) status='skipped';
+    else if(userVal.toLowerCase()===correctVal.toLowerCase()) status='correct';
+    else status='incorrect';
+    if(status==='correct') correctCount++;
+    q._status = status;
+    const tl = typeLabel(q.type);
+    if(!byType[tl]) byType[tl] = {total:0,correct:0,incorrect:0,skipped:0};
+    byType[tl].total++; byType[tl][status]++;
+  });
+
+  el.innerHTML = `
+    <span class="section-badge">Practice — Results</span>
+    <div class="card">
+      <div class="results-summary">
+        <div class="score-badge">${correctCount}/${p.questions.length}</div>
+        <div><h3 style="margin-bottom:2px;">Kết quả — ${p.title}</h3><p style="margin:0;color:var(--text-soft);font-size:13px;">Thống kê theo từng dạng câu hỏi.</p></div>
+      </div>
+      <table class="stats-table">
+        <thead><tr><th>Dạng câu hỏi</th><th>Tổng</th><th>Đúng</th><th>Sai</th><th>Bỏ qua</th></tr></thead>
+        <tbody>${Object.entries(byType).map(([type,s])=>`<tr><td>${type}</td><td>${s.total}</td><td class="stat-correct">${s.correct}</td><td class="stat-incorrect">${s.incorrect}</td><td class="stat-skipped">${s.skipped}</td></tr>`).join('')}</tbody>
+      </table>
+      <h3 style="margin-bottom:10px;">Answer Key</h3>
+      ${p.questions.map(q=>{
+        const userVal = st.answers[q.id] || '(chưa trả lời)';
+        return `<div class="answer-key-row ${q._status}">
+          <div>
+            <div class="akr-left">Q${q.id} — ${q._status.toUpperCase()}</div>
+            <div class="akr-mid">Đáp án của bạn: <b>${userVal}</b> &nbsp;|&nbsp; Đáp án đúng: <b>${q.answer}</b></div>
+            <span class="explain-toggle" onclick="toggleExplain(this)">Xem giải thích ▾</span>
+            <div class="explain-box">${q.explain}</div>
+          </div>
+        </div>`;
+      }).join('')}
+      <div style="margin-top:16px;"><button class="btn btn-outline btn-sm" onclick="retryPassage('${p.id}')">↺ Làm lại passage này</button></div>
+    </div>
+  `;
+}
+function toggleExplain(el){
+  const box = el.nextElementSibling;
+  box.classList.toggle('open');
+  el.textContent = box.classList.contains('open') ? 'Ẩn giải thích ▴' : 'Xem giải thích ▾';
+}
+function retryPassage(pid){
+  STATE[pid] = {answers:{}, bookmarks:{}, submitted:false, startedAt:Date.now()};
+  delete HL_STATE[pid]; // reset cũng xoá toàn bộ highlight của passage này
+  saveState();
+  renderPractice(currentPassageIdx);
+}
+
+/* ===================== RESET ===================== */
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  if(currentPassageIdx===null) return;
+  const p = PASSAGES[currentPassageIdx];
+  if(p.comingSoon) return;
+  if(confirm('Reset passage này? Toàn bộ câu trả lời, bookmark và highlight sẽ bị xoá.')){
+    retryPassage(p.id);
+  }
+});
+
+/* ===================== PART 4 — QUICK PRACTICE & QUIZ ENGINE =====================
+   AppState.quiz sống trong bộ nhớ (không localStorage). Kho câu hỏi được SINH tự động từ
+   chính Vocabulary Intelligence đã có ở Part 3 (18 từ) theo 3 góc hỏi khác nhau/từ = 54 biến
+   thể, cắt đúng 50 câu cố định — không tự bịa thêm từ vựng mới. */
+const AppState = { quiz: { questions:[], currentIndex:0, answers:{}, completed:false } };
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+function getAllVocab(){
+  const all = [];
+  PASSAGES.forEach(p=>{ if(!p.comingSoon) p.vocab.forEach(v=> all.push(v)); });
+  return all;
+}
+
+function buildQuizPool(){
+  const vocab = getAllVocab();
+  const words = vocab.map(v=>v.w);
+  const meanings = vocab.map(v=>v.vi);
+  const variants = [];
+  vocab.forEach(v=>{
+    // Góc 1: Nghĩa tiếng Việt -> chọn đúng từ tiếng Anh
+    variants.push({
+      id:'qz'+variants.length, type:'mcq',
+      instruction:'Choose the correct word.',
+      prompt:`Which word means "${v.vi}"?`,
+      answer:v.w, poolType:'word', choicesPool:words
+    });
+    // Góc 2: Điền từ vào đúng câu thật trong bài đọc
+    const blanked = v.en.replace(new RegExp(v.w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'i'), '_____');
+    variants.push({
+      id:'qz'+variants.length, type:'mcq',
+      instruction:'Choose the correct word.',
+      prompt:`Complete the sentence from the passage: "${blanked}"`,
+      answer:v.w, poolType:'word', choicesPool:words
+    });
+    // Góc 3: Từ tiếng Anh -> chọn đúng nghĩa tiếng Việt
+    variants.push({
+      id:'qz'+variants.length, type:'mcq',
+      instruction:'Choose the correct meaning.',
+      prompt:`What is the Vietnamese meaning of "${v.w}"?`,
+      answer:v.vi, poolType:'vi', choicesPool:meanings
+    });
+  });
+  // Cắt cố định còn đúng 50 câu (đủ 18*3=54 biến thể, bỏ 4 biến thể cuối để giữ số lượng ổn định)
+  const fixed50 = variants.slice(0,50);
+  // Sinh 4 đáp án nhiễu cho từng câu (loại trùng đáp án đúng), rồi shuffle thứ tự đáp án
+  return fixed50.map(q=>{
+    const pool = q.choicesPool.filter(c=>c!==q.answer);
+    const distractors = shuffle(pool).slice(0,3);
+    const choices = shuffle([q.answer, ...distractors]);
+    return {id:q.id, type:q.type, instruction:q.instruction, prompt:q.prompt, choices, answer:q.answer};
+  });
+}
+
+function renderQuizEngine(){
+  clearAllTimers();
+  document.getElementById('bottomNavHolder')?.remove();
+  document.getElementById('resetBtn').classList.remove('hidden');
+  if(AppState.quiz.questions.length===0){
+    AppState.quiz.questions = shuffle(buildQuizPool());
+  }
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion(){
+  const root = document.getElementById('p4-quiz');
+  root.className = 'view active';
+  const { questions, currentIndex, answers } = AppState.quiz;
+  const total = questions.length;
+
+  if(currentIndex>=total){
+    const correct = Object.values(answers).filter(a=>a.isCorrect).length;
+    root.innerHTML = `
+      <span class="section-badge">Part 4</span>
+      <div class="quiz-complete card">
+        <h2>Hoàn thành Quick Practice! 🎉</h2>
+        <p>Bạn đã trả lời đúng <b>${correct}/${total}</b> câu.</p>
+        <button class="btn btn-primary" onclick="goToViewById('p5-reflection')">Xem Reflection &amp; Review →</button>
+      </div>`;
+    AppState.quiz.completed = true;
+    unlockReflection();
+    return;
+  }
+
+  const q = questions[currentIndex];
+  const pct = Math.round((currentIndex)/total*100);
+  const answered = answers[q.id];
+
+  root.innerHTML = `
+    <span class="section-badge">Part 4 — Quick Practice &amp; Quiz Engine</span>
+    <div class="quiz-progress"><div class="quiz-progress-fill" style="width:${pct}%;"></div></div>
+    <div class="quiz-progress-label">Câu ${currentIndex+1} / ${total}</div>
+    <div class="quiz-question-card" role="radiogroup" aria-label="Câu hỏi trắc nghiệm ${currentIndex+1}">
+      <span class="quiz-score-chip">Điểm: ${Object.values(answers).filter(a=>a.isCorrect).length}/${Object.keys(answers).length}</span>
+      <h3>${q.prompt}</h3>
+      <div id="quizOptions">
+        ${q.choices.map(c=>`<div class="quiz-option" role="radio" aria-checked="false" tabindex="0" data-choice="${c}" onclick="answerQuiz('${c}')">${c}</div>`).join('')}
+      </div>
+      <div style="margin-top:16px;text-align:right;">
+        <button class="btn btn-primary btn-sm" id="quizNextBtn" ${answered?'':'disabled'} onclick="nextQuiz()">Next →</button>
+      </div>
+    </div>`;
+
+  if(answered){ showQuizAnswerState(q, answered.selected); }
+}
+
+function answerQuiz(selected){
+  const { questions, currentIndex, answers } = AppState.quiz;
+  const q = questions[currentIndex];
+  if(answers[q.id]) return; // đã chấm câu này rồi, không cho đổi (chấm ngay khi chọn — mục 5)
+  const isCorrect = selected===q.answer;
+  answers[q.id] = { selected, isCorrect };
+  showQuizAnswerState(q, selected);
+  document.getElementById('quizNextBtn').disabled = false;
+  document.querySelector('.quiz-score-chip').textContent = `Điểm: ${Object.values(answers).filter(a=>a.isCorrect).length}/${Object.keys(answers).length}`;
+}
+function showQuizAnswerState(q, selected){
+  document.querySelectorAll('#quizOptions .quiz-option').forEach(el=>{
+    const c = el.dataset.choice;
+    el.setAttribute('aria-checked', c===selected ? 'true':'false');
+    if(c===selected){ el.classList.add('selected', c===q.answer?'correct':'incorrect'); }
+    if(c===q.answer){ el.classList.add('reveal-correct'); }
+  });
+}
+function nextQuiz(){
+  AppState.quiz.currentIndex++;
+  renderQuizQuestion();
+}
+function goToViewById(view){
+  const btn = document.querySelector(`.nav-item[data-view="${view}"]`);
+  if(btn) goToView(btn);
+}
+
+/* ===================== PART 5 — REFLECTION & REVIEW =====================
+   Không chứa câu hỏi làm bài — chỉ đọc trực tiếp AppState.quiz.answers (đã có sẵn từ Part 4)
+   và tính lại số liệu mỗi lần render, không cần bước "đồng bộ" riêng. */
+function renderReflection(){
+  clearAllTimers();
+  document.getElementById('bottomNavHolder')?.remove();
+  document.getElementById('resetBtn').classList.add('hidden');
+  const root = document.getElementById('p5-reflection');
+  root.className = 'view active';
+
+  const { questions, answers } = AppState.quiz;
+  const total = questions.length;
+  const correct = questions.filter(q=>answers[q.id]?.isCorrect).length;
+  const incorrect = questions.filter(q=>answers[q.id] && !answers[q.id].isCorrect).length;
+  const skipped = total - correct - incorrect;
+  const pct = n => total? Math.round(n/total*100) : 0;
+
+  const wrongOrSkipped = questions.filter(q=> !answers[q.id] || !answers[q.id].isCorrect);
+
+  root.innerHTML = `
+    <span class="section-badge">Part 5</span>
+    <h2>Reflection &amp; Review</h2>
+    <div class="card">
+      <h3>Vocabulary Mastery State</h3>
+      <div class="mastery-bar">
+        <div class="seg-correct" style="width:${pct(correct)}%;"></div>
+        <div class="seg-incorrect" style="width:${pct(incorrect)}%;"></div>
+        <div class="seg-skipped" style="width:${pct(skipped)}%;"></div>
+      </div>
+      <div class="mastery-legend">
+        <span class="lg-correct">Đúng: ${correct}/${total}</span>
+        <span class="lg-incorrect">Sai: ${incorrect}/${total}</span>
+        <span class="lg-skipped">Bỏ qua: ${skipped}/${total}</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Smart Recommendations — Từ cần ôn lại</h3>
+      ${wrongOrSkipped.length===0 ? '<p style="color:var(--green-success);font-weight:700;">🎉 Bạn đã nắm vững toàn bộ từ vựng!</p>' :
+        wrongOrSkipped.map(q=>{
+          const isSkipped = !answers[q.id];
+          return `<div class="review-item ${isSkipped?'skipped':''}">
+            <div><div class="rw-word">${q.answer}</div><div class="rw-vi">${isSkipped?'Chưa làm':'Đã trả lời sai'} — ${q.prompt}</div></div>
+          </div>`;
+        }).join('')}
+    </div>
+  `;
+}
+
+/* ===================== INIT ===================== */
+updateProgress();
+</script>
+</body>
+</html>
