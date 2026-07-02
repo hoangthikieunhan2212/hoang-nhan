@@ -11,7 +11,7 @@
   --amber:#D97706;--amber-light:#FFFBEB;
   --red:#DC2626;--red-light:#FEF2F2;
   --green-success:#16A34A;--green-light:#F0FDF4;
-  --highlight-user:#FFE68A;--highlight-user-hover:#FFD84D;
+  --highlight-user:#fff59d;
   --timer-normal:var(--forest);--timer-warning:var(--amber);--timer-danger:var(--red);
   --text-dark:#1A2E0A;--text-mid:#3D5C20;--text-soft:#6B8C4A;
   --border:#C8DFA0;
@@ -99,7 +99,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .passage-panel{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px;font-size:16px;line-height:1.85;max-height:calc(100vh - 160px);overflow-y:auto;position:sticky;top:56px;}
 @media(max-width:1024px){.passage-panel{max-height:none;position:static;}}
 .user-highlight{background:var(--highlight-user);border-radius:2px;cursor:pointer;}
-.user-highlight:hover{background:var(--highlight-user-hover);}
+.user-highlight:hover{box-shadow:inset 0 -2px 0 rgba(0,0,0,0.25);} /* gợi ý có thể bấm — không đổi màu, đúng yêu cầu chỉ 1 màu duy nhất */
 .hl-toolbar{position:fixed;background:var(--forest);border-radius:var(--radius-sm);padding:6px 10px;display:flex;gap:8px;box-shadow:var(--shadow-md);z-index:250;}
 .hl-toolbar button{color:#fff;font-size:12px;font-weight:600;}
 
@@ -679,48 +679,170 @@ function updateTimerUI(pid, remaining){
   else if(remaining<=300) el.classList.add('warning');
 }
 
-/* ===================== HIGHLIGHT ===================== */
+/* ===================== HIGHLIGHT (state-based text offset, unlimited overlap) =====================
+   Kiến trúc: mỗi passage lưu (1) văn bản gốc bất biến của từng đoạn <p> và (2) danh sách các
+   vùng highlight dưới dạng offset [start,end]. KHÔNG bao giờ sửa DOM trực tiếp khi bôi/xoá —
+   mọi thay đổi chỉ thêm/bớt phần tử trong danh sách offset, sau đó render lại toàn bộ đoạn văn
+   từ (văn bản gốc + danh sách offset). Cách này tránh hoàn toàn "nested wrapper hell" vì DOM
+   luôn được dựng lại sạch từ dữ liệu, không bao giờ có <span> lồng nhau tích tụ qua nhiều lần
+   bôi. Overlap được xử lý tự nhiên vì offset chỉ là số — nhiều vùng đè lên nhau vẫn hợp lệ. */
+const HL_STATE = {}; // pid -> { blocks: [{el, text, wrap}], ranges: [{id, blockIdx, start, end}] }
+let hlCounter = 0;
+
+function escapeHtml(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// Đọc văn bản gốc 1 lần duy nhất từ các thẻ <p> trong passage panel. Nếu cả đoạn nằm trong
+// <b>/<strong> (vd. dòng subtitle in đậm), ghi nhớ để bọc lại đúng định dạng khi render.
+function initHighlightEngine(pid){
+  const panel = document.getElementById('passagePanel-'+pid);
+  const blocks = [];
+  panel.querySelectorAll('p').forEach(p=>{
+    let wrap = null, text = p.textContent;
+    if(p.children.length===1 && ['B','STRONG'].includes(p.children[0].tagName) && p.children[0].textContent===p.textContent){
+      wrap = p.children[0].tagName.toLowerCase();
+    }
+    blocks.push({el:p, text, wrap});
+  });
+  HL_STATE[pid] = { blocks, ranges: [] };
+}
+
+// Khi renderPractice() dựng lại HTML của passage panel (vd. quay lại tab sau khi rời đi), các
+// node <p> cũ đã bị thay thế — remap tham chiếu .el sang node mới theo đúng thứ tự, giữ nguyên
+// text/wrap/ranges đã lưu để highlight không bị mất khi chuyển qua lại giữa các mục.
+function remapHighlightBlocks(pid){
+  const panel = document.getElementById('passagePanel-'+pid);
+  const newPs = Array.from(panel.querySelectorAll('p'));
+  HL_STATE[pid].blocks.forEach((b,i)=>{ if(newPs[i]) b.el = newPs[i]; });
+}
+
+// Quy đổi 1 điểm trong Selection (node + offset trong node đó) thành "số ký tự tính từ đầu
+// đoạn văn" — cách chuẩn và ổn định để làm việc này là dựng 1 Range tạm từ đầu container tới
+// điểm đó rồi đo độ dài chuỗi text của Range đó.
+function getOffsetWithin(container, node, offset){
+  const r = document.createRange();
+  r.selectNodeContents(container);
+  r.setEnd(node, offset);
+  return r.toString().length;
+}
+function closestBlockEl(pid, node){
+  const blocks = HL_STATE[pid].blocks;
+  let el = node.nodeType===3 ? node.parentElement : node;
+  while(el && !blocks.some(b=>b.el===el)) el = el.parentElement;
+  return el;
+}
+function findBlockIndex(pid, el){
+  return HL_STATE[pid].blocks.findIndex(b=>b.el===el);
+}
+
+function addHighlightRange(pid, blockIdx, start, end){
+  if(start===end || blockIdx<0) return;
+  HL_STATE[pid].ranges.push({id:'h'+(++hlCounter), blockIdx, start, end});
+}
+function removeHighlightsByIds(pid, ids){
+  const state = HL_STATE[pid];
+  state.ranges = state.ranges.filter(r=>!ids.includes(r.id));
+}
+
+// Dựng lại HTML của 1 đoạn <p> từ (text gốc + các vùng offset đang active). Cắt văn bản tại
+// mọi điểm bắt đầu/kết thúc của mọi vùng (breakpoints) để mỗi đoạn nhỏ có 1 tập "id đang phủ"
+// cố định, rồi bọc đoạn nào có id phủ (>=1, tức có overlap cũng chỉ 1 màu) trong <span>.
+function renderHighlightsForBlock(pid, blockIdx){
+  const state = HL_STATE[pid];
+  const block = state.blocks[blockIdx];
+  const text = block.text;
+  const ranges = state.ranges.filter(r=>r.blockIdx===blockIdx);
+
+  const points = new Set([0, text.length]);
+  ranges.forEach(r=>{ points.add(r.start); points.add(r.end); });
+  const sorted = Array.from(points).sort((a,b)=>a-b);
+
+  let html = '';
+  for(let i=0;i<sorted.length-1;i++){
+    const segStart = sorted[i], segEnd = sorted[i+1];
+    if(segStart>=segEnd) continue;
+    const segText = escapeHtml(text.slice(segStart, segEnd));
+    const coveringIds = ranges.filter(r=>r.start<=segStart && r.end>=segEnd).map(r=>r.id);
+    html += coveringIds.length
+      ? `<span class="user-highlight" data-hids="${coveringIds.join(',')}">${segText}</span>`
+      : segText;
+  }
+  block.el.innerHTML = block.wrap ? `<${block.wrap}>${html}</${block.wrap}>` : html;
+}
+function renderAllHighlights(pid){
+  HL_STATE[pid].blocks.forEach((b,idx)=>renderHighlightsForBlock(pid, idx));
+}
+
+// Bôi 1 vùng chọn mới. Selection có thể vắt qua nhiều đoạn <p> — tách thành nhiều vùng offset
+// riêng (1 vùng mỗi đoạn liên quan) để không bao giờ phải cắt ngang qua ranh giới đoạn.
+function applySelectionAsHighlight(pid, range){
+  const state = HL_STATE[pid];
+  const startBlockIdx = findBlockIndex(pid, closestBlockEl(pid, range.startContainer));
+  const endBlockIdx = findBlockIndex(pid, closestBlockEl(pid, range.endContainer));
+  if(startBlockIdx===-1 || endBlockIdx===-1) return;
+
+  if(startBlockIdx===endBlockIdx){
+    const block = state.blocks[startBlockIdx];
+    const a = getOffsetWithin(block.el, range.startContainer, range.startOffset);
+    const b = getOffsetWithin(block.el, range.endContainer, range.endOffset);
+    addHighlightRange(pid, startBlockIdx, Math.min(a,b), Math.max(a,b));
+  } else {
+    const firstBlock = state.blocks[startBlockIdx];
+    const firstStart = getOffsetWithin(firstBlock.el, range.startContainer, range.startOffset);
+    addHighlightRange(pid, startBlockIdx, firstStart, firstBlock.text.length);
+    for(let i=startBlockIdx+1;i<endBlockIdx;i++){
+      addHighlightRange(pid, i, 0, state.blocks[i].text.length);
+    }
+    const lastBlock = state.blocks[endBlockIdx];
+    const lastEnd = getOffsetWithin(lastBlock.el, range.endContainer, range.endOffset);
+    addHighlightRange(pid, endBlockIdx, 0, lastEnd);
+  }
+  renderAllHighlights(pid);
+}
+
 function setupHighlight(pid){
+  if(!HL_STATE[pid]) initHighlightEngine(pid);
+  else remapHighlightBlocks(pid);
+  renderAllHighlights(pid); // vẽ lại highlight đã có (nếu quay lại passage này trong cùng phiên)
+
   const panel = document.getElementById('passagePanel-'+pid);
   const toolbar = document.getElementById('hlToolbar');
-  
+
   panel.addEventListener('mouseup', ()=>{
     const sel = window.getSelection();
     if(sel.isCollapsed || !sel.toString().trim()){ toolbar.classList.add('hidden'); return; }
-    
     const range = sel.getRangeAt(0);
     if(!panel.contains(range.commonAncestorContainer)){ toolbar.classList.add('hidden'); return; }
-    
+
     const rect = range.getBoundingClientRect();
     toolbar.style.top = (window.scrollY + rect.top - 40) + 'px';
     toolbar.style.left = (window.scrollX + rect.left) + 'px';
     toolbar.classList.remove('hidden');
     toolbar.onmousedown = (e)=> e.preventDefault();
-    
+
     document.getElementById('hlAddBtn').onclick = ()=>{
-      try {
-        const span = document.createElement('span');
-        span.className = 'user-highlight';
-        // Cho phép click vào vùng đã highlight để xóa highlight đó đi
-        span.onclick = function() { 
-          const t = document.createTextNode(this.textContent); 
-          this.replaceWith(t); 
-        };
-        
-        // Thay thế surroundContents bằng cơ chế trích xuất nội dung an toàn hơn
-        span.appendChild(range.extractContents());
-        range.insertNode(span);
-        
-      } catch(e) { 
-        console.error("Highlight lỗi:", e); // In lỗi ra console nếu có để dễ debug
-      }
+      try{ applySelectionAsHighlight(pid, range); }
+      catch(e){ console.error('Highlight lỗi:', e); }
       toolbar.classList.add('hidden');
       sel.removeAllRanges();
     };
   });
-  
-  panel.addEventListener('mousedown', (e)=>{ 
-    if(!e.target.closest('#hlToolbar')) toolbar.classList.add('hidden'); 
+
+  panel.addEventListener('mousedown', (e)=>{
+    if(!e.target.closest('#hlToolbar')) toolbar.classList.add('hidden');
+  });
+
+  // Click để gỡ — dùng event delegation nên vẫn hoạt động đúng sau mỗi lần render lại.
+  // Nếu điểm click nằm trong vùng nhiều highlight chồng nhau, gỡ TẤT CẢ các vùng phủ tại đó
+  // (vì màu đồng nhất nên không thể phân biệt để chọn xoá riêng lẻ 1 trong số đó).
+  panel.addEventListener('click', (e)=>{
+    const span = e.target.closest('.user-highlight');
+    if(!span) return;
+    const ids = (span.dataset.hids||'').split(',').filter(Boolean);
+    if(!ids.length) return;
+    removeHighlightsByIds(pid, ids);
+    renderAllHighlights(pid);
   });
 }
 
@@ -799,6 +921,7 @@ function toggleExplain(el){
 }
 function retryPassage(pid){
   STATE[pid] = {answers:{}, bookmarks:{}, submitted:false, startedAt:Date.now()};
+  delete HL_STATE[pid]; // reset cũng xoá toàn bộ highlight của passage này
   saveState();
   renderPractice(currentPassageIdx);
 }
