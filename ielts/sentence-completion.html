@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Reading: Sentence Completion</title>
+<style>
+:root {
+  --forest:#2D5016; --moss:#4A7C2F; --mint:#A8C97F; --sage:#D4E8B8; --sand:#F5F0E8; --white:#FFFFFF;
+  --blue:#2563EB; --blue-light:#EFF6FF;
+  --amber:#D97706; --amber-light:#FFFBEB;
+  --red:#DC2626; --red-light:#FEF2F2;
+  --green-success:#16A34A; --green-light:#F0FDF4;
+  --highlight-user:#fff59d;
+  --timer-normal:var(--forest); --timer-warning:var(--amber); --timer-danger:var(--red);
+  --text-dark:#1A2E0A; --text-mid:#3D5C20; --text-soft:#6B8C4A;
+  --border:#C8DFA0;
+  --radius:12px; --radius-sm:8px; --radius-lg:20px;
+  --shadow-sm:0 1px 3px rgba(45,80,22,.08);
+  --shadow-md:0 4px 16px rgba(45,80,22,.12);
+  --shadow-lg:0 8px 32px rgba(45,80,22,.16);
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px; --space-6:24px; --space-8:32px; --space-10:40px;
+  --sidebar-width:240px; --content-max-width:1100px; --passage-col:55%; --question-col:45%;
+  --ease:cubic-bezier(.4,0,.2,1); --duration-fast:.2s; --duration-base:.3s;
+  font-size:16px;
+}
+*{box-sizing:border-box;}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--sand);margin:0;}
+h1,h2,h3{font-family:Georgia,'Times New Roman',serif;margin:0 0 var(--space-3);color:var(--forest);}
+h1{font-size:26px;font-weight:800;}
+h2{font-size:20px;font-weight:800;}
+h3{font-size:16px;font-weight:700;}
+p{margin:0 0 var(--space-3);}
+button{font-family:inherit;cursor:pointer;}
+select, input{font-family:inherit;}
+a{color:var(--blue);}
+:focus-visible{outline:2px solid var(--mint);outline-offset:2px;}
+
+/* Layout */
+.app{display:flex;min-height:100vh;}
+.sidebar{width:var(--sidebar-width);background:var(--forest);color:#fff;position:fixed;top:0;left:0;bottom:0;overflow-y:auto;padding:var(--space-5) 0;z-index:50;}
+.brand{padding:0 var(--space-5) var(--space-5);border-bottom:1px solid rgba(255,255,255,.15);margin-bottom:var(--space-4);}
+.brand-title{font-size:18px;font-weight:800;font-family:Georgia,serif;}
+.brand-sub{font-size:12px;color:var(--mint);margin-top:4px;}
+.nav-group-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;font-weight:700;color:rgba(168,201,127,.6);padding:var(--space-4) var(--space-5) var(--space-2);}
+.nav-item{display:block;padding:var(--space-2) var(--space-5);font-size:13px;font-weight:500;color:rgba(255,255,255,.7);cursor:pointer;border-left:3px solid transparent;transition:all var(--duration-fast) var(--ease);}
+.nav-item:hover{color:#fff;background:rgba(255,255,255,.06);}
+.nav-item.active{color:#fff;font-weight:700;border-left-color:var(--mint);background:rgba(255,255,255,.08);}
+.nav-item.locked{opacity:.4;cursor:not-allowed;}
+.nav-item.sub{padding-left:var(--space-8);font-size:12px;}
+.nav-item .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:transparent;margin-right:6px;}
+.nav-item.done .dot{background:var(--mint);}
+.sidebar-progress{padding:var(--space-5);margin-top:var(--space-4);}
+.progress-track{height:6px;background:rgba(255,255,255,.15);border-radius:99px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--mint);border-radius:99px;transition:width var(--duration-base) var(--ease);}
+.progress-label{font-size:11px;color:rgba(255,255,255,.6);margin-top:6px;}
+
+.topbar{display:none;position:sticky;top:0;background:var(--forest);color:#fff;padding:var(--space-3) var(--space-4);align-items:center;justify-content:space-between;z-index:60;}
+.hamburger-btn{background:none;border:none;color:#fff;font-size:22px;padding:4px 8px;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:var(--forest);z-index:100;overflow-y:auto;}
+.sidebar-overlay.open{display:block;}
+.sidebar-overlay .close-btn{position:absolute;top:var(--space-4);right:var(--space-4);background:none;border:none;color:#fff;font-size:24px;}
+
+.main{margin-left:var(--sidebar-width);flex:1;padding:var(--space-8) var(--space-8) 100px;max-width:var(--content-max-width);}
+.view{display:none;animation:fadeIn .25s var(--ease);}
+.view.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* Hero */
+.hero-card{background:linear-gradient(135deg,var(--forest),var(--moss));color:#fff;border-radius:var(--radius-lg);padding:var(--space-8);box-shadow:var(--shadow-lg);margin-bottom:var(--space-6);}
+.badge{display:inline-block;background:rgba(255,255,255,.18);padding:4px 12px;border-radius:99px;font-size:12px;font-weight:700;letter-spacing:.5px;margin-bottom:var(--space-3);}
+.hero-card h1{color:#fff;font-size:30px;}
+.hero-card .subtitle{color:var(--sage);font-size:15px;}
+.outcome-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-5);margin-top:var(--space-6);}
+@media (max-width:768px){.outcome-grid{grid-template-columns:1fr;}}
+.outcome-box{background:rgba(255,255,255,.1);border-radius:var(--radius);padding:var(--space-5);}
+.outcome-box h3{color:#fff;font-size:14px;text-transform:uppercase;letter-spacing:.5px;}
+.outcome-box ul{margin:0;padding-left:18px;font-size:14px;color:var(--sage);}
+.outcome-box li{margin-bottom:6px;}
+.grammar-item{font-size:14px;margin-bottom:var(--space-2);}
+.grammar-item b{color:#fff;}
+.grammar-item .ex{color:var(--sage);font-style:italic;font-size:13px;}
+
+/* Card */
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:var(--space-5);margin-bottom:var(--space-5);transition:box-shadow var(--duration-fast) var(--ease);}
+.card:hover{box-shadow:var(--shadow-md);}
+
+/* Overview grid (Theory) */
+.overview-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-4);}
+@media (max-width:768px){.overview-grid{grid-template-columns:1fr;}}
+.overview-card{background:var(--sand);border:1px solid var(--border);border-radius:var(--radius);padding:var(--space-4);}
+.overview-card .icon{font-size:22px;}
+
+/* Strategy steps */
+.strategy-steps{position:relative;padding-left:var(--space-8);margin-top:var(--space-5);}
+.strategy-steps::before{content:'';position:absolute;left:15px;top:0;bottom:0;width:2px;background:var(--border);}
+.step{position:relative;margin-bottom:var(--space-6);}
+.step-num{position:absolute;left:-33px;top:0;width:32px;height:32px;background:var(--forest);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;}
+.step-title{font-weight:700;color:var(--forest);margin-bottom:4px;}
+.step-example{background:var(--sand);border-left:3px solid var(--mint);padding:var(--space-3);border-radius:var(--radius-sm);font-size:14px;margin-top:6px;}
+
+/* Note cards */
+.note-card{border-radius:var(--radius);padding:var(--space-4);margin-bottom:var(--space-4);border-left:4px solid;}
+.note-card.info{background:var(--blue-light);border-color:var(--blue);}
+.note-card.warning{background:var(--amber-light);border-color:var(--amber);}
+.note-card.mistake{background:var(--red-light);border-color:var(--red);}
+.note-card.success{background:var(--green-light);border-color:var(--green-success);}
+.note-card h3{margin-bottom:6px;font-size:14px;}
+
+/* Demo block */
+.demo-block{background:var(--forest);color:#fff;border-radius:var(--radius);padding:var(--space-5);line-height:2;font-size:15px;}
+.hl-keyword{background:rgba(168,201,127,.35);padding:1px 4px;border-radius:4px;}
+.hl-synonym{background:rgba(217,119,6,.35);padding:1px 4px;border-radius:4px;}
+.hl-paraphrase{background:rgba(37,99,235,.35);padding:1px 4px;border-radius:4px;}
+.hl-distractor{background:rgba(220,38,38,.35);padding:1px 4px;border-radius:4px;text-decoration:line-through;}
+.hl-scan-clue{border-bottom:2px dotted var(--mint);}
+.demo-legend{display:flex;flex-wrap:wrap;gap:var(--space-4);margin-top:var(--space-4);font-size:12px;}
+.demo-legend span{display:inline-flex;align-items:center;gap:6px;}
+.legend-swatch{width:12px;height:12px;border-radius:3px;display:inline-block;}
+
+/* Accordion */
+.accordion{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:var(--space-3);}
+.accordion-head{display:flex;justify-content:space-between;align-items:center;padding:var(--space-4);background:var(--sand);cursor:pointer;font-weight:700;color:var(--forest);}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height var(--duration-base) var(--ease);padding:0 var(--space-4);}
+.accordion.open .accordion-body{max-height:2000px;padding:var(--space-4);}
+.accordion-arrow{transition:transform var(--duration-fast) var(--ease);}
+.accordion.open .accordion-arrow{transform:rotate(180deg);}
+
+/* Vocabulary Card */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--space-4);}
+.vocab-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:var(--space-4);cursor:pointer;transition:box-shadow var(--duration-fast) var(--ease);}
+.vocab-card:hover{box-shadow:var(--shadow-md);}
+.vocab-word{font-weight:800;color:var(--forest);font-size:16px;}
+.vocab-pos{font-size:11px;color:var(--text-soft);text-transform:uppercase;margin-left:6px;}
+.vocab-ipa{font-size:13px;font-style:italic;color:var(--blue);margin:2px 0;}
+.vocab-meaning{font-weight:700;color:var(--text-mid);font-size:14px;margin-top:4px;}
+.vocab-example{display:none;margin-top:var(--space-3);padding-top:var(--space-3);border-top:1px dashed var(--border);font-size:13px;}
+.vocab-card.open .vocab-example{display:block;}
+.vocab-example .en{font-style:italic;}
+.vocab-example .vi{color:var(--text-soft);margin-top:4px;}
+
+/* Paraphrase mapping table */
+.pmap-table{width:100%;border-collapse:collapse;font-size:14px;}
+.pmap-table td{padding:var(--space-3);border-bottom:1px solid var(--border);vertical-align:top;}
+.pmap-q{font-weight:700;color:var(--text-mid);width:32%;}
+.pmap-arrow{width:6%;color:var(--mint);text-align:center;font-weight:800;}
+.pmap-p{font-weight:700;color:var(--forest);width:32%;}
+.pmap-logic{color:var(--text-soft);font-size:13px;}
+
+/* Practice layout */
+.passage-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-4);flex-wrap:wrap;gap:var(--space-3);}
+.timer{font-weight:800;font-size:18px;color:var(--timer-normal);background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:6px 14px;}
+.timer.warning{color:var(--timer-warning);border-color:var(--timer-warning);}
+.timer.danger{color:var(--timer-danger);border-color:var(--timer-danger);animation:pulse 1s infinite;}
+@keyframes pulse{50%{opacity:.5;}}
+.practice-grid{display:grid;grid-template-columns:var(--passage-col) var(--question-col);gap:var(--space-5);}
+@media (max-width:1024px){.practice-grid{grid-template-columns:1fr;}}
+.passage-panel{position:sticky;top:var(--space-5);max-height:80vh;overflow-y:auto;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:var(--space-5);line-height:1.8;}
+@media (max-width:1024px){.passage-panel{position:static;max-height:none;}}
+.passage-panel .block{margin-bottom:var(--space-4);}
+.para-label{font-weight:800;color:var(--forest);margin-right:4px;}
+.user-highlight{background:var(--highlight-user);cursor:pointer;border-radius:2px;}
+.question-panel{display:flex;flex-direction:column;gap:var(--space-4);}
+.question-card{scroll-margin-top:20px;}
+.question-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--space-3);}
+.question-number{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;background:var(--forest);color:#fff;border-radius:50%;font-weight:800;font-size:13px;margin-right:8px;}
+.q-type-chip{background:var(--sage);color:var(--text-mid);font-size:11px;font-weight:700;padding:2px 10px;border-radius:99px;}
+.bookmark-icon{background:none;border:none;font-size:18px;color:var(--text-soft);}
+.bookmark-icon.active{color:var(--amber);}
+.q-instruction{font-size:12px;color:var(--text-soft);margin-bottom:6px;font-style:italic;}
+.q-prompt{font-size:15px;margin-bottom:var(--space-3);}
+.q-dropdown{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;background:var(--white);color:var(--text-dark);}
+.q-dropdown.correct{border-color:var(--green-success);background:var(--green-light);}
+.q-dropdown.incorrect{border-color:var(--red);background:var(--red-light);}
+.blank-input{border:none;border-bottom:2px solid var(--forest);background:transparent;padding:4px 6px;font-size:15px;font-weight:700;width:160px;color:var(--text-dark);}
+.blank-input-full{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;}
+.blank-input.correct, .blank-input-full.correct{border-color:var(--green-success);color:var(--green-success);}
+.blank-input.incorrect, .blank-input-full.incorrect{border-color:var(--red);color:var(--red);}
+.mcq-options{display:flex;flex-direction:column;gap:var(--space-2);}
+.option{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:var(--space-3);cursor:pointer;font-size:14px;transition:all var(--duration-fast) var(--ease);}
+.option:hover{border-color:var(--moss);background:var(--sand);}
+.option.selected{border-color:var(--forest);background:var(--sage);font-weight:700;}
+.option.correct{border-color:var(--green-success);background:var(--green-light);}
+.option.incorrect{border-color:var(--red);background:var(--red-light);}
+.checkbox-count{font-size:12px;color:var(--text-soft);margin-bottom:6px;font-weight:700;}
+
+/* Feedback / explanation */
+.feedback-box{border-radius:var(--radius-sm);padding:var(--space-3);font-size:13px;font-weight:700;margin-top:var(--space-3);}
+.feedback-box.correct{background:var(--green-light);color:var(--green-success);}
+.feedback-box.incorrect{background:var(--red-light);color:var(--red);}
+.feedback-box.skipped{background:var(--sand);color:var(--text-soft);}
+.explain-toggle{background:none;border:none;color:var(--blue);font-size:13px;font-weight:700;margin-top:var(--space-2);padding:0;}
+.explain-box{display:none;background:var(--sand);border-radius:var(--radius-sm);padding:var(--space-3);margin-top:var(--space-2);font-size:13.5px;}
+.explain-box.open{display:block;}
+.explain-box .quote{font-style:italic;color:var(--forest);font-weight:700;display:block;margin-bottom:6px;}
+.explain-box .vi{color:var(--text-dark);}
+
+/* Bottom nav */
+.question-nav{position:fixed;bottom:0;left:var(--sidebar-width);right:0;background:var(--white);border-top:1px solid var(--border);padding:var(--space-3) var(--space-5);display:flex;align-items:center;gap:var(--space-3);z-index:40;box-shadow:0 -2px 12px rgba(0,0,0,.06);}
+@media (max-width:768px){.question-nav{left:0;flex-wrap:wrap;}}
+.nav-dots{display:flex;gap:6px;flex-wrap:wrap;flex:1;}
+.nav-dot{width:26px;height:26px;border-radius:50%;background:var(--white);border:1.5px solid var(--border);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-soft);}
+.nav-dot.answered{background:var(--sage);border-color:var(--moss);color:var(--forest);}
+.nav-dot.current{outline:2px solid var(--forest);outline-offset:1px;}
+.nav-dot.bookmarked::after{content:'★';position:absolute;font-size:8px;margin-left:14px;margin-top:-18px;color:var(--amber);}
+
+/* Buttons */
+.btn{border:none;border-radius:var(--radius-sm);padding:10px 20px;font-weight:700;font-size:14px;transition:all var(--duration-fast) var(--ease);}
+.btn-primary{background:var(--forest);color:#fff;}
+.btn-primary:hover{background:var(--moss);}
+.btn-secondary{background:var(--sage);color:var(--text-mid);}
+.btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--text-mid);}
+.btn-sm{padding:6px 14px;font-size:12px;}
+
+/* Modal */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(26,46,10,.5);z-index:200;align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal-card{background:#fff;border-radius:var(--radius-lg);padding:var(--space-6);max-width:400px;width:90%;box-shadow:var(--shadow-lg);}
+.modal-actions{display:flex;gap:var(--space-3);margin-top:var(--space-5);justify-content:flex-end;}
+
+/* Results dashboard */
+.stats-table{width:100%;border-collapse:collapse;margin-bottom:var(--space-5);font-size:14px;}
+.stats-table th,.stats-table td{text-align:left;padding:var(--space-2) var(--space-3);border-bottom:1px solid var(--border);}
+.stats-table th{color:var(--text-soft);font-size:12px;text-transform:uppercase;}
+.answer-key-row{display:flex;justify-content:space-between;align-items:center;padding:var(--space-3);border-radius:var(--radius-sm);margin-bottom:6px;}
+.answer-key-row.correct{background:var(--green-light);}
+.answer-key-row.incorrect{background:var(--red-light);}
+.answer-key-row.skipped{background:var(--sand);}
+
+/* Quiz engine */
+.quiz-progress{height:8px;background:var(--sand);border-radius:99px;overflow:hidden;margin-bottom:var(--space-5);}
+.quiz-progress-fill{height:100%;background:var(--forest);border-radius:99px;transition:width var(--duration-base) var(--ease);}
+.quiz-question-card{text-align:center;padding:var(--space-8) var(--space-5);}
+.quiz-question-card .q-prompt{font-size:18px;font-weight:700;margin-bottom:var(--space-6);}
+.quiz-option{border:1.5px solid var(--border);border-radius:var(--radius);padding:var(--space-4);cursor:pointer;font-size:15px;margin-bottom:var(--space-3);transition:all var(--duration-fast) var(--ease);}
+.quiz-option:hover{border-color:var(--moss);}
+.quiz-option.correct{border-color:var(--green-success);background:var(--green-light);}
+.quiz-option.incorrect{border-color:var(--red);background:var(--red-light);}
+.quiz-stats-row{display:flex;justify-content:space-around;text-align:center;margin-top:var(--space-5);font-size:13px;color:var(--text-soft);}
+.quiz-stats-row b{display:block;font-size:22px;color:var(--forest);}
+
+/* Reflection */
+.mastery-bar{height:22px;border-radius:99px;overflow:hidden;display:flex;margin-bottom:var(--space-3);}
+.review-item{border-left:4px solid var(--red);background:var(--white);border-radius:var(--radius-sm);padding:var(--space-3);margin-bottom:var(--space-2);display:flex;justify-content:space-between;}
+.review-item.skipped{border-left-color:var(--text-soft);}
+
+/* Reset FAB */
+.reset-fab{position:fixed;bottom:80px;right:30px;background:var(--white);border:1.5px solid var(--border);border-radius:99px;padding:10px 18px;font-weight:700;font-size:13px;color:var(--text-mid);box-shadow:var(--shadow-md);z-index:45;display:flex;align-items:center;gap:6px;}
+
+@media (max-width:1024px){.main{padding:var(--space-5);}}
+@media (max-width:768px){
+  .sidebar{display:none;}
+  .topbar{display:flex;}
+  .main{margin-left:0;padding:var(--space-4);}
+  .question-nav{left:0;}
+}
+@media (prefers-reduced-motion: reduce) {
+  *{ animation-duration:.01ms !important; transition-duration:.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <button class="hamburger-btn" onclick="toggleMobileSidebar(true)" aria-label="Menu">☰</button>
+  <span style="font-weight:800;">Sentence Completion</span>
+  <span></span>
+</div>
+
+<div class="sidebar-overlay" id="mobileSidebar">
+  <button class="close-btn" onclick="toggleMobileSidebar(false)" aria-label="Đóng menu">✕</button>
+  <div id="mobileNavHost"></div>
+</div>
+
+<div class="app">
+  <nav class="sidebar" id="desktopSidebar">
+    <div class="brand">
+      <div class="brand-title">Sentence Completion</div>
+      <div class="brand-sub">IELTS Academic Reading</div>
+    </div>
+    <div id="navHost"></div>
+  </nav>
+
+  <main class="main">
+
+    <!-- PART 1: LEARNING OUTCOMES -->
+    <section class="view" id="view-outcomes">
+      <div class="hero-card">
+        <span class="badge">IELTS ACADEMIC READING · SENTENCE COMPLETION</span>
+        <h1>Sentence Completion</h1>
+        <p class="subtitle">Nhặt đúng từ, giữ đúng dạng — 5 bài đọc thực hành, mỗi bài kèm từ vựng, bản đồ paraphrase và giải thích chi tiết.</p>
+        <div class="outcome-grid">
+          <div class="outcome-box">
+            <h3>Chủ đề học thuật (Academic Topics)</h3>
+            <ul id="topicsList"></ul>
+          </div>
+          <div class="outcome-box">
+            <h3>Trọng tâm ngữ pháp (Grammar Focus)</h3>
+            <div id="grammarList"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Bài học này sẽ giúp bạn:</h2>
+        <ul>
+          <li>Nắm vững quy trình 4 bước làm dạng Sentence Completion trong IELTS Reading.</li>
+          <li>Nhận diện bẫy paraphrasing và nguyên tắc "thứ tự tuyến tính" của câu hỏi.</li>
+          <li>Luyện tập với 5 bài đọc thật, đủ các dạng câu hỏi thường đi kèm (Matching, TFNG, Multiple Choice, Choose TWO Letters...).</li>
+          <li>Ôn 25 từ vựng học thuật qua Quick Practice 50 câu trắc nghiệm.</li>
+        </ul>
+        <button class="btn btn-primary" onclick="goToView('view-theory')">Bắt đầu với Lý thuyết →</button>
+      </div>
+    </section>
+
+    <!-- PART 2: THEORY -->
+    <section class="view" id="view-theory">
+      <h1>Lý thuyết: Sentence Completion</h1>
+
+      <div class="card">
+        <h2>1. Tổng quan</h2>
+        <p>Dạng bài <b>Sentence Completion (Điền từ vào chỗ trống)</b> yêu cầu bạn đọc một câu bị đục lỗ, sau đó quay lại bài đọc để tìm đúng từ khóa còn thiếu, nhặt nó ra và điền vào chỗ trống sao cho câu đó đúng ngữ pháp và đúng sự thật.</p>
+        <div class="overview-grid">
+          <div class="overview-card">
+            <div class="icon">🏢</div>
+            <h3>Hình ảnh trực quan</h3>
+            <p style="font-size:14px;margin:0;">Hãy tưởng tượng bạn đang làm <b>Thủ tục Hoàn thuế</b>. Trên tờ khai có câu: "Mức lương hiện tại của tôi là: [.........] VNĐ". Việc của bạn là mở <b>Hợp đồng lao động</b> (bài đọc) ra, tìm đúng dòng ghi con số, sao chép <b>chính xác từng chữ</b> bỏ vào tờ khai. Không tự chế số liệu, không đổi đơn vị. Nhặt được gì thì điền nấy!</p>
+          </div>
+          <div class="overview-card">
+            <div class="icon">🎯</div>
+            <h3>Mục tiêu</h3>
+            <p style="font-size:14px;margin:0;">Sao chép nguyên văn từ khóa từ bài đọc — đúng dạng từ, đúng số ít/số nhiều, đúng giới hạn số từ mà đề cho phép.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>2. Phương pháp làm bài</h2>
+        <div class="strategy-steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-title">Đọc kỹ "KPI" (Giới hạn từ)</div>
+            <p style="margin:0;">Xem kỹ đề bài yêu cầu <i>NO MORE THAN TWO WORDS</i> hay <i>THREE WORDS</i>. Điền dư một chữ là bị loại, giống như làm sai yêu cầu của sếp vậy.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-title">Phân tích "Bản vẽ" (Đọc câu hỏi & Dự đoán)</div>
+            <p style="margin:0;">Đọc câu bị đục lỗ trước. Đóng vai thợ sửa xe: nhìn vào chỗ trống và đoán mình cần "phụ tùng" gì — Danh từ, Động từ hay Tính từ?</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-title">Định vị "Đối tác" (Quét từ khóa)</div>
+            <p style="margin:0;">Tìm những từ khóa "cứng" không đổi được như số năm, tên riêng, thuật ngữ chuyên ngành. Dùng mắt quét nhanh để xác định vùng thông tin.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-title">Ctrl+C và Ctrl+V (Copy & Paste)</div>
+            <p style="margin:0;">Bứng nguyên xi từ chuẩn trong bài đọc về điền vào chỗ trống. Tuyệt đối không thay đổi dạng từ.</p>
+            <div class="step-example">Ví dụ: câu hỏi hỏi về "official ____" → dò bài thấy "the legal definition" → điền <b>definition</b>, giữ nguyên dạng số ít.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>3. Lưu ý</h2>
+        <div class="note-card warning">
+          <h3>⚠️ Cái bẫy Paraphrasing</h3>
+          <p style="margin:0;">Đề bài rất hiếm khi dùng lại từ ngữ giống hệt bài đọc — nó dùng <b>từ đồng nghĩa</b>. Ví dụ: câu hỏi ghi <i>legal definition</i>, nhưng bài đọc lại viết <i>Crime and Disorder Act</i>. Mẹo né bẫy: đừng tìm <i>chữ</i>, hãy tìm <i>ý</i>.</p>
+        </div>
+        <div class="note-card info">
+          <h3>💡 Lưu ý "Vàng" — Văn hóa xếp hàng</h3>
+          <p style="margin:0;">Các câu hỏi luôn xuất hiện <b>theo thứ tự tuyến tính</b> từ trên xuống dưới trong bài đọc. Đáp án câu 21 chắc chắn nằm dưới đáp án câu 20. Nếu lạc đường, hãy nhìn câu kế tiếp để định vị lại — đừng dò ngược lên trên.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>4. Vận dụng</h2>
+        <p style="font-size:14px;color:var(--text-soft);">Practice 1: Complete the sentences. Choose <b>NO MORE THAN THREE WORDS</b> from the passage for each answer. <i>(Reading test 1 – Passage 2 – Question 20–23)</i></p>
+        <div class="accordion open" id="demoPassageAcc">
+          <div class="accordion-head" onclick="toggleAccordion('demoPassageAcc')"><span>📖 Đoạn văn gốc (B & C)</span><span class="accordion-arrow">▾</span></div>
+          <div class="accordion-body">
+            <div class="passage-panel" style="position:static;max-height:none;">
+              <div class="block"><span class="para-label">B.</span><span class="block-text">A subjective definition of anti-social behaviour permits you to cast your net wide and include anything you find personally disagreeable; the legal definition is also widely inclusive. To quote the Crime and Disorder Act it is behaviour which 'causes or is likely to cause harassment alarm or distress to one or more people who are not in the same household as the perpetrator'. This includes, among many other things, foul and abusive language, threatening behaviour, shouting, disorderly conduct, vandalism, intimidation, behaviour as the result of drug or alcohol misuse, graffiti and noise which is excessive, particularly at night.</span></div>
+              <div class="block"><span class="para-label">C.</span><span class="block-text">The idea is that ASBOs are sanctions designed to deal with issues that affect everyone in the community and as such are civil sanctions, not criminal ones, and need the cooperation of the community to be effective. For example, a private individual cannot apply for an ASBO; he or she must make a complaint to the police or local authority, who will then work together to gather more information and build up evidence. This involves getting witnesses, among whom will no doubt be neighbours and acquaintances, to make statements to the authorities. When the authorities are satisfied that they have enough evidence, the local council applies to the magistrates' court to have an ASBO imposed.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion" id="demoAcc1">
+          <div class="accordion-head" onclick="toggleAccordion('demoAcc1')"><span>✅ Câu 20 & 21 — Hướng dẫn mẫu (đã giải)</span><span class="accordion-arrow">▾</span></div>
+          <div class="accordion-body">
+            <p><b>Câu 20:</b> <i>The official _____ says that anti-social behaviour is behaviour which can cause alarm or distress.</i></p>
+            <p style="margin-top:-8px;">Phân tích: sau "official" (tính từ) cần một <b>Danh từ số ít</b>. Dò bài thấy "the legal definition is also widely inclusive" → paraphrase cho "official". <b>Đáp án: definition</b></p>
+            <p><b>Câu 21:</b> <i>Along with swearing and destruction of public or private property, making _____ noise is considered anti-social behaviour.</i></p>
+            <p style="margin-top:-8px;">Phân tích: trước "noise" cần một <b>Tính từ</b>. Bài viết "noise which is excessive". <b>Đáp án: excessive</b></p>
+          </div>
+        </div>
+
+        <h3 style="margin-top:var(--space-5);">Nhiệm vụ: Tự luyện câu 22–26 (15 phút)</h3>
+        <p style="font-size:13px;color:var(--text-soft);margin-top:-6px;">Điền đáp án vào các ô bên dưới, sau đó bấm "Kiểm tra & Xem Answer Key" để chấm và xem giải thích.</p>
+        <div id="demoQuestionsHost"></div>
+        <button class="btn btn-primary" id="demoCheckBtn" onclick="checkDemoAnswers()">Kiểm tra & Xem Answer Key</button>
+      </div>
+
+      <button class="btn btn-primary" onclick="goToView('view-passage-1')">Vào Practice — Bài 1 →</button>
+    </section>
+
+    <!-- PART 3: PRACTICE -->
+    <div id="practiceHost"></div>
+
+    <!-- PART 4: QUICK PRACTICE -->
+    <section class="view" id="view-quiz">
+      <h1>Quick Practice — Vocabulary Quiz</h1>
+      <p style="color:var(--text-soft);">50 câu trắc nghiệm ôn 25 từ vựng học thuật, mỗi từ được kiểm tra đúng 2 lần. Trả lời đủ 50/50 câu để mở khóa Reflection.</p>
+      <div class="quiz-progress"><div class="quiz-progress-fill" id="quizProgressFill" style="width:0%"></div></div>
+      <div class="card quiz-question-card" id="quizCardHost"></div>
+      <div class="quiz-stats-row">
+        <div><b id="quizAnsweredCount">0</b>Đã trả lời</div>
+        <div><b id="quizCorrectCount">0</b>Đúng</div>
+        <div><b id="quizWrongCount">0</b>Sai</div>
+      </div>
+    </section>
+
+    <!-- PART 5: REFLECTION -->
+    <section class="view" id="view-reflection">
+      <h1>Reflection Dashboard</h1>
+      <div class="card">
+        <h2>Mức độ thành thạo</h2>
+        <div class="mastery-bar" id="masteryBar"></div>
+        <div style="display:flex;gap:var(--space-5);font-size:13px;color:var(--text-soft);">
+          <span>🟢 Đúng: <b id="mCorrect">0</b></span>
+          <span>🔴 Sai: <b id="mWrong">0</b></span>
+          <span>⚪ Bỏ qua: <b id="mSkip">0</b></span>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Từ vựng cần ôn lại</h2>
+        <div id="reviewList"></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Submit Confirmation Modal -->
+<div class="modal-overlay" id="submitModal">
+  <div class="modal-card">
+    <h3 style="margin-top:0;">Bạn có chắc chắn muốn nộp bài?</h3>
+    <p id="submitModalText" style="font-size:14px;color:var(--text-soft);"></p>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeSubmitModal()">Xem lại</button>
+      <button class="btn btn-primary" onclick="confirmSubmit()">Nộp bài</button>
+    </div>
+  </div>
+</div>
+
+<button class="reset-fab" id="resetFab" onclick="handleReset()">↺ Reset</button>
+
+<script>
+/* ===================== DATA ===================== */
+const VOCAB = [
+  {id:'v1',word:'abundant',ipa:'/əˈbʌndənt/',pos:'adj',meaningVi:'có nhiều, dồi dào',exampleEn:"These trees have lower economic value... and they are abundant in Pennsylvania.",exampleVi:'Những cây này có giá trị kinh tế thấp hơn... và chúng có rất nhiều ở Pennsylvania.'},
+  {id:'v2',word:'invasive',ipa:'/ɪnˈveɪsɪv/',pos:'adj',meaningVi:'xâm lấn, xâm hại',exampleEn:'Removing invasive plants might be another primary goal of a TSI Cut.',exampleVi:'Loại bỏ thực vật xâm lấn có thể là một mục tiêu chính khác của TSI Cut.'},
+  {id:'v3',word:'vulnerable',ipa:'/ˈvʌlnərəbl/',pos:'adj',meaningVi:'dễ bị tổn thương',exampleEn:'...decrease the health of a stand leaving it more vulnerable to poor weather and disease.',exampleVi:'...làm giảm sức khỏe của khu rừng khiến nó dễ bị tổn thương hơn trước thời tiết xấu và bệnh tật.'},
+  {id:'v4',word:'regenerate',ipa:'/rɪˈdʒenəreɪt/',pos:'v',meaningVi:'tái sinh',exampleEn:'...they have a better chance to regenerate in a less crowded environment.',exampleVi:'...chúng có cơ hội tái sinh tốt hơn trong môi trường ít chật chội hơn.'},
+  {id:'v5',word:'resilience',ipa:'/rɪˈzɪliəns/',pos:'n',meaningVi:'khả năng phục hồi',exampleEn:'They help control problem insects and increase the health and resilience of the forest.',exampleVi:'Chúng giúp kiểm soát côn trùng gây hại và tăng sức khỏe cũng như khả năng phục hồi của rừng.'},
+  {id:'v6',word:'withdrawal',ipa:'/wɪðˈdrɔːəl/',pos:'n',meaningVi:'sự rút lui',exampleEn:'...following her withdrawal from the 2021 Wimbledon tournament.',exampleVi:'...sau khi cô rút lui khỏi giải Wimbledon 2021.'},
+  {id:'v7',word:'inhibit',ipa:'/ɪnˈhɪbɪt/',pos:'v',meaningVi:'ức chế, kìm hãm',exampleEn:'...cortisol inhibits the positive effect of adrenaline...',exampleVi:'...cortisol ức chế tác động tích cực của adrenaline...'},
+  {id:'v8',word:'palpitation',ipa:'/ˌpælpɪˈteɪʃn/',pos:'n',meaningVi:'đánh trống ngực',exampleEn:'Anxiety can increase heart rate... cause heart palpitations, muscle tremors and shortness of breath.',exampleVi:'Lo âu có thể làm tăng nhịp tim... gây đánh trống ngực, run cơ và khó thở.'},
+  {id:'v9',word:'visualisation',ipa:'/ˌvɪʒuəlaɪˈzeɪʃn/',pos:'n',meaningVi:'sự hình dung, tưởng tượng',exampleEn:'Developing psychological skills, such as visualisation, can also help decrease physiological responses to threat.',exampleVi:'Phát triển các kỹ năng tâm lý như hình dung cũng có thể giúp giảm phản ứng sinh lý trước mối đe dọa.'},
+  {id:'v10',word:'concentration',ipa:'/ˌkɒnsənˈtreɪʃn/',pos:'n',meaningVi:'sự tập trung',exampleEn:'Anxiety can also reduce concentration and self-control and cause overthinking.',exampleVi:'Lo âu cũng có thể làm giảm sự tập trung, khả năng tự chủ và gây suy nghĩ quá mức.'},
+  {id:'v11',word:'mitigate',ipa:'/ˈmɪtɪɡeɪt/',pos:'v',meaningVi:'giảm nhẹ',exampleEn:'Wetlands are one of the key tools in mitigating climate change across the planet.',exampleVi:'Đầm lầy là một trong những công cụ chủ chốt để giảm nhẹ biến đổi khí hậu trên toàn cầu.'},
+  {id:'v12',word:'subsidence',ipa:'/səbˈsaɪdns/',pos:'n',meaningVi:'sự sụt lún',exampleEn:'...the remainder of the solid matter in the peat starts to move downwards, in a process known as subsidence.',exampleVi:'...phần chất rắn còn lại trong than bùn bắt đầu di chuyển xuống dưới, trong một quá trình gọi là sụt lún.'},
+  {id:'v13',word:'livelihood',ipa:'/ˈlaɪvlihʊd/',pos:'n',meaningVi:'sinh kế',exampleEn:'Wetlands directly support the livelihoods and well-being of millions of people.',exampleVi:'Đầm lầy trực tiếp hỗ trợ sinh kế và phúc lợi của hàng triệu người.'},
+  {id:'v14',word:'degradation',ipa:'/ˌdeɡrəˈdeɪʃn/',pos:'n',meaningVi:'sự suy thoái',exampleEn:"It's true that wetland degradation still continues at a rapid pace...",exampleVi:'Đúng là sự suy thoái đầm lầy vẫn đang tiếp diễn với tốc độ nhanh...'},
+  {id:'v15',word:'catastrophe',ipa:'/kəˈtæstrəfi/',pos:'n',meaningVi:'thảm họa',exampleEn:"It's a huge catastrophe that's in preparation.",exampleVi:'Đó là một thảm họa lớn đang được hình thành.'},
+  {id:'v16',word:'spectacular',ipa:'/spekˈtækjʊlər/',pos:'adj',meaningVi:'ngoạn mục',exampleEn:"Samples of the planet's most spectacular corals... have been added to the giant tank.",exampleVi:'Các mẫu san hô ngoạn mục nhất hành tinh... đã được thêm vào bể lớn.'},
+  {id:'v17',word:'symbiotic',ipa:'/ˌsɪmbaɪˈɒtɪk/',pos:'adj',meaningVi:'cộng sinh',exampleEn:'This comfortable symbiotic relationship has led to the growth of coral reefs...',exampleVi:'Mối quan hệ cộng sinh thoải mái này đã dẫn đến sự phát triển của các rạn san hô...'},
+  {id:'v18',word:'acidification',ipa:'/əˌsɪdɪfɪˈkeɪʃn/',pos:'n',meaningVi:'sự axit hóa',exampleEn:'Other menaces include ocean acidification, sea level increase, pollution by humans...',exampleVi:'Các mối đe dọa khác bao gồm axit hóa đại dương, mực nước biển dâng, ô nhiễm do con người...'},
+  {id:'v19',word:'spawn',ipa:'/spɔːn/',pos:'v',meaningVi:'sinh sản, đẻ trứng',exampleEn:'Coral spawn just once a year.',exampleVi:'San hô chỉ sinh sản một lần mỗi năm.'},
+  {id:'v20',word:'blighted',ipa:'/ˈblaɪtɪd/',pos:'adj',meaningVi:'bị tàn phá',exampleEn:'That would be a big help in restoring blighted reefs.',exampleVi:'Điều đó sẽ giúp ích rất nhiều trong việc phục hồi các rạn san hô bị tàn phá.'},
+  {id:'v21',word:'resplendent',ipa:'/rɪˈsplendənt/',pos:'adj',meaningVi:'rực rỡ',exampleEn:'Strawberries that are small, intensely flavoured and resplendently red sprout abundantly...',exampleVi:'Những quả dâu nhỏ, đậm vị và đỏ rực rỡ mọc lên tươi tốt...'},
+  {id:'v22',word:'showcase',ipa:'/ˈʃəʊkeɪs/',pos:'n',meaningVi:'nơi trưng bày, minh chứng',exampleEn:"...this is a real-life showcase for the work of Hardy's flourishing urban agriculture consultancy.",exampleVi:'...đây là một minh chứng thực tế cho công việc của công ty tư vấn nông nghiệp đô thị đang phát triển của Hardy.'},
+  {id:'v23',word:'wholesaler',ipa:'/ˈhəʊlseɪlər/',pos:'n',meaningVi:'người bán buôn',exampleEn:'...80% of the price I pay goes to wholesalers and transport companies, not the producers.',exampleVi:'...80% giá tôi trả rơi vào tay người bán buôn và công ty vận chuyển, không phải người sản xuất.'},
+  {id:'v24',word:'virtuous',ipa:'/ˈvɜːtʃuəs/',pos:'adj',meaningVi:'tốt đẹp, có lợi',exampleEn:"Aeroponic farming, he says, is 'virtuous'.",exampleVi:'Ông nói canh tác khí canh là "có lợi".'},
+  {id:'v25',word:'flourishing',ipa:'/ˈflʌrɪʃɪŋ/',pos:'adj',meaningVi:'phát triển mạnh',exampleEn:"...this is a real-life showcase for the work of Hardy's flourishing urban agriculture consultancy.",exampleVi:'...đây là minh chứng cho công việc của công ty tư vấn nông nghiệp đô thị đang phát triển mạnh của Hardy.'}
+];
+
+function q(id,type,instruction,prompt,choices,answer,explanation){
+  return {id,type,instruction,prompt,choices:choices||[],answer,hint:'',explanation};
+}
+function EX(quote,vi){return {quote,vi};}
+
+const PASSAGES = [
+{
+  id:'p1', title:'Forest management in Pennsylvania, USA', timeLimitSeconds:1200,
+  blocks:[
+    {label:'A', text:"A tree's 'value' depends on several factors including its species, size, form, condition, quality, function, and accessibility, and depends on the management goals for a given forest. The same tree can be valued very differently by each person who looks at it. A large, straight black cherry tree has high value as timber to be cut into logs or made into furniture, but for a landowner more interested in wildlife habitat, the real value of that stem (or trunk) may be the food it provides to animals. Likewise, if the tree suffers from black knot disease, its value for timber decreases, but to a woodworker interested in making bowls, it brings an opportunity for a unique and beautiful piece of art."},
+    {label:'B', text:"In the past, Pennsylvania landowners were solely interested in the value of their trees as high-quality timber. The norm was to remove the stems of highest quality and leave behind poorly formed trees that were not as well suited to the site where they grew. This practice, called 'high-grading', has left a legacy of 'low-use wood' in the forests. Some people even call these 'junk trees', and they are abundant in Pennsylvania. These trees have lower economic value for traditional timber markets, compete for growth with higher-value trees, shade out desirable regeneration and decrease the health of a stand leaving it more vulnerable to poor weather and disease. Management that specifically targets low-use wood can help landowners manage these forest health issues, and wood energy markets help promote this."},
+    {label:'C', text:"Wood energy markets can accept less expensive wood material of lower quality than would be suitable for traditional timber markets. Most wood used for energy in Pennsylvania is used to produce heat or electricity through combustion. Many schools and hospitals use wood boiler systems to heat and power their facilities, many homes are primarily heated with wood, and some coal plants incorporate wood into their coal streams to produce electricity. Wood can also be gasified for electrical generation and can even be made into liquid fuels like ethanol and gasoline for lorries and cars. All these products are made primarily from low-use wood. Several tree- and plant-cutting approaches, which could greatly improve the long-term quality of a forest, focus strongly or solely on the use of wood for those markets."},
+    {label:'D', text:"One such approach is called a Timber Stand Improvement (TSI) Cut. In a TSI Cut, really poor-quality tree and plant material is cut down to allow more space, light, and other resources to the highest-valued stems that remain. Removing invasive plants might be another primary goal of a TSI Cut. The stems that are left behind might then grow in size and develop more foliage and larger crowns or tops that produce more coverage for wildlife; they have a better chance to regenerate in a less crowded environment. TSI Cuts can be tailored to one farmer's specific management goals for his or her land."},
+    {label:'E', text:"Another approach that might yield a high amount of low-use wood is a Salvage Cut. With the many pests and pathogens visiting forests including hemlock wooly adelgid, Asian longhorned beetle, emerald ash borer, and gypsy moth, to name just a few, it is important to remember that those working in the forests can help ease these issues through cutting procedures. These types of cut reduce the number of sick trees and seek to manage the future spread of a pest problem. They leave vigorous trees that have stayed healthy enough to survive the outbreak."},
+    {label:'F', text:"A Shelterwood Cut, which only takes place in a mature forest that has already been thinned several times, involves removing all the mature trees when other seedlings have become established. This then allows the forester to decide which tree species are regenerated. It leaves a young forest where all trees are at a similar point in their growth. It can also be used to develop a two-tier forest so that there are two harvests and the money that comes in is spread out over a decade or more."},
+    {label:'G', text:"Thinning and dense and dead wood removal for fire prevention also center on the production of low-use wood. However, it is important to remember that some retention of what many would classify as low-use wood is very important. The tops of trees that have been cut down should be left on the site so that their nutrients cycle back into the soil. In addition, trees with many cavities are extremely important habitats for insect predators like woodpeckers, bats and small mammals. They help control problem insects and increase the health and resilience of the forest. It is also important to remember that not all small trees are low-use. For example, many species like hawthorn provide food for wildlife. Finally, rare species of trees in a forest should also stay behind as they add to its structural diversity."}
+  ],
+  vocabIds:['v1','v2','v3','v4','v5'],
+  paraphraseMap:[
+    {q:'financial reward',p:"value as high-quality timber",logic:'"Bad outcomes" xảy ra khi chỉ quan tâm giá trị gỗ chất lượng cao (đoạn B).'},
+    {q:'run vehicles',p:'lorries and cars',logic:'"Vehicles" = xe cộ nói chung, paraphrase cho "lorries and cars".'},
+    {q:'alternative name',p:"'junk trees'",logic:'Tên gọi khác của "low-use wood" chính là "junk trees".'}
+  ],
+  questions:[
+    q(1,'dropdown','Which paragraph contains the following information? (A–G)','bad outcomes for a forest when people focus only on its financial reward',
+      ['A','B','C','D','E','F','G'],'B',
+      [EX("This practice, called 'high-grading', has left a legacy of 'low-use wood' in the forests.","Đoạn B mô tả việc chủ đất trước đây chỉ quan tâm giá trị gỗ chất lượng cao (financial reward), dẫn tới hậu quả xấu là để lại di sản 'low-use wood' làm giảm sức khỏe rừng.")]),
+    q(2,'dropdown','Which paragraph contains the following information? (A–G)','reference to the aspects of any tree that contribute to its worth',
+      ['A','B','C','D','E','F','G'],'A',
+      [EX("A tree's 'value' depends on several factors including its species, size, form, condition, quality, function, and accessibility.","Đoạn A liệt kê trực tiếp các yếu tố quyết định 'giá trị' (worth = value) của một cây.")]),
+    q(3,'dropdown','Which paragraph contains the following information? (A–G)','mention of potential use of wood to help run vehicles',
+      ['A','B','C','D','E','F','G'],'C',
+      [EX('...can even be made into liquid fuels like ethanol and gasoline for lorries and cars.',"'Run vehicles' paraphrase cho 'lorries and cars' (xe tải và ô tô) ở đoạn C.")]),
+    q(4,'dropdown','Which paragraph contains the following information? (A–G)','examples of insects that attack trees',
+      ['A','B','C','D','E','F','G'],'E',
+      [EX('...hemlock wooly adelgid, Asian longhorned beetle, emerald ash borer, and gypsy moth...',"Đoạn E liệt kê tên các loài sâu bệnh (pests) tấn công rừng.")]),
+    q(5,'dropdown','Which paragraph contains the following information? (A–G)','an alternative name for trees that produce low-use wood',
+      ['A','B','C','D','E','F','G'],'B',
+      [EX("Some people even call these 'junk trees'.","'Alternative name' (tên gọi khác) chính là 'junk trees', paraphrase cho 'low-use wood'.")]),
+    q(6,'dropdown','Match each purpose with the correct timber cut (A: TSI Cut / B: Salvage Cut / C: Shelterwood Cut)','to remove trees that are diseased',
+      ['A','B','C'],'B',
+      [EX('These types of cut reduce the number of sick trees...',"'Diseased' paraphrase 'sick trees' — đây là mục tiêu của Salvage Cut, đoạn E.")]),
+    q(7,'dropdown','Match each purpose with the correct timber cut (A: TSI Cut / B: Salvage Cut / C: Shelterwood Cut)','to generate income across a number of years',
+      ['A','B','C'],'C',
+      [EX('...the money that comes in is spread out over a decade or more.',"'Generate income across a number of years' = tiền thu về được trải dài 'over a decade or more' — Shelterwood Cut, đoạn F.")]),
+    q(8,'dropdown','Match each purpose with the correct timber cut (A: TSI Cut / B: Salvage Cut / C: Shelterwood Cut)','to create a forest whose trees are close in age',
+      ['A','B','C'],'C',
+      [EX('It leaves a young forest where all trees are at a similar point in their growth.',"'Close in age' paraphrase 'similar point in their growth' — Shelterwood Cut, đoạn F.")]),
+    q(9,'text','Complete the sentences below. Choose ONE WORD ONLY from the passage for each answer.','Some dead wood is removed to avoid the possibility of _____',
+      null,['fire'],
+      [EX('Thinning and dense and dead wood removal for fire prevention also center on the production of low-use wood.',"Điền danh từ chỉ nguy cơ cần tránh: 'fire' (hỏa hoạn), lấy từ 'fire prevention' đoạn G.")]),
+    q(10,'text','Complete the sentences below. Choose ONE WORD ONLY from the passage for each answer.','The _____ from the tops of cut trees can help improve soil quality.',
+      null,['nutrients'],
+      [EX('...their nutrients cycle back into the soil.',"Điền danh từ số nhiều 'nutrients' (chất dinh dưỡng).")]),
+    q(11,'text','Complete the sentences below. Choose ONE WORD ONLY from the passage for each answer.','Some damaged trees should be left, as their _____ provide habitats for a range of creatures.',
+      null,['cavities'],
+      [EX('...trees with many cavities are extremely important habitats for insect predators like woodpeckers, bats and small mammals.',"Điền 'cavities' (hốc cây) — nơi trú ẩn của nhiều loài sinh vật.")]),
+    q(12,'text','Complete the sentences below. Choose ONE WORD ONLY from the passage for each answer.','Some trees that are small, such as _____, are a source of food for animals and insects.',
+      null,['hawthorn'],
+      [EX('...many species like hawthorn provide food for wildlife.',"Điền tên loài cây nhỏ cụ thể: 'hawthorn' (táo gai).")]),
+    q(13,'text','Complete the sentences below. Choose ONE WORD ONLY from the passage for each answer.','Any trees that are _____ should be left to grow, as they add to the variety of species in the forest.',
+      null,['rare'],
+      [EX('...rare species of trees in a forest should also stay behind as they add to its structural diversity.',"Điền tính từ 'rare' (hiếm) mô tả loại cây cần giữ lại.")])
+  ]
+},
+{
+  id:'p2', title:'Athletes and stress', timeLimitSeconds:1200,
+  blocks:[
+    {label:'A', text:"It isn't easy being a professional athlete. Not only are the physical demands greater than most people could handle, athletes also face intense psychological pressure during competition. This is something that British tennis player Emma Raducanu wrote about on social media following her withdrawal from the 2021 Wimbledon tournament. Though the young player had been doing well in the tournament, she began having difficulty regulating her breathing and heart rate during a match, which she later attributed to 'the accumulation of the excitement and the buzz'."},
+    {label:'B', text:"For athletes, some level of performance stress is almost unavoidable. But there are many different factors that dictate just how people's minds and bodies respond to stressful events. Typically, stress is the result of an exchange between two factors: demands and resources. An athlete may feel stressed about an event if they feel the demands on them are greater than they can handle. These demands include the high level of physical and mental effort required to succeed, and also the athlete's concerns about the difficulty of the event, their chance of succeeding, and any potential dangers such as injury. Resources, on the other hand, are a person's ability to cope with these demands. These include factors such as the competitor's degree of confidence, how much they believe they can control the situation's outcome, and whether they're looking forward to the event or not."},
+    {label:'C', text:"Each new demand or change in circumstances affects whether a person responds positively or negatively to stress. Typically, the more resources a person feels they have in handling the situation, the more positive their stress response. This positive stress response is called a challenge state. But should the person feel there are too many demands placed on them, the more likely they are to experience a negative stress response - known as a threat state. Research shows that the challenge states lead to good performance, while threat states lead to poorer performance. So, in Emma Raducanu's case, a much larger audience, higher expectations and facing a more skilful opponent, may all have led her to feel there were greater demands being placed on her at Wimbledon - but she didn't have the resources to tackle them. This led to her experiencing a threat response."},
+    {label:'D', text:"Our challenge and threat responses essentially influence how our body responds to stressful situations, as both affect the production of adrenaline and cortisol - also known as 'stress hormones'. During a challenge state, adrenaline increases the amount of blood pumped from the heart and expands the blood vessels, which allows more energy to be delivered to the muscles and brain. This increase of blood and decrease of pressure in the blood vessels has been consistently related to superior sport performance in everything from cricket batting, to golf putting and football penalty taking. But during a threat state, cortisol inhibits the positive effect of adrenaline, resulting in tighter blood vessels, higher blood pressure, slower psychological responses, and a faster heart rate. In short, a threat state makes people more anxious - they make worse decisions and perform more poorly. In tennis players, cortisol has been associated with more unsuccessful serves and greater anxiety."},
+    {label:'E', text:"That said, anxiety is also a common experience for athletes when they're under pressure. Anxiety can increase heart rate and perspiration, cause heart palpitations, muscle tremors and shortness of breath, as well as headaches, nausea, stomach pain, weakness and a desire to escape in more extreme cases. Anxiety can also reduce concentration and self-control and cause overthinking. The intensity with which a person experiences anxiety depends on the demands and resources they have. Anxiety may also manifest itself in the form of excitement or nervousness depending on the stress response. Negative stress responses can be damaging to both physical and mental health - and repeated episodes of anxiety coupled with negative responses can increase risk of heart disease and depression."},
+    {label:'F', text:"But there are many ways athletes can ensure they respond positively under pressure. Positive stress responses can be promoted through the language that they and others - such as coaches or parents - use. Psychologists can also help athletes change how they see their physiological responses - such as helping them see a higher heart rate as excitement, rather than nerves. Developing psychological skills, such as visualisation, can also help decrease physiological responses to threat. Visualisation may involve the athlete recreating a mental picture of a time when they performed well, or picturing themselves doing well in the future. This can help create a feeling of control over the stressful event. Recreating competitive pressure during training can also help athletes learn how to deal with stress. An example of this might be scoring athletes against their peers to create a sense of competition. This would increase the demands which players experience compared to a normal training session, while still allowing them to practise coping with stress."}
+  ],
+  vocabIds:['v6','v7','v8','v9','v10'],
+  paraphraseMap:[
+    {q:'chemical compounds',p:'adrenaline and cortisol',logic:"'Stress hormones' = adrenaline và cortisol, đoạn D."},
+    {q:'fewer good serves',p:'more unsuccessful serves',logic:'Đảo nghĩa: ít cú giao bóng tốt = nhiều cú giao bóng thất bại hơn.'},
+    {q:'coping with possible risk',p:'potential dangers such as injury',logic:"'Risk' paraphrase 'potential dangers', đoạn B."}
+  ],
+  questions:[
+    q(1,'dropdown','Which paragraph contains the following information? (A–F)','reference to two chemical compounds which impact on performance',
+      ['A','B','C','D','E','F'],'D',
+      [EX("...both affect the production of adrenaline and cortisol - also known as 'stress hormones'.","Hai hợp chất hóa học là adrenaline và cortisol, được nhắc ở đầu đoạn D.")]),
+    q(2,'dropdown','Which paragraph contains the following information? (A–F)','examples of strategies for minimising the effects of stress',
+      ['A','B','C','D','E','F'],'F',
+      [EX('But there are many ways athletes can ensure they respond positively under pressure.',"Đoạn F liệt kê nhiều chiến lược (ngôn ngữ tích cực, visualisation, tạo áp lực khi tập luyện) để giảm stress.")]),
+    q(3,'dropdown','Which paragraph contains the following information? (A–F)','how a sportsperson accounted for their own experience of stress',
+      ['A','B','C','D','E','F'],'A',
+      [EX("...which she later attributed to 'the accumulation of the excitement and the buzz'.","Emma Raducanu tự giải thích nguyên nhân trải nghiệm stress của chính mình.")]),
+    q(4,'dropdown','Which paragraph contains the following information? (A–F)','study results indicating links between stress responses and performance',
+      ['A','B','C','D','E','F'],'C',
+      [EX('Research shows that the challenge states lead to good performance, while threat states lead to poorer performance.',"Đoạn C nêu kết quả nghiên cứu về mối liên hệ giữa phản ứng stress và thành tích.")]),
+    q(5,'dropdown','Which paragraph contains the following information? (A–F)','mention of people who can influence how athletes perceive their stress responses',
+      ['A','B','C','D','E','F'],'F',
+      [EX('Positive stress responses can be promoted through the language that they and others - such as coaches or parents - use.',"'People who can influence' = coaches or parents.")]),
+    q(6,'text','Complete the sentences below. Choose ONE WORD ONLY from the passage for each answer.','Performance stress involves many demands on the athlete, for example, coping with the possible risk of _____',
+      null,['injury'],
+      [EX('...any potential dangers such as injury.',"Điền danh từ 'injury' (chấn thương), nguy cơ vật lý được nhắc ở đoạn B.")]),
+    q(7,'text','Complete the sentences below. Choose ONE WORD ONLY from the passage for each answer.','Cortisol can cause tennis players to produce fewer good _____',
+      null,['serves'],
+      [EX('...cortisol has been associated with more unsuccessful serves and greater anxiety.',"'Fewer good serves' paraphrase 'more unsuccessful serves'.")]),
+    q(8,'text','Complete the sentences below. Choose ONE WORD ONLY from the passage for each answer.','Psychologists can help athletes to view their physiological responses as the effect of a positive feeling such as _____',
+      null,['excitement'],
+      [EX('...helping them see a higher heart rate as excitement, rather than nerves.',"Điền 'excitement' — cảm giác tích cực thay vì lo lắng (nerves).")]),
+    q(9,'text','Complete the sentences below. Choose ONE WORD ONLY from the passage for each answer.','_____ is an example of a psychological technique which can reduce an athlete\'s stress responses.',
+      null,['Visualisation'],
+      [EX('Developing psychological skills, such as visualisation, can also help decrease physiological responses to threat.',"Điền chủ ngữ đầu câu 'Visualisation' (viết hoa đầu câu vì đứng đầu câu).")]),
+    q(10,'choose-two','Which TWO facts about Emma Raducanu\'s withdrawal from the Wimbledon tournament are mentioned in the text?','A. the stage at which she dropped out of the tournament&&B. symptoms of her performance stress at the tournament&&C. measures which she had taken to manage her stress levels&&D. aspects of the Wimbledon tournament which increased her stress levels&&E. reactions to her social media posts about her experience at Wimbledon',
+      ['A','B','C','D','E'],['B','D'],
+      [EX('...she began having difficulty regulating her breathing and heart rate during a match...',"B đúng vì đây là triệu chứng (symptoms) của stress trong thi đấu. D đúng vì đoạn C nêu 'a much larger audience, higher expectations and facing a more skilful opponent' — các khía cạnh làm tăng áp lực tại Wimbledon (aspects... which increased her stress levels). A, C, E không được đề cập trong bài.")]),
+    q(11,'choose-two-linked','','',null,null,null), // placeholder, merged with Q10-11 handled via linkedGroup below
+    q(12,'choose-two','Which TWO facts about anxiety are mentioned in Paragraph E of the text?','A. the factors which determine how severe it may be&&B. how long it takes for its effects to become apparent&&C. which of its symptoms is most frequently encountered&&D. the types of athletes who are most likely to suffer from it&&E. the harm that can result if athletes experience it too often',
+      ['A','B','C','D','E'],['A','E'],
+      [EX('The intensity with which a person experiences anxiety depends on the demands and resources they have.',"A đúng: câu này nêu các yếu tố quyết định mức độ nghiêm trọng (severity) của lo âu. E đúng vì bài viết '...repeated episodes of anxiety coupled with negative responses can increase risk of heart disease and depression' — tác hại khi trải nghiệm lo âu quá thường xuyên. B, C, D không được đề cập.")]),
+    q(13,'choose-two-linked','','',null,null,null)
+  ]
+},
+{
+  id:'p3', title:'The global importance of wetlands', timeLimitSeconds:1200,
+  blocks:[
+    {label:'A', text:"Wetlands are areas where water covers the soil, or is present either at or near the surface of the soil, for all or part of the year. These are complex ecosystems, rich in unique plant and animal life. But according to the World Wide Fund for Nature (WWFN), half of the world's wetlands have disappeared since 1990 - converted or destroyed for commercial development, drainage schemes and the extraction of minerals and peat. Many of those that remain have been damaged by agricultural pesticides and fertilisers, industrial pollutants, and construction works."},
+    {label:'B', text:"Throughout history, humans have gathered around wetlands, and their fertile ecosystems have played an important part in human development. Consequently, they are of considerable religious, historical and archaeological value to many communities around the world. 'Wetlands directly support the livelihoods and well-being of millions of people,' says Dr Matthew McCartney, principal researcher and hydrologist at the International Water Management Institute (IWMI). 'In many developing countries, large numbers of people are dependent on wetland agriculture for their livelihoods.'"},
+    {label:'C', text:"They also serve a crucial environmental purpose. 'Wetlands are one of the key tools in mitigating climate change across the planet,' says Pieter van Eijk, head of Climate Adaptation at Wetlands International (WI), pointing to their use as buffers that protect coastal areas from sea-level rise and extreme weather events such as hurricanes and flooding. Wetland coastal forests provide food and water, as well as shelter from storms, and WI and other agencies are working to restore those forests which have been lost. 'It can be as simple as planting a few trees per hectare to create shade and substantially change a microclimate,' he says. 'Implementing climate change projects isn't so much about money.'"},
+    {label:'D', text:"The world's wetlands are, unfortunately, rich sources for in-demand commodities, such as palm oil and pulpwood. Peatlands - wetlands with a waterlogged organic soil layer - are particularly targeted. When peatlands are drained for cultivation, they become net carbon emitters instead of active carbon stores, and, according to Marcel Silvius, head of Climate-smart Land-use at WI, this practice causes six per cent of all global carbon emissions. The clearance of peatlands for planting also increases the risk of forest fires, which release huge amounts of CO2. 'We're seeing huge peatland forests with extremely high biodiversity value being lost for a few decades of oil palm revenues,' says Silvius."},
+    {label:'E', text:"The damage starts when logging companies arrive to clear the trees. They dig ditches to enter the peat swamps by boat and then float the logs out the same way. These are then used to drain water out of the peatlands to allow for the planting of corn, oil palms or pulpwood trees. Once the water has drained away, bacteria and fungi then break down the carbon in the peat and turn it into CO2 and methane. Meanwhile, the remainder of the solid matter in the peat starts to move downwards, in a process known as subsidence. Peat comprises 90 per cent water, so this is one of the most alarming consequences of peatland clearances. 'In the tropics, peat subsides at about four centimetres a year, so within half a century, very large landscapes on Sumatra and Borneo will become flooded as the peat drops below water level,' says Silvius. 'It's a huge catastrophe that's in preparation. Some provinces will lose 40 per cent of their landmass.'"},
+    {label:'F', text:"And while these industries affect wetlands in ways that can easily be documented, Dr Dave Tickner of the WWFN believes that more subtle impacts can be even more devastating. 'Sediment run-off and fertilisers can be pretty invisible,' says Tickner. 'Over-extraction of water is equally invisible. You do get shock stories about rivers running red, or even catching fire, but there's seldom one big impact that really hurts a wetland.' Tickner does not blame anyone for deliberate damage, however. 'I've worked on wetland issues for 20 years and have never met anybody who wanted to damage a wetland,' he says. 'It isn't something that people generally set out to do. Quite often, the effects simply come from people trying to make a living.'"},
+    {label:'G', text:"Silvius also acknowledges the importance of income generation. 'It's not that we just want to restore the biodiversity of wetlands - which we do - but we recognise there's a need to provide an income for local people.' This approach is supported by IWMI. 'The idea is that people in a developing country will only protect wetlands if they value and profit from them,' says McCartney. 'For sustainability, it's essential that local people are involved in wetland planning and decision making and have clear rights to use wetlands.'"},
+    {label:'H', text:"The fortunes of wetlands would be improved, Silvius suggests, if more governments recognised their long-term value. 'Different governments have different attitudes,' he says, and goes on to explain that some countries place a high priority on restoring wetlands, while others still deny the issue. McCartney is cautiously optimistic, however. 'Awareness of the importance of wetlands is growing,' he says. 'It's true that wetland degradation still continues at a rapid pace, but my impression is that things are slowly changing.'"}
+  ],
+  vocabIds:['v11','v12','v13','v14','v15'],
+  paraphraseMap:[
+    {q:'proportion of wetlands lost',p:"half of the world's wetlands have disappeared",logic:"'Proportion' = tỉ lệ, 'half' = một nửa."},
+    {q:'people beginning to appreciate',p:'Awareness ... is growing',logic:"'Beginning to appreciate' paraphrase 'awareness is growing'."},
+    {q:'cultural significance',p:'religious, historical and archaeological value',logic:"'Cultural' bao trùm cả tôn giáo, lịch sử, khảo cổ."}
+  ],
+  questions:[
+    q(1,'dropdown','Which paragraph contains the following information? (A–H)','reference to the need to ensure that inhabitants of wetland regions continue to benefit from them',
+      ['A','B','C','D','E','F','G','H'],'G',
+      [EX("...we recognise there's a need to provide an income for local people.","Silvius nói về sự cần thiết đảm bảo lợi ích thu nhập cho cư dân địa phương, đoạn G.")]),
+    q(2,'dropdown','Which paragraph contains the following information? (A–H)','the proportion of wetlands which have already been lost',
+      ['A','B','C','D','E','F','G','H'],'A',
+      [EX("...half of the world's wetlands have disappeared since 1990...","'Proportion' = 'half' (một nửa), đoạn A.")]),
+    q(3,'dropdown','Which paragraph contains the following information? (A–H)','reference to the idea that people are beginning to appreciate the value of wetlands',
+      ['A','B','C','D','E','F','G','H'],'H',
+      [EX('Awareness of the importance of wetlands is growing.',"McCartney nói nhận thức đang tăng lên (growing = beginning to appreciate).")]),
+    q(4,'dropdown','Which paragraph contains the following information? (A–H)','mention of the cultural significance of wetlands',
+      ['A','B','C','D','E','F','G','H'],'B',
+      [EX('...they are of considerable religious, historical and archaeological value to many communities...',"'Cultural significance' paraphrase 'religious, historical and archaeological value'.")]),
+    q(5,'text','Complete the sentences below. Choose ONE WORD ONLY from the passage for each answer.','Peatlands which have been drained begin to release _____ instead of storing it.',
+      null,['carbon'],
+      [EX('...they become net carbon emitters instead of active carbon stores...',"Điền 'carbon' — khí thải carbon thay vì lưu trữ.")]),
+    q(6,'text','Complete the sentences below. Choose ONE WORD ONLY from the passage for each answer.','Once peatland areas have been cleared, _____ are more likely to occur.',
+      null,['fires'],
+      [EX('The clearance of peatlands for planting also increases the risk of forest fires...',"Điền danh từ số nhiều 'fires' (cháy rừng).")]),
+    q(7,'text','Complete the sentences below. Choose ONE WORD ONLY from the passage for each answer.','Clearing peatland forests to make way for oil palm plantations destroys the _____ of the local environment.',
+      null,['biodiversity'],
+      [EX('...huge peatland forests with extremely high biodiversity value being lost for a few decades of oil palm revenues.',"Điền 'biodiversity' — đa dạng sinh học.")]),
+    q(8,'text','Complete the sentences below. Choose ONE WORD ONLY from the passage for each answer.','Water is drained out of peatlands through the _____ which are created by logging companies.',
+      null,['ditches'],
+      [EX('They dig ditches to enter the peat swamps by boat...',"Điền 'ditches' (mương/rãnh) do các công ty khai thác gỗ đào.")]),
+    q(9,'text','Complete the sentences below. Choose ONE WORD ONLY from the passage for each answer.','Draining peatlands leads to _____: a serious problem which can eventually result in coastal flooding and land loss.',
+      null,['subsidence'],
+      [EX('...in a process known as subsidence.',"Điền 'subsidence' — hiện tượng sụt lún.")]),
+    q(10,'dropdown','Match each statement with the correct expert (A: McCartney / B: van Eijk / C: Silvius / D: Tickner)','Communities living in wetland regions must be included in discussions about the future of these areas.',
+      ['A','B','C','D'],'A',
+      [EX("...it's essential that local people are involved in wetland planning and decision making...","Câu nói của McCartney, đoạn G.")]),
+    q(11,'dropdown','Match each statement with the correct expert (A: McCartney / B: van Eijk / C: Silvius / D: Tickner)','Official policies towards wetlands vary from one nation to the next.',
+      ['A','B','C','D'],'C',
+      [EX("'Different governments have different attitudes,' he says.","Câu nói của Silvius, đoạn H.")]),
+    q(12,'dropdown','Match each statement with the correct expert (A: McCartney / B: van Eijk / C: Silvius / D: Tickner)','People cause harm to wetlands without having any intention to do so.',
+      ['A','B','C','D'],'D',
+      [EX("I've worked on wetland issues for 20 years and have never met anybody who wanted to damage a wetland.","Câu nói của Tickner, đoạn F.")]),
+    q(13,'dropdown','Match each statement with the correct expert (A: McCartney / B: van Eijk / C: Silvius / D: Tickner)','Initiatives to reverse environmental damage need not be complex.',
+      ['A','B','C','D'],'B',
+      [EX('It can be as simple as planting a few trees per hectare to create shade and substantially change a microclimate.',"Câu nói của van Eijk, đoạn C.")])
+  ]
+},
+{
+  id:'p4', title:"Can the planet's coral reefs be saved?", timeLimitSeconds:1200,
+  blocks:[
+    {label:'A', text:"Conservationists have put the final touches to a giant artificial reef they have been assembling at the world-renowned Zoological Society of London (London Zoo). Samples of the planet's most spectacular corals - vivid green branching coral, yellow scroll, blue ridge and many more species - have been added to the giant tank along with fish that thrive in their presence: blue tang, clownfish and many others. The reef is in the zoo's new gallery, Tiny Giants, which is dedicated to the minuscule invertebrate creatures that sustain life across the planet. The coral reef tank and its seven-metre-wide window form the core of the exhibition. 'Coral reefs are the most diverse ecosystems on Earth and we want to show people how wonderful they are,' said Paul Pearce-Kelly, senior curator of invertebrates and fish at the Zoological Society of London. 'However, we also want to highlight the research and conservation efforts that are now being carried out to try to save them from the threat of global warming.' They want people to see what is being done to try to save these wonders."},
+    {label:'B', text:"Corals are composed of tiny animals, known as polyps, with tentacles for capturing small marine creatures in the sea water. These polyps are transparent but get their brilliant tones of pink, orange, blue, green, etc. from algae that live within them, which in turn get protection, while their photosynthesising of the sun's rays provides nutrients for the polyps. This comfortable symbiotic relationship has led to the growth of coral reefs that cover 0.1% of the planet's ocean bed while providing homes for more than 25% of marine species, including fish, molluscs, sponges and shellfish."},
+    {label:'C', text:"As a result, coral reefs are often described as the 'rainforests of the sea', though the comparison is dismissed by some naturalists, including David Attenborough. 'People say you cannot beat the rainforest,' Attenborough has stated. 'But that is simply not true. You go there and the first thing you think is: where ... are the birds? Where are the animals? They are hiding in the trees, of course. No, if you want beauty and wildlife, you want a coral reef. Put on a mask and stick your head under the water. The sight is mind-blowing.'"},
+    {label:'D', text:"Unfortunately, these majestic sights are now under very serious threat, with the most immediate problem coming in the form of thermal stress. Rising ocean temperatures are triggering bleaching events that strip reefs of their colour and eventually kill them. And that is just the start. Other menaces include ocean acidification, sea level increase, pollution by humans, deoxygenation and ocean current changes, while the climate crisis is also increasing habitat destruction. As a result, vast areas - including massive chunks of Australia's Great Barrier Reef - have already been destroyed, and scientists advise that more than 90% of reefs could be lost by 2050 unless urgent action is taken to tackle global heating and greenhouse gas emissions. Pearce-Kelly says that coral reefs have to survive really harsh conditions - wave erosion and other factors. And 'when things start to go wrong in the oceans, then corals will be the first to react. And that is exactly what we are seeing now. Coral reefs are dying and they are telling us that all is not well with our planet.'"},
+    {label:'E', text:"However, scientists are trying to pinpoint hardy types of coral that could survive our overheated oceans, and some of this research will be carried out at London Zoo. 'Behind our ... coral reef tank we have built laboratories where scientists will be studying coral species,' said Pearce-Kelly. One aim will be to carry out research on species to find those that can survive best in warm, acidic waters. Another will be to try to increase coral breeding rates. 'Coral spawn just once a year,' he added. 'However, aquarium-based research has enabled some corals to spawn artificially, which can assist coral reef restoration efforts. And if this can be extended for all species, we could consider the launching of coral-spawning programmes several times a year. That would be a big help in restoring blighted reefs.'"},
+    {label:'F', text:"Research in these fields is being conducted in laboratories around the world, with the London Zoo centre linked to this global network. Studies carried out in one centre can then be tested in others. The resulting young coral can then be displayed in the tank in Tiny Giants. 'The crucial point is that the progress we make in making coral better able to survive in a warming world can be shown to the public and encourage them to believe that we can do something to save the planet's reefs,' said Pearce-Kelly. 'Saving our coral reefs is now a critically important ecological goal.'"}
+  ],
+  vocabIds:['v16','v17','v18','v19','v20'],
+  paraphraseMap:[
+    {q:'contamination of the sea from waste',p:'pollution by humans',logic:"'Contamination from waste' paraphrase 'pollution by humans'."},
+    {q:'alterations in usual flow of water',p:'ocean current changes',logic:"'Alterations in flow' = 'current changes'."},
+    {q:'cope well with changed sea conditions',p:'survive best in warm, acidic waters',logic:"'Cope well' paraphrase 'survive best'."}
+  ],
+  questions:[
+    q(1,'dropdown','Choose the correct heading for each section (I–VII)','Paragraph A',
+      ['I','II','III','IV','V','VI','VII'],'V',
+      [EX('...we want to show people how wonderful they are... we also want to highlight the research and conservation efforts...',"Đoạn A nêu 2 mục tiêu giáo dục rõ ràng: cho thấy vẻ đẹp san hô + nêu bật nỗ lực bảo tồn → 'Two clear educational goals'.")]),
+    q(2,'dropdown','Choose the correct heading for each section (I–VII)','Paragraph B',
+      ['I','II','III','IV','V','VI','VII'],'II',
+      [EX('This comfortable symbiotic relationship has led to the growth of coral reefs...',"Đoạn B nói về quan hệ cộng sinh (hợp tác) giữa polyp và tảo dưới nước → 'Cooperation beneath the waves'.")]),
+    q(3,'dropdown','Choose the correct heading for each section (I–VII)','Paragraph C',
+      ['I','II','III','IV','V','VI','VII'],'IV',
+      [EX('...the comparison is dismissed by some naturalists, including David Attenborough.',"Đoạn C tranh luận về độ chính xác của cụm 'rainforests of the sea' → 'Disagreement about the accuracy of a certain phrase'.")]),
+    q(4,'dropdown','Choose the correct heading for each section (I–VII)','Paragraph D',
+      ['I','II','III','IV','V','VI','VII'],'VII',
+      [EX("...more than 90% of reefs could be lost by 2050 unless urgent action is taken...","Đoạn D cảnh báo nguy cơ tương lai → 'A warning of further trouble ahead'.")]),
+    q(5,'dropdown','Choose the correct heading for each section (I–VII)','Paragraph E',
+      ['I','II','III','IV','V','VI','VII'],'III',
+      [EX('...scientists are trying to pinpoint hardy types of coral that could survive our overheated oceans...',"Đoạn E nói về nỗ lực nghiên cứu để giảm thiểu vấn đề → 'Working to lessen the problems'.")]),
+    q(6,'dropdown','Choose the correct heading for each section (I–VII)','Paragraph F',
+      ['I','II','III','IV','V','VI','VII'],'VI',
+      [EX("...encourage them to believe that we can do something to save the planet's reefs.","Đoạn F truyền cảm hứng hy vọng → 'Promoting hope'.")]),
+    q(7,'choose-two','Which TWO of these causes of damage to coral reefs are mentioned by the writer of the text?','A. a rising number of extreme storms&&B. the removal of too many fish from the sea&&C. the contamination of the sea from waste&&D. increased disease among marine species&&E. alterations in the usual flow of water in the seas',
+      ['A','B','C','D','E'],['C','E'],
+      [EX('Other menaces include ocean acidification, sea level increase, pollution by humans, deoxygenation and ocean current changes...',"C đúng: 'contamination of the sea from waste' paraphrase 'pollution by humans'. E đúng: 'alterations in the usual flow of water' paraphrase 'ocean current changes'. A, B, D không được đề cập.")]),
+    q(8,'choose-two-linked','','',null,null,null),
+    q(9,'choose-two','Which TWO of the following statements are true of the researchers at London Zoo?','A. They are hoping to expand the numbers of different corals being bred in laboratories.&&B. They want to identify corals that can cope well with the changed sea conditions.&&C. They are looking at ways of creating artificial reefs that corals could grow on.&&D. They are trying out methods that would speed up reproduction in some corals.&&E. They are investigating materials that might protect reefs from higher temperatures.',
+      ['A','B','C','D','E'],['B','D'],
+      [EX('One aim will be to carry out research on species to find those that can survive best in warm, acidic waters... Another will be to try to increase coral breeding rates.',"B đúng: 'cope well with changed sea conditions' paraphrase 'survive best in warm, acidic waters'. D đúng: 'speed up reproduction' paraphrase 'increase coral breeding rates'. A, C, E không được đề cập cụ thể là mục tiêu nghiên cứu.")]),
+    q(10,'choose-two-linked','','',null,null,null),
+    q(11,'text','Complete the question below.','Corals have a number of _____ which they use to collect their food.',
+      null,['tentacles'],
+      [EX('...tiny animals, known as polyps, with tentacles for capturing small marine creatures...',"Điền 'tentacles' — xúc tu.")]),
+    q(12,'text','Complete the question below.','Algae gain _____ from being inside the coral.',
+      null,['protection'],
+      [EX('...algae that live within them, which in turn get protection...',"Điền 'protection' — sự bảo vệ.")]),
+    q(13,'text','Complete the question below.','Increases in the warmth of the sea water can remove the _____ from coral.',
+      null,['colour'],
+      [EX('Rising ocean temperatures are triggering bleaching events that strip reefs of their colour...',"Điền 'colour' — màu sắc, do hiện tượng tẩy trắng (bleaching).")])
+  ]
+},
+{
+  id:'p5', title:'Urban farming', timeLimitSeconds:1200,
+  blocks:[
+    {label:'A', text:"On top of a striking new exhibition hall in southern Paris, the world's largest urban rooftop farm has started to bear fruit. Strawberries that are small, intensely flavoured and resplendently red sprout abundantly from large plastic tubes. Peer inside and you see the tubes are completely hollow, the roots of dozens of strawberry plants dangling down inside them. From identical vertical tubes nearby burst row upon row of lettuces; near those are aromatic herbs, such as basil, sage and peppermint. Opposite, in narrow, horizontal trays packed not with soil but with coconut fibre, grow cherry tomatoes, shiny aubergines and brightly coloured chards."},
+    {label:'B', text:"Pascal Hardy, an engineer and sustainable development consultant, began experimenting with vertical farming and aeroponic growing towers - as the soil-free plastic tubes are known - on his Paris apartment block roof five years ago. The urban rooftop space above the exhibition hall is somewhat bigger: 14,000 square metres and almost exactly the size of a couple of football pitches. Already, the team of young urban farmers who tend it have picked, in one day, 3,000 lettuces and 150 punnets of strawberries. When the remaining two thirds of the vast open area are in production, 20 staff will harvest up to 1,000 kg of perhaps 35 different varieties of fruit and vegetables, every day. 'We're not ever, obviously, going to feed the whole city this way,' cautions Hardy. 'In the urban environment you're working with very significant practical constraints, clearly, on what you can do and where. But if enough unused space can be developed like this, there's no reason why you shouldn't eventually target maybe between 5% and 10% of consumption.'"},
+    {label:'C', text:"Perhaps most significantly, however, this is a real-life showcase for the work of Hardy's flourishing urban agriculture consultancy, Agripolis, which is currently fielding enquiries from around the world to design, build and equip a new breed of soil-free inner-city farm. 'The method's advantages are many,' he says. 'First, I don't much like the fact that most of the fruit and vegetables we eat have been treated with something like 17 different pesticides, or that the intensive farming techniques that produced them are such huge generators of greenhouse gases. I don't much like the fact, either, that they've travelled an average of 2,000 refrigerated kilometres to my plate, that their quality is so poor, because the varieties are selected for their capacity to withstand such substantial journeys, or that 80% of the price I pay goes to wholesalers and transport companies, not the producers.'"},
+    {label:'D', text:"Produce grown using this soil-free method, on the other hand - which relies solely on a small quantity of water, enriched with organic nutrients, pumped around a closed circuit of pipes, towers and trays - is 'produced up here, and sold locally, just down there. It barely travels at all,' Hardy says. 'You can select crop varieties for their flavour, not their resistance to the transport and storage chain, and you can pick them when they're really at their best, and not before.' No soil is exhausted, and the water that gently showers the plants' roots every 12 minutes is recycled, so the method uses 90% less water than a classic intensive farm for the same yield."},
+    {label:'E', text:"Urban farming is not, of course, a new phenomenon. Inner-city agriculture is booming from Shanghai to Detroit and Tokyo to Bangkok. Strawberries are being grown in disused shipping containers, mushrooms in underground carparks. Aeroponic farming, he says, is 'virtuous'. The equipment weighs little, can be installed on almost any flat surface and is cheap to buy: roughly €100 to €150 per square metre. It is cheap to run, too, consuming a tiny fraction of the electricity used by some techniques."},
+    {label:'F', text:"Produce grown this way typically sells at prices that, while generally higher than those of classic intensive agriculture, are lower than soil-based organic growers. There are limits to what farmers can grow this way, of course, and much of the produce is suited to the summer months. 'Root vegetables we cannot do, at least not yet,' he says. 'Radishes are OK, but carrots, potatoes, that kind of thing - the roots are simply too long. Fruit trees are obviously not an option. And beans tend to take up a lot of space for not much return.' Nevertheless, urban farming of the kind being practised in Paris is one part of a bigger and fast-changing picture that is bringing food production closer to our lives."}
+  ],
+  vocabIds:['v21','v22','v23','v24','v25'],
+  paraphraseMap:[
+    {q:'run vehicles',p:null,logic:''},
+    {q:'relies more on electricity',p:'consuming a tiny fraction of the electricity used by some techniques',logic:'Bài nói ngược lại: dùng ÍT điện hơn.'},
+    {q:'cheaper than organic',p:'lower than soil-based organic growers',logic:"'Cheaper' = 'lower prices'."}
+  ],
+  questions:[
+    q(1,'text','Complete the sentences below. Choose NO MORE THAN TWO WORDS AND/OR A NUMBER from the passage for each answer.','Vertical tubes are used to grow strawberries, _____ and herbs.',
+      null,['lettuces'],
+      [EX('From identical vertical tubes nearby burst row upon row of lettuces...',"Điền 'lettuces' — rau diếp, cũng trồng trong ống thẳng đứng.")]),
+    q(2,'text','Complete the sentences below. Choose NO MORE THAN TWO WORDS AND/OR A NUMBER from the passage for each answer.','There will eventually be a daily harvest of as much as _____ in weight of fruit and vegetables.',
+      null,['1,000 kg','1000 kg'],
+      [EX('...20 staff will harvest up to 1,000 kg of perhaps 35 different varieties of fruit and vegetables, every day.',"Điền số liệu '1,000 kg'.")]),
+    q(3,'text','Complete the sentences below. Choose NO MORE THAN TWO WORDS AND/OR A NUMBER from the passage for each answer.',"It may be possible that the farm's produce will account for as much as 10% of the city's _____ overall.",
+      null,['food consumption','consumption'],
+      [EX('...target maybe between 5% and 10% of consumption.',"Điền 'food consumption' — tiêu thụ thực phẩm của thành phố.")]),
+    q(4,'text','Complete the table below. Choose ONE WORD ONLY from the passage for each answer.','Intensive farming — Growth: wide range of _____ used; techniques pollute air',
+      null,['pesticides'],
+      [EX('...most of the fruit and vegetables we eat have been treated with something like 17 different pesticides...',"Điền 'pesticides' — thuốc trừ sâu.")]),
+    q(5,'text','Complete the table below. Choose ONE WORD ONLY from the passage for each answer.','Intensive farming — Selection: varieties of fruit and vegetables chosen that can survive long _____',
+      null,['journeys'],
+      [EX('...the varieties are selected for their capacity to withstand such substantial journeys...',"Điền 'journeys' — hành trình vận chuyển dài.")]),
+    q(6,'text','Complete the table below. Choose ONE WORD ONLY from the passage for each answer.','Intensive farming — Sale: _____ receive very little of overall income',
+      null,['producers'],
+      [EX('...80% of the price I pay goes to wholesalers and transport companies, not the producers.',"Điền 'producers' — người sản xuất nhận rất ít trong tổng thu nhập.")]),
+    q(7,'text','Complete the table below. Choose ONE WORD ONLY from the passage for each answer.','Aeroponic urban farming — Selection: produce chosen because of its _____',
+      null,['flavour'],
+      [EX('You can select crop varieties for their flavour, not their resistance to the transport and storage chain.',"Điền 'flavour' — hương vị, khác với tiêu chí chọn giống ở nông nghiệp thâm canh.")]),
+    q(8,'dropdown','Do the following statements agree with the information given? (True / False / Not Given)','Urban farming can take place above or below ground.',
+      ['True','False','Not Given'],'True',
+      [EX('Strawberries are being grown in disused shipping containers, mushrooms in underground carparks.',"Đoạn E xác nhận trồng cả trên cao (container/rooftop) và dưới lòng đất (carparks) — True.")]),
+    q(9,'dropdown','Do the following statements agree with the information given? (True / False / Not Given)','Some of the equipment used in aeroponic farming can be made by hand.',
+      ['True','False','Not Given'],'Not Given',
+      [EX('','Bài không đề cập việc thiết bị có thể tự làm bằng tay hay không, chỉ nói về giá thành và trọng lượng nhẹ — Not Given.')]),
+    q(10,'dropdown','Do the following statements agree with the information given? (True / False / Not Given)','Urban farming relies more on electricity than some other types of farming.',
+      ['True','False','Not Given'],'False',
+      [EX('It is cheap to run, too, consuming a tiny fraction of the electricity used by some techniques.',"Bài nói ngược lại — tiêu thụ điện ÍT hơn (a tiny fraction) so với một số kỹ thuật khác — False.")]),
+    q(11,'dropdown','Do the following statements agree with the information given? (True / False / Not Given)','Fruit and vegetables grown on an aeroponic urban farm are cheaper than traditionally grown organic produce.',
+      ['True','False','Not Given'],'True',
+      [EX('...prices that, while generally higher than those of classic intensive agriculture, are lower than soil-based organic growers.',"Xác nhận giá thấp hơn nông sản hữu cơ trồng trên đất truyền thống — True.")]),
+    q(12,'dropdown','Do the following statements agree with the information given? (True / False / Not Given)','Most produce can be grown on an aeroponic urban farm at any time of the year.',
+      ['True','False','Not Given'],'False',
+      [EX('...much of the produce is suited to the summer months.',"Bài nói phần lớn sản phẩm phù hợp mùa hè, không phải quanh năm — False.")]),
+    q(13,'dropdown','Do the following statements agree with the information given? (True / False / Not Given)','Beans take longer to grow on an urban farm than other vegetables.',
+      ['True','False','Not Given'],'Not Given',
+      [EX('And beans tend to take up a lot of space for not much return.',"Bài chỉ nói đậu tốn diện tích, ít lợi nhuận, không nói về thời gian sinh trưởng so với rau khác — Not Given.")])
+  ]
+}
+];
+
+/* Fix linked choose-two placeholders: merge Q10/11 and Q12/13 (passage2), Q7/8 and Q9/10 (passage4) into single display but keep 2 numbered slots for nav */
+function linkChooseTwo(passage, firstId){
+  const qs = passage.questions;
+  const main = qs.find(x=>x.id===firstId);
+  main.linkedIds = [firstId, firstId+1];
+}
+linkChooseTwo(PASSAGES[1],10);
+linkChooseTwo(PASSAGES[1],12);
+linkChooseTwo(PASSAGES[3],7);
+linkChooseTwo(PASSAGES[3],9);
+
+/* ===================== THEORY DEMO EXERCISE (Part 2 — Vận dụng, Q22-26) ===================== */
+const DEMO_QUESTIONS = [
+  {id:22, prompt:'ASBOs are considered to be part of _____ law rather than criminal law.', answer:['civil'],
+    explanation:{quote:"...and as such are civil sanctions, not criminal ones...", vi:"Bài đọc viết đối lập 'civil sanctions' với 'criminal ones' → ASBO thuộc loại luật dân sự (civil law), không phải luật hình sự."}},
+  {id:23, prompt:'Citizens have to _____ to either the local council or the police before any action can be taken.', answer:['make a complaint'],
+    explanation:{quote:"...he or she must make a complaint to...", vi:"'Citizens' paraphrase cho 'a private individual', 'local council or the police' paraphrase cho 'the police or local authority'. Lưu ý: tuyệt đối không điền 'complain' vì từ này không xuất hiện trong bài."}},
+  {id:24, prompt:'_____ is the most straightforward form of anti-social behaviour to determine.', answer:['vandalism','graffiti'],
+    explanation:{quote:'', vi:"Đây là câu hỏi suy luận dựa trên danh sách hành vi ở đoạn B (shouting, vandalism, graffiti...). Hành vi mang tính 'rõ ràng, dễ xác định nhất' (straightforward) trực quan chính là phá hoại tài sản/vẽ bậy."}},
+  {id:25, prompt:"ASBOs are issued at a _____.", answer:["magistrates' court","magistrates court"],
+    explanation:{quote:"...the local council applies to the magistrates' court to have an ASBO imposed.", vi:"Hội đồng địa phương nộp đơn lên tòa sơ thẩm (magistrates' court) để áp đặt lệnh ASBO."}},
+  {id:26, prompt:'In their efforts to collect evidence the authorities may call on _____ to get more information.', answer:['witnesses','neighbours and acquaintances'],
+    explanation:{quote:"This involves getting witnesses, among whom will no doubt be neighbours and acquaintances...", vi:"'Collect evidence' paraphrase cho 'gather more information and build up evidence'. Chính quyền triệu tập nhân chứng (witnesses), trong đó có hàng xóm và người quen."}}
+];
+const demoState = {answers:{}, checked:false};
+function renderDemoQuestions(){
+  const host = document.getElementById('demoQuestionsHost');
+  if(!host) return;
+  host.innerHTML = DEMO_QUESTIONS.map(dq=>{
+    const parts = dq.prompt.split('_____');
+    return `<div class="card question-card" id="demo-qcard-${dq.id}" style="margin-bottom:12px;">
+      <div class="question-head"><div><span class="question-number">${dq.id}</span><span class="q-type-chip">Completion</span></div></div>
+      <div class="q-prompt-line">${parts[0]}<input type="text" class="blank-input" id="demo-input-${dq.id}" oninput="demoState.answers[${dq.id}]=this.value" ${demoState.checked?'disabled':''} value="${demoState.answers[dq.id]?escapeHtml(demoState.answers[dq.id]):''}"/>${parts[1]||''}</div>
+      <div id="demo-feedback-${dq.id}"></div>
+    </div>`;
+  }).join('');
+}
+function checkDemoAnswers(){
+  demoState.checked = true;
+  DEMO_QUESTIONS.forEach(dq=>{
+    const val = (demoState.answers[dq.id]||'').trim();
+    const norm = s=>s.trim().toLowerCase().replace(/['’]/g,"'");
+    const ok = val!=='' && dq.answer.some(a=>norm(a)===norm(val));
+    const result = val==='' ? 'skipped' : (ok?'correct':'incorrect');
+    const inputEl = document.getElementById('demo-input-'+dq.id);
+    if(inputEl){ inputEl.disabled = true; if(result!=='skipped') inputEl.classList.add(result); }
+    const fb = document.getElementById('demo-feedback-'+dq.id);
+    const quoteHtml = dq.explanation.quote ? `<span class="quote">"${dq.explanation.quote}"</span>` : '';
+    fb.innerHTML = `<div class="feedback-box ${result}">${result==='correct'?'✓ Chính xác':result==='incorrect'?'✗ Chưa đúng':'— Bỏ qua'} — Đáp án: <b>${dq.answer[0]}</b></div>
+      <div class="explain-box open">${quoteHtml}<span class="vi">${dq.explanation.vi}</span></div>`;
+  });
+  document.getElementById('demoCheckBtn').textContent = 'Đã chấm — Answer Key hiển thị ở trên';
+  document.getElementById('demoCheckBtn').disabled = true;
+}
+
+/* ===================== APP STATE ===================== */
+const AppState = {
+  visited: {outcomes:false, theory:false, passages:{p1:false,p2:false,p3:false,p4:false,p5:false}, quiz:false, reflection:false},
+  practice: {}, // passageId -> {answers:{}, bookmarks:{}, submitted:false, highlights:{blockIdx:[{start,end}]}}
+  quiz: { questions: [], currentIndex: 0, answers: {}, correct:0, wrong:0, completed:false }
+};
+PASSAGES.forEach(p=>{ AppState.practice[p.id] = {answers:{}, bookmarks:{}, submitted:false, highlights:{}, currentQ:1, timeLeft:p.timeLimitSeconds, timerHandle:null}; });
+
+let currentView = 'view-outcomes';
+
+/* ===================== NAV ===================== */
+function buildNav(){
+  const parts = [
+    {label:'HỌC', items:[
+      {id:'view-outcomes', text:'Learning Outcomes', key:'outcomes'},
+      {id:'view-theory', text:'Theory', key:'theory'}
+    ]},
+    {label:'PRACTICE', items: PASSAGES.map((p,i)=>({id:'view-passage-'+(i+1), text:'Passage '+(i+1), key:'p'+(i+1), sub:true}))},
+    {label:'QUICK PRACTICE', items:[{id:'view-quiz', text:'Vocabulary Quiz', key:'quiz'}]},
+    {label:'REFLECTION', items:[{id:'view-reflection', text:'Dashboard', key:'reflection', locked:true}]}
+  ];
+  let html='';
+  parts.forEach(group=>{
+    html += `<div class="nav-group-label">${group.label}</div>`;
+    group.items.forEach(item=>{
+      html += `<div class="nav-item ${item.sub?'sub':''}" data-nav="${item.id}" data-key="${item.key}" onclick="handleNavClick('${item.id}','${item.locked?1:0}')"><span class="dot"></span>${item.text}</div>`;
+    });
+  });
+  document.getElementById('navHost').innerHTML = html;
+  document.getElementById('mobileNavHost').innerHTML = html;
+}
+function handleNavClick(viewId, locked){
+  if(locked==='1' && !AppState.quiz.completed){ return; }
+  goToView(viewId);
+  toggleMobileSidebar(false);
+}
+function toggleMobileSidebar(open){
+  document.getElementById('mobileSidebar').classList.toggle('open', open);
+}
+function goToView(viewId){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  const target = document.getElementById(viewId);
+  if(target) target.classList.add('active');
+  currentView = viewId;
+  document.querySelectorAll('[data-nav]').forEach(n=>n.classList.toggle('active', n.dataset.nav===viewId));
+  markVisited(viewId);
+  updateSidebarProgress();
+  const nav = document.getElementById('practiceNav-'+viewId.replace('view-',''));
+  window.scrollTo(0,0);
+}
+function markVisited(viewId){
+  if(viewId==='view-outcomes') AppState.visited.outcomes=true;
+  if(viewId==='view-theory') AppState.visited.theory=true;
+  if(viewId.startsWith('view-passage-')) AppState.visited.passages['p'+viewId.split('-')[2]]=true;
+  if(viewId==='view-quiz') AppState.visited.quiz=true;
+  if(viewId==='view-reflection') AppState.visited.reflection=true;
+}
+function updateSidebarProgress(){
+  let total=8, done=0;
+  if(AppState.visited.outcomes) done++;
+  if(AppState.visited.theory) done++;
+  Object.values(AppState.visited.passages).forEach(v=>{if(v)done++;});
+  if(AppState.quiz.completed) done++;
+  const pct = Math.round(done/total*100);
+  document.querySelectorAll('[data-key]').forEach(el=>{
+    const key = el.dataset.key;
+    let visited=false;
+    if(key==='outcomes') visited=AppState.visited.outcomes;
+    else if(key==='theory') visited=AppState.visited.theory;
+    else if(key.startsWith('p')) visited=AppState.visited.passages[key];
+    else if(key==='quiz') visited=AppState.quiz.completed;
+    if(visited) el.classList.add('done');
+  });
+  document.querySelectorAll('[data-key="reflection"]').forEach(el=>{
+    el.classList.toggle('locked', !AppState.quiz.completed);
+  });
+}
+
+/* ===================== LEARNING OUTCOMES ===================== */
+function renderOutcomes(){
+  document.getElementById('topicsList').innerHTML = PASSAGES.map(p=>`<li>${p.title}</li>`).join('');
+  const grammarPoints = [
+    {structure:'Danh từ số ít sau mạo từ/tính từ sở hữu', example:'"the official definition" — chỗ trống cần danh từ số ít sau tính từ.'},
+    {structure:'Cấu trúc bị động dùng để paraphrase hành động', example:'"which is triggered by..." paraphrase cho nguyên nhân chủ động trong bài đọc.'},
+    {structure:'Danh động từ (gerund) sau giới từ', example:'"for capturing small marine creatures" — cụm gerund mô tả chức năng.'}
+  ];
+  document.getElementById('grammarList').innerHTML = grammarPoints.map(g=>`<div class="grammar-item"><b>${g.structure}</b><div class="ex">${g.example}</div></div>`).join('');
+}
+
+/* ===================== PRACTICE RENDER ===================== */
+function escapeHtml(s){ return s.replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function applyHighlights(text, ranges){
+  if(!ranges || !ranges.length) return escapeHtml(text);
+  const sorted = ranges.slice().sort((a,b)=>a.start-b.start);
+  const merged = [];
+  sorted.forEach(r=>{
+    if(merged.length && r.start <= merged[merged.length-1].end){
+      merged[merged.length-1].end = Math.max(merged[merged.length-1].end, r.end);
+    } else merged.push({start:r.start,end:r.end});
+  });
+  let html=''; let cursor=0;
+  merged.forEach(r=>{
+    html += escapeHtml(text.slice(cursor,r.start));
+    html += `<span class="user-highlight" data-start="${r.start}" data-end="${r.end}">${escapeHtml(text.slice(r.start,r.end))}</span>`;
+    cursor = r.end;
+  });
+  html += escapeHtml(text.slice(cursor));
+  return html;
+}
+
+function renderPassagePanel(passage){
+  const st = AppState.practice[passage.id];
+  let html = `<h2 style="margin-bottom:16px;">${passage.title}</h2>`;
+  passage.blocks.forEach((b,idx)=>{
+    const ranges = st.highlights[idx] || [];
+    html += `<div class="block" data-block-idx="${idx}"><span class="para-label">${b.label}.</span><span class="block-text">${applyHighlights(b.text, ranges)}</span></div>`;
+  });
+  return html;
+}
+
+function getTextOffset(container, node, offset){
+  const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+  let textOffset = 0;
+  let n;
+  while(n = walker.nextNode()){
+    if(n === node) return textOffset + offset;
+    textOffset += n.textContent.length;
+  }
+  return textOffset;
+}
+
+function attachHighlighter(passage){
+  const panel = document.getElementById('passagePanel-'+passage.id);
+  if(!panel) return;
+  panel.addEventListener('mouseup', ()=>{
+    const sel = window.getSelection();
+    if(!sel || sel.isCollapsed || sel.rangeCount===0) return;
+    const range = sel.getRangeAt(0);
+    const blockEl = range.commonAncestorContainer.nodeType===1 ? range.commonAncestorContainer.closest('.block') : range.commonAncestorContainer.parentElement.closest('.block');
+    if(!blockEl) return;
+    const textEl = blockEl.querySelector('.block-text');
+    const blockIdx = parseInt(blockEl.dataset.blockIdx,10);
+    if(range.toString().trim().length===0) return;
+    const start = getTextOffset(textEl, range.startContainer, range.startOffset);
+    const end = getTextOffset(textEl, range.endContainer, range.endOffset);
+    if(end<=start) return;
+    const st = AppState.practice[passage.id];
+    if(!st.highlights[blockIdx]) st.highlights[blockIdx]=[];
+    st.highlights[blockIdx].push({start:Math.min(start,end), end:Math.max(start,end)});
+    sel.removeAllRanges();
+    refreshPassagePanel(passage);
+  });
+  panel.addEventListener('click', (e)=>{
+    const hl = e.target.closest('.user-highlight');
+    if(!hl) return;
+    const blockEl = hl.closest('.block');
+    const blockIdx = parseInt(blockEl.dataset.blockIdx,10);
+    const start = parseInt(hl.dataset.start,10), end = parseInt(hl.dataset.end,10);
+    const st = AppState.practice[passage.id];
+    st.highlights[blockIdx] = (st.highlights[blockIdx]||[]).filter(r=> r.end<=start || r.start>=end);
+    refreshPassagePanel(passage);
+  });
+}
+function refreshPassagePanel(passage){
+  document.getElementById('passagePanel-'+passage.id).innerHTML = renderPassagePanel(passage);
+}
+
+function optionLetter(str){ return str.trim().split('.')[0]; }
+function parseChooseTwoOptions(prompt){
+  return prompt.split('&&').map(s=>{ const idx = s.indexOf('.'); return {letter:s.slice(0,idx).trim(), text:s.slice(idx+1).trim()}; });
+}
+
+function renderQuestionCard(passage, question){
+  if(question.type==='choose-two-linked') return ''; // rendered as part of the linked main question
+  if(question.type==='choose-two') return renderChooseTwoCard(passage, question); // dedicated renderer (comp. 18b)
+  const st = AppState.practice[passage.id];
+  const bookmarked = st.bookmarks[question.id];
+  let inputHtml='';
+  if(question.type==='dropdown'){
+    const opts = question.choices.map(c=>`<option value="${c}">${c}</option>`).join('');
+    const val = st.answers[question.id] || '';
+    inputHtml = `<select class="q-dropdown" data-qid="${question.id}" onchange="handleAnswer('${passage.id}',${question.id},this.value)" ${st.submitted?'disabled':''}><option value="">— chọn —</option>${opts}</select>`;
+  } else if(question.type==='text'){
+    const val = st.answers[question.id] || '';
+    if(question.prompt.includes('_____')){
+      const parts = question.prompt.split('_____');
+      inputHtml = `<div class="q-prompt-line">${escapeHtml(parts[0])}<input type="text" class="blank-input" data-qid="${question.id}" value="${escapeHtml(val)}" oninput="handleAnswer('${passage.id}',${question.id},this.value)" ${st.submitted?'disabled':''}/>${escapeHtml(parts[1]||'')}</div>`;
+    } else {
+      inputHtml = `<input type="text" class="blank-input-full" data-qid="${question.id}" value="${escapeHtml(val)}" oninput="handleAnswer('${passage.id}',${question.id},this.value)" ${st.submitted?'disabled':''}/>`;
+    }
+  }
+  const showGenericPrompt = question.type==='dropdown';
+  return `<div class="card question-card" id="qcard-${passage.id}-${question.id}" data-qid="${question.id}">
+    <div class="question-head">
+      <div><span class="question-number">${question.id}</span><span class="q-type-chip">${typeLabel(question.type)}</span></div>
+      <button class="bookmark-icon ${bookmarked?'active':''}" onclick="toggleBookmark('${passage.id}',${question.id})" aria-label="Đánh dấu câu hỏi">${bookmarked?'★':'☆'}</button>
+    </div>
+    <div class="q-instruction">${question.instruction}</div>
+    ${showGenericPrompt ? `<div class="q-prompt">${question.prompt}</div>` : ''}
+    ${inputHtml}
+    <div id="feedback-${passage.id}-${question.id}"></div>
+  </div>`;
+}
+function typeLabel(t){
+  return {dropdown:'Matching / TFNG', text:'Completion', 'choose-two':'Choose TWO Letters'}[t] || t;
+}
+
+/* Choose-two needs a dedicated renderer showing both linked question numbers together */
+function renderChooseTwoCard(passage, question){
+  const ids = question.linkedIds;
+  const st = AppState.practice[passage.id];
+  const key = 'choose2_'+ids.join('_');
+  const selected = st.answers[key] || [];
+  const options = question.choices.map(letter=>{
+    const raw = question.prompt.split('&&').find(s=>s.trim().startsWith(letter+'.'));
+    const text = raw ? raw.trim().slice(letter.length+1).trim() : letter;
+    const isSel = selected.includes(letter);
+    return `<div class="option ${isSel?'selected':''}" data-letter="${letter}" onclick="handleChooseTwo('${passage.id}',${question.id},'${letter}')">${letter}. ${text}</div>`;
+  }).join('');
+  const bookmarked = st.bookmarks[question.id] || st.bookmarks[ids[1]];
+  return `<div class="card question-card" id="qcard-${passage.id}-${question.id}" data-qid="${question.id}">
+    <div class="question-head">
+      <div><span class="question-number">${ids[0]}-${ids[1]}</span><span class="q-type-chip">Choose TWO Letters</span></div>
+      <button class="bookmark-icon ${bookmarked?'active':''}" onclick="toggleBookmark('${passage.id}',${question.id})" aria-label="Đánh dấu câu hỏi">${bookmarked?'★':'☆'}</button>
+    </div>
+    <div class="q-instruction">${question.instruction}</div>
+    <div class="checkbox-count" id="c2count-${passage.id}-${question.id}">Đã chọn: ${selected.length}/2</div>
+    <div class="mcq-options">${options}</div>
+    <div id="feedback-${passage.id}-${question.id}"></div>
+  </div>`;
+}
+
+function handleChooseTwo(passageId, questionId, letter){
+  const passage = PASSAGES.find(p=>p.id===passageId);
+  const question = passage.questions.find(q=>q.id===questionId);
+  const st = AppState.practice[passageId];
+  if(st.submitted) return;
+  const ids = question.linkedIds;
+  const key = 'choose2_'+ids.join('_');
+  let sel = st.answers[key] || [];
+  if(sel.includes(letter)){
+    sel = sel.filter(l=>l!==letter);
+  } else {
+    if(sel.length>=2) return; // block third selection
+    sel = sel.concat(letter);
+  }
+  st.answers[key] = sel;
+  ids.forEach(id=>{ st.answers[id] = sel; });
+  refreshQuestionCard(passage, question);
+  refreshBottomNav(passage);
+}
+
+function refreshQuestionCard(passage, question){
+  const container = document.getElementById('questionsColumn-'+passage.id);
+  if(!container) return;
+  const el = document.getElementById('qcard-'+passage.id+'-'+question.id);
+  if(!el) return;
+  const html = question.type==='choose-two' ? renderChooseTwoCard(passage, question) : renderQuestionCard(passage, question);
+  el.outerHTML = html;
+}
+
+function handleAnswer(passageId, questionId, value){
+  const st = AppState.practice[passageId];
+  st.answers[questionId] = value;
+  const passage = PASSAGES.find(p=>p.id===passageId);
+  refreshBottomNav(passage);
+}
+
+function toggleBookmark(passageId, questionId){
+  const st = AppState.practice[passageId];
+  st.bookmarks[questionId] = !st.bookmarks[questionId];
+  const passage = PASSAGES.find(p=>p.id===passageId);
+  const question = passage.questions.find(x=>x.id===questionId);
+  refreshQuestionCard(passage, question);
+  refreshBottomNav(passage);
+}
+
+function renderQuestionsColumn(passage){
+  let html='';
+  passage.questions.forEach(question=>{
+    if(question.type==='choose-two-linked') return;
+    if(question.type==='choose-two'){ html += renderChooseTwoCard(passage, question); }
+    else { html += renderQuestionCard(passage, question); }
+  });
+  return html;
+}
+
+function renderBottomNav(passage){
+  const st = AppState.practice[passage.id];
+  let dots='';
+  passage.questions.forEach(question=>{
+    if(question.type==='choose-two-linked') return;
+    const ids = question.linkedIds || [question.id];
+    ids.forEach(id=>{
+      const answered = question.type==='choose-two' ? (st.answers['choose2_'+ids.join('_')]||[]).length>0 : (st.answers[question.id]!==undefined && st.answers[question.id]!=='');
+      const bookmarked = st.bookmarks[question.id] || (question.linkedIds && st.bookmarks[question.linkedIds[0]]);
+      dots += `<div class="nav-dot ${answered?'answered':''} ${bookmarked?'bookmarked':''}" style="position:relative;" onclick="scrollToQuestion('${passage.id}',${question.id})">${id}</div>`;
+    });
+  });
+  return `<div class="question-nav" id="bottomNav-${passage.id}">
+    <div class="nav-dots">${dots}</div>
+    <button class="btn btn-primary btn-sm" onclick="openSubmitModal('${passage.id}')" ${st.submitted?'disabled':''}>${st.submitted?'Đã nộp':'Submit'}</button>
+  </div>`;
+}
+function refreshBottomNav(passage){
+  const el = document.getElementById('bottomNav-'+passage.id);
+  if(el) el.outerHTML = renderBottomNav(passage);
+}
+function scrollToQuestion(passageId, questionId){
+  const el = document.getElementById('qcard-'+passageId+'-'+questionId);
+  if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function formatTime(sec){
+  const m = Math.floor(sec/60), s = sec%60;
+  return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+}
+function startTimer(passage){
+  const st = AppState.practice[passage.id];
+  if(st.timerHandle) return;
+  st.timerHandle = setInterval(()=>{
+    if(st.submitted){ clearInterval(st.timerHandle); st.timerHandle=null; return; }
+    st.timeLeft--;
+    const el = document.getElementById('timer-'+passage.id);
+    if(el){
+      el.textContent = formatTime(Math.max(st.timeLeft,0));
+      el.classList.toggle('warning', st.timeLeft<=300 && st.timeLeft>60);
+      el.classList.toggle('danger', st.timeLeft<=60);
+    }
+    if(st.timeLeft<=0){
+      clearInterval(st.timerHandle); st.timerHandle=null;
+      submitPassage(passage, true);
+    }
+  },1000);
+}
+
+function renderVocabCards(passage){
+  const items = passage.vocabIds.map(id=>VOCAB.find(v=>v.id===id));
+  return `<div class="vocab-grid">${items.map(v=>`
+    <div class="vocab-card" onclick="this.classList.toggle('open')">
+      <span class="vocab-word">${v.word}</span><span class="vocab-pos">${v.pos}</span>
+      <div class="vocab-ipa">${v.ipa}</div>
+      <div class="vocab-meaning">${v.meaningVi}</div>
+      <div class="vocab-example"><div class="en">"${v.exampleEn}"</div><div class="vi">${v.exampleVi}</div></div>
+    </div>`).join('')}</div>`;
+}
+function renderParaphraseMap(passage){
+  return `<table class="pmap-table">${passage.paraphraseMap.map(m=>`
+    <tr><td class="pmap-q">${m.q}</td><td class="pmap-arrow">↔</td><td class="pmap-p">${m.p||'—'}</td></tr>
+    <tr><td colspan="3" class="pmap-logic">${m.logic}</td></tr>`).join('')}</table>`;
+}
+
+function renderPassageView(passage, index){
+  return `<section class="view" id="view-passage-${index}">
+    <div class="passage-topbar">
+      <h1 style="margin:0;">Practice — Passage ${index}</h1>
+      <div class="timer" id="timer-${passage.id}">${formatTime(passage.timeLimitSeconds)}</div>
+    </div>
+
+    <div class="accordion" id="vocabAcc-${passage.id}">
+      <div class="accordion-head" onclick="toggleAccordion('vocabAcc-${passage.id}')"><span>📘 Vocabulary Intelligence</span><span class="accordion-arrow">▾</span></div>
+      <div class="accordion-body">${renderVocabCards(passage)}</div>
+    </div>
+    <div class="accordion" id="pmapAcc-${passage.id}">
+      <div class="accordion-head" onclick="toggleAccordion('pmapAcc-${passage.id}')"><span>🔗 Paraphrase Mapping</span><span class="accordion-arrow">▾</span></div>
+      <div class="accordion-body">${renderParaphraseMap(passage)}</div>
+    </div>
+
+    <div class="practice-grid">
+      <div class="passage-panel" id="passagePanel-${passage.id}">${renderPassagePanel(passage)}</div>
+      <div class="question-panel" id="questionsColumn-${passage.id}">${renderQuestionsColumn(passage)}</div>
+    </div>
+
+    <div id="resultsHost-${passage.id}"></div>
+    ${renderBottomNav(passage)}
+  </section>`;
+}
+
+function toggleAccordion(id){
+  document.getElementById(id).classList.toggle('open');
+}
+
+function buildPracticeViews(){
+  let html='';
+  PASSAGES.forEach((p,i)=>{ html += renderPassageView(p, i+1); });
+  document.getElementById('practiceHost').innerHTML = html;
+  PASSAGES.forEach(p=>attachHighlighter(p));
+}
+
+/* Submit flow */
+let submitTargetPassageId = null;
+function openSubmitModal(passageId){
+  const passage = PASSAGES.find(p=>p.id===passageId);
+  const st = AppState.practice[passageId];
+  const answeredCount = countAnswered(passage);
+  submitTargetPassageId = passageId;
+  document.getElementById('submitModalText').textContent = `Bạn đã trả lời ${answeredCount}/13 câu.`;
+  document.getElementById('submitModal').classList.add('open');
+}
+function closeSubmitModal(){ document.getElementById('submitModal').classList.remove('open'); submitTargetPassageId=null; }
+function confirmSubmit(){
+  const passage = PASSAGES.find(p=>p.id===submitTargetPassageId);
+  closeSubmitModal();
+  submitPassage(passage, false);
+}
+function countAnswered(passage){
+  const st = AppState.practice[passage.id];
+  let c=0;
+  passage.questions.forEach(question=>{
+    if(question.type==='choose-two-linked') return;
+    if(question.type==='choose-two'){
+      const key='choose2_'+question.linkedIds.join('_');
+      if((st.answers[key]||[]).length===2) c+=2;
+    } else if(st.answers[question.id]!==undefined && st.answers[question.id]!=='') c++;
+  });
+  return c;
+}
+function checkAnswer(question, st){
+  if(question.type==='choose-two-linked') return null;
+  if(question.type==='choose-two'){
+    const key='choose2_'+question.linkedIds.join('_');
+    const sel = (st.answers[key]||[]).slice().sort();
+    const correct = question.answer.slice().sort();
+    if(sel.length===0) return 'skipped';
+    return (sel.length===2 && sel[0]===correct[0] && sel[1]===correct[1]) ? 'correct':'incorrect';
+  }
+  const val = st.answers[question.id];
+  if(val===undefined || val==='') return 'skipped';
+  if(question.type==='dropdown'){
+    return val===question.answer ? 'correct':'incorrect';
+  }
+  if(question.type==='text'){
+    const norm = s=>s.trim().toLowerCase().replace(/['’]/g,"'");
+    const ok = question.answer.some(a=>norm(a)===norm(val));
+    return ok?'correct':'incorrect';
+  }
+}
+function submitPassage(passage, timeUp){
+  const st = AppState.practice[passage.id];
+  st.submitted = true;
+  if(st.timerHandle){ clearInterval(st.timerHandle); st.timerHandle=null; }
+  passage.questions.forEach(question=>{
+    if(question.type==='choose-two-linked') return;
+    const result = checkAnswer(question, st);
+    const feedbackEl = document.getElementById('feedback-'+passage.id+'-'+question.id);
+    if(feedbackEl){
+      let explainHtml = '';
+      question.explanation && question.explanation.forEach(ex=>{
+        explainHtml += `<div class="explain-box" id="explain-${passage.id}-${question.id}">${ex.quote?`<span class="quote">"${ex.quote}"</span>`:''}<span class="vi">${ex.vi}</span></div>`;
+      });
+      feedbackEl.innerHTML = `<div class="feedback-box ${result}">${result==='correct'?'✓ Chính xác':result==='incorrect'?'✗ Chưa đúng':'— Bỏ qua'}</div>
+        <button class="explain-toggle" onclick="toggleExplain('${passage.id}',${question.id})">Xem giải thích ▾</button>
+        ${explainHtml}`;
+    }
+    markInputState(passage, question, result);
+  });
+  disableInputs(passage);
+  renderResults(passage, timeUp);
+  refreshBottomNav(passage);
+}
+function markInputState(passage, question, result){
+  if(result==='skipped') return; // không thêm class rỗng — tránh crash DOMTokenList
+  if(question.type==='dropdown'){
+    const el = document.querySelector(`select[data-qid="${question.id}"]`);
+    if(el) el.classList.add(result);
+  } else if(question.type==='text'){
+    const el = document.querySelector(`input[data-qid="${question.id}"]`);
+    if(el) el.classList.add(result);
+  } else if(question.type==='choose-two'){
+    const card = document.getElementById('qcard-'+passage.id+'-'+question.id);
+    if(!card) return;
+    card.querySelectorAll('.option').forEach(opt=>{
+      const letter = opt.dataset.letter;
+      const isCorrectLetter = question.answer.includes(letter);
+      const wasSelected = opt.classList.contains('selected');
+      if(isCorrectLetter) opt.classList.add('correct');
+      else if(wasSelected) opt.classList.add('incorrect');
+    });
+  }
+}
+function disableInputs(passage){
+  document.querySelectorAll(`#view-passage-${PASSAGES.indexOf(passage)+1} select, #view-passage-${PASSAGES.indexOf(passage)+1} input`).forEach(el=>el.disabled=true);
+}
+function toggleExplain(passageId, questionId){
+  const el = document.getElementById('explain-'+passageId+'-'+questionId);
+  if(el) el.classList.toggle('open');
+}
+function renderResults(passage, timeUp){
+  const st = AppState.practice[passage.id];
+  let correct=0, incorrect=0, skipped=0;
+  const typeCounts = {};
+  const rows = [];
+  passage.questions.forEach(question=>{
+    if(question.type==='choose-two-linked') return;
+    const result = checkAnswer(question, st);
+    if(result==='correct') correct++; else if(result==='incorrect') incorrect++; else skipped++;
+    const label = typeLabel(question.type);
+    typeCounts[label] = typeCounts[label] || {total:0,correct:0,incorrect:0,skipped:0};
+    typeCounts[label].total++;
+    typeCounts[label][result]++;
+    const idLabel = question.linkedIds ? question.linkedIds.join('-') : question.id;
+    const ansDisplay = question.type==='choose-two' ? (question.answer.join(', ')) : (question.type==='dropdown'?question.answer:question.answer[0]);
+    rows.push(`<div class="answer-key-row ${result}"><span>Câu ${idLabel}</span><span>Đáp án: <b>${ansDisplay}</b></span></div>`);
+  });
+  let statsHtml = `<table class="stats-table"><thead><tr><th>Dạng câu hỏi</th><th>Tổng</th><th>Đúng</th><th>Sai</th><th>Bỏ qua</th></tr></thead><tbody>`;
+  Object.keys(typeCounts).forEach(k=>{
+    const c = typeCounts[k];
+    statsHtml += `<tr><td>${k}</td><td>${c.total}</td><td>${c.correct||0}</td><td>${c.incorrect||0}</td><td>${c.skipped||0}</td></tr>`;
+  });
+  statsHtml += `</tbody></table>`;
+  const host = document.getElementById('resultsHost-'+passage.id);
+  host.innerHTML = `<div class="card">
+    <h2>${timeUp?'⏰ Hết giờ — Đã tự động nộp bài':'Kết quả'}</h2>
+    <div class="quiz-stats-row" style="margin-bottom:16px;">
+      <div><b>${correct}</b>Đúng</div><div><b>${incorrect}</b>Sai</div><div><b>${skipped}</b>Bỏ qua</div>
+    </div>
+    ${statsHtml}
+    <h3 style="margin-top:20px;">Answer Key</h3>
+    ${rows.join('')}
+  </div>`;
+}
+
+function handleReset(){
+  if(currentView.startsWith('view-passage-')){
+    const idx = parseInt(currentView.split('-')[2],10);
+    const passage = PASSAGES[idx-1];
+    const st = AppState.practice[passage.id];
+    if(st.timerHandle){ clearInterval(st.timerHandle); st.timerHandle=null; }
+    AppState.practice[passage.id] = {answers:{}, bookmarks:{}, submitted:false, highlights:{}, currentQ:1, timeLeft:passage.timeLimitSeconds, timerHandle:null};
+    document.getElementById('view-passage-'+idx).outerHTML = renderPassageView(passage, idx);
+    attachHighlighter(passage);
+    startTimer(passage);
+  } else if(currentView==='view-quiz'){
+    resetQuiz();
+  }
+}
+
+/* ===================== QUICK PRACTICE (QUIZ ENGINE) ===================== */
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+function buildQuizPool(){
+  const pool = [];
+  VOCAB.forEach(v=>{
+    const distractorPool = VOCAB.filter(x=>x.id!==v.id);
+    // Question type A: meaning match
+    const dA = shuffle(distractorPool).slice(0,3);
+    const choicesA = shuffle([v, ...dA]).map(x=>x.word);
+    pool.push({prompt:`Từ nào có nghĩa là "${v.meaningVi}"?`, choices:choicesA, answer:v.word, vocabId:v.id});
+    // Question type B: fill in blank from example sentence
+    const blanked = v.exampleEn.replace(new RegExp(v.word,'i'), '_____');
+    const dB = shuffle(distractorPool).slice(0,3);
+    const choicesB = shuffle([v, ...dB]).map(x=>x.word);
+    pool.push({prompt:`Điền từ còn thiếu: "${blanked}"`, choices:choicesB, answer:v.word, vocabId:v.id});
+  });
+  return shuffle(pool);
+}
+function initQuiz(){
+  AppState.quiz.questions = buildQuizPool();
+  AppState.quiz.currentIndex = 0;
+  AppState.quiz.answers = {};
+  AppState.quiz.correct = 0;
+  AppState.quiz.wrong = 0;
+  AppState.quiz.completed = false;
+  renderQuizCard();
+  updateQuizStats();
+}
+function renderQuizCard(){
+  const idx = AppState.quiz.currentIndex;
+  const total = AppState.quiz.questions.length;
+  const host = document.getElementById('quizCardHost');
+  if(idx>=total){
+    host.innerHTML = `<h2>🎉 Hoàn thành 50/50 câu!</h2><p>Reflection Dashboard đã được mở khóa.</p><button class="btn btn-primary" onclick="goToView('view-reflection')">Xem Reflection →</button>`;
+    AppState.quiz.completed = true;
+    updateSidebarProgress();
+    return;
+  }
+  const qz = AppState.quiz.questions[idx];
+  const answered = AppState.quiz.answers[idx];
+  const optionsHtml = qz.choices.map(c=>{
+    let cls='quiz-option';
+    if(answered){
+      if(c===qz.answer) cls+=' correct';
+      else if(c===answered && c!==qz.answer) cls+=' incorrect';
+    }
+    return `<div class="${cls}" onclick="answerQuiz(${idx},'${c.replace(/'/g,"\\'")}')">${c}</div>`;
+  }).join('');
+  host.innerHTML = `<div class="q-prompt">Câu ${idx+1}/${total}: ${qz.prompt}</div>${optionsHtml}`;
+  document.getElementById('quizProgressFill').style.width = (idx/total*100)+'%';
+}
+function answerQuiz(idx, choice){
+  if(AppState.quiz.answers[idx]) return;
+  AppState.quiz.answers[idx] = choice;
+  const qz = AppState.quiz.questions[idx];
+  if(choice===qz.answer) AppState.quiz.correct++; else AppState.quiz.wrong++;
+  updateQuizStats();
+  renderQuizCard();
+  setTimeout(()=>{
+    AppState.quiz.currentIndex++;
+    renderQuizCard();
+  }, 700);
+}
+function updateQuizStats(){
+  document.getElementById('quizAnsweredCount').textContent = Object.keys(AppState.quiz.answers).length;
+  document.getElementById('quizCorrectCount').textContent = AppState.quiz.correct;
+  document.getElementById('quizWrongCount').textContent = AppState.quiz.wrong;
+}
+function resetQuiz(){ initQuiz(); }
+
+/* ===================== REFLECTION ===================== */
+function renderReflection(){
+  const total = AppState.quiz.questions.length || 50;
+  const correct = AppState.quiz.correct, wrong = AppState.quiz.wrong;
+  const skip = total - correct - wrong;
+  document.getElementById('mCorrect').textContent = correct;
+  document.getElementById('mWrong').textContent = wrong;
+  document.getElementById('mSkip').textContent = skip;
+  const bar = document.getElementById('masteryBar');
+  const pc = correct/total*100, pw = wrong/total*100, ps = skip/total*100;
+  bar.innerHTML = `<div style="width:${pc}%;background:var(--green-success);"></div><div style="width:${pw}%;background:var(--red);"></div><div style="width:${ps}%;background:var(--border);"></div>`;
+  const wrongIds = new Set();
+  AppState.quiz.questions.forEach((qz,idx)=>{
+    const ans = AppState.quiz.answers[idx];
+    if(ans && ans!==qz.answer) wrongIds.add(qz.vocabId);
+  });
+  let html='';
+  if(wrongIds.size===0){
+    html = '<p style="color:var(--text-soft);">Tuyệt vời! Bạn không có từ nào cần ôn lại.</p>';
+  } else {
+    wrongIds.forEach(id=>{
+      const v = VOCAB.find(x=>x.id===id);
+      html += `<div class="review-item"><span><b>${v.word}</b> — ${v.meaningVi}</span><span>${v.ipa}</span></div>`;
+    });
+  }
+  document.getElementById('reviewList').innerHTML = html;
+}
+
+/* ===================== INIT ===================== */
+function init(){
+  buildNav();
+  renderOutcomes();
+  renderDemoQuestions();
+  buildPracticeViews();
+  initQuiz();
+  goToView('view-outcomes');
+  PASSAGES.forEach(p=>startTimer(p));
+  const origGoToView = goToView;
+  window.goToView = function(id){
+    origGoToView(id);
+    if(id==='view-reflection') renderReflection();
+  };
+}
+init();
+</script>
+</body>
+</html>
