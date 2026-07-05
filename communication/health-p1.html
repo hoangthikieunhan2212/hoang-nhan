@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Health — English Communication Lesson</title>
+<style>
+:root{
+  --forest:#2D5016;--moss:#4A7C2F;--mint:#A8C97F;--sage:#D4E8B8;--sand:#F5F0E8;--white:#FFFFFF;
+  --blue:#2563EB;--blue-light:#EFF6FF;--amber:#D97706;--amber-light:#FFFBEB;
+  --red:#DC2626;--red-light:#FEF2F2;--green-success:#16A34A;--green-light:#F0FDF4;
+  --text-dark:#1A2E0A;--text-mid:#3D5C20;--text-soft:#6B8C4A;
+  --border:#C8DFA0;
+  --shadow-sm:0 1px 3px rgba(45,80,22,0.08);--shadow-md:0 4px 16px rgba(45,80,22,0.12);--shadow-lg:0 8px 32px rgba(45,80,22,0.16);
+  --radius:12px;--radius-sm:8px;--radius-lg:20px;
+  font-size:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--sand);}
+.app-shell{display:flex;min-height:100vh;}
+/* ===== SIDEBAR ===== */
+.sidebar{width:220px;background:var(--forest);position:fixed;top:0;left:0;bottom:0;display:flex;flex-direction:column;z-index:100;}
+.brand{padding:20px 16px;border-bottom:1px solid rgba(255,255,255,0.1);}
+.brand .level-badge{background:var(--mint);color:var(--forest);font-size:10px;font-weight:800;padding:2px 10px;border-radius:99px;letter-spacing:1px;}
+.brand h2{color:#fff;font-size:16px;margin-top:8px;font-weight:800;}
+.brand .cat{color:var(--mint);opacity:0.8;font-size:11px;}
+.nav-scroll{flex:1;overflow-y:auto;padding:10px 0;}
+.nav-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(168,201,127,0.6);padding:12px 16px 4px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 16px;color:rgba(255,255,255,0.7);font-size:13px;font-weight:500;cursor:pointer;border-left:3px solid transparent;transition:all 0.2s;}
+.nav-item:hover{color:#fff;background:rgba(168,201,127,0.08);}
+.nav-item.active{color:#fff;border-left-color:var(--mint);background:rgba(168,201,127,0.15);}
+.nav-item .ico{width:20px;font-size:16px;text-align:center;}
+.progress-wrap{padding:14px 16px;border-top:1px solid rgba(255,255,255,0.1);}
+.progress-wrap .plabel{color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:6px;}
+.progress-track{background:rgba(255,255,255,0.1);height:6px;border-radius:99px;overflow:hidden;}
+.progress-fill{background:var(--mint);height:100%;width:0;border-radius:99px;transition:width 0.5s ease;}
+/* ===== MAIN ===== */
+.main-content{flex:1;margin-left:220px;}
+.page{display:none;}
+.page.active{display:block;animation:fadeIn 0.3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.hero{background:linear-gradient(135deg,var(--forest),var(--moss),#5A9E3A);color:#fff;padding:48px;}
+.hero.small{padding:32px 48px;}
+.hero .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.hero h1{font-size:36px;font-weight:800;line-height:1.2;}
+.hero.small h1{font-size:26px;}
+.hero p{max-width:520px;margin-top:10px;opacity:0.92;font-size:15px;}
+.section{padding:40px 48px;border-bottom:1px solid var(--border);}
+.section-header{margin-bottom:22px;}
+.part-label{display:inline-block;background:var(--forest);color:var(--mint);font-size:10px;font-weight:800;letter-spacing:1px;padding:3px 12px;border-radius:99px;text-transform:uppercase;}
+.section-title{font-size:22px;font-weight:800;color:var(--forest);margin-top:8px;}
+.section-subtitle{font-size:13px;color:var(--text-soft);}
+/* ===== BADGES ===== */
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:4px 12px;border-radius:99px;}
+.badge-mint{background:rgba(168,201,127,0.2);color:var(--mint);border:1px solid rgba(168,201,127,0.3);}
+.badge-white{background:rgba(255,255,255,0.15);color:#fff;}
+.badge-blue{background:var(--blue-light);color:var(--blue);}
+.badge-amber{background:var(--amber-light);color:var(--amber);}
+.badge-green{background:var(--green-light);color:var(--green-success);}
+.badge-red{background:var(--red-light);color:var(--red);}
+.badge-forest{background:var(--sage);color:var(--forest);}
+/* ===== JOURNEY ROADMAP ===== */
+.journey{display:flex;flex-direction:column;gap:0;max-width:560px;}
+.journey-step{display:flex;gap:14px;align-items:flex-start;}
+.journey-dotcol{display:flex;flex-direction:column;align-items:center;}
+.journey-dot{width:34px;height:34px;border-radius:99px;background:var(--forest);color:var(--mint);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.journey-line{width:2px;flex:1;min-height:26px;background:var(--border);}
+.journey-body{padding-bottom:22px;}
+.journey-body h4{color:var(--forest);font-size:15px;font-weight:700;}
+.journey-body p{font-size:13px;color:var(--text-soft);}
+/* ===== TABS ===== */
+.tab-bar{border-bottom:2px solid var(--border);display:flex;gap:4px;overflow-x:auto;margin-bottom:20px;}
+.tab-btn{background:none;border:none;padding:10px 18px;font-size:13px;font-weight:600;color:var(--text-soft);border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;font-family:inherit;margin-bottom:-2px;transition:all 0.2s;}
+.tab-btn.active{color:var(--forest);border-bottom-color:var(--forest);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;animation:fadeIn 0.3s ease;}
+/* ===== VOCAB CARDS ===== */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.vocab-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;cursor:pointer;position:relative;transition:all 0.2s;}
+.vocab-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--mint);}
+.vocab-card .flip-hint{position:absolute;top:10px;right:12px;font-size:10px;color:var(--text-soft);background:var(--sand);padding:2px 8px;border-radius:99px;}
+.vocab-card .word{color:var(--forest);font-size:17px;font-weight:700;}
+.vocab-card .ipa{color:var(--blue);font-size:13px;font-style:italic;}
+.vocab-card .pos{display:inline-block;background:var(--sage);color:var(--forest);font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;margin:4px 0;}
+.vocab-card .vi{color:var(--text-mid);font-weight:600;font-size:14px;}
+.vocab-card .en-simple{color:var(--text-dark);font-size:13px;margin-top:4px;}
+.vocab-card .example{display:none;color:var(--text-soft);font-size:13px;border-top:1px solid var(--sage);margin-top:10px;padding-top:8px;}
+.vocab-card.flipped .example{display:block;}
+/* ===== PHRASE CARDS ===== */
+.phrase-list{display:flex;flex-direction:column;gap:10px;}
+.phrase-card{display:flex;gap:16px;flex-wrap:wrap;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:12px 18px;align-items:baseline;}
+.phrase-en{color:var(--forest);font-weight:700;min-width:250px;font-size:15px;}
+.phrase-vi{color:var(--text-soft);font-size:14px;}
+/* ===== PRONUN ===== */
+.pron-rule{background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius);padding:18px 22px;margin-bottom:16px;}
+.pron-rule h4{color:var(--blue);font-weight:700;font-size:15px;margin-bottom:6px;}
+.pron-arrow{display:inline-block;background:var(--blue);color:#fff;font-size:11px;font-weight:700;padding:2px 10px;border-radius:99px;margin:0 6px;}
+.pron-practice{background:var(--sage);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;margin-top:10px;font-size:14px;}
+/* ===== EXERCISE ===== */
+.exercise{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:22px;}
+.exercise-title{color:var(--forest);font-weight:700;font-size:16px;margin-bottom:6px;}
+.exercise-instruction{color:var(--text-soft);font-size:13px;background:var(--sand);border-radius:var(--radius-sm);padding:8px 14px;margin-bottom:16px;}
+/* ===== BUTTONS ===== */
+.btn{padding:10px 20px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:inherit;transition:all 0.2s;}
+.btn-primary{background:var(--forest);color:#fff;}
+.btn-primary:hover{background:var(--moss);transform:translateY(-1px);}
+.btn-secondary{background:var(--sage);color:var(--forest);}
+.btn-secondary:hover{background:var(--mint);}
+.btn-outline{background:transparent;color:var(--forest);border:1.5px solid var(--border);}
+.btn-outline:hover{border-color:var(--moss);background:var(--sage);}
+.btn-sm{padding:6px 14px;font-size:13px;}
+.btn-group{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+/* ===== MCQ ===== */
+.mcq-q{margin-bottom:18px;}
+.mcq-q .qtext{font-weight:600;font-size:14px;margin-bottom:8px;}
+.mcq-option{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:6px;cursor:pointer;font-size:14px;transition:all 0.15s;background:var(--white);}
+.mcq-option:hover{border-color:var(--mint);background:var(--sage);}
+.mcq-option.selected{border-color:var(--blue);background:var(--blue-light);}
+.mcq-option.correct{border-color:var(--green-success);background:var(--green-light);}
+.mcq-option.incorrect{border-color:var(--red);background:var(--red-light);}
+/* ===== BLANKS ===== */
+.blank-input{border:none;border-bottom:2px solid var(--forest);background:transparent;min-width:120px;font-size:15px;font-family:inherit;padding:2px 6px;outline:none;}
+.blank-input:focus{border-bottom-color:var(--blue);}
+.blank-input.correct{border-bottom-color:var(--green-success);background:var(--green-light);}
+.blank-input.incorrect{border-bottom-color:var(--red);background:var(--red-light);}
+.blank-line{margin-bottom:12px;font-size:14px;}
+/* ===== MATCHING (tap-based, drag styles) ===== */
+.drag-pool{border:2px dashed var(--border);background:var(--sand);padding:12px;border-radius:var(--radius);display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.drag-item{background:var(--white);border:1.5px solid var(--border);border-radius:99px;padding:6px 16px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.15s;}
+.drag-item:hover{border-color:var(--mint);box-shadow:var(--shadow-sm);}
+.drag-item.selected{border-color:var(--blue);background:var(--blue-light);}
+.drag-item.placed{background:var(--sage);border-color:var(--moss);opacity:0.45;pointer-events:none;}
+.drop-zone{border:2px dashed var(--border);background:var(--sand);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:8px;display:flex;gap:12px;align-items:center;font-size:13px;transition:all 0.15s;cursor:pointer;}
+.drop-zone:hover{border-color:var(--moss);background:var(--sage);}
+.drop-zone .slot{min-width:120px;font-weight:700;color:var(--forest);}
+.drop-zone.correct-zone{border-color:var(--green-success);background:var(--green-light);}
+.drop-zone.incorrect-zone{border-color:var(--red);background:var(--red-light);}
+/* ===== FEEDBACK ===== */
+.feedback-box{padding:14px 18px;border-radius:var(--radius-sm);display:none;gap:10px;align-items:center;margin-top:14px;font-size:14px;font-weight:600;}
+.feedback-box.show{display:flex;}
+.feedback-box.success{background:var(--green-light);color:var(--green-success);border:1px solid #BBF7D0;}
+.feedback-box.error{background:var(--red-light);color:var(--red);border:1px solid #FECACA;}
+.feedback-box.info{background:var(--blue-light);color:var(--blue);border:1px solid #BFDBFE;}
+.score-badge{width:48px;height:48px;border-radius:99px;background:#fff;color:var(--forest);font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--border);font-size:13px;}
+/* ===== CHECKLIST ===== */
+.check-item{display:flex;gap:10px;padding:10px 14px;border-radius:var(--radius-sm);cursor:pointer;font-size:14px;align-items:center;transition:background 0.15s;}
+.check-item:hover{background:var(--sage);}
+.check-item input{accent-color:var(--forest);width:16px;height:16px;}
+/* ===== TRANSCRIPT ===== */
+.transcript-block{display:none;}
+.transcript-block.revealed{display:block;animation:fadeIn 0.3s ease;}
+.transcript-card{background:var(--sand);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:14px;}
+.transcript-card .tc-head{background:var(--forest);color:#fff;padding:10px 16px;display:flex;justify-content:space-between;font-size:13px;font-weight:700;}
+.transcript-card .tc-body{padding:16px;}
+.dialogue-line{margin-bottom:10px;font-size:14px;}
+.dialogue-line .speaker{color:var(--forest);font-weight:700;}
+/* ===== SCENARIO ===== */
+.scenario-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:24px;}
+.scenario-header{background:linear-gradient(120deg,var(--forest),var(--moss));color:#fff;padding:16px 22px;display:flex;gap:12px;align-items:center;}
+.scenario-header .sc-ico{font-size:22px;}
+.scenario-header h3{font-size:16px;font-weight:800;}
+.scenario-body{padding:22px;}
+.scenario-situation{background:var(--sand);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;font-size:14px;margin-bottom:14px;}
+.hint-chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;}
+.hint-chip{background:var(--sage);color:var(--moss);font-size:13px;font-weight:600;padding:4px 14px;border-radius:99px;}
+.sample-response{background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius-sm);padding:14px 18px;font-size:14px;display:none;margin-top:12px;}
+.sample-response.revealed{display:block;animation:fadeIn 0.3s ease;}
+.sc-label{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text-soft);margin:14px 0 6px;}
+/* ===== INFO / NOTICE ===== */
+.info-box{background:var(--sage);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:14px 18px;font-size:14px;color:var(--text-mid);margin-bottom:16px;}
+.listening-notice{background:var(--amber-light);border:1px solid #FDE68A;color:var(--amber);padding:12px 16px;font-size:13px;border-radius:var(--radius-sm);margin-bottom:16px;font-weight:600;}
+/* ===== SUMMARY TABLE ===== */
+.summary-table{width:100%;border-collapse:collapse;}
+.summary-table td{padding:10px 16px;border-bottom:1px solid var(--sage);font-size:14px;vertical-align:top;}
+.summary-table td:first-child{font-weight:700;color:var(--forest);width:40%;}
+/* ===== CONTEXT PASSAGE HIGHLIGHTS ===== */
+.hl-vocab{background:var(--sage);border-radius:4px;padding:0 3px;}
+.hl-phrase{border-bottom:2px solid var(--moss);font-weight:600;}
+.hl-pron{background:var(--blue-light);border-radius:4px;padding:0 3px;}
+.hl-accent{background:var(--amber-light);border-radius:4px;padding:0 3px;}
+.legend{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+.legend span{font-size:12px;padding:3px 10px;border-radius:99px;}
+.passage{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;font-size:15px;line-height:1.9;}
+.passage p{margin-bottom:14px;}
+/* ===== SPEAKING LEVELS ===== */
+.level-badge-row{display:flex;align-items:center;gap:10px;margin:26px 0 12px;}
+.level-num{width:30px;height:30px;border-radius:99px;background:var(--forest);color:var(--mint);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;}
+.level-title{color:var(--forest);font-weight:800;font-size:17px;}
+.dialogue-box{background:var(--sand);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:10px;}
+.dlg-a{font-size:14px;margin-bottom:8px;}
+.dlg-a .who{font-weight:700;color:var(--forest);}
+textarea.dlg-input{width:100%;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;font-family:inherit;font-size:14px;resize:vertical;min-height:56px;background:var(--white);outline:none;}
+textarea.dlg-input:focus{border-color:var(--blue);}
+.word-counter{font-size:12px;color:var(--text-soft);text-align:right;margin-top:4px;}
+/* ===== QUIZ GAME ===== */
+.quiz-screen{display:none;}
+.quiz-screen.active{display:block;animation:fadeIn 0.3s ease;}
+.quiz-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.timer-pill{background:var(--white);border:1.5px solid var(--border);border-radius:99px;padding:6px 16px;font-weight:800;font-size:14px;color:var(--forest);}
+.timer-pill.danger{border-color:var(--red);color:var(--red);animation:pulse 0.5s infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+.timer-track{background:var(--sage);height:8px;border-radius:99px;overflow:hidden;margin-bottom:20px;}
+.timer-bar{background:var(--moss);height:100%;width:100%;border-radius:99px;transition:width 0.1s linear;}
+.timer-bar.danger{background:var(--red);}
+.quiz-qtext{font-size:17px;font-weight:700;color:var(--forest);margin-bottom:14px;}
+.quiz-explain{display:none;background:var(--blue-light);border:1px solid #BFDBFE;color:var(--blue);border-radius:var(--radius-sm);padding:12px 16px;font-size:14px;margin-top:12px;}
+.quiz-explain.show{display:block;}
+.result-circle{width:120px;height:120px;border-radius:99px;background:var(--white);border:6px solid var(--mint);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 18px;}
+.result-circle .big{font-size:30px;font-weight:800;color:var(--forest);}
+.result-circle .small{font-size:12px;color:var(--text-soft);}
+/* ===== RESET FAB ===== */
+.reset-fab{position:fixed;bottom:24px;right:24px;background:var(--red);color:#fff;border:none;border-radius:99px;padding:12px 20px;font-size:13px;font-weight:700;box-shadow:var(--shadow-lg);z-index:200;cursor:pointer;font-family:inherit;transition:transform 0.2s;}
+.reset-fab:hover{transform:scale(1.05);}
+/* ===== RESPONSIVE ===== */
+@media (max-width:768px){
+  .sidebar{position:static;width:100%;height:auto;}
+  .nav-scroll{display:flex;overflow-x:auto;padding:4px;}
+  .nav-label{display:none;}
+  .nav-item{border-left:none;border-bottom:3px solid transparent;white-space:nowrap;}
+  .nav-item.active{border-left:none;border-bottom-color:var(--mint);}
+  .app-shell{flex-direction:column;}
+  .main-content{margin-left:0;}
+  .hero{padding:24px;}
+  .hero h1{font-size:26px;}
+  .section{padding:24px;}
+  .vocab-grid{grid-template-columns:1fr;}
+  .progress-wrap{display:none;}
+}
+</style>
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+  <div class="brand">
+    <span class="level-badge">A2 → B1</span>
+    <h2>Health</h2>
+    <div class="cat">English Communication</div>
+  </div>
+  <div class="nav-scroll">
+    <div class="nav-item active" data-page="overview"><span class="ico">🏠</span>Overview</div>
+    <div class="nav-label">Part 1 · Getting Ready</div>
+    <div class="nav-item" data-page="vocab"><span class="ico">📖</span>Vocabulary</div>
+    <div class="nav-item" data-page="phrases"><span class="ico">💬</span>Useful Phrases</div>
+    <div class="nav-item" data-page="pronun"><span class="ico">🔊</span>Pronunciation</div>
+    <div class="nav-item" data-page="practice"><span class="ico">✏️</span>Quick Practice</div>
+    <div class="nav-label">Part 2</div>
+    <div class="nav-item" data-page="speaking"><span class="ico">🗣️</span>Speaking</div>
+    <div class="nav-label">Part 3</div>
+    <div class="nav-item" data-page="listening"><span class="ico">🎧</span>Listening</div>
+    <div class="nav-label">Part 4</div>
+    <div class="nav-item" data-page="discussion"><span class="ico">🤝</span>Discussion</div>
+    <div class="nav-label">Part 5</div>
+    <div class="nav-item" data-page="review"><span class="ico">🏆</span>Quiz &amp; Review</div>
+  </div>
+  <div class="progress-wrap">
+    <div class="plabel">Lesson progress</div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+</aside>
+
+<main class="main-content">
+
+<!-- ================= OVERVIEW ================= -->
+<div class="page active" data-page="overview">
+  <div class="hero">
+    <div class="meta">
+      <span class="badge badge-white">Everyday Life</span>
+      <span class="badge badge-mint">CEFR A2 → B1</span>
+      <span class="badge badge-white">⏱ 90–120 min</span>
+    </div>
+    <h1>Health</h1>
+    <p>Learn to talk about your body, describe symptoms when you are sick, understand a conversation about health remedies, and give advice to a sick friend — all in natural, everyday English.</p>
+    <div class="meta" style="margin-top:18px;">
+      <span class="badge badge-mint">Vocabulary</span>
+      <span class="badge badge-mint">Speaking</span>
+      <span class="badge badge-mint">Listening</span>
+      <span class="badge badge-mint">Problem Solving</span>
+      <span class="badge badge-mint">Communication</span>
+      <span class="badge badge-mint">Review</span>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Learning Outcomes</span>
+      <h2 class="section-title">By the end of this lesson, you can…</h2>
+    </div>
+    <div class="phrase-list">
+      <div class="phrase-card"><span class="phrase-en">🧠 Name internal organs</span><span class="phrase-vi">brain, heart, lungs, liver, kidneys, stomach…</span></div>
+      <div class="phrase-card"><span class="phrase-en">🤒 Describe symptoms &amp; health issues</span><span class="phrase-vi">flu, cold, allergy, food poisoning…</span></div>
+      <div class="phrase-card"><span class="phrase-en">💊 Explain your feelings when you are sick &amp; give advice</span><span class="phrase-vi">"When I have a flu, I have experienced… I should…"</span></div>
+      <div class="phrase-card"><span class="phrase-en">🎧 Understand a real conversation about health remedies</span><span class="phrase-vi">Listening: "Health Remedies"</span></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Learning Journey</span>
+      <h2 class="section-title">How this lesson works</h2>
+      <div class="section-subtitle">Each step prepares you for the next one.</div>
+    </div>
+    <div class="journey">
+      <div class="journey-step"><div class="journey-dotcol"><div class="journey-dot">1</div><div class="journey-line"></div></div><div class="journey-body"><h4>Language Input — Part 1</h4><p>Vocabulary, useful phrases, pronunciation, and a full context passage.</p></div></div>
+      <div class="journey-step"><div class="journey-dotcol"><div class="journey-dot">2</div><div class="journey-line"></div></div><div class="journey-body"><h4>Guided Practice — Part 2</h4><p>Speaking in 4 levels: simple questions → sentence completion → dialogue → independent speaking.</p></div></div>
+      <div class="journey-step"><div class="journey-dotcol"><div class="journey-dot">3</div><div class="journey-line"></div></div><div class="journey-body"><h4>Language Recognition — Part 3</h4><p>Listening: recognize today's language in a real conversation.</p></div></div>
+      <div class="journey-step"><div class="journey-dotcol"><div class="journey-dot">4</div><div class="journey-line"></div></div><div class="journey-body"><h4>Real-world Communication — Part 4</h4><p>Discussion scenarios: give advice, visit a clinic, solve real problems.</p></div></div>
+      <div class="journey-step"><div class="journey-dotcol"><div class="journey-dot">5</div></div><div class="journey-body"><h4>Reflection &amp; Review — Part 5</h4><p>30-question quiz game + self-assessment.</p></div></div>
+    </div>
+    <div class="btn-group"><button class="btn btn-primary" data-goto="vocab">Start: Vocabulary →</button></div>
+  </div>
+</div>
+
+<!-- ================= VOCAB ================= -->
+<div class="page" data-page="vocab">
+  <div class="hero small">
+    <div class="meta"><span class="badge badge-mint">Part 1 · A</span></div>
+    <h1>Vocabulary</h1>
+    <p>Tap a card to see an example sentence. Four tabs — finish with the Comprehensive Context Passage.</p>
+  </div>
+  <div class="section">
+    <div class="tab-bar" data-group="vocab">
+      <button class="tab-btn active" data-tab="v1">A.1 Body Parts — Inside</button>
+      <button class="tab-btn" data-tab="v2">A.2 Symptoms</button>
+      <button class="tab-btn" data-tab="v3">A.3 Health Issues &amp; Treatments</button>
+      <button class="tab-btn" data-tab="v4">A.4 Comprehensive Context Passage</button>
+    </div>
+    <div class="tab-panel active" data-group="vocab" data-tab="v1">
+      <div class="info-box">🫀 Each body part connects to symptoms you will learn in the next tab.</div>
+      <div class="vocab-grid" id="vgrid-body"></div>
+    </div>
+    <div class="tab-panel" data-group="vocab" data-tab="v2">
+      <div class="info-box">🤒 A <b>symptom</b> is a sign that you are sick — something you feel in your body.</div>
+      <div class="vocab-grid" id="vgrid-symptoms"></div>
+    </div>
+    <div class="tab-panel" data-group="vocab" data-tab="v3">
+      <div class="info-box">🩺 Pattern: each <b>illness</b> → its <b>symptoms</b> → its <b>treatment</b>. Flip cards to see symptoms and treatments.</div>
+      <div class="vocab-grid" id="vgrid-issues"></div>
+      <div class="sc-label" style="margin-top:22px;">Treatments — What you should do</div>
+      <div class="vocab-grid" id="vgrid-treatments"></div>
+    </div>
+    <div class="tab-panel" data-group="vocab" data-tab="v4">
+      <div class="info-box">📖 <b>Read this story carefully.</b> It contains <b>every word and phrase</b> from this lesson, the grammar you will use in Speaking (past simple, <b>should</b> for advice, and linking words), and the situation you will discuss in Part 4 — where <b>you</b> will give Steve advice.</div>
+      <div class="legend">
+        <span class="hl-vocab">vocabulary</span>
+        <span class="hl-phrase">useful phrase</span>
+        <span class="hl-pron">pronunciation focus (word stress)</span>
+        <span class="hl-accent">linking word</span>
+        <span><b>bold</b> = grammar focus</span>
+      </div>
+      <div class="passage">
+        <p><b>Steve's Bad Week</b></p>
+        <p>Last week, Steve <span class="hl-phrase"><b>was scheduled to</b></span> give a big presentation at work on Friday. <span class="hl-accent"><b>At first</b></span>, he felt great. <span class="hl-accent"><b>However</b></span>, on Sunday afternoon he <span class="hl-phrase">felt sick</span>. He <b>had</b> a <span class="hl-vocab">headache</span>, and his <span class="hl-vocab">brain</span> felt heavy after long hours on the computer. He also had a <span class="hl-vocab">fever</span>, a <span class="hl-vocab">sore throat</span>, a <span class="hl-vocab">runny nose</span> and a <span class="hl-vocab">stuffy nose</span>. He <b>was</b> <span class="hl-vocab">sneezing</span> all morning, and his <span class="hl-vocab">body aches</span> made it hard to sleep. "It <span class="hl-phrase">seems</span> like the <span class="hl-vocab">flu</span>," he thought.</p>
+        <p><span class="hl-accent"><b>So</b></span> Steve <b>decided</b> to <span class="hl-phrase">see a doctor</span>. He <span class="hl-phrase">took a day off</span> and <span class="hl-phrase">made an appointment</span> at a <span class="hl-phrase">clinic</span> near his house. At the clinic, he had to <span class="hl-phrase">register</span>, <span class="hl-phrase">get a number</span>, and <span class="hl-phrase">wait in line</span> with the other <span class="hl-phrase">patients</span>. Then the nurse called him: "<span class="hl-phrase">It's your turn</span>!" The doctor did a <span class="hl-phrase">general check-up</span>. She listened to his <span class="hl-vocab">heart</span> and his <span class="hl-vocab">lungs</span>, and she checked his <span class="hl-vocab">blood vessels</span> and his <span class="hl-vocab">backbone</span> too. "Good news — it's <span class="hl-phrase">probably nothing serious</span>," she said. "It's just a bad <span class="hl-vocab">cold</span>. You <span class="hl-phrase"><b>are supposed to</b></span> <span class="hl-vocab">take the <span class="hl-pron">MEdicine</span></span> — a <span class="hl-vocab">cold medicine</span> — three times a day after meals. You <b>should</b> also <span class="hl-vocab">drink warm water</span>, <span class="hl-vocab">gargle with salt water</span>, and <span class="hl-vocab">get some rest</span>. <span class="hl-phrase">Stay off your feet</span> for a day, and you <b>should</b> feel better <span class="hl-phrase">in no time</span>."</p>
+        <p>Steve followed the advice. <span class="hl-accent"><b>Therefore</b></span>, he <b>stayed</b> home to <span class="hl-phrase">rest</span>. His sister, who <span class="hl-phrase">is really into</span> healthy living, told him to <span class="hl-phrase">give her herbal tea a try</span>. "<span class="hl-phrase">Nothing else seems to be doing the job</span>," Steve said, so he <b>drank</b> it four times a day. <span class="hl-accent"><b>As a result</b></span>, he <span class="hl-phrase">got rid of</span> the cold. <span class="hl-accent"><b>After a few days</b></span>, he felt healthy again.</p>
+        <p>Steve's family also had a difficult week. His brother <b>ate</b> spoiled food at a night market and <b>got</b> <span class="hl-vocab">food poisoning</span> — he had a terrible <span class="hl-pron">STOmachache</span> and <b>was</b> <span class="hl-vocab">vomiting</span> all night. His <span class="hl-vocab">stomach</span> needed two days of rest, but the pain <b>was</b> <span class="hl-phrase">getting better on its own</span>. His father loves fried and spicy food, so he had <span class="hl-vocab">heat in the body</span> and <span class="hl-pron">indiGEStion</span>; the doctor said his <span class="hl-vocab">liver</span> and his <span class="hl-vocab">kidneys</span> needed a break. His grandmother had <span class="hl-pron">constiPAtion</span>, and she felt <span class="hl-vocab">dizzy</span> when she stood up too quickly. Finally, his little cousin had an <span class="hl-pron">ALlergy</span>: <span class="hl-vocab">itchy skin</span>, a <span class="hl-vocab">skin rash</span>, and even <span class="hl-vocab">shortness of breath</span>. The doctor told her to <span class="hl-vocab">avoid allergens</span>, <span class="hl-vocab">take allergy pills</span>, and <span class="hl-vocab">put ice on</span> the itchy skin. What a week!</p>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="phrases">Next: Useful Phrases →</button>
+      <button class="btn btn-outline" data-goto="overview">← Overview</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PHRASES ================= -->
+<div class="page" data-page="phrases">
+  <div class="hero small">
+    <div class="meta"><span class="badge badge-mint">Part 1 · B</span></div>
+    <h1>Useful Phrases</h1>
+    <p>Natural everyday English for talking about sickness and visiting a clinic.</p>
+  </div>
+  <div class="section">
+    <div class="tab-bar" data-group="phrases">
+      <button class="tab-btn active" data-tab="p1">B.1 Talking About Being Sick</button>
+      <button class="tab-btn" data-tab="p2">B.2 At the Clinic</button>
+    </div>
+    <div class="tab-panel active" data-group="phrases" data-tab="p1">
+      <div class="phrase-list" id="plist-sick"></div>
+    </div>
+    <div class="tab-panel" data-group="phrases" data-tab="p2">
+      <div class="phrase-list" id="plist-clinic"></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="pronun">Next: Pronunciation →</button>
+      <button class="btn btn-outline" data-goto="vocab">← Vocabulary</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PRONUNCIATION ================= -->
+<div class="page" data-page="pronun">
+  <div class="hero small">
+    <div class="meta"><span class="badge badge-mint">Part 1 · C</span></div>
+    <h1>Pronunciation Focus: Word Stress</h1>
+    <p>In English, one syllable in each word is stronger. Wrong stress can make health words hard to understand.</p>
+  </div>
+  <div class="section">
+    <div class="pron-rule">
+      <h4>Rule 1 — Most 2-syllable nouns: stress the FIRST syllable</h4>
+      <div><b>FE</b>ver /ˈfiː.vər/ · <b>STO</b>mach /ˈstʌm.ək/ · <b>LI</b>ver /ˈlɪv.ər/ · <b>KID</b>neys /ˈkɪd.niːz/ · <b>PA</b>tient /ˈpeɪ.ʃənt/</div>
+      <div class="pron-practice">🗣 Say it: "The <b>PA</b>tient has a <b>FE</b>ver and a <b>STO</b>machache."</div>
+    </div>
+    <div class="pron-rule">
+      <h4>Rule 2 — Words ending in <span class="pron-arrow">-tion</span> stress the syllable BEFORE it</h4>
+      <div>indi<b>GES</b>tion /ˌɪn.dɪˈdʒes.tʃən/ · consti<b>PA</b>tion /ˌkɑːn.stəˈpeɪ.ʃən/ · prescr<b>IP</b>tion</div>
+      <div class="pron-practice">🗣 Say it: "He has indi<b>GES</b>tion, and his grandmother has consti<b>PA</b>tion."</div>
+    </div>
+    <div class="pron-rule">
+      <h4>Rule 3 — Watch these tricky ones</h4>
+      <div><b>AL</b>lergy /ˈæl.ə.dʒi/ (NOT al-LER-gy) · <b>ME</b>dicine /ˈmed.ɪ.sən/ (often 2 syllables: "MED-sin") · <b>VO</b>miting /ˈvɒm.ɪ.tɪŋ/</div>
+      <div class="pron-practice">🗣 Say it: "Take your <b>ME</b>dicine — it helps with the <b>AL</b>lergy."</div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="practice">Next: Quick Practice →</button>
+      <button class="btn btn-outline" data-goto="phrases">← Useful Phrases</button>
+    </div>
+  </div>
+</div>
+<!-- ================= QUICK PRACTICE ================= -->
+<div class="page" data-page="practice">
+  <div class="hero small">
+    <div class="meta"><span class="badge badge-mint">Part 1 · D</span></div>
+    <h1>Quick Practice</h1>
+    <p>Three short activities to lock in the vocabulary and phrases before you speak.</p>
+  </div>
+  <div class="section">
+    <!-- D1 Matching -->
+    <div class="exercise" id="ex-match">
+      <div class="exercise-title">D.1 — Match the term to the definition</div>
+      <div class="exercise-instruction">Tap a term, then tap its definition. Tap "Show Answers" to check.</div>
+      <div class="drag-pool" id="matchPool"></div>
+      <div id="matchZones"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary btn-sm" onclick="gradeMatch()">Show Answers</button>
+        <button class="btn btn-outline btn-sm" onclick="resetMatch()">Reset</button>
+      </div>
+      <div class="feedback-box" id="fb-match"><div class="score-badge" id="sb-match">–</div><span id="fbtext-match"></span></div>
+    </div>
+    <!-- D2 MCQ -->
+    <div class="exercise" id="ex-mcq1">
+      <div class="exercise-title">D.2 — Choose the best answer</div>
+      <div class="exercise-instruction">Select one option for every question, then tap "Show Answers".</div>
+      <div id="mcq1-holder"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary btn-sm" onclick="gradeMcqEx('mcq1')">Show Answers</button>
+        <button class="btn btn-outline btn-sm" onclick="resetMcqEx('mcq1')">Reset</button>
+      </div>
+      <div class="feedback-box" id="fb-mcq1"><div class="score-badge" id="sb-mcq1">–</div><span id="fbtext-mcq1"></span></div>
+    </div>
+    <!-- D3 Gap fill -->
+    <div class="exercise" id="ex-gap">
+      <div class="exercise-title">D.3 — Complete the sentences</div>
+      <div class="exercise-instruction">Type ONE word or phrase in each blank. Use: <b>rid · supposed · appointment · line · feet</b></div>
+      <div class="blank-line">1. I want to get <input class="blank-input" data-answer="rid"> of this cough, so I drink warm water every day.</div>
+      <div class="blank-line">2. You are <input class="blank-input" data-answer="supposed"> to take the medicine three times a day after meals.</div>
+      <div class="blank-line">3. I called the clinic to make an <input class="blank-input" data-answer="appointment"> for a general check-up.</div>
+      <div class="blank-line">4. There were many patients, so I had to wait in <input class="blank-input" data-answer="line"> for my turn.</div>
+      <div class="blank-line">5. The doctor told me to stay off my <input class="blank-input" data-answer="feet"> for a day or so.</div>
+      <div class="btn-group">
+        <button class="btn btn-primary btn-sm" onclick="gradeGaps()">Show Answers</button>
+        <button class="btn btn-outline btn-sm" onclick="resetGaps()">Reset</button>
+      </div>
+      <div class="feedback-box" id="fb-gap"><div class="score-badge" id="sb-gap">–</div><span id="fbtext-gap"></span></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="speaking">Next: Speaking →</button>
+      <button class="btn btn-outline" data-goto="pronun">← Pronunciation</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= SPEAKING ================= -->
+<div class="page" data-page="speaking">
+  <div class="hero small">
+    <div class="meta"><span class="badge badge-mint">Part 2</span><span class="badge badge-white">4-Level Progression</span></div>
+    <h1>Speaking</h1>
+    <p>Speak out loud at every level. Start guided, finish independent. Grammar focus: past simple, "should" for advice, linking words.</p>
+  </div>
+  <div class="section">
+    <div class="info-box">🗣 <b>How to practice:</b> Say every answer OUT LOUD before you reveal the model. Speaking silently in your head does not count!</div>
+
+    <!-- LEVEL 1 -->
+    <div class="level-badge-row"><div class="level-num">1</div><div class="level-title">Simple Questions</div></div>
+    <div class="exercise">
+      <div class="exercise-instruction">Answer with a body part from A.1. Speak in a full sentence: "My …" or "The … is in trouble."</div>
+      <div class="mcq-q"><div class="qtext">Q1. If you work on the computer for 10 hours without resting, which organ will complain?</div>
+        <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l1a')">💡 Model answer</button>
+        <div class="sample-response" id="sr-l1a">My <b>brain</b> will complain — I will probably get a headache.</div></div>
+      <div class="mcq-q"><div class="qtext">Q2. When you go out in the cold winter without a scarf and get a sore throat — which part of the body is in trouble?</div>
+        <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l1b')">💡 Model answer</button>
+        <div class="sample-response" id="sr-l1b">My <b>throat</b> is in trouble, and my <b>lungs</b> can suffer too.</div></div>
+      <div class="mcq-q"><div class="qtext">Q3. If you eat spoiled food at a night market, where will you feel the pain?</div>
+        <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l1c')">💡 Model answer</button>
+        <div class="sample-response" id="sr-l1c">I will feel the pain in my <b>stomach</b> — I will have a stomachache and maybe vomiting.</div></div>
+      <div class="mcq-q"><div class="qtext">Q4. Your friend loves eating instant noodles and spicy food every day. Which organ will suffer the most?</div>
+        <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l1d')">💡 Model answer</button>
+        <div class="sample-response" id="sr-l1d">His <b>liver</b> will suffer the most — he may get heat in the body and indigestion.</div></div>
+    </div>
+
+    <!-- LEVEL 2 -->
+    <div class="level-badge-row"><div class="level-num">2</div><div class="level-title">Sentence Completion</div></div>
+    <div class="exercise">
+      <div class="exercise-instruction">Speaking Template: <b>"When I have a/an (illness), I have experienced (symptoms). I should (treatment)."</b> Complete each sentence out loud.</div>
+      <div class="blank-line">1. When I have a/an <b>flu</b>, I have experienced … . I should … .</div>
+      <div class="blank-line">2. When I have a/an <b>cold</b>, I have experienced … . I should … .</div>
+      <div class="blank-line">3. When I have a/an <b>allergy</b>, I have experienced … . I should … .</div>
+      <div class="blank-line">4. When I have <b>food poisoning</b>, I have experienced … . I should … .</div>
+      <div class="blank-line">5. When I have <b>indigestion</b>, I have experienced … . I should … .</div>
+      <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l2')">💡 Model answer (flu)</button>
+      <div class="sample-response" id="sr-l2">When I have a flu, I have experienced sudden high fever, body aches, sore throat, and I feel dizzy. I should see a doctor or take the medicine.</div>
+    </div>
+
+    <!-- LEVEL 3 -->
+    <div class="level-badge-row"><div class="level-num">3</div><div class="level-title">Short Dialogue — You are B</div></div>
+    <div class="exercise">
+      <div class="exercise-title">Dialogue 1 — At the Clinic 🏥</div>
+      <div class="exercise-instruction">A's lines are ready. Type B's line, then SAY the whole dialogue out loud. Useful: register · get a number · it's your turn · general check-up · symptoms.</div>
+      <div class="dialogue-box"><div class="dlg-a"><span class="who">A (Receptionist):</span> Good morning! Do you have an appointment?</div>
+        <textarea class="dlg-input" data-counter="wc-d1a" placeholder="B (You): …"></textarea><div class="word-counter" id="wc-d1a">0 words</div></div>
+      <div class="dialogue-box"><div class="dlg-a"><span class="who">A (Doctor):</span> It's your turn. So, what seems to be the problem?</div>
+        <textarea class="dlg-input" data-counter="wc-d1b" placeholder="B (You): describe your symptoms…"></textarea><div class="word-counter" id="wc-d1b">0 words</div></div>
+      <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l3a')">💡 Model lines</button>
+      <div class="sample-response" id="sr-l3a"><b>B1:</b> No, I don't. I'd like to register and get a number, please. <br><b>B2:</b> I feel sick. I have a fever, a sore throat, and a stuffy nose. It started two days ago.</div>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">Dialogue 2 — Advice for a Sick Friend 🍵</div>
+      <div class="exercise-instruction">Your friend is sick before a big day. Type B's advice, then say it. Useful: should · give … a try · stay off your feet · get rid of · in no time.</div>
+      <div class="dialogue-box"><div class="dlg-a"><span class="who">A (Friend):</span> I feel terrible. I have a bad cold, but I'm scheduled to give a presentation on Friday. The medicine doesn't seem to help.</div>
+        <textarea class="dlg-input" data-counter="wc-d2a" placeholder="B (You): give advice…"></textarea><div class="word-counter" id="wc-d2a">0 words</div></div>
+      <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l3b')">💡 Model line</button>
+      <div class="sample-response" id="sr-l3b"><b>B:</b> You should stay off your feet today and drink warm water. Also, give herbal tea a try — it helped me get rid of a bad cold. You'll feel better in no time!</div>
+    </div>
+
+    <!-- LEVEL 4 -->
+    <div class="level-badge-row"><div class="level-num">4</div><div class="level-title">Independent Speaking</div></div>
+    <div class="exercise">
+      <div class="exercise-instruction">Speak for 30–60 seconds per situation. Template: <b>At first…, However…, So…, Therefore…, As a result…</b> (past simple).</div>
+      <div class="mcq-q"><div class="qtext">🎤 Situation 1: Talk about a day when you felt sick. (What happened at first? What symptoms? What did you decide to do?)</div>
+        <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l4a')">💡 Answer key</button>
+        <div class="sample-response" id="sr-l4a">Yesterday I felt sick. <b>At first</b>, I thought I was just a little tired. <b>However</b>, I started to have a fever in the evening. <b>So</b> I decided to stay home.</div></div>
+      <div class="mcq-q"><div class="qtext">🎤 Situation 2: The doctor told you to rest. What did you do, and what was the result?</div>
+        <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l4b')">💡 Answer key</button>
+        <div class="sample-response" id="sr-l4b">The doctor told me to rest. <b>Therefore</b>, I stayed off my feet for a day. I stayed home and slept more. <b>As a result</b>, I felt better the next day.</div></div>
+      <div class="mcq-q"><div class="qtext">🎤 Situation 3: You want to get rid of a cough. What do you do every day? What happens after a few days?</div>
+        <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l4c')">💡 Answer key</button>
+        <div class="sample-response" id="sr-l4c">I want to get rid of this cough. <b>So</b> I drink a lot of warm water. I also go to bed early every day. <b>After a few days</b>, the cough disappeared.</div></div>
+      <div class="mcq-q"><div class="qtext">🎤 Situation 4: Talk about someone in your family who is really into taking care of their health.</div>
+        <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l4d')">💡 Answer key</button>
+        <div class="sample-response" id="sr-l4d">My younger sister is really into taking care of her health. <b>Therefore</b>, she often drinks warm water every morning.</div></div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">Speaking Checklist ✅</div>
+      <label class="check-item"><input type="checkbox"> I used today's vocabulary.</label>
+      <label class="check-item"><input type="checkbox"> I used complete sentences.</label>
+      <label class="check-item"><input type="checkbox"> My pronunciation was clear (word stress!).</label>
+      <label class="check-item"><input type="checkbox"> I answered naturally.</label>
+      <label class="check-item"><input type="checkbox"> I spoke confidently.</label>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="listening">Next: Listening →</button>
+      <button class="btn btn-outline" data-goto="practice">← Quick Practice</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= LISTENING ================= -->
+<div class="page" data-page="listening">
+  <div class="hero small">
+    <div class="meta"><span class="badge badge-mint">Part 3</span></div>
+    <h1>Listening: Health Remedies</h1>
+    <p>Carla gives her sick friend Steve some unusual advice. Listen and recognize today's language.</p>
+  </div>
+  <div class="section">
+    <div class="listening-notice">🎧 The listening audio is in Notion. Play each audio, then answer here. Only open the transcript AFTER you finish all tasks.</div>
+
+    <div class="exercise">
+      <div class="exercise-title">Task 1 — Audio 1: Listen and write your answer</div>
+      <div class="exercise-instruction">How did Steve feel on Saturday, and how did he feel the next day?</div>
+      <textarea class="dlg-input" data-counter="wc-lis1" placeholder="Type your answer…"></textarea><div class="word-counter" id="wc-lis1">0 words</div>
+      <button class="btn btn-secondary btn-sm" style="margin-top:10px;" onclick="toggleReveal('sr-lis1')">💡 Answer</button>
+      <div class="sample-response" id="sr-lis1">He was feeling <b>great on Saturday</b>, but he started to <b>feel sick on Sunday afternoon</b> — and then he felt even worse than before.</div>
+    </div>
+
+    <div class="exercise" id="ex-lis2">
+      <div class="exercise-title">Task 2 — Audio 2: Tick the correct answer</div>
+      <div class="exercise-instruction">Select one option per question, then tap "Show Answers".</div>
+      <div id="lis2-holder"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary btn-sm" onclick="gradeMcqEx('lis2')">Show Answers</button>
+        <button class="btn btn-outline btn-sm" onclick="resetMcqEx('lis2')">Reset</button>
+      </div>
+      <div class="feedback-box" id="fb-lis2"><div class="score-badge" id="sb-lis2">–</div><span id="fbtext-lis2"></span></div>
+    </div>
+
+    <div class="exercise" id="ex-lis3">
+      <div class="exercise-title">Task 3 — Audio 3: Tick the correct answer</div>
+      <div class="exercise-instruction">Select one option per question, then tap "Show Answers".</div>
+      <div id="lis3-holder"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary btn-sm" onclick="gradeMcqEx('lis3')">Show Answers</button>
+        <button class="btn btn-outline btn-sm" onclick="resetMcqEx('lis3')">Reset</button>
+      </div>
+      <div class="feedback-box" id="fb-lis3"><div class="score-badge" id="sb-lis3">–</div><span id="fbtext-lis3"></span></div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">Vocabulary Review — Words from the audio</div>
+      <div class="phrase-list" id="plist-listenvocab"></div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">Tapescript 📜</div>
+      <button class="btn btn-secondary btn-sm" onclick="toggleTranscript()">Show / Hide Tapescript</button>
+      <div class="transcript-block" id="transcriptBlock">
+        <div class="transcript-card">
+          <div class="tc-head"><span>HEALTH REMEDIES</span><span>Carla &amp; Steve</span></div>
+          <div class="tc-body" id="transcriptBody"></div>
+        </div>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="discussion">Next: Discussion →</button>
+      <button class="btn btn-outline" data-goto="speaking">← Speaking</button>
+    </div>
+  </div>
+</div>
+<!-- ================= DISCUSSION ================= -->
+<div class="page" data-page="discussion">
+  <div class="hero small">
+    <div class="meta"><span class="badge badge-mint">Part 4</span><span class="badge badge-white">Free Communication</span></div>
+    <h1>Discussion</h1>
+    <p>There is no single correct answer here. Use today's language to solve real situations — think, decide, and explain why.</p>
+  </div>
+  <div class="section">
+    <!-- Scenario 1 -->
+    <div class="scenario-card">
+      <div class="scenario-header"><span class="sc-ico">🍵</span><h3>Scenario 1 — The Herbal Tea Debate (Giving Advice)</h3></div>
+      <div class="scenario-body">
+        <div class="scenario-situation"><b>Situation:</b> Your friend Steve has a bad cold. The doctor's medicine doesn't seem to help, and he is scheduled to give an important presentation at work on Friday — in just 3 days. Your mother's herbal tea helped you before, but Steve says "Oh, no thanks" to herbal medicine.</div>
+        <div class="sc-label">🎯 Goal</div>
+        <div>Convince Steve to try ONE remedy (herbal tea, more rest, another doctor, or your own idea) — or help him make a different plan for Friday. Explain your reasons.</div>
+        <div class="sc-label">💬 Useful Language</div>
+        <div class="hint-chips"><span class="hint-chip">You should…</span><span class="hint-chip">Give it a try!</span><span class="hint-chip">Believe me…</span><span class="hint-chip">You'll be better in no time</span><span class="hint-chip">stay off your feet</span><span class="hint-chip">get rid of</span></div>
+        <div class="sc-label">💡 Hints</div>
+        <div class="hint-chips"><span class="hint-chip">What if the tea doesn't work?</span><span class="hint-chip">Can he move the presentation?</span><span class="hint-chip">Is a second doctor a good idea?</span></div>
+        <button class="btn btn-secondary btn-sm" style="margin-top:12px;" onclick="toggleReveal('sr-sc1')">💡 Sample response</button>
+        <div class="sample-response" id="sr-sc1">Steve, listen — the cold medicine doesn't seem to be doing the job, so you should try something different. Give my mom's herbal tea a try: drink it four times a day, stay off your feet tonight, and gargle with salt water. If you don't feel better by Wednesday, you should see another doctor. Don't worry — it's probably nothing serious, and you'll be ready for Friday in no time!</div>
+        <div class="sc-label">🔄 Extension Questions</div>
+        <div>1. In your country, what home remedies do people use for a cold? Do they work?<br>2. When should you trust a doctor, and when is it OK to try home remedies?</div>
+        <div class="sc-label">🪞 Reflection</div>
+        <div>Which phrases did you use to give advice? Was your advice polite and convincing?</div>
+      </div>
+    </div>
+
+    <!-- Scenario 2 -->
+    <div class="scenario-card">
+      <div class="scenario-header"><span class="sc-ico">🏥</span><h3>Scenario 2 — A Busy Morning at the Clinic (Problem Solving)</h3></div>
+      <div class="scenario-body">
+        <div class="scenario-situation"><b>Situation:</b> You wake up with a fever, a headache, and a stuffy nose. You have an important English class at 10:00 AM. The clinic opens at 8:00 AM, but it is always crowded — you must register, get a number, and wait in line, which can take two hours. You cannot decide: go to the clinic, take a day off, or go to class and see a doctor later?</div>
+        <div class="sc-label">🎯 Goal</div>
+        <div>Make a decision and explain it in 4–5 sentences. There are good reasons for every choice — what matters is YOUR reasoning.</div>
+        <div class="sc-label">💬 Useful Language</div>
+        <div class="hint-chips"><span class="hint-chip">take a day off</span><span class="hint-chip">make an appointment</span><span class="hint-chip">it's probably nothing serious</span><span class="hint-chip">getting better on its own</span><span class="hint-chip">I should… because…</span></div>
+        <div class="sc-label">💡 Hints</div>
+        <div class="hint-chips"><span class="hint-chip">Can you infect your classmates?</span><span class="hint-chip">Is the fever high or low?</span><span class="hint-chip">Can you make an afternoon appointment?</span></div>
+        <button class="btn btn-secondary btn-sm" style="margin-top:12px;" onclick="toggleReveal('sr-sc2')">💡 Sample response</button>
+        <div class="sample-response" id="sr-sc2">I think I should take a day off. At first, I wanted to go to class. However, I have a fever, so I can make my classmates sick too. I will call the clinic and make an appointment for the afternoon instead of waiting in line all morning. If it's probably nothing serious, I can rest at home, drink warm water, and let my body get better on its own.</div>
+        <div class="sc-label">🔄 Extension Questions</div>
+        <div>1. In your country, do people go to work or school when they are a little sick? Is that good or bad?<br>2. What can schools or companies do to help sick people rest?</div>
+        <div class="sc-label">🪞 Reflection</div>
+        <div>Did you explain your decision with reasons (because / so / therefore)? Could you defend a DIFFERENT choice too?</div>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="review">Next: Quiz &amp; Review →</button>
+      <button class="btn btn-outline" data-goto="listening">← Listening</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= REVIEW / QUIZ ================= -->
+<div class="page" data-page="review">
+  <div class="hero small">
+    <div class="meta"><span class="badge badge-mint">Part 5</span><span class="badge badge-white">🏆 Final Review</span></div>
+    <h1>Vocabulary Quiz Game</h1>
+    <p>30 questions · 10 seconds each · 100% English. Ready?</p>
+  </div>
+  <div class="section">
+    <div class="exercise" id="quizBox">
+      <!-- START SCREEN -->
+      <div class="quiz-screen active" id="qs-start">
+        <div class="exercise-title">🎮 How to play</div>
+        <div class="info-box">30 questions about today's vocabulary, phrases, and situations. You have <b>10 seconds</b> per question. Select an answer, tap <b>Submit</b>, read the feedback, then tap <b>Next</b>. If time runs out, the question is marked wrong and the correct answer is revealed.</div>
+        <div class="btn-group"><button class="btn btn-primary" onclick="startQuiz()">▶ Start Quiz</button></div>
+      </div>
+      <!-- PLAY SCREEN -->
+      <div class="quiz-screen" id="qs-play">
+        <div class="quiz-topbar">
+          <span class="badge badge-forest" id="qCounter">Question 1 / 30</span>
+          <span class="timer-pill" id="timerPill">⏳ 10s</span>
+        </div>
+        <div class="timer-track"><div class="timer-bar" id="timerBar"></div></div>
+        <div class="quiz-qtext" id="qText"></div>
+        <div id="qOptions"></div>
+        <div class="quiz-explain" id="qExplain"></div>
+        <div class="btn-group">
+          <button class="btn btn-primary" id="btnSubmit" onclick="submitAnswer()" disabled>Submit</button>
+          <button class="btn btn-secondary" id="btnNext" onclick="nextQuestion()" style="display:none;">Next →</button>
+        </div>
+      </div>
+      <!-- RESULT SCREEN -->
+      <div class="quiz-screen" id="qs-result">
+        <div style="text-align:center;">
+          <div class="result-circle"><span class="big" id="resScore">0/30</span><span class="small">score</span></div>
+          <div class="exercise-title" id="resMsg" style="font-size:18px;"></div>
+          <div class="btn-group" style="justify-content:center;"><button class="btn btn-primary" onclick="resetQuiz(true)">🔄 Play Again</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">Self-Assessment ✅</div>
+      <label class="check-item"><input type="checkbox"> I understand today's vocabulary.</label>
+      <label class="check-item"><input type="checkbox"> I can use today's phrases.</label>
+      <label class="check-item"><input type="checkbox"> I understand spoken English on this topic.</label>
+      <label class="check-item"><input type="checkbox"> I can communicate naturally.</label>
+      <label class="check-item"><input type="checkbox"> I can solve realistic communication situations.</label>
+      <label class="check-item"><input type="checkbox"> I feel more confident discussing health.</label>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">Lesson Summary 📋</div>
+      <table class="summary-table">
+        <tr><td>Estimated Duration</td><td>90–120 minutes</td></tr>
+        <tr><td>Vocabulary Learned</td><td>8 internal body parts · 14 symptoms · 6 health issues · 9 treatments</td></tr>
+        <tr><td>Grammar Focus</td><td>Past simple · "should" for advice · linking words (At first, However, So, Therefore, As a result)</td></tr>
+        <tr><td>Pronunciation Focus</td><td>Word stress (2-syllable nouns · "-tion" words · ALlergy, MEdicine)</td></tr>
+        <tr><td>Communication Functions</td><td>Describing symptoms · giving advice · making decisions · visiting a clinic</td></tr>
+        <tr><td>Skills Practiced</td><td>Speaking (4 levels) · Listening · Reading (context passage) · Writing (dialogues)</td></tr>
+        <tr><td>Interaction Types Used</td><td>Flip cards · matching · MCQ · gap fill · dialogues with word counter · role-play scenarios · timed quiz game</td></tr>
+      </table>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-outline" data-goto="discussion">← Discussion</button>
+      <button class="btn btn-outline" data-goto="overview">🏠 Back to Overview</button>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+<button class="reset-fab" onclick="globalReset()">🔄 Reset All</button>
+<script>
+/* ============================================================
+   DATA — one purpose-shaped array per section (no aliasing)
+   ============================================================ */
+const VOCAB_BODY = [
+  {w:"Brain",ipa:"/breɪn/",pos:"n",vi:"não",en:"The part inside your head that thinks.",ex:"He has a headache because he worked on the computer for many hours — his brain needs a rest."},
+  {w:"Heart",ipa:"/hɑːrt/",pos:"n",vi:"tim",en:"The organ that pumps blood around your body.",ex:"The doctor listened to my heart during the check-up."},
+  {w:"Lungs",ipa:"/lʌŋz/",pos:"n",vi:"phổi",en:"The two organs you use to breathe.",ex:"Cold winter air can hurt your lungs and throat."},
+  {w:"Liver",ipa:"/ˈlɪv.ər/",pos:"n",vi:"gan",en:"The organ that cleans your blood.",ex:"He has heat in the body because of eating too much fried and spicy food — his liver is tired."},
+  {w:"Kidneys",ipa:"/ˈkɪd.niːz/",pos:"n",vi:"thận",en:"Two organs that clean water and waste from your blood.",ex:"Drinking water every day is good for your kidneys."},
+  {w:"Stomach",ipa:"/ˈstʌm.ək/",pos:"n",vi:"dạ dày",en:"The organ that holds food after you eat.",ex:"He has a stomachache because he ate too much spicy food."},
+  {w:"Blood vessels",ipa:"/blʌd ˈves.əlz/",pos:"n",vi:"mạch máu",en:"Small tubes that carry blood in your body.",ex:"Exercise keeps your heart and blood vessels healthy."},
+  {w:"Backbone",ipa:"/ˈbæk.boʊn/",pos:"n",vi:"xương sống",en:"The long line of bones in the middle of your back.",ex:"Sit up straight to protect your backbone."}
+];
+const VOCAB_SYMPTOMS = [
+  {w:"headache",ipa:"/ˈhed.eɪk/",pos:"n",vi:"đau đầu",en:"Your head hurts.",ex:"He has a headache because he worked on the computer for many hours."},
+  {w:"dizzy",ipa:"/ˈdɪz.i/",pos:"adj",vi:"chóng mặt",en:"You feel like everything is turning around you.",ex:"She feels dizzy after standing up too quickly."},
+  {w:"fever",ipa:"/ˈfiː.vər/",pos:"n",vi:"sốt",en:"Your body is hotter than normal.",ex:"She has a fever and needs to rest."},
+  {w:"sore throat",ipa:"/sɔːr θroʊt/",pos:"n",vi:"đau họng",en:"Your throat hurts when you talk or swallow.",ex:"I have a sore throat and it hurts to swallow."},
+  {w:"itchy skin",ipa:"/ˈɪtʃ.i skɪn/",pos:"n",vi:"ngứa da",en:"Your skin makes you want to scratch it.",ex:"I have itchy skin when I go outside."},
+  {w:"heat in the body",ipa:"",pos:"n",vi:"nóng trong người",en:"Your body feels too hot inside, often from fried or spicy food.",ex:"He has heat in the body because of eating too much fried and spicy food."},
+  {w:"stomachache",ipa:"/ˈstʌm.ək.eɪk/",pos:"n",vi:"đau bụng",en:"Pain in your stomach.",ex:"He has a stomachache because he ate too much spicy food."},
+  {w:"vomiting",ipa:"/ˈvɒm.ɪ.tɪŋ/",pos:"n",vi:"nôn mửa",en:"Food comes back up from your stomach.",ex:"He is vomiting because he ate spoiled food."},
+  {w:"runny nose",ipa:"/ˈrʌn.i noʊz/",pos:"n",vi:"sổ mũi",en:"Water keeps dripping from your nose.",ex:"A runny nose is a common symptom of a cold."},
+  {w:"stuffy nose",ipa:"/ˈstʌf.i noʊz/",pos:"n",vi:"nghẹt mũi",en:"Your nose is blocked and you can't breathe well.",ex:"The cold medicine helps with his stuffy nose."},
+  {w:"sneezing",ipa:"/ˈsniː.zɪŋ/",pos:"n",vi:"hắt hơi",en:"Air bursts out of your nose — 'Achoo!'",ex:"Sneezing all day can be a sign of an allergy."},
+  {w:"skin rash",ipa:"/skɪn ræʃ/",pos:"n",vi:"phát ban trên da",en:"Red spots appear on your skin.",ex:"The allergy gave her a skin rash on her arms."},
+  {w:"body aches",ipa:"/ˈbɒd.i eɪks/",pos:"n",vi:"đau nhức cơ thể",en:"Your whole body hurts.",ex:"The flu often comes with body aches and a high fever."},
+  {w:"shortness of breath",ipa:"/ˈʃɔːrt.nəs əv breθ/",pos:"n",vi:"khó thở",en:"It is hard to breathe.",ex:"Shortness of breath can be a serious allergy symptom."}
+];
+const VOCAB_ISSUES = [
+  {w:"Flu",ipa:"/fluː/",pos:"illness",vi:"cúm",en:"A strong illness with sudden high fever.",ex:"Symptoms: sudden high fever, body aches, sore throat, feeling dizzy. → You should see a doctor or take the medicine."},
+  {w:"Cold",ipa:"/koʊld/",pos:"illness",vi:"cảm lạnh",en:"A common, lighter illness of the nose and throat.",ex:"Symptoms: runny nose, stuffy nose, sore throat, sneezing. → You should take cold medicine, drink warm water, and rest."},
+  {w:"Allergy",ipa:"/ˈæl.ə.dʒi/",pos:"illness",vi:"dị ứng",en:"Your body reacts badly to something like dust or pollen.",ex:"Symptoms: itchy eyes, skin rash, sneezing, shortness of breath. → You should take allergy pills and avoid allergens."},
+  {w:"Food poisoning",ipa:"/fuːd ˈpɔɪ.zən.ɪŋ/",pos:"illness",vi:"ngộ độc thực phẩm",en:"You get sick from bad or spoiled food.",ex:"Symptoms: stomachache, vomiting. → You should drink water, rest, and see a doctor if it's bad."},
+  {w:"Indigestion",ipa:"/ˌɪn.dɪˈdʒes.tʃən/",pos:"illness",vi:"đầy bụng, khó tiêu",en:"Your stomach can't process food well; you feel too full.",ex:"Often after eating too much or too fast. → You should drink warm water and rest."},
+  {w:"Constipation",ipa:"/ˌkɑːn.stəˈpeɪ.ʃən/",pos:"illness",vi:"táo bón",en:"It is hard to go to the toilet.",ex:"Eat more vegetables and drink more water to avoid constipation."}
+];
+const VOCAB_TREATMENTS = [
+  {w:"See a doctor",ipa:"",pos:"treatment",vi:"đi bác sĩ",en:"Visit a doctor for help.",ex:"If the fever is high, you should see a doctor."},
+  {w:"Take the medicine",ipa:"",pos:"treatment",vi:"uống thuốc",en:"Drink or swallow your medicine.",ex:"Take the medicine three times a day after meals."},
+  {w:"Get some rest",ipa:"",pos:"treatment",vi:"nghỉ ngơi",en:"Sleep and relax so your body can heal.",ex:"You look tired — get some rest this weekend."},
+  {w:"Drink warm water",ipa:"",pos:"treatment",vi:"uống nước ấm",en:"Warm water helps a sore throat and digestion.",ex:"Drink warm water to help get rid of your cough."},
+  {w:"Put ice on it",ipa:"",pos:"treatment",vi:"chườm đá lạnh",en:"Use ice to cool a painful or itchy place.",ex:"Put ice on the itchy skin to feel better."},
+  {w:"Avoid allergens",ipa:"",pos:"treatment",vi:"tránh xa tác nhân dị ứng",en:"Stay away from dust, pollen, and things that cause allergy.",ex:"Close the windows and avoid allergens in spring."},
+  {w:"Gargle with salt water",ipa:"",pos:"treatment",vi:"súc miệng nước muối",en:"Wash your throat with salty water.",ex:"Gargle with salt water twice a day for your sore throat."},
+  {w:"Take allergy pills",ipa:"",pos:"treatment",vi:"uống thuốc dị ứng",en:"Medicine that stops allergy symptoms.",ex:"She takes allergy pills every spring."},
+  {w:"Take cold medicine",ipa:"",pos:"treatment",vi:"uống thuốc cảm",en:"Medicine for a cold — helps a stuffy nose and fever.",ex:"The doctor gave me some cold medicine for my stuffy nose."}
+];
+const PHRASES_SICK = [
+  {en:"feel sick",vi:"cảm thấy không khoẻ"},
+  {en:"be supposed to /səˈpəʊzd/",vi:"được yêu cầu / được dặn"},
+  {en:"stay off your feet (idiom)",vi:"hạn chế đi lại để nghỉ ngơi"},
+  {en:"get rid of + N",vi:"loại bỏ, chữa khỏi, thoát khỏi, hết bệnh"},
+  {en:"be really into + Ving",vi:"rất thích, rất đam mê, rất quan tâm đến"},
+  {en:"be scheduled to + V",vi:"được lên lịch để làm gì"},
+  {en:"give ..... a try",vi:"thử"},
+  {en:"in no time",vi:"chẳng mấy chốc"},
+  {en:"nothing else seems to be doing the job",vi:"không có cách nào khác có vẻ hiệu quả"},
+  {en:"seem /siːm/",vi:"có vẻ như"},
+  {en:"(be) getting better on its own",vi:"tự khỏi (bệnh)"},
+  {en:"be probably nothing serious",vi:"không nghiêm trọng đâu"}
+];
+const PHRASES_CLINIC = [
+  {en:"see a doctor",vi:"đi gặp bác sĩ / đi khám bệnh"},
+  {en:"take a day off",vi:"xin nghỉ 1 ngày"},
+  {en:"make an appointment",vi:"đặt lịch hẹn"},
+  {en:"general check-up",vi:"khám tổng quát"},
+  {en:"rest",vi:"nghỉ ngơi"},
+  {en:"clinic",vi:"phòng khám"},
+  {en:"register",vi:"đăng ký"},
+  {en:"patient",vi:"bệnh nhân"},
+  {en:"wait in line",vi:"xếp hàng"},
+  {en:"get a number",vi:"lấy số"},
+  {en:"it's your turn",vi:"tới lượt (của bạn)"}
+];
+const LISTEN_VOCAB = [
+  {en:"stuffy /ˈstʌf.i/ (adj)",vi:"nghẹt mũi"},
+  {en:"be supposed to /səˈpəʊzd/",vi:"được yêu cầu / được dặn"},
+  {en:"seem /siːm/",vi:"có vẻ như"},
+  {en:"stay off your feet (idiom)",vi:"hạn chế đi lại để nghỉ ngơi"},
+  {en:"get rid of + N",vi:"loại bỏ, chữa khỏi, hết bệnh"},
+  {en:"be really into + Ving",vi:"rất thích, rất đam mê, rất quan tâm đến"}
+];
+const MATCH_DATA = [
+  {term:"Headache",def:"When your head hurts and feels sore, heavy, or tense."},
+  {term:"Stomachache",def:"When you feel pain or discomfort in your stomach."},
+  {term:"Fever",def:"When your body temperature becomes higher than normal and you feel hot."},
+  {term:"Sore throat",def:"When your throat hurts, feels irritated, or makes it difficult to talk or swallow."},
+  {term:"Runny nose",def:"When your nose won't stop dripping."},
+  {term:"Feel sick",def:"When you are not healthy and do not feel well."},
+  {term:"Cold",def:"A common illness that often causes a runny nose, sore throat, coughing, and sneezing."},
+  {term:"Tired",def:"When you have little energy and need rest or sleep."}
+];
+const MCQ_SETS = {
+  mcq1:[
+    {q:"1. She stood up too quickly and now she feels ___.",opts:["sore","dizzy","stuffy","itchy"],correct:1},
+    {q:"2. He ate spoiled food, so now he has a stomachache and is ___.",opts:["sneezing","gargling","vomiting","registering"],correct:2},
+    {q:"3. Which treatment is best for a sore throat?",opts:["Gargle with salt water","Put ice on it","Take allergy pills","Avoid allergens"],correct:0},
+    {q:"4. \"You are supposed to take the medicine\" means…",opts:["you already took the medicine","you refuse the medicine","the medicine is expensive","the doctor told you to take it"],correct:3}
+  ],
+  lis2:[
+    {q:"What's the matter with Steve?",opts:["He has the flu.","He has a stomachache.","He has a cold.","He has an allergy."],correct:2},
+    {q:"How often should Steve take the medicine the doctor prescribes?",opts:["Three times a day with meals","Three times a day after meals","Four times a day before meals","Once a day at night"],correct:1}
+  ],
+  lis3:[
+    {q:"What does Carla suggest he do?",opts:["Take herbal medicine","See another doctor","Eat chicken soup","Sleep all weekend"],correct:0},
+    {q:"What does Steve decide to do?",opts:["See the same doctor again","Talk to another friend","Cancel the presentation","Listen to Carla's suggestion"],correct:3}
+  ]
+};
+const TRANSCRIPT = [
+  ["Carla","So, how are things going, Steve?"],
+  ["Steve","Well, to be honest Carla, I was feeling great on Saturday, but I started to feel sick Sunday afternoon. I thought I'd get better, but I feel worse than before. And I'm really worried because I'm scheduled to give a presentation at work on Friday, so I have to be better by then."],
+  ["Carla","Well, what seems to be the problem?"],
+  ["Steve","Well, I thought I had the flu, but the doctor said it was just a bad cold. He gave me some cold medicine to take care of my stuffy nose and fever. I'm supposed to take the medicine three times a day after eating, but it doesn't seem to help. He also told me to stay off my feet for a day or so, but I'm so busy these days."],
+  ["Carla","Listen, forget about that medicine! I have just the thing to get rid of bad colds. You see, my mom is really into herbal medicine."],
+  ["Steve","Oh, no thanks."],
+  ["Carla","Ah, come on! Give it a try. You just take some of my mom's herbal tea and drink it four times a day. Believe me. You'll be up and dancing around in no time."],
+  ["Steve","Dancing around in no time, right? Well, I guess. Nothing else seems to be doing the job."],
+  ["Carla","Great. I'll come by your place at 7:30. See you then."]
+];
+/*QUIZ_START*/
+const QUIZ = [
+  {t:"definition",q:"What does \"headache\" mean?",opts:["Your head hurts and feels heavy or tense.","Your stomach hurts after eating.","Your skin wants to be scratched.","Your nose keeps dripping."],correct:0,ex:"A headache = pain in your head."},
+  {t:"definition",q:"What does \"dizzy\" mean?",opts:["You feel very hungry.","You feel like everything is turning around you.","You feel too cold.","You feel very strong."],correct:1,ex:"Dizzy = the room seems to spin, for example after standing up too quickly."},
+  {t:"definition",q:"What is a \"fever\"?",opts:["Your voice disappears.","Your legs feel weak.","Your body temperature is higher than normal.","Your eyes are itchy."],correct:2,ex:"A fever = your body is hotter than normal."},
+  {t:"definition",q:"What does \"sore throat\" mean?",opts:["Your back hurts when you sit.","Your ears hurt at night.","Your teeth hurt when you eat ice cream.","Your throat hurts when you talk or swallow."],correct:3,ex:"Sore throat = pain in your throat, especially when swallowing."},
+  {t:"definition",q:"Which organ pumps blood around your body?",opts:["The heart","The liver","The stomach","The brain"],correct:0,ex:"The heart pumps blood through your blood vessels."},
+  {t:"definition",q:"What do your lungs do?",opts:["They clean waste from your blood.","They help you breathe.","They hold food after you eat.","They help you think."],correct:1,ex:"Lungs = the two organs you use to breathe."},
+  {t:"definition",q:"Which organs clean water and waste from your blood?",opts:["The lungs","The blood vessels","The kidneys","The backbone"],correct:2,ex:"The kidneys clean water and waste from your blood."},
+  {t:"definition",q:"What is the \"backbone\"?",opts:["The organ that thinks.","A tube that carries blood.","The strongest muscle in your arm.","The long line of bones in your back."],correct:3,ex:"Backbone = the line of bones in the middle of your back."},
+  {t:"definition",q:"What does \"stuffy nose\" mean?",opts:["Your nose is blocked and you can't breathe well.","Your nose won't stop dripping.","Your nose is very cold.","Your nose is bleeding."],correct:0,ex:"Stuffy = blocked. A stuffy nose makes breathing hard."},
+  {t:"definition",q:"What does \"runny nose\" mean?",opts:["Your nose is completely blocked.","Water keeps dripping from your nose.","Your nose hurts when you touch it.","You cannot smell anything."],correct:1,ex:"Runny nose = liquid keeps coming out of your nose."},
+  {t:"context",q:"He worked on the computer for ten hours without resting. Now he has a ___.",opts:["skin rash","stomachache","headache","runny nose"],correct:2,ex:"Long screen time makes your brain tired → headache."},
+  {t:"context",q:"She stood up too quickly, and now she feels ___.",opts:["hungry","brave","sleepy","dizzy"],correct:3,ex:"Standing up too fast can make you feel dizzy."},
+  {t:"context",q:"He ate spoiled food at a night market. Now he has ___ and is vomiting.",opts:["food poisoning","an allergy","constipation","a sore throat"],correct:0,ex:"Spoiled (bad) food causes food poisoning: stomachache + vomiting."},
+  {t:"context",q:"He eats fried and spicy food every day, so he has ___ in the body.",opts:["ice","heat","water","air"],correct:1,ex:"\"Heat in the body\" comes from too much fried and spicy food."},
+  {t:"context",q:"I have a sore throat, and it hurts to ___.",opts:["walk","see","swallow","hear"],correct:2,ex:"With a sore throat, swallowing food or water hurts."},
+  {t:"context",q:"Steve was feeling great on Saturday, but he started to feel ___ on Sunday afternoon.",opts:["better","happy","hungry","sick"],correct:3,ex:"From the listening: great on Saturday → sick on Sunday."},
+  {t:"context",q:"The doctor gave Steve some cold medicine for his stuffy nose and ___.",opts:["fever","backache","skin rash","itchy eyes"],correct:0,ex:"The cold medicine was for his stuffy nose and fever."},
+  {t:"context",q:"\"Nothing else seems to be doing the ___,\" Steve said, so he tried the herbal tea.",opts:["homework","job","game","test"],correct:1,ex:"\"Doing the job\" = working / being effective."},
+  {t:"context",q:"\"Drink this tea and you'll be up and dancing around in no ___.\"",opts:["place","money","time","way"],correct:2,ex:"\"In no time\" = very soon, very quickly."},
+  {t:"context",q:"Carla's mom is really into ___ medicine.",opts:["expensive","cold","animal","herbal"],correct:3,ex:"\"Be really into\" = to like something very much. Her mom loves herbal medicine."},
+  {t:"action",q:"You have a sore throat. What should you do?",opts:["Gargle with salt water and drink warm water.","Put ice on your feet.","Eat more spicy food.","Go dancing all night."],correct:0,ex:"Salt water gargles and warm water help a sore throat."},
+  {t:"action",q:"You have an allergy with itchy eyes and sneezing. What should you do?",opts:["Eat at a night market.","Take allergy pills and avoid allergens.","Drink cold water only.","Work on the computer for ten hours."],correct:1,ex:"For allergies: take allergy pills and stay away from allergens like dust and pollen."},
+  {t:"action",q:"You have the flu with a sudden high fever and body aches. What should you do?",opts:["Ignore it and go to a party.","Only eat fried food.","See a doctor and get some rest.","Take a long bus trip."],correct:2,ex:"Flu is strong — see a doctor, take the medicine, and rest."},
+  {t:"action",q:"You have indigestion after a very big dinner. What should you do?",opts:["Eat another big dinner.","Run very fast for an hour.","Sleep immediately after eating again tomorrow.","Drink warm water and rest."],correct:3,ex:"Warm water and rest help your stomach process the food."},
+  {t:"action",q:"Your friend has a cold. What advice can you give?",opts:["\"You should take cold medicine and rest.\"","\"You should swim in cold water.\"","\"You should stop drinking water.\"","\"You should shout to test your voice.\""],correct:0,ex:"Use \"should\" to give advice: take cold medicine, drink warm water, rest."},
+  {t:"action",q:"The doctor says you need rest after being sick. What should you do?",opts:["Give three presentations.","Stay off your feet for a day.","Wait in line at a concert.","Clean the whole house."],correct:1,ex:"\"Stay off your feet\" = rest and don't walk around too much."},
+  {t:"action",q:"You arrive at a busy clinic to see a doctor. What should you do first?",opts:["Walk straight into the doctor's room.","Go home immediately.","Register and get a number.","Take another patient's number."],correct:2,ex:"At a clinic: register → get a number → wait in line → it's your turn."},
+  {t:"action",q:"The doctor says: \"Take the medicine three times a day after meals.\" When do you take it?",opts:["Before breakfast only.","Only when you feel like it.","Once a week.","After eating, three times a day."],correct:3,ex:"\"After meals\" = after eating. Three times a day = morning, noon, evening."},
+  {t:"definition",q:"What does it mean to \"get rid of\" a cold?",opts:["To make the cold go away.","To give the cold to a friend.","To make the cold stronger.","To buy a new cold."],correct:0,ex:"Get rid of = remove / cure — the cold disappears."},
+  {t:"definition",q:"What does \"be supposed to\" mean?",opts:["You forgot to do something.","You are told or expected to do something.","You want to do something fun.","You are afraid of something."],correct:1,ex:"\"I'm supposed to take the medicine\" = the doctor told me to take it."}
+];
+/*QUIZ_END*/
+/* ============================================================
+   NAVIGATION + PROGRESS
+   ============================================================ */
+const PAGE_ORDER = ["overview","vocab","phrases","pronun","practice","speaking","listening","discussion","review"];
+const visited = new Set(["overview"]);
+function gotoPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.dataset.page===id));
+  document.querySelectorAll(".nav-item").forEach(n=>n.classList.toggle("active",n.dataset.page===id));
+  visited.add(id);
+  document.getElementById("progressFill").style.width=Math.round(visited.size/PAGE_ORDER.length*100)+"%";
+  window.scrollTo({top:0});
+}
+document.querySelectorAll(".nav-item").forEach(n=>n.addEventListener("click",()=>gotoPage(n.dataset.page)));
+document.querySelectorAll("[data-goto]").forEach(b=>b.addEventListener("click",()=>gotoPage(b.dataset.goto)));
+
+/* ============================================================
+   TABS — group attr + closest('.tab-bar') (bug-proof pattern)
+   ============================================================ */
+document.querySelectorAll(".tab-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const bar=btn.closest(".tab-bar");
+    const group=bar.dataset.group;
+    bar.querySelectorAll(".tab-btn").forEach(b=>b.classList.toggle("active",b===btn));
+    document.querySelectorAll('.tab-panel[data-group="'+group+'"]').forEach(p=>{
+      p.classList.toggle("active",p.dataset.tab===btn.dataset.tab);
+    });
+  });
+});
+
+/* ============================================================
+   RENDER: VOCAB CARDS + PHRASES
+   ============================================================ */
+function vocabCard(v){
+  return '<div class="vocab-card" onclick="this.classList.toggle(\'flipped\')">'
+    +'<span class="flip-hint">tap ↻</span>'
+    +'<div class="word">'+v.w+'</div>'
+    +(v.ipa?'<div class="ipa">'+v.ipa+'</div>':'')
+    +'<span class="pos">'+v.pos+'</span>'
+    +'<div class="vi">'+v.vi+'</div>'
+    +'<div class="en-simple">'+v.en+'</div>'
+    +'<div class="example">💬 '+v.ex+'</div></div>';
+}
+document.getElementById("vgrid-body").innerHTML=VOCAB_BODY.map(vocabCard).join("");
+document.getElementById("vgrid-symptoms").innerHTML=VOCAB_SYMPTOMS.map(vocabCard).join("");
+document.getElementById("vgrid-issues").innerHTML=VOCAB_ISSUES.map(vocabCard).join("");
+document.getElementById("vgrid-treatments").innerHTML=VOCAB_TREATMENTS.map(vocabCard).join("");
+function phraseRow(p){return '<div class="phrase-card"><span class="phrase-en">'+p.en+'</span><span class="phrase-vi">'+p.vi+'</span></div>';}
+document.getElementById("plist-sick").innerHTML=PHRASES_SICK.map(phraseRow).join("");
+document.getElementById("plist-clinic").innerHTML=PHRASES_CLINIC.map(phraseRow).join("");
+document.getElementById("plist-listenvocab").innerHTML=LISTEN_VOCAB.map(phraseRow).join("");
+
+/* ============================================================
+   RENDER + GRADE: MCQ EXERCISES (select-all → Show Answers)
+   ============================================================ */
+function renderMcqEx(key){
+  const holder=document.getElementById(key+"-holder");
+  holder.innerHTML=MCQ_SETS[key].map((item,qi)=>
+    '<div class="mcq-q" data-q="'+qi+'"><div class="qtext">'+item.q+'</div>'
+    +item.opts.map((o,oi)=>'<div class="mcq-option" data-o="'+oi+'">'+String.fromCharCode(65+oi)+'. '+o+'</div>').join("")
+    +'</div>'
+  ).join("");
+  holder.querySelectorAll(".mcq-option").forEach(opt=>{
+    opt.addEventListener("click",()=>{
+      if(holder.dataset.graded==="1")return;
+      opt.parentElement.querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected"));
+      opt.classList.add("selected");
+    });
+  });
+  holder.dataset.graded="0";
+}
+Object.keys(MCQ_SETS).forEach(renderMcqEx);
+function tierMsg(score,total){
+  const r=score/total;
+  if(r===1)return "🌟 Perfect! You mastered this.";
+  if(r>=0.7)return "👍 Great job — review the red ones once more.";
+  if(r>=0.4)return "🙂 Good start — reread Part 1 and try again.";
+  return "💪 Don't give up — go back to the vocabulary tabs, then retry.";
+}
+function gradeMcqEx(key){
+  const holder=document.getElementById(key+"-holder");
+  let score=0;const total=MCQ_SETS[key].length;
+  resetVisual(holder);
+  MCQ_SETS[key].forEach((item,qi)=>{
+    const qEl=holder.querySelector('.mcq-q[data-q="'+qi+'"]');
+    const opts=qEl.querySelectorAll(".mcq-option");
+    let selIdx=-1;
+    opts.forEach((o,oi)=>{if(o.classList.contains("selected"))selIdx=oi;});
+    opts.forEach((o,oi)=>{
+      if(oi===item.correct)o.classList.add("correct");
+      else if(oi===selIdx)o.classList.add("incorrect");
+    });
+    if(selIdx===item.correct)score++;
+  });
+  holder.dataset.graded="1";
+  const fb=document.getElementById("fb-"+key);
+  document.getElementById("sb-"+key).textContent=score+"/"+total;
+  document.getElementById("fbtext-"+key).textContent=tierMsg(score,total);
+  fb.className="feedback-box show "+(score===total?"success":(score>=total*0.5?"info":"error"));
+}
+function resetVisual(holder){/* keep .selected, clear grading colors */
+  holder.querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("correct","incorrect"));
+}
+function resetMcqEx(key){
+  const holder=document.getElementById(key+"-holder");
+  holder.querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected","correct","incorrect"));
+  holder.dataset.graded="0";
+  document.getElementById("fb-"+key).className="feedback-box";
+}
+
+/* ============================================================
+   MATCHING (tap term → tap definition)
+   ============================================================ */
+let matchSelected=null;
+const matchState={}; // zoneIndex -> termIndex
+function renderMatch(){
+  const shuffledTerms=MATCH_DATA.map((d,i)=>i).sort(()=>Math.random()-0.5);
+  document.getElementById("matchPool").innerHTML=shuffledTerms.map(i=>
+    '<div class="drag-item" data-term="'+i+'" onclick="pickTerm(this)">'+MATCH_DATA[i].term+'</div>').join("");
+  document.getElementById("matchZones").innerHTML=MATCH_DATA.map((d,i)=>
+    '<div class="drop-zone" data-zone="'+i+'" onclick="placeTerm(this)"><span class="slot" id="slot-'+i+'">______</span><span>'+d.def+'</span></div>').join("");
+  matchSelected=null;Object.keys(matchState).forEach(k=>delete matchState[k]);
+}
+function pickTerm(el){
+  if(el.classList.contains("placed"))return;
+  document.querySelectorAll("#matchPool .drag-item").forEach(d=>d.classList.remove("selected"));
+  el.classList.add("selected");matchSelected=el;
+}
+function placeTerm(zone){
+  if(!matchSelected)return;
+  const zi=zone.dataset.zone;
+  if(matchState[zi]!==undefined){ // free previous term in this zone
+    const prev=document.querySelector('#matchPool .drag-item[data-term="'+matchState[zi]+'"]');
+    if(prev)prev.classList.remove("placed");
+  }
+  matchState[zi]=parseInt(matchSelected.dataset.term,10);
+  document.getElementById("slot-"+zi).textContent=MATCH_DATA[matchState[zi]].term;
+  matchSelected.classList.remove("selected");matchSelected.classList.add("placed");matchSelected=null;
+}
+function gradeMatch(){
+  let score=0;
+  MATCH_DATA.forEach((d,i)=>{
+    const zone=document.querySelector('.drop-zone[data-zone="'+i+'"]');
+    zone.classList.remove("correct-zone","incorrect-zone");
+    if(matchState[i]===i){zone.classList.add("correct-zone");score++;}
+    else zone.classList.add("incorrect-zone");
+    document.getElementById("slot-"+i).textContent=MATCH_DATA[i].term; // reveal correct
+  });
+  const fb=document.getElementById("fb-match");
+  document.getElementById("sb-match").textContent=score+"/"+MATCH_DATA.length;
+  document.getElementById("fbtext-match").textContent=tierMsg(score,MATCH_DATA.length);
+  fb.className="feedback-box show "+(score===MATCH_DATA.length?"success":(score>=4?"info":"error"));
+}
+function resetMatch(){
+  renderMatch();
+  document.getElementById("fb-match").className="feedback-box";
+}
+renderMatch();
+
+/* ============================================================
+   GAP FILL
+   ============================================================ */
+function gradeGaps(){
+  let score=0;const inputs=document.querySelectorAll("#ex-gap .blank-input");
+  inputs.forEach(inp=>{
+    const ok=inp.value.trim().toLowerCase()===inp.dataset.answer;
+    inp.classList.remove("correct","incorrect");
+    inp.classList.add(ok?"correct":"incorrect");
+    if(!ok)inp.value=inp.dataset.answer;
+    if(ok)score++;
+  });
+  const fb=document.getElementById("fb-gap");
+  document.getElementById("sb-gap").textContent=score+"/"+inputs.length;
+  document.getElementById("fbtext-gap").textContent=tierMsg(score,inputs.length);
+  fb.className="feedback-box show "+(score===inputs.length?"success":(score>=3?"info":"error"));
+}
+function resetGaps(){
+  document.querySelectorAll("#ex-gap .blank-input").forEach(inp=>{inp.value="";inp.classList.remove("correct","incorrect");});
+  document.getElementById("fb-gap").className="feedback-box";
+}
+
+/* ============================================================
+   REVEALS + TRANSCRIPT + WORD COUNTERS
+   ============================================================ */
+function toggleReveal(id){document.getElementById(id).classList.toggle("revealed");}
+function toggleTranscript(){document.getElementById("transcriptBlock").classList.toggle("revealed");}
+document.getElementById("transcriptBody").innerHTML=TRANSCRIPT.map(l=>
+  '<div class="dialogue-line"><span class="speaker">'+l[0]+':</span> '+l[1]+'</div>').join("");
+document.querySelectorAll("textarea.dlg-input").forEach(t=>{
+  t.addEventListener("input",()=>{
+    const n=t.value.trim()?t.value.trim().split(/\s+/).length:0;
+    document.getElementById(t.dataset.counter).textContent=n+" words";
+  });
+});
+
+/* ============================================================
+   QUIZ GAME — 30 Q · 10s timer · 3 screens
+   ============================================================ */
+let quizOrder=[],quizIdx=0,quizScore=0,quizTimer=null,quizTimeLeft=10,quizSelected=-1,quizAnswered=false;
+function showScreen(id){document.querySelectorAll(".quiz-screen").forEach(s=>s.classList.toggle("active",s.id===id));}
+function startQuiz(){
+  quizOrder=QUIZ.map((q,i)=>i).sort(()=>Math.random()-0.5);
+  quizIdx=0;quizScore=0;
+  showScreen("qs-play");
+  loadQuestion();
+}
+function loadQuestion(){
+  const q=QUIZ[quizOrder[quizIdx]];
+  quizSelected=-1;quizAnswered=false;
+  document.getElementById("qCounter").textContent="Question "+(quizIdx+1)+" / "+QUIZ.length;
+  document.getElementById("qText").textContent=q.q;
+  document.getElementById("qOptions").innerHTML=q.opts.map((o,oi)=>
+    '<div class="mcq-option" data-o="'+oi+'" onclick="selectQuizOption(this)">'+String.fromCharCode(65+oi)+'. '+o+'</div>').join("");
+  const exp=document.getElementById("qExplain");exp.className="quiz-explain";exp.textContent="";
+  document.getElementById("btnSubmit").style.display="";
+  document.getElementById("btnSubmit").disabled=true;
+  document.getElementById("btnNext").style.display="none";
+  startTimer();
+}
+function startTimer(){
+  stopTimer();
+  quizTimeLeft=10;
+  updateTimerUI();
+  quizTimer=setInterval(()=>{
+    quizTimeLeft-=0.1;
+    if(quizTimeLeft<=0){quizTimeLeft=0;updateTimerUI();stopTimer();timeOut();return;}
+    updateTimerUI();
+  },100);
+}
+function stopTimer(){if(quizTimer){clearInterval(quizTimer);quizTimer=null;}}
+function updateTimerUI(){
+  const pill=document.getElementById("timerPill"),bar=document.getElementById("timerBar");
+  pill.textContent="⏳ "+Math.ceil(quizTimeLeft)+"s";
+  bar.style.width=(quizTimeLeft/10*100)+"%";
+  const danger=quizTimeLeft<=3;
+  pill.classList.toggle("danger",danger);
+  bar.classList.toggle("danger",danger);
+}
+function selectQuizOption(el){
+  if(quizAnswered)return;
+  document.querySelectorAll("#qOptions .mcq-option").forEach(o=>o.classList.remove("selected"));
+  el.classList.add("selected");
+  quizSelected=parseInt(el.dataset.o,10);
+  document.getElementById("btnSubmit").disabled=false;
+}
+function revealQuiz(correctIdx){
+  document.querySelectorAll("#qOptions .mcq-option").forEach((o,oi)=>{
+    if(oi===correctIdx)o.classList.add("correct");
+    else if(oi===quizSelected)o.classList.add("incorrect");
+  });
+}
+function finishQuestion(gotIt,timedOut){
+  quizAnswered=true;
+  const q=QUIZ[quizOrder[quizIdx]];
+  if(gotIt)quizScore++;
+  revealQuiz(q.correct);
+  const exp=document.getElementById("qExplain");
+  exp.textContent=(timedOut?"⏰ Time's up! ":(gotIt?"✅ Correct! ":"❌ Not quite. "))+q.ex;
+  exp.className="quiz-explain show";
+  document.getElementById("btnSubmit").style.display="none";
+  document.getElementById("btnNext").style.display="";
+}
+function submitAnswer(){
+  if(quizAnswered||quizSelected<0)return;
+  stopTimer();
+  finishQuestion(quizSelected===QUIZ[quizOrder[quizIdx]].correct,false);
+}
+function timeOut(){if(!quizAnswered)finishQuestion(false,true);}
+function nextQuestion(){
+  quizIdx++;
+  if(quizIdx>=QUIZ.length){showResult();return;}
+  loadQuestion();
+}
+function showResult(){
+  stopTimer();
+  showScreen("qs-result");
+  document.getElementById("resScore").textContent=quizScore+"/"+QUIZ.length;
+  document.getElementById("resMsg").textContent=tierMsg(quizScore,QUIZ.length);
+}
+function resetQuiz(restart){
+  stopTimer(); // unplug the kitchen timer
+  quizIdx=0;quizScore=0;quizSelected=-1;quizAnswered=false;
+  if(restart)startQuiz();else showScreen("qs-start");
+}
+
+/* ============================================================
+   GLOBAL RESET — clears everything incl. quiz timer
+   ============================================================ */
+function globalReset(){
+  Object.keys(MCQ_SETS).forEach(resetMcqEx);
+  resetMatch();resetGaps();
+  document.getElementById("fb-match").className="feedback-box";
+  document.querySelectorAll(".sample-response").forEach(s=>s.classList.remove("revealed"));
+  document.getElementById("transcriptBlock").classList.remove("revealed");
+  document.querySelectorAll("textarea.dlg-input").forEach(t=>{t.value="";document.getElementById(t.dataset.counter).textContent="0 words";});
+  document.querySelectorAll(".check-item input").forEach(c=>c.checked=false);
+  document.querySelectorAll(".vocab-card").forEach(c=>c.classList.remove("flipped"));
+  resetQuiz(false);
+  visited.clear();visited.add("overview");
+  gotoPage("overview");
+}
+</script>
+</body>
+</html>
