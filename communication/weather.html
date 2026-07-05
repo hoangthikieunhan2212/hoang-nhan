@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather — English Communication Lesson</title>
+<style>
+:root{
+  --forest:#013220;--moss:#006D6F;--teal:#007A74;--mint:#D8BFD8;--sage:#F5F5DC;--sand:#FFFAF0;--shell:#FFF5EE;--white:#FFFAFA;
+  --blue:#2563EB;--blue-light:#EFF6FF;--amber:#D97706;--amber-light:#FFFBEB;
+  --red:#DC2626;--red-light:#FEF2F2;--green-success:#16A34A;--green-light:#F0FDF4;
+  --text-dark:#013220;--text-mid:#006D6F;--text-soft:#5F8A80;
+  --border:#E3DED0;
+  --shadow-sm:0 1px 3px rgba(1,50,32,0.08);--shadow-md:0 4px 16px rgba(1,50,32,0.12);--shadow-lg:0 8px 32px rgba(1,50,32,0.16);
+  --radius:12px;--radius-sm:8px;--radius-lg:20px;
+  font-size:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--sand);}
+.app-shell{display:flex;min-height:100vh;}
+/* ===== SIDEBAR ===== */
+.sidebar{width:220px;background:var(--forest);position:fixed;top:0;left:0;bottom:0;display:flex;flex-direction:column;z-index:100;}
+.brand{padding:20px 16px;border-bottom:1px solid rgba(255,255,255,0.1);}
+.brand .level-badge{background:var(--mint);color:var(--forest);font-size:10px;font-weight:800;padding:2px 10px;border-radius:99px;letter-spacing:1px;}
+.brand h2{color:#fff;font-size:16px;margin-top:8px;font-weight:800;}
+.brand .cat{color:var(--mint);opacity:0.8;font-size:11px;}
+.nav-scroll{flex:1;overflow-y:auto;padding:10px 0;}
+.nav-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(216,191,216,0.6);padding:12px 16px 4px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 16px;color:rgba(255,255,255,0.7);font-size:13px;font-weight:500;cursor:pointer;border-left:3px solid transparent;transition:all 0.2s;}
+.nav-item:hover{color:#fff;background:rgba(216,191,216,0.08);}
+.nav-item.active{color:#fff;border-left-color:var(--mint);background:rgba(216,191,216,0.15);}
+.nav-item .ico{width:20px;font-size:16px;text-align:center;}
+.progress-wrap{padding:14px 16px;border-top:1px solid rgba(255,255,255,0.1);}
+.progress-wrap .plabel{color:rgba(255,255,255,0.6);font-size:11px;margin-bottom:6px;}
+.progress-track{background:rgba(255,255,255,0.1);height:6px;border-radius:99px;overflow:hidden;}
+.progress-fill{background:var(--mint);height:100%;width:0;border-radius:99px;transition:width 0.5s ease;}
+/* ===== MAIN ===== */
+.main-content{flex:1;margin-left:220px;}
+.page{display:none;}
+.page.active{display:block;animation:fadeIn 0.3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.hero{background:linear-gradient(135deg,var(--forest),var(--moss),var(--teal));color:#fff;padding:48px;}
+.hero.small{padding:32px 48px;}
+.hero .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.hero h1{font-size:36px;font-weight:800;line-height:1.2;}
+.hero.small h1{font-size:26px;}
+.hero p{max-width:520px;margin-top:10px;opacity:0.92;font-size:15px;}
+.section{padding:40px 48px;border-bottom:1px solid var(--border);}
+.section-header{margin-bottom:22px;}
+.part-label{display:inline-block;background:var(--forest);color:var(--mint);font-size:10px;font-weight:800;letter-spacing:1px;padding:3px 12px;border-radius:99px;text-transform:uppercase;}
+.section-title{font-size:22px;font-weight:800;color:var(--forest);margin-top:8px;}
+.section-subtitle{font-size:13px;color:var(--text-soft);}
+/* ===== BADGES ===== */
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:4px 12px;border-radius:99px;}
+.badge-mint{background:rgba(216,191,216,0.2);color:var(--mint);border:1px solid rgba(216,191,216,0.3);}
+.badge-white{background:rgba(255,255,255,0.15);color:#fff;}
+.badge-blue{background:var(--blue-light);color:var(--blue);}
+.badge-amber{background:var(--amber-light);color:var(--amber);}
+.badge-green{background:var(--green-light);color:var(--green-success);}
+.badge-red{background:var(--red-light);color:var(--red);}
+.badge-forest{background:var(--sage);color:var(--forest);}
+/* ===== JOURNEY ROADMAP ===== */
+.journey{display:flex;flex-direction:column;gap:0;max-width:560px;}
+.journey-step{display:flex;gap:14px;align-items:flex-start;}
+.journey-dotcol{display:flex;flex-direction:column;align-items:center;}
+.journey-dot{width:34px;height:34px;border-radius:99px;background:var(--forest);color:var(--mint);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.journey-line{width:2px;flex:1;min-height:26px;background:var(--border);}
+.journey-body{padding-bottom:22px;}
+.journey-body h4{color:var(--forest);font-size:15px;font-weight:700;}
+.journey-body p{font-size:13px;color:var(--text-soft);}
+/* ===== TABS ===== */
+.tab-bar{border-bottom:2px solid var(--border);display:flex;gap:4px;overflow-x:auto;margin-bottom:20px;}
+.tab-btn{background:none;border:none;padding:10px 18px;font-size:13px;font-weight:600;color:var(--text-soft);border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;font-family:inherit;margin-bottom:-2px;transition:all 0.2s;}
+.tab-btn.active{color:var(--forest);border-bottom-color:var(--forest);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;animation:fadeIn 0.3s ease;}
+/* ===== VOCAB CARDS ===== */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.vocab-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;cursor:pointer;position:relative;transition:all 0.2s;}
+.vocab-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--teal);}
+.vocab-card .flip-hint{position:absolute;top:10px;right:12px;font-size:10px;color:var(--text-soft);background:var(--shell);padding:2px 8px;border-radius:99px;}
+.vocab-card .word{color:var(--forest);font-size:17px;font-weight:700;}
+.vocab-card .ipa{color:var(--blue);font-size:13px;font-style:italic;}
+.vocab-card .pos{display:inline-block;background:var(--sage);color:var(--forest);font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;margin:4px 0;}
+.vocab-card .vi{color:var(--text-mid);font-weight:600;font-size:14px;}
+.vocab-card .en-simple{color:var(--text-dark);font-size:13px;margin-top:4px;}
+.vocab-card .example{display:none;color:var(--text-soft);font-size:13px;border-top:1px solid var(--sage);margin-top:10px;padding-top:8px;}
+.vocab-card.flipped .example{display:block;}
+/* ===== PHRASE CARDS ===== */
+.phrase-list{display:flex;flex-direction:column;gap:10px;}
+.phrase-card{display:flex;gap:16px;flex-wrap:wrap;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:12px 18px;align-items:baseline;}
+.phrase-en{color:var(--forest);font-weight:700;min-width:250px;font-size:15px;}
+.phrase-vi{color:var(--text-soft);font-size:14px;}
+/* ===== PRONUN ===== */
+.pron-rule{background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius);padding:18px 22px;margin-bottom:16px;}
+.pron-rule h4{color:var(--blue);font-weight:700;font-size:15px;margin-bottom:6px;}
+.pron-arrow{display:inline-block;background:var(--blue);color:#fff;font-size:11px;font-weight:700;padding:2px 10px;border-radius:99px;margin:0 6px;}
+.pron-practice{background:var(--sage);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;margin-top:10px;font-size:14px;}
+/* ===== EXERCISE ===== */
+.exercise{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:22px;}
+.exercise-title{color:var(--forest);font-weight:700;font-size:16px;margin-bottom:6px;}
+.exercise-instruction{color:var(--text-soft);font-size:13px;background:var(--shell);border-radius:var(--radius-sm);padding:8px 14px;margin-bottom:16px;}
+/* ===== BUTTONS ===== */
+.btn{padding:10px 20px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:inherit;transition:all 0.2s;}
+.btn-primary{background:var(--forest);color:#fff;}
+.btn-primary:hover{background:var(--moss);transform:translateY(-1px);}
+.btn-secondary{background:var(--sage);color:var(--forest);}
+.btn-secondary:hover{background:var(--mint);}
+.btn-outline{background:transparent;color:var(--forest);border:1.5px solid var(--border);}
+.btn-outline:hover{border-color:var(--moss);background:var(--sage);}
+.btn-sm{padding:6px 14px;font-size:13px;}
+.btn-group{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+/* ===== MCQ ===== */
+.mcq-q{margin-bottom:18px;}
+.mcq-q .qtext{font-weight:600;font-size:14px;margin-bottom:8px;}
+.mcq-option{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:6px;cursor:pointer;font-size:14px;transition:all 0.15s;background:var(--white);}
+.mcq-option:hover{border-color:var(--teal);background:var(--sage);}
+.mcq-option.selected{border-color:var(--blue);background:var(--blue-light);}
+.mcq-option.correct{border-color:var(--green-success);background:var(--green-light);}
+.mcq-option.incorrect{border-color:var(--red);background:var(--red-light);}
+/* ===== BLANKS ===== */
+.blank-input{border:none;border-bottom:2px solid var(--forest);background:transparent;min-width:120px;font-size:15px;font-family:inherit;padding:2px 6px;outline:none;}
+.blank-input:focus{border-bottom-color:var(--blue);}
+.blank-input.correct{border-bottom-color:var(--green-success);background:var(--green-light);}
+.blank-input.incorrect{border-bottom-color:var(--red);background:var(--red-light);}
+.blank-line{margin-bottom:12px;font-size:14px;}
+/* ===== MATCHING (tap-based, drag styles) ===== */
+.drag-pool{border:2px dashed var(--border);background:var(--shell);padding:12px;border-radius:var(--radius);display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.drag-item{background:var(--white);border:1.5px solid var(--border);border-radius:99px;padding:6px 16px;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.15s;}
+.drag-item:hover{border-color:var(--teal);box-shadow:var(--shadow-sm);}
+.drag-item.selected{border-color:var(--blue);background:var(--blue-light);}
+.drag-item.placed{background:var(--sage);border-color:var(--moss);opacity:0.45;pointer-events:none;}
+.drop-zone{border:2px dashed var(--border);background:var(--shell);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:8px;display:flex;gap:12px;align-items:center;font-size:13px;transition:all 0.15s;cursor:pointer;}
+.drop-zone:hover{border-color:var(--moss);background:var(--sage);}
+.drop-zone .slot{min-width:120px;font-weight:700;color:var(--forest);}
+.drop-zone.correct-zone{border-color:var(--green-success);background:var(--green-light);}
+.drop-zone.incorrect-zone{border-color:var(--red);background:var(--red-light);}
+/* ===== FEEDBACK ===== */
+.feedback-box{padding:14px 18px;border-radius:var(--radius-sm);display:none;gap:10px;align-items:center;margin-top:14px;font-size:14px;font-weight:600;}
+.feedback-box.show{display:flex;}
+.feedback-box.success{background:var(--green-light);color:var(--green-success);border:1px solid #BBF7D0;}
+.feedback-box.error{background:var(--red-light);color:var(--red);border:1px solid #FECACA;}
+.feedback-box.info{background:var(--blue-light);color:var(--blue);border:1px solid #BFDBFE;}
+.score-badge{width:48px;height:48px;border-radius:99px;background:#fff;color:var(--forest);font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--border);font-size:13px;}
+/* ===== CHECKLIST ===== */
+.check-item{display:flex;gap:10px;padding:10px 14px;border-radius:var(--radius-sm);cursor:pointer;font-size:14px;align-items:center;transition:background 0.15s;}
+.check-item:hover{background:var(--sage);}
+.check-item input{accent-color:var(--forest);width:16px;height:16px;}
+/* ===== TRANSCRIPT ===== */
+.transcript-block{display:none;}
+.transcript-block.revealed{display:block;animation:fadeIn 0.3s ease;}
+.transcript-card{background:var(--shell);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:14px;}
+.transcript-card .tc-head{background:var(--forest);color:#fff;padding:10px 16px;display:flex;justify-content:space-between;font-size:13px;font-weight:700;}
+.transcript-card .tc-body{padding:16px;}
+.dialogue-line{margin-bottom:10px;font-size:14px;}
+.dialogue-line .speaker{color:var(--forest);font-weight:700;}
+/* ===== SCENARIO ===== */
+.scenario-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:24px;}
+.scenario-header{background:linear-gradient(120deg,var(--forest),var(--moss));color:#fff;padding:16px 22px;display:flex;gap:12px;align-items:center;}
+.scenario-header .sc-ico{font-size:22px;}
+.scenario-header h3{font-size:16px;font-weight:800;}
+.scenario-body{padding:22px;}
+.scenario-situation{background:var(--shell);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;font-size:14px;margin-bottom:14px;}
+.hint-chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;}
+.hint-chip{background:var(--sage);color:var(--moss);font-size:13px;font-weight:600;padding:4px 14px;border-radius:99px;}
+.sample-response{background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius-sm);padding:14px 18px;font-size:14px;display:none;margin-top:12px;}
+.sample-response.revealed{display:block;animation:fadeIn 0.3s ease;}
+.sc-label{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text-soft);margin:14px 0 6px;}
+/* ===== INFO / NOTICE ===== */
+.info-box{background:var(--sage);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:14px 18px;font-size:14px;color:var(--text-mid);margin-bottom:16px;}
+.listening-notice{background:var(--amber-light);border:1px solid #FDE68A;color:var(--amber);padding:12px 16px;font-size:13px;border-radius:var(--radius-sm);margin-bottom:16px;font-weight:600;}
+/* ===== SUMMARY TABLE ===== */
+.summary-table{width:100%;border-collapse:collapse;}
+.summary-table td{padding:10px 16px;border-bottom:1px solid var(--sage);font-size:14px;vertical-align:top;}
+.summary-table td:first-child{font-weight:700;color:var(--forest);width:40%;}
+/* ===== CONTEXT PASSAGE HIGHLIGHTS ===== */
+.hl-vocab{background:var(--sage);border-radius:4px;padding:0 3px;}
+.hl-phrase{border-bottom:2px solid var(--moss);font-weight:600;}
+.hl-pron{background:var(--blue-light);border-radius:4px;padding:0 3px;}
+.hl-accent{background:var(--amber-light);border-radius:4px;padding:0 3px;}
+.legend{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+.legend span{font-size:12px;padding:3px 10px;border-radius:99px;}
+.passage{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;font-size:15px;line-height:1.9;}
+.passage p{margin-bottom:14px;}
+/* ===== SPEAKING LEVELS ===== */
+.level-badge-row{display:flex;align-items:center;gap:10px;margin:26px 0 12px;}
+.level-num{width:30px;height:30px;border-radius:99px;background:var(--forest);color:var(--mint);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;}
+.level-title{color:var(--forest);font-weight:800;font-size:17px;}
+.dialogue-box{background:var(--shell);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:10px;}
+.dlg-a{font-size:14px;margin-bottom:8px;}
+.dlg-a .who{font-weight:700;color:var(--forest);}
+textarea.dlg-input{width:100%;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;font-family:inherit;font-size:14px;resize:vertical;min-height:56px;background:var(--white);outline:none;}
+textarea.dlg-input:focus{border-color:var(--blue);}
+.word-counter{font-size:12px;color:var(--text-soft);text-align:right;margin-top:4px;}
+/* ===== QUIZ GAME ===== */
+.quiz-screen{display:none;}
+.quiz-screen.active{display:block;animation:fadeIn 0.3s ease;}
+.quiz-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.timer-pill{background:var(--white);border:1.5px solid var(--border);border-radius:99px;padding:6px 16px;font-weight:800;font-size:14px;color:var(--forest);}
+.timer-pill.danger{border-color:var(--red);color:var(--red);animation:pulse 0.5s infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+.timer-track{background:var(--sage);height:8px;border-radius:99px;overflow:hidden;margin-bottom:20px;}
+.timer-bar{background:var(--moss);height:100%;width:100%;border-radius:99px;transition:width 0.1s linear;}
+.timer-bar.danger{background:var(--red);}
+.quiz-qtext{font-size:17px;font-weight:700;color:var(--forest);margin-bottom:14px;}
+.quiz-explain{display:none;background:var(--blue-light);border:1px solid #BFDBFE;color:var(--blue);border-radius:var(--radius-sm);padding:12px 16px;font-size:14px;margin-top:12px;}
+.quiz-explain.show{display:block;}
+.result-circle{width:120px;height:120px;border-radius:99px;background:var(--white);border:6px solid var(--mint);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 18px;}
+.result-circle .big{font-size:30px;font-weight:800;color:var(--forest);}
+.result-circle .small{font-size:12px;color:var(--text-soft);}
+/* ===== REFLEX PRACTICE (Part 2 · 2B) ===== */
+.draw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;}
+.draw-zone{background:var(--sage);border:1px solid var(--border);border-radius:var(--radius);padding:24px;}
+.draw-zone h4{color:var(--forest);font-size:15px;font-weight:800;margin-bottom:8px;}
+.draw-zone .zone-desc{font-size:13px;color:var(--text-mid);font-style:italic;margin-bottom:16px;}
+.draw-btn{width:130px;height:130px;border-radius:99px;background:var(--white);border:4px solid var(--moss);color:var(--moss);font-weight:800;font-size:14px;letter-spacing:1px;line-height:1.3;cursor:pointer;margin:18px auto;display:flex;align-items:center;justify-content:center;text-align:center;transition:all 0.2s;font-family:inherit;}
+.draw-btn:hover{transform:scale(1.05);box-shadow:var(--shadow-md);}
+.draw-result{border:2px dashed var(--moss);border-radius:var(--radius-sm);background:var(--white);padding:18px;min-height:70px;text-align:center;}
+.draw-result .big{font-size:24px;font-weight:800;color:var(--forest);display:block;}
+.draw-result .small{font-size:13px;color:var(--text-soft);font-style:italic;}
+.draw-result .sit{font-size:15px;font-weight:600;color:var(--forest);}
+.alt-badge{background:var(--moss);color:#fff;font-size:11px;font-weight:700;padding:4px 14px;border-radius:99px;letter-spacing:0.5px;}
+.tier2-hint{background:var(--amber-light);border:1.5px dashed #FDE68A;border-radius:var(--radius-sm);padding:12px 16px;font-size:14px;margin-bottom:14px;}
+.tier2-hint b{color:var(--amber);}
+.count-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:6px;}
+.count-display{background:var(--forest);color:#fff;font-size:34px;font-weight:800;padding:8px 22px;border-radius:var(--radius-sm);font-variant-numeric:tabular-nums;letter-spacing:2px;}
+.count-display.timeup{background:var(--red);}
+.preset-pill{border:1.5px solid var(--border);background:var(--white);border-radius:99px;padding:8px 16px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;transition:all 0.15s;}
+.preset-pill.active{border-color:var(--moss);background:var(--sage);color:var(--forest);}
+.btn-start{background:var(--moss);color:#fff;border:none;border-radius:99px;padding:8px 18px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;}
+.btn-timer-reset{background:var(--white);border:1.5px solid var(--border);border-radius:99px;padding:8px 18px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;}
+/* ===== RESET FAB ===== */
+.reset-fab{position:fixed;bottom:24px;right:24px;background:var(--red);color:#fff;border:none;border-radius:99px;padding:12px 20px;font-size:13px;font-weight:700;box-shadow:var(--shadow-lg);z-index:200;cursor:pointer;font-family:inherit;transition:transform 0.2s;}
+.reset-fab:hover{transform:scale(1.05);}
+/* ===== RESPONSIVE ===== */
+@media (max-width:768px){
+  .sidebar{position:static;width:100%;height:auto;}
+  .nav-scroll{display:flex;overflow-x:auto;padding:4px;}
+  .nav-label{display:none;}
+  .nav-item{border-left:none;border-bottom:3px solid transparent;white-space:nowrap;}
+  .nav-item.active{border-left:none;border-bottom-color:var(--mint);}
+  .app-shell{flex-direction:column;}
+  .main-content{margin-left:0;}
+  .hero{padding:24px;}
+  .hero h1{font-size:26px;}
+  .section{padding:24px;}
+  .vocab-grid{grid-template-columns:1fr;}
+  .progress-wrap{display:none;}
+}
+</style>
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+  <div class="brand">
+    <span class="level-badge">A2 → B1</span>
+    <h2>Weather</h2>
+    <div class="cat">English Communication</div>
+  </div>
+  <div class="nav-scroll">
+    <div class="nav-item active" data-page="overview"><span class="ico">🏠</span>Overview</div>
+    <div class="nav-label">Part 1 · Getting Ready</div>
+    <div class="nav-item" data-page="vocab"><span class="ico">📖</span>Vocabulary</div>
+    <div class="nav-item" data-page="phrases"><span class="ico">💬</span>Useful Phrases</div>
+    <div class="nav-item" data-page="pronun"><span class="ico">🔊</span>Pronunciation</div>
+    <div class="nav-item" data-page="practice"><span class="ico">✏️</span>Quick Practice</div>
+    <div class="nav-label">Part 2</div>
+    <div class="nav-item" data-page="speaking"><span class="ico">🗣️</span>Speaking</div>
+    <div class="nav-label">Part 3</div>
+    <div class="nav-item" data-page="listening"><span class="ico">🎧</span>Listening</div>
+    <div class="nav-label">Part 4</div>
+    <div class="nav-item" data-page="discussion"><span class="ico">🤝</span>Discussion</div>
+    <div class="nav-label">Part 5</div>
+    <div class="nav-item" data-page="review"><span class="ico">🏆</span>Quiz &amp; Review</div>
+  </div>
+  <div class="progress-wrap">
+    <div class="plabel">Lesson progress</div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+</aside>
+
+<main class="main-content">
+
+<!-- ================= OVERVIEW ================= -->
+<div class="page active" data-page="overview">
+  <div class="hero">
+    <div class="meta">
+      <span class="badge badge-white">Everyday Life · Small Talk</span>
+      <span class="badge badge-mint">CEFR A2 → B1</span>
+      <span class="badge badge-white">⏱ 90–120 min</span>
+    </div>
+    <h1>Weather</h1>
+    <p>Learn to describe the weather and seasons, talk about climates around the world, understand weather reports, and make natural weather small talk — the most common conversation starter in English.</p>
+    <div class="meta" style="margin-top:18px;">
+      <span class="badge badge-mint">Vocabulary</span>
+      <span class="badge badge-mint">Speaking</span>
+      <span class="badge badge-mint">Listening</span>
+      <span class="badge badge-mint">Problem Solving</span>
+      <span class="badge badge-mint">Communication</span>
+      <span class="badge badge-mint">Review</span>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Learning Outcomes</span>
+      <h2 class="section-title">By the end of this lesson, you can…</h2>
+    </div>
+    <div class="phrase-list">
+      <div class="phrase-card"><span class="phrase-en">🌦 Describe today's weather &amp; the seasons</span><span class="phrase-vi">sunny, humid, windy… + spring, summer, autumn, winter</span></div>
+      <div class="phrase-card"><span class="phrase-en">🌍 Compare climate types</span><span class="phrase-vi">tropical 🇻🇳 · subtropical 🇰🇷 · temperate 🇬🇧</span></div>
+      <div class="phrase-card"><span class="phrase-en">🌡 Talk about changing weather &amp; temperature</span><span class="phrase-vi">"It's getting warmer." / "The temperature is going down."</span></div>
+      <div class="phrase-card"><span class="phrase-en">🎧 Understand world weather reports</span><span class="phrase-vi">Listening: Let's Listen 2 · 3 · 4</span></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Learning Journey</span>
+      <h2 class="section-title">How this lesson works</h2>
+      <div class="section-subtitle">Each step prepares you for the next one.</div>
+    </div>
+    <div class="journey">
+      <div class="journey-step"><div class="journey-dotcol"><div class="journey-dot">1</div><div class="journey-line"></div></div><div class="journey-body"><h4>Language Input — Part 1</h4><p>Vocabulary, core structures, word partners, pronunciation, and a full context passage.</p></div></div>
+      <div class="journey-step"><div class="journey-dotcol"><div class="journey-dot">2</div><div class="journey-line"></div></div><div class="journey-body"><h4>Guided Practice — Part 2</h4><p>Speaking in 4 levels + Reflex Practice: lucky draw &amp; timed extended speaking.</p></div></div>
+      <div class="journey-step"><div class="journey-dotcol"><div class="journey-dot">3</div><div class="journey-line"></div></div><div class="journey-body"><h4>Language Recognition — Part 3</h4><p>Listening: three real weather-report tasks.</p></div></div>
+      <div class="journey-step"><div class="journey-dotcol"><div class="journey-dot">4</div><div class="journey-line"></div></div><div class="journey-body"><h4>Real-world Communication — Part 4</h4><p>Discussion scenarios: plan around the weather, advise a traveler.</p></div></div>
+      <div class="journey-step"><div class="journey-dotcol"><div class="journey-dot">5</div></div><div class="journey-body"><h4>Reflection &amp; Review — Part 5</h4><p>30-question quiz game + self-assessment.</p></div></div>
+    </div>
+    <div class="btn-group"><button class="btn btn-primary" data-goto="vocab">Start: Vocabulary →</button></div>
+  </div>
+</div>
+
+<!-- ================= VOCAB ================= -->
+<div class="page" data-page="vocab">
+  <div class="hero small">
+    <div class="meta"><span class="badge badge-mint">Part 1 · A</span></div>
+    <h1>Vocabulary</h1>
+    <p>Tap a card to see an example. Four tabs — finish with the Comprehensive Context Passage.</p>
+  </div>
+  <div class="section">
+    <div class="tab-bar" data-group="vocab">
+      <button class="tab-btn active" data-tab="v1">A.1 Seasons &amp; Weather Adjectives</button>
+      <button class="tab-btn" data-tab="v2">A.2 Climate Types &amp; Temperature</button>
+      <button class="tab-btn" data-tab="v3">A.3 Rain, Storms &amp; Word Formation</button>
+      <button class="tab-btn" data-tab="v4">A.4 Comprehensive Context Passage</button>
+    </div>
+    <div class="tab-panel active" data-group="vocab" data-tab="v1">
+      <div class="info-box">🍂 Four seasons + nine adjectives — the core toolkit for any weather small talk.</div>
+      <div class="vocab-grid" id="vgrid-seasons"></div>
+    </div>
+    <div class="tab-panel" data-group="vocab" data-tab="v2">
+      <div class="info-box">🌡 <b>Temperature ladder — from hottest to coldest:</b> Boiling 🥵 → Hot → Warm → Cool → Chilly → Cold → Freezing 🥶</div>
+      <div class="vocab-grid" id="vgrid-climate"></div>
+    </div>
+    <div class="tab-panel" data-group="vocab" data-tab="v3">
+      <div class="info-box">⚡ <b>Word formation rule:</b> noun + <b>-y</b> = weather adjective: sun→sunny · cloud→cloudy · wind→windy · rain→rainy · snow→snowy · fog→foggy · ice→icy</div>
+      <div class="vocab-grid" id="vgrid-storms"></div>
+    </div>
+    <div class="tab-panel" data-group="vocab" data-tab="v4">
+      <div class="info-box">📖 <b>Read this story carefully.</b> It contains <b>every word, structure, and word partner</b> from this lesson, the grammar you will use in Speaking (<b>It is + adjective</b>, <b>It's getting + -er</b>, <b>the temperature is going up/down</b>), the world cities from the Listening, and the picnic problem you will solve in Part 4.</div>
+      <div class="legend">
+        <span class="hl-vocab">vocabulary</span>
+        <span class="hl-phrase">core structure</span>
+        <span class="hl-pron">pronunciation focus</span>
+        <span class="hl-accent">word partner</span>
+        <span><b>bold</b> = grammar focus</span>
+      </div>
+      <div class="passage">
+        <p><b>A Week of Weather</b></p>
+        <p>My friend Minh studies in the United Kingdom — a country with a <span class="hl-pron">TEMperate</span> <span class="hl-vocab">climate</span>: four clear seasons. In <span class="hl-vocab">spring</span> <b>it is</b> <span class="hl-vocab">warm</span>, and the sky is often blue; in <span class="hl-vocab">summer</span> it can be <span class="hl-vocab">hot</span> and <span class="hl-vocab">sunny</span>; in <span class="hl-vocab">autumn</span> (Americans say <span class="hl-vocab">fall</span>) it is <span class="hl-vocab">cool</span> and <span class="hl-vocab">windy</span>, and the mornings are <span class="hl-vocab">chilly</span>; and in <span class="hl-vocab">winter</span> it is <span class="hl-vocab">cold</span> — sometimes <span class="hl-vocab">freezing</span>, with <span class="hl-vocab">snowy</span> mornings, <span class="hl-vocab">icy</span> roads, and <span class="hl-accent">thick fog</span> that makes driving dangerous.</p>
+        <p>Yesterday Minh video-called me. "<span class="hl-phrase"><b>What's the weather like</b></span> in Ho Chi Minh City? <span class="hl-phrase">What's it like outside today?</span>" I laughed: "<span class="hl-phrase"><b>It's really hot and humid today</b></span>. <span class="hl-phrase"><b>There is no wind</b></span>." Vietnam has a <span class="hl-pron">TROpical</span> climate — hot all year, with a <span class="hl-vocab">rainy</span> season and a dry season, and in April the city can be <span class="hl-vocab">boiling</span>, nearly 40°C. My cousin lives in South Korea, which is <span class="hl-pron">subTROpical</span>: <span class="hl-pron">HUmid</span>, hot summers but quite cold winters.</p>
+        <p>Then, this afternoon, the weather changed fast. First the air became <span class="hl-accent">extremely</span> humid. Suddenly we heard <span class="hl-pron">THunder</span> and saw <span class="hl-vocab">lightning</span> — a real <span class="hl-vocab">thunderstorm</span>! It began to <span class="hl-vocab">pour with rain</span>: <span class="hl-accent">heavy rain</span>, not a small <span class="hl-vocab">shower</span>. A <span class="hl-accent">strong wind</span> (never say "big wind"!) shook the trees — <span class="hl-accent">the wind has blown</span> all the leaves off our mango tree. My mother asked from the kitchen: "<span class="hl-phrase"><b>Is it still raining?</b></span>" An hour later, only <span class="hl-accent">light showers</span> were left. Then <span class="hl-accent">the sun came out</span>, and by dinner time the <span class="hl-accent">sky was clear</span> — not one <span class="hl-vocab">cloudy</span> corner, no <span class="hl-vocab">foggy</span> air, just a beautiful evening.</p>
+        <p>After dinner I watched a world weather report, just like the one you will hear in Part 3. Beijing <b>was</b> cold and windy, with a low of 0°C. New York was even colder — <span class="hl-vocab">freezing</span> at minus ten! Tokyo was cloudy and rainy, Mexico City was warm and <span class="hl-vocab">wet</span>, and Taipei was hot, cloudy and wet at 30°C.</p>
+        <p>This week the seasons are changing here too. <span class="hl-phrase"><b>It's getting warmer</b></span> every day; <span class="hl-phrase"><b>the temperature is going up</b></span> every hour in the afternoon, and <span class="hl-phrase"><b>going down</b></span> only after the sun has set. My classmates are planning a picnic on Saturday — but the sky is getting dark, and the wind is getting stronger. Should we go anyway, move the party indoors, or wait for Sunday? In Part 4, <b>you</b> will help us decide.</p>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="phrases">Next: Useful Phrases →</button>
+      <button class="btn btn-outline" data-goto="overview">← Overview</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PHRASES ================= -->
+<div class="page" data-page="phrases">
+  <div class="hero small">
+    <div class="meta"><span class="badge badge-mint">Part 1 · B</span></div>
+    <h1>Useful Phrases</h1>
+    <p>Three core structures for weather talk + word partners that make you sound natural.</p>
+  </div>
+  <div class="section">
+    <div class="tab-bar" data-group="phrases">
+      <button class="tab-btn active" data-tab="p1">B.1 Core Structures</button>
+      <button class="tab-btn" data-tab="p2">B.2 Word Partners</button>
+    </div>
+    <div class="tab-panel active" data-group="phrases" data-tab="p1">
+      <div class="info-box">🧩 3 structures to remember: <b>1)</b> Asking · <b>2)</b> Describing current weather (<b>It is + adjective</b>) · <b>3)</b> Describing change (<b>It's getting + -er</b> / <b>the temperature is going up/down</b>)</div>
+      <div class="phrase-list" id="plist-structures"></div>
+    </div>
+    <div class="tab-panel" data-group="phrases" data-tab="p2">
+      <div class="info-box">🤝 Word partners = words that always travel together. Say <b>thick</b> fog (not "bad fog"), <b>strong</b> wind (not "big wind"), <b>heavy</b> rain (not "big rain").</div>
+      <div class="phrase-list" id="plist-partners"></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="pronun">Next: Pronunciation →</button>
+      <button class="btn btn-outline" data-goto="vocab">← Vocabulary</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PRONUNCIATION ================= -->
+<div class="page" data-page="pronun">
+  <div class="hero small">
+    <div class="meta"><span class="badge badge-mint">Part 1 · C</span></div>
+    <h1>Pronunciation Focus: Word Stress &amp; the /θ/ Sound</h1>
+    <p>Weather words hide two traps for Vietnamese speakers: stress position and the "th" sound.</p>
+  </div>
+  <div class="section">
+    <div class="pron-rule">
+      <h4>Rule 1 — Climate words: stress falls on TROP / TEM</h4>
+      <div><b>TRO</b>pical /ˈtrɒp.ɪ.kəl/ · sub<b>TRO</b>pical /ˌsʌbˈtrɒp.ɪ.kəl/ · <b>TEM</b>perate /ˈtem.pər.ət/ (NOT "tem-per-ATE")</div>
+      <div class="pron-practice">🗣 Say it: "Vietnam is <b>TRO</b>pical, Korea is sub<b>TRO</b>pical, and the UK is <b>TEM</b>perate."</div>
+    </div>
+    <div class="pron-rule">
+      <h4>Rule 2 — -y adjectives end with a light <span class="pron-arrow">/i/</span> sound</h4>
+      <div>sunn<b>y</b> /ˈsʌn.i/ · wind<b>y</b> /ˈwɪn.di/ · cloud<b>y</b> /ˈklaʊ.di/ · fogg<b>y</b> /ˈfɒɡ.i/ · ic<b>y</b> /ˈaɪ.si/ · chill<b>y</b> /ˈtʃɪl.i/</div>
+      <div class="pron-practice">🗣 Say it: "It's windy, cloudy, and a little chilly today."</div>
+    </div>
+    <div class="pron-rule">
+      <h4>Rule 3 — The /θ/ sound: tongue between your teeth</h4>
+      <div><b>th</b>under /ˈθʌn.dər/ · <b>th</b>ick fog /θɪk/ · wea<b>th</b>er /ˈweð.ər/ (this one is the soft /ð/!)</div>
+      <div class="pron-practice">🗣 Say it: "I heard <b>th</b>under — <b>th</b>ick clouds are coming. What's the wea<b>th</b>er like now?"</div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="practice">Next: Quick Practice →</button>
+      <button class="btn btn-outline" data-goto="phrases">← Useful Phrases</button>
+    </div>
+  </div>
+</div>
+<!-- ================= QUICK PRACTICE ================= -->
+<div class="page" data-page="practice">
+  <div class="hero small">
+    <div class="meta"><span class="badge badge-mint">Part 1 · D</span></div>
+    <h1>Quick Practice</h1>
+    <p>Three short activities to lock in the vocabulary and structures before you speak.</p>
+  </div>
+  <div class="section">
+    <div class="exercise" id="ex-match">
+      <div class="exercise-title">D.1 — Match the word to its meaning</div>
+      <div class="exercise-instruction">Tap a word, then tap its definition. Tap "Show Answers" to check.</div>
+      <div class="drag-pool" id="matchPool"></div>
+      <div id="matchZones"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary btn-sm" onclick="gradeMatch()">Show Answers</button>
+        <button class="btn btn-outline btn-sm" onclick="resetMatch()">Reset</button>
+      </div>
+      <div class="feedback-box" id="fb-match"><div class="score-badge" id="sb-match">–</div><span id="fbtext-match"></span></div>
+    </div>
+    <div class="exercise" id="ex-mcq1">
+      <div class="exercise-title">D.2 — Choose the best answer</div>
+      <div class="exercise-instruction">Select one option for every question, then tap "Show Answers".</div>
+      <div id="mcq1-holder"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary btn-sm" onclick="gradeMcqEx('mcq1')">Show Answers</button>
+        <button class="btn btn-outline btn-sm" onclick="resetMcqEx('mcq1')">Reset</button>
+      </div>
+      <div class="feedback-box" id="fb-mcq1"><div class="score-badge" id="sb-mcq1">–</div><span id="fbtext-mcq1"></span></div>
+    </div>
+    <div class="exercise" id="ex-gap">
+      <div class="exercise-title">D.3 — Complete the sentences</div>
+      <div class="exercise-instruction">Type ONE word in each blank. Use: <b>like · getting · down · wind · came</b></div>
+      <div class="blank-line">1. What's the weather <input class="blank-input" data-answer="like"> today?</div>
+      <div class="blank-line">2. It's <input class="blank-input" data-answer="getting"> warmer — spring is coming.</div>
+      <div class="blank-line">3. The temperature is going <input class="blank-input" data-answer="down"> because the sun has set.</div>
+      <div class="blank-line">4. There is no <input class="blank-input" data-answer="wind"> today — the sea is very calm.</div>
+      <div class="blank-line">5. It was cloudy this morning, but the sun <input class="blank-input" data-answer="came"> out after lunch.</div>
+      <div class="btn-group">
+        <button class="btn btn-primary btn-sm" onclick="gradeGaps()">Show Answers</button>
+        <button class="btn btn-outline btn-sm" onclick="resetGaps()">Reset</button>
+      </div>
+      <div class="feedback-box" id="fb-gap"><div class="score-badge" id="sb-gap">–</div><span id="fbtext-gap"></span></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="speaking">Next: Speaking →</button>
+      <button class="btn btn-outline" data-goto="pronun">← Pronunciation</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= SPEAKING ================= -->
+<div class="page" data-page="speaking">
+  <div class="hero small">
+    <div class="meta"><span class="badge badge-mint">Part 2</span><span class="badge badge-white">Speaking + Reflex</span></div>
+    <h1>Speaking</h1>
+    <p>Tab 2A: guided speaking in 4 levels. Tab 2B: reflex training — draw, speak, beat the clock.</p>
+  </div>
+  <div class="section">
+    <div class="tab-bar" data-group="part2">
+      <button class="tab-btn active" data-tab="s2a">2A — Speaking</button>
+      <button class="tab-btn" data-tab="s2b">2B — Reflex Practice ⚡</button>
+    </div>
+    <div class="tab-panel active" data-group="part2" data-tab="s2a">
+    <div class="info-box">🗣 <b>How to practice:</b> Say every answer OUT LOUD before you reveal the model. Speaking silently in your head does not count!</div>
+
+    <div class="level-badge-row"><div class="level-num">1</div><div class="level-title">Simple Questions</div></div>
+    <div class="exercise">
+      <div class="exercise-instruction">Answer in a full sentence using today's vocabulary.</div>
+      <div class="mcq-q"><div class="qtext">Q1. What's the weather like today in your city?</div>
+        <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l1a')">💡 Model answer</button>
+        <div class="sample-response" id="sr-l1a">It's really <b>hot and humid</b> today, and there is no wind.</div></div>
+      <div class="mcq-q"><div class="qtext">Q2. Which season do you like best? Why?</div>
+        <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l1b')">💡 Model answer</button>
+        <div class="sample-response" id="sr-l1b">I like <b>autumn</b> best because it is <b>cool</b> and the sky is often <b>clear</b>.</div></div>
+      <div class="mcq-q"><div class="qtext">Q3. What climate type does Vietnam have? Describe it.</div>
+        <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l1c')">💡 Model answer</button>
+        <div class="sample-response" id="sr-l1c">Vietnam has a <b>tropical</b> climate — it is hot all year, with a <b>rainy season</b> and a <b>dry season</b>.</div></div>
+      <div class="mcq-q"><div class="qtext">Q4. Is it getting hotter or cooler in your city these days?</div>
+        <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l1d')">💡 Model answer</button>
+        <div class="sample-response" id="sr-l1d">It's <b>getting hotter</b> — the temperature is <b>going up</b> every day.</div></div>
+    </div>
+
+    <div class="level-badge-row"><div class="level-num">2</div><div class="level-title">Sentence Completion</div></div>
+    <div class="exercise">
+      <div class="exercise-instruction">Complete each sentence OUT LOUD with your own words. Use the structures from B.1.</div>
+      <div class="blank-line">1. Today it's really … .</div>
+      <div class="blank-line">2. There is … outside right now.</div>
+      <div class="blank-line">3. This week it's getting … .</div>
+      <div class="blank-line">4. In summer, the temperature often goes … .</div>
+      <div class="blank-line">5. In winter in my hometown, the weather is … .</div>
+      <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l2')">💡 Model answers</button>
+      <div class="sample-response" id="sr-l2">1. Today it's really <b>hot and humid</b>. · 2. There is <b>a strong wind</b> outside right now. · 3. This week it's getting <b>warmer</b>. · 4. In summer, the temperature often goes <b>up to 38°C</b>. · 5. In winter in my hometown, the weather is <b>cool, and the mornings are chilly</b>.</div>
+    </div>
+
+    <div class="level-badge-row"><div class="level-num">3</div><div class="level-title">Short Dialogue — You are B</div></div>
+    <div class="exercise">
+      <div class="exercise-title">Dialogue 1 — Small Talk at the Bus Stop ☁️</div>
+      <div class="exercise-instruction">A's lines are ready. Type B's line, then SAY the whole dialogue out loud. Useful: It's really… · There is… · getting + -er.</div>
+      <div class="dialogue-box"><div class="dlg-a"><span class="who">A (Neighbor):</span> Good morning! What's it like outside today?</div>
+        <textarea class="dlg-input" data-counter="wc-d1a" placeholder="B (You): describe the weather…"></textarea><div class="word-counter" id="wc-d1a">0 words</div></div>
+      <div class="dialogue-box"><div class="dlg-a"><span class="who">A (Neighbor):</span> Really? It was so cloudy this morning. Is it still raining?</div>
+        <textarea class="dlg-input" data-counter="wc-d1b" placeholder="B (You): answer and add a detail…"></textarea><div class="word-counter" id="wc-d1b">0 words</div></div>
+      <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l3a')">💡 Model lines</button>
+      <div class="sample-response" id="sr-l3a"><b>B1:</b> It's really nice — sunny and warm, and there is no wind. <br><b>B2:</b> No, it's not raining anymore. The sun came out, and the sky is clear now.</div>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">Dialogue 2 — A Storm Is Coming ⛈️</div>
+      <div class="exercise-instruction">Useful: humid · thunder · lightning · pour with rain · It's getting…</div>
+      <div class="dialogue-box"><div class="dlg-a"><span class="who">A (Friend):</span> It feels so hot and sticky this afternoon. Do you think the weather will change?</div>
+        <textarea class="dlg-input" data-counter="wc-d2a" placeholder="B (You): warn your friend about the thunderstorm…"></textarea><div class="word-counter" id="wc-d2a">0 words</div></div>
+      <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l3b')">💡 Model line</button>
+      <div class="sample-response" id="sr-l3b"><b>B:</b> Yes — the air is extremely humid, and I just heard thunder. It's going to pour with rain soon. Let's go inside before the heavy rain starts!</div>
+    </div>
+
+    <div class="level-badge-row"><div class="level-num">4</div><div class="level-title">Independent Speaking</div></div>
+    <div class="exercise">
+      <div class="exercise-instruction">Speak for 30–60 seconds per situation. Use the structures: <b>It is + adjective / It's getting + -er / The temperature is going up (down)</b>.</div>
+      <div class="mcq-q"><div class="qtext">🎤 Situation 1: Describe a thunderstorm from beginning to end — what happens first, next, and after?</div>
+        <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l4a')">💡 Answer key</button>
+        <div class="sample-response" id="sr-l4a">First, the air becomes very <b>humid</b>. Then you hear <b>thunder</b> and see <b>lightning</b>. Right after that, <b>heavy rain</b> pours down. Later, the light showers stop, <b>the sun comes out</b>, and the sky is <b>clear</b> again.</div></div>
+      <div class="mcq-q"><div class="qtext">🎤 Situation 2: Compare the weather in two seasons in your country.</div>
+        <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l4b')">💡 Answer key</button>
+        <div class="sample-response" id="sr-l4b">In the dry season it is <b>hot and sunny</b>, and the temperature can go up to 38°C — sometimes it's <b>boiling</b>. In the rainy season it is still warm, but there are <b>heavy showers</b> almost every afternoon, and the air is very <b>humid</b>.</div></div>
+      <div class="mcq-q"><div class="qtext">🎤 Situation 3: Compare a tropical climate and a temperate climate.</div>
+        <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l4c')">💡 Answer key</button>
+        <div class="sample-response" id="sr-l4c">A <b>tropical</b> climate, like in Vietnam, is hot all year with a rainy season and a dry season. A <b>temperate</b> climate, like in the UK, has <b>four clear seasons</b>: warm summers and cold winters — sometimes <b>freezing</b>, with snowy and icy days.</div></div>
+      <div class="mcq-q"><div class="qtext">🎤 Situation 4: The weather is changing right now outside your window. Describe the change.</div>
+        <button class="btn btn-secondary btn-sm" onclick="toggleReveal('sr-l4d')">💡 Answer key</button>
+        <div class="sample-response" id="sr-l4d">The sky is <b>getting darker</b> and the wind is <b>getting stronger</b>. The temperature is <b>going down</b> quickly. I think it's going to rain — I can already see thick clouds.</div></div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">Speaking Checklist ✅</div>
+      <label class="check-item"><input type="checkbox"> I used today's vocabulary.</label>
+      <label class="check-item"><input type="checkbox"> I used complete sentences.</label>
+      <label class="check-item"><input type="checkbox"> My pronunciation was clear (stress + /θ/!).</label>
+      <label class="check-item"><input type="checkbox"> I answered naturally.</label>
+      <label class="check-item"><input type="checkbox"> I spoke confidently.</label>
+    </div>
+    </div><!-- /panel 2A -->
+
+    <div class="tab-panel" data-group="part2" data-tab="s2b">
+      <div class="info-box">⚡ <b>Reflex training:</b> answer OUT LOUD immediately — no time to prepare a perfect sentence. Speed beats perfection here.</div>
+      <div class="tab-bar" data-group="reflex">
+        <button class="tab-btn active" data-tab="t1">Tier 1 — Lucky Draw</button>
+        <button class="tab-btn" data-tab="t2">Tier 2 — Extended Speaking</button>
+      </div>
+      <div class="tab-panel active" data-group="reflex" data-tab="t1">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:12px;"><span class="alt-badge">IN-CLASS ALTERNATIVE: draw paper cards</span></div>
+        <div class="draw-grid">
+          <div class="draw-zone">
+            <h4>📚 Zone 1 — Vocabulary Review</h4>
+            <div class="zone-desc">Draw a word → say ONE full sentence with it, or translate it fast. (24 word cards — no repeats until the deck runs out.)</div>
+            <button class="draw-btn" onclick="drawWord()">DRAW<br>A WORD</button>
+            <div class="draw-result" id="drawWordResult"><span class="small">Tap the circle to draw your first word…</span></div>
+          </div>
+          <div class="draw-zone">
+            <h4>💬 Zone 2 — Instant Translation</h4>
+            <div class="zone-desc">Draw a Vietnamese sentence → say the full English sentence IMMEDIATELY, using the hint. Then check the answer. (8 sentence cards.)</div>
+            <button class="draw-btn" onclick="drawTrans()">DRAW A<br>SENTENCE</button>
+            <div class="draw-result" id="drawTransResult"><span class="small">Tap the circle to draw your first sentence…</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-panel" data-group="reflex" data-tab="t2">
+        <div id="tier2Holder"></div>
+      </div>
+    </div><!-- /panel 2B -->
+
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="listening">Next: Listening →</button>
+      <button class="btn btn-outline" data-goto="practice">← Quick Practice</button>
+    </div>
+  </div>
+</div>
+<!-- ================= LISTENING ================= -->
+<div class="page" data-page="listening">
+  <div class="hero small">
+    <div class="meta"><span class="badge badge-mint">Part 3</span></div>
+    <h1>Listening: World Weather</h1>
+    <p>Three listening tasks: city weather reports, what to wear, and weather right now.</p>
+  </div>
+  <div class="section">
+    <div class="listening-notice">🎧 The listening audios (Let's Listen 2 · 3 · 4) are in Notion. Play each audio, answer here, then check with "Show Answers". The tapescript is not included in the source material — replay the audio to review.</div>
+
+    <!-- LISTEN 2 -->
+    <div class="exercise" id="ex-lis2">
+      <div class="exercise-title">Let's Listen 2 — Task 1: Check (✓) the correct weather for each city</div>
+      <div class="exercise-instruction">Each city has TWO or THREE correct answers — select ALL that you hear (5 conversations).</div>
+      <div id="lis2-holder"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary btn-sm" onclick="gradeMulti('lis2')">Show Answers</button>
+        <button class="btn btn-outline btn-sm" onclick="resetMulti('lis2')">Reset</button>
+      </div>
+      <div class="feedback-box" id="fb-lis2"><div class="score-badge" id="sb-lis2">–</div><span id="fbtext-lis2"></span></div>
+    </div>
+
+    <div class="exercise" id="ex-temp">
+      <div class="exercise-title">Let's Listen 2 — Task 2: Write the temperatures (Low / High)</div>
+      <div class="exercise-instruction">Listen again. Type the numbers only (°C). For temperatures below zero, use a minus sign, e.g. <b>-10</b>.</div>
+      <table class="summary-table" id="tempTable">
+        <tr><td style="width:40%;">City</td><td><b>Low</b></td><td><b>High</b></td></tr>
+        <tr><td>1. Beijing</td><td><input class="blank-input" data-answer="0" style="min-width:70px;"></td><td><input class="blank-input" data-answer="6" style="min-width:70px;"></td></tr>
+        <tr><td>2. Mexico City</td><td><input class="blank-input" data-answer="23" style="min-width:70px;"></td><td><input class="blank-input" data-answer="28" style="min-width:70px;"></td></tr>
+        <tr><td>3. Tokyo</td><td><input class="blank-input" data-answer="4" style="min-width:70px;"></td><td><input class="blank-input" data-answer="12" style="min-width:70px;"></td></tr>
+        <tr><td>4. New York</td><td><input class="blank-input" data-answer="-10" style="min-width:70px;"></td><td><input class="blank-input" data-answer="0" style="min-width:70px;"></td></tr>
+        <tr><td>5. Taipei</td><td><input class="blank-input" data-answer="20" style="min-width:70px;"></td><td><input class="blank-input" data-answer="30" style="min-width:70px;"></td></tr>
+      </table>
+      <div class="btn-group">
+        <button class="btn btn-primary btn-sm" onclick="gradeTemps()">Show Answers</button>
+        <button class="btn btn-outline btn-sm" onclick="resetTemps()">Reset</button>
+      </div>
+      <div class="feedback-box" id="fb-temp"><div class="score-badge" id="sb-temp">–</div><span id="fbtext-temp"></span></div>
+    </div>
+
+    <!-- LISTEN 3 -->
+    <div class="exercise" id="ex-lis3">
+      <div class="exercise-title">Let's Listen 3 — What will they wear or take?</div>
+      <div class="exercise-instruction">For each conversation: Task 1 — choose what they will wear/take. Task 2 — tick the sentence that does NOT apply.</div>
+      <div id="lis3-holder"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary btn-sm" onclick="gradeMcqEx('lis3')">Show Answers</button>
+        <button class="btn btn-outline btn-sm" onclick="resetMcqEx('lis3')">Reset</button>
+      </div>
+      <div class="feedback-box" id="fb-lis3"><div class="score-badge" id="sb-lis3">–</div><span id="fbtext-lis3"></span></div>
+    </div>
+
+    <!-- LISTEN 4 -->
+    <div class="exercise" id="ex-lis4">
+      <div class="exercise-title">Let's Listen 4 — What is the weather like now?</div>
+      <div class="exercise-instruction">These people are talking about the weather. Listen and choose the correct answer for each item.</div>
+      <div id="lis4-holder"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary btn-sm" onclick="gradeMcqEx('lis4')">Show Answers</button>
+        <button class="btn btn-outline btn-sm" onclick="resetMcqEx('lis4')">Reset</button>
+      </div>
+      <div class="feedback-box" id="fb-lis4"><div class="score-badge" id="sb-lis4">–</div><span id="fbtext-lis4"></span></div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">Vocabulary Review — Words from the audios</div>
+      <div class="phrase-list" id="plist-listenvocab"></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="discussion">Next: Discussion →</button>
+      <button class="btn btn-outline" data-goto="speaking">← Speaking</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= DISCUSSION ================= -->
+<div class="page" data-page="discussion">
+  <div class="hero small">
+    <div class="meta"><span class="badge badge-mint">Part 4</span><span class="badge badge-white">Free Communication</span></div>
+    <h1>Discussion</h1>
+    <p>There is no single correct answer here. Use today's language to solve real situations — think, decide, and explain why.</p>
+  </div>
+  <div class="section">
+    <div class="scenario-card">
+      <div class="scenario-header"><span class="sc-ico">🧺</span><h3>Scenario 1 — The Saturday Picnic Problem (Decision Making)</h3></div>
+      <div class="scenario-body">
+        <div class="scenario-situation"><b>Situation:</b> Your class planned a picnic in the park this Saturday. But today the sky is getting dark and cloudy, the wind is getting stronger, and the air feels extremely humid — a thunderstorm may be coming. The weather report says: heavy showers on Saturday morning, but the sun may come out in the afternoon. Ten classmates already bought food.</div>
+        <div class="sc-label">🎯 Goal</div>
+        <div>Decide as a group: go anyway in the afternoon, move the picnic indoors, or postpone to Sunday. Explain your choice with weather reasons.</div>
+        <div class="sc-label">💬 Useful Language</div>
+        <div class="hint-chips"><span class="hint-chip">It's getting…</span><span class="hint-chip">The report says…</span><span class="hint-chip">heavy showers / light showers</span><span class="hint-chip">The sun may come out</span><span class="hint-chip">I think we should… because…</span></div>
+        <div class="sc-label">💡 Hints</div>
+        <div class="hint-chips"><span class="hint-chip">What if it pours at lunch time?</span><span class="hint-chip">Is the food easy to move indoors?</span><span class="hint-chip">Will everyone be free on Sunday?</span></div>
+        <button class="btn btn-secondary btn-sm" style="margin-top:12px;" onclick="toggleReveal('sr-sc1')">💡 Sample response</button>
+        <div class="sample-response" id="sr-sc1">I think we should move the picnic to Saturday afternoon, not cancel it. The report says heavy showers in the morning, but the sun may come out later. If the sky is still dark at noon and we hear thunder, we should move everything indoors — nobody wants to eat in pouring rain! Sunday is a backup, but not everyone is free.</div>
+        <div class="sc-label">🔄 Extension Questions</div>
+        <div>1. In your country, which months are best for outdoor plans? Why?<br>2. Have you ever had a plan destroyed by the weather? What happened?</div>
+        <div class="sc-label">🪞 Reflection</div>
+        <div>Did you give weather reasons for your decision (because / so / the report says…)? Could you defend a different choice too?</div>
+      </div>
+    </div>
+
+    <div class="scenario-card">
+      <div class="scenario-header"><span class="sc-ico">🧳</span><h3>Scenario 2 — Advising a Traveler (Giving Advice)</h3></div>
+      <div class="scenario-body">
+        <div class="scenario-situation"><b>Situation:</b> Your friend Minh from the UK (temperate climate) is visiting Vietnam (tropical) in July for the first time. He asks: "What's the weather like there in July? What should I pack?" He is used to cool summers around 20°C and has never seen a tropical thunderstorm.</div>
+        <div class="sc-label">🎯 Goal</div>
+        <div>Describe July weather in Vietnam and give him a packing list of at least 3 items — with weather reasons for each.</div>
+        <div class="sc-label">💬 Useful Language</div>
+        <div class="hint-chips"><span class="hint-chip">It's really hot and humid</span><span class="hint-chip">boiling — up to 38°C</span><span class="hint-chip">heavy showers in the afternoon</span><span class="hint-chip">You should bring… because…</span><span class="hint-chip">tropical vs temperate</span></div>
+        <div class="sc-label">💡 Hints</div>
+        <div class="hint-chips"><span class="hint-chip">Umbrella or raincoat?</span><span class="hint-chip">What about the strong sun?</span><span class="hint-chip">Warn him about thunderstorms</span></div>
+        <button class="btn btn-secondary btn-sm" style="margin-top:12px;" onclick="toggleReveal('sr-sc2')">💡 Sample response</button>
+        <div class="sample-response" id="sr-sc2">July in Vietnam is very different from the UK — it's the rainy season, so it's really hot and humid, and the temperature can go up to 38°C. You should bring light clothes because it's boiling in the afternoon, an umbrella because there are heavy showers almost every day, and sunglasses for the strong sun in the morning. Don't worry about thunderstorms — they pour with rain for an hour, then the sun comes out and the sky is clear again!</div>
+        <div class="sc-label">🔄 Extension Questions</div>
+        <div>1. What would YOU need to pack for a winter trip to a temperate country?<br>2. Which climate would you prefer to live in — tropical, subtropical, or temperate? Why?</div>
+        <div class="sc-label">🪞 Reflection</div>
+        <div>Did you connect every item to a weather reason? Did you use comparison words (hotter, more humid than…)?</div>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="review">Next: Quiz &amp; Review →</button>
+      <button class="btn btn-outline" data-goto="listening">← Listening</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= REVIEW / QUIZ ================= -->
+<div class="page" data-page="review">
+  <div class="hero small">
+    <div class="meta"><span class="badge badge-mint">Part 5</span><span class="badge badge-white">🏆 Final Review</span></div>
+    <h1>Vocabulary Quiz Game</h1>
+    <p>30 questions · 10 seconds each · 100% English. Ready?</p>
+  </div>
+  <div class="section">
+    <div class="exercise" id="quizBox">
+      <div class="quiz-screen active" id="qs-start">
+        <div class="exercise-title">🎮 How to play</div>
+        <div class="info-box">30 questions about today's vocabulary, structures, and situations. You have <b>10 seconds</b> per question. Select an answer, tap <b>Submit</b>, read the feedback, then tap <b>Next</b>. If time runs out, the question is marked wrong and the correct answer is revealed.</div>
+        <div class="btn-group"><button class="btn btn-primary" onclick="startQuiz()">▶ Start Quiz</button></div>
+      </div>
+      <div class="quiz-screen" id="qs-play">
+        <div class="quiz-topbar">
+          <span class="badge badge-forest" id="qCounter">Question 1 / 30</span>
+          <span class="timer-pill" id="timerPill">⏳ 10s</span>
+        </div>
+        <div class="timer-track"><div class="timer-bar" id="timerBar"></div></div>
+        <div class="quiz-qtext" id="qText"></div>
+        <div id="qOptions"></div>
+        <div class="quiz-explain" id="qExplain"></div>
+        <div class="btn-group">
+          <button class="btn btn-primary" id="btnSubmit" onclick="submitAnswer()" disabled>Submit</button>
+          <button class="btn btn-secondary" id="btnNext" onclick="nextQuestion()" style="display:none;">Next →</button>
+        </div>
+      </div>
+      <div class="quiz-screen" id="qs-result">
+        <div style="text-align:center;">
+          <div class="result-circle"><span class="big" id="resScore">0/30</span><span class="small">score</span></div>
+          <div class="exercise-title" id="resMsg" style="font-size:18px;"></div>
+          <div class="btn-group" style="justify-content:center;"><button class="btn btn-primary" onclick="resetQuiz(true)">🔄 Play Again</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">Self-Assessment ✅</div>
+      <label class="check-item"><input type="checkbox"> I understand today's vocabulary.</label>
+      <label class="check-item"><input type="checkbox"> I can use today's structures.</label>
+      <label class="check-item"><input type="checkbox"> I understand spoken English about the weather.</label>
+      <label class="check-item"><input type="checkbox"> I can communicate naturally.</label>
+      <label class="check-item"><input type="checkbox"> I can solve realistic communication situations.</label>
+      <label class="check-item"><input type="checkbox"> I feel more confident talking about the weather.</label>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">Lesson Summary 📋</div>
+      <table class="summary-table">
+        <tr><td>Estimated Duration</td><td>90–120 minutes</td></tr>
+        <tr><td>Vocabulary Learned</td><td>4 seasons · 9 weather adjectives · 3 climate types · temperature ladder · rain &amp; storm words · -y word formation</td></tr>
+        <tr><td>Grammar Focus</td><td>It is + adjective · It's getting + comparative · The temperature is going up/down · present continuous (it's raining/snowing)</td></tr>
+        <tr><td>Pronunciation Focus</td><td>Word stress (TROpical, TEMperate) · -y ending /i/ · the /θ/ sound (thunder, thick)</td></tr>
+        <tr><td>Communication Functions</td><td>Weather small talk · describing change · comparing climates · planning around weather · giving packing advice</td></tr>
+        <tr><td>Skills Practiced</td><td>Speaking (4 levels + reflex) · Listening (3 tasks) · Reading (context passage) · Writing (dialogues)</td></tr>
+        <tr><td>Interaction Types Used</td><td>Flip cards · matching · MCQ · multi-select · gap fill · temperature table · lucky draw · instant translation · countdown speaking · timed quiz game</td></tr>
+      </table>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-outline" data-goto="discussion">← Discussion</button>
+      <button class="btn btn-outline" data-goto="overview">🏠 Back to Overview</button>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+<button class="reset-fab" onclick="globalReset()">🔄 Reset All</button>
+<script>
+/* ============================================================
+   DATA — one purpose-shaped array per section (no aliasing)
+   ============================================================ */
+const VOCAB_SEASONS = [
+  {w:"Spring",ipa:"/sprɪŋ/",pos:"season",vi:"mùa xuân",en:"The season when plants start to grow.",ex:"In spring, it is warm and flowers open everywhere."},
+  {w:"Summer",ipa:"/ˈsʌm.ər/",pos:"season",vi:"mùa hè",en:"The hottest season of the year.",ex:"In summer, we often go to the beach."},
+  {w:"Autumn / Fall",ipa:"/ˈɔː.təm/",pos:"season",vi:"mùa thu",en:"The season when leaves change color. Americans say 'fall'.",ex:"In autumn, it is cool and windy."},
+  {w:"Winter",ipa:"/ˈwɪn.tər/",pos:"season",vi:"mùa đông",en:"The coldest season of the year.",ex:"In winter, the mornings can be freezing."},
+  {w:"Sunny",ipa:"/ˈsʌn.i/",pos:"adj",vi:"có nắng",en:"With a lot of sun. (sun + -y)",ex:"The sun is shining — it's a sunny day."},
+  {w:"Rainy / Wet",ipa:"/ˈreɪ.ni/",pos:"adj",vi:"có mưa / ẩm ướt",en:"With a lot of rain. (rain + -y)",ex:"It's raining again — a really rainy week."},
+  {w:"Windy",ipa:"/ˈwɪn.di/",pos:"adj",vi:"nhiều gió",en:"With a lot of wind. (wind + -y)",ex:"The wind is blowing hard — it's very windy today."},
+  {w:"Cloudy",ipa:"/ˈklaʊ.di/",pos:"adj",vi:"nhiều mây",en:"With a lot of clouds. Opposite: the sky is clear.",ex:"It was cloudy this morning, but the sun came out later."},
+  {w:"Cold",ipa:"/koʊld/",pos:"adj",vi:"lạnh",en:"Low temperature.",ex:"New York is cold in winter — sometimes minus ten!"},
+  {w:"Cool",ipa:"/kuːl/",pos:"adj",vi:"mát mẻ",en:"A little cold, in a nice way.",ex:"The evenings are cool in autumn."},
+  {w:"Warm",ipa:"/wɔːrm/",pos:"adj",vi:"ấm áp",en:"A little hot, in a nice way.",ex:"Mexico City is warm all year."},
+  {w:"Hot",ipa:"/hɒt/",pos:"adj",vi:"nóng",en:"High temperature.",ex:"Taipei is hot today — 30 degrees."},
+  {w:"Humid",ipa:"/ˈhjuː.mɪd/",pos:"adj",vi:"oi, ẩm thấp",en:"Hot with a lot of water in the air.",ex:"It's really hot and humid today."}
+];
+const VOCAB_CLIMATE = [
+  {w:"Tropical 🌴",ipa:"/ˈtrɒp.ɪ.kəl/",pos:"climate",vi:"nhiệt đới",en:"Hot all year, with a rainy season and a dry season. Usually above 18°C.",ex:"🇻🇳 Vietnam has a tropical climate."},
+  {w:"Subtropical 🌤️",ipa:"/ˌsʌbˈtrɒp.ɪ.kəl/",pos:"climate",vi:"cận nhiệt đới",en:"Hot, humid summers; cool or quite cold winters. Four soft seasons.",ex:"🇰🇷 South Korea has a subtropical climate."},
+  {w:"Temperate 🍂",ipa:"/ˈtem.pər.ət/",pos:"climate",vi:"ôn đới",en:"Four clear seasons: warm summers, cold winters. Generally mild.",ex:"🇬🇧 The United Kingdom has a temperate climate."},
+  {w:"Boiling",ipa:"/ˈbɔɪ.lɪŋ/",pos:"adj",vi:"cực kỳ nóng",en:"Extremely hot — around 40°C.",ex:"It's boiling today — let's stay inside with the fan on."},
+  {w:"Chilly",ipa:"/ˈtʃɪl.i/",pos:"adj",vi:"se lạnh",en:"A little cold — you need a light jacket.",ex:"The mornings are chilly in November."},
+  {w:"Freezing",ipa:"/ˈfriː.zɪŋ/",pos:"adj",vi:"lạnh cóng",en:"Extremely cold — below zero.",ex:"It's freezing in New York — ten degrees below zero!"}
+];
+const VOCAB_STORMS = [
+  {w:"Pour (with rain)",ipa:"/pɔːr/",pos:"v",vi:"mưa như trút nước",en:"To rain very, very hard.",ex:"Look, it's really pouring now!"},
+  {w:"Shower",ipa:"/ˈʃaʊ.ər/",pos:"n",vi:"cơn mưa rào",en:"A short period of rain — heavy or light.",ex:"We had a couple of heavy showers this morning."},
+  {w:"Storm",ipa:"/stɔːrm/",pos:"n",vi:"cơn bão",en:"Very heavy rain together with a strong wind.",ex:"There is a big storm outside — stay home."},
+  {w:"Thunderstorm",ipa:"/ˈθʌn.dər.stɔːrm/",pos:"n",vi:"bão có sấm sét",en:"A storm with thunder and lightning, often after very humid weather.",ex:"A thunderstorm usually ends a period of hot, humid weather."},
+  {w:"Thunder",ipa:"/ˈθʌn.dər/",pos:"n",vi:"sấm",en:"The loud SOUND in a storm.",ex:"First we heard thunder, then the rain poured down."},
+  {w:"Lightning",ipa:"/ˈlaɪt.nɪŋ/",pos:"n",vi:"tia chớp",en:"The flash of LIGHT in a storm.",ex:"We saw lightning across the dark sky."},
+  {w:"Foggy",ipa:"/ˈfɒɡ.i/",pos:"adj",vi:"có sương mù",en:"With fog — hard to see far. (fog + -y)",ex:"The morning was foggy, so we drove slowly."},
+  {w:"Icy",ipa:"/ˈaɪ.si/",pos:"adj",vi:"băng giá, trơn trượt",en:"Covered with ice — slippery. (ice + -y)",ex:"Be careful — the roads are icy this morning."},
+  {w:"Snowy",ipa:"/ˈsnoʊ.i/",pos:"adj",vi:"có tuyết",en:"With snow falling or on the ground. (snow + -y)",ex:"It's snowing — a beautiful snowy day."}
+];
+const PHRASES_STRUCTURES = [
+  {en:"What's the weather like?",vi:"Thời tiết thế nào?"},
+  {en:"What's it like outside today?",vi:"Bên ngoài hôm nay thế nào?"},
+  {en:"Is it still raining?",vi:"Trời vẫn còn mưa à?"},
+  {en:"It is + adjective → It's really hot and humid today.",vi:"Trời… → Hôm nay trời rất nóng và ẩm."},
+  {en:"There is no wind. / There is a big storm outside.",vi:"Không có tí gió nào. / Bên ngoài đang có bão lớn."},
+  {en:"It's getting + adjective-er → It's getting warmer.",vi:"Trời đang trở nên… hơn → Trời đang ấm lên."},
+  {en:"The temperature is going up / down.",vi:"Nhiệt độ đang tăng / giảm."}
+];
+const PHRASES_PARTNERS = [
+  {en:"The sun came out",vi:"Mặt trời xuất hiện (sau lúc âm u)"},
+  {en:"Thick fog (NOT \"bad fog\")",vi:"Sương mù dày đặc"},
+  {en:"Heavy rain ↔ Light rain",vi:"Mưa to, nặng hạt ↔ Mưa nhỏ"},
+  {en:"Heavy showers / Light showers",vi:"Mưa rào nặng hạt / nhẹ"},
+  {en:"Strong wind (NOT \"big wind\")",vi:"Gió mạnh"},
+  {en:"The wind has blown… (off the tree)",vi:"Gió đã thổi bay… (khỏi cây)"},
+  {en:"Clear sky",vi:"Bầu trời trong xanh, không một bóng mây"},
+  {en:"Extremely + adjective → extremely cold / hot / windy",vi:"Cực kỳ… (nhấn mạnh mức độ)"}
+];
+const LISTEN_VOCAB = [
+  {en:"weather report",vi:"bản tin dự báo thời tiết"},
+  {en:"low / high (temperature)",vi:"nhiệt độ thấp nhất / cao nhất"},
+  {en:"degrees below zero",vi:"độ âm (dưới 0°C)"},
+  {en:"umbrella ☂️ · sunglasses 🕶️ · sun hat 🎩",vi:"ô · kính râm · mũ chống nắng"},
+  {en:"heavy coat 🧥 · boots 👢 · swimsuit 👙",vi:"áo khoác dày · bốt · đồ bơi"},
+  {en:"It's icy. / It's snowing.",vi:"Trời băng giá. / Trời đang có tuyết."}
+];
+const MATCH_DATA = [
+  {term:"Thick",def:"___ fog: very dense fog — never say \"bad fog\"."},
+  {term:"Heavy",def:"___ rain: a lot of rain. Opposite: light rain."},
+  {term:"Strong",def:"___ wind: powerful wind — never say \"big wind\"."},
+  {term:"Clear",def:"___ sky: a blue sky with no clouds at all."},
+  {term:"Boiling",def:"Extremely hot — around 40°C."},
+  {term:"Freezing",def:"Extremely cold — below zero."},
+  {term:"Chilly",def:"A little cold — you need a light jacket."},
+  {term:"Humid",def:"Hot, with a lot of water in the air."}
+];
+const MCQ_SETS = {
+  mcq1:[
+    {q:"1. Cloud → ___ (make the weather adjective).",opts:["cloudly","cloudy","clouded","cloudful"],correct:1},
+    {q:"2. \"The accident happened in ___ fog.\"",opts:["thick","big","strong","heavy"],correct:0},
+    {q:"3. What comes FIRST in a thunderstorm?",opts:["Heavy rain pours down","You see lightning","The air becomes very humid","The sun comes out"],correct:2},
+    {q:"4. Your friend went out an hour ago when it was raining. You ask: \"___\"",opts:["Is it still raining?","Is it rain?","Does it raining?","Is it rained?"],correct:0}
+  ],
+  lis3:[
+    {q:"Conversation 1 — Task 1: What will they wear/take?",opts:["☂️ umbrella","🕶️ sunglasses"],correct:1},
+    {q:"Conversation 1 — Task 2: Tick the one that does NOT apply.",opts:["It's raining.","It's windy.","It's cloudy."],correct:2},
+    {q:"Conversation 2 — Task 1: What will they wear/take?",opts:["🎩 sun hat","🧥 heavy coat"],correct:1},
+    {q:"Conversation 2 — Task 2: Tick the one that does NOT apply.",opts:["It's cloudy.","It's nice.","It's sunny."],correct:0},
+    {q:"Conversation 3 — Task 1: What will they wear/take?",opts:["👙 swimsuit","🧥 coat"],correct:1},
+    {q:"Conversation 3 — Task 2: Tick the one that does NOT apply.",opts:["It's cold.","It's warm.","It's snowing."],correct:2},
+    {q:"Conversation 4 — Task 1: What will they wear/take?",opts:["🧥 coat","☂️ umbrella"],correct:0},
+    {q:"Conversation 4 — Task 2: Tick the one that does NOT apply.",opts:["It's icy.","It's nice.","It's raining."],correct:0},
+    {q:"Conversation 5 — Task 1: What will they wear/take?",opts:["👙 swimsuit","☂️ umbrella"],correct:0},
+    {q:"Conversation 5 — Task 2: Tick the one that does NOT apply.",opts:["It's humid.","It's raining.","It's hot."],correct:1},
+    {q:"Conversation 6 — Task 1: What will they wear/take?",opts:["👢 boots","🎩 sun hat"],correct:0},
+    {q:"Conversation 6 — Task 2: Tick the one that does NOT apply.",opts:["It's snowing.","It's windy.","It's cold."],correct:1}
+  ],
+  lis4:[
+    {q:"Item 1 — What is it like now?",opts:["It's warm.","It's windy."],correct:1},
+    {q:"Item 2 — What is it like now?",opts:["It's windy.","It's getting warmer."],correct:1},
+    {q:"Item 3 — What is it like now?",opts:["The sky is dark.","It's sunny."],correct:0},
+    {q:"Item 4 — What is it like now?",opts:["It's windy.","It's sunny."],correct:0},
+    {q:"Item 5 — What is it like now?",opts:["It's cold.","It's really nice."],correct:1},
+    {q:"Item 6 — What is it like now?",opts:["It's raining.","It's not raining."],correct:1},
+    {q:"Item 7 — What is it like now?",opts:["It's getting cooler.","It's hot."],correct:0},
+    {q:"Item 8 — What is it like now?",opts:["It's raining.","It's snowing."],correct:1}
+  ]
+};
+const LIS2_MULTI = [
+  {city:"1. Beijing",opts:["cold","windy","snowy","cool"],correct:[0,1]},
+  {city:"2. Mexico City",opts:["dry","warm","cool","wet"],correct:[1,3]},
+  {city:"3. Tokyo",opts:["humid","cloudy","windy","rainy"],correct:[1,3]},
+  {city:"4. New York",opts:["sunny","windy","wet","cold"],correct:[1,3]},
+  {city:"5. Taipei",opts:["cloudy","cool","wet","hot"],correct:[0,2,3]}
+];
+const REFLEX_WORDS = [
+  {w:"spring",vi:"mùa xuân"},{w:"summer",vi:"mùa hè"},{w:"autumn / fall",vi:"mùa thu"},{w:"winter",vi:"mùa đông"},
+  {w:"sunny",vi:"có nắng"},{w:"rainy",vi:"có mưa"},{w:"windy",vi:"nhiều gió"},{w:"cloudy",vi:"nhiều mây"},
+  {w:"humid",vi:"oi, ẩm thấp"},{w:"foggy",vi:"có sương mù"},{w:"icy",vi:"băng giá"},{w:"snowy",vi:"có tuyết"},
+  {w:"tropical",vi:"nhiệt đới"},{w:"temperate",vi:"ôn đới"},{w:"thunder",vi:"sấm"},{w:"lightning",vi:"tia chớp"},
+  {w:"thunderstorm",vi:"bão có sấm sét"},{w:"shower",vi:"cơn mưa rào"},{w:"pour with rain",vi:"mưa như trút nước"},
+  {w:"boiling",vi:"cực kỳ nóng"},{w:"freezing",vi:"lạnh cóng"},{w:"chilly",vi:"se lạnh"},
+  {w:"clear sky",vi:"trời trong xanh"},{w:"heavy rain",vi:"mưa to, nặng hạt"}
+];
+const REFLEX_TRANS = [
+  {vi:"Hôm nay thời tiết thế nào?",hint:"What's the weather…",en:"What's the weather like today?"},
+  {vi:"Hôm nay trời rất nóng và ẩm.",hint:"It's really…",en:"It's really hot and humid today."},
+  {vi:"Hôm nay không có gió.",hint:"There is…",en:"There is no wind today."},
+  {vi:"Bên ngoài đang có một cơn bão lớn.",hint:"There is a…",en:"There is a big storm outside."},
+  {vi:"Trời vẫn còn mưa phải không?",hint:"Is it still…",en:"Is it still raining?"},
+  {vi:"Bây giờ trời đang trở nên mát hơn.",hint:"It's getting…",en:"It's getting cooler now."},
+  {vi:"Nhiệt độ đang tăng lên từng giờ.",hint:"The temperature is going…",en:"The temperature is going up every hour."},
+  {vi:"Nhiệt độ đang giảm xuống vì mặt trời đã lặn.",hint:"The temperature is going down…",en:"The temperature is going down because the sun has set."}
+];
+const REFLEX_PROMPTS = [
+  {task:"Describe today's weather in your city — the sky, the wind, and the temperature.",
+   hints:"It is + adjective / There is… / It's really… / sunny, cloudy, windy, humid…",min:1},
+  {task:"Talk about your favorite season: what is the weather like, and why do you love it?",
+   hints:"In (season), it is… / extremely + adjective / the sky is clear / It's getting…",min:2},
+  {task:"A thunderstorm is coming to your neighborhood. Describe the whole progression — from the first signs to the end — and tell people what they should do.",
+   hints:"First the air is humid → thunder & lightning → heavy rain / pour with rain / You should… / Then the sun comes out",min:3}
+];
+/*QUIZ_START*/
+const QUIZ = [
+  {t:"definition",q:"What does \"humid\" mean?",opts:["Hot, with a lot of water in the air.","Very cold and dry.","Full of snow.","Windy and cloudy."],correct:0,ex:"Humid = hot + a lot of water in the air. Very common in Vietnam."},
+  {t:"definition",q:"What is a \"shower\"?",opts:["A very long storm.","A short period of rain.","A strong wind.","A hot afternoon."],correct:1,ex:"A shower = a short rain. It can be heavy or light."},
+  {t:"definition",q:"What does \"boiling\" mean when we talk about weather?",opts:["A little warm.","Rainy and wet.","Extremely hot — around 40°C.","Cloudy and dark."],correct:2,ex:"Boiling = extremely hot, like water boiling in a pot."},
+  {t:"definition",q:"What does \"freezing\" mean?",opts:["A little cool.","Warm and nice.","Wet and rainy.","Extremely cold — below zero."],correct:3,ex:"Freezing = extremely cold, like ice. E.g. ten degrees below zero."},
+  {t:"definition",q:"Which climate is hot all year, with a rainy season and a dry season?",opts:["Tropical","Temperate","Subtropical","Polar"],correct:0,ex:"Tropical (like Vietnam): hot all year + rainy/dry seasons."},
+  {t:"definition",q:"Which climate has four clear seasons — warm summers and cold winters?",opts:["Tropical","Temperate","Desert","Subtropical"],correct:1,ex:"Temperate (like the UK): four clear seasons, generally mild."},
+  {t:"definition",q:"What is \"lightning\"?",opts:["The loud sound in a storm.","The rain at the start of a storm.","The flash of light in a storm.","The wind before a storm."],correct:2,ex:"Lightning = the LIGHT you see. Thunder = the SOUND you hear."},
+  {t:"definition",q:"What is \"thunder\"?",opts:["The flash of light in a storm.","The dark clouds before rain.","The ice on the road.","The loud sound in a storm."],correct:3,ex:"Thunder = the loud sound. Remember: /θ/ — tongue between your teeth!"},
+  {t:"definition",q:"What does \"chilly\" mean?",opts:["A little cold.","Extremely hot.","Very wet.","Full of fog."],correct:0,ex:"Chilly = a little cold — you need a light jacket."},
+  {t:"definition",q:"What is a \"thunderstorm\"?",opts:["A week of light rain.","A storm with thunder and lightning.","A very sunny day.","A cold, snowy morning."],correct:1,ex:"A thunderstorm often ends a period of hot, humid weather."},
+  {t:"context",q:"It was very cloudy this morning, but the sun ___ out after lunch.",opts:["went","looked","came","turned"],correct:2,ex:"Word partner: \"the sun came out\" = the sun appeared."},
+  {t:"context",q:"The accident happened in ___ fog.",opts:["big","bad","heavy","thick"],correct:3,ex:"We say THICK fog — not big/bad fog."},
+  {t:"context",q:"There was a ___ wind when we were on the boat.",opts:["strong","big","large","thick"],correct:0,ex:"We say STRONG wind — never \"big wind\"."},
+  {t:"context",q:"We had some ___ rain at the weekend — the streets were full of water.",opts:["strong","heavy","thick","big"],correct:1,ex:"We say HEAVY rain (a lot) or light rain (a little)."},
+  {t:"context",q:"It rained in the morning, but the sky was ___ by lunchtime.",opts:["thick","empty","clear","open"],correct:2,ex:"A CLEAR sky = blue, with no clouds."},
+  {t:"context",q:"It's been ___ cold today — minus ten degrees!",opts:["heavily","strongly","thickly","extremely"],correct:3,ex:"Use EXTREMELY + adjective to emphasize: extremely cold/hot/windy."},
+  {t:"context",q:"Look outside — it's really ___ with rain now!",opts:["pouring","snowing","blowing","shining"],correct:0,ex:"To pour with rain = to rain very, very hard."},
+  {t:"context",q:"First the air was humid, then we heard thunder and saw ___.",opts:["fog","lightning","snow","ice"],correct:1,ex:"Thunderstorm order: humid → thunder & lightning → heavy rain."},
+  {t:"context",q:"Snow → add -y to make the adjective: a ___ morning.",opts:["snowly","snowful","snowy","snowing"],correct:2,ex:"Word formation: noun + -y → snow → snowy (also sun→sunny, fog→foggy)."},
+  {t:"context",q:"Ice → be careful, the roads are ___ and slippery.",opts:["iceful","icely","iced","icy"],correct:3,ex:"Ice + -y = icy. Icy roads are dangerous for driving."},
+  {t:"action",q:"You want to ask a friend about the weather. What do you say?",opts:["\"What's the weather like?\"","\"How is the weather doing you?\"","\"What weather is it liking?\"","\"Where is the weather today?\""],correct:0,ex:"The natural question: What's the weather like? / What's it like outside today?"},
+  {t:"action",q:"The weather is slowly becoming warmer. What do you say?",opts:["\"It's warm got.\"","\"It's getting warmer.\"","\"It warms more now.\"","\"It's more warm going.\""],correct:1,ex:"Change: It's getting + comparative → It's getting warmer / cooler / darker."},
+  {t:"action",q:"The sun has set and it's colder every hour. What do you say?",opts:["\"The temperature is going open.\"","\"The temperature is falling up.\"","\"The temperature is going down.\"","\"The temperature is going small.\""],correct:2,ex:"The temperature is going up (hotter) / going down (colder)."},
+  {t:"action",q:"It's boiling and very sunny outside. What should you take?",opts:["A heavy coat and boots.","An umbrella and a raincoat.","Warm gloves.","Sunglasses and a sun hat."],correct:3,ex:"Boiling + sunny → protect yourself from the sun: sunglasses, sun hat."},
+  {t:"action",q:"It's pouring with rain. What should you take when you go out?",opts:["An umbrella.","A swimsuit.","Sunglasses.","A sun hat."],correct:0,ex:"Pouring rain → you need an umbrella (or a raincoat)."},
+  {t:"action",q:"It's freezing and snowing outside. What should you wear?",opts:["A swimsuit.","A heavy coat and boots.","A sun hat.","Light summer clothes."],correct:1,ex:"Freezing + snowy → heavy coat + boots, like New York at minus ten."},
+  {t:"action",q:"The air is extremely humid and you hear thunder far away. What should you do?",opts:["Go swimming in the sea.","Fly a kite outside.","Go inside — heavy rain is coming.","Take off your coat and wait."],correct:2,ex:"Humid air + thunder = a thunderstorm is coming. Heavy rain follows fast."},
+  {t:"action",q:"Your friend visits Vietnam in July. What should you tell them?",opts:["\"It's freezing — bring a heavy coat.\"","\"It's temperate — four cool seasons.\"","\"It never rains in July.\"","\"It's hot and humid, with heavy showers — bring an umbrella.\""],correct:3,ex:"July in tropical Vietnam = rainy season: hot, humid, heavy afternoon showers."},
+  {t:"context",q:"In the weather report, Beijing was ___ and windy, with a low of 0°C.",opts:["cold","hot","warm","humid"],correct:0,ex:"From Let's Listen 2: Beijing — cold and windy, low 0°C, high 6°C."},
+  {t:"context",q:"In New York the low was minus ten — the weather was windy and ___.",opts:["warm","cold","sunny","dry"],correct:1,ex:"From Let's Listen 2: New York — windy and cold, low -10°C."}
+];
+/*QUIZ_END*/
+/* ============================================================
+   NAVIGATION + PROGRESS
+   ============================================================ */
+const PAGE_ORDER = ["overview","vocab","phrases","pronun","practice","speaking","listening","discussion","review"];
+const visited = new Set(["overview"]);
+function gotoPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.dataset.page===id));
+  document.querySelectorAll(".nav-item").forEach(n=>n.classList.toggle("active",n.dataset.page===id));
+  visited.add(id);
+  document.getElementById("progressFill").style.width=Math.round(visited.size/PAGE_ORDER.length*100)+"%";
+  window.scrollTo({top:0});
+}
+document.querySelectorAll(".nav-item").forEach(n=>n.addEventListener("click",()=>gotoPage(n.dataset.page)));
+document.querySelectorAll("[data-goto]").forEach(b=>b.addEventListener("click",()=>gotoPage(b.dataset.goto)));
+
+/* ============================================================
+   TABS — group attr + closest('.tab-bar') (bug-proof pattern)
+   ============================================================ */
+document.querySelectorAll(".tab-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const bar=btn.closest(".tab-bar");
+    const group=bar.dataset.group;
+    bar.querySelectorAll(".tab-btn").forEach(b=>b.classList.toggle("active",b===btn));
+    document.querySelectorAll('.tab-panel[data-group="'+group+'"]').forEach(p=>{
+      p.classList.toggle("active",p.dataset.tab===btn.dataset.tab);
+    });
+  });
+});
+
+/* ============================================================
+   RENDER: VOCAB CARDS + PHRASES
+   ============================================================ */
+function vocabCard(v){
+  return '<div class="vocab-card" onclick="this.classList.toggle(\'flipped\')">'
+    +'<span class="flip-hint">tap ↻</span>'
+    +'<div class="word">'+v.w+'</div>'
+    +(v.ipa?'<div class="ipa">'+v.ipa+'</div>':'')
+    +'<span class="pos">'+v.pos+'</span>'
+    +'<div class="vi">'+v.vi+'</div>'
+    +'<div class="en-simple">'+v.en+'</div>'
+    +'<div class="example">💬 '+v.ex+'</div></div>';
+}
+document.getElementById("vgrid-seasons").innerHTML=VOCAB_SEASONS.map(vocabCard).join("");
+document.getElementById("vgrid-climate").innerHTML=VOCAB_CLIMATE.map(vocabCard).join("");
+document.getElementById("vgrid-storms").innerHTML=VOCAB_STORMS.map(vocabCard).join("");
+function phraseRow(p){return '<div class="phrase-card"><span class="phrase-en">'+p.en+'</span><span class="phrase-vi">'+p.vi+'</span></div>';}
+document.getElementById("plist-structures").innerHTML=PHRASES_STRUCTURES.map(phraseRow).join("");
+document.getElementById("plist-partners").innerHTML=PHRASES_PARTNERS.map(phraseRow).join("");
+document.getElementById("plist-listenvocab").innerHTML=LISTEN_VOCAB.map(phraseRow).join("");
+
+/* ============================================================
+   MCQ EXERCISES (single-select → Show Answers)
+   ============================================================ */
+function renderMcqEx(key){
+  const holder=document.getElementById(key+"-holder");
+  holder.innerHTML=MCQ_SETS[key].map((item,qi)=>
+    '<div class="mcq-q" data-q="'+qi+'"><div class="qtext">'+item.q+'</div>'
+    +item.opts.map((o,oi)=>'<div class="mcq-option" data-o="'+oi+'">'+String.fromCharCode(65+oi)+'. '+o+'</div>').join("")
+    +'</div>'
+  ).join("");
+  holder.querySelectorAll(".mcq-option").forEach(opt=>{
+    opt.addEventListener("click",()=>{
+      if(holder.dataset.graded==="1")return;
+      opt.parentElement.querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected"));
+      opt.classList.add("selected");
+    });
+  });
+  holder.dataset.graded="0";
+}
+Object.keys(MCQ_SETS).forEach(renderMcqEx);
+function tierMsg(score,total){
+  const r=score/total;
+  if(r===1)return "🌟 Perfect! You mastered this.";
+  if(r>=0.7)return "👍 Great job — review the red ones once more.";
+  if(r>=0.4)return "🙂 Good start — reread Part 1 and try again.";
+  return "💪 Don't give up — go back to the vocabulary tabs, then retry.";
+}
+function gradeMcqEx(key){
+  const holder=document.getElementById(key+"-holder");
+  let score=0;const total=MCQ_SETS[key].length;
+  holder.querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("correct","incorrect"));
+  MCQ_SETS[key].forEach((item,qi)=>{
+    const qEl=holder.querySelector('.mcq-q[data-q="'+qi+'"]');
+    const opts=qEl.querySelectorAll(".mcq-option");
+    let selIdx=-1;
+    opts.forEach((o,oi)=>{if(o.classList.contains("selected"))selIdx=oi;});
+    opts.forEach((o,oi)=>{
+      if(oi===item.correct)o.classList.add("correct");
+      else if(oi===selIdx)o.classList.add("incorrect");
+    });
+    if(selIdx===item.correct)score++;
+  });
+  holder.dataset.graded="1";
+  const fb=document.getElementById("fb-"+key);
+  document.getElementById("sb-"+key).textContent=score+"/"+total;
+  document.getElementById("fbtext-"+key).textContent=tierMsg(score,total);
+  fb.className="feedback-box show "+(score===total?"success":(score>=total*0.5?"info":"error"));
+}
+function resetMcqEx(key){
+  const holder=document.getElementById(key+"-holder");
+  holder.querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected","correct","incorrect"));
+  holder.dataset.graded="0";
+  document.getElementById("fb-"+key).className="feedback-box";
+}
+
+/* ============================================================
+   MULTI-SELECT (Let's Listen 2 · Task 1 — select ALL that apply)
+   ============================================================ */
+function renderMulti(key){
+  const holder=document.getElementById(key+"-holder");
+  holder.innerHTML=LIS2_MULTI.map((item,qi)=>
+    '<div class="mcq-q" data-q="'+qi+'"><div class="qtext">'+item.city+'</div>'
+    +'<div style="display:flex;gap:8px;flex-wrap:wrap;">'
+    +item.opts.map((o,oi)=>'<div class="mcq-option" data-o="'+oi+'" style="margin-bottom:0;">'+o+'</div>').join("")
+    +'</div></div>'
+  ).join("");
+  holder.querySelectorAll(".mcq-option").forEach(opt=>{
+    opt.addEventListener("click",()=>{
+      if(holder.dataset.graded==="1")return;
+      opt.classList.toggle("selected"); // multi: toggle, no exclusivity
+    });
+  });
+  holder.dataset.graded="0";
+}
+renderMulti("lis2");
+function gradeMulti(key){
+  const holder=document.getElementById(key+"-holder");
+  let score=0;const total=LIS2_MULTI.length;
+  LIS2_MULTI.forEach((item,qi)=>{
+    const opts=holder.querySelector('.mcq-q[data-q="'+qi+'"]').querySelectorAll(".mcq-option");
+    let exact=true;
+    opts.forEach((o,oi)=>{
+      const shouldBe=item.correct.includes(oi), isSel=o.classList.contains("selected");
+      if(shouldBe)o.classList.add("correct");
+      else if(isSel)o.classList.add("incorrect");
+      if(shouldBe!==isSel)exact=false;
+    });
+    if(exact)score++;
+  });
+  holder.dataset.graded="1";
+  const fb=document.getElementById("fb-"+key);
+  document.getElementById("sb-"+key).textContent=score+"/"+total;
+  document.getElementById("fbtext-"+key).textContent=tierMsg(score,total);
+  fb.className="feedback-box show "+(score===total?"success":(score>=total*0.5?"info":"error"));
+}
+function resetMulti(key){
+  const holder=document.getElementById(key+"-holder");
+  holder.querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected","correct","incorrect"));
+  holder.dataset.graded="0";
+  document.getElementById("fb-"+key).className="feedback-box";
+}
+
+/* ============================================================
+   TEMPERATURE TABLE (Let's Listen 2 · Task 2 — typed inputs)
+   ============================================================ */
+function normTemp(v){return v.trim().toLowerCase().replace(/°c|°|degrees?/g,"").replace(/\s+/g,"").replace("−","-");}
+function gradeTemps(){
+  let score=0;const inputs=document.querySelectorAll("#tempTable .blank-input");
+  inputs.forEach(inp=>{
+    const ok=normTemp(inp.value)===inp.dataset.answer;
+    inp.classList.remove("correct","incorrect");
+    inp.classList.add(ok?"correct":"incorrect");
+    if(!ok)inp.value=inp.dataset.answer;
+    if(ok)score++;
+  });
+  const fb=document.getElementById("fb-temp");
+  document.getElementById("sb-temp").textContent=score+"/"+inputs.length;
+  document.getElementById("fbtext-temp").textContent=tierMsg(score,inputs.length);
+  fb.className="feedback-box show "+(score===inputs.length?"success":(score>=5?"info":"error"));
+}
+function resetTemps(){
+  document.querySelectorAll("#tempTable .blank-input").forEach(inp=>{inp.value="";inp.classList.remove("correct","incorrect");});
+  document.getElementById("fb-temp").className="feedback-box";
+}
+
+/* ============================================================
+   MATCHING (tap term → tap definition)
+   ============================================================ */
+let matchSelected=null;
+const matchState={};
+function renderMatch(){
+  const shuffledTerms=MATCH_DATA.map((d,i)=>i).sort(()=>Math.random()-0.5);
+  document.getElementById("matchPool").innerHTML=shuffledTerms.map(i=>
+    '<div class="drag-item" data-term="'+i+'" onclick="pickTerm(this)">'+MATCH_DATA[i].term+'</div>').join("");
+  document.getElementById("matchZones").innerHTML=MATCH_DATA.map((d,i)=>
+    '<div class="drop-zone" data-zone="'+i+'" onclick="placeTerm(this)"><span class="slot" id="slot-'+i+'">______</span><span>'+d.def+'</span></div>').join("");
+  matchSelected=null;Object.keys(matchState).forEach(k=>delete matchState[k]);
+}
+function pickTerm(el){
+  if(el.classList.contains("placed"))return;
+  document.querySelectorAll("#matchPool .drag-item").forEach(d=>d.classList.remove("selected"));
+  el.classList.add("selected");matchSelected=el;
+}
+function placeTerm(zone){
+  if(!matchSelected)return;
+  const zi=zone.dataset.zone;
+  if(matchState[zi]!==undefined){
+    const prev=document.querySelector('#matchPool .drag-item[data-term="'+matchState[zi]+'"]');
+    if(prev)prev.classList.remove("placed");
+  }
+  matchState[zi]=parseInt(matchSelected.dataset.term,10);
+  document.getElementById("slot-"+zi).textContent=MATCH_DATA[matchState[zi]].term;
+  matchSelected.classList.remove("selected");matchSelected.classList.add("placed");matchSelected=null;
+}
+function gradeMatch(){
+  let score=0;
+  MATCH_DATA.forEach((d,i)=>{
+    const zone=document.querySelector('.drop-zone[data-zone="'+i+'"]');
+    zone.classList.remove("correct-zone","incorrect-zone");
+    if(matchState[i]===i){zone.classList.add("correct-zone");score++;}
+    else zone.classList.add("incorrect-zone");
+    document.getElementById("slot-"+i).textContent=MATCH_DATA[i].term;
+  });
+  const fb=document.getElementById("fb-match");
+  document.getElementById("sb-match").textContent=score+"/"+MATCH_DATA.length;
+  document.getElementById("fbtext-match").textContent=tierMsg(score,MATCH_DATA.length);
+  fb.className="feedback-box show "+(score===MATCH_DATA.length?"success":(score>=4?"info":"error"));
+}
+function resetMatch(){renderMatch();document.getElementById("fb-match").className="feedback-box";}
+renderMatch();
+
+/* ============================================================
+   GAP FILL (Quick Practice D.3)
+   ============================================================ */
+function gradeGaps(){
+  let score=0;const inputs=document.querySelectorAll("#ex-gap .blank-input");
+  inputs.forEach(inp=>{
+    const ok=inp.value.trim().toLowerCase()===inp.dataset.answer;
+    inp.classList.remove("correct","incorrect");
+    inp.classList.add(ok?"correct":"incorrect");
+    if(!ok)inp.value=inp.dataset.answer;
+    if(ok)score++;
+  });
+  const fb=document.getElementById("fb-gap");
+  document.getElementById("sb-gap").textContent=score+"/"+inputs.length;
+  document.getElementById("fbtext-gap").textContent=tierMsg(score,inputs.length);
+  fb.className="feedback-box show "+(score===inputs.length?"success":(score>=3?"info":"error"));
+}
+function resetGaps(){
+  document.querySelectorAll("#ex-gap .blank-input").forEach(inp=>{inp.value="";inp.classList.remove("correct","incorrect");});
+  document.getElementById("fb-gap").className="feedback-box";
+}
+
+/* ============================================================
+   REVEALS + WORD COUNTERS
+   ============================================================ */
+function toggleReveal(id){document.getElementById(id).classList.toggle("revealed");}
+document.querySelectorAll("textarea.dlg-input").forEach(t=>{
+  t.addEventListener("input",()=>{
+    const n=t.value.trim()?t.value.trim().split(/\s+/).length:0;
+    document.getElementById(t.dataset.counter).textContent=n+" words";
+  });
+});
+
+/* ============================================================
+   REFLEX PRACTICE — shuffle-bag draw + countdown timer
+   ============================================================ */
+let wordBag=[],transBag=[];
+function refillBag(n){return Array.from({length:n},(_,i)=>i).sort(()=>Math.random()-0.5);}
+function drawWord(){
+  if(!wordBag.length)wordBag=refillBag(REFLEX_WORDS.length);
+  const w=REFLEX_WORDS[wordBag.pop()];
+  document.getElementById("drawWordResult").innerHTML='<span class="big">'+w.w+'</span><span class="small">'+w.vi+'</span>';
+}
+let transCount=0;
+function drawTrans(){
+  if(!transBag.length)transBag=refillBag(REFLEX_TRANS.length);
+  const t=REFLEX_TRANS[transBag.pop()];
+  const rid="trans-ans-"+(transCount++);
+  document.getElementById("drawTransResult").innerHTML=
+    '<span class="sit">'+t.vi+'</span>'
+    +'<div class="small" style="margin-top:6px;">Hint: '+t.hint+'</div>'
+    +'<button class="btn btn-secondary btn-sm" style="margin-top:10px;" onclick="toggleReveal(\''+rid+'\')">💡 Show answer</button>'
+    +'<div class="sample-response" id="'+rid+'" style="margin-top:10px;"><b>'+t.en+'</b></div>';
+}
+const countState=REFLEX_PROMPTS.map(p=>({total:p.min*60,left:p.min*60}));
+let countTimer=null;
+function fmtTime(sec){return String(Math.floor(sec/60)).padStart(2,"0")+":"+String(sec%60).padStart(2,"0");}
+function renderCountDisplay(i){
+  const el=document.getElementById("cd-"+i);
+  el.textContent=fmtTime(countState[i].left);
+  el.classList.toggle("timeup",countState[i].left===0);
+}
+function renderTier2(){
+  document.getElementById("tier2Holder").innerHTML=REFLEX_PROMPTS.map((p,i)=>
+    '<div class="exercise">'
+    +'<div class="exercise-title">🎤 Prompt '+(i+1)+' — speak for '+p.min+' minute'+(p.min>1?'s':'')+'</div>'
+    +'<div class="info-box">'+p.task+'</div>'
+    +'<div class="tier2-hint">💡 <b>Use today\'s words &amp; structures:</b> '+p.hints+'</div>'
+    +'<div class="count-row">'
+    +'<div class="count-display" id="cd-'+i+'">'+fmtTime(p.min*60)+'</div>'
+    +[1,2,3].map(m=>'<button class="preset-pill'+(m===p.min?' active':'')+'" onclick="setPreset('+i+','+m+',this)">'+m+' min</button>').join('')
+    +'<button class="btn-start" onclick="startCount('+i+')">▶ Start</button>'
+    +'<button class="btn-timer-reset" onclick="resetCount('+i+')">↺ Reset</button>'
+    +'</div></div>'
+  ).join("");
+}
+function setPreset(i,min,btn){
+  stopCount();
+  countState[i].total=min*60;countState[i].left=min*60;
+  renderCountDisplay(i);
+  btn.parentElement.querySelectorAll(".preset-pill").forEach(p=>p.classList.toggle("active",p===btn));
+}
+function startCount(i){
+  stopCount(); // only one countdown runs at a time
+  if(countState[i].left<=0)countState[i].left=countState[i].total;
+  renderCountDisplay(i);
+  countTimer=setInterval(()=>{
+    countState[i].left--;
+    if(countState[i].left<=0){countState[i].left=0;renderCountDisplay(i);stopCount();return;}
+    renderCountDisplay(i);
+  },1000);
+}
+function stopCount(){if(countTimer){clearInterval(countTimer);countTimer=null;}}
+function resetCount(i){stopCount();countState[i].left=countState[i].total;renderCountDisplay(i);}
+renderTier2();
+
+/* ============================================================
+   QUIZ GAME — 30 Q · 10s timer · 3 screens
+   ============================================================ */
+let quizOrder=[],quizIdx=0,quizScore=0,quizTimer=null,quizTimeLeft=10,quizSelected=-1,quizAnswered=false;
+function showScreen(id){document.querySelectorAll(".quiz-screen").forEach(s=>s.classList.toggle("active",s.id===id));}
+function startQuiz(){
+  quizOrder=QUIZ.map((q,i)=>i).sort(()=>Math.random()-0.5);
+  quizIdx=0;quizScore=0;
+  showScreen("qs-play");
+  loadQuestion();
+}
+function loadQuestion(){
+  const q=QUIZ[quizOrder[quizIdx]];
+  quizSelected=-1;quizAnswered=false;
+  document.getElementById("qCounter").textContent="Question "+(quizIdx+1)+" / "+QUIZ.length;
+  document.getElementById("qText").textContent=q.q;
+  document.getElementById("qOptions").innerHTML=q.opts.map((o,oi)=>
+    '<div class="mcq-option" data-o="'+oi+'" onclick="selectQuizOption(this)">'+String.fromCharCode(65+oi)+'. '+o+'</div>').join("");
+  const exp=document.getElementById("qExplain");exp.className="quiz-explain";exp.textContent="";
+  document.getElementById("btnSubmit").style.display="";
+  document.getElementById("btnSubmit").disabled=true;
+  document.getElementById("btnNext").style.display="none";
+  startTimer();
+}
+function startTimer(){
+  stopTimer();
+  quizTimeLeft=10;
+  updateTimerUI();
+  quizTimer=setInterval(()=>{
+    quizTimeLeft-=0.1;
+    if(quizTimeLeft<=0){quizTimeLeft=0;updateTimerUI();stopTimer();timeOut();return;}
+    updateTimerUI();
+  },100);
+}
+function stopTimer(){if(quizTimer){clearInterval(quizTimer);quizTimer=null;}}
+function updateTimerUI(){
+  const pill=document.getElementById("timerPill"),bar=document.getElementById("timerBar");
+  pill.textContent="⏳ "+Math.ceil(quizTimeLeft)+"s";
+  bar.style.width=(quizTimeLeft/10*100)+"%";
+  const danger=quizTimeLeft<=3;
+  pill.classList.toggle("danger",danger);
+  bar.classList.toggle("danger",danger);
+}
+function selectQuizOption(el){
+  if(quizAnswered)return;
+  document.querySelectorAll("#qOptions .mcq-option").forEach(o=>o.classList.remove("selected"));
+  el.classList.add("selected");
+  quizSelected=parseInt(el.dataset.o,10);
+  document.getElementById("btnSubmit").disabled=false;
+}
+function revealQuiz(correctIdx){
+  document.querySelectorAll("#qOptions .mcq-option").forEach((o,oi)=>{
+    if(oi===correctIdx)o.classList.add("correct");
+    else if(oi===quizSelected)o.classList.add("incorrect");
+  });
+}
+function finishQuestion(gotIt,timedOut){
+  quizAnswered=true;
+  const q=QUIZ[quizOrder[quizIdx]];
+  if(gotIt)quizScore++;
+  revealQuiz(q.correct);
+  const exp=document.getElementById("qExplain");
+  exp.textContent=(timedOut?"⏰ Time's up! ":(gotIt?"✅ Correct! ":"❌ Not quite. "))+q.ex;
+  exp.className="quiz-explain show";
+  document.getElementById("btnSubmit").style.display="none";
+  document.getElementById("btnNext").style.display="";
+}
+function submitAnswer(){
+  if(quizAnswered||quizSelected<0)return;
+  stopTimer();
+  finishQuestion(quizSelected===QUIZ[quizOrder[quizIdx]].correct,false);
+}
+function timeOut(){if(!quizAnswered)finishQuestion(false,true);}
+function nextQuestion(){
+  quizIdx++;
+  if(quizIdx>=QUIZ.length){showResult();return;}
+  loadQuestion();
+}
+function showResult(){
+  stopTimer();
+  showScreen("qs-result");
+  document.getElementById("resScore").textContent=quizScore+"/"+QUIZ.length;
+  document.getElementById("resMsg").textContent=tierMsg(quizScore,QUIZ.length);
+}
+function resetQuiz(restart){
+  stopTimer(); // unplug the kitchen timer
+  quizIdx=0;quizScore=0;quizSelected=-1;quizAnswered=false;
+  if(restart)startQuiz();else showScreen("qs-start");
+}
+
+/* ============================================================
+   GLOBAL RESET — clears everything incl. ALL timers
+   ============================================================ */
+function globalReset(){
+  Object.keys(MCQ_SETS).forEach(resetMcqEx);
+  resetMulti("lis2");resetTemps();
+  resetMatch();resetGaps();
+  document.querySelectorAll(".sample-response").forEach(s=>s.classList.remove("revealed"));
+  document.querySelectorAll("textarea.dlg-input").forEach(t=>{t.value="";document.getElementById(t.dataset.counter).textContent="0 words";});
+  document.querySelectorAll(".check-item input").forEach(c=>c.checked=false);
+  document.querySelectorAll(".vocab-card").forEach(c=>c.classList.remove("flipped"));
+  resetQuiz(false);
+  stopCount(); // unplug the Tier-2 countdown too
+  REFLEX_PROMPTS.forEach((p,i)=>{countState[i].total=p.min*60;countState[i].left=p.min*60;});
+  renderTier2();
+  wordBag=[];transBag=[];
+  document.getElementById("drawWordResult").innerHTML='<span class="small">Tap the circle to draw your first word…</span>';
+  document.getElementById("drawTransResult").innerHTML='<span class="small">Tap the circle to draw your first sentence…</span>';
+  visited.clear();visited.add("overview");
+  gotoPage("overview");
+}
+</script>
+</body>
+</html>
