@@ -1,0 +1,1958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Basic Communication — English Communication Course (A2)</title>
+<style>
+/* ============================================================
+   DESIGN SYSTEM — Warm Cream / Deep Teal (communication-english)
+   ============================================================ */
+:root{
+  --forest:#013220; --moss:#006D6F; --teal:#007A74; --mint:#D8BFD8;
+  --sage:#F5F5DC; --sand:#FFFAF0; --shell:#FFF5EE; --white:#FFFAFA;
+  --blue:#2563EB; --blue-light:#EFF6FF;
+  --amber:#D97706; --amber-light:#FFFBEB;
+  --red:#DC2626; --red-light:#FEF2F2;
+  --green-success:#16A34A; --green-light:#F0FDF4;
+  --text-dark:#013220; --text-mid:#006D6F; --text-soft:#5F8A80;
+  --border:#E3DED0;
+  --shadow-sm:0 1px 3px rgba(1,50,32,0.08);
+  --shadow-md:0 4px 16px rgba(1,50,32,0.12);
+  --shadow-lg:0 8px 32px rgba(1,50,32,0.16);
+  --radius:12px; --radius-sm:8px; --radius-lg:20px;
+  font-size:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--sand);}
+
+/* ---------- App shell ---------- */
+.app-shell{display:flex;min-height:100vh;}
+.sidebar{width:220px;background:var(--forest);color:#fff;position:fixed;top:0;left:0;bottom:0;display:flex;flex-direction:column;z-index:100;}
+.main-content{flex:1;margin-left:220px;min-width:0;}
+
+/* ---------- Sidebar ---------- */
+.brand{padding:22px 18px 16px;border-bottom:1px solid rgba(255,255,255,0.08);}
+.brand .level-badge{display:inline-block;background:rgba(216,191,216,0.2);color:var(--mint);border:1px solid rgba(216,191,216,0.3);font-size:10px;font-weight:800;letter-spacing:1px;padding:3px 10px;border-radius:99px;margin-bottom:8px;}
+.brand h1{font-size:16px;font-weight:800;color:#fff;line-height:1.3;}
+.brand .cat{font-size:11px;color:var(--mint);opacity:0.8;margin-top:3px;}
+.nav-scroll{flex:1;overflow-y:auto;padding:12px 0;}
+.nav-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(216,191,216,0.6);padding:12px 18px 6px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 18px;font-size:13px;font-weight:500;color:rgba(255,255,255,0.7);cursor:pointer;border-left:3px solid transparent;transition:all 0.2s;}
+.nav-item .ic{width:20px;text-align:center;font-size:16px;}
+.nav-item:hover{background:rgba(216,191,216,0.08);color:#fff;}
+.nav-item.active{background:rgba(216,191,216,0.15);color:#fff;border-left-color:var(--mint);}
+.nav-item .st{margin-left:auto;font-size:11px;opacity:0.85;}
+.side-progress{padding:16px 18px;border-top:1px solid rgba(255,255,255,0.08);}
+.side-progress .lbl{font-size:11px;font-weight:700;color:rgba(216,191,216,0.8);display:flex;justify-content:space-between;margin-bottom:6px;}
+.p-track{height:6px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;}
+.p-fill{height:100%;background:var(--mint);border-radius:99px;width:0%;transition:width 0.5s ease;}
+
+/* ---------- Pages ---------- */
+.page{display:none;}
+.page.active{display:block;animation:fadeIn 0.3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ---------- Hero ---------- */
+.hero{background:linear-gradient(120deg,var(--forest),var(--moss),var(--teal));color:#fff;padding:44px 48px;}
+.hero.sm{padding:30px 48px;}
+.hero .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;letter-spacing:0.5px;padding:4px 12px;border-radius:99px;}
+.badge-white{background:rgba(255,255,255,0.15);color:#fff;}
+.badge-mint{background:rgba(216,191,216,0.2);color:var(--mint);border:1px solid rgba(216,191,216,0.3);}
+.badge-blue{background:var(--blue-light);color:var(--blue);}
+.badge-amber{background:var(--amber-light);color:var(--amber);}
+.badge-green{background:var(--green-light);color:var(--green-success);}
+.badge-forest{background:var(--sage);color:var(--forest);}
+.hero h1{font-size:36px;font-weight:800;line-height:1.15;}
+.hero.sm h1{font-size:26px;}
+.hero .sub{font-size:15px;opacity:0.9;max-width:560px;margin-top:10px;}
+.hero .outcomes{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+
+/* ---------- Sections ---------- */
+.section{padding:40px 48px;border-bottom:1px solid var(--border);}
+.part-label{display:inline-block;background:var(--forest);color:var(--mint);font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 12px;border-radius:99px;margin-bottom:10px;text-transform:uppercase;}
+.section-title{font-size:22px;font-weight:800;color:var(--forest);}
+.section-sub{font-size:14px;color:var(--text-soft);margin-top:4px;margin-bottom:22px;}
+
+/* ---------- Stats row ---------- */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;}
+.stat-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;text-align:center;}
+.stat-card .num{font-size:28px;font-weight:800;color:var(--forest);}
+.stat-card .lb{font-size:12px;color:var(--text-soft);font-weight:600;margin-top:2px;}
+
+/* ---------- Course progress block ---------- */
+.course-progress{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;}
+.cp-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
+.cp-head .t{font-weight:800;color:var(--forest);font-size:16px;}
+.cp-head .pc{font-weight:800;color:var(--moss);font-size:20px;}
+.cp-track{height:12px;background:var(--sage);border-radius:99px;overflow:hidden;}
+.cp-fill{height:100%;background:linear-gradient(90deg,var(--moss),var(--teal));border-radius:99px;width:0%;transition:width 0.5s ease;}
+.phase-pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+.phase-pill{display:flex;align-items:center;gap:8px;background:var(--shell);border:1.5px solid var(--border);border-radius:99px;padding:7px 16px;font-size:13px;font-weight:700;color:var(--text-mid);cursor:pointer;transition:all 0.2s;}
+.phase-pill:hover{border-color:var(--teal);}
+.phase-pill .dot{font-size:14px;}
+.phase-pill.done{border-color:var(--green-success);color:var(--green-success);background:var(--green-light);}
+.phase-pill.current{border-color:var(--moss);color:var(--forest);background:var(--sage);}
+
+/* ---------- Goal cards ---------- */
+.goal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;}
+.goal-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:22px;transition:all 0.2s;}
+.goal-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
+.goal-card .ic{font-size:26px;}
+.goal-card h4{color:var(--forest);font-size:16px;font-weight:800;margin:8px 0 6px;}
+.goal-card p{font-size:13.5px;color:var(--text-mid);}
+
+/* ---------- Journey roadmap ---------- */
+.journey{display:flex;gap:0;flex-wrap:wrap;align-items:stretch;}
+.j-step{flex:1;min-width:150px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;position:relative;margin-right:26px;margin-bottom:10px;}
+.j-step:last-child{margin-right:0;}
+.j-step::after{content:"→";position:absolute;right:-21px;top:50%;transform:translateY(-50%);color:var(--moss);font-weight:800;font-size:16px;}
+.j-step:last-child::after{content:"";}
+.j-step .n{width:26px;height:26px;border-radius:99px;background:var(--forest);color:var(--mint);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:8px;}
+.j-step h5{font-size:13px;font-weight:800;color:var(--forest);}
+.j-step p{font-size:12px;color:var(--text-soft);margin-top:3px;}
+
+/* ---------- Tables ---------- */
+.summary-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.summary-table th{background:var(--forest);color:#fff;text-align:left;padding:10px 16px;font-size:13px;letter-spacing:0.3px;}
+.summary-table td{padding:10px 16px;border-bottom:1px solid var(--sage);font-size:14px;}
+.summary-table tr:last-child td{border-bottom:none;}
+.summary-table td:first-child{font-weight:700;color:var(--forest);width:40%;}
+.summary-table tr:nth-child(even) td{background:var(--shell);}
+
+/* ---------- Info / notice boxes ---------- */
+.info-box{background:var(--sage);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:14px 18px;font-size:14px;color:var(--text-mid);}
+.listening-notice{background:var(--amber-light);border:1px solid #FDE68A;color:var(--amber);padding:12px 16px;font-size:13px;border-radius:var(--radius-sm);}
+.pron-box{background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius);padding:18px 20px;}
+.pron-box h4{color:var(--blue);font-weight:700;font-size:15px;margin-bottom:8px;}
+.pron-pill{display:inline-block;background:var(--blue);color:#fff;font-size:11px;font-weight:700;padding:3px 12px;border-radius:99px;}
+.practice-line{background:var(--sage);border-left:4px solid var(--moss);padding:8px 14px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;margin-top:8px;font-size:14px;}
+
+/* ---------- Module / lesson cards ---------- */
+.module-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:20px;}
+.module-head{background:linear-gradient(120deg,var(--forest),var(--moss));color:#fff;padding:16px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.module-head .mn{background:rgba(216,191,216,0.2);color:var(--mint);border:1px solid rgba(216,191,216,0.3);font-size:11px;font-weight:800;padding:4px 12px;border-radius:99px;letter-spacing:0.5px;}
+.module-head h3{font-size:16px;font-weight:800;}
+.lesson-row{display:flex;align-items:center;gap:14px;padding:14px 22px;border-bottom:1px solid var(--sage);flex-wrap:wrap;}
+.lesson-row:last-child{border-bottom:none;}
+.lesson-row .lnum{width:34px;height:34px;border-radius:99px;background:var(--sage);color:var(--forest);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.lesson-row.locked .lnum{background:var(--shell);color:var(--text-soft);}
+.lesson-row .linfo{flex:1;min-width:180px;}
+.lesson-row .lt{font-weight:700;color:var(--forest);font-size:14.5px;}
+.lesson-row.locked .lt{color:var(--text-soft);}
+.lesson-row .ld{font-size:12.5px;color:var(--text-soft);}
+.lesson-row .done-mark{color:var(--green-success);font-weight:800;font-size:13px;}
+.mock-card{background:var(--shell);border:1.5px dashed var(--border);border-radius:var(--radius);padding:18px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:20px;}
+.mock-card .ic{font-size:24px;}
+.mock-card h4{color:var(--forest);font-size:15px;font-weight:800;}
+.mock-card p{font-size:13px;color:var(--text-soft);}
+
+/* ---------- Buttons ---------- */
+.btn{padding:10px 20px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:inherit;transition:all 0.2s;}
+.btn-primary{background:var(--forest);color:#fff;}
+.btn-primary:hover{background:var(--moss);transform:translateY(-1px);}
+.btn-secondary{background:var(--sage);color:var(--forest);}
+.btn-secondary:hover{background:var(--mint);}
+.btn-outline{background:transparent;color:var(--forest);border:1.5px solid var(--border);}
+.btn-outline:hover{border-color:var(--moss);background:var(--sage);}
+.btn-sm{padding:6px 14px;font-size:13px;}
+.btn-group{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+
+/* ---------- Tabs ---------- */
+.tab-bar{border-bottom:2px solid var(--border);display:flex;gap:4px;overflow-x:auto;}
+.tab-btn{padding:10px 18px;font-size:13px;font-weight:600;color:var(--text-soft);border:none;background:transparent;border-bottom:2px solid transparent;cursor:pointer;font-family:inherit;white-space:nowrap;margin-bottom:-2px;}
+.tab-btn.active{color:var(--forest);border-bottom-color:var(--forest);}
+.tab-panel{display:none;padding-top:26px;}
+.tab-panel.active{display:block;animation:fadeIn 0.3s ease;}
+
+/* ---------- Vocab cards ---------- */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.vocab-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;cursor:pointer;position:relative;transition:all 0.2s;}
+.vocab-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--teal);}
+.vocab-card .flip-hint{position:absolute;top:10px;right:12px;font-size:10px;background:var(--shell);color:var(--text-soft);padding:2px 8px;border-radius:99px;font-weight:700;}
+.vocab-card .word{font-size:17px;font-weight:700;color:var(--forest);}
+.vocab-card .ipa{font-size:13px;font-style:italic;color:var(--blue);}
+.vocab-card .pos{display:inline-block;background:var(--sage);color:var(--forest);font-size:10px;font-weight:800;padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle;}
+.vocab-card .en-def{font-size:13.5px;color:var(--text-mid);margin-top:6px;}
+.vocab-card .back{display:none;border-top:1px solid var(--sage);margin-top:10px;padding-top:10px;}
+.vocab-card.flipped .back{display:block;animation:fadeIn 0.3s;}
+.vocab-card .vi{font-weight:600;color:var(--text-mid);font-size:14px;}
+.vocab-card .example{font-size:13px;color:var(--text-soft);margin-top:4px;font-style:italic;}
+
+/* ---------- Phrase cards ---------- */
+.phrase-card{display:flex;gap:14px;flex-wrap:wrap;align-items:baseline;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:12px 18px;margin-bottom:10px;}
+.phrase-en{font-weight:700;color:var(--forest);min-width:250px;font-size:15px;}
+.phrase-vi{color:var(--text-soft);font-size:13.5px;}
+
+/* ---------- Exercise ---------- */
+.exercise{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:22px;}
+.exercise-title{font-weight:700;font-size:16px;color:var(--forest);margin-bottom:6px;}
+.exercise-instruction{font-size:13px;color:var(--text-soft);background:var(--shell);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:16px;}
+.mcq-q{margin-bottom:18px;}
+.mcq-q .qt{font-weight:600;font-size:14.5px;margin-bottom:8px;}
+.mcq-option{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:8px;cursor:pointer;font-size:14px;transition:all 0.15s;background:var(--white);}
+.mcq-option:hover{border-color:var(--teal);background:var(--sage);}
+.mcq-option.selected{border-color:var(--blue);background:var(--blue-light);}
+.mcq-option.correct{border-color:var(--green-success);background:var(--green-light);}
+.mcq-option.incorrect{border-color:var(--red);background:var(--red-light);}
+.feedback-box{padding:14px 18px;border-radius:var(--radius-sm);display:none;gap:12px;align-items:center;margin-top:14px;}
+.feedback-box.show{display:flex;}
+.feedback-box.success{background:var(--green-light);color:var(--green-success);border:1px solid #BBF7D0;}
+.feedback-box.error{background:var(--red-light);color:var(--red);border:1px solid #FECACA;}
+.feedback-box.info{background:var(--blue-light);color:var(--blue);border:1px solid #BFDBFE;}
+.score-badge{width:48px;height:48px;border-radius:99px;background:var(--white);color:var(--forest);font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--border);}
+
+/* ---------- Reveal / transcript ---------- */
+.reveal-block{display:none;}
+.reveal-block.revealed{display:block;animation:fadeIn 0.3s;}
+
+/* ---------- Alphabet board ---------- */
+.alpha-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:10px;}
+.alpha-chip{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 6px;text-align:center;cursor:pointer;transition:all 0.15s;}
+.alpha-chip:hover{border-color:var(--teal);background:var(--sage);}
+.alpha-chip.tricky{border-color:#FDE68A;background:var(--amber-light);}
+.alpha-chip .L{font-size:20px;font-weight:800;color:var(--forest);}
+.alpha-chip .S{font-size:12px;color:var(--blue);font-style:italic;}
+.pair-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;}
+.pair-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;text-align:center;}
+.pair-card .p{font-size:18px;font-weight:800;color:var(--forest);letter-spacing:2px;}
+.pair-card .h{font-size:12px;color:var(--text-soft);margin-top:2px;}
+
+/* ---------- Spelling names ---------- */
+.name-chips{display:flex;gap:10px;flex-wrap:wrap;}
+.name-chip{background:var(--white);border:1.5px solid var(--border);border-radius:99px;padding:8px 18px;font-weight:700;color:var(--forest);cursor:pointer;font-size:14px;transition:all 0.15s;}
+.name-chip:hover{border-color:var(--teal);box-shadow:var(--shadow-sm);}
+.name-chip.activeName{border-color:var(--moss);background:var(--sage);}
+.spell-out{border:2px dashed var(--moss);border-radius:var(--radius-sm);background:var(--white);min-height:64px;margin-top:16px;padding:14px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;}
+.spell-letter{background:var(--forest);color:#fff;border-radius:var(--radius-sm);width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;}
+.spell-dash{color:var(--text-soft);font-weight:800;}
+.spell-empty{color:var(--text-soft);font-style:italic;font-size:13.5px;}
+
+/* ---------- Number cards ---------- */
+.num-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;}
+.num-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;text-align:center;}
+.num-card .d{font-size:19px;font-weight:800;color:var(--forest);}
+.num-card .w{font-size:12.5px;color:var(--text-mid);}
+
+/* ---------- Grammar SVO ---------- */
+.svo-row{display:flex;gap:12px;flex-wrap:wrap;align-items:stretch;}
+.svo-card{flex:1;min-width:150px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center;}
+.svo-card .tag{display:inline-block;background:var(--forest);color:var(--mint);font-size:10px;font-weight:800;padding:3px 12px;border-radius:99px;letter-spacing:1px;}
+.svo-card .w{font-size:22px;font-weight:800;color:var(--forest);margin:8px 0 4px;}
+.svo-card .d{font-size:12.5px;color:var(--text-soft);}
+.mistake-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.mistake-table th{padding:10px 16px;text-align:left;font-size:13px;}
+.mistake-table th.wr{background:var(--red-light);color:var(--red);}
+.mistake-table th.cr{background:var(--green-light);color:var(--green-success);}
+.mistake-table td{padding:10px 16px;border-bottom:1px solid var(--sage);font-size:14px;}
+.mistake-table td.wr{color:var(--red);text-decoration:line-through;}
+.mistake-table td.cr{color:var(--green-success);font-weight:600;}
+
+/* ---------- Sentence builder ---------- */
+.builder-stage{background:var(--shell);border:1px solid var(--border);border-radius:var(--radius);padding:22px;text-align:center;}
+.builder-sentence{font-size:22px;font-weight:700;color:var(--forest);line-height:1.8;min-height:50px;}
+.builder-explain{margin-top:14px;}
+.layer-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:18px;}
+.layer-btn{border:1.5px solid var(--border);background:var(--white);border-radius:99px;padding:8px 16px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;transition:all 0.15s;color:var(--text-mid);}
+.layer-btn:hover:not(:disabled){border-color:var(--teal);background:var(--sage);color:var(--forest);}
+.layer-btn:disabled{opacity:0.45;cursor:not-allowed;}
+.layer-btn.used{border-color:var(--moss);background:var(--sage);color:var(--forest);}
+.hl-vocab{background:var(--sage);border-radius:4px;padding:0 4px;}
+.hl-phrase{border-bottom:3px solid var(--moss);}
+.hl-pron{background:var(--blue-light);border-radius:4px;padding:0 4px;}
+.hl-accent{background:var(--amber-light);border-radius:4px;padding:0 4px;}
+
+/* ---------- Word order ---------- */
+.order-pool{border:1.5px dashed var(--border);background:var(--shell);border-radius:var(--radius-sm);padding:12px;display:flex;gap:10px;flex-wrap:wrap;min-height:56px;}
+.order-line{border:2px dashed var(--moss);background:var(--white);border-radius:var(--radius-sm);padding:12px;display:flex;gap:10px;flex-wrap:wrap;min-height:56px;margin-top:12px;}
+.order-chip{background:var(--white);border:1.5px solid var(--border);border-radius:99px;padding:7px 16px;font-weight:600;font-size:13.5px;cursor:pointer;transition:all 0.15s;}
+.order-chip:hover{border-color:var(--teal);box-shadow:var(--shadow-sm);}
+.order-line .order-chip{background:var(--sage);border-color:var(--moss);color:var(--forest);}
+
+/* ---------- Draw zone (shuffle-bag) ---------- */
+.draw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;}
+.draw-zone{background:var(--sage);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;position:relative;}
+.draw-zone h4{color:var(--forest);font-size:15px;font-weight:800;margin-bottom:8px;}
+.draw-zone .zone-desc{font-size:13px;color:var(--text-mid);font-style:italic;margin-bottom:16px;}
+.draw-btn{width:130px;height:130px;border-radius:99px;background:var(--white);border:4px solid var(--moss);color:var(--moss);font-weight:800;font-size:14px;letter-spacing:1px;line-height:1.3;cursor:pointer;margin:18px auto;display:flex;align-items:center;justify-content:center;text-align:center;transition:all 0.2s;font-family:inherit;}
+.draw-btn:hover{transform:scale(1.05);box-shadow:var(--shadow-md);}
+.draw-result{border:2px dashed var(--moss);border-radius:var(--radius-sm);background:var(--white);padding:18px;min-height:70px;text-align:center;}
+.draw-result .big{font-size:22px;font-weight:800;color:var(--forest);display:block;}
+.draw-result .small{font-size:13px;color:var(--text-soft);font-style:italic;}
+.alt-badge{position:absolute;top:14px;right:14px;background:var(--moss);color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:99px;letter-spacing:0.5px;}
+
+/* ---------- Timer ---------- */
+.count-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px;justify-content:center;}
+.count-display{background:var(--forest);color:#fff;font-size:34px;font-weight:800;padding:8px 22px;border-radius:var(--radius-sm);font-variant-numeric:tabular-nums;letter-spacing:2px;}
+.count-display.timeup{background:var(--red);}
+.preset-pill{border:1.5px solid var(--border);background:var(--white);border-radius:99px;padding:8px 16px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;transition:all 0.15s;}
+.preset-pill.active{border-color:var(--moss);background:var(--sage);color:var(--forest);}
+.btn-start{background:var(--moss);color:#fff;border:none;border-radius:99px;padding:8px 18px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;}
+.btn-timer-reset{background:var(--white);border:1.5px solid var(--border);border-radius:99px;padding:8px 18px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;}
+
+.tier2-hint{background:var(--amber-light);border:1.5px dashed #FDE68A;border-radius:var(--radius-sm);padding:12px 16px;font-size:14px;}
+.tier2-hint b{color:var(--amber);}
+
+/* ---------- Checklist ---------- */
+.check-item{display:flex;gap:10px;padding:10px 14px;border-radius:var(--radius-sm);cursor:pointer;font-size:14px;align-items:center;transition:background 0.15s;}
+.check-item:hover{background:var(--sage);}
+.check-item input{accent-color:var(--forest);width:16px;height:16px;}
+
+/* ---------- Template lines ---------- */
+.tmpl-line{display:flex;gap:12px;align-items:baseline;background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:11px 16px;margin-bottom:9px;flex-wrap:wrap;}
+.tmpl-line .k{background:var(--sage);color:var(--forest);font-size:11px;font-weight:800;padding:3px 10px;border-radius:99px;white-space:nowrap;}
+.tmpl-line .v{font-weight:600;color:var(--forest);font-size:14.5px;}
+
+/* ---------- Dialogue / sample ---------- */
+.sample-box{background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius);padding:18px 20px;font-size:15px;color:var(--text-dark);}
+
+/* ---------- Reset FAB ---------- */
+.reset-fab{position:fixed;bottom:24px;right:24px;background:var(--red);color:#fff;border:none;border-radius:99px;padding:12px 20px;font-size:13px;font-weight:700;box-shadow:var(--shadow-lg);z-index:200;cursor:pointer;font-family:inherit;transition:transform 0.2s;}
+.reset-fab:hover{transform:scale(1.05);}
+
+/* ---------- Certificate ---------- */
+.cert-frame{background:var(--white);border:3px solid var(--moss);border-radius:var(--radius-lg);padding:48px;text-align:center;max-width:640px;margin:0 auto;box-shadow:var(--shadow-md);}
+.cert-frame .crest{font-size:44px;}
+.cert-frame h2{color:var(--forest);font-size:26px;font-weight:800;margin:10px 0 4px;}
+.cert-frame .sub{color:var(--text-soft);font-size:14px;}
+
+/* ---------- Responsive ---------- */
+@media(max-width:768px){
+  .sidebar{position:static;width:100%;}
+  .app-shell{flex-direction:column;}
+  .main-content{margin-left:0;}
+  .hero{padding:24px;}
+  .hero.sm{padding:20px 24px;}
+  .section{padding:24px;}
+  .vocab-grid{grid-template-columns:1fr;}
+  .j-step{margin-right:0;}
+  .j-step::after{content:"";}
+}
+</style>
+</head>
+<body>
+<div class="app-shell">
+<!-- ================= SIDEBAR ================= -->
+<aside class="sidebar">
+  <div class="brand">
+    <span class="level-badge">CEFR A2</span>
+    <h1>Basic Communication</h1>
+    <div class="cat">English Communication Course</div>
+  </div>
+  <div class="nav-scroll">
+    <div class="nav-label">Course</div>
+    <div class="nav-item active" data-page="overview"><span class="ic">🏠</span> Overview</div>
+    <div class="nav-label">Phases</div>
+    <div class="nav-item" data-page="phase1"><span class="ic">🌱</span> Phase 1 · Foundation <span class="st" id="navSt1">●</span></div>
+    <div class="nav-item" data-page="phase2"><span class="ic">🌿</span> Phase 2 <span class="st" id="navSt2">○</span></div>
+    <div class="nav-item" data-page="phase3"><span class="ic">🌳</span> Phase 3 <span class="st" id="navSt3">○</span></div>
+    <div class="nav-item" data-page="phase4"><span class="ic">🏔️</span> Phase 4 <span class="st" id="navSt4">○</span></div>
+    <div class="nav-label">Completion</div>
+    <div class="nav-item" data-page="certificate"><span class="ic">🎓</span> Certificate</div>
+  </div>
+  <div class="side-progress">
+    <div class="lbl"><span>Course Progress</span><span id="sideProgressPct">0%</span></div>
+    <div class="p-track"><div class="p-fill" id="sideProgressFill"></div></div>
+  </div>
+</aside>
+
+<main class="main-content">
+
+<!-- ================= PAGE: OVERVIEW ================= -->
+<div class="page active" id="page-overview">
+  <div class="hero">
+    <div class="meta">
+      <span class="badge badge-mint">COURSE</span>
+      <span class="badge badge-white">CEFR A2</span>
+      <span class="badge badge-white">⏱ 18 WEEKS</span>
+      <span class="badge badge-white">90-MIN SESSIONS</span>
+    </div>
+    <h1>English Communication A2</h1>
+    <p class="sub">Learn practical English step by step. This course takes you from your very first self-introduction to confident everyday conversations — even if you study on your own, every page explains exactly what to do and why.</p>
+    <div class="outcomes">
+      <span class="badge badge-white">Vocabulary</span>
+      <span class="badge badge-white">Speaking</span>
+      <span class="badge badge-white">Listening</span>
+      <span class="badge badge-white">Grammar</span>
+      <span class="badge badge-white">Pronunciation</span>
+      <span class="badge badge-white">Communication</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="part-label">At a glance</span>
+    <h2 class="section-title">What is inside this course?</h2>
+    <p class="section-sub">Everything is organized into 4 phases. Each phase ends with a checkpoint test, so you always know how much you have learned.</p>
+    <div class="stats-row">
+      <div class="stat-card"><div class="num">18</div><div class="lb">Modules</div></div>
+      <div class="stat-card"><div class="num">36</div><div class="lb">Lessons</div></div>
+      <div class="stat-card"><div class="num">3</div><div class="lb">Mock Tests</div></div>
+      <div class="stat-card"><div class="num">1</div><div class="lb">Final Test</div></div>
+      <div class="stat-card"><div class="num">18</div><div class="lb">Weeks</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="part-label">Course Progress</span>
+    <h2 class="section-title">Where am I now?</h2>
+    <p class="section-sub">The bar below updates every time you finish a lesson and press “Mark Lesson Complete”. Click a phase pill to jump to it.</p>
+    <div class="course-progress">
+      <div class="cp-head"><span class="t">Overall completion</span><span class="pc" id="cpPct">0%</span></div>
+      <div class="cp-track"><div class="cp-fill" id="cpFill"></div></div>
+      <div class="phase-pills">
+        <div class="phase-pill current" id="pill1" data-page="phase1"><span class="dot" id="pillDot1">●</span> Phase 1 · Foundation</div>
+        <div class="phase-pill" id="pill2" data-page="phase2"><span class="dot" id="pillDot2">○</span> Phase 2</div>
+        <div class="phase-pill" id="pill3" data-page="phase3"><span class="dot" id="pillDot3">○</span> Phase 3</div>
+        <div class="phase-pill" id="pill4" data-page="phase4"><span class="dot" id="pillDot4">○</span> Phase 4</div>
+      </div>
+      <p style="font-size:12.5px;color:var(--text-soft);margin-top:12px;">✓ = phase completed &nbsp;·&nbsp; ● = current phase &nbsp;·&nbsp; ○ = coming later. Each phase ends with a checkpoint (Mock Test).</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="part-label">Course Goals</span>
+    <h2 class="section-title">Three skills of a foundation communicator</h2>
+    <p class="section-sub">At the foundation stage, a learner needs to handle three jobs in every conversation:</p>
+    <div class="goal-grid">
+      <div class="goal-card"><div class="ic">👂</div><h4>1 · Understand</h4><p>Listen to a question, catch the <b>keywords</b>, and ask again politely when something is not clear.</p></div>
+      <div class="goal-card"><div class="ic">💬</div><h4>2 · Respond</h4><p>Give a short answer first, then <b>add details</b> on top of a simple sentence.</p></div>
+      <div class="goal-card"><div class="ic">🔄</div><h4>3 · Maintain</h4><p>Keep talking even when a word is missing — <b>fix the sentence</b> and keep the conversation alive.</p></div>
+    </div>
+    <div style="margin-top:18px;" class="info-box">🎯 <b>Grammar goal of the whole course:</b> master the <b>word order inside one sentence</b> — Subject + Verb + Object, then expand it with frequency, manner, place, time and purpose. Think of it like building with LEGO: first the base brick (S + V + O), then you snap extra bricks on top.</div>
+  </div>
+
+  <div class="section">
+    <span class="part-label">Learning Journey</span>
+    <h2 class="section-title">How every lesson moves you forward</h2>
+    <p class="section-sub">Every lesson in this course follows the same 5-step journey. Each step prepares you for the next one.</p>
+    <div class="journey">
+      <div class="j-step"><div class="n">1</div><h5>Language Input</h5><p>New words &amp; phrases — Part 1 of each lesson</p></div>
+      <div class="j-step"><div class="n">2</div><h5>Guided Practice</h5><p>Controlled exercises with instant feedback</p></div>
+      <div class="j-step"><div class="n">3</div><h5>Language Recognition</h5><p>Notice the language in listening &amp; reading</p></div>
+      <div class="j-step"><div class="n">4</div><h5>Real-world Communication</h5><p>Speak in realistic situations</p></div>
+      <div class="j-step"><div class="n">5</div><h5>Reflection &amp; Review</h5><p>Checklist + review to lock it in</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <span class="part-label">Schedule</span>
+    <h2 class="section-title">18-week roadmap, session by session</h2>
+    <p class="section-sub">2 sessions per week · 90 minutes per session · 36 sessions in total. Mock tests are combined with a new lesson on the same day, so no week is “wasted” on testing only.</p>
+    <table class="summary-table">
+      <tr><th>Phase</th><th>Length</th><th>Sessions</th><th>Checkpoint</th></tr>
+      <tr><td>Phase 1 — Foundation</td><td>2 weeks ≈ 4 lessons</td><td>Sessions 1–4</td><td>Mock Test Phase 1 → taken in Session 5 (together with a new lesson)</td></tr>
+      <tr><td>Phase 2</td><td>5 weeks ≈ 10 lessons</td><td>Sessions 5–14</td><td>Mock Test Phase 2 → taken in Session 15 (together with a new lesson)</td></tr>
+      <tr><td>Phase 3</td><td>6 weeks ≈ 12 lessons</td><td>Sessions 15–26</td><td>Mock Test Phase 3 → taken in Session 27 (together with a new lesson)</td></tr>
+      <tr><td>Phase 4</td><td>5 weeks ≈ 10 lessons</td><td>Sessions 27–36</td><td>Final Test → Session 36 closes the course</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <span class="part-label">Inside a session</span>
+    <h2 class="section-title">The 90-minute session formula</h2>
+    <p class="section-sub">Every session follows the same rhythm. About <b>40% of class time is the learner actually speaking</b> — not the teacher lecturing.</p>
+    <table class="summary-table">
+      <tr><th>Activity</th><th>Time</th><th>What happens</th></tr>
+      <tr><td>Warm-up &amp; Review</td><td>10 min</td><td>Quick recall of the last lesson — wake up your English</td></tr>
+      <tr><td>Presentation (new language)</td><td>20 min</td><td>New words, phrases and grammar are introduced</td></tr>
+      <tr><td>Controlled Practice</td><td>30 min</td><td>Guided exercises — you use the new language with support</td></tr>
+      <tr><td>Free Speaking</td><td>20 min</td><td>Real communication: role-plays, situations, your own ideas</td></tr>
+      <tr><td>Feedback &amp; Homework</td><td>10 min</td><td>Fix common mistakes, get your review task</td></tr>
+    </table>
+    <div style="margin-top:16px;" class="info-box">🗣️ <b>Speaking time rule:</b> Controlled Practice + Free Speaking ≈ 50 minutes, and most of it is <b>your voice</b>. If you study alone, say every answer <b>out loud</b> — reading silently does not train your mouth.</div>
+  </div>
+
+  <div class="section">
+    <span class="part-label">How to use</span>
+    <h2 class="section-title">Studying with this course (with or without a teacher)</h2>
+    <div class="goal-grid">
+      <div class="goal-card"><div class="ic">🧭</div><h4>Follow the order</h4><p>Open a phase → open the next unlocked lesson → go tab by tab from left to right. Each tab builds on the one before it.</p></div>
+      <div class="goal-card"><div class="ic">🔁</div><h4>Review 10–15 min daily</h4><p>Short daily review beats long cramming. Re-open finished lessons and redo the practice exercises.</p></div>
+      <div class="goal-card"><div class="ic">✅</div><h4>Mark lessons complete</h4><p>At the end of each lesson, press “Mark Lesson Complete” so the course progress bar tracks you.</p></div>
+      <div class="goal-card"><div class="ic">🎤</div><h4>Speak first, fix later</h4><p>Mistakes help you learn. Never stay silent because a sentence is not perfect.</p></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-page="phase1">Start Phase 1 →</button>
+    </div>
+  </div>
+</div>
+<!-- ================= PAGE: PHASE 1 ================= -->
+<div class="page" id="page-phase1">
+  <div class="hero sm">
+    <div class="meta">
+      <span class="badge badge-mint">PHASE 1 · FOUNDATION</span>
+      <span class="badge badge-white">2 WEEKS · 4 LESSONS</span>
+      <span class="badge badge-white">SESSIONS 1–4</span>
+    </div>
+    <h1>Phase 1 — Foundation</h1>
+    <p class="sub">Your first steps: introduce yourself, understand your tutor’s classroom English, and build the simple sentence that everything else grows from.</p>
+  </div>
+  <div class="section">
+    <div class="info-box" style="margin-bottom:22px;">🏁 <b>Checkpoint:</b> after finishing all 4 lessons, you take <b>Mock Test Phase 1</b> in Session 5 (combined with a new lesson from Phase 2).</div>
+
+    <div class="module-card">
+      <div class="module-head"><span class="mn">MODULE 1</span><h3>Introduction to Self &amp; Classroom Language</h3></div>
+      <div style="padding:10px 22px 4px;">
+        <p style="font-size:13.5px;color:var(--text-mid);"><b>Module objective:</b> by the end of this module, you can talk about basic personal information and hobbies, and understand your tutor’s instructions in English.<br><b>Grammar focus:</b> Subject pronouns (I, you, we, they) · Verb <i>to be</i> (am/is/are) · regular verbs.</p>
+      </div>
+      <div class="lesson-row">
+        <div class="lnum">1</div>
+        <div class="linfo">
+          <div class="lt">Lesson 1 — Course Overview &amp; Personal Introductions</div>
+          <div class="ld">Classroom language · alphabet &amp; spelling · countries &amp; nationalities · numbers · S + V + O</div>
+        </div>
+        <span class="done-mark" id="doneMark-lesson1" style="display:none;">✓ Completed</span>
+        <button class="btn btn-primary btn-sm" data-page="lesson1">Open lesson →</button>
+      </div>
+      <div class="lesson-row">
+        <div class="lnum">2</div>
+        <div class="linfo">
+          <div class="lt">Lesson 2 — Introductions with DOB, Numbers &amp; Your Hobby</div>
+          <div class="ld">Date of birth &amp; cardinal numbers · 5 hobbies · expanding the simple sentence step by step</div>
+        </div>
+        <span class="done-mark" id="doneMark-lesson2" style="display:none;">✓ Completed</span>
+        <button class="btn btn-primary btn-sm" data-page="lesson2">Open lesson →</button>
+      </div>
+    </div>
+
+    <div class="module-card">
+      <div class="module-head"><span class="mn">MODULE 2</span><h3>Coming soon</h3></div>
+      <div class="lesson-row locked"><div class="lnum">3</div><div class="linfo"><div class="lt">Lesson 3</div><div class="ld">Content will be added in the next update</div></div><span class="badge badge-forest">🔒 Locked</span></div>
+      <div class="lesson-row locked"><div class="lnum">4</div><div class="linfo"><div class="lt">Lesson 4</div><div class="ld">Content will be added in the next update</div></div><span class="badge badge-forest">🔒 Locked</span></div>
+    </div>
+
+    <div class="mock-card"><span class="ic">📝</span><div><h4>Mock Test — Phase 1</h4><p>Checkpoint for Lessons 1–4 · taken in Session 5 together with a new lesson · coming soon</p></div><span class="badge badge-forest" style="margin-left:auto;">🔒 Locked</span></div>
+
+    <div class="btn-group">
+      <button class="btn btn-outline" data-page="overview">← Overview</button>
+      <button class="btn btn-outline" data-page="phase2">Phase 2 →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PAGE: PHASE 2 ================= -->
+<div class="page" id="page-phase2">
+  <div class="hero sm">
+    <div class="meta"><span class="badge badge-mint">PHASE 2</span><span class="badge badge-white">5 WEEKS · 10 LESSONS</span><span class="badge badge-white">SESSIONS 5–14</span></div>
+    <h1>Phase 2</h1>
+    <p class="sub">Modules 3–7. Session 5 opens with Mock Test Phase 1 + a new lesson. Content will be added in the next update.</p>
+  </div>
+  <div class="section">
+    <div class="module-card"><div class="module-head"><span class="mn">MODULE 3</span><h3>Coming soon</h3></div><div class="lesson-row locked"><div class="lnum">5</div><div class="linfo"><div class="lt">Lessons 5–6</div><div class="ld">Updating soon</div></div><span class="badge badge-forest">🔒 Locked</span></div></div>
+    <div class="module-card"><div class="module-head"><span class="mn">MODULE 4</span><h3>Coming soon</h3></div><div class="lesson-row locked"><div class="lnum">7</div><div class="linfo"><div class="lt">Lessons 7–8</div><div class="ld">Updating soon</div></div><span class="badge badge-forest">🔒 Locked</span></div></div>
+    <div class="module-card"><div class="module-head"><span class="mn">MODULE 5</span><h3>Coming soon</h3></div><div class="lesson-row locked"><div class="lnum">9</div><div class="linfo"><div class="lt">Lessons 9–10</div><div class="ld">Updating soon</div></div><span class="badge badge-forest">🔒 Locked</span></div></div>
+    <div class="module-card"><div class="module-head"><span class="mn">MODULE 6</span><h3>Coming soon</h3></div><div class="lesson-row locked"><div class="lnum">11</div><div class="linfo"><div class="lt">Lessons 11–12</div><div class="ld">Updating soon</div></div><span class="badge badge-forest">🔒 Locked</span></div></div>
+    <div class="module-card"><div class="module-head"><span class="mn">MODULE 7</span><h3>Coming soon</h3></div><div class="lesson-row locked"><div class="lnum">13</div><div class="linfo"><div class="lt">Lessons 13–14</div><div class="ld">Updating soon</div></div><span class="badge badge-forest">🔒 Locked</span></div></div>
+    <div class="mock-card"><span class="ic">📝</span><div><h4>Mock Test — Phase 2</h4><p>Checkpoint for Phase 2 · taken in Session 15 together with a new lesson · coming soon</p></div><span class="badge badge-forest" style="margin-left:auto;">🔒 Locked</span></div>
+    <div class="btn-group"><button class="btn btn-outline" data-page="phase1">← Phase 1</button><button class="btn btn-outline" data-page="phase3">Phase 3 →</button></div>
+  </div>
+</div>
+
+<!-- ================= PAGE: PHASE 3 ================= -->
+<div class="page" id="page-phase3">
+  <div class="hero sm">
+    <div class="meta"><span class="badge badge-mint">PHASE 3</span><span class="badge badge-white">6 WEEKS · 12 LESSONS</span><span class="badge badge-white">SESSIONS 15–26</span></div>
+    <h1>Phase 3</h1>
+    <p class="sub">Modules 8–13. Session 15 opens with Mock Test Phase 2 + a new lesson. Content will be added in the next update.</p>
+  </div>
+  <div class="section">
+    <div class="module-card"><div class="module-head"><span class="mn">MODULES 8–13</span><h3>Coming soon</h3></div><div class="lesson-row locked"><div class="lnum">15</div><div class="linfo"><div class="lt">Lessons 15–26</div><div class="ld">Updating soon</div></div><span class="badge badge-forest">🔒 Locked</span></div></div>
+    <div class="mock-card"><span class="ic">📝</span><div><h4>Mock Test — Phase 3</h4><p>Checkpoint for Phase 3 · taken in Session 27 together with a new lesson · coming soon</p></div><span class="badge badge-forest" style="margin-left:auto;">🔒 Locked</span></div>
+    <div class="btn-group"><button class="btn btn-outline" data-page="phase2">← Phase 2</button><button class="btn btn-outline" data-page="phase4">Phase 4 →</button></div>
+  </div>
+</div>
+
+<!-- ================= PAGE: PHASE 4 ================= -->
+<div class="page" id="page-phase4">
+  <div class="hero sm">
+    <div class="meta"><span class="badge badge-mint">PHASE 4</span><span class="badge badge-white">5 WEEKS · 10 LESSONS</span><span class="badge badge-white">SESSIONS 27–36</span></div>
+    <h1>Phase 4</h1>
+    <p class="sub">Modules 14–18. Session 27 opens with Mock Test Phase 3 + a new lesson. Session 36 is the Final Test that closes the course.</p>
+  </div>
+  <div class="section">
+    <div class="module-card"><div class="module-head"><span class="mn">MODULES 14–18</span><h3>Coming soon</h3></div><div class="lesson-row locked"><div class="lnum">27</div><div class="linfo"><div class="lt">Lessons 27–36</div><div class="ld">Updating soon</div></div><span class="badge badge-forest">🔒 Locked</span></div></div>
+    <div class="mock-card"><span class="ic">🏆</span><div><h4>Final Test</h4><p>Session 36 — the last checkpoint of the course · coming soon</p></div><span class="badge badge-forest" style="margin-left:auto;">🔒 Locked</span></div>
+    <div class="btn-group"><button class="btn btn-outline" data-page="phase3">← Phase 3</button><button class="btn btn-outline" data-page="certificate">Certificate →</button></div>
+  </div>
+</div>
+
+<!-- ================= PAGE: CERTIFICATE ================= -->
+<div class="page" id="page-certificate">
+  <div class="hero sm">
+    <div class="meta"><span class="badge badge-mint">COMPLETION</span></div>
+    <h1>Certificate</h1>
+    <p class="sub">Complete all 36 lessons, 3 mock tests and the Final Test to unlock your certificate.</p>
+  </div>
+  <div class="section">
+    <div class="cert-frame">
+      <div class="crest">🎓</div>
+      <h2>Certificate of Completion</h2>
+      <p class="sub">English Communication A2 — Basic Communication</p>
+      <div style="margin:18px 0;">
+        <div class="cp-track" style="max-width:360px;margin:0 auto;"><div class="cp-fill" id="certFill"></div></div>
+        <p style="font-size:13px;color:var(--text-soft);margin-top:8px;"><span id="certCount">0</span> / 36 lessons completed</p>
+      </div>
+      <span class="badge badge-forest">🔒 Unlocks after the Final Test</span>
+    </div>
+    <div class="btn-group" style="justify-content:center;"><button class="btn btn-outline" data-page="overview">← Overview</button></div>
+  </div>
+</div>
+<!-- ================= PAGE: LESSON 1 ================= -->
+<div class="page" id="page-lesson1">
+  <div class="hero">
+    <div class="meta">
+      <span class="badge badge-mint">PHASE 1 · MODULE 1 · LESSON 1</span>
+      <span class="badge badge-white">CEFR A2</span>
+      <span class="badge badge-white">⏱ 90 MIN</span>
+    </div>
+    <h1>Course Overview &amp; Personal Introductions</h1>
+    <p class="sub">Learn how this course works, understand your tutor’s classroom English, and introduce yourself confidently — name, age, nationality, city, job and phone number.</p>
+    <div class="outcomes">
+      <span class="badge badge-white">Classroom Language</span>
+      <span class="badge badge-white">Spelling</span>
+      <span class="badge badge-white">Numbers</span>
+      <span class="badge badge-white">Grammar</span>
+      <span class="badge badge-white">Speaking</span>
+    </div>
+  </div>
+  <div class="section">
+    <div class="tab-bar" data-group="l1tabs">
+      <button class="tab-btn active" data-tab="l1-intro">1 · Warm-up</button>
+      <button class="tab-btn" data-tab="l1-classroom">2 · Classroom Language</button>
+      <button class="tab-btn" data-tab="l1-spelling">3 · Name &amp; Spelling</button>
+      <button class="tab-btn" data-tab="l1-numbers">4 · Countries &amp; Numbers</button>
+      <button class="tab-btn" data-tab="l1-grammar">5 · Grammar</button>
+      <button class="tab-btn" data-tab="l1-speaking">6 · Practice &amp; Speaking</button>
+      <button class="tab-btn" data-tab="l1-discussion">7 · Discussion</button>
+    </div>
+
+    <!-- ===== L1 TAB: WARM-UP ===== -->
+    <div class="tab-panel active" data-panel-group="l1tabs" data-panel="l1-intro">
+      <span class="part-label">Lesson goals</span>
+      <h2 class="section-title">After this lesson, you can…</h2>
+      <p class="section-sub">Tick each box at the end of the lesson to check yourself.</p>
+      <div class="exercise">
+        <label class="check-item"><input type="checkbox" class="l1goal"> ✅ Understand how the course works</label>
+        <label class="check-item"><input type="checkbox" class="l1goal"> ✅ Follow common classroom instructions</label>
+        <label class="check-item"><input type="checkbox" class="l1goal"> ✅ Introduce yourself in 20–40 seconds</label>
+        <label class="check-item"><input type="checkbox" class="l1goal"> ✅ Spell your name confidently</label>
+        <label class="check-item"><input type="checkbox" class="l1goal"> ✅ Say your age and phone number accurately</label>
+      </div>
+      <div class="info-box">💡 <b>Three mottos for the whole course:</b><br>• <b>Speak first, fix later.</b> — Say it now, correct it after.<br>• <b>Mistakes help you learn.</b> — Errors are part of the process.<br>• <b>Review for 10–15 minutes every day.</b> — Short daily review beats cramming.</div>
+      <div class="btn-group"><button class="btn btn-primary" data-l1tab="l1-classroom">Next: Classroom Language →</button></div>
+    </div>
+
+    <!-- ===== L1 TAB: CLASSROOM LANGUAGE ===== -->
+    <div class="tab-panel" data-panel-group="l1tabs" data-panel="l1-classroom">
+      <span class="part-label">Part 1 · Language input</span>
+      <h2 class="section-title">Your tutor’s classroom English</h2>
+      <p class="section-sub">These are the phrases you will hear in every session. Learn them once — use them for 18 weeks. Vietnamese meanings are hidden: try to understand the English first, then reveal to check.</p>
+
+      <div class="exercise">
+        <div class="exercise-title">① Lesson routine — the rhythm of every session</div>
+        <table class="summary-table">
+          <tr><th>Tutor says</th><th class="viCol" style="display:none;">Meaning</th></tr>
+          <tr><td>Let's get started.</td><td class="viCol" style="display:none;">Bắt đầu thôi.</td></tr>
+          <tr><td>Let's warm up.</td><td class="viCol" style="display:none;">Khởi động nhé.</td></tr>
+          <tr><td>Today we're going to learn…</td><td class="viCol" style="display:none;">Hôm nay chúng ta sẽ học…</td></tr>
+          <tr><td>First… / Next… / Finally…</td><td class="viCol" style="display:none;">Đầu tiên… / Tiếp theo… / Cuối cùng…</td></tr>
+          <tr><td>Let's review.</td><td class="viCol" style="display:none;">Cùng ôn lại nhé.</td></tr>
+          <tr><td>Time's up.</td><td class="viCol" style="display:none;">Hết giờ rồi.</td></tr>
+          <tr><td>Great job today!</td><td class="viCol" style="display:none;">Hôm nay làm rất tốt.</td></tr>
+          <tr><td>See you next lesson.</td><td class="viCol" style="display:none;">Hẹn gặp lại buổi sau.</td></tr>
+        </table>
+        <div class="btn-group"><button class="btn btn-secondary btn-sm" id="btnToggleVi1" onclick="toggleViCols(this)">Show Vietnamese</button></div>
+      </div>
+
+      <div class="exercise">
+        <div class="exercise-title">② Instructions by skill</div>
+        <div class="exercise-instruction">Your tutor uses different commands for each skill. Read them aloud twice.</div>
+        <div class="goal-grid">
+          <div class="goal-card"><div class="ic">👂</div><h4>Listening</h4><p>• Listen carefully and do your practice.<br>• Listen to the audio and repeat.<br>• Listen to me and repeat.</p></div>
+          <div class="goal-card"><div class="ic">🗣️</div><h4>Speaking &amp; Reading</h4><p>• How do you spell it?<br>• What does ___ mean?<br>• Is this correct?<br>• Read aloud. / Read the dialogue.<br>• Repeat after me.<br>• Answer my question.<br>• Look at the screen.<br>• Choose the answer.</p></div>
+          <div class="goal-card"><div class="ic">✍️</div><h4>Writing</h4><p>• Write it down.<br>• Take notes.<br>• Check your spelling.</p></div>
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="exercise-title">③ Asking for thinking time &nbsp;·&nbsp; ④ Responding</div>
+        <div class="exercise-instruction">Never stay silent! If you need time, say one of these — the conversation stays alive.</div>
+        <div class="phrase-card"><span class="phrase-en">Let me think.</span><span class="phrase-vi viTxt" style="display:none;">Để tôi nghĩ đã.</span></div>
+        <div class="phrase-card"><span class="phrase-en">One moment, please.</span><span class="phrase-vi viTxt" style="display:none;">Chờ một chút nhé.</span></div>
+        <div class="phrase-card"><span class="phrase-en">I'm not sure.</span><span class="phrase-vi viTxt" style="display:none;">Tôi không chắc.</span></div>
+        <div class="phrase-card"><span class="phrase-en">I forgot.</span><span class="phrase-vi viTxt" style="display:none;">Tôi quên mất rồi.</span></div>
+        <div class="phrase-card"><span class="phrase-en">I think that…</span><span class="phrase-vi viTxt" style="display:none;">Tôi nghĩ rằng… (dùng khi phản hồi ý kiến)</span></div>
+        <div class="btn-group"><button class="btn btn-secondary btn-sm" onclick="toggleViTxt(this)">Show Vietnamese</button></div>
+      </div>
+
+      <div class="exercise">
+        <div class="exercise-title">⑤ Classroom rules</div>
+        <table class="summary-table">
+          <tr><th>Rule</th><th class="viCol" style="display:none;">Meaning</th></tr>
+          <tr><td>Be on time.</td><td class="viCol" style="display:none;">Đúng giờ.</td></tr>
+          <tr><td>Turn on your camera. (online classes)</td><td class="viCol" style="display:none;">Bật camera.</td></tr>
+          <tr><td>Mute your microphone when you're not speaking.</td><td class="viCol" style="display:none;">Tắt mic khi không nói.</td></tr>
+          <tr><td>Speak English as much as possible.</td><td class="viCol" style="display:none;">Cố gắng nói tiếng Anh nhiều nhất có thể.</td></tr>
+          <tr><td>Don't be afraid to make mistakes.</td><td class="viCol" style="display:none;">Đừng sợ mắc lỗi.</td></tr>
+          <tr><td>Ask questions anytime.</td><td class="viCol" style="display:none;">Hãy hỏi khi chưa hiểu.</td></tr>
+          <tr><td>Practice every day.</td><td class="viCol" style="display:none;">Luyện tập mỗi ngày.</td></tr>
+          <tr><td>Respect everyone.</td><td class="viCol" style="display:none;">Tôn trọng mọi người.</td></tr>
+        </table>
+        <div class="btn-group"><button class="btn btn-secondary btn-sm" onclick="toggleViCols(this)">Show Vietnamese</button></div>
+      </div>
+
+      <div class="exercise" id="ex-l1c">
+        <div class="exercise-title">Quick check — What does the tutor mean?</div>
+        <div class="exercise-instruction">Choose one answer for each question, then press “Show Answers”.</div>
+        <div class="mcq-q" data-correct="1"><div class="qt">1. Your tutor says <b>“Time's up.”</b> What does it mean?</div>
+          <div class="mcq-option">It is time to start</div>
+          <div class="mcq-option">The time is finished — stop now</div>
+          <div class="mcq-option">Look at the clock</div>
+        </div>
+        <div class="mcq-q" data-correct="0"><div class="qt">2. You need time to think. What do you say?</div>
+          <div class="mcq-option">One moment, please.</div>
+          <div class="mcq-option">Time's up.</div>
+          <div class="mcq-option">Great job today!</div>
+        </div>
+        <div class="mcq-q" data-correct="2"><div class="qt">3. Your tutor says <b>“Repeat after me.”</b> You should…</div>
+          <div class="mcq-option">write it down</div>
+          <div class="mcq-option">choose the answer</div>
+          <div class="mcq-option">say the same words after the tutor</div>
+        </div>
+        <div class="mcq-q" data-correct="1"><div class="qt">4. You don’t know the word “schedule”. What do you ask?</div>
+          <div class="mcq-option">How do you spell it?</div>
+          <div class="mcq-option">What does “schedule” mean?</div>
+          <div class="mcq-option">Is this correct?</div>
+        </div>
+        <div class="feedback-box" id="fb-ex-l1c"><div class="score-badge" id="sc-ex-l1c">0/4</div><span id="ms-ex-l1c"></span></div>
+        <div class="btn-group">
+          <button class="btn btn-primary btn-sm" onclick="checkMcq('ex-l1c')">Show Answers</button>
+          <button class="btn btn-outline btn-sm" onclick="resetMcq('ex-l1c')">Reset</button>
+        </div>
+      </div>
+      <div class="btn-group"><button class="btn btn-outline" data-l1tab="l1-intro">← Warm-up</button><button class="btn btn-primary" data-l1tab="l1-spelling">Next: Name &amp; Spelling →</button></div>
+    </div>
+
+    <!-- ===== L1 TAB: NAME & SPELLING ===== -->
+    <div class="tab-panel" data-panel-group="l1tabs" data-panel="l1-spelling">
+      <span class="part-label">Block 1</span>
+      <h2 class="section-title">Spelling your name — the alphabet</h2>
+      <p class="section-sub">In English conversations, people often ask <b>“How do you spell it?”</b>. Learn the alphabet sounds — the yellow letters are the ones Vietnamese learners mix up most.</p>
+
+      <div class="exercise">
+        <div class="exercise-title">The English alphabet</div>
+        <div class="exercise-instruction">Read every letter aloud. Yellow letters = tricky sounds — practice them twice.</div>
+        <div class="alpha-grid" id="alphaGrid"></div>
+      </div>
+
+      <div class="exercise">
+        <div class="exercise-title">⚠️ Easily-confused letters</div>
+        <div class="exercise-instruction">These groups sound similar. Say each group slowly, then fast.</div>
+        <div class="pair-grid">
+          <div class="pair-card"><div class="p">B · P · D</div><div class="h">/biː/ /piː/ /diː/</div></div>
+          <div class="pair-card"><div class="p">T · M · N</div><div class="h">/tiː/ /em/ /en/</div></div>
+          <div class="pair-card"><div class="p">G · J</div><div class="h">/dʒiː/ /dʒeɪ/</div></div>
+          <div class="pair-card"><div class="p">V · F</div><div class="h">/viː/ /ef/</div></div>
+          <div class="pair-card"><div class="p">R · L · Y</div><div class="h">/ɑːr/ /el/ /waɪ/</div></div>
+          <div class="pair-card"><div class="p">I · E</div><div class="h">/aɪ/ /iː/</div></div>
+          <div class="pair-card"><div class="p">H · A</div><div class="h">/eɪtʃ/ /eɪ/</div></div>
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="exercise-title">Spelling practice — 10 names</div>
+        <div class="exercise-instruction">Click a name → spell it <b>aloud</b> letter by letter → the answer appears so you can check yourself.</div>
+        <div class="name-chips" id="nameChips"></div>
+        <div class="spell-out" id="spellOut"><span class="spell-empty">Click a name above, spell it aloud, then check here…</span></div>
+      </div>
+
+      <div class="pron-box">
+        <h4>🔊 Pronunciation focus — B/P · V/F · R/L</h4>
+        <p style="font-size:14px;"><span class="pron-pill">B vs P</span> B uses your voice (<i>bee</i>), P is only air (<i>pee</i>). Put your hand in front of your mouth — P blows more air.</p>
+        <p style="font-size:14px;margin-top:6px;"><span class="pron-pill">V vs F</span> Top teeth touch bottom lip for both — V vibrates, F does not.</p>
+        <p style="font-size:14px;margin-top:6px;"><span class="pron-pill">R vs L</span> R: tongue curls back, never touches. L: tongue tip touches behind the top teeth.</p>
+        <div class="practice-line">Practice: <b>B</b>ao — <b>P</b>hao · <b>V</b>y — <b>F</b>ee · <b>R</b>ight — <b>L</b>ight</div>
+      </div>
+      <div class="btn-group"><button class="btn btn-outline" data-l1tab="l1-classroom">← Classroom Language</button><button class="btn btn-primary" data-l1tab="l1-numbers">Next: Countries &amp; Numbers →</button></div>
+    </div>
+    <!-- ===== L1 TAB: COUNTRIES & NUMBERS ===== -->
+    <div class="tab-panel" data-panel-group="l1tabs" data-panel="l1-numbers">
+      <span class="part-label">Blocks 2 &amp; 3</span>
+      <h2 class="section-title">Countries, nationalities &amp; numbers</h2>
+      <p class="section-sub">Two building blocks of your introduction: <b>where you are from</b> and <b>how to say numbers</b> (age &amp; phone number).</p>
+
+      <div class="exercise">
+        <div class="exercise-title">② Country → Nationality</div>
+        <div class="exercise-instruction">Country = the place. Nationality = the adjective for people. Tap a card to see the pattern in a sentence.</div>
+        <div class="vocab-grid" id="countryGrid"></div>
+        <div class="info-box" style="margin-top:16px;">⚠️ Note: <b>England</b> is one part of the <b>UK</b>. For nationality, say <b>“I'm British.”</b> — not “I am UK person”.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="exercise-title">③ Numbers 1–20</div>
+        <div class="exercise-instruction">Fun fact: <b>12 = twelve</b>, and “a dozen” also means 12 (a dozen eggs!).</div>
+        <div class="num-grid" id="numGrid1"></div>
+      </div>
+
+      <div class="exercise">
+        <div class="exercise-title">Tens (20–90) &amp; building 21–99</div>
+        <div class="num-grid" id="numGrid2"></div>
+        <div class="info-box" style="margin-top:14px;">Build any number 21–99 like LEGO: <b>tens + hyphen + units</b> → 74 = <b>seventy-four</b> · 21 = <b>twenty-one</b> · 99 = <b>ninety-nine</b>.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="exercise-title">Big numbers &amp; 5 special rules</div>
+        <div class="num-grid">
+          <div class="num-card"><div class="d">100</div><div class="w">one hundred</div></div>
+          <div class="num-card"><div class="d">1,000</div><div class="w">one thousand</div></div>
+          <div class="num-card"><div class="d">1,000,000</div><div class="w">one million</div></div>
+        </div>
+        <div style="margin-top:16px;display:grid;gap:10px;">
+          <div class="info-box"><b>A · Hyphen (21–99):</b> 74 → seventy<b>-</b>four. Also: <b>comma</b> for whole numbers (1,000) · <b>dot</b> for decimals (1.5).</div>
+          <div class="info-box"><b>B · “Hundred” never takes -s</b> after a number: two hundred ✓ — two hundreds ✗</div>
+          <div class="info-box"><b>C · “Thousand” never takes -s</b> after a number: five thousand ✓. Only use <i>thousands of people</i> / <i>hundreds of cars</i> for an <b>unknown</b> quantity.</div>
+          <div class="info-box"><b>D · “and” — UK vs US:</b> 325 → UK: three hundred <b>and</b> twenty-five · US: three hundred twenty-five.</div>
+          <div class="info-box"><b>E · Reading 0:</b> <b>zero</b> (maths, temperature) · <b>oh</b> (phone numbers: 0909 = “oh-nine-oh-nine”) · <b>hundred</b> in years (1900 = nineteen hundred).</div>
+        </div>
+      </div>
+
+      <div class="pron-box">
+        <h4>🔊 Pronunciation focus — “-teen” vs “-ty”</h4>
+        <p style="font-size:14px;"><span class="pron-pill">-TEEN</span> stress at the <b>END</b>, long /iː/: thir<b>TEEN</b>, four<b>TEEN</b>, fif<b>TEEN</b></p>
+        <p style="font-size:14px;margin-top:6px;"><span class="pron-pill">-TY</span> stress at the <b>START</b>, short /i/: <b>THIR</b>ty, <b>FOR</b>ty, <b>FIF</b>ty</p>
+        <div class="practice-line">Practice pairs: 13 / 30 · 14 / 40 · 15 / 50 — “I'm thir<b>TEEN</b>” vs “I'm <b>THIR</b>ty” is a big difference!</div>
+      </div>
+
+      <div class="exercise" id="ex-l1n">
+        <div class="exercise-title">Quick check — Numbers &amp; nationalities</div>
+        <div class="exercise-instruction">Choose the correct option, then press “Show Answers”.</div>
+        <div class="mcq-q" data-correct="0"><div class="qt">1. How do you write <b>74</b> in words?</div>
+          <div class="mcq-option">seventy-four</div>
+          <div class="mcq-option">seventy four</div>
+          <div class="mcq-option">seven-four</div>
+        </div>
+        <div class="mcq-q" data-correct="2"><div class="qt">2. Which is correct?</div>
+          <div class="mcq-option">two hundreds people</div>
+          <div class="mcq-option">two hundred of people</div>
+          <div class="mcq-option">two hundred people</div>
+        </div>
+        <div class="mcq-q" data-correct="1"><div class="qt">3. “<b>THIR</b>ty” (stress at the start) is the number…</div>
+          <div class="mcq-option">13</div>
+          <div class="mcq-option">30</div>
+          <div class="mcq-option">33</div>
+        </div>
+        <div class="mcq-q" data-correct="1"><div class="qt">4. She is from Japan. She is…</div>
+          <div class="mcq-option">Japan</div>
+          <div class="mcq-option">Japanese</div>
+          <div class="mcq-option">Japanish</div>
+        </div>
+        <div class="mcq-q" data-correct="2"><div class="qt">5. In a phone number, <b>0</b> is usually read as…</div>
+          <div class="mcq-option">nothing</div>
+          <div class="mcq-option">null</div>
+          <div class="mcq-option">oh</div>
+        </div>
+        <div class="feedback-box" id="fb-ex-l1n"><div class="score-badge" id="sc-ex-l1n">0/5</div><span id="ms-ex-l1n"></span></div>
+        <div class="btn-group">
+          <button class="btn btn-primary btn-sm" onclick="checkMcq('ex-l1n')">Show Answers</button>
+          <button class="btn btn-outline btn-sm" onclick="resetMcq('ex-l1n')">Reset</button>
+        </div>
+      </div>
+      <div class="btn-group"><button class="btn btn-outline" data-l1tab="l1-spelling">← Name &amp; Spelling</button><button class="btn btn-primary" data-l1tab="l1-grammar">Next: Grammar →</button></div>
+    </div>
+
+    <!-- ===== L1 TAB: GRAMMAR ===== -->
+    <div class="tab-panel" data-panel-group="l1tabs" data-panel="l1-grammar">
+      <span class="part-label">Block 4 · Grammar</span>
+      <h2 class="section-title">The minimum sentence: S + V + O</h2>
+      <p class="section-sub">Every English sentence needs at least a <b>Subject</b>, a <b>Verb</b>, and an <b>Object/Complement</b> — like a table needs legs, a top, and something on it.</p>
+
+      <div class="exercise">
+        <div class="exercise-title">Start with an example</div>
+        <div class="builder-stage" style="margin-bottom:16px;"><div class="builder-sentence">I am a student.</div></div>
+        <div class="svo-row">
+          <div class="svo-card"><span class="tag">SUBJECT</span><div class="w">I</div><div class="d">Who does the action / who the sentence is about</div></div>
+          <div class="svo-card"><span class="tag">VERB</span><div class="w">am</div><div class="d">The action or the “to be” link</div></div>
+          <div class="svo-card"><span class="tag">COMPLEMENT</span><div class="w">a student</div><div class="d">Completes the meaning</div></div>
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="exercise-title">Subjects — who can start a sentence?</div>
+        <div class="exercise-instruction">A subject is the “owner” of the sentence. Match each pronoun with its “to be” form.</div>
+        <table class="summary-table">
+          <tr><th>Subject pronoun</th><th>Verb “to be”</th><th>Example</th></tr>
+          <tr><td>I</td><td><b>am</b></td><td>I <b>am</b> 28 years old.</td></tr>
+          <tr><td>He / She / It</td><td><b>is</b></td><td>She <b>is</b> Vietnamese.</td></tr>
+          <tr><td>You / We / They</td><td><b>are</b></td><td>They <b>are</b> my friends.</td></tr>
+        </table>
+      </div>
+
+      <div class="exercise">
+        <div class="exercise-title">“To be” vs regular verbs</div>
+        <div class="goal-grid">
+          <div class="goal-card"><div class="ic">🔗</div><h4>Verb “to be” (am/is/are)</h4><p>A <b>linking verb</b> — it connects the subject to information (name, age, job, nationality, feeling).<br><i>I <b>am</b> a teacher. · He <b>is</b> 30.</i></p></div>
+          <div class="goal-card"><div class="ic">🏃</div><h4>Regular (action) verbs</h4><p>They show an <b>action</b>: live, work, teach, play, like.<br><i>I <b>live</b> in Ho Chi Minh City. · I <b>work</b> for a Canadian company.</i></p></div>
+        </div>
+        <div class="info-box" style="margin-top:14px;">🧩 One sentence uses <b>one main verb</b> — never say “I am live in HCMC” ✗. Choose: “I <b>am</b> from HCMC” ✓ or “I <b>live</b> in HCMC” ✓.</div>
+      </div>
+
+      <div class="exercise">
+        <div class="exercise-title">In real communication — age, phone number, year</div>
+        <div class="phrase-card"><span class="phrase-en">I'm 28 years old.</span><span class="phrase-vi">age → to be + number + years old</span></div>
+        <div class="phrase-card"><span class="phrase-en">My phone number is 0909-123-456.</span><span class="phrase-vi">read digit by digit, 0 = “oh”</span></div>
+        <div class="phrase-card"><span class="phrase-en">You can reach me at 0909-123-456.</span><span class="phrase-vi">a natural alternative</span></div>
+      </div>
+
+      <div class="exercise" id="ex-l1g">
+        <div class="exercise-title">Quick check — Grammar</div>
+        <div class="exercise-instruction">Choose the correct option, then press “Show Answers”.</div>
+        <div class="mcq-q" data-correct="1"><div class="qt">1. In “I am a student”, the word <b>am</b> is the…</div>
+          <div class="mcq-option">subject</div>
+          <div class="mcq-option">verb</div>
+          <div class="mcq-option">complement</div>
+        </div>
+        <div class="mcq-q" data-correct="0"><div class="qt">2. She ___ a doctor.</div>
+          <div class="mcq-option">is</div>
+          <div class="mcq-option">am</div>
+          <div class="mcq-option">are</div>
+        </div>
+        <div class="mcq-q" data-correct="2"><div class="qt">3. Which sentence is correct?</div>
+          <div class="mcq-option">I am live in Hanoi.</div>
+          <div class="mcq-option">I live am in Hanoi.</div>
+          <div class="mcq-option">I live in Hanoi.</div>
+        </div>
+        <div class="feedback-box" id="fb-ex-l1g"><div class="score-badge" id="sc-ex-l1g">0/3</div><span id="ms-ex-l1g"></span></div>
+        <div class="btn-group">
+          <button class="btn btn-primary btn-sm" onclick="checkMcq('ex-l1g')">Show Answers</button>
+          <button class="btn btn-outline btn-sm" onclick="resetMcq('ex-l1g')">Reset</button>
+        </div>
+      </div>
+      <div class="btn-group"><button class="btn btn-outline" data-l1tab="l1-numbers">← Countries &amp; Numbers</button><button class="btn btn-primary" data-l1tab="l1-speaking">Next: Practice &amp; Speaking →</button></div>
+    </div>
+
+    <!-- ===== L1 TAB: PRACTICE & SPEAKING ===== -->
+    <div class="tab-panel" data-panel-group="l1tabs" data-panel="l1-speaking">
+      <span class="part-label">Real-world communication</span>
+      <h2 class="section-title">Introduce yourself — template → practice → challenge</h2>
+
+      <div class="exercise">
+        <div class="exercise-title">Your introduction template</div>
+        <div class="exercise-instruction">Build your introduction line by line. Read each pattern aloud with YOUR information.</div>
+        <div class="tmpl-line"><span class="k">NAME</span><span class="v">I'm… / You can call me…</span></div>
+        <div class="tmpl-line"><span class="k">AGE</span><span class="v">I'm … years old.</span></div>
+        <div class="tmpl-line"><span class="k">NATIONALITY</span><span class="v">I'm + nationality (I'm Vietnamese.)</span></div>
+        <div class="tmpl-line"><span class="k">CITY</span><span class="v">I live in …</span></div>
+        <div class="tmpl-line"><span class="k">JOB</span><span class="v">I'm a … / I work as a …</span></div>
+        <div class="tmpl-line"><span class="k">PHONE</span><span class="v">My number is… / You can reach me at…</span></div>
+        <div class="info-box" style="margin-top:14px;"><b>The 4 “work” prepositions</b> — like 4 different keys for 4 different doors:<br>• work <b>as</b> + a/an + job title → I work <b>as</b> a foreign trainer<br>• work <b>in</b> + department → I work <b>in</b> the Training Department<br>• work <b>for</b> + company → I work <b>for</b> a Canadian company<br>• work <b>at</b> + place → I work <b>at</b> the downtown office</div>
+        <div style="margin-top:16px;">
+          <button class="btn btn-secondary btn-sm" onclick="toggleReveal('l1sample',this)">Show sample introduction</button>
+          <div class="reveal-block" id="l1sample" style="margin-top:12px;">
+            <div class="sample-box">👋 “Hi, I'm Nhân — spelled N-H-A-N. I'm 28 years old. I'm Vietnamese. I live in Ho Chi Minh City. I work as a foreign trainer in the Training Department for a Canadian company. I teach English and Chinese.”</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exercise" id="ex-l1m">
+        <div class="exercise-title">Fix the common mistakes</div>
+        <div class="exercise-instruction">These are the 6 most common beginner mistakes. Choose the CORRECT sentence in each pair.</div>
+        <div class="mcq-q" data-correct="1"><div class="qt">1.</div>
+          <div class="mcq-option">I'm 25 years olds.</div>
+          <div class="mcq-option">I'm 25 years old.</div>
+        </div>
+        <div class="mcq-q" data-correct="0"><div class="qt">2.</div>
+          <div class="mcq-option">I'm from Vietnam.</div>
+          <div class="mcq-option">I am Vietnam.</div>
+        </div>
+        <div class="mcq-q" data-correct="1"><div class="qt">3.</div>
+          <div class="mcq-option">I am Vietnam person.</div>
+          <div class="mcq-option">I'm Vietnamese.</div>
+        </div>
+        <div class="mcq-q" data-correct="0"><div class="qt">4.</div>
+          <div class="mcq-option">My phone number is 0909…</div>
+          <div class="mcq-option">My phone is 0909…</div>
+        </div>
+        <div class="mcq-q" data-correct="1"><div class="qt">5.</div>
+          <div class="mcq-option">I work in Samsung.</div>
+          <div class="mcq-option">I work for Samsung.</div>
+        </div>
+        <div class="mcq-q" data-correct="0"><div class="qt">6.</div>
+          <div class="mcq-option">I work in the HR department.</div>
+          <div class="mcq-option">I work at the HR department.</div>
+        </div>
+        <div class="feedback-box" id="fb-ex-l1m"><div class="score-badge" id="sc-ex-l1m">0/6</div><span id="ms-ex-l1m"></span></div>
+        <div class="btn-group">
+          <button class="btn btn-primary btn-sm" onclick="checkMcq('ex-l1m')">Show Answers</button>
+          <button class="btn btn-outline btn-sm" onclick="resetMcq('ex-l1m')">Reset</button>
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="exercise-title">🎤 Final Speaking Challenge — 30 seconds, no notes!</div>
+        <div class="exercise-instruction">Introduce yourself in 30 seconds. Include ALL five items. Do not look at your notes. Start the timer and speak!</div>
+        <div class="goal-grid" style="margin-bottom:16px;">
+          <div class="goal-card" style="padding:14px;"><p>✔ name &nbsp; ✔ country &nbsp; ✔ city &nbsp; ✔ job &nbsp; ✔ phone number</p></div>
+        </div>
+        <div class="count-row">
+          <div class="count-display" id="timerL1">00:30</div>
+          <button class="preset-pill active" onclick="setPreset('L1',30,this)">30 sec</button>
+          <button class="preset-pill" onclick="setPreset('L1',40,this)">40 sec</button>
+          <button class="btn-start" onclick="startTimer('L1')">▶ Start</button>
+          <button class="btn-timer-reset" onclick="resetTimer('L1')">↺ Reset</button>
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="exercise-title">Speaking checklist</div>
+        <label class="check-item"><input type="checkbox" class="l1check"> I used today's vocabulary.</label>
+        <label class="check-item"><input type="checkbox" class="l1check"> I used complete sentences (S + V + O).</label>
+        <label class="check-item"><input type="checkbox" class="l1check"> My pronunciation was clear (B/P, V/F, R/L, -teen/-ty).</label>
+        <label class="check-item"><input type="checkbox" class="l1check"> I answered naturally.</label>
+        <label class="check-item"><input type="checkbox" class="l1check"> I spoke confidently for 30 seconds.</label>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-outline" data-l1tab="l1-grammar">← Grammar</button>
+        <button class="btn btn-primary" data-l1tab="l1-discussion">Next: Discussion →</button>
+      </div>
+    </div>
+
+    <!-- ===== L1 TAB: DISCUSSION ===== -->
+    <div class="tab-panel" data-panel-group="l1tabs" data-panel="l1-discussion">
+      <span class="part-label">Part 7 · Discussion</span>
+      <h2 class="section-title">Put it all together</h2>
+      <p class="section-sub">Two final challenges: first READ everything from this lesson inside one story, then SPEAK with zero preparation time.</p>
+      <div class="tab-bar" data-group="l1disc">
+        <button class="tab-btn active" data-tab="l1d-passage">7A · Context Passage</button>
+        <button class="tab-btn" data-tab="l1d-reflex">7B · Reflex Practice</button>
+      </div>
+
+      <!-- --- 7A: Comprehensive Context Passage --- -->
+      <div class="tab-panel active" data-panel-group="l1disc" data-panel="l1d-passage">
+        <div class="exercise">
+          <div class="exercise-title">📖 Comprehensive Context Passage — “My First English Class”</div>
+          <div class="info-box" style="margin-bottom:14px;">Every word, phrase and structure from this lesson lives inside ONE story. Read it aloud twice — first slowly, then at natural speed. The colors show you what each piece is.</div>
+          <div style="font-size:12.5px;color:var(--text-soft);margin-bottom:12px;"><b>Color legend:</b> <span class="hl-vocab">classroom language</span> · <span class="hl-phrase">survival phrases</span> · <span class="hl-pron">spelling &amp; numbers</span> · <span class="hl-accent">S + V + O / “to be”</span></div>
+          <div class="sample-box" style="line-height:2.1;">
+            It is my first English class. The tutor smiles and says, <span class="hl-vocab">“Let's get started.”</span> <span class="hl-vocab">“Today we're going to learn</span> how to introduce ourselves.” <span class="hl-accent">I am a student</span> in this course, so here is my introduction: <span class="hl-accent">I'm Nhân</span> — spelled <span class="hl-pron">N-H-A-N</span>. <span class="hl-accent">I'm 28 years old</span>. <span class="hl-accent">I'm Vietnamese</span>, and I live in Ho Chi Minh City. I <span class="hl-accent">work as</span> a trainer in the Training Department <span class="hl-accent">for</span> a Canadian company. My phone number is <span class="hl-pron">oh-nine-oh-nine, one-two-three</span> — I read every digit slowly, because <span class="hl-pron">thirteen</span> and <span class="hl-pron">thirty</span> sound so similar! When the tutor speaks too fast, I don't panic. I say, <span class="hl-phrase">“One moment, please”</span> or <span class="hl-phrase">“Let me think.”</span> When I don't know a word, I ask, <span class="hl-phrase">“What does it mean?”</span> The tutor explains and says, <span class="hl-vocab">“Repeat after me”</span> — so I <span class="hl-vocab">read aloud</span> and <span class="hl-vocab">take notes</span> carefully. At the end of class, the tutor smiles: <span class="hl-vocab">“Time's up. Great job today! See you next lesson.”</span>
+          </div>
+        </div>
+        <div class="btn-group"><button class="btn btn-primary" data-l1disc="l1d-reflex">Next: 7B · Reflex Practice →</button></div>
+      </div>
+
+      <!-- --- 7B: Reflex Practice --- -->
+      <div class="tab-panel" data-panel-group="l1disc" data-panel="l1d-reflex">
+        <div class="info-box" style="margin-bottom:16px;">🎯 <b>Goal: speak IMMEDIATELY.</b> No time to write, no time to prepare a sentence first — just like a real conversation.</div>
+        <div class="tab-bar" data-group="l1reflex">
+          <button class="tab-btn active" data-tab="l1r-t1">Tier 1 · Lucky Draw</button>
+          <button class="tab-btn" data-tab="l1r-t2">Tier 2 · Extended Speaking</button>
+        </div>
+
+        <div class="tab-panel active" data-panel-group="l1reflex" data-panel="l1r-t1">
+          <div class="draw-grid">
+            <div class="draw-zone">
+              <span class="alt-badge">IN-CLASS ALTERNATIVE: DRAW PAPER CARDS</span>
+              <h4>📚 Zone 1 — Vocabulary Review</h4>
+              <div class="zone-desc">Draw a word → make ONE full sentence with it, or translate it aloud instantly.</div>
+              <button class="draw-btn" onclick="drawWord('L1')">DRAW A<br>WORD</button>
+              <div class="draw-result" id="drawWordResultL1"><span class="small">Your word will appear here…</span></div>
+            </div>
+            <div class="draw-zone">
+              <span class="alt-badge">IN-CLASS ALTERNATIVE: DRAW PAPER CARDS</span>
+              <h4>💬 Zone 2 — Speaking Situations</h4>
+              <div class="zone-desc">Draw a situation → respond with a COMPLETE sentence using today's phrases. One-word answers don't count!</div>
+              <button class="draw-btn" onclick="drawSituation('L1')">DRAW A<br>SITUATION</button>
+              <div class="draw-result" id="drawSitResultL1"><span class="small">Your situation will appear here…</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-panel-group="l1reflex" data-panel="l1r-t2">
+          <div class="exercise">
+            <div class="exercise-title">🎤 Extended speaking — introduce yourself to the class</div>
+            <div class="info-box" style="margin-bottom:12px;">🗺️ <b>Your task:</b> Introduce yourself to the class — name (spell it!) + age + nationality + city + job + phone number. Keep talking until the timer ends.</div>
+            <div class="tier2-hint"><b>💡 Use today's words &amp; structures:</b> I'm… , spelled … · I'm … years old · I'm Vietnamese · I live in … · I work as a … in the … department for a … company · My number is … / You can reach me at …</div>
+            <div class="count-row">
+              <div class="count-display" id="timerL1R">01:00</div>
+              <button class="preset-pill active" onclick="setPreset('L1R',60,this)">1 min</button>
+              <button class="preset-pill" onclick="setPreset('L1R',120,this)">2 min</button>
+              <button class="preset-pill" onclick="setPreset('L1R',180,this)">3 min</button>
+              <button class="btn-start" onclick="startTimer('L1R')">▶ Start</button>
+              <button class="btn-timer-reset" onclick="resetTimer('L1R')">↺ Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise" style="margin-top:22px;">
+          <div class="exercise-title">📋 Lesson summary</div>
+          <table class="summary-table">
+            <tr><td>Estimated duration</td><td>90 minutes</td></tr>
+            <tr><td>Vocabulary learned</td><td>Classroom language (routine, instructions, survival phrases, rules) · countries &amp; nationalities · numbers 1–1,000,000</td></tr>
+            <tr><td>Grammar focus</td><td>The minimum sentence S + V + O · subject pronouns · “to be” vs regular verbs · work as/in/for/at</td></tr>
+            <tr><td>Pronunciation focus</td><td>B/P · V/F · R/L · “-teen” vs “-ty” stress</td></tr>
+            <tr><td>Communication functions</td><td>Self-introduction · spelling your name · saying age &amp; phone number · classroom survival</td></tr>
+            <tr><td>Interaction types</td><td>Flip cards · spelling board · MCQ · context passage · shuffle-bag draw · timed speaking</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-outline" data-l1tab="l1-speaking">← Practice &amp; Speaking</button>
+        <button class="btn btn-primary" onclick="markComplete('lesson1',this)">✓ Mark Lesson Complete</button>
+        <button class="btn btn-outline" data-page="phase1">← Back to Phase 1</button>
+        <button class="btn btn-secondary" data-page="lesson2">Next lesson: Lesson 2 →</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ================= PAGE: LESSON 2 ================= -->
+<div class="page" id="page-lesson2">
+  <div class="hero">
+    <div class="meta">
+      <span class="badge badge-mint">PHASE 1 · MODULE 1 · LESSON 2</span>
+      <span class="badge badge-white">CEFR A2</span>
+      <span class="badge badge-white">⏱ 90 MIN</span>
+    </div>
+    <h1>Introductions with DOB, Numbers &amp; Your Hobby</h1>
+    <p class="sub">Add your date of birth to your introduction, then learn the “sentence expansion” system: start from S + V + O and grow one simple sentence into a rich, natural one.</p>
+    <div class="outcomes">
+      <span class="badge badge-white">Vocabulary</span>
+      <span class="badge badge-white">Sentence Building</span>
+      <span class="badge badge-white">Grammar</span>
+      <span class="badge badge-white">Speaking</span>
+    </div>
+  </div>
+  <div class="section">
+    <div class="tab-bar" data-group="l2tabs">
+      <button class="tab-btn active" data-tab="l2-intro">1 · Warm-up</button>
+      <button class="tab-btn" data-tab="l2-vocab">2 · Hobby Vocabulary</button>
+      <button class="tab-btn" data-tab="l2-builder">3 · Sentence Builder</button>
+      <button class="tab-btn" data-tab="l2-grammar">4 · Grammar Notes</button>
+      <button class="tab-btn" data-tab="l2-practice">5 · Practice</button>
+      <button class="tab-btn" data-tab="l2-speaking">6 · Speaking</button>
+      <button class="tab-btn" data-tab="l2-discussion">7 · Discussion</button>
+    </div>
+
+    <!-- ===== L2 TAB: WARM-UP ===== -->
+    <div class="tab-panel active" data-panel-group="l2tabs" data-panel="l2-intro">
+      <span class="part-label">Lesson goals</span>
+      <h2 class="section-title">After this lesson, you can…</h2>
+      <div class="exercise">
+        <label class="check-item"><input type="checkbox" class="l2goal"> ✅ Introduce yourself with your date of birth</label>
+        <label class="check-item"><input type="checkbox" class="l2goal"> ✅ Say your age and phone number with cardinal numbers</label>
+        <label class="check-item"><input type="checkbox" class="l2goal"> ✅ Talk about your hobby with rich, natural expressions</label>
+        <label class="check-item"><input type="checkbox" class="l2goal"> ✅ Expand a simple sentence: frequency → manner → place → time → purpose</label>
+      </div>
+
+      <div class="exercise">
+        <div class="exercise-title">Warm-up review — your introduction, now with DOB</div>
+        <div class="exercise-instruction">Lesson 1 gave you the introduction template. Today we add one more line: your <b>date of birth</b>, using the cardinal numbers you learned.</div>
+        <div class="tmpl-line"><span class="k">NAME</span><span class="v">I'm… / You can call me…</span></div>
+        <div class="tmpl-line"><span class="k">AGE</span><span class="v">I'm … years old.</span></div>
+        <div class="tmpl-line"><span class="k">DOB · NEW</span><span class="v">I was born in 1998. — “nineteen ninety-eight” (read the year in two pairs)</span></div>
+        <div class="tmpl-line"><span class="k">JOB</span><span class="v">I work as a … in the … department for a … company.</span></div>
+        <div class="info-box" style="margin-top:14px;">🔢 <b>Reading years with cardinal numbers:</b> 1998 → nineteen | ninety-eight · 2001 → two thousand and one · 2026 → twenty | twenty-six. Like reading a phone number in chunks, not digit by digit.</div>
+      </div>
+      <div class="btn-group"><button class="btn btn-primary" data-l2tab="l2-vocab">Next: Hobby Vocabulary →</button></div>
+    </div>
+
+    <!-- ===== L2 TAB: VOCAB ===== -->
+    <div class="tab-panel" data-panel-group="l2tabs" data-panel="l2-vocab">
+      <span class="part-label">Part 1 · Language input</span>
+      <h2 class="section-title">5 hobbies — talk like a native, not a textbook</h2>
+      <p class="section-sub">Instead of only “I play games”, learn the natural expressions people really use. <b>Tap a card</b> to flip it and see the Vietnamese meaning + example.</p>
+
+      <h3 style="color:var(--forest);font-size:16px;margin:6px 0 12px;">🎮 Hobby 1 — Play games</h3>
+      <div class="vocab-grid" id="vocabGames"></div>
+      <h3 style="color:var(--forest);font-size:16px;margin:22px 0 12px;">🎬 Hobby 2 — Watch movies</h3>
+      <div class="vocab-grid" id="vocabMovies"></div>
+      <h3 style="color:var(--forest);font-size:16px;margin:22px 0 12px;">🎵 Hobby 3 — Listen to music</h3>
+      <div class="vocab-grid" id="vocabMusic"></div>
+      <h3 style="color:var(--forest);font-size:16px;margin:22px 0 12px;">💪 Hobby 4 — Work out</h3>
+      <div class="vocab-grid" id="vocabGym"></div>
+      <h3 style="color:var(--forest);font-size:16px;margin:22px 0 12px;">🏞️ Hobby 5 — Outdoor activities</h3>
+      <div class="vocab-grid" id="vocabOutdoor"></div>
+
+      <div class="info-box" style="margin-top:18px;">🏓 <b>What is pickleball?</b> Pickleball is a paddle sport that combines elements of tennis, badminton, and ping-pong. <button class="btn btn-secondary btn-sm" onclick="toggleReveal('pickleVi',this)" style="margin-left:8px;">VI</button><span class="reveal-block" id="pickleVi" style="display:none;"> — Pickleball là một môn thể thao dùng vợt, kết hợp các yếu tố của quần vợt, cầu lông và bóng bàn.</span></div>
+
+      <div class="exercise" id="ex-l2v" style="margin-top:20px;">
+        <div class="exercise-title">Quick check — Hobby expressions</div>
+        <div class="exercise-instruction">Choose the best answer, then press “Show Answers”.</div>
+        <div class="mcq-q" data-correct="1"><div class="qt">1. “I <b>binge-watch</b> a series” means I watch it…</div>
+          <div class="mcq-option">once a month</div>
+          <div class="mcq-option">many episodes non-stop</div>
+          <div class="mcq-option">only the first episode</div>
+        </div>
+        <div class="mcq-q" data-correct="0"><div class="qt">2. “I got <b>hooked on</b> that game” means…</div>
+          <div class="mcq-option">I can't stop playing it</div>
+          <div class="mcq-option">I deleted it</div>
+          <div class="mcq-option">I never played it</div>
+        </div>
+        <div class="mcq-q" data-correct="2"><div class="qt">3. Which one means “to relax after stress”?</div>
+          <div class="mcq-option">rank up</div>
+          <div class="mcq-option">team up</div>
+          <div class="mcq-option">unwind</div>
+        </div>
+        <div class="mcq-q" data-correct="0"><div class="qt">4. “I hit the gym <b>to stay in shape</b>” — the reason is…</div>
+          <div class="mcq-option">to keep my body fit and healthy</div>
+          <div class="mcq-option">to change the gym's shape</div>
+          <div class="mcq-option">to draw shapes</div>
+        </div>
+        <div class="mcq-q" data-correct="1"><div class="qt">5. “I play games <b>just for kicks</b>” means I play…</div>
+          <div class="mcq-option">to win money</div>
+          <div class="mcq-option">just for fun</div>
+          <div class="mcq-option">to kick something</div>
+        </div>
+        <div class="feedback-box" id="fb-ex-l2v"><div class="score-badge" id="sc-ex-l2v">0/5</div><span id="ms-ex-l2v"></span></div>
+        <div class="btn-group">
+          <button class="btn btn-primary btn-sm" onclick="checkMcq('ex-l2v')">Show Answers</button>
+          <button class="btn btn-outline btn-sm" onclick="resetMcq('ex-l2v')">Reset</button>
+        </div>
+      </div>
+      <div class="btn-group"><button class="btn btn-outline" data-l2tab="l2-intro">← Warm-up</button><button class="btn btn-primary" data-l2tab="l2-builder">Next: Sentence Builder →</button></div>
+    </div>
+
+    <!-- ===== L2 TAB: SENTENCE BUILDER ===== -->
+    <div class="tab-panel" data-panel-group="l2tabs" data-panel="l2-builder">
+      <span class="part-label">Core grammar · interactive</span>
+      <h2 class="section-title">Grow one sentence, step by step</h2>
+      <p class="section-sub">The magic formula: <b>[Subject] + [Frequency] + [Verb] + [Object] + [Manner] + [Place] + [Time] + [Purpose]</b>. Watch a 3-word sentence become a rich, natural one — like adding toppings to a plain bowl of phở.</p>
+
+      <div class="exercise">
+        <div class="exercise-title">🧱 Interactive builder — “I play games”</div>
+        <div class="exercise-instruction">Press each button in order. Watch WHERE the new words go, and read the sentence aloud after every step.</div>
+        <div class="builder-stage">
+          <div class="builder-sentence" id="builderSentence">I play games.</div>
+          <div class="builder-explain"><div class="info-box" id="builderExplain" style="text-align:left;">Base sentence — Subject (<b>I</b>) + Verb (<b>play</b>) + Object (<b>games</b>). This is the LEGO base brick.</div></div>
+          <div class="layer-btns" id="layerBtns"></div>
+          <div class="btn-group" style="justify-content:center;"><button class="btn btn-outline btn-sm" onclick="resetBuilder()">↺ Restart builder</button></div>
+        </div>
+        <div style="margin-top:14px;font-size:12.5px;color:var(--text-soft);">Color legend: <span class="hl-vocab">frequency</span> · <span class="hl-accent">manner</span> · <span class="hl-pron">place</span> · <span class="hl-phrase">time</span> · <b>purpose in bold</b></div>
+      </div>
+
+      <div class="exercise">
+        <div class="exercise-title">The final sentence, layer by layer</div>
+        <table class="summary-table">
+          <tr><th>Step</th><th>Added piece</th><th>Sentence</th></tr>
+          <tr><td>Base (S+V+O)</td><td>—</td><td>I play games.</td></tr>
+          <tr><td>+ Frequency</td><td>usually</td><td>I <b>usually</b> play games.</td></tr>
+          <tr><td>+ People</td><td>with my friends</td><td>I usually play games <b>with my friends</b>.</td></tr>
+          <tr><td>+ Manner</td><td>happily</td><td>I usually play games <b>happily</b> with my friends.</td></tr>
+          <tr><td>+ Place</td><td>on PC</td><td>I usually play games happily with my friends <b>on PC</b>.</td></tr>
+          <tr><td>+ Time</td><td>every weekend</td><td>… on PC <b>every weekend</b>.</td></tr>
+          <tr><td>+ Purpose</td><td>to unwind</td><td>… every weekend <b>to unwind</b>.</td></tr>
+        </table>
+      </div>
+      <div class="btn-group"><button class="btn btn-outline" data-l2tab="l2-vocab">← Hobby Vocabulary</button><button class="btn btn-primary" data-l2tab="l2-grammar">Next: Grammar Notes →</button></div>
+    </div>
+
+    <!-- ===== L2 TAB: GRAMMAR NOTES ===== -->
+    <div class="tab-panel" data-panel-group="l2tabs" data-panel="l2-grammar">
+      <span class="part-label">Grammar theory</span>
+      <h2 class="section-title">Adverbs — the “seasoning words”</h2>
+      <p class="section-sub">Adverbs (trạng từ/phó từ — revealed below) add flavor to a verb, an adjective, or another adverb — like seasoning added to a finished dish. Many end in <b>-ly</b>.</p>
+      <div class="goal-grid">
+        <div class="goal-card"><div class="ic">🔁</div><h4>Adverbs of Frequency</h4><p>How often? Placed <b>before the main verb</b>.<br><span class="hl-vocab">always</span> · <span class="hl-vocab">usually</span> · <span class="hl-vocab">sometimes</span> · <span class="hl-vocab">never</span><br><i>I <b>usually</b> play games.</i></p></div>
+        <div class="goal-card"><div class="ic">🎨</div><h4>Adverbs of Manner</h4><p>How? Answers “How?” — usually ends in <b>-ly</b>.<br><span class="hl-accent">happily</span> · <span class="hl-accent">beautifully</span> · <span class="hl-accent">carefully</span> · <span class="hl-accent">badly</span><br><i>She sings <b>beautifully</b>.</i></p></div>
+        <div class="goal-card"><div class="ic">🕐</div><h4>Adverbs of Time</h4><p>When? Usually at the <b>end</b> of the sentence.<br><span class="hl-phrase">now</span> · <span class="hl-phrase">yesterday</span> · <span class="hl-phrase">every weekend</span> · <span class="hl-phrase">on Saturday</span></p></div>
+        <div class="goal-card"><div class="ic">🎯</div><h4>Purpose</h4><p>Why? Two patterns:<br>• <b>to + verb</b> → I play <b>to unwind</b>.<br>• <b>for + noun</b> → I play <b>for fun</b> / <b>just for kicks</b>.</p></div>
+      </div>
+      <div class="btn-group" style="margin-top:8px;"><button class="btn btn-secondary btn-sm" onclick="toggleReveal('advVi',this)">Show Vietnamese explanation</button></div>
+      <div class="reveal-block" id="advVi" style="margin-top:10px;">
+        <div class="info-box">Trạng từ (phó từ) là những từ bổ nghĩa cho động từ, tính từ, hoặc một trạng từ khác — thường có đuôi <b>-ly</b>. Trạng từ tần suất đứng <b>trước động từ chính</b>; trạng từ thời gian thường đứng <b>cuối câu</b>; mục đích dùng <b>to + V-inf</b> (để làm gì) hoặc <b>for + Noun</b> (cho cái gì).</div>
+      </div>
+      <div class="btn-group"><button class="btn btn-outline" data-l2tab="l2-builder">← Sentence Builder</button><button class="btn btn-primary" data-l2tab="l2-practice">Next: Practice →</button></div>
+    </div>
+    <!-- ===== L2 TAB: PRACTICE ===== -->
+    <div class="tab-panel" data-panel-group="l2tabs" data-panel="l2-practice">
+      <span class="part-label">Guided practice</span>
+      <h2 class="section-title">Build the sentences yourself</h2>
+
+      <div class="exercise" id="ex-l2o">
+        <div class="exercise-title">Word order — put the sentence back together</div>
+        <div class="exercise-instruction">Click the pieces in the correct order to rebuild the full sentence. Click a placed piece to send it back.</div>
+        <div class="order-pool" id="orderPool"></div>
+        <div class="order-line" id="orderLine"></div>
+        <div class="feedback-box" id="fb-order"><div class="score-badge" id="sc-order">—</div><span id="ms-order"></span></div>
+        <div class="btn-group">
+          <button class="btn btn-primary btn-sm" onclick="checkOrder()">Check</button>
+          <button class="btn btn-outline btn-sm" onclick="resetOrder()">Reset</button>
+        </div>
+      </div>
+
+      <div class="exercise" id="ex-l2p">
+        <div class="exercise-title">Complete the model sentences (4 hobbies)</div>
+        <div class="exercise-instruction">Each sentence follows the formula: Frequency → Action → Manner → Place → Time → Purpose. Choose the missing piece.</div>
+        <div class="mcq-q" data-correct="1"><div class="qt">1. 🎬 I sometimes binge-watch my favorite series comfortably on streaming platforms at night ___.</div>
+          <div class="mcq-option">to rank up</div>
+          <div class="mcq-option">to unwind after a busy day</div>
+          <div class="mcq-option">to check my spelling</div>
+        </div>
+        <div class="mcq-q" data-correct="0"><div class="qt">2. 🎵 I always tune in to my favorite songs happily on my phone every morning ___.</div>
+          <div class="mcq-option">to boost my mood</div>
+          <div class="mcq-option">to stay in line</div>
+          <div class="mcq-option">to team up with friends</div>
+        </div>
+        <div class="mcq-q" data-correct="2"><div class="qt">3. 💪 I usually hit the gym hard at the local fitness center after work ___.</div>
+          <div class="mcq-option">to binge-watch</div>
+          <div class="mcq-option">to get hooked</div>
+          <div class="mcq-option">to stay in shape</div>
+        </div>
+        <div class="mcq-q" data-correct="1"><div class="qt">4. 🏞️ I sometimes join outdoor activities enthusiastically in the local park on Sunday mornings ___.</div>
+          <div class="mcq-option">to climb the rank</div>
+          <div class="mcq-option">to get some fresh air</div>
+          <div class="mcq-option">to keep my phone</div>
+        </div>
+        <div class="mcq-q" data-correct="0"><div class="qt">5. Where does the adverb of FREQUENCY go? “I ___ play games.”</div>
+          <div class="mcq-option">usually → before the main verb</div>
+          <div class="mcq-option">every weekend → before the main verb</div>
+          <div class="mcq-option">on PC → before the main verb</div>
+        </div>
+        <div class="feedback-box" id="fb-ex-l2p"><div class="score-badge" id="sc-ex-l2p">0/5</div><span id="ms-ex-l2p"></span></div>
+        <div class="btn-group">
+          <button class="btn btn-primary btn-sm" onclick="checkMcq('ex-l2p')">Show Answers</button>
+          <button class="btn btn-outline btn-sm" onclick="resetMcq('ex-l2p')">Reset</button>
+        </div>
+      </div>
+
+      <div class="exercise">
+        <div class="exercise-title">The 4 model sentences — read aloud twice</div>
+        <div class="phrase-card"><span class="phrase-en">🎬 I sometimes binge-watch my favorite series comfortably on streaming platforms at night to unwind after a busy day.</span></div>
+        <div class="phrase-card"><span class="phrase-en">🎵 I always tune in to my favorite songs happily on my phone every morning to boost my mood.</span></div>
+        <div class="phrase-card"><span class="phrase-en">💪 I usually hit the gym hard at the local fitness center after work to stay in shape.</span></div>
+        <div class="phrase-card"><span class="phrase-en">🏞️ I sometimes join outdoor activities enthusiastically in the local park on Sunday mornings to get some fresh air.</span></div>
+      </div>
+      <div class="btn-group"><button class="btn btn-outline" data-l2tab="l2-grammar">← Grammar Notes</button><button class="btn btn-primary" data-l2tab="l2-speaking">Next: Speaking →</button></div>
+    </div>
+
+    <!-- ===== L2 TAB: SPEAKING (guided) ===== -->
+    <div class="tab-panel" data-panel-group="l2tabs" data-panel="l2-speaking">
+      <span class="part-label">Guided speaking</span>
+      <h2 class="section-title">Answer with FULL expanded sentences</h2>
+      <p class="section-sub">Answer each question aloud. One-word answers don't count — use at least 3 layers of the formula (frequency / manner / place / time / purpose). Reveal the model answer only AFTER you speak.</p>
+
+      <div class="exercise">
+        <div class="exercise-title">🗣️ Five questions about YOU</div>
+        <div class="exercise-instruction">Read the question aloud → answer immediately in a full sentence → check the model.</div>
+        <div class="phrase-card"><span class="phrase-en">1. What do you usually do on weekends?</span><button class="btn btn-secondary btn-sm" onclick="toggleReveal('l2q1',this)" style="margin-left:auto;">Show model</button></div>
+        <div class="reveal-block" id="l2q1"><div class="sample-box" style="margin-bottom:10px;">I usually play games with my friends on PC every weekend to unwind.</div></div>
+        <div class="phrase-card"><span class="phrase-en">2. How often do you watch movies or series?</span><button class="btn btn-secondary btn-sm" onclick="toggleReveal('l2q2',this)" style="margin-left:auto;">Show model</button></div>
+        <div class="reveal-block" id="l2q2"><div class="sample-box" style="margin-bottom:10px;">I sometimes binge-watch my favorite series comfortably on streaming platforms at night.</div></div>
+        <div class="phrase-card"><span class="phrase-en">3. Who do you usually do your hobby with?</span><button class="btn btn-secondary btn-sm" onclick="toggleReveal('l2q3',this)" style="margin-left:auto;">Show model</button></div>
+        <div class="reveal-block" id="l2q3"><div class="sample-box" style="margin-bottom:10px;">I usually team up with my close friends — we play together every Friday night.</div></div>
+        <div class="phrase-card"><span class="phrase-en">4. When and where do you exercise?</span><button class="btn btn-secondary btn-sm" onclick="toggleReveal('l2q4',this)" style="margin-left:auto;">Show model</button></div>
+        <div class="reveal-block" id="l2q4"><div class="sample-box" style="margin-bottom:10px;">I usually hit the gym hard at the local fitness center after work to stay in shape.</div></div>
+        <div class="phrase-card"><span class="phrase-en">5. Why do you love your hobby? (use “to + verb”)</span><button class="btn btn-secondary btn-sm" onclick="toggleReveal('l2q5',this)" style="margin-left:auto;">Show model</button></div>
+        <div class="reveal-block" id="l2q5"><div class="sample-box">I love it because I play just for kicks — it helps me unwind and boost my mood.</div></div>
+      </div>
+      <div class="btn-group"><button class="btn btn-outline" data-l2tab="l2-practice">← Practice</button><button class="btn btn-primary" data-l2tab="l2-discussion">Next: Discussion →</button></div>
+    </div>
+
+    <!-- ===== L2 TAB: DISCUSSION ===== -->
+    <div class="tab-panel" data-panel-group="l2tabs" data-panel="l2-discussion">
+      <span class="part-label">Part 7 · Discussion</span>
+      <h2 class="section-title">Put it all together</h2>
+      <p class="section-sub">Two final challenges: first READ all of today's language inside one story, then SPEAK with zero preparation time.</p>
+      <div class="tab-bar" data-group="l2disc">
+        <button class="tab-btn active" data-tab="l2d-passage">7A · Context Passage</button>
+        <button class="tab-btn" data-tab="l2d-reflex">7B · Reflex Practice</button>
+      </div>
+
+      <!-- --- 7A: Comprehensive Context Passage --- -->
+      <div class="tab-panel active" data-panel-group="l2disc" data-panel="l2d-passage">
+        <div class="exercise">
+          <div class="exercise-title">📖 Comprehensive Context Passage — “My Hobbies”</div>
+          <div class="info-box" style="margin-bottom:14px;">Every hobby expression and every layer of the sentence formula lives inside ONE story. Read it aloud twice — the colors match the Sentence Builder exactly.</div>
+          <div style="font-size:12.5px;color:var(--text-soft);margin-bottom:12px;"><b>Color legend:</b> <span class="hl-vocab">frequency</span> · <span class="hl-accent">manner</span> · <span class="hl-pron">place</span> · <span class="hl-phrase">time</span> · <b>hobby expressions &amp; purpose in bold</b></div>
+          <div class="sample-box" style="line-height:2.1;">
+            Let me tell you about my hobbies. I <span class="hl-vocab">usually</span> <b>team up with</b> my friends and play games <span class="hl-accent">happily</span> <span class="hl-pron">on PC</span> <span class="hl-phrase">every weekend</span> — <b>just for kicks</b>, not to compete. <span class="hl-vocab">Sometimes</span> I <b>get hooked on</b> a new game and <b>binge-game</b> all night trying to <b>rank up</b>! When I'm tired, I <span class="hl-vocab">sometimes</span> <b>binge-watch</b> my favorite series <span class="hl-accent">comfortably</span> <span class="hl-pron">on streaming platforms</span> <span class="hl-phrase">at night</span> <b>to unwind</b> after a busy day. <span class="hl-phrase">Every morning</span>, I <span class="hl-vocab">always</span> <b>tune in to</b> my favorite songs <span class="hl-accent">happily</span> <span class="hl-pron">on my phone</span> <b>to boost my mood</b>. <span class="hl-phrase">After work</span>, I <span class="hl-vocab">usually</span> <b>hit the gym</b> <span class="hl-accent">hard</span> <span class="hl-pron">at the local fitness center</span> <b>to stay in shape</b> and <b>keep fit</b>. And <span class="hl-phrase">on Sunday mornings</span>, I <span class="hl-vocab">sometimes</span> <b>go hiking</b> or play <b>pickleball</b> <span class="hl-accent">enthusiastically</span> <span class="hl-pron">in the local park</span> <b>to get some fresh air</b>. One simple sentence — “I play games” — can grow into all of this!
+          </div>
+        </div>
+        <div class="btn-group"><button class="btn btn-primary" data-l2disc="l2d-reflex">Next: 7B · Reflex Practice →</button></div>
+      </div>
+
+      <!-- --- 7B: Reflex Practice --- -->
+      <div class="tab-panel" data-panel-group="l2disc" data-panel="l2d-reflex">
+        <div class="info-box" style="margin-bottom:16px;">🎯 <b>Goal: speak IMMEDIATELY.</b> Real conversations don't wait — no time to prepare a sentence first.</div>
+        <div class="tab-bar" data-group="l2reflex">
+          <button class="tab-btn active" data-tab="l2r-t1">Tier 1 · Lucky Draw</button>
+          <button class="tab-btn" data-tab="l2r-t2">Tier 2 · Extended Speaking</button>
+        </div>
+
+        <div class="tab-panel active" data-panel-group="l2reflex" data-panel="l2r-t1">
+          <div class="draw-grid">
+            <div class="draw-zone">
+              <span class="alt-badge">IN-CLASS ALTERNATIVE: DRAW PAPER CARDS</span>
+              <h4>📚 Zone 1 — Vocabulary Review</h4>
+              <div class="zone-desc">Draw a word → make ONE full sentence with it, or translate it aloud instantly.</div>
+              <button class="draw-btn" onclick="drawWord('L2')">DRAW A<br>WORD</button>
+              <div class="draw-result" id="drawWordResultL2"><span class="small">Your word will appear here…</span></div>
+            </div>
+            <div class="draw-zone">
+              <span class="alt-badge">IN-CLASS ALTERNATIVE: DRAW PAPER CARDS</span>
+              <h4>💬 Zone 2 — Speaking Situations</h4>
+              <div class="zone-desc">Draw a situation → respond with a COMPLETE expanded sentence using today's formula. One-word answers don't count!</div>
+              <button class="draw-btn" onclick="drawSituation('L2')">DRAW A<br>SITUATION</button>
+              <div class="draw-result" id="drawSitResultL2"><span class="small">Your situation will appear here…</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-panel-group="l2reflex" data-panel="l2r-t2">
+          <div class="exercise">
+            <div class="exercise-title">🎤 Extended speaking — 1 minute about YOUR hobby</div>
+            <div class="info-box" style="margin-bottom:12px;">🗺️ <b>Your task:</b> Talk about your favorite hobby — what it is → how often (<span class="hl-vocab">frequency</span>) → with whom → how (<span class="hl-accent">manner</span>) → where (<span class="hl-pron">place</span>) → when (<span class="hl-phrase">time</span>) → why (<b>purpose</b>). Keep talking until the timer ends.</div>
+            <div class="tier2-hint"><b>💡 Use today's words &amp; structures:</b> usually / sometimes / always · binge-watch · get hooked on · team up with · tune in to · stay in shape · unwind · just for kicks · to + verb (purpose)</div>
+            <div class="count-row">
+              <div class="count-display" id="timerL2R">01:00</div>
+              <button class="preset-pill active" onclick="setPreset('L2R',60,this)">1 min</button>
+              <button class="preset-pill" onclick="setPreset('L2R',120,this)">2 min</button>
+              <button class="preset-pill" onclick="setPreset('L2R',180,this)">3 min</button>
+              <button class="btn-start" onclick="startTimer('L2R')">▶ Start</button>
+              <button class="btn-timer-reset" onclick="resetTimer('L2R')">↺ Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise" style="margin-top:22px;">
+          <div class="exercise-title">Speaking checklist</div>
+          <label class="check-item"><input type="checkbox" class="l2check"> I used today's hobby vocabulary.</label>
+          <label class="check-item"><input type="checkbox" class="l2check"> I expanded my sentence with at least 3 layers (frequency / manner / place / time / purpose).</label>
+          <label class="check-item"><input type="checkbox" class="l2check"> I put the frequency adverb BEFORE the main verb.</label>
+          <label class="check-item"><input type="checkbox" class="l2check"> I spoke for a full minute without stopping.</label>
+          <label class="check-item"><input type="checkbox" class="l2check"> I feel more confident talking about my hobby.</label>
+        </div>
+
+        <div class="exercise">
+          <div class="exercise-title">📋 Lesson summary</div>
+          <table class="summary-table">
+            <tr><td>Estimated duration</td><td>90 minutes</td></tr>
+            <tr><td>Vocabulary learned</td><td>15 hobby expressions across 5 hobbies (binge-game, get hooked on, team up, rank up, binge-watch, tune in to, stay in shape, keep fit, hit the gym, go hiking, pickleball, unwind, just for kicks, boost my mood, get some fresh air)</td></tr>
+            <tr><td>Grammar focus</td><td>Sentence expansion: S + Frequency + V + O + Manner + Place + Time + Purpose · adverb positions · to + V / for + N</td></tr>
+            <tr><td>Communication functions</td><td>Introducing yourself with DOB · describing hobbies naturally</td></tr>
+            <tr><td>Skills practiced</td><td>Vocabulary · Grammar · Speaking · Reflex speaking</td></tr>
+            <tr><td>Interaction types</td><td>Flip cards · interactive sentence builder · word ordering · MCQ · context passage · shuffle-bag draw · timed speaking</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-outline" data-l2tab="l2-speaking">← Speaking</button>
+        <button class="btn btn-primary" onclick="markComplete('lesson2',this)">✓ Mark Lesson Complete</button>
+        <button class="btn btn-outline" data-page="phase1">← Back to Phase 1</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+<button class="reset-fab" onclick="globalReset()">🔄 Reset All</button>
+<script>
+/* ============================================================
+   BASIC COMMUNICATION COURSE — JS
+   Patterns: closest('.tab-bar') tab groups · MCQ select→check→reset
+   shuffle-bag draws · timers with clearInterval registry · global reset
+   ============================================================ */
+
+/* ---------- 1. DATA ---------- */
+var ALPHABET = [
+  ["A","/eɪ/",1],["B","/biː/",1],["C","/siː/",0],["D","/diː/",1],["E","/iː/",1],
+  ["F","/ef/",1],["G","/dʒiː/",1],["H","/eɪtʃ/",1],["I","/aɪ/",1],["J","/dʒeɪ/",1],
+  ["K","/keɪ/",0],["L","/el/",1],["M","/em/",1],["N","/en/",1],["O","/əʊ/",0],
+  ["P","/piː/",1],["Q","/kjuː/",0],["R","/ɑːr/",1],["S","/es/",0],["T","/tiː/",1],
+  ["U","/juː/",0],["V","/viː/",1],["W","/ˈdʌbljuː/",0],["X","/eks/",0],["Y","/waɪ/",1],["Z","/ziː/",0]
+];
+var SPELL_NAMES = ["NHAN","LINH","PHUONG","MINH","THAO","QUANG","BAO","KHOA","TRANG","VY"];
+var COUNTRIES = [
+  ["Vietnam","Vietnamese","I'm from Vietnam. I'm Vietnamese."],
+  ["Japan","Japanese","She's from Japan. She's Japanese."],
+  ["China","Chinese","He's from China. He's Chinese."],
+  ["Korea","Korean","They're from Korea. They're Korean."],
+  ["Thailand","Thai","She's from Thailand. She's Thai."],
+  ["Canada","Canadian","He's from Canada. He's Canadian."],
+  ["Australia","Australian","I'm from Australia. I'm Australian."],
+  ["The UK","British","He's from the UK. He's British."]
+];
+var NUMS_1_20 = [
+  [1,"one"],[2,"two"],[3,"three"],[4,"four"],[5,"five"],[6,"six"],[7,"seven"],[8,"eight"],[9,"nine"],[10,"ten"],
+  [11,"eleven"],[12,"twelve ★"],[13,"thirteen"],[14,"fourteen"],[15,"fifteen"],[16,"sixteen"],[17,"seventeen"],[18,"eighteen"],[19,"nineteen"],[20,"twenty"]
+];
+var NUMS_TENS = [
+  [20,"twenty"],[30,"thirty"],[40,"forty"],[50,"fifty"],[60,"sixty"],[70,"seventy"],[80,"eighty"],[90,"ninety"],
+  [21,"twenty-one"],[35,"thirty-five"],[74,"seventy-four"],[99,"ninety-nine"]
+];
+var VOCAB = {
+  vocabGames: [
+    ["binge-game","/bɪndʒ ɡeɪm/","v","To play games non-stop for a very long time.","Cày game liên tục, chơi xuyên đêm","I binge-gamed all Saturday night!"],
+    ["gaming platforms","/ˈɡeɪmɪŋ ˈplætfɔːmz/","n","The systems you play on: PC, console (PlayStation/Xbox), or mobile.","Các nền tảng chơi game","Which gaming platform do you use — PC or mobile?"],
+    ["get hooked on a game","/hʊkt/","phr","To become unable to stop playing a game.","Bị nghiện / bị cuốn vào một trò chơi","I got hooked on that new game last week."],
+    ["team up with friends","/tiːm ʌp/","phr","To make a team and play together (more natural than \u201cplay with friends\u201d).","Lập đội chơi chung với bạn bè","We team up with friends every Friday night."],
+    ["rank up / climb the rank","/ræŋk ʌp/","phr","To move to a higher level in a ranked game.","Leo rank, cày hạng trong game","I want to rank up before the season ends."]
+  ],
+  vocabMovies: [
+    ["binge-watch","/bɪndʒ wɒtʃ/","v","To watch many episodes one after another without stopping.","Cày phim liên tục","I binge-watched the whole series in one weekend."],
+    ["streaming platforms","/ˈstriːmɪŋ ˈplætfɔːmz/","n","Online services where you watch movies and series.","Các nền tảng xem phim trực tuyến","Streaming platforms have thousands of movies."]
+  ],
+  vocabMusic: [
+    ["tune in to","/tjuːn ɪn tuː/","phr","To turn on and listen to music, a channel or a program.","Bật kênh / nghe (nhạc, đài)","I tune in to my favorite playlist every morning."]
+  ],
+  vocabGym: [
+    ["stay in shape","/steɪ ɪn ʃeɪp/","phr","To keep your body fit and healthy.","Giữ dáng / giữ cơ thể khỏe mạnh","I work out three times a week to stay in shape."],
+    ["keep fit","/kiːp fɪt/","phr","To stay strong and healthy through exercise.","Giữ sức khỏe, giữ thể lực","Swimming is a great way to keep fit."],
+    ["hit the gym","/hɪt ðə dʒɪm/","phr","To go to the gym (natural, casual English).","Đi tập gym","I hit the gym after work on Mondays."]
+  ],
+  vocabOutdoor: [
+    ["go running / go hiking","/ˈrʌnɪŋ · ˈhaɪkɪŋ/","phr","Running = jogging outside. Hiking = long walks in nature.","Chạy bộ / đi bộ đường dài","We go hiking in the mountains every month."],
+    ["play badminton / pickleball","/ˈbædmɪntən/","phr","Racket sports. Pickleball mixes tennis, badminton and ping-pong.","Chơi cầu lông / pickleball","Let's play pickleball this Sunday!"],
+    ["get some fresh air","/freʃ eər/","phr","To go outside to feel better and breathe clean air.","Hít thở không khí trong lành","I walk in the park to get some fresh air."],
+    ["unwind","/ʌnˈwaɪnd/","v","To relax after work or stress (≈ relax).","Thư giãn, xả hơi","I listen to music to unwind after work."],
+    ["just for kicks","/dʒʌst fɔː kɪks/","phr","Just for fun — no pressure, no winning needed.","Chỉ để cho vui / giải trí thôi","We play games just for kicks, not to compete."]
+  ]
+};
+var BUILDER_LAYERS = [
+  {label:"+ Frequency", html:"I <span class=\"hl-vocab\">usually</span> play games.", explain:"<b>usually</b> (thường xuyên) — adverb of FREQUENCY goes <b>before the main verb</b>. Others: always, sometimes, never."},
+  {label:"+ People", html:"I <span class=\"hl-vocab\">usually</span> play games <b>with my friends</b>.", explain:"<b>with my friends</b> — WHO you do it with, right after the object."},
+  {label:"+ Manner", html:"I <span class=\"hl-vocab\">usually</span> play games <span class=\"hl-accent\">happily</span> with my friends.", explain:"<b>happily</b> (một cách vui vẻ) — adverb of MANNER answers \u201cHow?\u201d. Usually ends in <b>-ly</b>."},
+  {label:"+ Place", html:"I <span class=\"hl-vocab\">usually</span> play games <span class=\"hl-accent\">happily</span> with my friends <span class=\"hl-pron\">on PC</span>.", explain:"<b>on PC</b> — the PLACE / platform comes after who and how."},
+  {label:"+ Time", html:"I <span class=\"hl-vocab\">usually</span> play games <span class=\"hl-accent\">happily</span> with my friends <span class=\"hl-pron\">on PC</span> <span class=\"hl-phrase\">every weekend</span>.", explain:"<b>every weekend</b> — TIME usually sits near the end of the sentence."},
+  {label:"+ Purpose", html:"I <span class=\"hl-vocab\">usually</span> play games <span class=\"hl-accent\">happily</span> with my friends <span class=\"hl-pron\">on PC</span> <span class=\"hl-phrase\">every weekend</span> <b>to unwind</b>.", explain:"<b>to unwind</b> (để thư giãn) — PURPOSE: <b>to + verb</b> or <b>for + noun</b> (just for kicks). Your 3-word sentence is now rich and natural! 🎉"}
+];
+var ORDER_ANSWER = ["I","usually","play games","with my friends","on PC","every weekend"];
+var REFLEX_WORDS_L1 = [
+  ["Let's get started","Bắt đầu thôi"],["Time's up","Hết giờ rồi"],["Repeat after me","Nhắc lại theo tôi"],
+  ["Read aloud","Đọc to lên"],["Take notes","Ghi chú lại"],["Check your spelling","Kiểm tra chính tả"],
+  ["Let me think","Để tôi nghĩ đã"],["One moment, please","Chờ một chút nhé"],["I'm not sure","Tôi không chắc"],
+  ["How do you spell it?","Đánh vần thế nào?"],["What does it mean?","Nó nghĩa là gì?"],
+  ["Vietnamese","người / tiếng Việt"],["Japanese","người / tiếng Nhật"],["British","người Anh (UK)"],
+  ["Canadian","người Canada"],["a dozen","một tá (= 12)"],["seventy-four","74 (có gạch nối)"],
+  ["thirteen vs thirty","13 vs 30 (trọng âm khác nhau)"],["work as","làm nghề (+ chức danh)"],
+  ["work for","làm cho (+ công ty)"],["I'm … years old","Tôi … tuổi"],["My phone number is…","Số điện thoại của tôi là…"]
+];
+var REFLEX_SITUATIONS_L1 = [
+  "Your tutor asks: \u201cHow do you spell your name?\u201d — spell it aloud, letter by letter.",
+  "A new classmate asks: \u201cWhere are you from?\u201d — answer with your country AND nationality.",
+  "Say your phone number aloud, digit by digit — read 0 as \u201coh\u201d.",
+  "The tutor speaks too fast and you need time — use a survival phrase.",
+  "You don't know the word \u201cschedule\u201d — ask your tutor about its meaning.",
+  "Introduce your job using \u201cwork as\u201d AND \u201cwork for\u201d in ONE sentence.",
+  "Your friend says \u201cI'm thirteen\u201d but you heard \u201cthirty\u201d — ask to check the number.",
+  "Introduce yourself in 2 full sentences: name + age (use \u201cto be\u201d correctly).",
+  "The lesson is ending. Say goodbye the way the tutor does.",
+  "Correct this sentence aloud: \u201cI am Vietnam person.\u201d"
+];
+var REFLEX_WORDS_L2 = [
+  ["binge-watch","cày phim liên tục"],["get hooked on","bị cuốn vào, nghiện"],["team up with","lập đội cùng"],
+  ["rank up","leo hạng"],["streaming platforms","nền tảng xem trực tuyến"],["tune in to","bật nghe"],
+  ["stay in shape","giữ dáng"],["keep fit","giữ thể lực"],["hit the gym","đi tập gym"],
+  ["go hiking","đi bộ đường dài"],["pickleball","môn thể thao dùng vợt"],["get some fresh air","hít thở không khí trong lành"],
+  ["unwind","thư giãn"],["just for kicks","chỉ để cho vui"],["boost my mood","vực dậy tâm trạng"],
+  ["usually","thường xuyên"],["sometimes","thỉnh thoảng"],["every weekend","mỗi cuối tuần"]
+];
+var REFLEX_SITUATIONS_L2 = [
+  "A new friend asks: \u201cWhat do you usually do on weekends?\u201d",
+  "Your coworker asks: \u201cHow do you relax after work?\u201d",
+  "Someone asks: \u201cHow often do you play games?\u201d — answer with frequency + place + time.",
+  "Describe your favorite hobby using AT LEAST 4 layers of the formula.",
+  "Invite a friend to join your hobby this weekend.",
+  "Explain WHY you love your hobby — use \u201cto + verb\u201d for the purpose.",
+  "Your friend watches too many series. Describe their habit with \u201cbinge-watch\u201d.",
+  "Tell the class when and where you exercise — and your purpose."
+];
+
+/* ---------- 2. STATE ---------- */
+var TIMERS = {};               // id -> interval handle
+var TIMER_PRESET = {L1:30, L1R:60, L2R:60};
+var TIMER_LEFT = {L1:30, L1R:60, L2R:60};
+var completedLessons = {};     // lessonId -> true
+var TOTAL_LESSONS = 36;
+var builderStep = 0;
+var BAGS = {L1w:[], L1s:[], L2w:[], L2s:[]};
+
+/* ---------- 3. NAVIGATION ---------- */
+function showPage(id){
+  clearAllTimers();
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  var pg = document.getElementById('page-' + id);
+  if(pg){ pg.classList.add('active'); }
+  document.querySelectorAll('.nav-item').forEach(function(n){
+    var target = n.getAttribute('data-page');
+    var lessonParent = (id === 'lesson1' || id === 'lesson2') ? 'phase1' : id;
+    n.classList.toggle('active', target === lessonParent);
+  });
+  window.scrollTo(0,0);
+}
+document.addEventListener('click', function(e){
+  var pageBtn = e.target.closest('[data-page]');
+  if(pageBtn && !pageBtn.classList.contains('nav-item')){ showPage(pageBtn.getAttribute('data-page')); return; }
+  if(pageBtn){ showPage(pageBtn.getAttribute('data-page')); return; }
+});
+
+/* ---------- 4. TABS (group via closest('.tab-bar')) ---------- */
+document.addEventListener('click', function(e){
+  var btn = e.target.closest('.tab-btn');
+  if(!btn) return;
+  var bar = btn.closest('.tab-bar');           // ⚠ must resolve group via closest
+  if(!bar) return;
+  var group = bar.getAttribute('data-group');
+  var tab = btn.getAttribute('data-tab');
+  bar.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.toggle('active', b === btn); });
+  document.querySelectorAll('.tab-panel[data-panel-group="' + group + '"]').forEach(function(p){
+    p.classList.toggle('active', p.getAttribute('data-panel') === tab);
+  });
+});
+/* lesson-internal next/prev buttons */
+function switchTab(group, tab){
+  var bar = document.querySelector('.tab-bar[data-group="' + group + '"]');
+  if(!bar) return;
+  var btn = bar.querySelector('.tab-btn[data-tab="' + tab + '"]');
+  if(btn){ btn.click(); window.scrollTo(0,0); }
+}
+document.addEventListener('click', function(e){
+  var b1 = e.target.closest('[data-l1tab]');
+  if(b1){ switchTab('l1tabs', b1.getAttribute('data-l1tab')); return; }
+  var b2 = e.target.closest('[data-l2tab]');
+  if(b2){ switchTab('l2tabs', b2.getAttribute('data-l2tab')); return; }
+  var d1 = e.target.closest('[data-l1disc]');
+  if(d1){ switchTab('l1disc', d1.getAttribute('data-l1disc')); return; }
+  var d2 = e.target.closest('[data-l2disc]');
+  if(d2){ switchTab('l2disc', d2.getAttribute('data-l2disc')); return; }
+});
+
+/* ---------- 5. RENDER: alphabet / names / countries / numbers / vocab ---------- */
+function renderAlphabet(){
+  var g = document.getElementById('alphaGrid'); if(!g) return;
+  g.innerHTML = ALPHABET.map(function(a){
+    return '<div class="alpha-chip' + (a[2] ? ' tricky' : '') + '"><div class="L">' + a[0] + '</div><div class="S">' + a[1] + '</div></div>';
+  }).join('');
+}
+function renderNames(){
+  var c = document.getElementById('nameChips'); if(!c) return;
+  c.innerHTML = SPELL_NAMES.map(function(n,i){
+    return '<div class="name-chip" data-name-idx="' + i + '">' + n + '</div>';
+  }).join('');
+}
+document.addEventListener('click', function(e){
+  var chip = e.target.closest('.name-chip');
+  if(!chip) return;
+  document.querySelectorAll('.name-chip').forEach(function(n){ n.classList.remove('activeName'); });
+  chip.classList.add('activeName');
+  var name = SPELL_NAMES[parseInt(chip.getAttribute('data-name-idx'),10)];
+  var out = document.getElementById('spellOut');
+  out.innerHTML = name.split('').map(function(L){ return '<span class="spell-letter">' + L + '</span>'; }).join('<span class="spell-dash">–</span>');
+});
+function renderCountries(){
+  var g = document.getElementById('countryGrid'); if(!g) return;
+  g.innerHTML = COUNTRIES.map(function(c){
+    return '<div class="vocab-card"><span class="flip-hint">tap ↻</span>' +
+      '<div class="word">' + c[0] + ' → ' + c[1] + '</div>' +
+      '<div class="back"><div class="example">' + c[2] + '</div></div></div>';
+  }).join('');
+}
+function renderNums(){
+  var g1 = document.getElementById('numGrid1');
+  if(g1){ g1.innerHTML = NUMS_1_20.map(function(n){ return '<div class="num-card"><div class="d">' + n[0] + '</div><div class="w">' + n[1] + '</div></div>'; }).join(''); }
+  var g2 = document.getElementById('numGrid2');
+  if(g2){ g2.innerHTML = NUMS_TENS.map(function(n){ return '<div class="num-card"><div class="d">' + n[0] + '</div><div class="w">' + n[1] + '</div></div>'; }).join(''); }
+}
+function renderVocab(){
+  Object.keys(VOCAB).forEach(function(gridId){
+    var g = document.getElementById(gridId); if(!g) return;
+    g.innerHTML = VOCAB[gridId].map(function(v){
+      return '<div class="vocab-card"><span class="flip-hint">tap ↻</span>' +
+        '<div class="word">' + v[0] + ' <span class="pos">' + v[2] + '</span></div>' +
+        '<div class="ipa">' + v[1] + '</div>' +
+        '<div class="en-def">' + v[3] + '</div>' +
+        '<div class="back"><div class="vi">' + v[4] + '</div><div class="example">' + v[5] + '</div></div></div>';
+    }).join('');
+  });
+}
+document.addEventListener('click', function(e){
+  var card = e.target.closest('.vocab-card');
+  if(card){ card.classList.toggle('flipped'); }
+});
+
+/* ---------- 6. MCQ ENGINE ---------- */
+document.addEventListener('click', function(e){
+  var opt = e.target.closest('.mcq-option');
+  if(!opt) return;
+  var q = opt.closest('.mcq-q');
+  if(!q || q.classList.contains('graded')) return;
+  q.querySelectorAll('.mcq-option').forEach(function(o){ o.classList.remove('selected'); });
+  opt.classList.add('selected');
+});
+function checkMcq(exId){
+  var ex = document.getElementById(exId); if(!ex) return;
+  var qs = ex.querySelectorAll('.mcq-q');
+  var score = 0;
+  qs.forEach(function(q){
+    q.classList.add('graded');
+    var correct = parseInt(q.getAttribute('data-correct'),10);
+    var opts = q.querySelectorAll('.mcq-option');
+    opts.forEach(function(o,i){
+      o.classList.remove('correct','incorrect');
+      if(i === correct){ o.classList.add('correct'); }
+      else if(o.classList.contains('selected')){ o.classList.add('incorrect'); }
+    });
+    if(opts[correct] && opts[correct].classList.contains('selected')){ score++; }
+  });
+  var fb = document.getElementById('fb-' + exId);
+  var sc = document.getElementById('sc-' + exId);
+  var ms = document.getElementById('ms-' + exId);
+  if(fb && sc && ms){
+    sc.textContent = score + '/' + qs.length;
+    fb.classList.remove('success','error','info');
+    if(score === qs.length){ fb.classList.add('success'); ms.textContent = 'Perfect! You are ready for the next section. 🎉'; }
+    else if(score >= Math.ceil(qs.length/2)){ fb.classList.add('info'); ms.textContent = 'Good job! Review the red answers, then try again.'; }
+    else { fb.classList.add('error'); ms.textContent = 'Keep going — reread the section above and reset to retry.'; }
+    fb.classList.add('show');
+  }
+}
+function resetMcq(exId){
+  var ex = document.getElementById(exId); if(!ex) return;
+  ex.querySelectorAll('.mcq-q').forEach(function(q){
+    q.classList.remove('graded');
+    q.querySelectorAll('.mcq-option').forEach(function(o){ o.classList.remove('selected','correct','incorrect'); });
+  });
+  var fb = document.getElementById('fb-' + exId);
+  if(fb){ fb.classList.remove('show','success','error','info'); }
+}
+
+/* ---------- 7. REVEALS ---------- */
+function toggleReveal(id, btn){
+  var el = document.getElementById(id); if(!el) return;
+  var revealed = el.classList.toggle('revealed');
+  if(el.tagName === 'SPAN'){ el.style.display = revealed ? 'inline' : 'none'; }
+  if(btn){ btn.textContent = revealed ? btn.textContent.replace('Show','Hide') : btn.textContent.replace('Hide','Show'); }
+}
+function toggleViCols(btn){
+  var ex = btn.closest('.exercise'); if(!ex) return;
+  var cols = ex.querySelectorAll('.viCol');
+  var show = btn.textContent.indexOf('Show') === 0;
+  cols.forEach(function(c){ c.style.display = show ? 'table-cell' : 'none'; });
+  btn.textContent = show ? 'Hide Vietnamese' : 'Show Vietnamese';
+}
+function toggleViTxt(btn){
+  var ex = btn.closest('.exercise'); if(!ex) return;
+  var txts = ex.querySelectorAll('.viTxt');
+  var show = btn.textContent.indexOf('Show') === 0;
+  txts.forEach(function(t){ t.style.display = show ? 'inline' : 'none'; });
+  btn.textContent = show ? 'Hide Vietnamese' : 'Show Vietnamese';
+}
+
+/* ---------- 8. SENTENCE BUILDER ---------- */
+function renderBuilderBtns(){
+  var wrap = document.getElementById('layerBtns'); if(!wrap) return;
+  wrap.innerHTML = BUILDER_LAYERS.map(function(l,i){
+    return '<button class="layer-btn" id="layerBtn' + i + '" onclick="addLayer(' + i + ')"' + (i !== builderStep ? ' disabled' : '') + '>' + l.label + '</button>';
+  }).join('');
+}
+function addLayer(i){
+  if(i !== builderStep) return;
+  var layer = BUILDER_LAYERS[i];
+  document.getElementById('builderSentence').innerHTML = layer.html;
+  document.getElementById('builderExplain').innerHTML = layer.explain;
+  var btn = document.getElementById('layerBtn' + i);
+  if(btn){ btn.disabled = true; btn.classList.add('used'); }
+  builderStep++;
+  var next = document.getElementById('layerBtn' + builderStep);
+  if(next){ next.disabled = false; }
+}
+function resetBuilder(){
+  builderStep = 0;
+  var s = document.getElementById('builderSentence');
+  var ex = document.getElementById('builderExplain');
+  if(s){ s.innerHTML = 'I play games.'; }
+  if(ex){ ex.innerHTML = 'Base sentence — Subject (<b>I</b>) + Verb (<b>play</b>) + Object (<b>games</b>). This is the LEGO base brick.'; }
+  renderBuilderBtns();
+}
+
+/* ---------- 9. WORD ORDER ---------- */
+function shuffled(arr){
+  var a = arr.slice();
+  for(var i = a.length - 1; i > 0; i--){
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+function renderOrder(){
+  var pool = document.getElementById('orderPool');
+  var line = document.getElementById('orderLine');
+  if(!pool || !line) return;
+  line.innerHTML = '';
+  pool.innerHTML = shuffled(ORDER_ANSWER).map(function(w){
+    return '<div class="order-chip" data-word="' + w + '">' + w + '</div>';
+  }).join('');
+}
+document.addEventListener('click', function(e){
+  var chip = e.target.closest('.order-chip');
+  if(!chip) return;
+  var pool = document.getElementById('orderPool');
+  var line = document.getElementById('orderLine');
+  if(!pool || !line) return;
+  if(chip.parentElement === pool){ line.appendChild(chip); }
+  else if(chip.parentElement === line){ pool.appendChild(chip); }
+});
+function checkOrder(){
+  var line = document.getElementById('orderLine');
+  var placed = Array.prototype.map.call(line.querySelectorAll('.order-chip'), function(c){ return c.getAttribute('data-word'); });
+  var fb = document.getElementById('fb-order');
+  var sc = document.getElementById('sc-order');
+  var ms = document.getElementById('ms-order');
+  var ok = placed.length === ORDER_ANSWER.length && placed.every(function(w,i){ return w === ORDER_ANSWER[i]; });
+  fb.classList.remove('success','error','info');
+  if(ok){ sc.textContent = '✓'; fb.classList.add('success'); ms.textContent = 'Perfect word order! Read it aloud twice: "' + ORDER_ANSWER.join(' ') + '."'; }
+  else { sc.textContent = '✗'; fb.classList.add('error'); ms.textContent = 'Not yet — remember: Subject → frequency → verb + object → people → place → time.'; }
+  fb.classList.add('show');
+}
+function resetOrder(){
+  renderOrder();
+  var fb = document.getElementById('fb-order');
+  if(fb){ fb.classList.remove('show','success','error','info'); }
+}
+
+/* ---------- 10. SHUFFLE-BAG DRAWS (per-lesson, no repeats until pool empty) ---------- */
+function drawFromBag(key, source){
+  if(BAGS[key].length === 0){
+    shuffled(source).forEach(function(x){ BAGS[key].push(x); });
+  }
+  return BAGS[key].pop();
+}
+function drawWord(lesson){
+  var src = lesson === 'L1' ? REFLEX_WORDS_L1 : REFLEX_WORDS_L2;
+  var item = drawFromBag(lesson + 'w', src);
+  var box = document.getElementById('drawWordResult' + lesson);
+  if(box){ box.innerHTML = '<span class="big">' + item[0] + '</span><span class="small">' + item[1] + '</span>'; }
+}
+function drawSituation(lesson){
+  var src = lesson === 'L1' ? REFLEX_SITUATIONS_L1 : REFLEX_SITUATIONS_L2;
+  var item = drawFromBag(lesson + 's', src);
+  var box = document.getElementById('drawSitResult' + lesson);
+  if(box){ box.innerHTML = '<span class="big" style="font-size:16px;">' + item + '</span>'; }
+}
+
+/* ---------- 11. TIMERS (registry + clearInterval discipline) ---------- */
+function fmt(sec){
+  var m = Math.floor(sec / 60), s = sec % 60;
+  return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+}
+function renderTimer(id){
+  var d = document.getElementById('timer' + id);
+  if(d){ d.textContent = fmt(TIMER_LEFT[id]); d.classList.toggle('timeup', TIMER_LEFT[id] === 0); }
+}
+function setPreset(id, sec, pill){
+  clearTimerHandle(id);
+  TIMER_PRESET[id] = sec;
+  TIMER_LEFT[id] = sec;
+  renderTimer(id);
+  if(pill){
+    pill.parentElement.querySelectorAll('.preset-pill').forEach(function(p){ p.classList.remove('active'); });
+    pill.classList.add('active');
+  }
+}
+function startTimer(id){
+  clearTimerHandle(id);
+  if(TIMER_LEFT[id] <= 0){ TIMER_LEFT[id] = TIMER_PRESET[id]; }
+  renderTimer(id);
+  TIMERS[id] = setInterval(function(){
+    TIMER_LEFT[id]--;
+    if(TIMER_LEFT[id] <= 0){ TIMER_LEFT[id] = 0; clearTimerHandle(id); }
+    renderTimer(id);
+  }, 1000);
+}
+function resetTimer(id){
+  clearTimerHandle(id);
+  TIMER_LEFT[id] = TIMER_PRESET[id];
+  renderTimer(id);
+}
+function clearTimerHandle(id){
+  if(TIMERS[id]){ clearInterval(TIMERS[id]); TIMERS[id] = null; }
+}
+function clearAllTimers(){
+  Object.keys(TIMERS).forEach(function(id){ clearTimerHandle(id); });
+}
+
+/* ---------- 12. PROGRESS ---------- */
+function markComplete(lessonId, btn){
+  completedLessons[lessonId] = true;
+  if(btn){ btn.textContent = '✓ Completed!'; btn.disabled = true; btn.style.opacity = '0.7'; }
+  var mark = document.getElementById('doneMark-' + lessonId);
+  if(mark){ mark.style.display = 'inline'; }
+  updateProgress();
+}
+function updateProgress(){
+  var done = Object.keys(completedLessons).length;
+  var pct = Math.round(done / TOTAL_LESSONS * 100);
+  var sf = document.getElementById('sideProgressFill');
+  var sp = document.getElementById('sideProgressPct');
+  if(sf){ sf.style.width = pct + '%'; }
+  if(sp){ sp.textContent = pct + '%'; }
+  var cf = document.getElementById('cpFill');
+  var cp = document.getElementById('cpPct');
+  if(cf){ cf.style.width = pct + '%'; }
+  if(cp){ cp.textContent = pct + '%'; }
+  var certF = document.getElementById('certFill');
+  var certC = document.getElementById('certCount');
+  if(certF){ certF.style.width = pct + '%'; }
+  if(certC){ certC.textContent = done; }
+  /* phase 1 pill: done when its 4 lessons complete (only 2 exist today) */
+  var p1done = completedLessons['lesson1'] && completedLessons['lesson2'];
+  var pill1 = document.getElementById('pill1');
+  var dot1 = document.getElementById('pillDot1');
+  var nav1 = document.getElementById('navSt1');
+  if(pill1 && dot1 && nav1){
+    if(p1done){ pill1.classList.add('done'); pill1.classList.remove('current'); dot1.textContent = '✓'; nav1.textContent = '✓'; }
+    else { pill1.classList.add('current'); pill1.classList.remove('done'); dot1.textContent = '●'; nav1.textContent = '●'; }
+  }
+}
+
+/* ---------- 13. GLOBAL RESET ---------- */
+function globalReset(){
+  clearAllTimers();
+  TIMER_PRESET = {L1:30, L1R:60, L2R:60};
+  TIMER_LEFT = {L1:30, L1R:60, L2R:60};
+  renderTimer('L1'); renderTimer('L1R'); renderTimer('L2R');
+  document.querySelectorAll('.preset-pill').forEach(function(p,i){ p.classList.remove('active'); });
+  document.querySelectorAll('.count-row').forEach(function(r){
+    var first = r.querySelector('.preset-pill');
+    if(first){ first.classList.add('active'); }
+  });
+  ['ex-l1c','ex-l1n','ex-l1g','ex-l1m','ex-l2v','ex-l2p'].forEach(resetMcq);
+  resetOrder();
+  resetBuilder();
+  BAGS = {L1w:[], L1s:[], L2w:[], L2s:[]};
+  ['drawWordResultL1','drawWordResultL2'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el){ el.innerHTML = '<span class="small">Your word will appear here…</span>'; }
+  });
+  ['drawSitResultL1','drawSitResultL2'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el){ el.innerHTML = '<span class="small">Your situation will appear here…</span>'; }
+  });
+  document.querySelectorAll('.check-item input').forEach(function(c){ c.checked = false; });
+  document.querySelectorAll('.reveal-block').forEach(function(r){ r.classList.remove('revealed'); if(r.tagName === 'SPAN'){ r.style.display = 'none'; } });
+  document.querySelectorAll('.viCol').forEach(function(c){ c.style.display = 'none'; });
+  document.querySelectorAll('.viTxt').forEach(function(t){ t.style.display = 'none'; });
+  document.querySelectorAll('.vocab-card.flipped').forEach(function(c){ c.classList.remove('flipped'); });
+  completedLessons = {};
+  document.querySelectorAll('[id^="doneMark-"]').forEach(function(m){ m.style.display = 'none'; });
+  updateProgress();
+  var pill1 = document.getElementById('pill1');
+  if(pill1){ pill1.classList.add('current'); pill1.classList.remove('done'); }
+  showPage('overview');
+}
+
+/* ---------- 14. INIT ---------- */
+renderAlphabet();
+renderNames();
+renderCountries();
+renderNums();
+renderVocab();
+renderBuilderBtns();
+renderOrder();
+updateProgress();
+</script>
+</body>
+</html>
