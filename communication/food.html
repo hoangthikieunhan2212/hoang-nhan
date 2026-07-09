@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food — English Communication Lesson (A2)</title>
+<style>
+/* ═══════════ DESIGN SYSTEM — Warm Cream / Deep Teal ═══════════ */
+:root{
+  --forest:#013220; --moss:#006D6F; --teal:#007A74; --mint:#D8BFD8;
+  --sage:#F5F5DC; --sand:#FFFAF0; --shell:#FFF5EE; --white:#FFFAFA;
+  --blue:#2563EB; --blue-light:#EFF6FF;
+  --amber:#D97706; --amber-light:#FFFBEB;
+  --red:#DC2626; --red-light:#FEF2F2;
+  --green-success:#16A34A; --green-light:#F0FDF4;
+  --text-dark:#013220; --text-mid:#006D6F; --text-soft:#5F8A80;
+  --border:#E3DED0;
+  --shadow-sm:0 1px 3px rgba(1,50,32,0.08);
+  --shadow-md:0 4px 16px rgba(1,50,32,0.12);
+  --shadow-lg:0 8px 32px rgba(1,50,32,0.16);
+  --radius:12px; --radius-sm:8px; --radius-lg:20px;
+  font-size:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--sand);}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ─── Hero ─── */
+.hero{background:linear-gradient(135deg,var(--forest),var(--moss),var(--teal));color:#fff;padding:48px;}
+.hero-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.badge{display:inline-block;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:700;}
+.badge-white{background:rgba(255,255,255,0.15);color:#fff;}
+.badge-mint{background:rgba(216,191,216,0.2);color:var(--mint);border:1px solid rgba(216,191,216,0.3);}
+.hero h1{font-size:36px;font-weight:800;margin-bottom:8px;}
+.hero .subtitle{max-width:520px;font-size:15px;opacity:0.85;margin-bottom:20px;}
+.outcomes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;max-width:900px;}
+.outcome-card{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:var(--radius-sm);padding:12px 16px;font-size:13px;}
+.outcome-card b{display:block;color:var(--mint);font-size:13px;margin-bottom:4px;}
+
+/* ─── Main tab bar (2 tabs) ─── */
+.main-tabbar{position:sticky;top:0;z-index:100;background:var(--sand);border-bottom:2px solid var(--border);display:flex;gap:4px;overflow-x:auto;padding:0 48px;}
+.main-tabbar .tab-btn{padding:14px 22px;font-size:14px;}
+.tab-bar{border-bottom:2px solid var(--border);display:flex;gap:4px;overflow-x:auto;}
+.tab-btn{background:none;border:none;cursor:pointer;font-family:inherit;padding:10px 18px;font-size:13px;font-weight:600;color:var(--text-soft);border-bottom:2px solid transparent;white-space:nowrap;transition:all 0.2s;}
+.tab-btn.active{color:var(--forest);border-bottom-color:var(--forest);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;animation:fadeIn 0.3s ease;}
+
+/* ─── Sections ─── */
+.section{padding:40px 48px;border-bottom:1px solid var(--border);}
+.part-label{display:inline-block;background:var(--forest);color:var(--mint);font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:99px;margin-bottom:10px;}
+.section-title{font-size:22px;font-weight:800;color:var(--forest);margin-bottom:4px;}
+.section-subtitle{font-size:14px;color:var(--text-soft);margin-bottom:24px;}
+
+/* ─── Info / notice boxes ─── */
+.info-box{background:var(--sage);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:14px 18px;font-size:14px;color:var(--text-mid);margin-bottom:20px;}
+.listening-notice{background:var(--amber-light);border:1px solid #FDE68A;color:var(--amber);padding:12px 16px;font-size:13px;border-radius:var(--radius-sm);margin-bottom:20px;}
+
+/* ─── Buttons ─── */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:inherit;transition:all 0.2s;}
+.btn-primary{background:var(--forest);color:#fff;}
+.btn-primary:hover{background:var(--moss);transform:translateY(-1px);}
+.btn-secondary{background:var(--sage);color:var(--forest);}
+.btn-outline{background:transparent;color:var(--forest);border:1.5px solid var(--border);}
+.btn-outline:hover{border-color:var(--moss);background:var(--sage);}
+.btn-sm{padding:6px 14px;font-size:13px;}
+.btn-group{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+
+/* ─── Filter chips ─── */
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.filter-chip{background:var(--white);border:1.5px solid var(--border);border-radius:99px;padding:6px 16px;font-size:13px;font-weight:600;color:var(--text-mid);cursor:pointer;font-family:inherit;transition:all 0.15s;}
+.filter-chip:hover{border-color:var(--teal);}
+.filter-chip.active{background:var(--forest);border-color:var(--forest);color:#fff;}
+
+/* ─── Vocab cards ─── */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.vocab-card{position:relative;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;cursor:pointer;transition:all 0.2s;}
+.vocab-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--teal);}
+.vocab-card .flip-hint{position:absolute;top:10px;right:12px;font-size:11px;color:var(--text-soft);background:var(--shell);border-radius:99px;padding:2px 8px;}
+.vocab-card .emoji{font-size:26px;display:block;margin-bottom:6px;}
+.vocab-card .word{font-size:17px;font-weight:700;color:var(--forest);}
+.vocab-card .ipa{font-size:13px;font-style:italic;color:var(--blue);}
+.vocab-card .pos{display:inline-block;background:var(--sage);color:var(--forest);font-size:11px;font-weight:700;border-radius:99px;padding:2px 10px;margin:6px 0;}
+.vocab-card .vi{font-size:14px;font-weight:600;color:var(--text-mid);}
+.vocab-card .example{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--sage);font-size:13px;color:var(--text-soft);}
+.vocab-card.flipped .example{display:block;animation:fadeIn 0.3s ease;}
+.vocab-highlight{background:var(--sage);border-radius:4px;padding:0 4px;font-weight:700;color:var(--forest);}
+
+/* ─── Phrases ─── */
+.phrase-cat-title{font-size:15px;font-weight:800;color:var(--moss);margin:22px 0 10px;}
+.phrase-row{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;margin-bottom:8px;flex-wrap:wrap;}
+.phrase-en{font-weight:700;color:var(--forest);font-size:15px;min-width:250px;}
+.phrase-vi{font-size:13px;color:var(--text-soft);}
+.speak-btn{background:var(--sage);border:1px solid var(--border);color:var(--moss);border-radius:99px;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;flex-shrink:0;transition:all 0.2s;}
+.speak-btn:hover{background:var(--mint);}
+
+/* ─── Exercise container ─── */
+.exercise{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:24px;}
+.exercise-title{font-size:16px;font-weight:700;color:var(--forest);margin-bottom:6px;}
+.exercise-instruction{font-size:13px;color:var(--text-soft);background:var(--shell);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:16px;}
+
+/* ─── Dilemma challenge ─── */
+.profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:20px;}
+.profile-card{background:var(--shell);border:1px solid var(--border);border-radius:var(--radius);padding:16px;}
+.profile-card .avatar{width:36px;height:36px;border-radius:99px;background:var(--forest);color:var(--mint);font-weight:800;display:inline-flex;align-items:center;justify-content:center;margin-right:8px;}
+.profile-card h4{display:inline;color:var(--forest);font-size:15px;}
+.profile-card ul{margin:10px 0 0 18px;font-size:13px;color:var(--text-mid);}
+.budget-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--forest);color:#fff;border-radius:var(--radius);padding:14px 20px;margin-bottom:16px;flex-wrap:wrap;}
+.budget-bar .amount{font-size:22px;font-weight:800;color:var(--mint);font-variant-numeric:tabular-nums;}
+.budget-bar .amount.over{color:#FCA5A5;}
+.menu-table{width:100%;border-collapse:collapse;font-size:14px;}
+.menu-table th{text-align:left;font-size:12px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-soft);padding:8px 12px;border-bottom:2px solid var(--border);}
+.menu-table td{padding:10px 12px;border-bottom:1px solid var(--sage);}
+.menu-table tr.row{cursor:pointer;transition:background 0.15s;}
+.menu-table tr.row:hover{background:var(--shell);}
+.menu-table tr.row.selected{background:var(--sage);}
+.dish-name{font-weight:700;color:var(--forest);}
+.flag{display:inline-block;font-size:11px;font-weight:700;border-radius:99px;padding:1px 8px;margin:2px 3px 0 0;}
+.flag-warn{background:var(--amber-light);color:var(--amber);}
+.flag-ok{background:var(--green-light);color:var(--green-success);}
+.ok-mark{color:var(--green-success);font-weight:800;}
+.no-mark{color:var(--red);font-weight:800;}
+.prompt-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;margin-bottom:10px;cursor:pointer;transition:all 0.2s;}
+.prompt-card:hover{border-color:var(--teal);box-shadow:var(--shadow-sm);}
+.prompt-q{font-size:14px;font-weight:600;color:var(--text-dark);}
+.prompt-hint{display:none;margin-top:8px;background:var(--blue-light);border:1px solid #BFDBFE;color:var(--blue);border-radius:var(--radius-sm);padding:10px 12px;font-size:13px;}
+.prompt-card.open .prompt-hint{display:block;animation:fadeIn 0.3s ease;}
+
+/* ─── Brainstorm idea cards ─── */
+.bs-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px;}
+.bs-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;}
+.bs-num{width:30px;height:30px;flex-shrink:0;border-radius:99px;background:var(--moss);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px;}
+.bs-title{font-size:15px;font-weight:800;color:var(--forest);}
+.bs-vi{font-size:13px;color:var(--text-soft);}
+.interview{background:var(--shell);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;margin-bottom:12px;}
+.interview .q-label{font-size:11px;font-weight:800;letter-spacing:0.5px;text-transform:uppercase;color:var(--moss);}
+.interview .q-text{font-size:14px;font-weight:600;margin-bottom:10px;}
+.interview .a-wrap{display:none;}
+.interview.revealed .a-wrap{display:block;animation:fadeIn 0.3s ease;}
+.interview .a-text{font-size:14px;color:var(--text-dark);background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;}
+.kw{background:var(--sage);border-radius:4px;padding:0 4px;font-weight:700;color:var(--forest);}
+.lw{color:var(--blue);font-weight:700;}
+.chip-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.hint-chip{background:var(--sage);color:var(--moss);border-radius:99px;padding:4px 12px;font-size:13px;font-weight:600;}
+.speak-task{background:var(--amber-light);border:1.5px dashed #FDE68A;border-radius:var(--radius-sm);padding:10px 14px;font-size:13px;}
+.speak-task b{color:var(--amber);}
+
+/* ─── Nutrition pyramid ─── */
+.pyramid-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.group-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;transition:all 0.2s;}
+.group-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--teal);}
+.group-card h4{font-size:15px;font-weight:800;color:var(--forest);}
+.group-card .vi{font-size:13px;color:var(--text-mid);margin-bottom:10px;}
+.food-item{display:flex;justify-content:space-between;gap:8px;font-size:13px;padding:5px 0;border-bottom:1px solid var(--sage);}
+.food-item:last-child{border-bottom:none;}
+.food-item .en{font-weight:700;color:var(--forest);}
+.food-item .fipa{font-style:italic;color:var(--blue);}
+
+/* ─── Match exercise (click-to-place) ─── */
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.desc-card{background:var(--shell);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;font-size:13px;margin-bottom:10px;cursor:pointer;transition:all 0.15s;}
+.desc-card:hover{border-color:var(--teal);}
+.desc-card.selected{border-color:var(--blue);background:var(--blue-light);}
+.desc-card.placed{opacity:0.4;pointer-events:none;}
+.habit-slot{border:2px dashed var(--border);background:var(--sand);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:10px;cursor:pointer;transition:all 0.15s;}
+.habit-slot:hover{border-color:var(--moss);background:var(--sage);}
+.habit-slot h5{font-size:14px;color:var(--forest);}
+.habit-slot .habit-vi{font-size:12px;color:var(--text-soft);}
+.habit-slot .filled-desc{display:none;margin-top:8px;font-size:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 10px;}
+.habit-slot.filled .filled-desc{display:block;}
+.habit-slot.correct{border-color:var(--green-success);background:var(--green-light);}
+.habit-slot.incorrect{border-color:var(--red);background:var(--red-light);}
+.remove-x{float:right;color:var(--red);font-weight:800;cursor:pointer;font-size:12px;}
+
+/* ─── Feedback vocab ─── */
+.fb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+.fb-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;}
+.fb-card h4{font-size:15px;font-weight:800;color:var(--forest);margin-bottom:10px;}
+.fb-word{display:flex;justify-content:space-between;gap:8px;font-size:13px;padding:6px 8px;border-radius:var(--radius-sm);margin-bottom:4px;}
+.fb-word.pos{background:var(--green-light);}
+.fb-word.neg{background:var(--red-light);}
+.fb-word .en{font-weight:700;}
+.fb-word.pos .en{color:var(--green-success);}
+.fb-word.neg .en{color:var(--red);}
+.fb-word .vi{color:var(--text-soft);}
+
+/* ─── Scenario cards ─── */
+.scenario-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:24px;}
+.scenario-header{background:linear-gradient(135deg,var(--forest),var(--moss));color:#fff;padding:16px 20px;display:flex;gap:12px;align-items:center;}
+.scenario-header .s-num{background:rgba(216,191,216,0.2);color:var(--mint);border:1px solid rgba(216,191,216,0.3);border-radius:99px;padding:2px 12px;font-size:12px;font-weight:800;}
+.scenario-header h4{font-size:16px;}
+.scenario-body{padding:20px;}
+.scenario-situation{background:var(--shell);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;font-size:14px;margin-bottom:16px;}
+.menu-card{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;}
+.menu-card-head{background:var(--sage);padding:12px 16px;font-weight:800;color:var(--forest);font-size:14px;}
+.menu-course{font-size:12px;font-weight:800;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-soft);padding:10px 16px 2px;}
+.dish-row{display:flex;justify-content:space-between;gap:10px;padding:10px 16px;border-bottom:1px solid var(--sage);cursor:pointer;transition:background 0.15s;flex-wrap:wrap;}
+.dish-row:hover{background:var(--shell);}
+.dish-row.selected{background:var(--sage);}
+.dish-row .d-name{font-weight:700;color:var(--forest);font-size:14px;}
+.dish-row .d-ing{font-size:12px;color:var(--text-soft);}
+.dish-row .d-price{font-weight:700;color:var(--moss);font-size:13px;white-space:nowrap;}
+.scaffold{background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius-sm);padding:14px 16px;font-size:14px;margin-top:12px;}
+.scaffold h5{color:var(--blue);font-size:13px;margin-bottom:6px;}
+.scaffold p{margin-bottom:6px;}
+.blank-line{display:inline-block;min-width:90px;border-bottom:2px solid var(--forest);}
+.sample-response{background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius-sm);padding:14px 16px;font-size:14px;display:none;margin-top:12px;}
+.sample-response.revealed{display:block;animation:fadeIn 0.3s ease;}
+
+/* ─── Pronunciation ─── */
+.pron-rule{background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius);padding:18px;margin-bottom:20px;}
+.pron-rule h4{color:var(--blue);font-weight:700;font-size:15px;margin-bottom:8px;}
+.pron-pill{display:inline-block;background:var(--blue);color:#fff;border-radius:99px;padding:2px 12px;font-size:12px;font-weight:700;margin-right:6px;}
+.pron-sentence{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--sage);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;margin-bottom:10px;flex-wrap:wrap;}
+.pron-sentence .txt{font-size:14px;}
+.pron-sentence .txt b{color:var(--forest);}
+.pron-sentence .p-ipa{font-style:italic;color:var(--blue);font-size:13px;}
+
+/* ─── Sentence ordering (click-to-order) ─── */
+.order-pool .order-item{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;font-size:14px;margin-bottom:8px;cursor:pointer;transition:all 0.15s;}
+.order-pool .order-item:hover{border-color:var(--teal);}
+.order-pool .order-item.picked{opacity:0.35;pointer-events:none;}
+.order-built{border:2px dashed var(--border);background:var(--sand);border-radius:var(--radius-sm);padding:12px;min-height:60px;margin:12px 0;}
+.order-built .built-item{background:var(--sage);border:1px solid var(--moss);border-radius:var(--radius-sm);padding:8px 12px;font-size:13px;margin-bottom:6px;display:flex;gap:8px;}
+.order-built .built-item .n{font-weight:800;color:var(--moss);}
+
+/* ─── Fill blanks ─── */
+.word-bank{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.bank-word{background:var(--white);border:1.5px solid var(--border);border-radius:99px;padding:6px 16px;font-size:13px;font-weight:700;color:var(--forest);cursor:pointer;transition:all 0.15s;}
+.bank-word:hover{border-color:var(--teal);box-shadow:var(--shadow-sm);}
+.bank-word.selected{border-color:var(--blue);background:var(--blue-light);color:var(--blue);}
+.bank-word.used{opacity:0.35;text-decoration:line-through;}
+.fill-para{background:var(--shell);border:1px solid var(--border);border-radius:var(--radius);padding:18px;font-size:15px;line-height:2.1;}
+.blank-input{border:none;border-bottom:2px solid var(--forest);background:transparent;min-width:110px;font-size:15px;font-family:inherit;text-align:center;padding:2px 4px;outline:none;}
+.blank-input:focus{border-bottom-color:var(--blue);}
+.blank-input.correct{border-bottom-color:var(--green-success);background:var(--green-light);border-radius:4px 4px 0 0;}
+.blank-input.incorrect{border-bottom-color:var(--red);background:var(--red-light);border-radius:4px 4px 0 0;}
+
+/* ─── Feedback box ─── */
+.feedback-box{padding:14px 18px;border-radius:var(--radius-sm);display:none;gap:10px;align-items:center;margin-top:14px;font-size:14px;font-weight:600;}
+.feedback-box.show{display:flex;animation:fadeIn 0.3s ease;}
+.feedback-box.success{background:var(--green-light);color:var(--green-success);border:1px solid #BBF7D0;}
+.feedback-box.error{background:var(--red-light);color:var(--red);border:1px solid #FECACA;}
+.feedback-box.info{background:var(--blue-light);color:var(--blue);border:1px solid #BFDBFE;}
+
+/* ─── Checklist ─── */
+.check-item{display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:var(--radius-sm);cursor:pointer;font-size:14px;transition:background 0.15s;}
+.check-item:hover{background:var(--sage);}
+.check-item input{accent-color:var(--forest);width:16px;height:16px;}
+
+/* ─── Reset FAB ─── */
+.reset-fab{position:fixed;bottom:24px;right:24px;background:var(--red);color:#fff;border:none;border-radius:99px;padding:12px 20px;font-size:13px;font-weight:700;box-shadow:var(--shadow-lg);z-index:200;cursor:pointer;font-family:inherit;transition:transform 0.2s;}
+.reset-fab:hover{transform:scale(1.05);}
+
+/* ─── Responsive ─── */
+@media (max-width:768px){
+  .hero{padding:24px;}
+  .hero h1{font-size:28px;}
+  .section{padding:24px 20px;}
+  .main-tabbar{padding:0 20px;}
+  .match-grid{grid-template-columns:1fr;}
+  .vocab-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<!-- ═══════════ HERO ═══════════ -->
+<header class="hero">
+  <div class="hero-meta">
+    <span class="badge badge-mint">A2 LEVEL</span>
+    <span class="badge badge-white">Food &amp; Dining</span>
+    <span class="badge badge-white">⏱ 2 × 90 minutes</span>
+    <span class="badge badge-white">Speaking + Critical Thinking</span>
+  </div>
+  <h1>Food 🍽️</h1>
+  <p class="subtitle">Order smart at restaurants, talk about nutrition and eating habits, give restaurant feedback — and think critically about your food choices.</p>
+  <div class="outcomes">
+    <div class="outcome-card"><b>📖 Vocabulary</b>Name drinks, tastes, nutrition groups and use adjectives to describe restaurants.</div>
+    <div class="outcome-card"><b>💬 Speaking</b>Order food, ask prices, handle dietary restrictions and give polite feedback.</div>
+    <div class="outcome-card"><b>🧠 Critical Thinking</b>Make and justify food choices based on budget, health and preference.</div>
+    <div class="outcome-card"><b>🔊 Pronunciation</b>Say plural -s / -es endings correctly and naturally.</div>
+  </div>
+</header>
+
+<!-- ═══════════ MAIN TAB BAR (2 tabs) ═══════════ -->
+<nav class="main-tabbar tab-bar" data-group="main">
+  <button class="tab-btn active" data-tab="ordering">🍽️ Tab 1 — Ordering &amp; Dining</button>
+  <button class="tab-btn" data-tab="nutrition">🥗 Tab 2 — Nutrition &amp; Feedback</button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     TAB 1 — SMART ORDERING & DINING DILEMMAS
+════════════════════════════════════════════════ -->
+<div class="tab-panel active" data-group="main" data-panel="ordering">
+
+  <!-- Part 1 · Vocabulary -->
+  <section class="section">
+    <span class="part-label">Part 1 · Language Input</span>
+    <h2 class="section-title">Visual Vocabulary Room</h2>
+    <p class="section-subtitle">Drinks · Taste · Eating Style · Opinion</p>
+    <div class="info-box">💡 Tap a card to flip it and see the example sentence. Read the example aloud 3 times!</div>
+    <div class="filter-row" id="vocab-filters"></div>
+    <div class="vocab-grid" id="vocab-grid"></div>
+  </section>
+
+  <!-- Part 2 · Key Phrases -->
+  <section class="section">
+    <span class="part-label">Part 2 · Language Input</span>
+    <h2 class="section-title">Key Phrases in Action</h2>
+    <p class="section-subtitle">Natural everyday English for the restaurant — tap 🔊 to listen.</p>
+    <div id="phrases-container"></div>
+  </section>
+
+  <!-- Part 3 · Dining Dilemma -->
+  <section class="section">
+    <span class="part-label">Part 3 · Guided Practice</span>
+    <h2 class="section-title">Dining Dilemma Challenge</h2>
+    <p class="section-subtitle">Order for two friends with health restrictions — without breaking the $20 budget.</p>
+
+    <div class="profile-grid">
+      <div class="profile-card">
+        <span class="avatar">A</span><h4>Person A — Health profile</h4>
+        <ul>
+          <li>Loves <b>seafood</b> 🦐</li>
+          <li><b>No salty food</b> allowed 🚫🧂</li>
+        </ul>
+      </div>
+      <div class="profile-card">
+        <span class="avatar">B</span><h4>Person B — Health profile</h4>
+        <ul>
+          <li><b>Vegetarian</b> 🥦</li>
+          <li><b>No sugar</b> — on a diet 🚫🍬</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="budget-bar">
+      <div>💰 Total budget for 2 people: <b>$20.00 max</b></div>
+      <div>Selected: <span class="amount" id="selected-sum">$0.00</span> · Remaining: <span class="amount" id="remaining">$20.00</span></div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-instruction">🖱 Click a row to select / unselect a dish. Watch the budget and the A / B compatibility marks.</div>
+      <div style="overflow-x:auto;">
+        <table class="menu-table">
+          <thead><tr><th>Dish / Drink</th><th>Price</th><th>Notes</th><th>Fits A / B?</th></tr></thead>
+          <tbody id="menu-body"></tbody>
+        </table>
+      </div>
+      <div class="feedback-box info show" style="margin-top:12px;" id="selected-items">No dishes selected yet. Click a row to choose.</div>
+    </div>
+
+    <h3 class="exercise-title" style="margin-bottom:10px;">🧠 Critical Thinking Prompts <span style="font-weight:400;font-size:13px;color:var(--text-soft);">(tap a card to reveal the hint)</span></h3>
+    <div id="prompts-container"></div>
+  </section>
+
+  <!-- Part 4 · Brainstorming & Speaking -->
+  <section class="section">
+    <span class="part-label">Part 4 · Real-world Communication</span>
+    <h2 class="section-title">Brainstorming &amp; Speaking</h2>
+    <p class="section-subtitle">Street-interview style discussion — reveal the model answer only after you try speaking.</p>
+    <div class="tab-bar" data-group="bs" style="margin-bottom:20px;">
+      <button class="tab-btn active" data-tab="bs0">💵 Money</button>
+      <button class="tab-btn" data-tab="bs1">💚 Health &amp; Lifestyle</button>
+      <button class="tab-btn" data-tab="bs2">🤝 Communication &amp; Manners</button>
+    </div>
+    <div class="tab-panel active" data-group="bs" data-panel="bs0"></div>
+    <div class="tab-panel" data-group="bs" data-panel="bs1"></div>
+    <div class="tab-panel" data-group="bs" data-panel="bs2"></div>
+  </section>
+
+  <!-- Speaking checklist -->
+  <section class="section">
+    <span class="part-label">Reflection</span>
+    <h2 class="section-title">Speaking Checklist</h2>
+    <p class="section-subtitle">Tick what you did today.</p>
+    <div class="exercise" id="checklist-1">
+      <label class="check-item"><input type="checkbox"> I used today's vocabulary.</label>
+      <label class="check-item"><input type="checkbox"> I used complete sentences.</label>
+      <label class="check-item"><input type="checkbox"> My pronunciation was clear.</label>
+      <label class="check-item"><input type="checkbox"> I answered naturally.</label>
+      <label class="check-item"><input type="checkbox"> I spoke confidently.</label>
+    </div>
+  </section>
+</div>
+<!-- ═══════════════════════════════════════════════
+     TAB 2 — FOOD & NUTRITION
+════════════════════════════════════════════════ -->
+<div class="tab-panel" data-group="main" data-panel="nutrition">
+
+  <!-- Part 1 · Nutrition Pyramid vocabulary -->
+  <section class="section">
+    <span class="part-label">Part 1 · Language Input</span>
+    <h2 class="section-title">The Nutrition Pyramid 🔺</h2>
+    <p class="section-subtitle">Food vocabulary organised by the 6 nutrition groups.</p>
+    <div class="pyramid-grid" id="pyramid-grid"></div>
+  </section>
+
+  <!-- Part 2 · Reading + match -->
+  <section class="section">
+    <span class="part-label">Part 2 · Reading + Critical Thinking</span>
+    <h2 class="section-title">Eating Habits — Match &amp; Predict 🔍</h2>
+    <p class="section-subtitle">Read each description, then place it on the correct eating habit.</p>
+    <div class="exercise">
+      <div class="exercise-instruction">🖱 Tap a description to select it (blue), then tap the matching habit box on the right. Tap ✕ to remove.</div>
+      <div class="match-grid">
+        <div><h4 style="color:var(--forest);font-size:14px;margin-bottom:10px;">📝 Descriptions</h4><div id="desc-pool"></div></div>
+        <div><h4 style="color:var(--forest);font-size:14px;margin-bottom:10px;">🏷️ Eating Habits</h4><div id="habit-slots"></div></div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="checkMatch()">✅ Check Answers</button>
+        <button class="btn btn-outline" onclick="resetMatch()">↺ Reset</button>
+      </div>
+      <div class="feedback-box" id="match-feedback"></div>
+    </div>
+  </section>
+
+  <!-- Part 3 · Restaurant feedback vocab -->
+  <section class="section">
+    <span class="part-label">Part 3 · Vocabulary + Speaking</span>
+    <h2 class="section-title">Restaurant Feedback 🍽️</h2>
+    <p class="section-subtitle">Adjectives for talking about service, food quality and atmosphere. Green = positive, red = negative.</p>
+    <div class="fb-grid" id="fb-grid"></div>
+  </section>
+
+  <!-- Part 4 · Scenarios -->
+  <section class="section">
+    <span class="part-label">Part 4 · Real-world Communication</span>
+    <h2 class="section-title">Real-Life Scenarios 🗣️</h2>
+    <p class="section-subtitle">Apply today's language: choose dishes, justify your choice, give balanced feedback.</p>
+
+    <!-- Scenario 1 -->
+    <div class="scenario-card">
+      <div class="scenario-header"><span class="s-num">SCENARIO 1</span><h4>The Diet-Friendly Menu</h4></div>
+      <div class="scenario-body">
+        <div class="scenario-situation">🧑‍🤝‍🧑 You are taking a friend who is <b>cutting down on cholesterol</b> to dinner. Study the menu, click the best dish in each course for your friend, and explain why!</div>
+        <div class="menu-card">
+          <div class="menu-card-head">🌿 The Green Fork — Farm-to-table · Est. 2018 · Ho Chi Minh City</div>
+          <div id="greenfork-menu"></div>
+        </div>
+        <div class="feedback-box" id="gf-feedback"></div>
+        <div class="scaffold">
+          <h5>🗣️ Speaking Scaffolding — Use these sentences!</h5>
+          <p>"For the <b>starter</b>, I choose <span class="blank-line"></span> for my friend."</p>
+          <p>"For the <b>main course</b>, I choose <span class="blank-line"></span>."</p>
+          <p>"For <b>dessert</b>, I choose <span class="blank-line"></span>."</p>
+          <p>"Because it is / it does not contain <span class="blank-line"></span>."</p>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-secondary btn-sm" onclick="checkGreenFork()">✅ Check my choices</button>
+          <button class="btn btn-outline btn-sm" onclick="resetGreenFork()">↺ Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 2 -->
+    <div class="scenario-card">
+      <div class="scenario-header"><span class="s-num">SCENARIO 2</span><h4>Service vs. Food Quality</h4></div>
+      <div class="scenario-body">
+        <div class="scenario-situation">🍔 You visited a new restaurant. The chicken hamburger was <b>juicy and delicious</b>, the atmosphere was <b>cozy</b> — BUT the service was <b>too slow</b>. You waited <b>40 minutes</b>! What do you say?</div>
+        <div class="chip-row">
+          <span class="hint-chip">Fresh</span><span class="hint-chip">Tasty / Flavorful</span><span class="hint-chip">Relaxing</span>
+          <span class="hint-chip">Beautifully decorated</span><span class="hint-chip">Annoying</span><span class="hint-chip">Unprofessional</span><span class="hint-chip">Disappointed</span>
+        </div>
+        <div class="scaffold">
+          <h5>🗣️ Speaking Scaffolding</h5>
+          <p><b>Opener:</b> "I recently visited this restaurant. In my opinion, the food is <span class="blank-line"></span> and the atmosphere is <span class="blank-line"></span>."</p>
+          <p><b>Negative point:</b> "However, the service is <span class="blank-line"></span>. I feel <span class="blank-line"></span> because I had to wait for 40 minutes."</p>
+          <p><b>Decision:</b> "Will I return? Yes / No, because <span class="blank-line"></span>."</p>
+        </div>
+        <button class="btn btn-secondary btn-sm" style="margin-top:12px;" onclick="this.nextElementSibling.classList.toggle('revealed')">👀 Show sample response</button>
+        <div class="sample-response">💬 <i>"I recently visited this restaurant. In my opinion, the food is <b>juicy and delicious</b> and the atmosphere is <b>cozy</b>. However, the service is <b>too slow</b>. I feel <b>disappointed</b> because I had to wait for 40 minutes. Will I return? Yes, because the food is worth it — but I hope they improve their service speed."</i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Part 5 · Pronunciation -->
+  <section class="section">
+    <span class="part-label">Part 5 · Pronunciation</span>
+    <h2 class="section-title">Plural -s / -es Endings 🔊</h2>
+    <p class="section-subtitle">Focus on the highlighted word, tap 🔊 to listen, then repeat aloud!</p>
+    <div class="pron-rule">
+      <h4>The rule</h4>
+      <p style="font-size:14px;"><span class="pron-pill">/s/</span> after voiceless sounds — <i>types, carrots</i> &nbsp;·&nbsp; <span class="pron-pill">/z/</span> after voiced sounds — <i>vitamins, vegetables</i> &nbsp;·&nbsp; <span class="pron-pill">/ɪz/</span> after s, z, ʃ, tʃ, dʒ — <i>classes, pieces</i></p>
+    </div>
+    <div id="pron-list"></div>
+  </section>
+
+  <!-- Part 6 · Practice exercises -->
+  <section class="section">
+    <span class="part-label">Part 6 · Practice</span>
+    <h2 class="section-title">Practice Exercises 📝</h2>
+    <p class="section-subtitle">Consolidate today's language before you finish.</p>
+
+    <!-- Exercise 1: order sentences -->
+    <div class="exercise">
+      <div class="exercise-title">Exercise 1 — Arrange the Sentences</div>
+      <div class="exercise-instruction">🖱 Tap the sentences in the correct order (1 → 4) to build a coherent restaurant review. Your paragraph appears below.</div>
+      <div class="order-pool" id="order-pool"></div>
+      <div class="order-built" id="order-built"><span style="font-size:13px;color:var(--text-soft);">Your paragraph will appear here…</span></div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="checkOrder()">✅ Check Order</button>
+        <button class="btn btn-outline" onclick="resetOrder()">↺ Reset</button>
+      </div>
+      <div class="feedback-box" id="order-feedback"></div>
+    </div>
+
+    <!-- Exercise 2: fill blanks -->
+    <div class="exercise">
+      <div class="exercise-title">Exercise 2 — Fill in the Blanks</div>
+      <div class="exercise-instruction">🖱 Tap a word from the bank, then tap the blank where it belongs. Green = correct!</div>
+      <div class="word-bank" id="word-bank">
+        <span class="bank-word" data-word="But">But</span>
+        <span class="bank-word" data-word="Therefore">Therefore</span>
+        <span class="bank-word" data-word="because">because</span>
+      </div>
+      <div class="fill-para">
+        I have a real sweet tooth and I love eating ice cream.
+        <input class="blank-input" data-answer="But" placeholder="(1)">
+        I know it contains too much sugar and bad fats.
+        <input class="blank-input" data-answer="Therefore" placeholder="(2)">
+        I am trying to cut down on sweets. Now, I eat pineapples and strawberries
+        <input class="blank-input" data-answer="because" placeholder="(3)">
+        they are healthy and full of vitamins.
+      </div>
+    </div>
+
+    <!-- Self-assessment -->
+    <div class="exercise" id="checklist-2">
+      <div class="exercise-title">Self-Assessment ✅</div>
+      <label class="check-item"><input type="checkbox"> I understand today's vocabulary.</label>
+      <label class="check-item"><input type="checkbox"> I can use today's phrases.</label>
+      <label class="check-item"><input type="checkbox"> I can describe eating habits and nutrition groups.</label>
+      <label class="check-item"><input type="checkbox"> I can give balanced restaurant feedback.</label>
+      <label class="check-item"><input type="checkbox"> I feel more confident talking about food.</label>
+    </div>
+  </section>
+</div>
+
+<button class="reset-fab" onclick="globalReset()">🔄 Reset All</button>
+<script>
+/* ═══════════ TAB SWITCHING (group-attribute pattern, resolved via closest('.tab-bar')) ═══════════ */
+document.querySelectorAll('.tab-bar .tab-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var bar = btn.closest('.tab-bar');
+    var group = bar.getAttribute('data-group');
+    var target = btn.getAttribute('data-tab');
+    bar.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.toggle('active', b === btn); });
+    document.querySelectorAll('.tab-panel[data-group="' + group + '"]').forEach(function(p){
+      p.classList.toggle('active', p.getAttribute('data-panel') === target);
+    });
+    if (group === 'main') window.scrollTo({top:0});
+  });
+});
+
+/* ═══════════ TEXT-TO-SPEECH ═══════════ */
+function speak(text){
+  if (!window.speechSynthesis) return;
+  var u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US'; u.rate = 0.9;
+  speechSynthesis.cancel(); speechSynthesis.speak(u);
+}
+
+/* ═══════════════════ TAB 1 DATA ═══════════════════ */
+var VOCAB = [
+  { word:'Coffee', ipa:'/ˈkɒfi/', emoji:'☕', cat:'drink', vi:'Cà phê', example:'I need a cup of <span class="vocab-highlight">hot coffee</span> to wake up.' },
+  { word:'Tea', ipa:'/tiː/', emoji:'🍵', cat:'drink', vi:'Trà', example:'She prefers <span class="vocab-highlight">green tea</span> over black coffee.' },
+  { word:'Juice', ipa:'/dʒuːs/', emoji:'🍹', cat:'drink', vi:'Nước ép', example:'Fresh <span class="vocab-highlight">orange juice</span> is rich in Vitamin C.' },
+  { word:'Smoothie', ipa:'/ˈsmuːði/', emoji:'🥤', cat:'drink', vi:'Sinh tố', example:'This <span class="vocab-highlight">mango smoothie</span> is very thick and creamy.' },
+  { word:'Sweet', ipa:'/swiːt/', emoji:'🍬', cat:'taste', vi:'Ngọt', example:'I don\u2019t like this cake — it\u2019s <span class="vocab-highlight">too sweet</span>.' },
+  { word:'Salty', ipa:'/ˈsɔːlti/', emoji:'🧂', cat:'taste', vi:'Mặn', example:'The French fries are <span class="vocab-highlight">too salty</span> for me.' },
+  { word:'Spicy', ipa:'/ˈspaɪsi/', emoji:'🌶️', cat:'taste', vi:'Cay', example:'Can you make this <span class="vocab-highlight">less spicy</span>, please?' },
+  { word:'Sour', ipa:'/saʊər/', emoji:'🍋', cat:'taste', vi:'Chua', example:'This lemonade is <span class="vocab-highlight">too sour</span>. Please add some sugar.' },
+  { word:'Bitter', ipa:'/ˈbɪtər/', emoji:'🫘', cat:'taste', vi:'Đắng', example:'Dark chocolate has a <span class="vocab-highlight">bitter</span> taste.' },
+  { word:'For here', ipa:'/fər hɪər/', emoji:'🍽️', cat:'style', vi:'Ăn tại chỗ', example:'"<span class="vocab-highlight">For here</span> or to go?" — "For here, please."' },
+  { word:'To go', ipa:'/tə ɡoʊ/', emoji:'🛍️', cat:'style', vi:'Mang về', example:'Two coffees <span class="vocab-highlight">to go</span>, please.' },
+  { word:'Less ice', ipa:'/les aɪs/', emoji:'🧊', cat:'style', vi:'Ít đá', example:'Milk tea with <span class="vocab-highlight">less ice</span>, please.' },
+  { word:'No sugar', ipa:'/nəʊ ˈʃʊɡər/', emoji:'🚫', cat:'style', vi:'Không đường', example:'I am on a diet — <span class="vocab-highlight">no sugar</span>, please.' },
+  { word:'Delicious', ipa:'/dɪˈlɪʃəs/', emoji:'😋', cat:'opinion', vi:'Rất ngon', example:'Wow, this spaghetti is <span class="vocab-highlight">absolutely delicious</span>!' },
+  { word:'Fresh', ipa:'/freʃ/', emoji:'🌿', cat:'opinion', vi:'Tươi ngon', example:'The seafood at this restaurant is very <span class="vocab-highlight">fresh</span>.' },
+  { word:'Expensive', ipa:'/ɪkˈspensɪv/', emoji:'💸', cat:'opinion', vi:'Đắt tiền', example:'The steak is <span class="vocab-highlight">a bit expensive</span>, but it\u2019s worth it.' }
+];
+var CAT_LABELS = { all:'All', drink:'Drinks', taste:'Taste', style:'Eating Style', opinion:'Opinion' };
+
+function renderVocabFilters(){
+  var row = document.getElementById('vocab-filters');
+  row.innerHTML = '';
+  Object.keys(CAT_LABELS).forEach(function(cat, i){
+    var chip = document.createElement('button');
+    chip.className = 'filter-chip' + (i === 0 ? ' active' : '');
+    chip.textContent = CAT_LABELS[cat];
+    chip.onclick = function(){
+      row.querySelectorAll('.filter-chip').forEach(function(c){ c.classList.toggle('active', c === chip); });
+      renderVocab(cat);
+    };
+    row.appendChild(chip);
+  });
+}
+function renderVocab(filter){
+  var grid = document.getElementById('vocab-grid');
+  grid.innerHTML = '';
+  VOCAB.filter(function(v){ return filter === 'all' || v.cat === filter; }).forEach(function(v){
+    var card = document.createElement('div');
+    card.className = 'vocab-card';
+    card.innerHTML = '<span class="flip-hint">tap ↻</span><span class="emoji">' + v.emoji + '</span>'
+      + '<div class="word">' + v.word + '</div><div class="ipa">' + v.ipa + '</div>'
+      + '<span class="pos">' + CAT_LABELS[v.cat] + '</span><div class="vi">' + v.vi + '</div>'
+      + '<div class="example">' + v.example + '</div>';
+    card.onclick = function(){ card.classList.toggle('flipped'); };
+    grid.appendChild(card);
+  });
+}
+
+var PHRASES = [
+  { cat:'🍜 Ordering Food', items:[
+    { en:'Can I have the Seafood Spaghetti, please?', vi:'Cho tôi gọi món Mì Hải Sản.' },
+    { en:"I'd like the Vegetarian Lasagna.", vi:'Tôi muốn dùng món Lasagna chay.' },
+    { en:'What do you recommend?', vi:'Bạn gợi ý món gì?' },
+    { en:"What's today's special?", vi:'Hôm nay có món đặc biệt nào không?' } ]},
+  { cat:'💵 Asking about Price', items:[
+    { en:'How much is the Ribeye Steak?', vi:'Món bít tết giá bao nhiêu?' },
+    { en:'Is service charge included?', vi:'Phí phục vụ đã bao gồm chưa?' },
+    { en:'Could I have the bill, please?', vi:'Cho tôi thanh toán.' } ]},
+  { cat:'🥗 Dietary Restrictions', items:[
+    { en:"I'm allergic to seafood.", vi:'Tôi bị dị ứng hải sản.' },
+    { en:"I'm vegetarian — no meat, please.", vi:'Tôi ăn chay, không ăn thịt.' },
+    { en:'Can you make it less salty?', vi:'Làm ơn nêm ít muối hơn được không?' },
+    { en:'No sugar in my drink, please.', vi:'Đồ uống của tôi không cho đường.' },
+    { en:'Does this dish contain dairy?', vi:'Món này có sữa/bơ không?' } ]},
+  { cat:'🙏 Polite Responses', items:[
+    { en:'That sounds great, thank you!', vi:'Hay đó, cảm ơn bạn!' },
+    { en:'Could you give me a moment?', vi:'Bạn cho tôi thêm chút thời gian được không?' },
+    { en:"I'm sorry, I'll have something else.", vi:'Xin lỗi, tôi sẽ đổi sang món khác.' },
+    { en:'Everything was wonderful, thank you!', vi:'Mọi thứ rất tuyệt, cảm ơn!' } ]}
+];
+function renderPhrases(){
+  var box = document.getElementById('phrases-container');
+  box.innerHTML = '';
+  PHRASES.forEach(function(cat){
+    var title = document.createElement('div');
+    title.className = 'phrase-cat-title';
+    title.textContent = cat.cat;
+    box.appendChild(title);
+    cat.items.forEach(function(p){
+      var row = document.createElement('div');
+      row.className = 'phrase-row';
+      row.innerHTML = '<div><div class="phrase-en">' + p.en + '</div><div class="phrase-vi">' + p.vi + '</div></div>';
+      var btn = document.createElement('button');
+      btn.className = 'speak-btn'; btn.textContent = '🔊'; btn.setAttribute('aria-label','Listen');
+      btn.onclick = function(){ speak(p.en); };
+      row.appendChild(btn);
+      box.appendChild(row);
+    });
+  });
+}
+
+/* ─── Dining Dilemma ─── */
+var MENU = [
+  { name:'Ribeye Steak', price:22.00, flags:['⚠ salty'], notes:'Rich flavour, very salty', okA:false, okB:false },
+  { name:'Classic Cheeseburger', price:8.00, flags:['dairy'], notes:'Contains milk / cheese', okA:true, okB:false },
+  { name:'Seafood Spaghetti', price:15.00, flags:['seafood'], notes:'Seafood, lightly sour', okA:true, okB:false },
+  { name:'Vegetarian Lasagna', price:10.00, flags:['✓ veg'], notes:'100% vegetarian', okA:true, okB:true },
+  { name:'Fries', price:3.00, flags:['⚠ salty'], notes:'Very salty', okA:false, okB:true },
+  { name:'Garden Salad', price:5.00, flags:['✓ fresh','✓ veg'], notes:'Fresh, light sweet-sour taste', okA:true, okB:true },
+  { name:'Mango Smoothie', price:5.00, flags:['⚠ sweet','dairy'], notes:'Very sweet, condensed milk', okA:true, okB:false },
+  { name:'Fresh Orange Juice', price:4.50, flags:['✓ fresh'], notes:'Naturally sweet-sour', okA:true, okB:true },
+  { name:'Cola', price:2.50, flags:['⚠ sweet'], notes:'High sugar, fizzy', okA:true, okB:false }
+];
+var selectedDishes = new Set();
+function renderMenu(){
+  var body = document.getElementById('menu-body');
+  body.innerHTML = '';
+  MENU.forEach(function(item, i){
+    var tr = document.createElement('tr');
+    tr.className = 'row' + (selectedDishes.has(i) ? ' selected' : '');
+    var flagsHtml = item.flags.map(function(f){
+      var cls = f.indexOf('⚠') === 0 ? 'flag-warn' : 'flag-ok';
+      return '<span class="flag ' + cls + '">' + f + '</span>';
+    }).join('');
+    var okA = item.okA ? '<span class="ok-mark">✓</span>' : '<span class="no-mark">✕</span>';
+    var okB = item.okB ? '<span class="ok-mark">✓</span>' : '<span class="no-mark">✕</span>';
+    tr.innerHTML = '<td><div class="dish-name">' + item.name + '</div><div>' + flagsHtml + '</div></td>'
+      + '<td><b>$' + item.price.toFixed(2) + '</b></td>'
+      + '<td style="font-size:12px;color:var(--text-soft);">' + item.notes + '</td>'
+      + '<td>A ' + okA + ' &nbsp; B ' + okB + '</td>';
+    tr.onclick = function(){
+      if (selectedDishes.has(i)) selectedDishes.delete(i); else selectedDishes.add(i);
+      renderMenu(); updateBudget();
+    };
+    body.appendChild(tr);
+  });
+}
+function updateBudget(){
+  var total = 0;
+  selectedDishes.forEach(function(i){ total += MENU[i].price; });
+  var remaining = 20 - total;
+  document.getElementById('selected-sum').textContent = '$' + total.toFixed(2);
+  var rem = document.getElementById('remaining');
+  rem.textContent = '$' + remaining.toFixed(2);
+  rem.classList.toggle('over', remaining < 0);
+  var names = [];
+  selectedDishes.forEach(function(i){ names.push(MENU[i].name); });
+  document.getElementById('selected-items').textContent = names.length
+    ? '🧾 Selected: ' + names.join(', ')
+    : 'No dishes selected yet. Click a row to choose.';
+}
+
+var PROMPTS = [
+  { q:'If A orders the Seafood Spaghetti ($15), B has only $5 left. What can B order that fits a vegetarian, no-sugar diet?',
+    hint:'Garden Salad = $5 → exactly on budget and fits both profiles!' },
+  { q:'B wants the Mango Smoothie, but it has sugar and milk. What should B say to the waiter?',
+    hint:'"Can I have the Mango Smoothie with no sugar and no milk, please?"' },
+  { q:'Which dish is a total no-go — nobody can order it? Why?',
+    hint:'Ribeye Steak: A can\u2019t eat salty food + B doesn\u2019t eat meat → impossible for both!' },
+  { q:'Plan the perfect meal for both people without going over $20. Practise ordering it in pairs.',
+    hint:'Seafood Spaghetti ($15) + Garden Salad ($5) = $20 → right on budget!' }
+];
+function renderPrompts(){
+  var box = document.getElementById('prompts-container');
+  box.innerHTML = '';
+  PROMPTS.forEach(function(p, i){
+    var card = document.createElement('div');
+    card.className = 'prompt-card';
+    card.innerHTML = '<div class="prompt-q">' + (i+1) + '. ' + p.q + '</div><div class="prompt-hint">💡 ' + p.hint + '</div>';
+    card.onclick = function(){ card.classList.toggle('open'); };
+    box.appendChild(card);
+  });
+}
+
+/* ─── Brainstorming topics ─── */
+var BS_TOPICS = [
+  { panel:'bs0', ideas:[
+    { title:'The "Eat Out" Trap', vi:'Ăn ngoài 5 lần/tuần ảnh hưởng đến ví tiền như thế nào so với ăn ở nhà?',
+      q:'Do you often eat out? How does it affect your monthly spending?',
+      a:'Thật ra, <span class="lw">to be honest</span>, mình ăn ngoài khá nhiều — khoảng 4 đến 5 lần mỗi tuần. Đồ ăn nhà hàng thì <span class="kw">delicious</span>, nhưng <span class="lw">on the other hand</span>, nó thường <span class="kw">a bit expensive</span> hơn nhiều so với nấu ăn ở nhà. <span class="lw">For example</span>, một bữa <span class="kw">eat out</span> tốn khoảng 120.000 đồng, trong khi nấu ở nhà chỉ tốn một nửa. <span class="lw">As a result</span>, một tháng mình dễ tiêu thêm 1–2 triệu đồng mà không hay biết.',
+      keywords:['eat out','eat at home','delicious','a bit expensive'],
+      speak:'Talk about your eating-out habits. Use: "I usually eat out... / It\u2019s delicious but a bit expensive..."' },
+    { title:'Hidden Costs — Drinks on the Side', vi:'Thói quen gọi thêm smoothie hoặc coffee khi đi ăn tốn bao nhiêu tiền mỗi tháng?',
+      q:'Do you usually order an extra drink when eating out? Is it a hidden cost?',
+      a:'<span class="lw">Well</span>, mình thường gọi thêm một ly <span class="kw">smoothie</span> hoặc <span class="kw">coffee</span> mỗi khi đi ăn — gần như là thói quen tự động. <span class="lw">However</span>, nếu tính ra, mỗi ly tốn khoảng 50.000–70.000 đồng, và nếu đi ăn 20 lần một tháng thì con số đó lên tới hơn 1 triệu đồng chỉ cho nước uống. <span class="lw">So</span>, mình nghĩ nếu chuyển sang uống nước lọc hoặc tự mang nước từ nhà thì tiết kiệm được kha khá.',
+      keywords:['smoothie','coffee','hidden cost','cut down'],
+      speak:'Discuss drink costs. Use: "Every time I eat out, I usually order a smoothie. However..."' },
+    { title:'Delivery vs. Dine-in', vi:'Ngồi ăn tại quán (for here) hay gọi shipper (to go) — cái nào tiết kiệm và đáng tiền hơn?',
+      q:'Do you prefer food delivery or dining in at the restaurant? Why?',
+      a:'Mình thích <span class="kw">for here</span> hơn, <span class="lw">because</span> đồ ăn tại quán thường còn <span class="kw">fresh</span> và ngon hơn. <span class="lw">In contrast</span>, khi <span class="kw">order to go</span>, mình phải trả thêm phí ship và đồ ăn đến tay đôi khi không còn nóng nữa. <span class="lw">Besides</span>, hộp xốp cũng gây ra nhiều rác thải. <span class="lw">Therefore</span>, nếu không bận quá thì mình sẽ chọn đến quán trực tiếp — vừa ngon hơn, vừa rẻ hơn.',
+      keywords:['for here','to go','fresh','delivery fee'],
+      speak:'Compare delivery and dine-in. Use: "I prefer dining in because the food is fresher. In contrast, delivery..."' } ]},
+  { panel:'bs1', ideas:[
+    { title:'The Sugar Cut', vi:'Chuyển sang no sugar hoặc less ice khi gọi trà/nước ép giúp ích gì cho sức khoẻ?',
+      q:'Have you ever tried ordering a no-sugar drink? How did it feel?',
+      a:'Có, mình đã thử gọi trà <span class="kw">no sugar</span> được khoảng 2 tháng rồi. <span class="lw">At first</span>, mình thấy khó chịu vì quen uống đồ <span class="kw">sweet</span>. <span class="lw">But gradually</span>, mình nhận ra cơ thể mình nhẹ nhàng hơn và ít buồn ngủ sau bữa ăn hơn. <span class="lw">Moreover</span>, bác sĩ nói rằng cắt giảm đường giúp phòng ngừa tiểu đường và giảm cân hiệu quả. <span class="lw">So</span>, mình nghĩ đây là thói quen đáng để duy trì lâu dài.',
+      keywords:['no sugar','less ice','sweet','healthy habit'],
+      speak:'Talk about your low-sugar habit. Use: "I started ordering no sugar tea... At first it was hard, but gradually..."' },
+    { title:'Going Vegetarian Once a Week', vi:'Ăn một ngày chay mỗi tuần có thực sự tốt cho sức khoẻ không?',
+      q:'Have you tried vegetarian food? Do you think it tastes good?',
+      a:'Mình thử ăn <span class="kw">vegetarian food</span> vào mỗi thứ Hai. <span class="lw">Honestly</span>, lúc đầu mình nghĩ nó sẽ nhạt và không ngon. <span class="lw">However</span>, mình bất ngờ vì nhiều món chay rất <span class="kw">delicious</span> và <span class="kw">fresh</span>. <span class="lw">In addition</span>, hệ tiêu hoá của mình cũng nhẹ nhàng hơn so với những ngày ăn <span class="kw">steak</span> hay <span class="kw">cheeseburger</span>. <span class="lw">As a result</span>, mình đang cân nhắc tăng lên 2 ngày chay mỗi tuần.',
+      keywords:['vegetarian','delicious','fresh','digestion'],
+      speak:'Share your vegetarian experience. Use: "I try vegetarian food every Monday. Honestly, at first I thought..."' },
+    { title:'Listening to Your Tongue', vi:'Cơ thể phản ứng thế nào với các vị khác nhau — và điều đó nói lên điều gì về sức khoẻ?',
+      q:'When do you crave salty or sweet food? Have you noticed why?',
+      a:'<span class="lw">Actually</span>, mình nhận ra rằng khi thèm đồ <span class="kw">salty</span>, cơ thể mình thường đang bị mất nước. <span class="lw">Meanwhile</span>, khi stress hay mệt mỏi, mình lại muốn ăn gì đó <span class="kw">sweet</span> hoặc <span class="kw">bitter</span> như socola đen. <span class="lw">So now</span>, mình bắt đầu để ý hơn đến những tín hiệu đó và điều chỉnh thực đơn phù hợp. <span class="lw">For instance</span>, khi thèm mặn thì mình uống nước thay vì ăn chips.',
+      keywords:['salty','sweet','bitter','body signals'],
+      speak:'Talk about taste-craving signals. Use: "When I crave salty food, it usually means... Meanwhile, when I\u2019m stressed..."' } ]},
+  { panel:'bs2', ideas:[
+    { title:'The First Date Test', vi:'Hỏi "What do you feel like eating?" thay vì tự quyết định — điều này tạo ấn tượng thế nào?',
+      q:'When eating out with someone new, do you pick the place yourself or ask them first?',
+      a:'Mình nghĩ việc hỏi "<span class="kw">What do you feel like eating tonight?</span>" trước là rất quan trọng. <span class="lw">Because</span> mỗi người có sở thích và hạn chế ăn uống khác nhau. <span class="lw">For example</span>, người đó có thể là <span class="kw">vegetarian</span> hoặc bị dị ứng hải sản mà mình không biết. <span class="lw">Besides</span>, chọn một quán quá <span class="kw">expensive</span> cũng có thể làm đối phương cảm thấy áp lực. <span class="lw">So</span>, hỏi ý kiến trước vừa lịch sự, vừa cho thấy mình quan tâm đến cảm nhận của họ.',
+      keywords:['polite question','expensive','vegetarian','first impression'],
+      speak:'Talk about politeness when choosing restaurants. Use: "I always ask \u2018What do you feel like eating?\u2019 because..."' },
+    { title:'Respecting Dietary Restrictions', vi:'Khi tổ chức bữa tiệc, làm thế nào để hỏi về dị ứng và đảm bảo menu phù hợp cho tất cả mọi người?',
+      q:'Have you ever organised a group meal? How do you handle different food preferences?',
+      a:'Có, mình đã tổ chức liên hoan nhóm vài lần. <span class="lw">First of all</span>, mình sẽ nhắn tin hỏi trước: "<span class="kw">Are you allergic to anything?</span>" hoặc "<span class="kw">Do you eat meat?</span>". <span class="lw">After that</span>, mình chọn nhà hàng có đủ cả món mặn lẫn <span class="kw">vegetarian</span>. <span class="lw">In my opinion</span>, đây là trách nhiệm của người tổ chức — không ai nên đến và không tìm được món phù hợp cho mình. <span class="lw">As a result</span>, mọi người đều thoải mái và bữa ăn vui hơn nhiều.',
+      keywords:['dietary restriction','allergy','vegetarian','host responsibility'],
+      speak:'Describe organising a group meal. Use: "First of all, I always ask everyone... After that, I choose a restaurant that..."' },
+    { title:'Polite Complaining', vi:'Khi món ăn quá ngọt hoặc không tươi, làm thế nào để phàn nàn lịch sự thay vì im lặng hoặc nổi giận?',
+      q:'Have you ever received food that wasn\u2019t what you expected? What did you say to the staff?',
+      a:'<span class="lw">Actually</span>, mình có một lần gọi nước <span class="kw">juice</span> nhưng nó <span class="kw">too sweet</span> so với mức mình có thể uống. <span class="lw">Instead of</span> im lặng hoặc khó chịu, mình gọi nhân viên và nói nhẹ nhàng: "<span class="kw">Could you add a little more water? It\u2019s a bit too sweet for my taste.</span>" <span class="lw">As a result</span>, nhân viên vui vẻ điều chỉnh ngay. <span class="lw">I think</span> cấu trúc "<span class="kw">Could you...?</span>" rất hữu ích — nó lịch sự mà vẫn rõ ràng.',
+      keywords:['too sweet','Could you...?','polite request','fresh'],
+      speak:'Practise polite complaining. Use: "Excuse me, could you...? This is a bit too sweet / not very fresh."' } ]}
+];
+function renderBrainstorm(){
+  BS_TOPICS.forEach(function(topic){
+    var panel = document.querySelector('.tab-panel[data-group="bs"][data-panel="' + topic.panel + '"]');
+    panel.innerHTML = '';
+    topic.ideas.forEach(function(idea, ii){
+      var card = document.createElement('div');
+      card.className = 'bs-card';
+      var chips = idea.keywords.map(function(k){ return '<span class="hint-chip">' + k + '</span>'; }).join('');
+      card.innerHTML = '<div class="bs-head"><div class="bs-num">' + (ii+1) + '</div><div><div class="bs-title">' + idea.title + '</div><div class="bs-vi">' + idea.vi + '</div></div></div>'
+        + '<div class="interview">'
+        +   '<div class="q-label">🎤 Street Interview — Question</div>'
+        +   '<div class="q-text">' + idea.q + '</div>'
+        +   '<button class="btn btn-secondary btn-sm reveal-a">👀 Show model answer</button>'
+        +   '<div class="a-wrap"><div class="q-label" style="margin-top:10px;">Model answer (VI scaffold + EN keywords)</div><div class="a-text">' + idea.a + '</div></div>'
+        + '</div>'
+        + '<div class="chip-row">' + chips + '</div>'
+        + '<div class="speak-task"><b>🗣 Speaking Practice:</b> ' + idea.speak + '</div>';
+      card.querySelector('.reveal-a').onclick = function(){ this.closest('.interview').classList.toggle('revealed'); };
+      panel.appendChild(card);
+    });
+  });
+}
+
+/* ═══════════════════ TAB 2 DATA ═══════════════════ */
+var PYRAMID = [
+  { emoji:'🍦', name:'A. Fats, Oils & Sweets', vi:'Chất béo, dầu & đồ ngọt — Eat least', foods:[
+    ['Ice cream','/ˈaɪs.kriːm/'], ['Hamburgers','/ˈhæmˌbɜː.ɡərz/'], ['Pancakes','/ˈpæn.keɪks/'] ]},
+  { emoji:'🥛', name:'B. Milk, Yogurt & Cheese', vi:'Nhóm sữa & phô mai', foods:[
+    ['Cheeses','/tʃiːzɪz/'], ['Dairy products','/ˈdeə.ri ˈprɒd.ʌkts/'], ['Milk & Yogurt','/mɪlk/ /ˈjɒɡ.ət/'] ]},
+  { emoji:'🥦', name:'C. Vegetable Group', vi:'Nhóm rau củ', foods:[
+    ['Carrots','/ˈkær.əts/'], ['Vegetables','/ˈvedʒ.tə.bəlz/'] ]},
+  { emoji:'🍗', name:'D. Meat, Fish, Eggs & Nuts', vi:'Nhóm thịt, cá, trứng & hạt', foods:[
+    ['Chicken','/ˈtʃɪk.ɪn/'], ['Tuna / Fish','/ˈtjuː.nə/ /fɪʃ/'], ['Eggs','/eɡz/'], ['Walnuts','/ˈwɔːl.nʌts/'], ['Dry Beans','/draɪ biːnz/'], ['Red meat','/red miːt/'] ]},
+  { emoji:'🍓', name:'E. Fruit Group', vi:'Nhóm trái cây', foods:[
+    ['Apples','/ˈæp.əlz/'], ['Pineapple','/ˈpaɪnˌæp.əl/'], ['Strawberries','/ˈstrɔː.bər.iz/'], ['Blueberries','/ˈbluː.bər.iz/'] ]},
+  { emoji:'🍞', name:'F. Bread, Cereal, Rice & Pasta', vi:'Nhóm ngũ cốc & tinh bột', foods:[
+    ['Noodles','/ˈnuː.dəlz/'], ['Cereal','/ˈsɪə.ri.əl/'], ['Rice','/raɪs/'], ['Pasta / Bread','/ˈpæs.tə/ /bred/'] ]}
+];
+function renderPyramid(){
+  var grid = document.getElementById('pyramid-grid');
+  grid.innerHTML = '';
+  PYRAMID.forEach(function(g){
+    var card = document.createElement('div');
+    card.className = 'group-card';
+    var foods = g.foods.map(function(f){
+      return '<div class="food-item"><span class="en">' + f[0] + '</span><span class="fipa">' + f[1] + '</span></div>';
+    }).join('');
+    card.innerHTML = '<h4>' + g.emoji + ' ' + g.name + '</h4><div class="vi">' + g.vi + '</div>' + foods;
+    grid.appendChild(card);
+  });
+}
+
+/* ─── Eating habits match (click-to-place) ─── */
+var DESCRIPTIONS = [
+  { id:'d1', text:'"I never pay attention to my diet. I eat whatever I want. There\u2019s nothing I like more than a big juicy steak for dinner and chocolate cake and ice cream for dessert."' },
+  { id:'d2', text:'"I\u2019m trying to cut down on cholesterol, so I\u2019ve stopped eating eggs, cheese, and red meat. I\u2019m eating a lot more fish and chicken."' },
+  { id:'d3', text:'"I\u2019m trying to put on weight. Everyone tells me I\u2019m too thin, so I\u2019ve started eating a lot more meat and dairy products. Now I can go out for hamburgers and fries as often as I want!"' },
+  { id:'d4', text:'"I\u2019ve got a real sweet tooth. I love chocolate and candy. But I know it isn\u2019t healthy, so I\u2019ve given all that up. Now the only sweets I have are fruit."' }
+];
+var HABITS = [
+  { key:'unhealthy', label:'😵 Unhealthy / Careless', vi:'Ăn uống vô độ', answer:'d1' },
+  { key:'gain', label:'📈 Gaining Weight', vi:'Ăn để tăng cân', answer:'d3' },
+  { key:'diet', label:'🥗 Dieting for Health', vi:'Cắt giảm mỡ / cholesterol', answer:'d2' },
+  { key:'sugar', label:'🍎 Overcoming Sugar Addiction', vi:'Cai ngọt, thay bằng trái cây', answer:'d4' }
+];
+var matchSelected = null;
+var matchFilled = {};
+function renderMatch(){
+  matchSelected = null; matchFilled = {};
+  var pool = document.getElementById('desc-pool');
+  pool.innerHTML = '';
+  DESCRIPTIONS.forEach(function(d){
+    var card = document.createElement('div');
+    card.className = 'desc-card'; card.id = 'desc-' + d.id;
+    card.textContent = d.text;
+    card.onclick = function(){
+      matchSelected = (matchSelected === d.id) ? null : d.id;
+      pool.querySelectorAll('.desc-card').forEach(function(c){ c.classList.toggle('selected', c.id === 'desc-' + matchSelected); });
+    };
+    pool.appendChild(card);
+  });
+  var slots = document.getElementById('habit-slots');
+  slots.innerHTML = '';
+  HABITS.forEach(function(h){
+    var slot = document.createElement('div');
+    slot.className = 'habit-slot'; slot.id = 'slot-' + h.key;
+    slot.innerHTML = '<h5>' + h.label + ' <span class="remove-x" style="display:none;">✕ remove</span></h5><div class="habit-vi">' + h.vi + '</div><div class="filled-desc"></div>';
+    slot.onclick = function(e){
+      if (e.target.classList.contains('remove-x')) { removeFromSlot(h.key); return; }
+      if (!matchSelected) return;
+      matchFilled[h.key] = matchSelected;
+      var descCard = document.getElementById('desc-' + matchSelected);
+      descCard.classList.add('placed'); descCard.classList.remove('selected');
+      slot.classList.add('filled'); slot.classList.remove('correct','incorrect');
+      slot.querySelector('.filled-desc').textContent = descCard.textContent;
+      slot.querySelector('.remove-x').style.display = 'inline';
+      matchSelected = null;
+    };
+    slots.appendChild(slot);
+  });
+  var fb = document.getElementById('match-feedback');
+  fb.className = 'feedback-box'; fb.textContent = '';
+}
+function removeFromSlot(key){
+  if (!matchFilled[key]) return;
+  var descCard = document.getElementById('desc-' + matchFilled[key]);
+  if (descCard) descCard.classList.remove('placed');
+  var slot = document.getElementById('slot-' + key);
+  slot.classList.remove('filled','correct','incorrect');
+  slot.querySelector('.filled-desc').textContent = '';
+  slot.querySelector('.remove-x').style.display = 'none';
+  delete matchFilled[key];
+}
+function checkMatch(){
+  var correct = 0;
+  HABITS.forEach(function(h){
+    var slot = document.getElementById('slot-' + h.key);
+    if (!matchFilled[h.key]) { slot.classList.remove('correct','incorrect'); return; }
+    var ok = matchFilled[h.key] === h.answer;
+    slot.classList.toggle('correct', ok);
+    slot.classList.toggle('incorrect', !ok);
+    if (ok) correct++;
+  });
+  var fb = document.getElementById('match-feedback');
+  if (correct === HABITS.length) { fb.className = 'feedback-box show success'; fb.textContent = '🎉 Perfect! All 4 correct!'; }
+  else { fb.className = 'feedback-box show error'; fb.textContent = '🤔 ' + correct + ' / 4 correct. Fix the red boxes and try again!'; }
+}
+function resetMatch(){ renderMatch(); }
+
+/* ─── Restaurant feedback vocab ─── */
+var FEEDBACK_VOCAB = [
+  { title:'🙋 Service', words:[
+    { en:'Friendly & helpful', vi:'Thân thiện & giúp đỡ', pos:true },
+    { en:'Too slow', vi:'Quá chậm chạp', pos:false },
+    { en:'Rude', vi:'Thô lỗ', pos:false } ]},
+  { title:'🍜 Food Quality', words:[
+    { en:'Juicy & delicious', vi:'Mọng nước & ngon miệng', pos:true },
+    { en:'Too salty', vi:'Quá mặn', pos:false },
+    { en:'Cold', vi:'Bị nguội', pos:false } ]},
+  { title:'🌿 Atmosphere', words:[
+    { en:'Cozy & clean', vi:'Ấm cúng & sạch sẽ', pos:true },
+    { en:'Too noisy', vi:'Quá ồn ào', pos:false },
+    { en:'Crowded', vi:'Đông đúc', pos:false },
+    { en:'Stuffy', vi:'Chật chội / khó thở', pos:false } ]}
+];
+function renderFeedbackVocab(){
+  var grid = document.getElementById('fb-grid');
+  grid.innerHTML = '';
+  FEEDBACK_VOCAB.forEach(function(cat){
+    var card = document.createElement('div');
+    card.className = 'fb-card';
+    var rows = cat.words.map(function(w){
+      return '<div class="fb-word ' + (w.pos ? 'pos' : 'neg') + '"><span class="en">' + (w.pos ? '👍 ' : '👎 ') + w.en + '</span><span class="vi">' + w.vi + '</span></div>';
+    }).join('');
+    card.innerHTML = '<h4>' + cat.title + '</h4>' + rows;
+    grid.appendChild(card);
+  });
+}
+
+/* ─── Green Fork menu (Scenario 1) ─── */
+var GREENFORK = [
+  { course:'🥗 Starters / Appetizers', dishes:[
+    { id:'gf1', name:'🍟 French Fries', ing:'Potatoes, vegetable oil, salt', tags:['⚠ High Fat'], price:'69,000 ₫', good:false },
+    { id:'gf2', name:'🥗 Tuna Salad', ing:'Fresh tuna, carrots, mixed greens, lemon dressing', tags:['✓ Low Cholesterol'], price:'89,000 ₫', good:true } ]},
+  { course:'🍽️ Main Courses', dishes:[
+    { id:'gf3', name:'🥩 Beef Steak with Cheese', ing:'200g beef, cheddar cheese, butter sauce, fries', tags:['⚠ High Fat','⚠ High Cholesterol'], price:'229,000 ₫', good:false },
+    { id:'gf4', name:'🍗 Grilled Chicken with Beans', ing:'Skinless chicken breast, dry beans, steamed vegetables', tags:['✓ Low Cholesterol','✓ High Protein'], price:'175,000 ₫', good:true } ]},
+  { course:'🍮 Desserts', dishes:[
+    { id:'gf5', name:'🍦 Ice Cream (2 scoops)', ing:'Milk, cream, sugar, vanilla flavour', tags:['⚠ High Sugar','⚠ High Fat'], price:'55,000 ₫', good:false },
+    { id:'gf6', name:'🍓 Fresh Berry Bowl', ing:'Strawberries, blueberries, honey drizzle', tags:['✓ Healthy','✓ Rich in Vitamins'], price:'75,000 ₫', good:true } ]}
+];
+var gfSelected = {};
+function renderGreenFork(){
+  gfSelected = {};
+  var box = document.getElementById('greenfork-menu');
+  box.innerHTML = '';
+  GREENFORK.forEach(function(course, ci){
+    var head = document.createElement('div');
+    head.className = 'menu-course'; head.textContent = course.course;
+    box.appendChild(head);
+    course.dishes.forEach(function(d){
+      var row = document.createElement('div');
+      row.className = 'dish-row'; row.id = 'row-' + d.id;
+      var tags = d.tags.map(function(t){
+        var cls = t.indexOf('⚠') === 0 ? 'flag-warn' : 'flag-ok';
+        return '<span class="flag ' + cls + '">' + t + '</span>';
+      }).join('');
+      row.innerHTML = '<div><div class="d-name">' + d.name + '</div><div class="d-ing">' + d.ing + '</div><div>' + tags + '</div></div><div class="d-price">' + d.price + '</div>';
+      row.onclick = function(){
+        gfSelected[ci] = d.id;
+        course.dishes.forEach(function(other){
+          document.getElementById('row-' + other.id).classList.toggle('selected', other.id === d.id);
+        });
+      };
+      box.appendChild(row);
+    });
+  });
+  var fb = document.getElementById('gf-feedback');
+  fb.className = 'feedback-box'; fb.textContent = '';
+}
+function checkGreenFork(){
+  var fb = document.getElementById('gf-feedback');
+  var picks = Object.keys(gfSelected).length;
+  if (picks < 3) { fb.className = 'feedback-box show info'; fb.textContent = 'ℹ️ Choose one dish in each course first (' + picks + '/3 chosen).'; return; }
+  var allGood = GREENFORK.every(function(course, ci){
+    var pick = course.dishes.find(function(d){ return d.id === gfSelected[ci]; });
+    return pick && pick.good;
+  });
+  if (allGood) { fb.className = 'feedback-box show success'; fb.textContent = '🎉 Great choices! All 3 dishes are safe for a low-cholesterol diet. Now explain WHY using the scaffolding below.'; }
+  else { fb.className = 'feedback-box show error'; fb.textContent = '🤔 At least one dish is risky for your friend. Check the ⚠ warning tags and try again!'; }
+}
+function resetGreenFork(){ renderGreenFork(); }
+
+/* ─── Pronunciation sentences ─── */
+var PRON = [
+  { pre:'You need to take ', hl:'vitamins', post:'.', ipa:'/ˈvɪt.ə.mɪnz/' },
+  { pre:'You should eat more ', hl:'vegetables', post:'.', ipa:'/ˈvedʒ.tə.bəlz/' },
+  { pre:'What ', hl:'types', post:' of fruit are you eating?', ipa:'/taɪps/' },
+  { pre:'Do you eat a lot of ', hl:'carrots', post:'?', ipa:'/ˈkær.əts/' },
+  { pre:'I\u2019ve taken two cooking ', hl:'classes', post:'.', ipa:'/ˈklɑːs.ɪz/' },
+  { pre:'I ate four ', hl:'pieces', post:' of pizza!', ipa:'/ˈpiːs.ɪz/' }
+];
+function renderPron(){
+  var box = document.getElementById('pron-list');
+  box.innerHTML = '';
+  PRON.forEach(function(p, i){
+    var row = document.createElement('div');
+    row.className = 'pron-sentence';
+    row.innerHTML = '<div class="txt">' + (i+1) + '. ' + p.pre + '<b>' + p.hl + '</b>' + p.post + ' <span class="p-ipa">' + p.ipa + '</span></div>';
+    var btn = document.createElement('button');
+    btn.className = 'speak-btn'; btn.textContent = '🔊'; btn.setAttribute('aria-label','Listen');
+    btn.onclick = function(){ speak(p.pre + p.hl + p.post); };
+    row.appendChild(btn);
+    box.appendChild(row);
+  });
+}
+
+/* ─── Exercise 1: sentence ordering (click-to-order) ─── */
+var ORDER_SENTENCES = [
+  { id:'s1', text:'The atmosphere was very cozy, and the tuna salad was fresh and delicious.', pos:2 },
+  { id:'s2', text:'In conclusion, I will only return if they improve their service speed.', pos:4 },
+  { id:'s3', text:'Yesterday, I visited the Golden Fork restaurant with my family.', pos:1 },
+  { id:'s4', text:'However, the service was too slow; we had to wait for 40 minutes.', pos:3 }
+];
+var orderPicked = [];
+function renderOrder(){
+  orderPicked = [];
+  var pool = document.getElementById('order-pool');
+  pool.innerHTML = '';
+  ORDER_SENTENCES.forEach(function(s){
+    var item = document.createElement('div');
+    item.className = 'order-item'; item.id = 'ord-' + s.id;
+    item.textContent = '☰ ' + s.text;
+    item.onclick = function(){
+      if (item.classList.contains('picked')) return;
+      item.classList.add('picked');
+      orderPicked.push(s.id);
+      renderBuilt();
+    };
+    pool.appendChild(item);
+  });
+  renderBuilt();
+  var fb = document.getElementById('order-feedback');
+  fb.className = 'feedback-box'; fb.textContent = '';
+}
+function renderBuilt(){
+  var built = document.getElementById('order-built');
+  if (!orderPicked.length) {
+    built.innerHTML = '<span style="font-size:13px;color:var(--text-soft);">Your paragraph will appear here…</span>';
+    return;
+  }
+  built.innerHTML = orderPicked.map(function(id, i){
+    var s = ORDER_SENTENCES.find(function(x){ return x.id === id; });
+    return '<div class="built-item"><span class="n">' + (i+1) + '.</span><span>' + s.text + '</span></div>';
+  }).join('');
+}
+function checkOrder(){
+  var fb = document.getElementById('order-feedback');
+  if (orderPicked.length < ORDER_SENTENCES.length) {
+    fb.className = 'feedback-box show info';
+    fb.textContent = 'ℹ️ Pick all 4 sentences first (' + orderPicked.length + '/4 picked).';
+    return;
+  }
+  var correct = orderPicked.every(function(id, i){
+    var s = ORDER_SENTENCES.find(function(x){ return x.id === id; });
+    return s.pos === i + 1;
+  });
+  if (correct) { fb.className = 'feedback-box show success'; fb.textContent = '🎉 Correct order! Well done!'; }
+  else { fb.className = 'feedback-box show error'; fb.textContent = '🤔 Not quite right. Think about the paragraph flow (opening → positive → negative → conclusion) and try again!'; }
+}
+function resetOrder(){ renderOrder(); }
+
+/* ─── Exercise 2: fill blanks (click word → click blank) ─── */
+var selectedBankWord = null;
+function initBlanks(){
+  document.querySelectorAll('#word-bank .bank-word').forEach(function(w){
+    w.onclick = function(){
+      var word = w.getAttribute('data-word');
+      selectedBankWord = (selectedBankWord === word) ? null : word;
+      document.querySelectorAll('#word-bank .bank-word').forEach(function(b){
+        b.classList.toggle('selected', b.getAttribute('data-word') === selectedBankWord);
+      });
+    };
+  });
+  document.querySelectorAll('.blank-input').forEach(function(input){
+    input.addEventListener('focus', function(){
+      if (selectedBankWord) {
+        input.value = selectedBankWord;
+        selectedBankWord = null;
+        document.querySelectorAll('#word-bank .bank-word').forEach(function(b){ b.classList.remove('selected'); });
+        gradeBlank(input);
+      }
+    });
+    input.addEventListener('input', function(){ gradeBlank(input); });
+  });
+}
+function gradeBlank(input){
+  var val = input.value.trim();
+  var answer = input.getAttribute('data-answer');
+  input.classList.remove('correct','incorrect');
+  if (!val) return;
+  if (val.toLowerCase() === answer.toLowerCase()) {
+    input.classList.add('correct');
+    var bw = document.querySelector('#word-bank .bank-word[data-word="' + answer + '"]');
+    if (bw) bw.classList.add('used');
+  } else {
+    input.classList.add('incorrect');
+    setTimeout(function(){ input.value = ''; input.classList.remove('incorrect'); }, 700);
+  }
+}
+function resetBlanks(){
+  selectedBankWord = null;
+  document.querySelectorAll('#word-bank .bank-word').forEach(function(b){ b.classList.remove('selected','used'); });
+  document.querySelectorAll('.blank-input').forEach(function(i){ i.value = ''; i.classList.remove('correct','incorrect'); });
+}
+
+/* ═══════════ GLOBAL RESET (no timers in this lesson — nothing to clearInterval) ═══════════ */
+function globalReset(){
+  if (window.speechSynthesis) speechSynthesis.cancel();
+  selectedDishes = new Set();
+  renderMenu(); updateBudget();
+  document.querySelectorAll('.vocab-card.flipped').forEach(function(c){ c.classList.remove('flipped'); });
+  document.querySelectorAll('.prompt-card.open').forEach(function(c){ c.classList.remove('open'); });
+  document.querySelectorAll('.interview.revealed').forEach(function(c){ c.classList.remove('revealed'); });
+  document.querySelectorAll('.sample-response.revealed').forEach(function(c){ c.classList.remove('revealed'); });
+  renderMatch(); renderGreenFork(); renderOrder(); resetBlanks();
+  document.querySelectorAll('.check-item input').forEach(function(cb){ cb.checked = false; });
+}
+
+/* ═══════════ INIT ═══════════ */
+renderVocabFilters(); renderVocab('all');
+renderPhrases();
+renderMenu(); updateBudget();
+renderPrompts();
+renderBrainstorm();
+renderPyramid();
+renderMatch();
+renderFeedbackVocab();
+renderGreenFork();
+renderPron();
+renderOrder();
+initBlanks();
+</script>
+</body>
+</html>
