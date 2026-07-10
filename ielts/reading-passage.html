@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Passage Reading — IELTS Practice · 50 Passages</title>
+<style>
+:root{
+  --forest:#013220;--moss:#006D6F;--teal:#007A74;--mint:#D8BFD8;--sage:#F5F5DC;
+  --sand:#FFFAF0;--shell:#FFF5EE;--white:#FFFAFA;
+  --blue:#2563EB;--blue-light:#EFF6FF;--amber:#D97706;--amber-light:#FFFBEB;
+  --red:#DC2626;--red-light:#FEF2F2;--green-success:#16A34A;--green-light:#F0FDF4;
+  --text-dark:#013220;--text-mid:#006D6F;--text-soft:#5F8A80;
+  --border:#E3DED0;--shadow-sm:0 1px 3px rgba(1,50,32,.08);--shadow-md:0 4px 16px rgba(1,50,32,.12);
+  --shadow-lg:0 8px 32px rgba(1,50,32,.16);--radius:12px;--radius-sm:8px;--radius-lg:20px;font-size:16px;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--sand);}
+.app-shell{display:flex;}
+/* ---- Sidebar ---- */
+.sidebar{width:220px;position:fixed;top:0;left:0;height:100vh;background:var(--forest);color:#fff;
+  overflow-y:auto;display:flex;flex-direction:column;z-index:100;}
+.brand{padding:20px 18px 14px;border-bottom:1px solid rgba(255,255,255,.08);}
+.brand .badge-mint{display:inline-block;background:rgba(216,191,216,.2);color:var(--mint);
+  border:1px solid rgba(216,191,216,.3);border-radius:99px;padding:3px 10px;font-size:10px;font-weight:800;letter-spacing:.5px;}
+.brand h1{font-size:16px;font-weight:800;margin:10px 0 3px;color:#fff;}
+.brand .sub{font-size:10px;color:var(--mint);opacity:.8;letter-spacing:.5px;}
+.nav{flex:1;padding:8px 0 90px;}
+.nav-home{display:flex;align-items:center;gap:8px;padding:10px 18px;font-size:13px;color:rgba(255,255,255,.75);
+  cursor:pointer;border-left:3px solid transparent;}
+.nav-home:hover{background:rgba(216,191,216,.08);}
+.nav-home.active{background:rgba(216,191,216,.15);border-left-color:var(--mint);color:#fff;}
+.nav-group-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
+  color:rgba(216,191,216,.6);padding:14px 18px 5px;}
+.nav-item{display:flex;align-items:center;gap:8px;padding:8px 18px 8px 26px;font-size:13px;font-weight:500;
+  color:rgba(255,255,255,.7);cursor:pointer;border-left:3px solid transparent;}
+.nav-item:hover{background:rgba(216,191,216,.08);color:#fff;}
+.nav-item.active{background:rgba(216,191,216,.15);border-left-color:var(--mint);color:#fff;}
+.nav-item .idx{width:18px;height:18px;border-radius:99px;background:rgba(255,255,255,.1);font-size:10px;font-weight:800;
+  display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;}
+.nav-item .done{margin-left:auto;color:var(--mint);font-weight:800;}
+.progress-wrap{position:fixed;bottom:0;left:0;width:220px;background:var(--forest);padding:12px 18px 14px;
+  border-top:1px solid rgba(255,255,255,.08);}
+.progress-track{height:6px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--mint);width:0;transition:width .3s;}
+.progress-label{font-size:11px;color:rgba(255,255,255,.7);margin-top:6px;}
+/* ---- Main ---- */
+.main-content{margin-left:220px;flex:1;min-height:100vh;width:calc(100% - 220px);}
+.page{display:none;}
+.page.active{display:block;animation:fadeIn .3s ease;}
+/* ---- Overview ---- */
+.hero{background:linear-gradient(135deg,var(--forest),var(--moss),var(--teal));color:#fff;padding:40px 48px;}
+.hero h2{margin:0 0 8px;font-size:32px;font-weight:800;}
+.hero p{margin:4px 0;opacity:.9;font-size:14px;}
+.hero .stats{margin-top:14px;display:flex;gap:22px;flex-wrap:wrap;font-size:13px;}
+.hero .stats b{font-size:20px;display:block;color:var(--mint);}
+.topic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;padding:32px 48px;}
+.topic-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow-sm);transition:all .2s;}
+.topic-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
+.topic-card .th{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.topic-card .tnum{background:var(--sage);color:var(--forest);border-radius:99px;width:26px;height:26px;font-size:12px;font-weight:800;
+  display:inline-flex;align-items:center;justify-content:center;}
+.topic-card .tname{font-size:15px;font-weight:800;color:var(--forest);}
+.pchip{display:flex;align-items:center;justify-content:space-between;background:var(--shell);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:7px 12px;font-size:13px;margin-bottom:6px;cursor:pointer;color:var(--text-dark);}
+.pchip:hover{border-color:var(--teal);}
+.pchip.done{background:var(--green-light);}
+.pchip .st{font-size:11px;color:var(--text-soft);}
+.pchip.done .st{color:var(--green-success);font-weight:700;}
+.topic-card .tcount{font-size:11px;color:var(--text-soft);margin-top:8px;}
+/* ---- Passage header ---- */
+.p-header{background:linear-gradient(135deg,var(--forest),var(--moss),var(--teal));color:#fff;
+  padding:14px 24px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:20;}
+.p-header .badge-mint{background:rgba(216,191,216,.2);color:var(--mint);border:1px solid rgba(216,191,216,.3);
+  border-radius:99px;padding:3px 11px;font-size:10px;font-weight:800;letter-spacing:.4px;}
+.p-header .ptitle{font-size:18px;font-weight:800;}
+.p-header .spacer{flex:1;}
+.score-chip{background:rgba(255,255,255,.15);color:#fff;border-radius:99px;padding:6px 16px;font-size:14px;font-weight:800;display:none;}
+.score-chip.show{display:inline-block;}
+.btn{padding:10px 20px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;border:none;transition:all .15s;}
+.btn-sm{padding:6px 14px;font-size:13px;}
+.btn-primary{background:var(--forest);color:#fff;}
+.btn-primary:hover{background:var(--moss);transform:translateY(-1px);}
+.btn-outline{background:transparent;color:var(--forest);border:1.5px solid var(--border);}
+.btn-outline-light{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4);}
+.btn-finish{background:var(--mint);color:var(--forest);}
+.btn-finish:disabled{opacity:.5;cursor:default;}
+/* ---- Workspace 3 cols ---- */
+.confirm-bar{display:none;background:var(--amber-light);border-bottom:1px solid #FDE68A;padding:10px 24px;
+  align-items:center;gap:12px;font-size:13px;color:var(--amber);}
+.confirm-bar.show{display:flex;}
+.workspace{display:grid;grid-template-columns:45fr 30fr 25fr;height:calc(100vh - 58px);}
+.workspace>*{overflow-y:auto;padding:24px;}
+.col-passage{border-right:1px solid var(--border);}
+.col-questions{border-right:1px solid var(--border);background:var(--sand);}
+.col-hints{background:var(--shell);}
+.col-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.col-head h3{margin:0;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--text-mid);}
+/* passage */
+.para{margin-bottom:16px;font-size:15px;line-height:1.9;}
+.para-label{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;background:var(--sage);
+  color:var(--forest);border-radius:99px;font-size:11px;font-weight:800;margin-right:10px;vertical-align:top;}
+.para-vi{display:none;margin:6px 0 0 36px;font-size:13.5px;color:var(--text-mid);background:var(--white);
+  border-left:3px solid var(--sage);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:8px 12px;line-height:1.7;}
+.para-vi.show{display:block;}
+.footnote{font-size:12.5px;color:var(--text-soft);font-style:italic;border-top:1px solid var(--border);margin-top:14px;padding-top:10px;}
+.ev{}
+.ev.flash{background:var(--amber-light);border-radius:3px;transition:background .3s;box-shadow:0 0 0 3px var(--amber-light);}
+/* questions */
+.q-group-instruction{background:var(--shell);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:12px 16px;font-size:13px;font-weight:600;color:var(--text-mid);margin:18px 0 12px;}
+.subfam-list{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:12px;font-size:13px;}
+.subfam-list b{color:var(--forest);}
+.subfam-list ul{margin:6px 0 0;padding-left:18px;}
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:12px;box-shadow:var(--shadow-sm);}
+.q-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.q-num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;background:var(--forest);color:#fff;
+  border-radius:99px;font-size:13px;font-weight:800;flex:0 0 auto;}
+.q-type-chip{font-size:10px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;background:var(--sage);color:var(--forest);
+  border-radius:99px;padding:2px 9px;}
+.q-prompt{font-size:14px;margin-bottom:10px;}
+.q-dropdown{width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:inherit;background:var(--white);}
+.q-dropdown:focus{border-color:var(--teal);outline:none;}
+.q-dropdown.correct{border-color:var(--green-success);background:var(--green-light);}
+.q-dropdown.incorrect{border-color:var(--red);background:var(--red-light);}
+.blank-input{border:none;border-bottom:2px solid var(--border);background:transparent;font-size:14px;font-family:inherit;padding:6px 8px;width:100%;}
+.blank-input:focus{border-bottom-color:var(--teal);outline:none;}
+.blank-input.correct{border-bottom-color:var(--green-success);background:var(--green-light);}
+.blank-input.incorrect{border-bottom-color:var(--red);background:var(--red-light);}
+.mcq-option{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;font-size:14px;cursor:pointer;margin-bottom:8px;transition:all .15s;}
+.mcq-option:hover{border-color:var(--teal);background:var(--sage);}
+.mcq-option.selected{border-color:var(--blue);background:var(--blue-light);}
+.mcq-option.correct{border-color:var(--green-success);background:var(--green-light);}
+.mcq-option.incorrect{border-color:var(--red);background:var(--red-light);}
+.your-answer{display:none;font-size:12px;color:var(--red);margin-top:8px;font-weight:600;}
+.your-answer.show{display:block;}
+/* hint panel */
+.hint-note{font-size:12px;color:var(--text-soft);font-style:italic;margin-bottom:12px;line-height:1.5;}
+.hint-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:8px;display:flex;gap:10px;font-size:13px;}
+.hint-card .q-num{width:22px;height:22px;font-size:11px;}
+.hint-loc{font-weight:700;color:var(--forest);}
+.hint-chip{display:inline-block;background:var(--sage);color:var(--forest);border-radius:99px;padding:1px 8px;font-size:11px;font-weight:700;margin-top:4px;}
+/* explanation */
+.xp-block{display:none;margin-top:14px;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--white);}
+.xp-block.revealed{display:block;animation:fadeIn .3s;}
+.xp-sec{padding:13px 16px;border-bottom:1px solid var(--sage);font-size:14px;line-height:1.7;}
+.xp-sec:last-child{border-bottom:none;}
+.xp-label{display:block;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;}
+.loc-pill{display:inline-block;background:var(--blue-light);color:var(--blue);border-radius:99px;padding:3px 12px;font-size:12px;font-weight:700;margin-right:6px;}
+.xp-jump{margin-top:8px;}
+.xp-quote{background:var(--shell);border-left:3px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:10px 14px;margin:0;font-style:italic;font-size:13.5px;}
+.pmap{width:100%;border-collapse:separate;border-spacing:4px;font-size:13px;}
+.pmap th{font-size:10px;text-transform:uppercase;color:var(--text-soft);text-align:left;font-weight:800;padding:0 4px;}
+.pm-q{background:var(--blue-light);color:var(--blue);font-weight:700;border-radius:var(--radius-sm);padding:6px 10px;}
+.pm-p{background:var(--green-light);color:var(--green-success);font-weight:700;border-radius:var(--radius-sm);padding:6px 10px;}
+.pm-s{background:var(--sage);color:var(--forest);font-weight:700;border-radius:var(--radius-sm);padding:6px 10px;font-size:11px;white-space:nowrap;}
+.pm-arrow{color:var(--text-soft);text-align:center;}
+.think-flow{}
+.tf-step{position:relative;background:var(--shell);border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 12px 8px 40px;margin-bottom:14px;font-size:13px;}
+.tf-step:not(:last-child)::after{content:"↓";position:absolute;left:18px;bottom:-14px;color:var(--text-soft);font-size:12px;}
+.tf-n{position:absolute;left:10px;top:8px;width:22px;height:22px;background:var(--forest);color:#fff;border-radius:99px;font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;}
+.tf-conclusion{background:var(--sage);border-radius:var(--radius-sm);padding:8px 12px;font-weight:800;color:var(--forest);font-size:13px;text-align:center;}
+.key-answer{display:inline-block;font-size:16px;font-weight:800;color:var(--green-success);background:var(--white);border:2px solid var(--green-success);border-radius:var(--radius-sm);padding:6px 18px;}
+.xp-vi div{margin-bottom:2px;}
+/* placeholder */
+.placeholder-card{background:var(--white);border:2px dashed var(--border);border-radius:var(--radius);padding:48px;text-align:center;color:var(--text-soft);margin:40px auto;max-width:520px;}
+.placeholder-card .big{font-size:40px;}
+.placeholder-card b{color:var(--forest);display:block;margin:10px 0 6px;font-size:16px;}
+/* reset fab */
+.reset-fab{position:fixed;bottom:24px;right:24px;background:var(--red);color:#fff;border-radius:99px;padding:12px 20px;font-size:13px;font-weight:700;box-shadow:var(--shadow-lg);z-index:200;border:none;cursor:pointer;display:none;}
+.reset-fab.show{display:block;}
+/* hint drawer (responsive) */
+.hint-toggle{display:none;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+@media (max-width:1280px){
+  .workspace{grid-template-columns:55fr 45fr;}
+  .col-hints{position:fixed;top:0;right:0;width:320px;height:100vh;box-shadow:var(--shadow-lg);transform:translateX(100%);transition:transform .25s;z-index:150;}
+  .col-hints.open{transform:translateX(0);}
+  .hint-toggle{display:block;position:fixed;right:0;bottom:80px;background:var(--forest);color:#fff;border:none;border-radius:var(--radius-sm) 0 0 var(--radius-sm);padding:12px 14px;font-size:13px;font-weight:700;cursor:pointer;z-index:151;}
+}
+@media (max-width:1024px){
+  .workspace{grid-template-columns:1fr;height:auto;}
+  .workspace>*{overflow:visible;}
+  .col-passage,.col-questions{border-right:none;border-bottom:1px solid var(--border);}
+}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="badge-mint">IELTS READING</span>
+      <h1>Passage Reading Practice</h1>
+      <div class="sub">50 PASSAGES · 10 TOPICS</div>
+    </div>
+    <nav class="nav" id="nav"></nav>
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">0 / 50 finished</div>
+    </div>
+  </aside>
+  <main class="main-content" id="main"></main>
+</div>
+<button class="reset-fab" id="resetFab" onclick="resetCurrent()">↺ Reset This Passage</button>
+<button class="hint-toggle" id="hintToggle" onclick="toggleHintDrawer()">💡 Hints</button>
+<script>
+/* ===== TOPIC METADATA ===== */
+const TOPIC_NAMES = ["Animals","Topic 2","Topic 3","Topic 4","Topic 5","Topic 6","Topic 7","Topic 8","Topic 9","Topic 10"];
+const PASSAGE_TITLES = { "t1p1":"Bovids" };
+
+/* ===== FILLED PASSAGE: Topic 1 · Passage 1 ===== */
+const PASSAGE_T1_P1 = {
+  id:"t1p1", title:"Bovids",
+  paragraphs:[
+    {label:"A",
+     html:`The family of mammals called bovids belongs to the Artiodactyl class, which also includes giraffes. Bovids are a highly diverse group consisting of 137 species, some of which are man's most important domestic animals.`,
+     vi:`Họ động vật có vú gọi là bovids thuộc lớp Artiodactyl (động vật guốc chẵn), lớp này cũng bao gồm cả hươu cao cổ. Bovids là một nhóm rất đa dạng với 137 loài, một số trong đó là những loài vật nuôi quan trọng nhất của con người.`},
+    {label:"B",
+     html:`<span class="ev" id="t1p1-ev-q1">Bovids are well represented in most parts of Eurasia and Southeast Asian islands, but they are by far the most numerous and diverse in the latter.</span> Some species of bovid are solitary, but others live in large groups with complex social structures. <span class="ev" id="t1p1-ev-q2">Although bovids have adapted to a wide range of habitats, from arctic tundra to deep tropical forest, the majority of species favour open grassland, scrub or desert.</span> This diversity of habitat is also matched by great diversity in size and form: <span class="ev" id="t1p1-ev-q9">at one extreme is the royal antelope of West Africa, which stands a mere 25 cm at the shoulder</span>; at the other, the massively built bison of North America and Europe, growing to a shoulder height of 2.2m.`,
+     vi:`Bovids có mặt ở hầu hết các khu vực thuộc Á-Âu và các đảo thuộc Đông Nam Á, nhưng chúng đặc biệt đông đúc và đa dạng nhất ở khu vực sau. Một số loài bovid sống đơn độc, nhưng những loài khác lại sống theo đàn lớn với cấu trúc xã hội phức tạp. Mặc dù bovids đã thích nghi với nhiều môi trường sống khác nhau, từ lãnh nguyên Bắc Cực đến rừng nhiệt đới sâu thẳm, phần lớn các loài ưa thích đồng cỏ trống trải, cây bụi hoặc sa mạc. Sự đa dạng về môi trường sống này còn tương xứng với sự đa dạng lớn về kích thước và hình dáng: một cực là linh dương hoàng gia ở Tây Phi, chỉ cao 25 cm tính đến vai; ở cực kia là bò rừng bison to lớn ở Bắc Mỹ và châu Âu, có thể cao tới 2,2 m tính đến vai.`},
+    {label:"C",
+     html:`Despite differences in size and appearance, bovids are united by the possession of certain features. <span class="ev" id="t1p1-ev-q3">All species are ruminants, which means that they retain undigested food in their stomachs, and regurgitate it as necessary.</span> Bovids are almost exclusively herbivorous*. Typically their teeth are highly modified for browsing and grazing: grass or foliage is cropped with the upper lip and lower incisors** (the upper incisors are usually absent), and then ground down by the cheek teeth. As well as having cloven, or split hooves, the males of all bovid species and the females of most carry horns. Bovid horns have bony cores covered in a sheath of horny material that is constantly renewed from within; they are unbranched and never shed. They vary in shape and size: the relatively simple horns of a large Indian buffalo may measure around 4 m from tip to tip along the outer curve, while the various gazelles have horns with a variety of elegant curves.`,
+     vi:`Bất chấp sự khác biệt về kích thước và ngoại hình, bovids được đoàn kết bởi sự sở hữu một số đặc điểm nhất định. Tất cả các loài đều là động vật nhai lại (ruminants), nghĩa là chúng giữ thức ăn chưa tiêu hóa trong dạ dày và ợ lên khi cần thiết. Bovids gần như hoàn toàn ăn thực vật. Thông thường, răng của chúng rất thích nghi cho việc gặm lá và ăn cỏ: cỏ hoặc lá cây được cắt bằng môi trên và răng cửa dưới (răng cửa trên thường không có), sau đó được nghiền nát bởi răng má. Ngoài việc có móng chẻ, con đực của tất cả các loài bovid và con cái của hầu hết các loài đều có sừng. Sừng bovid có lõi xương được bao phủ bởi một lớp vỏ bằng chất sừng được làm mới liên tục từ bên trong; chúng không phân nhánh và không bao giờ rụng. Chúng thay đổi về hình dạng và kích thước: sừng tương đối đơn giản của một con trâu Ấn Độ lớn có thể dài khoảng 4 m, trong khi các loài linh dương gazelle có sừng với nhiều đường cong thanh lịch khác nhau.`},
+    {label:"D",
+     html:`Five groups, or sub-families, may be distinguished: Bovinae, Antilopinae, Cephalophinae and Antilocapridae. <span class="ev" id="t1p1-ev-q5">The sub-family Bovinae comprises most of the larger bovids, including the African bongo and nilgai, eland, bison and cattle.</span> <span class="ev" id="t1p1-ev-q8">Unlike most other bovids they are all non-territorial.</span> The ancestors of the various species of domestic cattle banteng, gaur, yak and water buffalo are generally rare and endangered in the wild, while <span class="ev" id="t1p1-ev-q10">the auroch (the ancestor of the domestic cattle of Europe) is extinct.</span>`,
+     vi:`Có thể phân biệt năm nhóm, hoặc phân họ: Bovinae, Antilopinae, Cephalophinae và Antilocapridae. Phân họ Bovinae bao gồm hầu hết các loài bovid lớn hơn, gồm linh dương bongo châu Phi và nilgai, linh dương eland, bò rừng bison và gia súc. Không giống như hầu hết các loài bovid khác, chúng đều không có lãnh thổ. Tổ tiên của các loài gia súc khác nhau như bò banteng, bò gaur, bò yak và trâu nước thường hiếm và có nguy cơ tuyệt chủng trong tự nhiên, trong khi bò auroch (tổ tiên của gia súc châu Âu) đã tuyệt chủng.`},
+    {label:"E",
+     html:`The term 'antelope' is not a very precise zoological name – it is used to loosely describe a number of bovids that have followed different lines of development. <span class="ev" id="t1p1-ev-q7">Antelopes are typically long-legged, fast-running species, often with long horns that may be laid along the back when the animal is in full flight.</span> There are two main sub-groups of antelope: Hippotraginae, which includes the oryx and the addax, and Antilopinae, which generally contains slighter and more graceful animals such as gazelle and the springbok. Antelopes are mainly grassland species, but many have adapted to flooded grasslands: pukus, waterbucks and lechwes are all good at swimming, usually feeding in deep water, while <span class="ev" id="t1p1-ev-q11">the sitatunga has long, splayed hooves that enable it to walk freely on swampy ground.</span>`,
+     vi:`Thuật ngữ 'linh dương' (antelope) không phải là một tên gọi khoa học chính xác – nó được dùng để mô tả lỏng lẻo một số loài bovid đã phát triển theo các hướng khác nhau. Linh dương thường là loài chân dài, chạy nhanh, thường có sừng dài có thể gập dọc theo lưng khi con vật đang phi nước đại. Có hai nhóm linh dương chính: Hippotraginae, gồm linh dương oryx và addax, và Antilopinae, thường gồm các loài mảnh khảnh và duyên dáng hơn như gazelle và springbok. Linh dương chủ yếu sống ở đồng cỏ, nhưng nhiều loài đã thích nghi với đồng cỏ ngập nước: pukus, waterbuck và lechwe đều bơi giỏi, thường kiếm ăn ở vùng nước sâu, trong khi sitatunga có móng chân dài, bè ra giúp chúng đi lại dễ dàng trên vùng đất lầy.`},
+    {label:"F",
+     html:`The sub-family Caprinae includes the sheep and the goat, together with various relatives such as the goral and the tahr. Most are woolly or have long hair. Several species, such as wild goats, chamois and ibex, are agile cliff and mountain-dwellers. <span class="ev" id="t1p1-ev-q4">Tolerance of extreme conditions is most marked in this group</span>: <span class="ev" id="t1p1-ev-q12">Barbary and bighorn sheep have adapted to arid deserts</span>, while Rocky Mountain sheep survive high up in mountains and musk oxen in arctic tundra.`,
+     vi:`Phân họ Caprinae bao gồm cừu và dê, cùng với các họ hàng khác nhau như linh dương goral và tahr. Hầu hết chúng có lông cừu hoặc lông dài. Một số loài, như dê rừng, sơn dương chamois và dê núi ibex, là những loài sống trên vách đá và núi cao nhanh nhẹn. Khả năng chịu đựng các điều kiện khắc nghiệt thể hiện rõ nhất ở nhóm này: cừu Barbary và cừu sừng dày đã thích nghi với sa mạc khô cằn, trong khi cừu núi Rocky tồn tại ở vùng núi cao và bò xạ hương sống ở lãnh nguyên Bắc Cực.`},
+    {label:"G",
+     html:`The duiker of Africa belongs to the Cephalophinae sub-family. It is generally small and solitary, often living in thick forest. Although mainly feeding on grass and leaves, <span class="ev" id="t1p1-ev-q6">some duikers – unlike most other bovids – are believed to eat insects and feed on dead animal carcasses, and even to kill small animals.</span>`,
+     vi:`Linh dương duiker châu Phi thuộc phân họ Cephalophinae. Chúng thường nhỏ và sống đơn độc, thường sống trong rừng rậm. Mặc dù chủ yếu ăn cỏ và lá cây, một số loài duiker – không giống như hầu hết các loài bovid khác – được cho là ăn côn trùng, ăn xác động vật chết, và thậm chí giết các động vật nhỏ.`},
+    {label:"H",
+     html:`<span class="ev" id="t1p1-ev-q13">The pronghorn is the sole survivor of a New World sub-family of herbivorous ruminants, the Antilocapridae in North America.</span> It is similar in appearance and habits to the Old World antelope. Although greatly reduced in numbers since the arrival of Europeans, and the subsequent enclosure of grasslands, the pronghorn is still found in considerable numbers throughout North America, from Washington State to Mexico. When alarmed by the approach of wolves or other predators, hairs on the pronghorn's rump stand erect, showing and emphasising the white patch there. At this signal, the whole herd gallops off at a speed of over 60 km per hour.`,
+     vi:`Linh dương sừng nhánh (pronghorn) là loài sinh tồn duy nhất của một phân họ động vật nhai lại ăn thực vật ở Thế giới Mới, Antilocapridae ở Bắc Mỹ. Chúng có ngoại hình và tập tính tương tự linh dương châu Phi. Mặc dù số lượng giảm đáng kể kể từ khi người châu Âu đến, và việc chia cắt đồng cỏ sau đó, pronghorn vẫn còn với số lượng đáng kể trên khắp Bắc Mỹ, từ bang Washington đến Mexico. Khi bị báo động bởi sự tiếp cận của sói hoặc các loài săn mồi khác, lông trên mông của pronghorn dựng đứng lên, làm lộ mảng trắng ở đó. Với tín hiệu này, cả đàn lao đi với tốc độ hơn 60 km/giờ.`}
+  ],
+  footnotes:["*herbivorous: plant-eating (ăn thực vật)","**incisors: front teeth (răng cửa)"],
+  groups:[
+    {instruction:"Questions 1–3 — Choose the correct letter, A, B, C or D.", type:"mcq", from:1, to:3},
+    {instruction:"Questions 4–8 — Look at the following characteristics and the list of sub-families below. Match each characteristic with the correct sub-family, A, B, C or D. NB You may use any letter more than once.", type:"matching-features", from:4, to:8,
+      extra:`<div class="subfam-list"><b>List of sub-families</b><ul><li>A — Antelope</li><li>B — Bovinae</li><li>C — Caprinae</li><li>D — Cephalophinae</li></ul></div>`},
+    {instruction:"Questions 9–13 — Answer the questions below. Choose NO MORE THAN THREE WORDS from the passage for each answer.", type:"short-answer", from:9, to:13}
+  ],
+  questions:[
+    /* ---- MCQ 1-3 ---- */
+    {id:1, type:"mcq", prompt:"In which region is the biggest range of bovids to be found?",
+     choices:["A. Africa","B. Eurasia","C. North America","D. South-east Asia"], answer:"D. South-east Asia",
+     hint:{location:"Paragraph B", chip:"Reference · “the latter”"},
+     explain:{ locate:{para:"Paragraph B", evId:"t1p1-ev-q1"},
+       evidence:"Bovids are well represented in most parts of Eurasia and Southeast Asian islands, but they are by far the most numerous and diverse in the latter.",
+       pmap:[{q:"biggest range",p:"most numerous and diverse",s:"Synonym"},{q:"region",p:"the latter (Southeast Asian islands)",s:"Reference"}],
+       steps:["Định vị từ khóa “region” và “biggest range”","Đoạn B nhắc 2 khu vực: Eurasia và Southeast Asian islands","“the latter” chỉ đối tượng thứ hai → Southeast Asian islands"], conclusion:"D — South-east Asia",
+       en:"The text says bovids are “most numerous and diverse” in “the latter” region, which refers back to “Southeast Asian islands”.",
+       vi:["Bovids “đông đúc và đa dạng nhất” ở “the latter” (đối tượng đứng sau).","=> chính là các đảo Đông Nam Á.","=> D."],
+       trap:"Dễ chọn B (Eurasia) vì đọc lướt thấy từ này trước, hoặc không hiểu “the latter” nên đoán mò."}},
+    {id:2, type:"mcq", prompt:"Most bovids have a preference for living in",
+     choices:["A. isolation","B. small groups","C. tropical forest","D. wide open spaces"], answer:"D. wide open spaces",
+     hint:{location:"Paragraph B", chip:"Generalization"},
+     explain:{ locate:{para:"Paragraph B", evId:"t1p1-ev-q2"},
+       evidence:"Although bovids have adapted to a wide range of habitats, from arctic tundra to deep tropical forest, the majority of species favour open grassland, scrub or desert.",
+       pmap:[{q:"Most",p:"the majority of species",s:"Synonym"},{q:"preference / living in",p:"favour",s:"Synonym"},{q:"wide open spaces",p:"open grassland, scrub or desert",s:"Generalization"}],
+       steps:["Từ khóa: Most, preference","Đoạn B: “the majority of species favour open grassland, scrub or desert”","Đồng cỏ, bụi, sa mạc = khoảng không rộng lớn → “wide open spaces”"], conclusion:"D — wide open spaces",
+       en:"“The majority” matches “Most”, “favour” matches “preference”. Grasslands and deserts represent “wide open spaces”.",
+       vi:["“The majority” ~ “Most”, “favour” ~ “preference”.","Đồng cỏ và sa mạc = không gian rộng lớn.","=> D."],
+       trap:"Bị nhiễu bởi A (isolation) hay C (tropical forest) vì các từ này xuất hiện trong đoạn (“solitary”, “tropical forest”), nhưng chỉ áp dụng cho “some species” chứ không phải “most”."}},
+    {id:3, type:"mcq", prompt:"Which of the following features do all bovids have in common?",
+     choices:["A. Their horns are short","B. They have upper incisors","C. They store food in the body","D. Their hooves are undivided"], answer:"C. They store food in the body",
+     hint:{location:"Paragraph C", chip:"Paraphrase · “ruminants”"},
+     explain:{ locate:{para:"Paragraph C", evId:"t1p1-ev-q3"},
+       evidence:"All species are ruminants, which means that they retain undigested food in their stomachs, and regurgitate it as necessary.",
+       pmap:[{q:"all… have in common",p:"united by… / All species are",s:"Synonym"},{q:"store food in the body",p:"retain undigested food in their stomachs",s:"Inference"}],
+       steps:["Từ khóa: all bovids, in common","Đoạn C: “All species are ruminants… retain undigested food in their stomachs”","Giữ thức ăn chưa tiêu trong dạ dày = lưu trữ thức ăn trong cơ thể"], conclusion:"C — They store food in the body",
+       en:"All species are ruminants, defined as retaining (storing) undigested food in their stomachs (body).",
+       vi:["Tất cả đều là động vật nhai lại.","= giữ (lưu trữ) thức ăn chưa tiêu trong dạ dày (cơ thể).","=> C."],
+       trap:"Chọn B (upper incisors) vì thấy từ “incisors”. Nhưng bài ghi “the upper incisors are usually absent”."}},
+    /* ---- Matching Features 4-8 ---- */
+    {id:4, type:"matching-features", prompt:"can endure very harsh environments",
+     choices:["A — Antelope","B — Bovinae","C — Caprinae","D — Cephalophinae"], answer:"C — Caprinae",
+     hint:{location:"Paragraph F", chip:"Synonym · endure → tolerance"},
+     explain:{ keyword:"harsh environments / endure", locate:{para:"Paragraph F", evId:"t1p1-ev-q4"},
+       evidence:"Tolerance of extreme conditions is most marked in this group.",
+       pmap:[{q:"endure",p:"Tolerance / survive",s:"Synonym"},{q:"very harsh environments",p:"extreme conditions (deserts, arctic tundra)",s:"Synonym"}],
+       steps:["Quét từ khóa harsh environments / endure","Đoạn F: phân họ Caprinae có “Tolerance of extreme conditions”"], conclusion:"C — Caprinae",
+       en:"The sub-family Caprinae is described as having tolerance for extreme conditions (harsh environments).",
+       vi:["Phân họ Caprinae chịu được điều kiện cực đoan.","=> C."],
+       trap:"Nghĩ loài nào sống ở sa mạc cũng thuộc nhóm này, nhưng cần bám tên phân họ tổng quát là Caprinae."}},
+    {id:5, type:"matching-features", prompt:"includes the ox and the cow",
+     choices:["A — Antelope","B — Bovinae","C — Caprinae","D — Cephalophinae"], answer:"B — Bovinae",
+     hint:{location:"Paragraph D", chip:"Category · cattle"},
+     explain:{ keyword:"ox / cow", locate:{para:"Paragraph D", evId:"t1p1-ev-q5"},
+       evidence:"The sub-family Bovinae comprises most of the larger bovids, including the African bongo and nilgai, eland, bison and cattle.",
+       pmap:[{q:"includes",p:"comprises / including",s:"Synonym"},{q:"the ox and the cow",p:"cattle",s:"Category"}],
+       steps:["Từ khóa ox, cow — bài không có 2 từ này","Dùng kiến thức nền: ox + cow thuộc “cattle”","Đoạn D: Bovinae chứa “cattle”"], conclusion:"B — Bovinae",
+       en:"“Cattle” is a general term that includes cows and oxen, belonging to the Bovinae sub-family.",
+       vi:["“Cattle” là từ chung gồm bò cái (cow) và bò đực (ox).","=> Bovinae => B."],
+       trap:"Bỏ qua câu này vì cố tìm “ox”/“cow” nguyên bản mà không nhận ra từ bao hàm “cattle”."}},
+    {id:6, type:"matching-features", prompt:"may supplement its diet with meat",
+     choices:["A — Antelope","B — Bovinae","C — Caprinae","D — Cephalophinae"], answer:"D — Cephalophinae",
+     hint:{location:"Paragraph G", chip:"Generalization · meat"},
+     explain:{ keyword:"diet with meat", locate:{para:"Paragraph G", evId:"t1p1-ev-q6"},
+       evidence:"some duikers – unlike most other bovids – are believed to eat insects and feed on dead animal carcasses, and even to kill small animals.",
+       pmap:[{q:"supplement its diet",p:"are believed to eat…",s:"Inference"},{q:"meat",p:"insects, carcasses, small animals",s:"Generalization"}],
+       steps:["Tìm chế độ ăn có “thịt” — trường hợp ngoại lệ vì đa số ăn cỏ","Đoạn G: duiker (Cephalophinae) ăn côn trùng, xác động vật, giết con nhỏ"], conclusion:"D — Cephalophinae",
+       en:"Eating insects, carcasses and small animals means the Cephalophinae sub-family supplements its plant diet with meat.",
+       vi:["Ăn côn trùng, xác thối, con nhỏ = bổ sung thịt.","=> Cephalophinae => D."]}},
+    {id:7, type:"matching-features", prompt:"can usually move at speed",
+     choices:["A — Antelope","B — Bovinae","C — Caprinae","D — Cephalophinae"], answer:"A — Antelope",
+     hint:{location:"Paragraph E", chip:"Synonym · fast-running"},
+     explain:{ keyword:"speed / fast", locate:{para:"Paragraph E", evId:"t1p1-ev-q7"},
+       evidence:"Antelopes are typically long-legged, fast-running species, often with long horns that may be laid along the back when the animal is in full flight.",
+       pmap:[{q:"move at speed",p:"fast-running",s:"Synonym"}],
+       steps:["Từ khóa: speed, fast","Đoạn E định nghĩa Antelope là “long-legged, fast-running”"], conclusion:"A — Antelope",
+       en:"Antelopes are directly described as “fast-running” species.",
+       vi:["Linh dương được mô tả trực tiếp là “fast-running”.","=> A."]}},
+    {id:8, type:"matching-features", prompt:"does not defend a particular area of land",
+     choices:["A — Antelope","B — Bovinae","C — Caprinae","D — Cephalophinae"], answer:"B — Bovinae",
+     hint:{location:"Paragraph D", chip:"Synonym · non-territorial"},
+     explain:{ keyword:"defend area of land", locate:{para:"Paragraph D", evId:"t1p1-ev-q8"},
+       evidence:"Unlike most other bovids they are all non-territorial.",
+       pmap:[{q:"does not defend a particular area of land",p:"non-territorial",s:"Synonym"}],
+       steps:["“Defend a particular area of land” = hành vi lãnh thổ (territorial)","“does not defend…” = “non-territorial”","Đoạn D: Bovinae “they are all non-territorial”"], conclusion:"B — Bovinae",
+       en:"“Non-territorial” means an animal does not claim or defend a specific territory → Bovinae.",
+       vi:["“Non-territorial” = không bảo vệ vùng đất cụ thể.","=> Bovinae => B."]}},
+    /* ---- Short Answer 9-13 ---- */
+    {id:9, type:"short-answer", prompt:"What is the smallest species of Bovid called?",
+     answer:["royal antelope","the royal antelope"], display:"(the) royal antelope",
+     hint:{location:"Paragraph B", chip:"Noun phrase · ≤3 words"},
+     explain:{ locate:{para:"Paragraph B", evId:"t1p1-ev-q9"},
+       evidence:"at one extreme is the royal antelope of West Africa, which stands a mere 25 cm at the shoulder",
+       pmap:[{q:"smallest species",p:"at one extreme… a mere 25 cm",s:"Inference"}],
+       steps:["Từ khóa: smallest","Đoạn B: sự đa dạng kích thước “at one extreme… at the other”","Cực nhỏ: “a mere 25 cm” → “royal antelope”"], conclusion:"(the) royal antelope",
+       en:"The text gives “royal antelope” as the minimum-extreme example (25 cm).",
+       vi:["Bài đưa “royal antelope” làm ví dụ kích thước nhỏ nhất (25 cm)."]}},
+    {id:10, type:"short-answer", prompt:"Which species of Bovinae has now died out?",
+     answer:["auroch","the auroch"], display:"(the) auroch",
+     hint:{location:"Paragraph D", chip:"Synonym · died out → extinct"},
+     explain:{ locate:{para:"Paragraph D", evId:"t1p1-ev-q10"},
+       evidence:"while the auroch (the ancestor of the domestic cattle of Europe) is extinct.",
+       pmap:[{q:"died out",p:"extinct",s:"Synonym"}],
+       steps:["Đoạn D nói về Bovinae","Từ đồng nghĩa “died out” → “extinct” → loài “auroch”"], conclusion:"(the) auroch",
+       en:"“Extinct” directly translates to “died out”. The text names the auroch as extinct.",
+       vi:["“Extinct” = “died out”.","Loài auroch đã tuyệt chủng."]}},
+    {id:11, type:"short-answer", prompt:"What facilitates the movement of the sitatunga over wetland?",
+     answer:["hooves","long splayed hooves","long, splayed hooves","splayed hooves"], display:"(long, splayed) hooves",
+     hint:{location:"Paragraph E", chip:"Noun · body part"},
+     explain:{ locate:{para:"Paragraph E", evId:"t1p1-ev-q11"},
+       evidence:"while the sitatunga has long, splayed hooves that enable it to walk freely on swampy ground.",
+       pmap:[{q:"facilitates the movement",p:"enable it to walk freely",s:"Synonym"},{q:"wetland",p:"swampy ground",s:"Synonym"}],
+       steps:["Định vị tên riêng “sitatunga”","Bộ phận giúp đi tự do trên đất lầy (“swampy ground” ~ “wetland”)","→ “long, splayed hooves”"], conclusion:"(long, splayed) hooves",
+       en:"“Long, splayed hooves” enable (facilitate) the sitatunga to walk on swampy ground (wetland).",
+       vi:["“long, splayed hooves” cho phép sitatunga đi trên đất đầm lầy."]}},
+    {id:12, type:"short-answer", prompt:"What sort of terrain do barbary sheep live in?",
+     answer:["deserts","arid deserts"], display:"(arid) deserts",
+     hint:{location:"Paragraph F", chip:"Noun · plural"},
+     explain:{ locate:{para:"Paragraph F", evId:"t1p1-ev-q12"},
+       evidence:"Barbary and bighorn sheep have adapted to arid deserts.",
+       pmap:[{q:"terrain",p:"deserts",s:"Category"}],
+       steps:["Quét tên riêng “Barbary sheep”","Địa hình đi kèm → “arid deserts”"], conclusion:"(arid) deserts",
+       en:"The passage explicitly mentions that Barbary sheep have adapted to “arid deserts”.",
+       vi:["Đoạn văn nói cừu Barbary thích nghi với “arid deserts”."]}},
+    {id:13, type:"short-answer", prompt:"What is the only living member of the Antilocapridae sub-family?",
+     answer:["pronghorn","the pronghorn"], display:"(the) pronghorn",
+     hint:{location:"Paragraph H", chip:"Synonym · sole survivor"},
+     explain:{ locate:{para:"Paragraph H", evId:"t1p1-ev-q13"},
+       evidence:"The pronghorn is the sole survivor of a New World sub-family of herbivorous ruminants, the Antilocapridae in North America.",
+       pmap:[{q:"only living member",p:"sole survivor",s:"Synonym"}],
+       steps:["Quét tên khoa học “Antilocapridae”","“only living member” ~ “sole survivor” → “pronghorn”"], conclusion:"(the) pronghorn",
+       en:"“Sole survivor” means the only living member. The text states this is the pronghorn.",
+       vi:["“Sole survivor” = thành viên sống sót duy nhất.","=> pronghorn."],
+       trap:"Viết thừa “New World” khiến câu trả lời vượt quá giới hạn 3 từ."}}
+  ]
+};
+
+const PASSAGES = { "t1p1": PASSAGE_T1_P1 };
+
+</script>
+<script>
+/* ===== STATE ===== */
+const AppState = { current:"overview", passages:{} };
+const CIRC = ["①","②","③","④","⑤","⑥","⑦","⑧","⑨","⑩"];
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+/* build TOPICS structure */
+const TOPICS = TOPIC_NAMES.map((name,ti)=>({
+  n:ti+1, name,
+  passages:[1,2,3,4,5].map(pi=>{
+    const id="t"+(ti+1)+"p"+pi;
+    return {id, num:pi, title:PASSAGE_TITLES[id]||null, filled:!!PASSAGES[id]};
+  })
+}));
+
+/* ===== SIDEBAR ===== */
+function renderSidebar(){
+  let h=`<div class="nav-home" data-page="overview" onclick="go('overview')"><span>🏠</span><span>Overview</span></div>`;
+  TOPICS.forEach(t=>{
+    h+=`<div class="nav-group-label">${esc(t.name)}</div>`;
+    t.passages.forEach(p=>{
+      h+=`<div class="nav-item" id="nav-${p.id}" data-page="${p.id}" onclick="go('${p.id}')">
+        <span class="idx">${p.num}</span>
+        <span>Passage ${p.num}${p.title?" · "+esc(p.title):""}</span>
+        <span class="done" id="done-${p.id}" style="display:none">✓</span>
+      </div>`;
+    });
+  });
+  document.getElementById("nav").innerHTML=h;
+}
+
+/* ===== OVERVIEW ===== */
+function renderOverview(){
+  let cards="";
+  TOPICS.forEach(t=>{
+    let chips="";
+    t.passages.forEach(p=>{
+      chips+=`<div class="pchip" id="chip-${p.id}" onclick="go('${p.id}')">
+        <span>Passage ${p.num}${p.title?" · "+esc(p.title):""}</span>
+        <span class="st">${p.filled?"Ready":"Empty"}</span></div>`;
+    });
+    cards+=`<div class="topic-card">
+      <div class="th"><span class="tnum">${t.n}</span><span class="tname">${esc(t.name)}</span></div>
+      ${chips}
+      <div class="tcount" id="tcount-${t.n}">0 / 5 finished</div>
+    </div>`;
+  });
+  return `<div class="page" id="page-overview">
+    <div class="hero">
+      <h2>Passage Reading — IELTS Practice</h2>
+      <p>Luyện đọc IELTS với 50 bài, phân theo 10 chủ đề. Làm bài, bấm <b>Finish</b>, rồi học cách giải qua phần giải thích chi tiết.</p>
+      <div class="stats">
+        <div><b>50</b> passages</div><div><b>10</b> topics</div><div><b>5</b> per topic</div>
+        <div><b id="ovDone">0</b> finished</div>
+      </div>
+    </div>
+    <div class="topic-grid">${cards}</div>
+  </div>`;
+}
+
+/* ===== PASSAGE PAGE ===== */
+function renderPassagePage(meta){
+  const P=PASSAGES[meta.id];
+  if(!P){
+    return `<div class="page" id="page-${meta.id}">
+      <div class="p-header"><span class="badge-mint">TOPIC ${meta.id.match(/t(\d+)/)[1]}</span>
+        <span class="ptitle">Passage ${meta.num}</span><span class="spacer"></span></div>
+      <div class="placeholder-card"><div class="big">📥</div><b>Chưa có nội dung</b>
+        Paste passage + câu hỏi + giải thích để fill slot này.</div>
+    </div>`;
+  }
+  const tnum=meta.id.match(/t(\d+)/)[1];
+  return `<div class="page" id="page-${meta.id}">
+    <div class="p-header">
+      <span class="badge-mint">TOPIC ${tnum}</span>
+      <span class="ptitle">${esc(P.title)}</span>
+      <span class="spacer"></span>
+      <span class="score-chip" id="score-${meta.id}"></span>
+      <button class="btn btn-finish" id="finish-${meta.id}" onclick="tryFinish('${meta.id}')">Finish</button>
+    </div>
+    <div class="confirm-bar" id="confirm-${meta.id}">
+      <span id="confirm-msg-${meta.id}"></span>
+      <button class="btn btn-sm btn-primary" onclick="doFinish('${meta.id}')">Finish anyway</button>
+      <button class="btn btn-sm btn-outline" onclick="hideConfirm('${meta.id}')">Keep working</button>
+    </div>
+    <div class="workspace">
+      <section class="col-passage">
+        <div class="col-head"><h3>📖 Passage</h3>
+          <button class="btn btn-sm btn-outline" id="vi-toggle-${meta.id}" onclick="toggleVI('${meta.id}')">🇻🇳 Hiện bản dịch</button></div>
+        ${P.paragraphs.map(pa=>`<div class="para"><span class="para-label">${pa.label}</span>${pa.html}
+          <div class="para-vi">${esc(pa.vi)}</div></div>`).join("")}
+        ${P.footnotes?`<div class="footnote">${P.footnotes.map(esc).join("<br>")}</div>`:""}
+      </section>
+      <section class="col-questions">
+        <div class="col-head"><h3>✍️ Questions</h3></div>
+        ${renderGroups(P)}
+      </section>
+      <aside class="col-hints" id="hints-${meta.id}">
+        <div class="col-head"><h3>💡 Hints</h3></div>
+        <div class="hint-note">Hints tell you WHERE to look and WHAT form to expect — never the answer.</div>
+        ${P.questions.map(q=>`<div class="hint-card"><span class="q-num">${q.id}</span>
+          <div><span class="hint-loc">${esc(q.hint.location)}</span>
+          <div><span class="hint-chip">${esc(q.hint.chip)}</span></div></div></div>`).join("")}
+      </aside>
+    </div>
+  </div>`;
+}
+
+function renderGroups(P){
+  let out="";
+  P.groups.forEach(g=>{
+    out+=`<div class="q-group-instruction">${esc(g.instruction)}</div>`;
+    if(g.extra) out+=g.extra;
+    P.questions.filter(q=>q.id>=g.from&&q.id<=g.to).forEach(q=>{ out+=renderQuestion(q); });
+  });
+  return out;
+}
+
+function renderQuestion(q){
+  let input="";
+  if(q.type==="mcq"){
+    input=`<div class="mcq-options" data-qid="${q.id}">`+
+      q.choices.map(c=>`<div class="mcq-option" role="radio" aria-checked="false"
+        onclick="selectMCQ(this,${q.id})" data-val="${esc(c)}">${esc(c)}</div>`).join("")+`</div>`;
+  } else if(q.type&&q.type.indexOf("matching")===0){
+    input=`<select class="q-dropdown" id="in-${q.id}"><option value="">— choose —</option>`+
+      q.choices.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join("")+`</select>`;
+  } else { /* text input */
+    input=`<input type="text" class="blank-input" id="in-${q.id}" placeholder="Type your answer…" autocomplete="off">`;
+  }
+  return `<div class="q-card" id="qc-${q.id}">
+    <div class="q-head"><span class="q-num">${q.id}</span>
+      <span class="q-type-chip">${typeLabel(q.type)}</span></div>
+    <div class="q-prompt">${esc(q.prompt)}</div>
+    ${input}
+    <div class="your-answer" id="ya-${q.id}"></div>
+    <div class="xp-block" id="xp-${q.id}">${renderExplain(q)}</div>
+  </div>`;
+}
+function typeLabel(t){return {"mcq":"Multiple Choice","matching-features":"Matching Features","matching-info":"Matching Info","matching-headings":"Matching Headings","short-answer":"Short Answer","sentence-completion":"Sentence Completion","tfng":"True/False/NG","ynng":"Yes/No/NG"}[t]||t;}
+
+/* generic explanation renderer — renders only sections that exist (Golden Rule) */
+function renderExplain(q){
+  const e=q.explain||{}; let secs=[];
+  if(e.keyword) secs.push({c:"var(--blue)",l:"Keyword",h:`<span class="pm-q" style="display:inline-block">${esc(e.keyword)}</span>`});
+  if(e.locate) secs.push({c:"var(--blue)",l:"Locate Evidence",
+    h:`<span class="loc-pill">${esc(e.locate.para)}</span>`+
+      (e.locate.evId?`<div class="xp-jump"><button class="btn btn-sm btn-outline" onclick="jumpTo('${e.locate.evId}')">📍 Jump to Evidence</button></div>`:"")});
+  if(e.evidence) secs.push({c:"var(--moss)",l:"Evidence Sentence",h:`<blockquote class="xp-quote">“${esc(e.evidence)}”</blockquote>`});
+  if(e.pmap&&e.pmap.length) secs.push({c:"var(--forest)",l:"Paraphrase Mapping",h:renderPmap(e.pmap)});
+  if(e.steps&&e.steps.length) secs.push({c:"var(--forest)",l:"Thinking Process",h:renderSteps(e.steps,e.conclusion)});
+  if(e.answer!==undefined||e.conclusion!==undefined){} // answer shown below
+  const keyAns = q.display || (Array.isArray(q.answer)?q.answer[0]:q.answer);
+  secs.push({c:"var(--green-success)",l:"Key Answer",h:`<span class="key-answer">${esc(keyAns)}</span>`,bg:"var(--green-light)"});
+  if(e.en) secs.push({c:"var(--text-mid)",l:"English Explanation",h:esc(e.en)});
+  if(e.vi) secs.push({c:"var(--text-mid)",l:"Vietnamese Explanation",h:`<div class="xp-vi">${(Array.isArray(e.vi)?e.vi:[e.vi]).map(x=>`<div>${esc(x)}</div>`).join("")}</div>`});
+  if(e.trap) secs.push({c:"var(--amber)",l:"Common Trap",h:esc(e.trap),bg:"var(--amber-light)"});
+  return secs.map((s,i)=>`<div class="xp-sec"${s.bg?` style="background:${s.bg}"`:""}>
+    <span class="xp-label" style="color:${s.c}">${CIRC[i]} ${s.l}</span>${s.h}</div>`).join("");
+}
+function renderPmap(rows){
+  const hasO=rows.some(r=>r.o);
+  return `<table class="pmap"><thead><tr><th>Question</th><th></th><th>Passage</th>${hasO?"<th>Original</th>":""}<th>Skill</th></tr></thead><tbody>`+
+    rows.map(r=>`<tr><td class="pm-q">${esc(r.q)}</td><td class="pm-arrow">→</td><td class="pm-p">${esc(r.p)}</td>${hasO?`<td class="pm-o">${esc(r.o||"")}</td>`:""}<td class="pm-s">${esc(r.s)}</td></tr>`).join("")+
+    `</tbody></table>`;
+}
+function renderSteps(steps,concl){
+  return `<div class="think-flow">`+
+    steps.map((s,i)=>`<div class="tf-step"><span class="tf-n">${i+1}</span>${esc(s)}</div>`).join("")+
+    (concl?`<div class="tf-conclusion">Conclusion → ${esc(concl)}</div>`:"")+`</div>`;
+}
+
+/* ===== BUILD ALL PAGES ===== */
+function buildAll(){
+  renderSidebar();
+  let html=renderOverview();
+  TOPICS.forEach(t=>t.passages.forEach(p=>{ html+=renderPassagePage(p); }));
+  document.getElementById("main").innerHTML=html;
+  go("overview");
+}
+
+/* ===== NAVIGATION ===== */
+function go(pageId){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  const el=document.getElementById("page-"+pageId); if(el)el.classList.add("active");
+  document.querySelectorAll(".nav-item,.nav-home").forEach(n=>n.classList.toggle("active",n.dataset.page===pageId));
+  AppState.current=pageId;
+  const fab=document.getElementById("resetFab");
+  fab.classList.toggle("show", pageId!=="overview" && !!PASSAGES[pageId]);
+  document.querySelectorAll(".col-passage,.col-questions,.col-hints").forEach(c=>c.scrollTop=0);
+  window.scrollTo(0,0);
+  document.getElementById("hintToggle").style.display = (pageId!=="overview"&&PASSAGES[pageId]&&window.innerWidth<=1280)?"block":"none";
+}
+
+/* ===== INTERACTION ===== */
+function selectMCQ(el,qid){
+  const box=el.parentElement;
+  if(box.dataset.locked)return;
+  box.querySelectorAll(".mcq-option").forEach(o=>{o.classList.remove("selected");o.setAttribute("aria-checked","false");});
+  el.classList.add("selected");el.setAttribute("aria-checked","true");
+}
+function getAnswer(q){
+  if(q.type==="mcq"){const s=document.querySelector(`.mcq-options[data-qid="${q.id}"] .selected`);return s?s.dataset.val:"";}
+  const el=document.getElementById("in-"+q.id);return el?el.value:"";
+}
+function norm(s){return String(s).toLowerCase().trim().replace(/[.,;]/g,"").replace(/\s+/g," ");}
+function isCorrect(q,val){
+  if(Array.isArray(q.answer)) return q.answer.some(a=>norm(a)===norm(val));
+  return norm(q.answer)===norm(val);
+}
+
+function tryFinish(pid){
+  const P=PASSAGES[pid];
+  const un=P.questions.filter(q=>!getAnswer(q)).length;
+  if(un>0){
+    document.getElementById("confirm-msg-"+pid).textContent=`${un} câu chưa trả lời.`;
+    document.getElementById("confirm-"+pid).classList.add("show");
+  } else doFinish(pid);
+}
+function hideConfirm(pid){document.getElementById("confirm-"+pid).classList.remove("show");}
+
+function doFinish(pid){
+  hideConfirm(pid);
+  const P=PASSAGES[pid]; let correct=0;
+  P.questions.forEach(q=>{
+    const val=getAnswer(q); const ok=val&&isCorrect(q,val); if(ok)correct++;
+    if(q.type==="mcq"){
+      const box=document.querySelector(`.mcq-options[data-qid="${q.id}"]`); box.dataset.locked="1";
+      box.querySelectorAll(".mcq-option").forEach(o=>{
+        if(o.dataset.val===q.answer)o.classList.add("correct");
+        else if(o.classList.contains("selected"))o.classList.add("incorrect");
+      });
+    } else {
+      const el=document.getElementById("in-"+q.id); el.disabled=true;
+      el.classList.add(ok?"correct":"incorrect");
+    }
+    if(!ok){
+      const ya=document.getElementById("ya-"+q.id);
+      ya.textContent="Your answer: "+(val||"(blank)");ya.classList.add("show");
+    }
+    document.getElementById("xp-"+q.id).classList.add("revealed");
+  });
+  const sc=document.getElementById("score-"+pid);
+  sc.textContent=correct+" / "+P.questions.length; sc.classList.add("show");
+  const fb=document.getElementById("finish-"+pid); fb.textContent="✓ Finished"; fb.disabled=true;
+  AppState.passages[pid]={finished:true,score:correct};
+  document.getElementById("done-"+pid).style.display="inline";
+  const chip=document.getElementById("chip-"+pid); if(chip)chip.classList.add("done");
+  const st=chip?chip.querySelector(".st"):null; if(st)st.textContent="Done "+correct+"/"+P.questions.length;
+  updateProgress();
+}
+
+function resetCurrent(){
+  const pid=AppState.current; const P=PASSAGES[pid]; if(!P)return;
+  P.questions.forEach(q=>{
+    if(q.type==="mcq"){
+      const box=document.querySelector(`.mcq-options[data-qid="${q.id}"]`); delete box.dataset.locked;
+      box.querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected","correct","incorrect"));
+    } else {
+      const el=document.getElementById("in-"+q.id); el.disabled=false; el.value=""; el.classList.remove("correct","incorrect");
+    }
+    document.getElementById("ya-"+q.id).classList.remove("show");
+    document.getElementById("xp-"+q.id).classList.remove("revealed");
+  });
+  document.getElementById("score-"+pid).classList.remove("show");
+  const fb=document.getElementById("finish-"+pid); fb.textContent="Finish"; fb.disabled=false;
+  delete AppState.passages[pid];
+  document.getElementById("done-"+pid).style.display="none";
+  const chip=document.getElementById("chip-"+pid); if(chip){chip.classList.remove("done");chip.querySelector(".st").textContent="Ready";}
+  updateProgress();
+}
+
+function updateProgress(){
+  const done=Object.values(AppState.passages).filter(p=>p.finished).length;
+  document.getElementById("progressFill").style.width=(done/50*100)+"%";
+  document.getElementById("progressLabel").textContent=done+" / 50 finished";
+  document.getElementById("ovDone").textContent=done;
+  TOPICS.forEach(t=>{
+    const d=t.passages.filter(p=>AppState.passages[p.id]&&AppState.passages[p.id].finished).length;
+    const el=document.getElementById("tcount-"+t.n); if(el)el.textContent=d+" / 5 finished";
+  });
+}
+
+/* ===== VI TOGGLE / JUMP / HINT DRAWER ===== */
+function toggleVI(pid){
+  const page=document.getElementById("page-"+pid);
+  const btn=document.getElementById("vi-toggle-"+pid);
+  const showing=page.querySelector(".para-vi.show");
+  page.querySelectorAll(".para-vi").forEach(v=>v.classList.toggle("show",!showing));
+  btn.textContent=showing?"🇻🇳 Hiện bản dịch":"🇻🇳 Ẩn bản dịch";
+}
+function jumpTo(evId){
+  const el=document.getElementById(evId); if(!el)return;
+  el.scrollIntoView({behavior:"smooth",block:"center"});
+  el.classList.add("flash"); setTimeout(()=>el.classList.remove("flash"),2500);
+}
+function toggleHintDrawer(){
+  const pid=AppState.current; const h=document.getElementById("hints-"+pid); if(h)h.classList.toggle("open");
+}
+
+buildAll();
+
+</script>
+</body>
+</html>
