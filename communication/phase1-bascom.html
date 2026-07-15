@@ -317,6 +317,123 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-
 .cert-frame h2{color:var(--forest);font-size:26px;font-weight:800;margin:10px 0 4px;}
 .cert-frame .sub{color:var(--text-soft);font-size:14px;}
 
+
+/* ---------- Lesson 3 (Family & Culture) — ported components ---------- */
+.l3-block{padding:0 0 34px;}
+.section-header{margin-bottom:24px;}
+.section-subtitle{font-size:14px;color:var(--text-soft);margin-top:4px;}
+.j-num{width:28px;height:28px;border-radius:99px;background:var(--forest);color:var(--mint);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.j-step h4{font-size:14px;font-weight:800;color:var(--forest);}
+.j-step .j-part{font-size:11px;font-weight:700;color:var(--moss);letter-spacing:.5px;text-transform:uppercase;margin-top:2px;}
+#page-lesson3 .journey{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;}
+#page-lesson3 .j-step{margin-right:0;margin-bottom:0;}
+#page-lesson3 .j-step::after{content:"";}
+#page-lesson3 .j-step p{font-size:13px;color:var(--text-soft);margin-top:6px;}
+#page-lesson3 .vocab-card .word{padding-right:44px;}
+#page-lesson3 .vocab-card .pos{margin:6px 0;}
+#page-lesson3 .vocab-card .example{display:none;font-style:normal;margin-top:10px;padding-top:10px;border-top:1px solid var(--sage);color:var(--text-soft);font-size:13px;}
+#page-lesson3 .vocab-card.flipped .example{display:block;animation:fadeIn .3s ease;}
+#page-lesson3 .vocab-card .example b{color:var(--forest);}
+#page-lesson3 .alt-badge{position:static;display:inline-block;}
+#page-lesson3 .info-box{margin-bottom:20px;}
+#page-lesson3 .listening-notice{margin-bottom:20px;}
+#page-lesson3 .mcq-option{display:flex;gap:8px;align-items:flex-start;}
+#page-lesson3 .draw-result{display:flex;flex-direction:column;justify-content:center;}
+#page-lesson3 .summary-table td:first-child{width:34%;background:var(--shell);}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.legend span{font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;}
+.passage{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;font-size:15px;line-height:1.9;}
+.passage h4{color:var(--forest);font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin:20px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--sage);}
+.passage h4:first-child{margin-top:0;}
+.passage .vi-line{color:var(--text-soft);font-size:13px;font-style:italic;display:block;margin-bottom:10px;}
+.q-block{padding:14px 0;border-bottom:1px solid var(--sage);}
+.q-block:last-of-type{border-bottom:none;}
+.q-text{font-size:14px;font-weight:600;color:var(--text-dark);margin-bottom:10px;}
+.q-text .qn{color:var(--moss);font-weight:800;margin-right:6px;}
+.mcq-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;}
+.mcq-option .ltr{font-weight:800;color:var(--moss);}
+.pron-arrow{display:inline-block;background:var(--blue);color:#fff;font-size:11px;font-weight:700;padding:2px 10px;border-radius:99px;margin:0 6px;}
+.pron-practice{background:var(--sage);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;margin-top:12px;font-size:14px;color:var(--text-dark);}
+.pron-practice div{margin:4px 0;}
+.dialogue-box{background:var(--shell);border-radius:var(--radius-sm);padding:14px 16px;font-size:14px;margin-bottom:10px;}
+.saying{background:var(--sage);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;margin:8px 0;font-weight:700;color:var(--forest);}
+.saying .vi{display:block;font-weight:400;font-size:13px;color:var(--text-soft);font-style:italic;}
+.read-passage{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;font-size:15px;line-height:1.9;}
+.read-passage h4{color:var(--forest);font-size:15px;font-weight:800;margin:20px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--sage);}
+.read-passage h4:first-child{margin-top:0;}
+.read-passage b{color:var(--moss);}
+.formula-strip{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0;}
+.f-chip{font-size:12px;font-weight:800;padding:5px 12px;border-radius:99px;background:var(--sage);color:var(--forest);border:1px solid var(--border);}
+.f-chip.on{background:var(--forest);color:var(--mint);border-color:var(--forest);}
+.build-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px;}
+.build-card h4{color:var(--forest);font-size:16px;font-weight:800;margin-bottom:4px;}
+.build-card .b-sub{font-size:13px;color:var(--text-soft);margin-bottom:14px;}
+.step-track{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.step-dot{width:28px;height:28px;border-radius:99px;border:1.5px solid var(--border);background:var(--white);color:var(--text-soft);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.step-dot.done{background:var(--forest);border-color:var(--forest);color:var(--mint);}
+.step-label{background:var(--sage);color:var(--moss);font-size:12px;font-weight:800;letter-spacing:.5px;padding:4px 12px;border-radius:99px;display:inline-block;margin-bottom:10px;}
+.build-sentence{background:var(--shell);border-radius:var(--radius-sm);padding:16px 18px;font-size:17px;line-height:1.8;min-height:56px;color:var(--text-dark);}
+.build-sentence .chunk-new{background:var(--amber-light);color:var(--amber);font-weight:800;border-radius:4px;padding:1px 4px;animation:fadeIn .3s ease;}
+.build-vi{font-size:13px;color:var(--text-soft);font-style:italic;margin-top:8px;}
+.free-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px;}
+.free-field label{display:block;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--moss);margin-bottom:4px;}
+.free-field input{width:100%;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:9px 12px;font-family:inherit;font-size:14px;color:var(--text-dark);background:var(--white);outline:none;box-sizing:border-box;}
+.free-field input:focus{border-color:var(--teal);}
+.tf-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.tf-table th{background:var(--forest);color:#fff;font-size:12px;font-weight:800;padding:10px 12px;text-align:center;}
+.tf-table td{padding:10px 12px;border-bottom:1px solid var(--sage);font-size:14px;text-align:center;vertical-align:middle;}
+.tf-table td:first-child{font-weight:800;color:var(--forest);background:var(--shell);text-align:left;}
+.tf-claim{font-weight:800;color:var(--text-dark);font-size:15px;display:block;margin-bottom:6px;}
+.tf-pair{display:inline-flex;gap:4px;}
+.tf-btn{width:34px;height:30px;border:1.5px solid var(--border);background:var(--white);border-radius:var(--radius-sm);font-weight:800;font-size:13px;cursor:pointer;font-family:inherit;color:var(--text-soft);transition:all .15s;}
+.tf-btn:hover{border-color:var(--teal);background:var(--sage);}
+.tf-btn.sel{border-color:var(--blue);background:var(--blue-light);color:var(--blue);}
+.tf-btn.correct{border-color:var(--green-success);background:var(--green-light);color:var(--green-success);}
+.tf-btn.incorrect{border-color:var(--red);background:var(--red-light);color:var(--red);}
+.transcript-block{display:none;}
+.transcript-block.revealed{display:block;animation:fadeIn .3s ease;}
+.transcript-card{background:var(--sand);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:16px;}
+.transcript-card .t-head{background:var(--forest);color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:800;}
+.transcript-card .t-body{padding:18px;}
+.dialogue-line{padding:8px 0;border-bottom:1px solid var(--sage);font-size:14px;}
+.dialogue-line:last-child{border-bottom:none;}
+.dialogue-line .speaker{color:var(--forest);font-weight:700;margin-right:6px;}
+.dialogue-line .vi{display:block;color:var(--text-soft);font-size:13px;font-style:italic;padding-left:22px;margin-top:2px;}
+.mini-label{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--moss);margin:14px 0 6px;}
+.countdown-overlay{font-size:34px;font-weight:800;color:var(--moss);}
+.tier2-hint ul{margin:6px 0 0 18px;color:var(--text-dark);}
+.quiz-screen{display:none;}
+.quiz-screen.active{display:block;animation:fadeIn .3s ease;}
+.quiz-start{text-align:center;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:48px 28px;}
+.quiz-start h3{font-size:24px;font-weight:800;color:var(--forest);margin-bottom:8px;}
+.quiz-start p{color:var(--text-soft);font-size:14px;max-width:420px;margin:0 auto 20px;}
+.quiz-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
+.quiz-counter{font-size:13px;font-weight:800;color:var(--moss);letter-spacing:.5px;}
+.timer-pill{background:var(--forest);color:#fff;font-size:14px;font-weight:800;padding:5px 16px;border-radius:99px;font-variant-numeric:tabular-nums;}
+.timer-pill.danger{background:var(--red);animation:pulse .6s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.55;}}
+.timer-track{height:6px;background:var(--sage);border-radius:99px;overflow:hidden;margin-bottom:20px;}
+.timer-bar{height:100%;background:var(--moss);border-radius:99px;width:100%;transition:width 1s linear;}
+.timer-bar.danger{background:var(--red);}
+.quiz-q{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:26px;}
+.quiz-q .qtype{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--moss);}
+.quiz-q h3{font-size:18px;font-weight:800;color:var(--forest);margin:6px 0 18px;}
+.quiz-opts{display:grid;gap:10px;}
+.quiz-explain{display:none;margin-top:14px;background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius-sm);padding:12px 16px;font-size:14px;color:var(--text-dark);}
+.quiz-explain.show{display:block;}
+.quiz-result{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:44px 28px;text-align:center;}
+.big-score{font-size:56px;font-weight:800;color:var(--forest);}
+.quiz-result .verdict{font-size:16px;font-weight:700;color:var(--moss);margin-bottom:18px;}
+
+/* Lesson 3 — reading tap-translate & bilingual MCQ */
+.read-passage p{cursor:pointer;transition:background .15s;border-radius:var(--radius-sm);}
+.read-passage p:hover{background:var(--shell);}
+.vi-para{display:none;color:var(--text-soft);font-size:13.5px;font-style:italic;margin-top:8px;border-left:3px solid var(--mint);padding:2px 0 2px 10px;}
+.read-passage p.showvi .vi-para{display:block;animation:fadeIn .3s ease;}
+.vi-para b{font-style:normal;}
+.q-vi{display:block;font-weight:400;font-style:italic;color:var(--text-soft);font-size:13px;margin-top:3px;}
+.mcq-option .o-vi{display:block;font-weight:400;font-style:italic;color:var(--text-soft);font-size:12.5px;margin-top:2px;}
+
 /* ---------- Responsive ---------- */
 @media(max-width:768px){
   .sidebar{position:static;width:100%;}
@@ -517,8 +634,19 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-
     </div>
 
     <div class="module-card">
-      <div class="module-head"><span class="mn">MODULE 2</span><h3>Coming soon</h3></div>
-      <div class="lesson-row locked"><div class="lnum">3</div><div class="linfo"><div class="lt">Lesson 3</div><div class="ld">Content will be added in the next update</div></div><span class="badge badge-forest">🔒 Locked</span></div>
+      <div class="module-head"><span class="mn">MODULE 2</span><h3>Connections: From Family to Strangers</h3></div>
+      <div style="padding:10px 22px 4px;">
+        <p style="font-size:13.5px;color:var(--text-mid);"><b>Module objective:</b> introduce your family and the culture behind it, and keep growing one sentence — S + V + O — into rich, natural speech.</p>
+      </div>
+      <div class="lesson-row">
+        <div class="lnum">3</div>
+        <div class="linfo">
+          <div class="lt">Lesson 3 — Introducing Your Family &amp; Culture</div>
+          <div class="ld">Family tree · phrasal verbs · Vietnamese culture reading · listening T/F · sentence growing · 30-question quiz</div>
+        </div>
+        <span class="done-mark" id="doneMark-lesson3" style="display:none;">✓ Completed</span>
+        <button class="btn btn-primary btn-sm" data-page="lesson3">Open lesson →</button>
+      </div>
       <div class="lesson-row locked"><div class="lnum">4</div><div class="linfo"><div class="lt">Lesson 4</div><div class="ld">Content will be added in the next update</div></div><span class="badge badge-forest">🔒 Locked</span></div>
     </div>
 
@@ -1441,8 +1569,491 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-
         <button class="btn btn-outline" data-l2tab="l2-speaking">← Speaking</button>
         <button class="btn btn-primary" onclick="markComplete('lesson2',this)">✓ Mark Lesson Complete</button>
         <button class="btn btn-outline" data-page="phase1">← Back to Phase 1</button>
+        <button class="btn btn-secondary" data-page="lesson3">Next lesson: Lesson 3 →</button>
       </div>
     </div>
+  </div>
+</div>
+
+
+<!-- ================= PAGE: LESSON 3 (merged from module2-lesson3-family-culture.html) ================= -->
+<div class="page" id="page-lesson3">
+  <div class="hero">
+    <div class="meta">
+      <span class="badge badge-mint">PHASE 1 · MODULE 2 · LESSON 3</span>
+      <span class="badge badge-white">CEFR A2 → B1</span>
+      <span class="badge badge-white">⏱ 120 MIN</span>
+    </div>
+    <h1>Introducing Your Family &amp; Culture</h1>
+    <p class="sub">Introduce your family with confidence — how many people, who they are, their names, ages and jobs — and talk about Vietnamese family culture: respect, ancestors, Tet, and the values that hold a family together. Then grow one sentence, step by step, from a simple S + V + O into a rich, natural sentence.</p>
+    <div class="outcomes">
+      <span class="badge badge-white">Vocabulary</span>
+      <span class="badge badge-white">Sentence Building</span>
+      <span class="badge badge-white">Reading</span>
+      <span class="badge badge-white">Listening</span>
+      <span class="badge badge-white">Speaking Reflex</span>
+      <span class="badge badge-white">Quiz</span>
+    </div>
+  </div>
+  <div class="section">
+    <div class="tab-bar" data-group="l3tabs">
+      <button class="tab-btn active" data-tab="l3-overview">1 · Overview</button>
+      <button class="tab-btn" data-tab="l3-vocab">2 · Vocabulary</button>
+      <button class="tab-btn" data-tab="l3-grammar">3 · Grow a Sentence</button>
+      <button class="tab-btn" data-tab="l3-reading">4 · Reading</button>
+      <button class="tab-btn" data-tab="l3-listening">5 · Listening</button>
+      <button class="tab-btn" data-tab="l3-challenge">6 · Discussion &amp; Challenge</button>
+      <button class="tab-btn" data-tab="l3-quiz">7 · Quiz</button>
+    </div>
+<!-- ============ OVERVIEW ============ -->
+<div class="tab-panel active" data-panel-group="l3tabs" data-panel="l3-overview">
+  <div class="l3-block">
+    <div class="section-header">
+      <span class="part-label">What You'll Learn</span>
+      <h2 class="section-title">Two goals for today</h2>
+    </div>
+    <div class="journey">
+      <div class="j-step"><div class="j-num">1</div><h4>Family &amp; Vietnamese Culture</h4><div class="j-part">Content</div><p>Introduce your family (size, members, details) and explain the culture behind it: respect for elders, ancestors, Tet, and family values.</p></div>
+      <div class="j-step"><div class="j-num">2</div><h4>Grow One Sentence</h4><div class="j-part">Skill</div><p>Expand a basic S + V + O sentence step by step: <b>Frequency → People → Manner → Place → Time → Purpose</b> (building on Lesson 2).</p></div>
+    </div>
+  </div>
+
+  <div class="l3-block">
+    <div class="section-header">
+      <span class="part-label">Learning Journey</span>
+      <h2 class="section-title">How this lesson works</h2>
+      <p class="section-subtitle">Five stages. Each one prepares you for the next.</p>
+    </div>
+    <div class="journey">
+      <div class="j-step"><div class="j-num">1</div><h4>Language Input</h4><div class="j-part">Block 1 — Vocabulary</div><p>Family tree, phrasal verbs, culture words, and one big context passage.</p></div>
+      <div class="j-step"><div class="j-num">2</div><h4>Guided Practice</h4><div class="j-part">Block 2 — Grammar</div><p>Grow three sentences step by step, then build your own.</p></div>
+      <div class="j-step"><div class="j-num">3</div><h4>Language Recognition</h4><div class="j-part">Blocks 3 &amp; 4</div><p>Read about Vietnamese family culture, then catch the words by ear.</p></div>
+      <div class="j-step"><div class="j-num">4</div><h4>Real-world Communication</h4><div class="j-part">Block 5 — Challenge</div><p>Lucky Draw reflex + the final no-notes speaking challenge.</p></div>
+      <div class="j-step"><div class="j-num">5</div><h4>Reflection &amp; Review</h4><div class="j-part">Block 6 — Quiz</div><p>30-question timed quiz + self-assessment.</p></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-l3tab="l3-vocab">Start: Block 1 — Vocabulary →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ VOCABULARY ============ -->
+<div class="tab-panel" data-panel-group="l3tabs" data-panel="l3-vocab">
+  <div class="l3-block">
+    <div class="section-header">
+      <span class="part-label">Block 1</span>
+      <h2 class="section-title">Family &amp; Culture Vocabulary</h2>
+      <p class="section-subtitle">Move through the tabs in order — the last tab puts everything together in one passage.</p>
+    </div>
+
+    <div class="tab-bar" data-group="l3vocab">
+      <button class="tab-btn active" data-group="l3vocab" data-tab="v1">2A.1 · Family Tree</button>
+      <button class="tab-btn" data-group="l3vocab" data-tab="v2">2A.2 · Phrases &amp; Templates</button>
+      <button class="tab-btn" data-group="l3vocab" data-tab="v3">2B · Vietnamese Culture</button>
+      <button class="tab-btn" data-group="l3vocab" data-tab="v4">A.4 · Context Passage</button>
+    </div>
+
+    <!-- V1 FAMILY TREE -->
+    <div class="tab-panel active" data-panel-group="l3vocab" data-panel="v1">
+      <div class="info-box"><b>The family tree, top to bottom:</b> grandparents → parents, uncles &amp; aunts → you, your siblings &amp; cousins → your children. Notice: in English there is ONE word <b>uncle</b> for chú / bác / cậu, and ONE word <b>aunt</b> for cô / dì / mợ / thím.</div>
+      <div class="vocab-grid" id="vg1"></div>
+      <div class="pron-box" style="margin-top:22px;">
+        <h4>🔊 Pronunciation corner — the /ð/ sound</h4>
+        <p>Family words love the sound /ð/: fa<b>th</b>er, mo<b>th</b>er, bro<b>th</b>er, grandfa<b>th</b>er, grandmo<b>th</b>er. Put your tongue between your teeth and make it vibrate — it is NOT /z/ or /d/.</p>
+        <div class="pron-practice">
+          <div>My fa<b>th</b>er and my mo<b>th</b>er → <i>/ˈfɑːðər/ /ˈmʌðər/</i></div>
+          <div>my older bro<b>th</b>er → <i>/ˈbrʌðər/</i> — never "bro-zer" or "bro-der"</div>
+        </div>
+      </div>
+      <div class="btn-group"><button class="btn btn-outline btn-sm" data-flipall="vg1">↻ Flip all cards</button></div>
+    </div>
+
+    <!-- V2 PHRASES -->
+    <div class="tab-panel" data-panel-group="l3vocab" data-panel="v2">
+      <h3 style="font-size:15px;font-weight:800;color:var(--forest);margin-bottom:12px;">Phrasal Verbs &amp; Collocations</h3>
+      <div class="vocab-grid" id="vg2"></div>
+      <h3 style="font-size:15px;font-weight:800;color:var(--forest);margin:26px 0 12px;">The Introduction Template</h3>
+      <div class="info-box" style="font-size:15px;">
+        <b>Template:</b> I come from a <b>big / small family</b>. There are <b>[number]</b> people in my family, including <b>[members]</b>. We <b>live together / live in different cities</b>, but we always <b>keep in touch</b>.
+      </div>
+      <div class="exercise">
+        <div class="exercise-title">💬 Model 1 — a big family</div>
+        <div class="dialogue-box">I <b>come from a big family</b>. There are 6 people in my family, including my parents, 2 older sisters, 1 older brother, 1 younger brother and me. We <b>live together</b> and <b>get along with each other</b>.</div>
+        <div class="build-vi">(Tôi đến từ một gia đình đông người. Gia đình tôi có 6 người, gồm bố mẹ, hai chị gái, một anh trai, một em trai và tôi. Chúng tôi sống cùng nhau và hòa thuận với nhau.)</div>
+      </div>
+      <div class="exercise">
+        <div class="exercise-title">💬 Model 2 — a small family</div>
+        <div class="dialogue-box">I <b>come from a small family</b>. There are 4 people in my family, including my parents, my older brother and me. We <b>live in different cities</b>, but we always <b>keep in touch</b>.</div>
+        <div class="build-vi">(Tôi đến từ một gia đình nhỏ. Gia đình tôi có 4 người, gồm bố mẹ, anh trai và tôi. Chúng tôi sống ở những thành phố khác nhau, nhưng luôn giữ liên lạc với nhau.)</div>
+      </div>
+      <div class="btn-group"><button class="btn btn-outline btn-sm" data-flipall="vg2">↻ Flip all cards</button></div>
+    </div>
+
+    <!-- V3 CULTURE -->
+    <div class="tab-panel" data-panel-group="l3vocab" data-panel="v3">
+      <h3 style="font-size:15px;font-weight:800;color:var(--forest);margin-bottom:12px;">Nouns — the shapes of a family</h3>
+      <div class="vocab-grid" id="vg3"></div>
+      <h3 style="font-size:15px;font-weight:800;color:var(--forest);margin:26px 0 12px;">Adjectives &amp; Verbs — the values of a family</h3>
+      <div class="vocab-grid" id="vg4"></div>
+      <div class="btn-group"><button class="btn btn-outline btn-sm" data-flipall="vg3,vg4">↻ Flip all cards</button></div>
+    </div>
+
+    <!-- V4 PASSAGE -->
+    <div class="tab-panel" data-panel-group="l3vocab" data-panel="v4">
+      <div class="info-box"><b>A.4 — Comprehensive Context Passage.</b> One person introducing their family — using every block of today's vocabulary, the phrases, the /ð/ words, and the full sentence-growing formula. This is your model for the final speaking challenge. Read it aloud twice.</div>
+      <div class="legend">
+        <span class="hl-vocab">Vocabulary</span>
+        <span class="hl-phrase">Phrase / Template</span>
+        <span class="hl-pron">/ð/ sound</span>
+        <span class="hl-accent">Grown sentence (the formula)</span>
+      </div>
+      <div class="passage">
+        <h4>My family</h4>
+        <p><span class="hl-phrase">I come from a big family</span>. There are seven people in my family, including my <span class="hl-vocab">grandparents</span>, my <span class="hl-pron">father</span>, my <span class="hl-pron">mother</span>, my <span class="hl-vocab">older sister</span>, my <span class="hl-vocab">younger brother</span> and me. We are an <span class="hl-vocab">extended family</span> — three generations <span class="hl-phrase">live together</span> in one house, and we really <span class="hl-phrase">get along with each other</span>.
+        <span class="vi-line">(Tôi đến từ một gia đình đông người. Gia đình tôi có bảy người, gồm ông bà, bố mẹ, chị gái, em trai và tôi. Chúng tôi là một gia đình nhiều thế hệ — ba thế hệ sống chung một nhà.)</span></p>
+
+        <h4>The people</h4>
+        <p>My <span class="hl-pron">grandfather</span> is 78. He is a calm and <span class="hl-vocab">peaceful</span> man, and everyone in the house <span class="hl-vocab">respects</span> him. My <span class="hl-vocab">uncle</span> and <span class="hl-vocab">aunt</span> live in Da Nang with my two <span class="hl-vocab">cousins</span> — the cousins are <span class="hl-vocab">twins</span>! We <span class="hl-phrase">live in different cities</span>, but we always <span class="hl-phrase">keep in touch</span>. My best friend, by the way, is an <span class="hl-vocab">only child</span> — she says a big noisy family like mine is a <span class="hl-vocab">blessing</span>.
+        <span class="vi-line">(Ông tôi 78 tuổi, là một người điềm tĩnh và yên bình, ai trong nhà cũng tôn trọng ông. Chú và thím tôi sống ở Đà Nẵng cùng hai anh em họ — họ là song sinh đấy!)</span></p>
+
+        <h4>Our values</h4>
+        <p>My parents <span class="hl-vocab">teach</span> me to be kind and honest. We <span class="hl-vocab">care for</span> each other, we <span class="hl-vocab">trust</span> each other, and my family always <span class="hl-vocab">supports</span> me. We also believe our <span class="hl-vocab">ancestors</span> <span class="hl-vocab">watch over</span> the family — so <span class="hl-accent">I usually clean the altar respectfully with my parents in the living room before Tet to show gratitude to our ancestors</span>.
+        <span class="vi-line">(Bố mẹ dạy tôi sống tử tế và trung thực. Chúng tôi tin rằng tổ tiên luôn dõi theo gia đình — vì vậy tôi thường dọn dẹp bàn thờ một cách kính cẩn cùng bố mẹ ở phòng khách trước Tết để bày tỏ lòng biết ơn với tổ tiên.)</span></p>
+
+        <h4>Every evening</h4>
+        <p>The moment I love most is dinner. <span class="hl-accent">I always have dinner happily with my family at home every evening to get along with each other</span>. During Tet, all the <span class="hl-vocab">relatives</span> come back for a family reunion — we <span class="hl-vocab">celebrate</span> together, and we <span class="hl-vocab">greet</span> our grandparents first, because respect for elders is our most important rule.
+        <span class="vi-line">(Khoảnh khắc tôi yêu nhất là bữa tối. Tôi luôn ăn tối vui vẻ cùng gia đình ở nhà mỗi tối để gắn kết với nhau. Dịp Tết, họ hàng về sum họp — chúng tôi ăn mừng cùng nhau và chào ông bà trước tiên.)</span></p>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" data-l3tab="l3-grammar">Next: Block 2 — Grow a Sentence →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GRAMMAR ============ -->
+<div class="tab-panel" data-panel-group="l3tabs" data-panel="l3-grammar">
+  <div class="l3-block">
+    <div class="section-header">
+      <span class="part-label">Core Grammar · Interactive</span>
+      <h2 class="section-title">Grow one sentence, step by step</h2>
+      <p class="section-subtitle">The magic formula: <b>[Subject] + [Frequency] + [Verb] + [Object] + [Manner] + [Place] + [Time] + [Purpose]</b>. Building on Lesson 2 — same idea, bigger sentences: like cooking phở, the broth (S + V + O) must come first; every extra topping makes the same bowl richer.</p>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">🧱 Interactive builder — “I visit my grandparents”</div>
+      <div class="exercise-instruction">Press each button in order. Watch WHERE the new words go, and read the sentence aloud after every step.</div>
+      <div class="builder-stage">
+        <div class="builder-sentence" id="builderSentenceL3">I visit my grandparents.</div>
+        <div class="builder-explain"><div class="info-box" id="builderExplainL3" style="text-align:left;margin-bottom:0;">Base sentence — Subject (<b>I</b>) + Verb (<b>visit</b>) + Object (<b>my grandparents</b>). This is the LEGO base brick.</div></div>
+        <div class="layer-btns" id="layerBtnsL3"></div>
+        <div class="btn-group" style="justify-content:center;"><button class="btn btn-outline btn-sm" onclick="resetBuilderL3()">↺ Restart builder</button></div>
+      </div>
+      <div style="margin-top:14px;font-size:12.5px;color:var(--text-soft);">Color legend: <span class="hl-vocab">frequency</span> · <span class="hl-accent">manner</span> · <span class="hl-pron">place</span> · <span class="hl-phrase">time</span> · <b>people &amp; purpose in bold</b></div>
+    </div>
+    <div class="listening-notice">⚠️ <b>Word-order anchors:</b> the frequency adverb (always / usually / often) goes <b>before the main verb</b> · manner usually comes right after the object · purpose (<b>to + verb</b>) goes last.</div>
+  </div>
+
+  <div class="l3-block">
+    <div class="section-header">
+      <span class="part-label">Watch It Grow</span>
+      <h2 class="section-title">Three sentences, seven steps each</h2>
+      <p class="section-subtitle">Press "+ Grow" and say the NEW sentence aloud each time. The new part is highlighted.</p>
+    </div>
+    <div id="buildList"></div>
+  </div>
+
+  <div class="l3-block">
+    <div class="section-header">
+      <span class="part-label">Your Turn</span>
+      <h2 class="section-title">Build Your Own Sentence</h2>
+      <p class="section-subtitle">Fill in any fields you want — the sentence assembles itself below. Only Subject and Verb + Object are required.</p>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">✍️ Translate first — three Vietnamese sentences</div>
+      <div class="exercise-instruction">Say the English version of each sentence out loud (or assemble it in the Sentence Machine below). Every sentence follows today's formula — find the frequency, manner, place, time and purpose BEFORE you start. Reveal the model only AFTER you try.</div>
+      <div class="dialogue-box"><span class="sp">1.</span> Tôi thường xuyên nấu ăn vui vẻ cùng mẹ ở trong bếp vào mỗi tối Chủ nhật để gắn kết với nhau.</div>
+      <div class="btn-group" style="margin-top:6px;"><button class="btn btn-secondary btn-sm" onclick="toggleReveal('l3tr1',this)">Show model 1</button></div>
+      <div class="reveal-block" id="l3tr1"><div class="sample-box" style="margin:10px 0 16px;">I <span class="hl-vocab">usually</span> cook <span class="hl-accent">happily</span> <b>with my mother</b> <span class="hl-pron">in the kitchen</span> <span class="hl-phrase">every Sunday evening</span> <b>to get along with each other</b>.</div></div>
+      <div class="dialogue-box"><span class="sp">2.</span> Em trai tôi luôn luôn chơi cầu lông hăng hái với các anh em họ ở công viên gần nhà vào cuối tuần để giữ dáng.</div>
+      <div class="btn-group" style="margin-top:6px;"><button class="btn btn-secondary btn-sm" onclick="toggleReveal('l3tr2',this)">Show model 2</button></div>
+      <div class="reveal-block" id="l3tr2"><div class="sample-box" style="margin:10px 0 16px;">My younger brother <span class="hl-vocab">always</span> plays badminton <span class="hl-accent">enthusiastically</span> <b>with our cousins</b> <span class="hl-pron">in the local park</span> <span class="hl-phrase">at weekends</span> <b>to stay in shape</b>.</div></div>
+      <div class="dialogue-box"><span class="sp">3.</span> Gia đình tôi thỉnh thoảng về thăm họ hàng ở Đà Nẵng vào dịp Tết để giữ liên lạc.</div>
+      <div class="btn-group" style="margin-top:6px;"><button class="btn btn-secondary btn-sm" onclick="toggleReveal('l3tr3',this)">Show model 3</button></div>
+      <div class="reveal-block" id="l3tr3"><div class="sample-box" style="margin:10px 0 16px;">My family <span class="hl-vocab">sometimes</span> visits our relatives <span class="hl-pron">in Da Nang</span> <span class="hl-phrase">during Tet</span> <b>to keep in touch</b>.</div></div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-title">🛠 Sentence Machine</div>
+      <div class="free-grid">
+        <div class="free-field"><label>Subject *</label><input id="fSubj" placeholder="I / My father / We…"></div>
+        <div class="free-field"><label>Frequency</label><input id="fFreq" placeholder="always / usually / often…"></div>
+        <div class="free-field"><label>Verb + Object *</label><input id="fVO" placeholder="visit my grandparents…"></div>
+        <div class="free-field"><label>Manner (how?)</label><input id="fMan" placeholder="happily / respectfully…"></div>
+        <div class="free-field"><label>With (people)</label><input id="fWith" placeholder="with my cousins…"></div>
+        <div class="free-field"><label>Place</label><input id="fPlace" placeholder="at home / in Da Nang…"></div>
+        <div class="free-field"><label>Time</label><input id="fTime" placeholder="every weekend / before Tet…"></div>
+        <div class="free-field"><label>Purpose</label><input id="fPurp" placeholder="to keep in touch…"></div>
+      </div>
+      <div class="mini-label">🌳 Your sentence</div>
+      <div class="build-sentence" id="freeOut"><span style="color:var(--text-soft);font-style:italic;">Start typing above…</span></div>
+      <div class="btn-group">
+        <button class="btn btn-outline btn-sm" id="freeClear">↻ Clear</button>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-l3tab="l3-reading">Next: Block 3 — Reading →</button>
+      <button class="btn btn-outline" data-l3tab="l3-vocab">← Vocabulary</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ READING ============ -->
+<div class="tab-panel" data-panel-group="l3tabs" data-panel="l3-reading">
+  <div class="l3-block">
+    <div class="section-header">
+      <span class="part-label">Block 3</span>
+      <h2 class="section-title">Vietnamese Family Culture</h2>
+      <p class="section-subtitle">Bolded words are today's vocabulary — notice how they behave inside real text.</p>
+    </div>
+    <div class="info-box">👆 <b>Tap any paragraph</b> to show / hide its Vietnamese translation. In the translation, today's vocabulary is <b>bolded</b> the same way.</div>
+    <div class="read-passage">
+      <p>Vietnamese families have gone through many stages of development. Although the family structure has changed from <b>extended families</b> (with many generations living together) to <b>nuclear families</b> (parents and children), the core values have remained the same.<span class="vi-para">Gia đình Việt Nam đã trải qua nhiều giai đoạn phát triển. Dù cấu trúc gia đình đã thay đổi từ <b>gia đình nhiều thế hệ</b> (nhiều thế hệ sống chung) sang <b>gia đình hạt nhân</b> (chỉ gồm bố mẹ và con cái), những giá trị cốt lõi vẫn không thay đổi.</span></p>
+
+      <h4>🪷 The First Pillar: The Wish for "Blessing" (Phúc)</h4>
+      <p>Many Vietnamese people believe that the greatest happiness is to have a happy and <b>peaceful</b> family. A happy family is one where children <b>respect</b> their parents, brothers and sisters <b>get along</b> well, and everyone loves, <b>cares for</b>, and <b>supports</b> each other.<span class="vi-para">Nhiều người Việt tin rằng hạnh phúc lớn nhất là có một gia đình hạnh phúc và <b>yên bình</b>. Một gia đình hạnh phúc là nơi con cái <b>tôn trọng</b> cha mẹ, anh chị em <b>hòa thuận</b> với nhau, và mọi người yêu thương, <b>quan tâm</b> và <b>hỗ trợ</b> lẫn nhau.</span></p>
+      <p>People also believe that good actions bring good things in the future. Parents try to be kind, honest, and helpful because they want to set a good example for their children and create a better future for the next generation.<span class="vi-para">Người ta cũng tin rằng việc tốt sẽ mang lại điều tốt trong tương lai. Cha mẹ cố gắng sống tử tế, trung thực và hay giúp đỡ vì muốn làm gương cho con cái và tạo dựng một tương lai tốt đẹp hơn cho thế hệ sau.</span></p>
+
+      <h4>📏 The Second Pillar: Family Rules and Discipline ("Nếp nhà")</h4>
+      <p><b>Respect for elders</b> is one of the most important traditions in Vietnam. Younger family members usually <b>greet</b> their grandparents and parents first, listen carefully, and often ask them for advice.<span class="vi-para"><b>Kính trọng người lớn tuổi</b> là một trong những truyền thống quan trọng nhất ở Việt Nam. Các thành viên nhỏ tuổi thường <b>chào</b> ông bà, cha mẹ trước, lắng nghe kỹ và thường xin lời khuyên từ họ.</span></p>
+      <p>Many families also have their own family traditions and rules. Parents <b>teach</b> their children to be polite, responsible, honest, and hardworking. These values help keep the family close and strong.<span class="vi-para">Nhiều gia đình cũng có truyền thống và quy tắc riêng của mình. Cha mẹ <b>dạy</b> con cái sống lễ phép, có trách nhiệm, trung thực và chăm chỉ. Những giá trị này giúp gia đình luôn gần gũi và vững mạnh.</span></p>
+      <p>Some families also keep a <b>family tree</b>, so younger generations can learn about their <b>ancestors</b> and understand where their family comes from.<span class="vi-para">Một số gia đình còn lưu giữ <b>gia phả</b>, để các thế hệ trẻ có thể tìm hiểu về <b>tổ tiên</b> và hiểu được nguồn gốc gia đình mình.</span></p>
+
+      <h4>🕯 The Third Pillar: Spiritual Life and Ceremonies</h4>
+      <p>Many Vietnamese families have an <b>ancestor altar</b> at home. They believe that their ancestors continue to <b>watch over</b> and protect the family. Family members show their love and respect by offering food, flowers, and incense on special days.<span class="vi-para">Nhiều gia đình Việt có <b>bàn thờ tổ tiên</b> trong nhà. Họ tin rằng tổ tiên vẫn luôn <b>dõi theo</b> và bảo vệ gia đình. Các thành viên thể hiện tình yêu và sự kính trọng bằng cách dâng đồ ăn, hoa và thắp hương vào những ngày đặc biệt.</span></p>
+      <p>Vietnamese people also <b>celebrate</b> many important family events together, such as a baby's first-month celebration, birthdays, weddings, and funerals. These events bring <b>relatives</b> together and strengthen family relationships.<span class="vi-para">Người Việt cũng cùng nhau <b>tổ chức</b> nhiều sự kiện gia đình quan trọng như lễ đầy tháng của em bé, sinh nhật, đám cưới và tang lễ. Những dịp này giúp <b>họ hàng</b> sum vầy và thắt chặt tình thân.</span></p>
+      <p><b>Tet Holiday</b> is the most important celebration in Vietnam. During Tet, family members travel home for a <b>family reunion</b>. They visit their grandparents and relatives, prepare traditional food, clean and decorate their homes, and celebrate together. Adults often give <b>lucky money</b> to children, and everyone wishes each other good health, happiness, and success for the new year.<span class="vi-para"><b>Tết</b> là dịp lễ quan trọng nhất ở Việt Nam. Trong dịp Tết, các thành viên trở về nhà để <b>sum họp gia đình</b>. Họ thăm ông bà và họ hàng, chuẩn bị món ăn truyền thống, dọn dẹp và trang trí nhà cửa, rồi cùng nhau đón năm mới. Người lớn thường mừng tuổi <b>tiền lì xì</b> cho trẻ em, và mọi người chúc nhau sức khỏe, hạnh phúc và thành công.</span></p>
+      <p><b>Wedding culture:</b> Vietnam is a diverse country, so family traditions are not exactly the same everywhere. Wedding ceremonies, food, and customs may be different in the North, Central, and South of Vietnam, as well as among different ethnic groups. Even though the traditions are different, they all celebrate love, family, and happiness.<span class="vi-para"><b>Văn hóa cưới hỏi:</b> Việt Nam là một đất nước đa dạng, nên truyền thống gia đình ở mỗi nơi không hoàn toàn giống nhau. Lễ cưới, món ăn và tập tục có thể khác nhau giữa miền Bắc, miền Trung, miền Nam cũng như giữa các dân tộc. Dù khác biệt, tất cả đều tôn vinh tình yêu, gia đình và hạnh phúc.</span></p>
+
+      <h4>🎯 Conclusion</h4>
+      <p>Vietnamese family culture can be summarized in two famous sayings:<span class="vi-para">Văn hóa gia đình Việt Nam có thể tóm gọn trong hai câu nói nổi tiếng:</span></p>
+      <div class="saying">"Remember the source of the water you drink."<span class="vi">(Uống nước nhớ nguồn — showing gratitude to our ancestors.)</span></div>
+      <div class="saying">"Respect those who are older and give way to those who are younger."<span class="vi">(Kính trên nhường dưới — showing respect and kindness to the people around us.)</span></div>
+    </div>
+
+    <div class="section-header" style="margin-top:30px;">
+      <span class="part-label">Comprehension</span>
+      <h2 class="section-title">Check Your Understanding</h2>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">📚 Multiple Choice</div>
+      <div class="exercise-instruction">Choose the best answer according to the passage.</div>
+      <div id="rdList"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="rdCheck">Show Answers</button>
+        <button class="btn btn-outline" id="rdReset">↻ Reset</button>
+      </div>
+      <div class="feedback-box" id="rdFb"><span class="score-badge" id="rdScore">0/6</span><span id="rdMsg"></span></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-l3tab="l3-listening">Next: Block 4 — Listening →</button>
+      <button class="btn btn-outline" data-l3tab="l3-grammar">← Grow a Sentence</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LISTENING ============ -->
+<div class="tab-panel" data-panel-group="l3tabs" data-panel="l3-listening">
+  <div class="l3-block">
+    <div class="listening-notice">🎧 <b>Listen 1</b> — five short conversations. For each cell, the table CLAIMS a number. Mark <b>T</b> if the claim matches what you hear, <b>F</b> if it doesn't. Listen first — only open the tapescript after checking.</div>
+    <div class="exercise">
+      <div class="exercise-title">✅ True or False?</div>
+      <div class="exercise-instruction">Click <b>T</b> or <b>F</b> in every cell (20 cells in total), then press Check Answers.</div>
+      <table class="tf-table" id="tfTable"></table>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="tfCheck">Check Answers</button>
+        <button class="btn btn-outline" id="tfReset">↻ Reset</button>
+      </div>
+      <div class="feedback-box" id="tfFb"><span class="score-badge" id="tfScore">0/20</span><span id="tfMsg"></span></div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-secondary" data-toggle="tp1">📄 Show / Hide Tapescript &amp; Answer Key</button>
+    </div>
+    <div class="transcript-block" id="tp1">
+      <div class="transcript-card">
+        <div class="t-head"><span>✅ Answer Key</span></div>
+        <div class="t-body" style="font-size:14px;">
+          <b>1. Stephanie:</b> T · F · F · F &nbsp;&nbsp; <b>2. Donna:</b> T · F · F · F &nbsp;&nbsp; <b>3. Bob:</b> F · T · T · T &nbsp;&nbsp; <b>4. Rosie:</b> T · F · T · T &nbsp;&nbsp; <b>5. Tina:</b> T · F · F · T
+          <div style="margin-top:8px;color:var(--text-soft);font-size:13px;">Stephanie: 3 older sisters, no brothers (she's the youngest). Donna: 1 older brother, 2 younger sisters. Bob: just 1 older sister, Anna. Rosie: 2 younger brothers, 1 older + 1 younger sister. Tina: an only child.</div>
+        </div>
+      </div>
+      <div class="transcript-card">
+        <div class="t-head"><span>📄 Tapescript — five conversations</span></div>
+        <div class="t-body" id="tp1Body"></div>
+      </div>
+      <div class="transcript-card">
+        <div class="t-head"><span>📚 Vocabulary Review — from this recording</span></div>
+        <div class="t-body" id="tp1Vocab"></div>
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" data-l3tab="l3-challenge">Next: Block 5 — Discussion &amp; Challenge →</button>
+      <button class="btn btn-outline" data-l3tab="l3-reading">← Reading</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CHALLENGE ============ -->
+<div class="tab-panel" data-panel-group="l3tabs" data-panel="l3-challenge">
+  <div class="l3-block">
+    <div class="tab-bar" data-group="l3chl">
+      <button class="tab-btn active" data-group="l3chl" data-tab="c1">Tab 1 · Reflex — Lucky Draw 🎲</button>
+      <button class="tab-btn" data-group="l3chl" data-tab="c2">Tab 2 · Final Speaking Challenge ⏱</button>
+    </div>
+
+    <!-- REFLEX -->
+    <div class="tab-panel active" data-panel-group="l3chl" data-panel="c1">
+      <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;">
+        <div>
+          <span class="part-label">Reflex</span>
+          <h2 class="section-title">Lucky Draw</h2>
+          <p class="section-subtitle">No thinking time. Draw → speak immediately. One-word answers do not count.</p>
+        </div>
+        <span class="alt-badge">IN-CLASS ALTERNATIVE: draw paper cards</span>
+      </div>
+      <div class="draw-grid">
+        <div class="draw-zone">
+          <h4>📚 Zone 1 — Vocabulary Review (30 words)</h4>
+          <div class="zone-desc">Make ONE full sentence with the word you draw — or translate it instantly out loud.</div>
+          <button class="draw-btn" id="drawWordBtn">DRAW<br>A WORD</button>
+          <div class="draw-result" id="drawWordRes"><span class="small">Press the button to draw…</span></div>
+        </div>
+        <div class="draw-zone">
+          <h4>💬 Zone 2 — Speaking Situations (10)</h4>
+          <div class="zone-desc">Respond with a COMPLETE sentence, using today's phrases and templates.</div>
+          <button class="draw-btn" id="drawSitBtn">DRAW A<br>SITUATION</button>
+          <div class="draw-result" id="drawSitRes"><span class="small">Press the button to draw…</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINAL CHALLENGE -->
+    <div class="tab-panel" data-panel-group="l3chl" data-panel="c2">
+      <div class="section-header">
+        <span class="part-label">Final Challenge</span>
+        <h2 class="section-title">Final Speaking Challenge — No notes allowed!</h2>
+        <p class="section-subtitle">This is the moment the whole lesson has been building towards.</p>
+      </div>
+      <div class="exercise">
+        <div class="exercise-title">🎤 Topic: Introduce your family and talk about your family culture / values</div>
+        <div class="info-box" style="margin-bottom:0;">Speak continuously for the whole time. Cover: how many people → who they are → details about 1–2 members (name, age, job) → your family's values or one tradition.</div>
+        <div class="tier2-hint"><b>💡 Use today's words &amp; structures:</b>
+          <ul>
+            <li>Opening: <b>"I come from a big/small family. There are ___ people in my family, including ___."</b></li>
+            <li><b>live together / live in different cities / keep in touch / get along with each other</b></li>
+            <li>Culture: <b>extended family · respect · ancestors · watch over · celebrate Tet</b></li>
+            <li>At least ONE fully-grown sentence: <b>S + frequency + V + O + manner + place + time + purpose</b></li>
+          </ul>
+        </div>
+        <div class="mini-label" style="margin-top:18px;">⏱ Timer — choose, press START, wait for 3… 2… 1… GO!</div>
+        <div class="count-row">
+          <div class="count-display" id="chDisp">01:00</div>
+          <button class="preset-pill active" data-sec="60">1 Minute</button>
+          <button class="preset-pill" data-sec="120">2 Minutes</button>
+          <button class="preset-pill" data-sec="180">3 Minutes</button>
+          <button class="btn-start" id="chStart">▶ START</button>
+          <button class="btn-timer-reset" id="chReset">↺ Reset</button>
+          <span class="countdown-overlay" id="chGo"></span>
+        </div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" data-l3tab="l3-quiz">Next: Block 6 — Practice Quiz →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ QUIZ ============ -->
+<div class="tab-panel" data-panel-group="l3tabs" data-panel="l3-quiz">
+  <div class="l3-block">
+    <div class="section-header">
+      <span class="part-label">Quiz Game</span>
+      <h2 class="section-title">Family &amp; Culture Quiz</h2>
+      <p class="section-subtitle">Definition · Context · Grammar · Reading. All English. All from this lesson.</p>
+    </div>
+
+    <div class="quiz-screen active" id="qzStart">
+      <div class="quiz-start">
+        <h3>🏆 Ready?</h3>
+        <p><b>30 questions · 10 seconds each · 4 options.</b> If the timer hits zero, the question is marked wrong and the correct answer is revealed. Trust your instinct.</p>
+        <button class="btn btn-primary" id="qzBegin">▶ Start the Quiz</button>
+      </div>
+    </div>
+
+    <div class="quiz-screen" id="qzPlay">
+      <div class="quiz-head">
+        <span class="quiz-counter" id="qzCounter">QUESTION 1 / 30</span>
+        <span class="timer-pill" id="qzTimer">⏳ 10s</span>
+      </div>
+      <div class="timer-track"><div class="timer-bar" id="qzBar"></div></div>
+      <div class="quiz-q">
+        <div class="qtype" id="qzType">DEFINITION</div>
+        <h3 id="qzQuestion">…</h3>
+        <div class="quiz-opts" id="qzOpts"></div>
+        <div class="quiz-explain" id="qzExplain"></div>
+        <div class="btn-group">
+          <button class="btn btn-primary" id="qzSubmit">Submit</button>
+          <button class="btn btn-primary" id="qzNext" style="display:none;">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz-screen" id="qzResult">
+      <div class="quiz-result">
+        <div class="big-score" id="qzFinal">0 / 30</div>
+        <div class="verdict" id="qzVerdict"></div>
+        <div class="btn-group" style="justify-content:center;">
+          <button class="btn btn-primary" id="qzAgain">↻ Play Again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="l3-block">
+    <div class="section-header">
+      <span class="part-label">Self-Assessment</span>
+      <h2 class="section-title">How do you feel now?</h2>
+      <p class="section-subtitle">Tick honestly. Anything unticked = go back and review that block.</p>
+    </div>
+    <div class="exercise" id="selfCheck"></div>
+  </div>
+
+  <div class="l3-block">
+    <div class="section-header">
+      <span class="part-label">Summary</span>
+      <h2 class="section-title">Lesson Summary</h2>
+    </div>
+    <table class="summary-table">
+      <tr><td>Module · Lesson</td><td>Module 2 — Connections: From Family to Strangers · Lesson 3</td></tr>
+      <tr><td>Estimated Duration</td><td>120 minutes (2 sessions of 60 min)</td></tr>
+      <tr><td>CEFR Level</td><td>A2 → B1</td></tr>
+      <tr><td>Vocabulary Learned</td><td>42 items: family tree (20), phrasal verbs &amp; collocations (7), culture nouns (6), values — adjectives &amp; verbs (9)</td></tr>
+      <tr><td>Grammar Focus</td><td>Grow one sentence step by step: <b>S + Frequency + V + O + Manner + People + Place + Time + Purpose</b> — expanding a basic S + V + O from Lesson 2</td></tr>
+      <tr><td>Pronunciation Focus</td><td>The /ð/ sound in family words: father, mother, brother, grandfather, grandmother</td></tr>
+      <tr><td>Communication Functions</td><td>Introducing your family (size, members, details) · describing family culture and values · explaining Vietnamese traditions (Tet, ancestor altar, respect for elders)</td></tr>
+      <tr><td>Skills Practiced</td><td>Speaking (guided + reflex + timed challenge) · Reading (culture passage + MCQ) · Listening (T/F grid) · Sentence building</td></tr>
+      <tr><td>Interaction Types Used</td><td>Flip cards · Step-by-step sentence grower · Sentence machine · MCQ · T/F grid · Lucky Draw (shuffle-bag) · 3-2-1-GO countdown timer · Timed quiz game · Checklists</td></tr>
+    </table>
+    <div class="btn-group">
+      <button class="btn btn-outline" data-l3tab="l3-overview">← Back to Overview</button>
+      <button class="btn btn-primary" onclick="markComplete('lesson3',this)">✓ Mark Lesson Complete</button>
+      <button class="btn btn-outline" data-page="phase1">← Back to Phase 1</button>
+    </div>
+  </div>
+</div>
+
+
   </div>
 </div>
 
@@ -1511,6 +2122,14 @@ var VOCAB = {
     ["just for kicks","/dʒʌst fɔː kɪks/","phr","Just for fun — no pressure, no winning needed.","Chỉ để cho vui / giải trí thôi","We play games just for kicks, not to compete."]
   ]
 };
+var BUILDER_LAYERS_L3 = [
+  {label:"+ Frequency", html:"I <span class=\"hl-vocab\">usually</span> visit my grandparents.", explain:"<b>usually</b> — adverb of FREQUENCY goes <b>before the main verb</b>: always, usually, often, sometimes, never."},
+  {label:"+ People", html:"I <span class=\"hl-vocab\">usually</span> visit my grandparents <b>with my parents</b>.", explain:"<b>with my parents</b> — WHO you do it with, right after the object."},
+  {label:"+ Manner", html:"I <span class=\"hl-vocab\">usually</span> visit my grandparents <span class=\"hl-accent\">happily</span> with my parents.", explain:"<b>happily</b> — adverb of MANNER answers \u201cHow?\u201d. It usually comes right after the object."},
+  {label:"+ Place", html:"I <span class=\"hl-vocab\">usually</span> visit my grandparents <span class=\"hl-accent\">happily</span> with my parents <span class=\"hl-pron\">at their house</span>.", explain:"<b>at their house</b> — the PLACE comes after who and how."},
+  {label:"+ Time", html:"I <span class=\"hl-vocab\">usually</span> visit my grandparents <span class=\"hl-accent\">happily</span> with my parents <span class=\"hl-pron\">at their house</span> <span class=\"hl-phrase\">every Tet</span>.", explain:"<b>every Tet</b> — TIME sits near the end of the sentence."},
+  {label:"+ Purpose", html:"I <span class=\"hl-vocab\">usually</span> visit my grandparents <span class=\"hl-accent\">happily</span> with my parents <span class=\"hl-pron\">at their house</span> <span class=\"hl-phrase\">every Tet</span> <b>to keep in touch</b>.", explain:"<b>to keep in touch</b> — PURPOSE: <b>to + verb</b> goes last. From four words to a rich, natural sentence! 🎉"}
+];
 var BUILDER_LAYERS = [
   {label:"+ Frequency", html:"I <span class=\"hl-vocab\">usually</span> play games.", explain:"<b>usually</b> (thường xuyên) — adverb of FREQUENCY goes <b>before the main verb</b>. Others: always, sometimes, never."},
   {label:"+ People", html:"I <span class=\"hl-vocab\">usually</span> play games <b>with my friends</b>.", explain:"<b>with my friends</b> — WHO you do it with, right after the object."},
@@ -1578,7 +2197,7 @@ function showPage(id){
   if(pg){ pg.classList.add('active'); }
   document.querySelectorAll('.nav-item').forEach(function(n){
     var target = n.getAttribute('data-page');
-    var lessonParent = (id === 'lesson1' || id === 'lesson2') ? 'phase1' : id;
+    var lessonParent = (id === 'lesson1' || id === 'lesson2' || id === 'lesson3') ? 'phase1' : id;
     n.classList.toggle('active', target === lessonParent);
   });
   window.scrollTo(0,0);
@@ -1618,6 +2237,8 @@ document.addEventListener('click', function(e){
   if(d1){ switchTab('l1disc', d1.getAttribute('data-l1disc')); return; }
   var d2 = e.target.closest('[data-l2disc]');
   if(d2){ switchTab('l2disc', d2.getAttribute('data-l2disc')); return; }
+  var b3 = e.target.closest('[data-l3tab]');
+  if(b3){ switchTab('l3tabs', b3.getAttribute('data-l3tab')); return; }
 });
 
 /* ---------- 5. RENDER: alphabet / names / countries / numbers / vocab ---------- */
@@ -1671,6 +2292,8 @@ function renderVocab(){
 document.addEventListener('click', function(e){
   var card = e.target.closest('.vocab-card');
   if(card){ card.classList.toggle('flipped'); }
+  var rp = e.target.closest('.read-passage p');
+  if(rp && rp.querySelector('.vi-para')){ rp.classList.toggle('showvi'); }
 });
 
 /* ---------- 6. MCQ ENGINE ---------- */
@@ -1758,6 +2381,32 @@ function addLayer(i){
   builderStep++;
   var next = document.getElementById('layerBtn' + builderStep);
   if(next){ next.disabled = false; }
+}
+var builderStepL3 = 0;
+function renderBuilderBtnsL3(){
+  var wrap = document.getElementById('layerBtnsL3'); if(!wrap) return;
+  wrap.innerHTML = BUILDER_LAYERS_L3.map(function(l,i){
+    return '<button class="layer-btn" id="layerBtnL3' + i + '" onclick="addLayerL3(' + i + ')"' + (i !== builderStepL3 ? ' disabled' : '') + '>' + l.label + '</button>';
+  }).join('');
+}
+function addLayerL3(i){
+  if(i !== builderStepL3) return;
+  var layer = BUILDER_LAYERS_L3[i];
+  document.getElementById('builderSentenceL3').innerHTML = layer.html;
+  document.getElementById('builderExplainL3').innerHTML = layer.explain;
+  var btn = document.getElementById('layerBtnL3' + i);
+  if(btn){ btn.disabled = true; btn.classList.add('used'); }
+  builderStepL3++;
+  var next = document.getElementById('layerBtnL3' + builderStepL3);
+  if(next){ next.disabled = false; }
+}
+function resetBuilderL3(){
+  builderStepL3 = 0;
+  var s = document.getElementById('builderSentenceL3');
+  var ex = document.getElementById('builderExplainL3');
+  if(s){ s.innerHTML = 'I visit my grandparents.'; }
+  if(ex){ ex.innerHTML = 'Base sentence — Subject (<b>I</b>) + Verb (<b>visit</b>) + Object (<b>my grandparents</b>). This is the LEGO base brick.'; }
+  renderBuilderBtnsL3();
 }
 function resetBuilder(){
   builderStep = 0;
@@ -1872,6 +2521,7 @@ function clearTimerHandle(id){
 }
 function clearAllTimers(){
   Object.keys(TIMERS).forEach(function(id){ clearTimerHandle(id); });
+  if(window.l3ClearTimers){ window.l3ClearTimers(); }
 }
 
 /* ---------- 12. PROGRESS ---------- */
@@ -1898,7 +2548,7 @@ function updateProgress(){
   if(certF){ certF.style.width = pct + '%'; }
   if(certC){ certC.textContent = done; }
   /* phase 1 pill: done when its 4 lessons complete (only 2 exist today) */
-  var p1done = completedLessons['lesson1'] && completedLessons['lesson2'];
+  var p1done = completedLessons['lesson1'] && completedLessons['lesson2'] && completedLessons['lesson3'];
   var pill1 = document.getElementById('pill1');
   var dot1 = document.getElementById('pillDot1');
   var nav1 = document.getElementById('navSt1');
@@ -1922,6 +2572,8 @@ function globalReset(){
   ['ex-l1c','ex-l1n','ex-l1g','ex-l1m','ex-l2v','ex-l2p'].forEach(resetMcq);
   resetOrder();
   resetBuilder();
+  resetBuilderL3();
+  document.querySelectorAll('.read-passage p.showvi').forEach(function(p){ p.classList.remove('showvi'); });
   BAGS = {L1w:[], L1s:[], L2w:[], L2s:[]};
   ['drawWordResultL1','drawWordResultL2'].forEach(function(id){
     var el = document.getElementById(id);
@@ -1939,6 +2591,7 @@ function globalReset(){
   completedLessons = {};
   document.querySelectorAll('[id^="doneMark-"]').forEach(function(m){ m.style.display = 'none'; });
   updateProgress();
+  if(window.l3Reset){ window.l3Reset(); }
   var pill1 = document.getElementById('pill1');
   if(pill1){ pill1.classList.add('current'); pill1.classList.remove('done'); }
   showPage('overview');
@@ -1951,8 +2604,563 @@ renderCountries();
 renderNums();
 renderVocab();
 renderBuilderBtns();
+renderBuilderBtnsL3();
 renderOrder();
 updateProgress();
+</script>
+<script>
+/* ===== LESSON 3 ENGINE (isolated) ===== */
+(function(){
+"use strict";
+
+/* ================== DATA ================== */
+
+const VOCAB_TREE=[
+ {w:"grandparents",ipa:"/ˈɡrænˌper.ənts/",pos:"noun",vi:"ông bà",ex:"Your grandfather and grandmother.|<b>My grandparents live with us.</b>"},
+ {w:"grandfather",ipa:"/ˈɡræn.fɑː.ðər/",pos:"noun",vi:"ông",ex:"Your father's or mother's father.|<b>My grandfather is 78 years old.</b>"},
+ {w:"grandmother",ipa:"/ˈɡræn.mʌ.ðər/",pos:"noun",vi:"bà",ex:"Your father's or mother's mother.|<b>My grandmother cooks the best phở.</b>"},
+ {w:"parents",ipa:"/ˈper.ənts/",pos:"noun",vi:"bố mẹ",ex:"Your father and mother.|<b>My parents work in Ho Chi Minh City.</b>"},
+ {w:"father",ipa:"/ˈfɑː.ðər/",pos:"noun",vi:"bố",ex:"Your male parent.|<b>My father is an engineer.</b>"},
+ {w:"mother",ipa:"/ˈmʌ.ðər/",pos:"noun",vi:"mẹ",ex:"Your female parent.|<b>My mother is a teacher.</b>"},
+ {w:"uncle",ipa:"/ˈʌŋ.kəl/",pos:"noun",vi:"chú / bác / cậu",ex:"Your father's or mother's brother.|<b>My uncle lives in Da Nang.</b>"},
+ {w:"aunt",ipa:"/ænt/ (US) · /ɑːnt/ (UK)",pos:"noun",vi:"cô / dì / bác gái / mợ / thím",ex:"Your father's or mother's sister, or your uncle's wife.|<b>My aunt visits us every Tet.</b>"},
+ {w:"siblings",ipa:"/ˈsɪb.lɪŋz/",pos:"noun",vi:"anh chị em ruột",ex:"Your brothers and sisters.|<b>I have three siblings.</b>"},
+ {w:"twins",ipa:"/twɪnz/",pos:"noun",vi:"cặp song sinh",ex:"Two children born at the same time.|<b>My cousins are twins.</b>"},
+ {w:"older brother",ipa:"/ˌoʊl.dɚ ˈbrʌ.ðər/",pos:"noun",vi:"anh trai",ex:"Your brother who is older than you.|<b>My older brother is a student.</b>"},
+ {w:"older sister",ipa:"/ˌoʊl.dɚ ˈsɪs.tər/",pos:"noun",vi:"chị gái",ex:"Your sister who is older than you.|<b>My older sister works in a bank.</b>"},
+ {w:"younger brother",ipa:"/ˌjʌŋ.ɡɚ ˈbrʌ.ðər/",pos:"noun",vi:"em trai",ex:"Your brother who is younger than you.|<b>My younger brother is still at school.</b>"},
+ {w:"younger sister",ipa:"/ˌjʌŋ.ɡɚ ˈsɪs.tər/",pos:"noun",vi:"em gái",ex:"Your sister who is younger than you.|<b>My younger sister loves drawing.</b>"},
+ {w:"spouse",ipa:"/spaʊs/",pos:"noun",vi:"vợ hoặc chồng",ex:"The person you are married to.|<b>Please write your spouse's name on the form.</b>"},
+ {w:"husband",ipa:"/ˈhʌz.bənd/",pos:"noun",vi:"chồng",ex:"The man you are married to.|<b>Her husband is a doctor.</b>"},
+ {w:"wife",ipa:"/waɪf/",pos:"noun",vi:"vợ",ex:"The woman you are married to.|<b>His wife comes from Hue.</b>"},
+ {w:"son",ipa:"/sʌn/",pos:"noun",vi:"con trai",ex:"Your male child.|<b>Their son is five years old.</b>"},
+ {w:"daughter",ipa:"/ˈdɔː.tər/",pos:"noun",vi:"con gái",ex:"Your female child.|<b>Their daughter studies in Hanoi.</b>"},
+ {w:"cousin",ipa:"/ˈkʌz.ən/",pos:"noun",vi:"anh / chị / em họ",ex:"The child of your aunt or uncle.|<b>I play games with my cousins every weekend.</b>"}
+];
+const VOCAB_PHRASAL=[
+ {w:"come from",ipa:"/kʌm frəm/",pos:"phr. verb",vi:"đến từ",ex:"Where you or your family are from.|<b>I come from Vietnam.</b>"},
+ {w:"come from a big family",ipa:"/kʌm frəm ə bɪɡ ˈfæm.əl.i/",pos:"collocation",vi:"đến từ một gia đình đông người",ex:"Your family has many people.|<b>I come from a big family.</b>"},
+ {w:"come from a small family",ipa:"/kʌm frəm ə smɔːl ˈfæm.əl.i/",pos:"collocation",vi:"đến từ một gia đình ít người",ex:"Your family has few people.|<b>I come from a small family.</b>"},
+ {w:"live together",ipa:"/lɪv təˈɡe.ðər/",pos:"phr. verb",vi:"sống cùng nhau",ex:"To share the same home.|<b>We live together in one house.</b>"},
+ {w:"live in different cities",ipa:"/lɪv ɪn ˈdɪf.rənt ˈsɪt.iz/",pos:"collocation",vi:"sống ở những thành phố khác nhau",ex:"Family members do not share the same city.|<b>We live in different cities.</b>"},
+ {w:"get along with each other",ipa:"/ɡet əˈlɔːŋ wɪð iːtʃ ˈʌ.ðər/",pos:"phr. verb",vi:"hòa thuận với nhau",ex:"To have a good, friendly relationship — no fighting.|<b>We get along with each other.</b>"},
+ {w:"keep in touch",ipa:"/kiːp ɪn tʌtʃ/",pos:"phr. verb",vi:"giữ liên lạc",ex:"To continue talking (calls, messages) even when far away.|<b>We always keep in touch.</b>"}
+];
+const VOCAB_CULT_N=[
+ {w:"extended family",ipa:"/ɪkˈsten.dɪd ˈfæm.əl.i/",pos:"noun",vi:"gia đình nhiều thế hệ",ex:"Grandparents, parents and children living together.|<b>I come from an extended family.</b>"},
+ {w:"nuclear family",ipa:"/ˈnuː.kli.ɚ ˈfæm.əl.i/",pos:"noun",vi:"gia đình hạt nhân",ex:"Only parents and their children.|<b>Many young couples live in a nuclear family.</b>"},
+ {w:"relatives",ipa:"/ˈrel.ə.tɪvz/",pos:"noun",vi:"họ hàng",ex:"All the people in your wider family — uncles, aunts, cousins.|<b>We visit our relatives during Tet.</b>"},
+ {w:"ancestors",ipa:"/ˈæn.ses.tɚz/",pos:"noun",vi:"tổ tiên",ex:"Family members who lived long before you.|<b>Vietnamese people respect their ancestors.</b>"},
+ {w:"only child",ipa:"/ˌoʊn.li ˈtʃaɪld/",pos:"noun",vi:"con một",ex:"A child with no brothers or sisters.|<b>She is an only child.</b>"},
+ {w:"blessing",ipa:"/ˈbles.ɪŋ/",pos:"noun",vi:"phúc, phúc lành",ex:"Something good and lucky that you are thankful for.|<b>A happy family is a blessing.</b>"}
+];
+const VOCAB_CULT_V=[
+ {w:"peaceful",ipa:"/ˈpiːs.fəl/",pos:"adj",vi:"yên bình",ex:"Calm and quiet — no fighting, no stress.|<b>My family has a peaceful life.</b>"},
+ {w:"respect",ipa:"/rɪˈspekt/",pos:"verb",vi:"tôn trọng",ex:"To show that someone is important to you.|<b>We respect our grandparents.</b>"},
+ {w:"care for",ipa:"/ker fɔːr/",pos:"phr. verb",vi:"quan tâm, chăm sóc",ex:"To look after someone with love.|<b>We care for each other.</b>"},
+ {w:"support",ipa:"/səˈpɔːrt/",pos:"verb",vi:"hỗ trợ, ủng hộ",ex:"To help someone and stand by them.|<b>My family always supports me.</b>"},
+ {w:"trust",ipa:"/trʌst/",pos:"verb",vi:"tin tưởng",ex:"To believe someone is honest and good.|<b>I trust my parents.</b>"},
+ {w:"watch over",ipa:"/wɑːtʃ ˈoʊ.vɚ/",pos:"phr. verb",vi:"dõi theo, bảo vệ",ex:"To protect someone by watching them from above.|<b>We believe our ancestors watch over our family.</b>"},
+ {w:"teach",ipa:"/tiːtʃ/",pos:"verb",vi:"dạy",ex:"To help someone learn something.|<b>My parents teach me to be kind and honest.</b>"},
+ {w:"celebrate",ipa:"/ˈsel.ə.breɪt/",pos:"verb",vi:"ăn mừng, tổ chức",ex:"To do something special for a happy event.|<b>We celebrate Tet together every year.</b>"},
+ {w:"greet",ipa:"/ɡriːt/",pos:"verb",vi:"chào hỏi",ex:"To say hello, especially politely.|<b>We greet our grandparents first.</b>"}
+];
+
+/* ---- SENTENCE BUILDER ---- */
+const BUILD=[
+ {title:"🕯 Sentence 1 — Worshipping the ancestors / Preparing for Tet",steps:[
+  {label:"Step 1 · Basic sentence (S + V + O)",parts:["I clean the altar."],vi:"Tôi dọn dẹp bàn thờ."},
+  {label:"Step 2 · + Frequency",parts:["I ","usually"," clean the altar."],vi:"Tôi thường xuyên dọn dẹp bàn thờ."},
+  {label:"Step 3 · + People (with…)",parts:["I usually clean the altar ","with my parents","."],vi:"Tôi thường xuyên dọn dẹp bàn thờ với bố mẹ của tôi."},
+  {label:"Step 4 · + Manner (how?)",parts:["I usually clean the altar ","respectfully"," with my parents."],vi:"Tôi thường dọn dẹp bàn thờ một cách kính cẩn với bố mẹ. (respectfully = một cách kính cẩn/tôn kính)"},
+  {label:"Step 5 · + Place",parts:["I usually clean the altar respectfully with my parents ","in the living room","."],vi:"…với bố mẹ ở trong phòng khách."},
+  {label:"Step 6 · + Time",parts:["I usually clean the altar respectfully with my parents in the living room ","before Tet","."],vi:"…ở trong phòng khách trước dịp Tết."},
+  {label:"Step 7 · + Purpose (to + V)",parts:["I usually clean the altar respectfully with my parents in the living room before Tet ","to show gratitude to our ancestors","."],vi:"…trước dịp Tết để bày tỏ lòng biết ơn đối với tổ tiên."}
+ ]},
+ {title:"🍚 Sentence 2 — Family bonding at dinner",steps:[
+  {label:"Step 1 · Basic sentence (S + V + O)",parts:["I have dinner."],vi:"Tôi ăn tối."},
+  {label:"Step 2 · + Frequency",parts:["I ","always"," have dinner."],vi:"Tôi luôn luôn ăn tối."},
+  {label:"Step 3 · + People (with…)",parts:["I always have dinner ","with my nuclear family","."],vi:"Tôi luôn luôn ăn tối với gia đình hạt nhân của mình."},
+  {label:"Step 4 · + Manner (how?)",parts:["I always have dinner ","happily"," with my nuclear family."],vi:"Tôi luôn ăn tối một cách vui vẻ với gia đình hạt nhân của mình."},
+  {label:"Step 5 · + Place",parts:["I always have dinner happily with my nuclear family ","at home","."],vi:"…với gia đình hạt nhân của mình ở nhà."},
+  {label:"Step 6 · + Time",parts:["I always have dinner happily with my nuclear family at home ","every evening","."],vi:"…ở nhà vào mỗi tối."},
+  {label:"Step 7 · + Purpose (to + V)",parts:["I always have dinner happily with my nuclear family at home every evening ","to get along with each other","."],vi:"…vào mỗi tối để hòa thuận/gắn kết với nhau hơn."}
+ ]},
+ {title:"💪 Sentence 3 — Describing character through actions",steps:[
+  {label:"Step 1 · Basic sentence (S + V + O)",parts:["My father supports everyone."],vi:"Ba của tôi hỗ trợ mọi người."},
+  {label:"Step 2 · + Frequency",parts:["My father ","always"," supports everyone."],vi:"Ba của tôi luôn luôn hỗ trợ mọi người."},
+  {label:"Step 3 · + People (with…)",parts:["My father always supports everyone ","with my mother","."],vi:"Ba tôi luôn luôn cùng với mẹ tôi hỗ trợ mọi người."},
+  {label:"Step 4 · + Manner (how?)",parts:["My father always supports everyone ","happily"," with my mother."],vi:"Ba tôi luôn cùng mẹ tôi hỗ trợ mọi người một cách vui vẻ."},
+  {label:"Step 5 · + Place",parts:["My father always supports everyone happily with my mother ","among our relatives","."],vi:"…hỗ trợ mọi người một cách vui vẻ trong dòng họ chúng tôi."},
+  {label:"Step 6 · + Time",parts:["My father always supports everyone happily with my mother among our relatives ","whenever they need help","."],vi:"…trong dòng họ chúng tôi bất cứ khi nào họ cần giúp đỡ."},
+  {label:"Step 7 · + Purpose (to + V)",parts:["My father always supports everyone happily with my mother among our relatives whenever they need help ","to keep in touch and build a strong family connection","."],vi:"…bất cứ khi nào họ cần giúp đỡ để giữ liên lạc và xây dựng một sự gắn kết gia đình bền chặt."}
+ ]}
+];
+
+/* ---- READING MCQ ---- */
+const RD=[
+ {q:'What has changed in Vietnamese families, according to the passage?<span class="q-vi">Theo bài đọc, điều gì đã thay đổi trong các gia đình Việt Nam?</span>',
+  o:['The core values of the family.<i class="o-vi">Các giá trị cốt lõi của gia đình.</i>',
+     'The family structure — from extended to nuclear families.<i class="o-vi">Cấu trúc gia đình — từ gia đình nhiều thế hệ sang gia đình hạt nhân.</i>',
+     'The number of Tet holidays each year.<i class="o-vi">Số lần nghỉ Tết mỗi năm.</i>',
+     'The way children are named.<i class="o-vi">Cách đặt tên cho con cái.</i>'],a:1},
+ {q:'According to the First Pillar, what do many Vietnamese people believe is the greatest happiness?<span class="q-vi">Theo Trụ cột thứ nhất, nhiều người Việt tin rằng hạnh phúc lớn nhất là gì?</span>',
+  o:['Having a lot of money.<i class="o-vi">Có nhiều tiền.</i>',
+     'Having a big house.<i class="o-vi">Có nhà to.</i>',
+     'Having a happy and peaceful family.<i class="o-vi">Có một gia đình hạnh phúc và yên bình.</i>',
+     'Having successful children.<i class="o-vi">Có con cái thành đạt.</i>'],a:2},
+ {q:'According to the Second Pillar, why do some families keep a family tree?<span class="q-vi">Theo Trụ cột thứ hai, vì sao một số gia đình lưu giữ gia phả?</span>',
+  o:['To decorate the living room.<i class="o-vi">Để trang trí phòng khách.</i>',
+     'So younger generations can learn about their ancestors.<i class="o-vi">Để các thế hệ trẻ tìm hiểu về tổ tiên của mình.</i>',
+     'To decide who receives lucky money.<i class="o-vi">Để quyết định ai được nhận tiền lì xì.</i>',
+     'Because the law requires it.<i class="o-vi">Vì luật pháp yêu cầu.</i>'],a:1},
+ {q:'How do family members show love and respect at the ancestor altar?<span class="q-vi">Các thành viên gia đình thể hiện tình yêu và sự kính trọng tại bàn thờ tổ tiên như thế nào?</span>',
+  o:['By offering food, flowers, and incense.<i class="o-vi">Bằng cách dâng đồ ăn, hoa và thắp hương.</i>',
+     'By keeping the altar in the kitchen.<i class="o-vi">Bằng cách đặt bàn thờ trong bếp.</i>',
+     'By giving lucky money to the altar.<i class="o-vi">Bằng cách đặt tiền lì xì lên bàn thờ.</i>',
+     'By writing a family tree on it.<i class="o-vi">Bằng cách viết gia phả lên bàn thờ.</i>'],a:0},
+ {q:'What does the passage say about wedding traditions in Vietnam?<span class="q-vi">Bài đọc nói gì về phong tục cưới hỏi ở Việt Nam?</span>',
+  o:['They are exactly the same everywhere.<i class="o-vi">Ở đâu cũng giống hệt nhau.</i>',
+     'They are different by region, but all celebrate love, family, and happiness.<i class="o-vi">Khác nhau theo vùng miền, nhưng đều tôn vinh tình yêu, gia đình và hạnh phúc.</i>',
+     'They only exist in the North.<i class="o-vi">Chỉ tồn tại ở miền Bắc.</i>',
+     'They have disappeared in modern times.<i class="o-vi">Đã biến mất trong thời hiện đại.</i>'],a:1},
+ {q:'The saying "Respect those who are older and give way to those who are younger" is about…<span class="q-vi">Câu nói "Kính trên nhường dưới" nói về điều gì?</span>',
+  o:['showing gratitude to the source of water.<i class="o-vi">thể hiện lòng biết ơn với nguồn nước.</i>',
+     'respect and kindness to the people around us.<i class="o-vi">sự kính trọng và tử tế với những người xung quanh.</i>',
+     'preparing traditional food for Tet.<i class="o-vi">chuẩn bị món ăn truyền thống cho dịp Tết.</i>',
+     'keeping a family tree at home.<i class="o-vi">lưu giữ gia phả ở nhà.</i>'],a:1}
+];
+
+/* ---- LISTENING T/F GRID ---- */
+const TF_PEOPLE=["1. Stephanie","2. Donna","3. Bob","4. Rosie","5. Tina"];
+const TF_COLS=["Older Brother(s)","Younger Brother(s)","Older Sister(s)","Younger Sister(s)"];
+const TF_CLAIMS=[[0,1,2,1],[1,1,2,3],[3,0,1,0],[0,3,1,1],[0,2,1,0]];
+const TF_KEY=[["T","F","F","F"],["T","F","F","F"],["F","T","T","T"],["T","F","T","T"],["T","F","F","T"]];
+
+const TAPE=[
+ {name:"1. Stephanie",lines:[
+  {sp:"A",en:"Do you <b>have any brothers and sisters</b>, Stephanie?",vi:"Cậu có anh chị em gì không, Stephanie?"},
+  {sp:"B",en:"No brothers. I wish I did. But I<b>'ve got</b> three sisters.",vi:"Tớ không có anh em trai. Ước gì tớ có nhỉ. Nhưng tớ có ba người chị gái."},
+  {sp:"A",en:"Really!",vi:"Thật sao!"},
+  {sp:"B",en:"Yeah. And I'm the youngest.",vi:"Ừ. Và tớ là em út đấy."},
+  {sp:"A",en:"Poor you!",vi:"Tội nghiệp cậu chưa!"}
+ ]},
+ {name:"2. Donna",lines:[
+  {sp:"A",en:"Tell me about your family, Donna.",vi:"Kể cho tớ nghe về gia đình cậu đi, Donna."},
+  {sp:"B",en:"Well, I've got one brother – he's older than me.",vi:"À, tớ có một người anh trai – anh ấy lớn tuổi hơn tớ."},
+  {sp:"A",en:"What does he do?",vi:"Anh ấy làm nghề gì?"},
+  {sp:"B",en:"He's a student. And I've got two younger sisters.",vi:"Anh ấy là sinh viên. Và tớ còn có hai người em gái nữa."},
+  {sp:"A",en:"Wow. You have a big family.",vi:"Oa. Gia đình cậu đông người thật đấy."}
+ ]},
+ {name:"3. Bob",lines:[
+  {sp:"A",en:"Do you have any brothers or sisters, Bob?",vi:"Cậu có anh chị em gì không, Bob?"},
+  {sp:"B",en:"Just one — my sister, Anna.",vi:"Chỉ một người thôi — chị gái tớ, Anna."},
+  {sp:"A",en:"Is she older than you?",vi:"Chị ấy lớn tuổi hơn cậu à?"},
+  {sp:"B",en:"Yes, she is. She <b>always bosses me around</b>!",vi:"Đúng vậy. Chị ấy lúc nào cũng thích sai bảo tớ thôi!"}
+ ]},
+ {name:"4. Rosie",lines:[
+  {sp:"A",en:"Tell me about your family, Rosie.",vi:"Kể cho tớ nghe về gia đình cậu đi, Rosie."},
+  {sp:"B",en:"Well, I come from quite a big family. I've got <b>two</b> brothers, <b>both of them</b> younger than me.",vi:"À, tớ sinh ra trong một gia đình khá đông con. Tớ có hai em trai, cả hai đứa đều nhỏ tuổi hơn tớ."},
+  {sp:"A",en:"Really. Do you have any sisters?",vi:"Thật à. Thế cậu có chị em gái nào không?"},
+  {sp:"B",en:"Yeah. I have one older and one younger sister.",vi:"Có chứ. Tớ có một chị gái và một em gái."},
+  {sp:"A",en:"You're lucky. I wish I came from a big family.",vi:"Cậu may mắn thật đấy. Ước gì tớ cũng được sống trong một gia đình đông vui như vậy."}
+ ]},
+ {name:"5. Tina",lines:[
+  {sp:"A",en:"Do you come from a big family, Tina?",vi:"Cậu có sinh ra trong một gia đình đông con không, Tina?"},
+  {sp:"B",en:"No, I'm an <b>only child</b>. It's just me and my parents.",vi:"Không, tớ là con một. Nhà chỉ có mỗi tớ với bố mẹ thôi."}
+ ]}
+];
+const TAPE_VOCAB=[
+ {w:"Do you have any brothers and sisters?",vi:"Cậu có anh chị em gì không? (câu hỏi mở đầu kinh điển)"},
+ {w:"I've got…",vi:"Tớ có… (cách nói thân mật của 'I have')"},
+ {w:"I'm the youngest",vi:"Tớ là em út"},
+ {w:"boss someone around",vi:"sai bảo, lên mặt chỉ huy ai đó"},
+ {w:"both of them",vi:"cả hai (người/đứa)"},
+ {w:"only child",vi:"con một"},
+ {w:"I wish I did / I wish I came from…",vi:"Ước gì tớ có / Ước gì tớ được… (mơ ước điều không có thật)"}
+];
+
+/* ---- REFLEX (30 words / 10 situations) ---- */
+const REFLEX_WORDS=[
+ {w:"grandparents",vi:"ông bà"},{w:"grandfather",vi:"ông"},{w:"grandmother",vi:"bà"},
+ {w:"parents",vi:"bố mẹ"},{w:"uncle",vi:"chú / bác / cậu"},{w:"aunt",vi:"cô / dì / mợ / thím"},
+ {w:"siblings",vi:"anh chị em ruột"},{w:"twins",vi:"cặp song sinh"},
+ {w:"older brother",vi:"anh trai"},{w:"older sister",vi:"chị gái"},
+ {w:"younger brother",vi:"em trai"},{w:"younger sister",vi:"em gái"},
+ {w:"spouse",vi:"vợ hoặc chồng"},{w:"husband",vi:"chồng"},{w:"wife",vi:"vợ"},
+ {w:"son",vi:"con trai"},{w:"daughter",vi:"con gái"},{w:"cousin",vi:"anh/chị/em họ"},
+ {w:"come from a big family",vi:"đến từ gia đình đông người"},
+ {w:"live together",vi:"sống cùng nhau"},
+ {w:"live in different cities",vi:"sống ở các thành phố khác nhau"},
+ {w:"get along with each other",vi:"hòa thuận với nhau"},
+ {w:"keep in touch",vi:"giữ liên lạc"},
+ {w:"extended family",vi:"gia đình nhiều thế hệ"},{w:"nuclear family",vi:"gia đình hạt nhân"},
+ {w:"relatives",vi:"họ hàng"},{w:"ancestors",vi:"tổ tiên"},{w:"only child",vi:"con một"},
+ {w:"blessing",vi:"phúc lành"},{w:"watch over",vi:"dõi theo, bảo vệ"}
+];
+const REFLEX_SITUATIONS=[
+ "A new classmate asks: \"Do you have any brothers or sisters?\" — Answer in a full sentence.",
+ "Introduce your family in TWO sentences: how many people + who they are (use the template).",
+ "A foreign friend asks: \"What is Tet like in your family?\" — Describe ONE activity you do together.",
+ "Explain the difference between an extended family and a nuclear family — in your own words.",
+ "Your friend asks who you are closest to in your family. Answer and give ONE reason.",
+ "Describe your grandmother or grandfather: 2 adjectives + one thing they always do.",
+ "A foreigner asks why many Vietnamese families have an altar at home. Explain simply.",
+ "You meet your friend's parents for the first time. Greet them politely and introduce yourself.",
+ "Say one family rule your parents taught you. Start with: \"My parents teach me to…\"",
+ "Your cousin lives in another city. Tell a friend how you two keep in touch."
+];
+
+const SELF_CHECK=["I can name all the members of a family tree in English.","I can introduce my family using the template (number → members → live together / keep in touch).","I can grow a basic sentence with frequency, manner, place, time and purpose.","I understood the reading about Vietnamese family culture.","I caught the family details in the listening conversations.","I completed the final speaking challenge without notes.","I feel more confident talking about my family and culture."];
+
+/* ---- QUIZ: 30 unique questions ---- */
+const QUIZ=[
+ {t:"DEFINITION",q:"Your father's or mother's brother.",o:["cousin","grandfather","uncle","spouse"],a:2,e:"Uncle = your parent's brother. One English word for chú, bác and cậu."},
+ {t:"DEFINITION",q:"The child of your aunt or uncle.",o:["cousin","siblings","son","nephew's friend"],a:0,e:"Cousin = the child of your aunt or uncle (anh/chị/em họ)."},
+ {t:"DEFINITION",q:"Two children born at the same time.",o:["siblings","cousins","daughters","twins"],a:3,e:"Twins are two children born at the same time."},
+ {t:"DEFINITION",q:"One word for all your brothers and sisters together.",o:["relatives","ancestors","parents","siblings"],a:3,e:"Siblings = your brothers and sisters."},
+ {t:"DEFINITION",q:"The person you are married to — husband OR wife.",o:["spouse","cousin","only child","grandparent"],a:0,e:"Spouse is the neutral word for the person you are married to."},
+ {t:"DEFINITION",q:"A family with many generations living together in one home.",o:["nuclear family","small family","extended family","host family"],a:2,e:"Extended family = grandparents + parents + children (and sometimes more) together."},
+ {t:"DEFINITION",q:"A family with only the parents and their children.",o:["extended family","big family","royal family","nuclear family"],a:3,e:"Nuclear family = just parents and children."},
+ {t:"DEFINITION",q:"A child who has no brothers or sisters.",o:["an only child","a twin","a cousin","a younger sibling"],a:0,e:"An only child has no siblings — like Tina in the listening."},
+ {t:"DEFINITION",q:"Family members who lived long before you — your grandparents' grandparents and earlier.",o:["relatives","neighbors","ancestors","grandchildren"],a:2,e:"Ancestors are the family members of the distant past."},
+ {t:"DEFINITION",q:"All the people in your wider family: uncles, aunts, cousins…",o:["strangers","classmates","spouses","relatives"],a:3,e:"Relatives = your wider family beyond parents and siblings."},
+ {t:"CONTEXT",q:"\"My sister works in Da Nang and I live in Ho Chi Minh City. We ___, but we call every week.\"",o:["live together","live in different cities","get married","clean the altar"],a:1,e:"They are in two cities → live in different cities."},
+ {t:"CONTEXT",q:"\"I never argue with my brother. We really ___.\"",o:["boss each other around","live in different cities","get along with each other","watch over"],a:2,e:"Get along with each other = have a good, friendly relationship."},
+ {t:"CONTEXT",q:"\"My cousin moved to Japan, but we message every day to ___.\"",o:["keep in touch","come from","give way","greet first"],a:0,e:"Keep in touch = continue communicating even when far apart."},
+ {t:"CONTEXT",q:"\"There are 7 people in my family. I ___ a big family.\"",o:["keep in touch with","care for","come from","respect"],a:2,e:"The template: I come from a big/small family."},
+ {t:"CONTEXT",q:"\"A happy family is a ___\" — something good and lucky that you are thankful for.",o:["discipline","funeral","reunion","blessing"],a:3,e:"Blessing = phúc, something good you feel grateful for."},
+ {t:"CONTEXT",q:"\"Vietnamese people believe their ancestors ___ and protect the family.\"",o:["watch over","boss around","move out","live apart"],a:0,e:"Watch over = dõi theo, bảo vệ from above."},
+ {t:"CONTEXT",q:"\"When we enter our grandparents' house, we always ___ them first.\"",o:["celebrate","support","trust","greet"],a:3,e:"Greet = say hello politely; greeting elders first shows respect."},
+ {t:"CONTEXT",q:"\"My parents ___ me to be kind and honest.\"",o:["teach","greet","celebrate","watch"],a:0,e:"Teach someone to be + adjective — parents teach children values."},
+ {t:"CONTEXT",q:"\"Children should ___ their parents and listen to their advice.\"",o:["respect","boss around","forget","replace"],a:0,e:"Respect = tôn trọng — the heart of 'kính trên nhường dưới'."},
+ {t:"CONTEXT",q:"\"My family always ___ me when I have a problem — they never leave me alone.\"",o:["bosses","supports","greets","celebrates"],a:1,e:"Support = help and stand by someone."},
+ {t:"GRAMMAR",q:"Which sentence has the correct word order?",o:["I clean usually the altar respectfully.","I usually clean the altar respectfully.","Usually I clean respectfully altar the.","I clean the altar usually respectfully."],a:1,e:"Frequency (usually) goes BEFORE the main verb; manner (respectfully) after the object."},
+ {t:"GRAMMAR",q:"Where does a frequency adverb like 'always' usually go?",o:["At the very end of the sentence.","Before the main verb.","After the object.","Before the subject only."],a:1,e:"S + always/usually/often + V: 'I always have dinner…'"},
+ {t:"GRAMMAR",q:"\"I clean the altar before Tet ___ show gratitude to our ancestors.\" (purpose)",o:["for","to","with","at"],a:1,e:"Purpose = to + verb (to show gratitude)."},
+ {t:"GRAMMAR",q:"Which word is an adverb of MANNER?",o:["usually","home","happily","evening"],a:2,e:"Manner answers 'how?': happily, respectfully. 'Usually' is frequency."},
+ {t:"GRAMMAR",q:"\"My father supports our relatives ___ they need help.\"",o:["whenever","wherever","whoever","however"],a:0,e:"Whenever = bất cứ khi nào — a time expression."},
+ {t:"GRAMMAR",q:"Which sentence follows S + Frequency + V + O exactly?",o:["She visits often her relatives.","Often she her relatives visits.","She often visits her relatives.","She visits her relatives often happily."],a:2,e:"S (She) + Frequency (often) + V (visits) + O (her relatives)."},
+ {t:"READING",q:"According to the passage, what has stayed the same while family structure changed?",o:["The size of houses","The core values","The number of children","The wedding food"],a:1,e:"Structure changed (extended → nuclear), but the core values remained the same."},
+ {t:"READING",q:"During Tet, adults often give children ___.",o:["a family tree","an altar","incense","lucky money"],a:3,e:"Lucky money (lì xì) is given to children during Tet."},
+ {t:"READING",q:"\"Remember the source of the water you drink\" means…",o:["saving water at home","showing gratitude to our ancestors","drinking tea with elders","cleaning the house before Tet"],a:1,e:"'Uống nước nhớ nguồn' = be grateful to those who came before you."},
+ {t:"READING",q:"According to the passage, wedding traditions in the North, Central and South are…",o:["exactly the same","different, but all celebrate love, family and happiness","only celebrated in big cities","slowly disappearing"],a:1,e:"Vietnam is diverse: customs differ by region, but the meaning is shared."}
+];
+
+/* ================== HELPERS ================== */
+const $=id=>document.getElementById(id);
+function shuffledCopy(a){const c=[...a];for(let i=c.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[c[i],c[j]]=[c[j],c[i]];}return c;}
+const ALL_TIMERS=[];
+function trackInterval(fn,ms){const id=setInterval(fn,ms);ALL_TIMERS.push(id);return id;}
+function l3ClearTimers(){
+  ALL_TIMERS.forEach(clearInterval);ALL_TIMERS.length=0;
+  qzTimerInt=null;chInt=null;chGoInt=null;
+}
+window.l3ClearTimers=l3ClearTimers;
+
+/* ================== TOGGLE (tapescript) ================== */
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-toggle]");if(t){$(t.dataset.toggle).classList.toggle("revealed");}
+});
+
+/* ================== VOCAB CARDS ================== */
+function renderVocab(id,arr){
+  $(id).innerHTML=arr.map(v=>{
+    const parts=v.ex.split("|");
+    return `<div class="vocab-card"><span class="flip-hint">tap ↻</span>
+      <div class="word">${v.w}</div>
+      <div class="ipa">${v.ipa}</div>
+      <div><span class="pos">${v.pos}</span></div>
+      <div class="vi">${v.vi}</div>
+      <div class="example">💡 ${parts[0]}<br>${parts[1]||""}</div>
+    </div>`;
+  }).join("");
+}
+renderVocab("vg1",VOCAB_TREE);renderVocab("vg2",VOCAB_PHRASAL);
+renderVocab("vg3",VOCAB_CULT_N);renderVocab("vg4",VOCAB_CULT_V);
+document.addEventListener("click",e=>{
+  const f=e.target.closest("[data-flipall]");
+  if(f)f.dataset.flipall.split(",").forEach(gid=>$(gid).querySelectorAll(".vocab-card").forEach(cc=>cc.classList.add("flipped")));
+});
+
+/* ================== SENTENCE BUILDER ================== */
+const buildState=BUILD.map(()=>0);
+function renderBuild(i){
+  const b=BUILD[i],s=buildState[i],step=b.steps[s];
+  const dots=b.steps.map((_,k)=>`<div class="step-dot ${k<=s?"done":""}">${k+1}</div>`).join("");
+  let sent;
+  if(step.parts.length===1)sent=step.parts[0];
+  else sent=step.parts.map((p,k)=>k===1?`<span class="chunk-new">${p}</span>`:p).join("");
+  $("bd"+i).innerHTML=`
+    <div class="step-track">${dots}</div>
+    <span class="step-label">${step.label}</span>
+    <div class="build-sentence">${sent}</div>
+    <div class="build-vi">(${step.vi})</div>
+    <div class="btn-group">
+      <button class="btn btn-primary btn-sm" data-grow="${i}" ${s>=b.steps.length-1?"disabled style='opacity:.5;cursor:default;'":""}>+ Grow ${s>=b.steps.length-1?"— fully grown 🌳":"(step "+(s+2)+")"}</button>
+      <button class="btn btn-outline btn-sm" data-regrow="${i}">↺ Back to seed</button>
+    </div>`;
+}
+$("buildList").innerHTML=BUILD.map((b,i)=>`<div class="build-card"><h4>${b.title}</h4><div class="b-sub">Say each new version OUT LOUD before growing again.</div><div id="bd${i}"></div></div>`).join("");
+BUILD.forEach((_,i)=>renderBuild(i));
+document.addEventListener("click",e=>{
+  const g=e.target.closest("[data-grow]");
+  if(g&&!g.disabled){const i=+g.dataset.grow;if(buildState[i]<BUILD[i].steps.length-1){buildState[i]++;renderBuild(i);}return;}
+  const r=e.target.closest("[data-regrow]");
+  if(r){const i=+r.dataset.regrow;buildState[i]=0;renderBuild(i);}
+});
+
+/* ================== FREE BUILDER ================== */
+const FREE_IDS=["fSubj","fFreq","fVO","fMan","fWith","fPlace","fTime","fPurp"];
+function freeAssemble(){
+  const v=FREE_IDS.map(id=>$(id).value.trim());
+  const[subj,freq,vo,man,withP,place,time,purp]=v;
+  if(!subj&&!vo){$("freeOut").innerHTML='<span style="color:var(--text-soft);font-style:italic;">Start typing above…</span>';return;}
+  const parts=[subj,freq,vo,man,withP,place,time,purp].filter(x=>x);
+  let s=parts.join(" ");
+  s=s.charAt(0).toUpperCase()+s.slice(1);
+  if(!/[.!?]$/.test(s))s+=".";
+  $("freeOut").textContent=s;
+}
+FREE_IDS.forEach(id=>$(id).addEventListener("input",freeAssemble));
+$("freeClear").addEventListener("click",()=>{FREE_IDS.forEach(id=>$(id).value="");freeAssemble();});
+
+/* ================== READING MCQ ================== */
+function buildMCQ(listId,data){
+  $(listId).innerHTML=data.map((it,i)=>`<div class="q-block" data-q="${i}">
+    <div class="q-text"><span class="qn">${i+1}.</span>${it.q}</div>
+    <div class="mcq-opts">${it.o.map((o,j)=>`<div class="mcq-option" data-i="${j}"><span class="ltr">${"ABCD"[j]}.</span><span>${o}</span></div>`).join("")}</div>
+  </div>`).join("");
+  $(listId).addEventListener("click",e=>{
+    const opt=e.target.closest(".mcq-option");
+    if(!opt)return;
+    const block=opt.closest(".q-block");
+    if(block.dataset.locked==="1")return;
+    block.querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected"));
+    opt.classList.add("selected");
+  });
+  return{
+    check(){
+      let score=0;
+      $(listId).querySelectorAll(".q-block").forEach((block,i)=>{
+        block.dataset.locked="1";
+        const opts=block.querySelectorAll(".mcq-option");
+        const sel=block.querySelector(".mcq-option.selected");
+        opts[data[i].a].classList.add("correct");
+        if(sel){if(+sel.dataset.i===data[i].a)score++;else sel.classList.add("incorrect");}
+      });
+      return score;
+    },
+    reset(){
+      $(listId).querySelectorAll(".q-block").forEach(b=>{b.dataset.locked="";b.querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected","correct","incorrect"));});
+    }
+  };
+}
+const rdEngine=buildMCQ("rdList",RD);
+$("rdCheck").addEventListener("click",()=>{
+  const s=rdEngine.check();
+  $("rdScore").textContent=s+"/6";
+  $("rdMsg").textContent=s===6?"Perfect reading! 🏆":s>=4?"Good — reread the pillar you missed.":"Read the passage once more, slowly, then retry.";
+  $("rdFb").className="feedback-box show "+(s>=5?"success":s>=3?"info":"error");
+});
+$("rdReset").addEventListener("click",()=>{rdEngine.reset();$("rdFb").className="feedback-box";});
+
+/* ================== LISTENING T/F GRID ================== */
+function renderTF(){
+  let h=`<thead><tr><th style="text-align:left;">Name</th>${TF_COLS.map(c=>`<th>${c}</th>`).join("")}</tr></thead><tbody>`;
+  TF_PEOPLE.forEach((p,r)=>{
+    h+=`<tr><td>${p}</td>`;
+    TF_COLS.forEach((_,c)=>{
+      h+=`<td><span class="tf-claim">${TF_CLAIMS[r][c]}</span>
+        <span class="tf-pair">
+          <button class="tf-btn" data-r="${r}" data-c="${c}" data-v="T">T</button>
+          <button class="tf-btn" data-r="${r}" data-c="${c}" data-v="F">F</button>
+        </span></td>`;
+    });
+    h+=`</tr>`;
+  });
+  $("tfTable").innerHTML=h+"</tbody>";
+}
+renderTF();
+let tfLocked=false;
+$("tfTable").addEventListener("click",e=>{
+  const b=e.target.closest(".tf-btn");
+  if(!b||tfLocked)return;
+  $("tfTable").querySelectorAll(`.tf-btn[data-r="${b.dataset.r}"][data-c="${b.dataset.c}"]`).forEach(x=>x.classList.remove("sel"));
+  b.classList.add("sel");
+});
+$("tfCheck").addEventListener("click",()=>{
+  tfLocked=true;let s=0;
+  TF_PEOPLE.forEach((_,r)=>TF_COLS.forEach((_,c)=>{
+    const key=TF_KEY[r][c];
+    const pair=$("tfTable").querySelectorAll(`.tf-btn[data-r="${r}"][data-c="${c}"]`);
+    const sel=[...pair].find(x=>x.classList.contains("sel"));
+    const keyBtn=[...pair].find(x=>x.dataset.v===key);
+    keyBtn.classList.add("correct");
+    if(sel){if(sel.dataset.v===key)s++;else sel.classList.add("incorrect");}
+  }));
+  $("tfScore").textContent=s+"/20";
+  $("tfMsg").textContent=s>=18?"Excellent ear! 🏆":s>=14?"Good — check the tapescript for the ones you missed.":"Listen once more with the tapescript open, then reset and try again.";
+  $("tfFb").className="feedback-box show "+(s>=16?"success":s>=11?"info":"error");
+});
+$("tfReset").addEventListener("click",()=>{
+  tfLocked=false;
+  $("tfTable").querySelectorAll(".tf-btn").forEach(b=>b.classList.remove("sel","correct","incorrect"));
+  $("tfFb").className="feedback-box";
+});
+$("tp1Body").innerHTML=TAPE.map(t=>`
+  <div style="font-weight:800;color:var(--forest);font-size:14px;margin:14px 0 4px;">${t.name}</div>
+  ${t.lines.map(l=>`<div class="dialogue-line"><span class="speaker">${l.sp}:</span>${l.en}<span class="vi">${l.vi}</span></div>`).join("")}
+`).join("");
+$("tp1Vocab").innerHTML=TAPE_VOCAB.map(v=>`<div class="phrase-card" style="margin-bottom:8px;"><span class="phrase-en" style="min-width:250px;">${v.w}</span><span class="phrase-vi">${v.vi}</span></div>`).join("");
+
+/* ================== REFLEX — shuffle bags ================== */
+function makeBag(pool){let bag=[];return{draw(){if(bag.length===0)bag=shuffledCopy(pool);return bag.pop();}};}
+const wordBag=makeBag(REFLEX_WORDS),sitBag=makeBag(REFLEX_SITUATIONS);
+$("drawWordBtn").addEventListener("click",()=>{
+  const w=wordBag.draw();
+  $("drawWordRes").innerHTML=`<span class="big">${w.w}</span><span class="small">${w.vi}</span>`;
+});
+$("drawSitBtn").addEventListener("click",()=>{
+  const s=sitBag.draw();
+  $("drawSitRes").innerHTML=`<span style="font-size:16px;font-weight:700;color:var(--forest);">${s}</span>`;
+});
+
+/* ================== FINAL CHALLENGE TIMER (3-2-1 GO) ================== */
+let chSec=60,chLeft=60,chInt=null,chGoInt=null;
+function chShow(){const m=String(Math.floor(chLeft/60)).padStart(2,"0"),s=String(chLeft%60).padStart(2,"0");$("chDisp").textContent=m+":"+s;}
+document.querySelectorAll(".preset-pill[data-sec]").forEach(p=>p.addEventListener("click",()=>{
+  document.querySelectorAll(".preset-pill[data-sec]").forEach(x=>x.classList.toggle("active",x===p));
+  chSec=+p.dataset.sec;chReset();
+}));
+function chReset(){
+  if(chInt){clearInterval(chInt);chInt=null;}
+  if(chGoInt){clearInterval(chGoInt);chGoInt=null;}
+  chLeft=chSec;$("chDisp").classList.remove("timeup");$("chGo").textContent="";chShow();
+}
+$("chStart").addEventListener("click",()=>{
+  if(chInt||chGoInt)return;
+  chReset();
+  let n=3;$("chGo").textContent=n+"…";
+  chGoInt=trackInterval(()=>{
+    n--;
+    if(n>0){$("chGo").textContent=n+"…";}
+    else{
+      clearInterval(chGoInt);chGoInt=null;
+      $("chGo").textContent="GO! 🎤";
+      chInt=trackInterval(()=>{
+        chLeft--;chShow();
+        if(chLeft<=0){clearInterval(chInt);chInt=null;$("chDisp").classList.add("timeup");$("chDisp").textContent="00:00";$("chGo").textContent="⏰ Time's up!";}
+      },1000);
+    }
+  },1000);
+});
+$("chReset").addEventListener("click",chReset);
+chShow();
+
+/* ================== QUIZ GAME ================== */
+let qzOrder=[],qzIdx=0,qzScore=0,qzTimerInt=null,qzTimeLeft=10,qzSelected=null,qzAnswered=false;
+function qzScreen(id){["qzStart","qzPlay","qzResult"].forEach(s=>$(s).classList.toggle("active",s===id));}
+function qzStopTimer(){if(qzTimerInt){clearInterval(qzTimerInt);qzTimerInt=null;}}
+function qzRenderQ(){
+  const q=QUIZ[qzOrder[qzIdx]];
+  qzSelected=null;qzAnswered=false;
+  $("qzCounter").textContent=`QUESTION ${qzIdx+1} / 30`;
+  $("qzType").textContent=q.t;
+  $("qzQuestion").textContent=q.q;
+  $("qzOpts").innerHTML=q.o.map((o,j)=>`<div class="mcq-option" data-i="${j}"><span class="ltr">${"ABCD"[j]}.</span><span>${o}</span></div>`).join("");
+  $("qzExplain").className="quiz-explain";$("qzExplain").textContent="";
+  $("qzSubmit").style.display="";$("qzNext").style.display="none";
+  qzTimeLeft=10;
+  $("qzTimer").textContent="⏳ 10s";$("qzTimer").classList.remove("danger");
+  $("qzBar").style.width="100%";$("qzBar").classList.remove("danger");
+  qzStopTimer();
+  qzTimerInt=trackInterval(()=>{
+    qzTimeLeft--;
+    $("qzTimer").textContent="⏳ "+qzTimeLeft+"s";
+    $("qzBar").style.width=(qzTimeLeft/10*100)+"%";
+    if(qzTimeLeft<=3){$("qzTimer").classList.add("danger");$("qzBar").classList.add("danger");}
+    if(qzTimeLeft<=0){qzStopTimer();qzGrade(true);}
+  },1000);
+}
+$("qzOpts").addEventListener("click",e=>{
+  if(qzAnswered)return;
+  const opt=e.target.closest(".mcq-option");if(!opt)return;
+  $("qzOpts").querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected"));
+  opt.classList.add("selected");qzSelected=+opt.dataset.i;
+});
+function qzGrade(timedOut){
+  if(qzAnswered)return;
+  qzAnswered=true;qzStopTimer();
+  const q=QUIZ[qzOrder[qzIdx]];
+  const opts=$("qzOpts").querySelectorAll(".mcq-option");
+  opts[q.a].classList.add("correct");
+  let msg;
+  if(timedOut){msg="⏰ Time's up! The correct answer is "+"ABCD"[q.a]+". "+q.e;}
+  else if(qzSelected===q.a){qzScore++;msg="✅ Correct! "+q.e;}
+  else{if(qzSelected!==null)opts[qzSelected].classList.add("incorrect");msg="❌ Not quite. "+q.e;}
+  $("qzExplain").textContent=msg;$("qzExplain").className="quiz-explain show";
+  $("qzSubmit").style.display="none";$("qzNext").style.display="";
+}
+$("qzSubmit").addEventListener("click",()=>{if(qzSelected===null)return;qzGrade(false);});
+$("qzNext").addEventListener("click",()=>{
+  qzIdx++;
+  if(qzIdx>=30){qzStopTimer();qzShowResult();}
+  else qzRenderQ();
+});
+function qzShowResult(){
+  qzScreen("qzResult");
+  $("qzFinal").textContent=qzScore+" / 30";
+  const r=qzScore/30;
+  $("qzVerdict").textContent=r>=0.93?"🏆 Outstanding — you truly own this lesson!":r>=0.8?"🌟 Excellent — a quick review of your misses and you're done.":r>=0.6?"👍 Good work — revisit Block 1 vocab tabs, then play again.":"💪 Keep going — reread the A.4 Context Passage and try again.";
+}
+function qzStart(){
+  qzOrder=shuffledCopy(QUIZ.map((_,i)=>i));
+  qzIdx=0;qzScore=0;
+  qzScreen("qzPlay");qzRenderQ();
+}
+$("qzBegin").addEventListener("click",qzStart);
+$("qzAgain").addEventListener("click",qzStart);
+
+/* ================== SELF CHECK ================== */
+$("selfCheck").innerHTML=`<div class="exercise-title">✅ Self-Assessment</div>`+SELF_CHECK.map(c=>`<label class="check-item"><input type="checkbox">${c}</label>`).join("");
+
+/* ================== GLOBAL RESET ================== */
+window.l3Reset=function(){
+  l3ClearTimers();
+  qzTimerInt=null;chInt=null;chGoInt=null;
+  rdEngine.reset();$("rdFb").className="feedback-box";
+  tfLocked=false;
+  $("tfTable").querySelectorAll(".tf-btn").forEach(b=>b.classList.remove("sel","correct","incorrect"));
+  $("tfFb").className="feedback-box";
+  BUILD.forEach((_,i)=>{buildState[i]=0;renderBuild(i);});
+  FREE_IDS.forEach(id=>$(id).value="");freeAssemble();
+  chReset();
+  document.querySelectorAll(".transcript-block").forEach(t=>t.classList.remove("revealed"));
+  document.querySelectorAll(".check-item input").forEach(c=>c.checked=false);
+  document.querySelectorAll(".vocab-card").forEach(c=>c.classList.remove("flipped"));
+  $("drawWordRes").innerHTML='<span class="small">Press the button to draw…</span>';
+  $("drawSitRes").innerHTML='<span class="small">Press the button to draw…</span>';
+  chSec=60;chLeft=60;
+  document.querySelectorAll(".preset-pill[data-sec]").forEach((x,i)=>x.classList.toggle("active",i===0));
+  chShow();
+  qzScreen("qzStart");
+};
+
+/* ================== SELF-VERIFICATION ================== */
+(function verify(){
+  const dupes=new Set();let dup=0;
+  QUIZ.forEach(q=>{if(dupes.has(q.q))dup++;dupes.add(q.q);});
+  const bad=QUIZ.filter(q=>q.o.length!==4||q.a<0||q.a>3).length;
+  console.assert(QUIZ.length===30,"QUIZ must have 30, has "+QUIZ.length);
+  console.assert(dup===0,"QUIZ duplicates: "+dup);
+  console.assert(bad===0,"QUIZ malformed: "+bad);
+  console.assert(REFLEX_WORDS.length===30,"REFLEX_WORDS must be 30, has "+REFLEX_WORDS.length);
+  console.assert(REFLEX_SITUATIONS.length===10,"REFLEX_SITUATIONS must be 10");
+  console.log("[verify] quiz=30 ✓ reflex_words="+REFLEX_WORDS.length+" ✓ situations="+REFLEX_SITUATIONS.length+" ✓");
+})();
+
+})();
 </script>
 </body>
 </html>
