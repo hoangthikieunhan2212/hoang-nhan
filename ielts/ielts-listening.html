@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listening — IELTS Practice · 90 Practices</title>
+<style>
+:root{
+  --forest:#013220;--moss:#006D6F;--teal:#007A74;--mint:#D8BFD8;--sage:#F5F5DC;
+  --sand:#FFFAF0;--shell:#FFF5EE;--white:#FFFAFA;
+  --blue:#2563EB;--blue-light:#EFF6FF;--amber:#D97706;--amber-light:#FFFBEB;
+  --red:#DC2626;--red-light:#FEF2F2;--green-success:#16A34A;--green-light:#F0FDF4;
+  --text-dark:#013220;--text-mid:#006D6F;--text-soft:#5F8A80;
+  --border:#E3DED0;--shadow-sm:0 1px 3px rgba(1,50,32,.08);--shadow-md:0 4px 16px rgba(1,50,32,.12);
+  --shadow-lg:0 8px 32px rgba(1,50,32,.16);--radius:12px;--radius-sm:8px;--radius-lg:20px;font-size:16px;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--sand);}
+.app-shell{display:flex;}
+/* ---- Sidebar ---- */
+.sidebar{width:220px;position:fixed;top:0;left:0;height:100vh;background:var(--forest);color:#fff;
+  overflow-y:auto;display:flex;flex-direction:column;z-index:100;}
+.brand{padding:20px 18px 14px;border-bottom:1px solid rgba(255,255,255,.08);}
+.brand .badge-mint{display:inline-block;background:rgba(216,191,216,.2);color:var(--mint);
+  border:1px solid rgba(216,191,216,.3);border-radius:99px;padding:3px 10px;font-size:10px;font-weight:800;letter-spacing:.5px;}
+.brand h1{font-size:16px;font-weight:800;margin:10px 0 3px;color:#fff;}
+.brand .sub{font-size:10px;color:var(--mint);opacity:.8;letter-spacing:.5px;}
+.nav{flex:1;padding:8px 0 90px;}
+.nav-home{display:flex;align-items:center;gap:8px;padding:10px 18px;font-size:13px;color:rgba(255,255,255,.75);
+  cursor:pointer;border-left:3px solid transparent;}
+.nav-home:hover{background:rgba(216,191,216,.08);}
+.nav-home.active{background:rgba(216,191,216,.15);border-left-color:var(--mint);color:#fff;}
+.nav-group-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
+  color:rgba(216,191,216,.6);padding:14px 18px 5px;}
+.nav-item{display:flex;align-items:center;gap:8px;padding:8px 18px 8px 26px;font-size:13px;font-weight:500;
+  color:rgba(255,255,255,.7);cursor:pointer;border-left:3px solid transparent;}
+.nav-item:hover{background:rgba(216,191,216,.08);color:#fff;}
+.nav-item.active{background:rgba(216,191,216,.15);border-left-color:var(--mint);color:#fff;}
+.nav-item .idx{width:18px;height:18px;border-radius:99px;background:rgba(255,255,255,.1);font-size:10px;font-weight:800;
+  display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;}
+.nav-item .done{margin-left:auto;color:var(--mint);font-weight:800;}
+.progress-wrap{position:fixed;bottom:0;left:0;width:220px;background:var(--forest);padding:12px 18px 14px;
+  border-top:1px solid rgba(255,255,255,.08);}
+.progress-track{height:6px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--mint);width:0;transition:width .3s;}
+.progress-label{font-size:11px;color:rgba(255,255,255,.7);margin-top:6px;}
+/* ---- Main ---- */
+.main-content{margin-left:220px;flex:1;min-height:100vh;width:calc(100% - 220px);}
+.page{display:none;}
+.page.active{display:block;animation:fadeIn .3s ease;}
+/* ---- Overview ---- */
+.hero{background:linear-gradient(135deg,var(--forest),var(--moss),var(--teal));color:#fff;padding:40px 48px;}
+.hero h2{margin:0 0 8px;font-size:32px;font-weight:800;}
+.hero p{margin:4px 0;opacity:.9;font-size:14px;}
+.hero .stats{margin-top:14px;display:flex;gap:22px;flex-wrap:wrap;font-size:13px;}
+.hero .stats b{font-size:20px;display:block;color:var(--mint);}
+.type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;padding:32px 48px;}
+.type-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow-sm);transition:all .2s;}
+.type-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
+.type-card .th{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.type-card .tnum{background:var(--sage);color:var(--forest);border-radius:99px;width:26px;height:26px;font-size:12px;font-weight:800;
+  display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;}
+.type-card .tname{font-size:15px;font-weight:800;color:var(--forest);}
+.pchip{display:flex;align-items:center;justify-content:space-between;background:var(--shell);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:6px 12px;font-size:13px;margin-bottom:5px;cursor:pointer;color:var(--text-dark);}
+.pchip:hover{border-color:var(--teal);}
+.pchip.done{background:var(--green-light);}
+.pchip .st{font-size:11px;color:var(--text-soft);}
+.pchip.done .st{color:var(--green-success);font-weight:700;}
+.type-card .tcount{font-size:11px;color:var(--text-soft);margin-top:8px;}
+/* ---- Practice header ---- */
+.p-header{background:linear-gradient(135deg,var(--forest),var(--moss),var(--teal));color:#fff;
+  padding:14px 24px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:20;}
+.p-header .badge-mint{background:rgba(216,191,216,.2);color:var(--mint);border:1px solid rgba(216,191,216,.3);
+  border-radius:99px;padding:3px 11px;font-size:10px;font-weight:800;letter-spacing:.4px;}
+.p-header .ptitle{font-size:18px;font-weight:800;}
+.p-header .spacer{flex:1;}
+.timer-chip{background:rgba(255,255,255,.15);color:#fff;border-radius:99px;padding:6px 16px;
+  font-size:14px;font-weight:800;letter-spacing:1px;display:none;}
+.timer-chip.show{display:inline-block;}
+.timer-chip.warn{background:var(--amber);}
+.score-chip{background:rgba(255,255,255,.15);color:#fff;border-radius:99px;padding:6px 16px;font-size:14px;font-weight:800;display:none;}
+.score-chip.show{display:inline-block;}
+.btn{padding:10px 20px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;border:none;transition:all .15s;}
+.btn-sm{padding:6px 14px;font-size:13px;}
+.btn-primary{background:var(--forest);color:#fff;}
+.btn-primary:hover{background:var(--moss);transform:translateY(-1px);}
+.btn-outline{background:transparent;color:var(--forest);border:1.5px solid var(--border);}
+.btn-finish{background:var(--mint);color:var(--forest);}
+.btn-finish:disabled{opacity:.5;cursor:default;}
+/* ---- Multi-bài practice ---- */
+.phead-count{font-size:12px;font-weight:700;color:var(--mint);}
+.bai-tabs{display:flex;gap:6px;padding:12px 24px;background:var(--sand);border-bottom:1px solid var(--border);flex-wrap:wrap;position:sticky;top:58px;z-index:19;}
+.bai-tab{background:var(--white);border:1.5px solid var(--border);border-radius:99px;padding:7px 16px;
+  font-size:13px;font-weight:800;color:var(--text-mid);cursor:pointer;font-family:inherit;transition:all .15s;}
+.bai-tab:hover{border-color:var(--teal);}
+.bai-tab.active{background:var(--forest);border-color:var(--forest);color:#fff;}
+.bai-block{display:none;}
+.bai-block.active{display:block;animation:fadeIn .25s;}
+.bai-bar{display:flex;align-items:center;gap:12px;padding:10px 24px;background:var(--white);border-bottom:1px solid var(--border);}
+.bai-bar .spacer{flex:1;}
+.bai-title{font-size:14px;font-weight:800;color:var(--forest);}
+.bai-bar .timer-chip{background:var(--sage);color:var(--forest);}
+.bai-bar .timer-chip.warn{background:var(--amber);color:#fff;}
+.bai-bar .score-chip.dark{background:var(--sage);color:var(--forest);}
+.bai-block .workspace,.bai-block .start-gate{height:calc(100vh - 160px);}
+/* ---- Notice / Start gate ---- */
+.notice-bar{display:none;background:var(--amber-light);border-bottom:1px solid #FDE68A;padding:10px 24px;
+  align-items:center;gap:12px;font-size:13px;color:var(--amber);}
+.notice-bar.show{display:flex;}
+.start-gate{display:flex;align-items:center;justify-content:center;height:calc(100vh - 58px);}
+.start-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-md);padding:48px 56px;text-align:center;max-width:440px;}
+.start-card .big{font-size:44px;}
+.start-card h3{margin:10px 0 6px;font-size:22px;font-weight:800;color:var(--forest);}
+.start-card p{margin:0 0 6px;font-size:14px;color:var(--text-soft);}
+.start-card .meta{font-size:13px;color:var(--text-mid);font-weight:700;margin-bottom:18px;}
+/* ---- Workspace 60/40 ---- */
+.workspace{display:grid;grid-template-columns:60fr 40fr;height:calc(100vh - 58px);}
+.workspace>*{overflow-y:auto;padding:24px;}
+.col-work{border-right:1px solid var(--border);background:var(--sand);}
+.col-assist{background:var(--shell);}
+.col-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.col-head h3{margin:0;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--text-mid);}
+/* questions */
+.q-group-instruction{background:var(--shell);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:12px 16px;font-size:13px;font-weight:600;color:var(--text-mid);margin:18px 0 12px;}
+.options-box{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:12px 16px;margin-bottom:12px;font-size:13.5px;line-height:1.9;}
+.body-block{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px 24px;margin-bottom:16px;box-shadow:var(--shadow-sm);font-size:14px;line-height:2.1;}
+.body-block table{border-collapse:collapse;width:100%;}
+.body-block td,.body-block th{border:1px solid var(--border);padding:8px 12px;text-align:left;}
+.blank-num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;
+  background:var(--forest);color:#fff;border-radius:99px;font-size:10px;font-weight:800;margin-right:4px;vertical-align:middle;}
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:12px;box-shadow:var(--shadow-sm);}
+.q-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.q-num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;background:var(--forest);color:#fff;
+  border-radius:99px;font-size:13px;font-weight:800;flex:0 0 auto;}
+.q-type-chip{font-size:10px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;background:var(--sage);color:var(--forest);
+  border-radius:99px;padding:2px 9px;}
+.q-prompt{font-size:14px;margin-bottom:10px;}
+.q-dropdown{width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:inherit;background:var(--white);}
+.q-dropdown:focus{border-color:var(--teal);outline:none;}
+.q-dropdown.correct{border-color:var(--green-success);background:var(--green-light);}
+.q-dropdown.incorrect{border-color:var(--red);background:var(--red-light);}
+.blank-input{border:none;border-bottom:2px solid var(--border);background:transparent;font-size:14px;font-family:inherit;padding:6px 8px;width:100%;}
+.blank-input:focus{border-bottom-color:var(--teal);outline:none;}
+.blank-input.correct{border-bottom-color:var(--green-success);background:var(--green-light);}
+.blank-input.incorrect{border-bottom-color:var(--red);background:var(--red-light);}
+.blank-input.inline{width:150px;display:inline-block;text-align:center;}
+.mcq-option{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;font-size:14px;cursor:pointer;margin-bottom:8px;transition:all .15s;}
+.mcq-option:hover{border-color:var(--teal);background:var(--sage);}
+.mcq-option.selected{border-color:var(--blue);background:var(--blue-light);}
+.mcq-option.correct{border-color:var(--green-success);background:var(--green-light);}
+.mcq-option.incorrect{border-color:var(--red);background:var(--red-light);}
+/* map labelling */
+.map-wrap{position:relative;background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);overflow:hidden;margin-bottom:14px;}
+.map-wrap img{display:block;width:100%;}
+.map-zone{position:absolute;transform:translate(-50%,-50%);min-width:84px;padding:6px 10px;
+  background:var(--white);border:2px dashed var(--teal);border-radius:var(--radius-sm);
+  font-size:12px;font-weight:700;text-align:center;cursor:pointer;color:var(--text-soft);}
+.map-zone.filled{border-style:solid;color:var(--forest);background:var(--sage);}
+.map-zone.correct{border-color:var(--green-success);background:var(--green-light);color:var(--green-success);}
+.map-zone.incorrect{border-color:var(--red);background:var(--red-light);color:var(--red);}
+.label-bank{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.label-chip{background:var(--white);border:1.5px solid var(--border);border-radius:99px;
+  padding:6px 14px;font-size:13px;font-weight:700;cursor:grab;user-select:none;transition:all .15s;}
+.label-chip:hover{border-color:var(--teal);background:var(--sage);}
+.label-chip.selected{border-color:var(--blue);background:var(--blue-light);}
+.label-chip.used{opacity:.35;pointer-events:none;}
+/* learning assistant */
+.tabbar{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;}
+.tab-btn{background:transparent;border:1.5px solid var(--border);border-radius:99px;
+  padding:6px 14px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;
+  color:var(--text-mid);cursor:pointer;font-family:inherit;}
+.tab-btn.active{background:var(--sage);border-color:var(--forest);color:var(--forest);}
+.tab-pane{display:none;}
+.tab-pane.active{display:block;animation:fadeIn .25s;}
+.hint-note{font-size:12px;color:var(--text-soft);font-style:italic;margin-bottom:12px;line-height:1.5;}
+.hint-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:8px;display:flex;gap:10px;font-size:13px;}
+.hint-card .q-num{width:22px;height:22px;font-size:11px;}
+.hint-listen{font-size:12px;font-weight:700;color:var(--text-mid);}
+.hint-card ul{margin:4px 0 6px;padding-left:18px;font-size:13px;}
+.hint-card li{margin-bottom:2px;}
+.hint-chip{display:inline-block;background:var(--sage);color:var(--forest);border-radius:99px;padding:1px 8px;font-size:11px;font-weight:700;margin-top:2px;}
+.assist-list .a-item{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:9px 12px;margin-bottom:7px;font-size:13px;}
+.vocab-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:9px 12px;margin-bottom:7px;font-size:13.5px;}
+.vocab-card .ipa{color:var(--text-soft);font-size:12px;margin-left:6px;}
+.vocab-card .vi{color:var(--text-mid);font-size:12.5px;margin-top:2px;}
+/* review cards */
+.review-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);
+  padding:14px;margin-bottom:12px;box-shadow:var(--shadow-sm);font-size:13.5px;}
+.review-card.ok{border-left:4px solid var(--green-success);}
+.review-card.bad{border-left:4px solid var(--red);}
+.rv-head{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.rv-verdict{font-size:13px;font-weight:800;}
+.rv-verdict.ok{color:var(--green-success);}
+.rv-verdict.bad{color:var(--red);}
+.rv-verdict.retrying{color:var(--blue);}
+.rv-row{display:flex;gap:8px;margin-bottom:4px;}
+.rv-lbl{font-size:11px;font-weight:800;text-transform:uppercase;color:var(--text-soft);min-width:92px;padding-top:2px;}
+.rv-your{color:var(--red);font-weight:700;}
+.rv-your.neutral{color:var(--text-dark);}
+.rv-correct{color:var(--green-success);font-weight:800;}
+.rv-en{margin-top:8px;}
+.rv-vi{margin-top:6px;color:var(--text-mid);font-size:13px;background:var(--shell);
+  border-left:3px solid var(--sage);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:6px 10px;}
+.rv-trap{margin-top:8px;background:var(--amber-light);color:var(--amber);border-radius:var(--radius-sm);
+  padding:7px 10px;font-size:12.5px;font-weight:600;}
+.rv-retry{margin-top:10px;}
+.xp-quote{background:var(--shell);border-left:3px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:9px 12px;margin:8px 0 6px;font-style:italic;font-size:13px;}
+/* transcript */
+.transcript-sec{display:none;margin-top:28px;border-top:2px solid var(--border);padding-top:18px;}
+.transcript-sec.revealed{display:block;animation:fadeIn .3s;}
+.ts-turn{margin-bottom:14px;}
+.ts-speaker{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--moss);}
+.ts-en{font-size:14px;line-height:1.8;}
+.ts-vi{display:none;font-size:13px;color:var(--text-mid);background:var(--white);border-left:3px solid var(--sage);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:6px 10px;margin-top:4px;line-height:1.7;}
+.ts-vi.show{display:block;}
+.ev{}
+.ev.flash{background:var(--amber-light);border-radius:3px;transition:background .3s;box-shadow:0 0 0 3px var(--amber-light);}
+/* placeholder */
+.placeholder-card{background:var(--white);border:2px dashed var(--border);border-radius:var(--radius);padding:48px;text-align:center;color:var(--text-soft);margin:40px auto;max-width:520px;}
+.placeholder-card .big{font-size:40px;}
+.placeholder-card b{color:var(--forest);display:block;margin:10px 0 6px;font-size:16px;}
+/* reset fab */
+.reset-fab{position:fixed;bottom:24px;right:24px;background:var(--red);color:#fff;border-radius:99px;padding:12px 20px;font-size:13px;font-weight:700;box-shadow:var(--shadow-lg);z-index:200;border:none;cursor:pointer;display:none;}
+.reset-fab.show{display:block;}
+/* assistant drawer (responsive) */
+.assist-toggle{display:none;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+@media (max-width:1280px){
+  .workspace{grid-template-columns:1fr;}
+  .col-assist{position:fixed;top:0;right:0;width:340px;height:100vh;box-shadow:var(--shadow-lg);transform:translateX(100%);transition:transform .25s;z-index:150;}
+  .col-assist.open{transform:translateX(0);}
+  .assist-toggle{display:block;position:fixed;right:0;bottom:80px;background:var(--forest);color:#fff;border:none;border-radius:var(--radius-sm) 0 0 var(--radius-sm);padding:12px 14px;font-size:13px;font-weight:700;cursor:pointer;z-index:151;}
+}
+@media (max-width:1024px){
+  .workspace{height:auto;}
+  .workspace>*{overflow:visible;}
+  .col-work{border-right:none;}
+  .start-gate{height:auto;padding:60px 20px;}
+}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="badge-mint">IELTS LISTENING</span>
+      <h1>Listening Practice</h1>
+      <div class="sub">90 PRACTICES · 6 QUESTION TYPES</div>
+    </div>
+    <nav class="nav" id="nav"></nav>
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">0 / 90 finished</div>
+    </div>
+  </aside>
+  <main class="main-content" id="main"></main>
+</div>
+<button class="reset-fab" id="resetFab" onclick="resetCurrent()">↺ Reset This Practice</button>
+<button class="assist-toggle" id="assistToggle" onclick="toggleAssistDrawer()">🧭 Assistant</button>
+<script>
+/* ===== DATA — Practice D1P1: 5 bài (Cam 17) — PART 1 ===== */
+
+const TYPE_NAMES = [
+  "Form · Note · Table · Flowchart · Summary Completion",
+  "Sentence Completion",
+  "Short Answer Questions",
+  "Map · Plan · Diagram Labelling",
+  "Multiple Choice",
+  "Matching"
+];
+
+const PRACTICE_TITLES = {
+  d1p1: "Cam 17 · Note & Table Completion"
+};
+
+/* ---------- Bài 1: Cam 17, Test 1, Part 1 ---------- */
+const BAI_D1P1B1 = {
+  id: "d1p1b1",
+  title: "Bài 1 · Cam 17, Test 1, Part 1 — Buckworth Conservation Group",
+  minutes: 15,
+  groups: [
+    { instruction: "Questions 1–10. Complete the notes below. Write ONE WORD AND/OR A NUMBER for each answer.", from: 1, to: 10,
+      body: `<b>Buckworth Conservation Group</b><br><br>
+<u>Regular activities</u><br>
+<i>Beach</i><br>
+● making sure the beach does not have {{1}} on it<br>
+● no {{2}}<br><br>
+<i>Nature reserve</i><br>
+● maintaining paths<br>
+● nesting boxes for birds installed<br>
+● next task is taking action to attract {{3}} to the place<br>
+● identifying types of {{4}}<br>
+● building a new {{5}}<br><br>
+<u>Forthcoming events</u><br>
+<i>Saturday</i><br>
+● meet at Dunsmore Beach car park<br>
+● walk across the sands and reach the {{6}}<br>
+● take a picnic<br>
+● wear appropriate {{7}}<br><br>
+<i>Woodwork session</i><br>
+● suitable for {{8}} to participate in<br>
+● making {{9}} out of wood<br>
+● 17th, from 10 a.m. to 3 p.m.<br>
+● cost of session (no camping): £{{10}}` }
+  ],
+  questions: [
+    { id: 1, type: "blank", answer: "litter",
+      hint: { listen: ["something removed from the beach", "a monthly cleaning job"], chip: "ONE WORD" },
+      review: { quote: "trying to keep the beach free of litter", evId: "d1p1b1-ev-q1",
+        en: "'does not have … on it' is paraphrased as 'keep the beach free of …'.",
+        vi: "'không có … trên bãi biển' ↔ 'free of litter' → giữ bãi biển sạch rác." } },
+    { id: 2, type: "blank", answer: "dogs",
+      hint: { listen: ["something not allowed on the beach", "a rule"], chip: "ONE WORD" },
+      review: { quote: "I'm afraid not, as they're banned from the beach itself.", evId: "d1p1b1-ev-q2",
+        en: "'no …' in the notes = 'they're banned' in the audio.",
+        vi: "'no dogs' ↔ 'dogs are banned' → chó bị cấm mang ra bãi biển.",
+        trap: "Chó vẫn được dắt dọc vách đá — đừng để câu sau làm nhiễu." } },
+    { id: 3, type: "blank", answer: "insects",
+      hint: { listen: ["small creatures", "the next task at the reserve"], chip: "ONE WORD" },
+      review: { quote: "next we're going to work on encouraging insects", evId: "d1p1b1-ev-q3",
+        en: "'attract' is paraphrased as 'encourage'.",
+        vi: "'attract' ↔ 'encourage' → thu hút / khuyến khích côn trùng đến khu bảo tồn." } },
+    { id: 4, type: "blank", answer: "butterflies",
+      hint: { listen: ["a creature being identified", "a project"], chip: "ONE WORD" },
+      review: { quote: "identify the different species of butterflies that visit the reserve", evId: "d1p1b1-ev-q4",
+        en: "'types of' = 'different species of'.",
+        vi: "'types' ↔ 'different species' → các loài bướm khác nhau.",
+        trap: "'Moths' (bướm đêm) là dự án cũ của Jan, không phải đáp án." } },
+    { id: 5, type: "blank", answer: "wall",
+      hint: { listen: ["a structure being built", "storm damage"], chip: "ONE WORD" },
+      review: { quote: "replacing the wall on the southern side", evId: "d1p1b1-ev-q5",
+        en: "'building a new …' = 'replacing the …' (damaged in a storm).",
+        vi: "'building a new wall' ↔ 'replacing the wall' → thay bức tường bị bão làm hỏng." } },
+    { id: 6, type: "blank", answer: "island",
+      hint: { listen: ["a destination you walk to", "low tide"], chip: "ONE WORD" },
+      review: { quote: "the sands are dry enough for us to walk to the island without getting wet", evId: "d1p1b1-ev-q6",
+        en: "'walk across the sands and reach …' = 'walk to the island' at low tide.",
+        vi: "Đi bộ qua bãi cát khi thủy triều xuống → đến hòn đảo (Ruston Island)." } },
+    { id: 7, type: "blank", answer: "boots",
+      hint: { listen: ["something you wear", "wet conditions"], chip: "ONE WORD" },
+      review: { quote: "make sure your boots are waterproof", evId: "d1p1b1-ev-q7",
+        en: "'appropriate …' = '… are waterproof'.",
+        vi: "'wear appropriate boots' ↔ 'boots are waterproof' → ủng chống nước." } },
+    { id: 8, type: "blank", answer: "beginners",
+      hint: { listen: ["a level of experience", "who can join"], chip: "ONE WORD" },
+      review: { quote: "Is it OK for beginners to take part?", evId: "d1p1b1-ev-q8",
+        en: "'suitable for … to participate' = 'OK for beginners to take part'.",
+        vi: "'suitable for' ↔ 'OK for'; 'participate' ↔ 'take part' → phù hợp cho người mới bắt đầu." } },
+    { id: 9, type: "blank", answer: "spoons",
+      hint: { listen: ["small objects you make", "the first thing you learn"], chip: "ONE WORD" },
+      review: { quote: "You'll be starting with wooden spoons", evId: "d1p1b1-ev-q9",
+        en: "'making … out of wood' = 'starting with wooden spoons'.",
+        vi: "'making spoons out of wood' ↔ 'wooden spoons' → làm thìa gỗ.",
+        trap: "'Chairs' là mong muốn của Jan nhưng bị nói là quá tham vọng." } },
+    { id: 10, type: "blank", answer: ["35", "thirty five", "thirty-five"],
+      hint: { listen: ["a price", "two prices — choose the right one"], chip: "A NUMBER" },
+      review: { quote: "There's a charge of £35, including lunch", evId: "d1p1b1-ev-q10",
+        en: "'cost' = 'charge'. £35 is the session without camping.",
+        vi: "'cost' ↔ 'charge of £35' → mức phí 35 bảng (không cắm trại).",
+        trap: "£40 là giá NẾU cắm trại trong rừng — không phải đáp án." } }
+  ],
+  assist: {
+    prediction: [
+      "Q1–Q2 need things related to beach rules — one is removed, one is not allowed",
+      "Q3–Q4 need living creatures at the nature reserve",
+      "Q6–Q7 are about the Saturday walk — a place and an item to wear",
+      "Q10 needs a NUMBER — expect more than one price mentioned"
+    ]
+  },
+  transcript: [
+    { speaker: "Peter", en: "Hello?", vi: "Xin chào?" },
+    { speaker: "Jan", en: "Oh hello. My name's Jan. Are you the right person to talk to about the Buckworth Conservation Group?", vi: "Ồ xin chào, tôi tên là Jan. Nếu muốn hỏi về nhóm bảo tồn Buckworth, tôi hỏi bạn có đúng không?" },
+    { speaker: "Peter", en: "Yes, I'm Peter. I'm the secretary.", vi: "Vâng đúng rồi, tôi là Peter. Tôi là thư ký." },
+    { speaker: "Jan", en: "Good. I've just moved to this area, and I'm interested in getting involved. I was in a similar group where I used to live. Could you tell me something about your activities, please?", vi: "Tuyệt vời. Tôi mới đến khu vực này và muốn tham gia. Tôi đã từng tham gia một nhóm tương tự ở nơi tôi sống. Bạn có thể nói tôi biết một chút về các hoạt động của bạn được không?" },
+    { speaker: "Peter", en: "Of course. Well, we have a mixture of regular activities and special events. One of the regular ones is <span class='ev' id='d1p1b1-ev-q1'>trying to keep the beach free of litter</span>. A few of us spend a couple of hours a month on it, and it's awful how much there is to clear. I wish people would be more responsible and take it home with them.", vi: "Tất nhiên. Chà, chúng tôi có sự kết hợp giữa các hoạt động thường xuyên và các sự kiện đặc biệt. Một trong những hoạt động thường xuyên là cố gắng giữ cho bãi biển không có rác. Một vài người trong nhóm dành vài giờ mỗi tháng để nhặt rác, và thật khủng khiếp lượng rác phải nhặt quá nhiều. Tôi ước mọi người sẽ có trách nhiệm hơn và mang rác về nhà." },
+    { speaker: "Jan", en: "I totally agree. I'd be happy to help with that. Is it OK to take dogs?", vi: "Tôi hoàn toàn đồng ý. Tôi rất sẵn lòng giúp đỡ. Có được dắt chó theo không?" },
+    { speaker: "Peter", en: "<span class='ev' id='d1p1b1-ev-q2'>I'm afraid not, as they're banned from the beach itself.</span> You can take them along the cliffs, though. And children are welcome.", vi: "Tôi e là không, vì họ cấm chó đến bãi biển. Tuy nhiên, bạn có thể đưa chúng dọc theo các vách đá. Và có thể mang theo trẻ em." },
+    { speaker: "Jan", en: "Right.", vi: "Ok." },
+    { speaker: "Peter", en: "We also manage a nature reserve, and there's a lot to do there all year round. For example, because it's a popular place to visit, we spend a lot of time looking after the paths and making sure they're in good condition for walking.", vi: "Chúng tôi cũng quản lý một khu bảo tồn thiên nhiên và có rất nhiều việc phải làm ở đó quanh năm. Ví dụ: vì đây là một địa điểm nổi tiếng với khách du lịch, chúng tôi dành nhiều thời gian chăm sóc các con đường và đảm bảo rằng chúng ở trong tình trạng tốt để mọi người đi bộ." },
+    { speaker: "Jan", en: "I could certainly help with that.", vi: "Tôi chắc chắn có thể giúp việc này." },
+    { speaker: "Peter", en: "Good. And we have a programme of creating new habitats there. We've just finished making and installing nesting boxes for birds to use, and <span class='ev' id='d1p1b1-ev-q3'>next we're going to work on encouraging insects</span> – they're important for the biodiversity of the reserve.", vi: "Tốt. Và chúng tôi có một chương trình tạo môi trường sống mới ở đó. Chúng tôi vừa hoàn thành việc chế tạo và lắp đặt các hộp làm tổ cho chim và tiếp theo chúng tôi sẽ khuyến khích côn trùng tới đây vì chúng rất quan trọng đối với sự đa dạng sinh học của khu bảo tồn." },
+    { speaker: "Jan", en: "They certainly are.", vi: "Chắc chắn là như vậy." },
+    { speaker: "Peter", en: "Oh, and we're also running a project to <span class='ev' id='d1p1b1-ev-q4'>identify the different species of butterflies that visit the reserve</span>. You might be interested in taking part in that.", vi: "Ồ, và chúng tôi cũng đang thực hiện một dự án để xác định các loài bướm khác nhau đã bay đến khu bảo tồn. Bạn có thể muốn tham gia vào việc đó." },
+    { speaker: "Jan", en: "Sure. I was involved in something similar where I used to live, counting all the species of moths. I'd enjoy that.", vi: "Chắc chắn. Tôi đã tham gia vào một việc tương tự nơi tôi từng sống, đếm tất cả các loài bướm đêm. Tôi thích điều đó." },
+    { speaker: "Peter", en: "Another job we're doing at the reserve is <span class='ev' id='d1p1b1-ev-q5'>replacing the wall on the southern side</span>, between the parking area and our woodshed. It was badly damaged in a storm last month.", vi: "Một công việc khác mà chúng tôi đang làm tại khu bảo tồn là thay thế bức tường ở phía nam, giữa khu vực đậu xe và nhà kho gỗ. Nó đã bị hư hại nặng trong một trận bão tháng trước." },
+    { speaker: "Jan", en: "OK.", vi: "Okie." },
+    { speaker: "Peter", en: "Then as I said, we have a programme of events as well, both at the weekend, and during the week.", vi: "Như tôi đã nói, chúng tôi cũng có một số chương trình sự kiện, cả vào cuối tuần và trong tuần." },
+    { speaker: "Jan", en: "Right. I presume you have guided walks? I'd like to get to know the local countryside, as I'm new to the area.", vi: "Đúng vậy. Tôi đoán bạn có các cuộc đi bộ có hướng dẫn? Tôi muốn tìm hiểu vùng nông thôn địa phương, vì tôi là người mới đến khu vực này." },
+    { speaker: "Peter", en: "Yes, we do. The next walk is to Ruston Island, a week on Saturday. We'll be meeting in the car park at Dunsmore Beach at low tide – that's when <span class='ev' id='d1p1b1-ev-q6'>the sands are dry enough for us to walk to the island without getting wet</span>.", vi: "Vâng, chúng tôi có. Chuyến đi bộ tiếp theo là đến Đảo Ruston, một tuần nữa vào thứ Bảy. Chúng ta sẽ gặp nhau trong bãi đậu xe ở Bãi biển Dunsmore khi thủy triều xuống – đó là khi cát đủ khô để chúng ta có thể đi bộ ra đảo mà không bị ướt." },
+    { speaker: "Jan", en: "Sounds good.", vi: "Nghe hay đấy." },
+    { speaker: "Peter", en: "The island's a great place to explore. It's quite small, and it's got a range of habitats. It's also an ideal location for seeing seals just off the coast, or even on the beach.", vi: "Hòn đảo là một nơi tuyệt vời để khám phá. Nó khá nhỏ và có nhiều môi trường sống. Đây cũng là một địa điểm lý tưởng để ngắm hải cẩu ngay ngoài khơi, hoặc thậm chí trên bãi biển." },
+    { speaker: "Jan", en: "OK. And is there anything we should bring, like a picnic, for instance?", vi: "Được. Và chúng ta nên mang theo gì, chẳng hạn như đồ ăn dã ngoại?" },
+    { speaker: "Peter", en: "Yes, do bring one, as it's a full-day walk. And of course, it'll be wet walking across and back, so <span class='ev' id='d1p1b1-ev-q7'>make sure your boots are waterproof</span>.", vi: "Vâng, hãy mang theo nhé, vì đó là một chuyến đi bộ cả ngày. Và tất nhiên sẽ ướt khi đi qua lại, vì vậy hãy đảm bảo rằng ủng của bạn không thấm nước." },
+    { speaker: "Jan", en: "I must buy a new pair – there's a hole in one of my current ones! Well, I'd definitely like to come on the walk.", vi: "Tôi phải mua một đôi mới – một chiếc trong đôi hiện tại của tôi đã thủng! Chà, tôi chắc chắn muốn tham gia chuyến đi bộ." },
+    { speaker: "Peter", en: "Great. Then later this month we're having a one-day woodwork session in Hopton Wood.", vi: "Tuyệt vời. Sau đó vào cuối tháng này, chúng tôi sẽ có một buổi học đồ gỗ kéo dài một ngày ở Hopton Wood." },
+    { speaker: "Jan", en: "I've never tried that before. <span class='ev' id='d1p1b1-ev-q8'>Is it OK for beginners to take part?</span>", vi: "Tôi chưa bao giờ thử điều đó trước đây. Người mới bắt đầu có thể tham gia không?" },
+    { speaker: "Peter", en: "Definitely. There'll be a couple of experts leading the session, and we keep the number of participants down, so you'll get as much help as you need.", vi: "Chắc chắn rồi. Sẽ có một vài chuyên gia dẫn dắt và chúng tôi giữ số lượng người tham gia ở mức thấp, vì vậy bạn sẽ nhận được nhiều trợ giúp khi cần." },
+    { speaker: "Jan", en: "Excellent! I'd love to be able to make chairs.", vi: "Tuyệt vời! Tôi rất muốn có thể làm được những chiếc ghế." },
+    { speaker: "Peter", en: "That's probably too ambitious for one day! <span class='ev' id='d1p1b1-ev-q9'>You'll be starting with wooden spoons</span>, and of course learning how to use the tools. And anything you make is yours to take home with you.", vi: "Quá tham vọng để hoàn thành trong một ngày! Bạn sẽ bắt đầu với những chiếc thìa gỗ và tất nhiên là học cách sử dụng các công cụ. Và bạn có thể mang về nhà bất kỳ thứ gì bạn làm." },
+    { speaker: "Jan", en: "That sounds like fun. When is it?", vi: "Nghe có vẻ vui. Khi nào nhỉ?" },
+    { speaker: "Peter", en: "It's on the 17th, from 10 am, until 3. <span class='ev' id='d1p1b1-ev-q10'>There's a charge of £35, including lunch</span>, or £40 if you want to camp in the wood.", vi: "Vào ngày 17, từ 10 giờ sáng tới 3 giờ chiều. Phí là 35 bảng bao gồm bữa trưa, hoặc 40 bảng nếu bạn muốn cắm trại trong rừng." },
+    { speaker: "Jan", en: "I should think I'll come home the same day. Well, I'd certainly like to join the group.", vi: "Tôi nghĩ tôi sẽ về nhà trong ngày. Chà, tôi chắc chắn muốn tham gia nhóm." }
+  ]
+};
+
+/* ---------- Bài 2: Cam 17, Test 1, Part 4 ---------- */
+const BAI_D1P1B2 = {
+  id: "d1p1b2",
+  title: "Bài 2 · Cam 17, Test 1, Part 4 — Labyrinths",
+  minutes: 15,
+  groups: [
+    { instruction: "Questions 31–40. Complete the notes below. Write ONE WORD ONLY for each answer.", from: 31, to: 40,
+      body: `<b>Labyrinths</b><br><br>
+<u>Definition</u><br>
+● a winding spiral path leading to a central area<br><br>
+<u>Labyrinths compared with mazes</u><br>
+● Mazes are a type of {{31}}<br>
+&nbsp;&nbsp;– {{32}} is needed to navigate through a maze<br>
+&nbsp;&nbsp;– the word 'maze' is derived from a word meaning a feeling of {{33}}<br>
+● Labyrinths represent a journey through life<br>
+&nbsp;&nbsp;– they have frequently been used in {{34}} and prayer<br><br>
+<u>Early examples of the labyrinth spiral</u><br>
+● Ancient carvings on {{35}} have been found across many cultures<br>
+● The Pima, a Native American tribe, wove the symbol on baskets<br>
+● Ancient Greeks used the symbol on {{36}}<br><br>
+<u>Walking labyrinths</u><br>
+● The largest surviving example of a turf labyrinth once had a big {{37}} at its centre<br><br>
+<u>Labyrinths nowadays</u><br>
+● Believed to have a beneficial impact on mental and physical health, e.g., walking a maze can reduce a person's {{38}} rate<br>
+● Used in medical and health and fitness settings and also prisons<br>
+● Popular with patients, visitors and staff in hospitals<br>
+&nbsp;&nbsp;– patients who can't walk can use 'finger labyrinths' made from {{39}}<br>
+&nbsp;&nbsp;– research has shown that Alzheimer's sufferers experience less {{40}}` }
+  ],
+  questions: [
+    { id: 31, type: "blank", answer: "puzzle",
+      hint: { listen: ["what a maze is a kind of", "a definition"], chip: "ONE WORD" },
+      review: { quote: "A maze is quite different as it is a kind of puzzle", evId: "d1p1b2-ev-q31",
+        en: "'a type of' = 'a kind of' — a very common IELTS pair.",
+        vi: "'a type of' ↔ 'a kind of' → mê cung là một dạng trò chơi câu đố." } },
+    { id: 32, type: "blank", answer: "logic",
+      hint: { listen: ["a mental skill", "how you find the way"], chip: "ONE WORD" },
+      review: { quote: "before using logic to work out the pattern", evId: "d1p1b2-ev-q32",
+        en: "'… is needed to navigate' = 'using … to work out the pattern and find your way'.",
+        vi: "Cần tư duy logic để tìm ra quy luật và tìm đường → logic." } },
+    { id: 33, type: "blank", answer: "confusion",
+      hint: { listen: ["the origin of the word 'maze'", "a feeling"], chip: "ONE WORD" },
+      review: { quote: "come from a Scandinavian word for a state of confusion", evId: "d1p1b2-ev-q33",
+        en: "'a feeling of' = 'a state of'.",
+        vi: "'the feeling of' ↔ 'a state of' → trạng thái/cảm giác bối rối." } },
+    { id: 34, type: "blank", answer: "meditation",
+      hint: { listen: ["an activity paired with prayer", "a spiritual use"], chip: "ONE WORD" },
+      review: { quote: "used as a meditation and prayer tool in many cultures", evId: "d1p1b2-ev-q34",
+        en: "The notes keep the same pairing: '… and prayer'.",
+        vi: "Được dùng như công cụ thiền định và cầu nguyện → meditation." } },
+    { id: 35, type: "blank", answer: "stone",
+      hint: { listen: ["a material carvings are made on", "ancient examples"], chip: "ONE WORD" },
+      review: { quote: "found carved into stone, from Sardinia to Scandinavia", evId: "d1p1b2-ev-q35",
+        en: "'carvings on …' = 'carved into …'.",
+        vi: "'carvings on stone' ↔ 'carved into stone' → khắc vào đá." } },
+    { id: 36, type: "blank", answer: "coins",
+      hint: { listen: ["small objects used by Ancient Greeks", "four thousand years ago"], chip: "ONE WORD" },
+      review: { quote: "the labyrinth spiral was used on coins around four thousand years ago", evId: "d1p1b2-ev-q36",
+        en: "'used the symbol on …' = 'was used on coins'.",
+        vi: "Người Hy Lạp cổ dùng biểu tượng trên đồng tiền xu → coins." } },
+    { id: 37, type: "blank", answer: "tree",
+      hint: { listen: ["something at the centre", "the largest turf labyrinth"], chip: "ONE WORD" },
+      review: { quote: "which used to have a large tree in the middle of it", evId: "d1p1b2-ev-q37",
+        en: "'at its centre' = 'in the middle of it' — classic location paraphrase.",
+        vi: "'at its centre' ↔ 'in the middle of it' → từng có một cây cổ thụ lớn ở giữa." } },
+    { id: 38, type: "blank", answer: "breathing",
+      hint: { listen: ["a body process that slows down", "health benefits"], chip: "ONE WORD" },
+      review: { quote: "which include slower breathing and a restored sense of balance", evId: "d1p1b2-ev-q38",
+        en: "'reduce a person's … rate' = 'slower breathing'.",
+        vi: "'reduce breathing (rate)' ↔ 'slower breathing' → nhịp thở chậm hơn." } },
+    { id: 39, type: "blank", answer: "paper",
+      hint: { listen: ["a material", "patients who can't walk"], chip: "ONE WORD" },
+      review: { quote: "can have a paper 'finger labyrinth' brought to their bed", evId: "d1p1b2-ev-q39",
+        en: "'made from …' = 'a paper finger labyrinth'.",
+        vi: "Bệnh nhân không đi lại được dùng 'mê lộ ngón tay' bằng giấy → paper." } },
+    { id: 40, type: "blank", answer: "anxiety",
+      hint: { listen: ["a negative feeling that decreases", "Alzheimer's research"], chip: "ONE WORD" },
+      review: { quote: "provided 'short-term calming, relaxation, and relief from anxiety' for Alzheimer's patients", evId: "d1p1b2-ev-q40",
+        en: "'experience less …' = 'relief from anxiety'.",
+        vi: "'less anxiety' ↔ 'relief from anxiety' → giảm bớt sự lo âu." } }
+  ],
+  assist: {
+    vocab: [
+      { w: "labyrinthine", ipa: "/ˌlæb.əˈrɪn.θaɪn/", vi: "loằng ngoằng, phức tạp như mê lộ" },
+      { w: "intricate", ipa: "/ˈɪn.trɪ.kət/", vi: "tinh vi, phức tạp, nhiều chi tiết đan xen" },
+      { w: "metaphor for…", ipa: "/ˈmet.ə.fɔːr/", vi: "phép ẩn dụ cho cái gì đó" },
+      { w: "mindfulness", ipa: "/ˈmaɪnd.fəl.nəs/", vi: "sự chánh niệm" }
+    ],
+    prediction: [
+      "Q31–33 compare mazes with labyrinths — expect nouns about games and feelings",
+      "Q35–36 need MATERIALS or OBJECTS from ancient cultures",
+      "Q38 needs a body process — '… rate' after the blank is a strong clue",
+      "Q39–40 are about hospitals — a material and a feeling"
+    ]
+  },
+  transcript: [
+    { en: "Labyrinths have existed for well over 4,000 years. Labyrinths and labyrinthine symbols have been found in regions as diverse as modern-day Turkey, Ireland, Greece, and India. There are various designs of labyrinth but what they all have in common is a winding spiral path which leads to a central area. There is one starting point at the entrance and the goal is to reach the central area. Finding your way through a labyrinth involves many twists and turns, but it's not possible to get lost as there is only one single path.",
+      vi: "Mê lộ (đường một lối) đã tồn tại từ hơn 4.000 năm trước. Mê lộ và các biểu tượng hình mê lộ đã được tìm thấy ở nhiều khu vực đa dạng như Thổ Nhĩ Kỳ, Ireland, Hy Lạp và Ấn Độ ngày nay. Có nhiều thiết kế mê lộ khác nhau, nhưng điểm chung của chúng là đều có một con đường xoắn ốc uốn lượn dẫn đến khu vực trung tâm. Chỉ có một điểm bắt đầu duy nhất ở lối vào và mục tiêu là đi đến được khu vực trung tâm. Việc tìm đường đi qua một mê lộ đòi hỏi nhiều khúc cua và ngã rẽ, nhưng bạn không thể bị lạc vì chỉ có một con đường duy nhất." },
+    { en: "In modern times, the word labyrinth has taken on a different meaning and is often used as a synonym for a maze. <span class='ev' id='d1p1b2-ev-q31'>A maze is quite different as it is a kind of puzzle</span> with an intricate network of paths. Mazes became fashionable in the 15th and 16th centuries in Europe, and can still be found in the gardens of great houses and palaces. The paths are usually surrounded by thick, high hedges so that it's not possible to see over them. Entering a maze usually involves getting lost a few times <span class='ev' id='d1p1b2-ev-q32'>before using logic to work out the pattern</span> and find your way to the centre and then out again. There are lots of dead ends and paths which lead you back to where you started. The word 'maze' is believed to <span class='ev' id='d1p1b2-ev-q33'>come from a Scandinavian word for a state of confusion</span>. This is where the word 'amazing' comes from.",
+      vi: "Trong thời kỳ hiện đại, từ 'labyrinth' đã mang một ý nghĩa khác và thường được dùng như một từ đồng nghĩa với từ 'maze' (mê cung). Một mê cung thì khá khác biệt vì nó là một dạng trò chơi câu đố (Q31) với một mạng lưới đường đi phức tạp. Mê cung trở nên thịnh hành vào thế kỷ 15 và 16 ở Châu Âu, và ngày nay vẫn có thể được tìm thấy trong vườn của các dinh thự và cung điện lớn. Các lối đi thường được bao quanh bởi những hàng rào cây cao và dày đến mức không thể nhìn qua được. Việc đi vào một mê cung thường khiến bạn bị lạc vài lần trước khi phải dùng tư duy logic để tìm ra quy luật (Q32), từ đó tìm đường đến trung tâm rồi lại đi ra ngoài. Có rất nhiều ngõ cụt và những con đường dẫn bạn quay trở lại điểm xuất phát. Từ 'maze' được cho là bắt nguồn từ một từ vùng Scandinavia có nghĩa là trạng thái bối rối/nhầm lẫn (Q33). Đây cũng là nguồn gốc của từ 'amazing'." },
+    { en: "Labyrinths, on the other hand, have a very different function. Although people now often refer to things they find complicated as labyrinths, this is not how they were seen in the past. The winding spiral of the labyrinth has been used for centuries as a metaphor for life's journey. It served as a spiritual reminder that there is purpose and meaning to our lives and helped to give people a sense of direction. Labyrinths are thought to encourage a feeling of calm and have been <span class='ev' id='d1p1b2-ev-q34'>used as a meditation and prayer tool in many cultures</span> over many centuries.",
+      vi: "Mặt khác, mê lộ lại có một chức năng rất khác biệt. Mặc dù ngày nay mọi người thường gọi những thứ phức tạp là 'labyrinths', nhưng đây không phải là cách chúng được nhìn nhận trong quá khứ. Đường xoắn ốc uốn lượn của mê lộ đã được sử dụng trong nhiều thế kỷ như một phép ẩn dụ cho hành trình cuộc đời. Nó đóng vai trò như một lời nhắc nhở tâm linh rằng cuộc sống của chúng ta có mục đích, ý nghĩa và giúp con người có được cảm giác về định hướng. Mê lộ được cho là giúp thúc đẩy cảm giác bình yên và đã được sử dụng như một công cụ thiền định và cầu nguyện (Q34) trong nhiều nền văn hóa qua nhiều thế kỷ." },
+    { en: "The earliest examples of the labyrinth spiral pattern have been <span class='ev' id='d1p1b2-ev-q35'>found carved into stone</span>, from Sardinia to Scandinavia, from Arizona to India to Africa. In Europe, these spiral carvings date from the late Bronze Age. The Native American Pima tribe wove baskets with a circular labyrinth design that depicted their own cosmology. In Ancient Greece, <span class='ev' id='d1p1b2-ev-q36'>the labyrinth spiral was used on coins around four thousand years ago</span>. Labyrinths made of mosaics were commonly found in bathhouses, villas and tombs throughout the Roman Empire.",
+      vi: "Những ví dụ sớm nhất về họa tiết xoắn ốc của mê lộ đã được tìm thấy dưới dạng khắc vào đá (Q35), từ Sardinia đến Scandinavia, từ Arizona đến Ấn Độ và cả Châu Phi. Ở Châu Âu, những hình khắc xoắn ốc này có niên đại từ cuối thời kỳ Đồ đồng. Bộ tộc Pima da đỏ bản địa Mỹ đã dệt những chiếc giỏ có thiết kế mê lộ tròn để mô tả vũ trụ quan của riêng họ. Ở Hy Lạp cổ đại, hình xoắn ốc mê lộ đã được sử dụng trên các đồng tiền xu (Q36) từ khoảng bốn nghìn năm trước. Các mê lộ làm bằng tranh khảm thường được tìm thấy trong các nhà tắm công cộng, biệt thự và lăng mộ khắp Đế chế La Mã." },
+    { en: "In Northern Europe, there were actual physical labyrinths designed for walking on. These were cut into the turf or grass, usually in a circular pattern. The origin of these walking labyrinths remains unclear, but they were probably used for fertility rites which may date back thousands of years. Eleven examples of turf labyrinths survive today, including the largest one at Saffron Walden, England, <span class='ev' id='d1p1b2-ev-q37'>which used to have a large tree in the middle of it</span>.",
+      vi: "Ở Bắc Âu, từng có những mê lộ vật lý thực sự được thiết kế để mọi người đi bộ lên đó. Chúng được cắt sâu vào lớp đất cỏ hoặc thảm cỏ, thường theo hình tròn. Nguồn gốc của những mê lộ đi bộ này vẫn chưa rõ ràng, nhưng chúng có lẽ đã được sử dụng cho các nghi lễ phồn thực có niên đại từ hàng ngàn năm trước. Mười một nguyên mẫu mê lộ trên thảm cỏ vẫn còn tồn tại đến ngày nay, bao gồm cả cái lớn nhất tại Saffron Walden, Anh, nơi từng có một cây cổ thụ lớn ở chính giữa (Q37)." },
+    { en: "More recently labyrinths have experienced something of a revival. Some believe that walking a labyrinth promotes healing and mindfulness, and there are those who believe in its emotional and physical benefits, <span class='ev' id='d1p1b2-ev-q38'>which include slower breathing</span> and a restored sense of balance and perspective. This idea has become so popular that labyrinths have been laid into the floors of spas, wellness centres and even prisons in recent years.",
+      vi: "Gần đây, mê lộ đang trải qua một sự hồi sinh mạnh mẽ. Một số người tin rằng đi bộ trong mê lộ giúp thúc đẩy sự chữa lành và chánh niệm, và cũng có những người tin vào các lợi ích về mặt thể chất lẫn cảm xúc của nó, bao gồm nhịp thở chậm hơn (Q38) cùng cảm giác cân bằng và góc nhìn cuộc sống được khôi phục. Ý tưởng này đã trở nên phổ biến đến mức trong những năm gần đây, các mê lộ đã được lát ngay trên sàn của các spa, trung tâm chăm sóc sức khỏe và thậm chí cả trong các nhà tù." },
+    { en: "A pamphlet at Colorado Children's Hospital informs patients that 'walking a labyrinth can often calm people in the midst of a crisis'. And apparently, it's not only patients who benefit. Many visitors find walking a labyrinth less stressful than sitting in a corridor or waiting room. Some doctors even walk the labyrinth during their breaks. In some hospitals, patients who can't walk <span class='ev' id='d1p1b2-ev-q39'>can have a paper 'finger labyrinth' brought to their bed</span>. The science behind the theory is a little sketchy, but there are dozens of small-scale studies which support claims about the benefits of labyrinths. For example, one study found that walking a labyrinth <span class='ev' id='d1p1b2-ev-q40'>provided 'short-term calming, relaxation, and relief from anxiety' for Alzheimer's patients</span>.",
+      vi: "Một cuốn tờ rơi tại Bệnh viện Nhi đồng Colorado thông tin đến bệnh nhân rằng 'việc đi bộ trong mê lộ thường có thể giúp xoa dịu con người ngay giữa cơn khủng hoảng'. Và rõ ràng, không chỉ các bệnh nhân mới được hưởng lợi. Nhiều khách đến thăm nhận thấy việc đi bộ trong mê lộ ít căng thẳng hơn nhiều so với việc ngồi ở hành lang hoặc phòng chờ. Một số bác sĩ thậm chí còn đi bộ trong mê lộ trong giờ nghỉ của họ. Ở một số bệnh viện, những bệnh nhân không thể đi lại có thể được mang đến tận giường một chiếc 'mê lộ ngón tay' bằng giấy (Q39). Cơ sở khoa học đằng sau lý thuyết này còn hơi sơ sài, nhưng có hàng tá nghiên cứu quy mô nhỏ ủng hộ những tuyên bố về lợi ích của mê lộ. Ví dụ, một nghiên cứu cho thấy việc đi bộ trong mê lộ mang lại 'sự bình tĩnh ngắn hạn, thư giãn và giảm bớt lo âu' cho các bệnh nhân Alzheimer (Q40)." },
+    { en: "So, what is it about labyrinths that makes their appeal so universal? Well…",
+      vi: "Vậy, điều gì ở mê lộ đã tạo nên sức hút phổ quát đến thế? Chà…" }
+  ]
+};
+/* ===== DATA — Practice D1P1: 5 bài (Cam 17) — PART 2 ===== */
+
+/* ---------- Bài 3: Cam 17, Test 2, Part 1 ---------- */
+const BAI_D1P1B3 = {
+  id: "d1p1b3",
+  title: "Bài 3 · Cam 17, Test 2, Part 1 — Voluntary Work in Southoe",
+  minutes: 15,
+  groups: [
+    { instruction: "Questions 1–7. Complete the notes below. Write ONE WORD ONLY for each answer.", from: 1, to: 7,
+      body: `<b>Opportunities for voluntary work in Southoe village</b><br><br>
+<i>Library</i><br>
+● Help with {{1}} books (times to be arranged)<br>
+● Help needed to keep {{2}} of books up to date<br>
+● Library is in the {{3}} Room in the village hall<br><br>
+<i>Lunch club</i><br>
+● Help by providing {{4}}<br>
+● Help with hobbies such as {{5}}<br><br>
+<i>Help for individuals needed next week</i><br>
+● Taking Mrs Carroll to {{6}}<br>
+● Work in the {{7}} at Mr Selsbury's house` },
+    { instruction: "Questions 8–10. Complete the table below. Write ONE WORD ONLY for each answer.", from: 8, to: 10,
+      body: `<table>
+<tr><th colspan="4">Village social events</th></tr>
+<tr><th>Date</th><th>Event</th><th>Location</th><th>Help needed</th></tr>
+<tr><td>19 Oct</td><td>{{8}}</td><td>Village hall</td><td>providing refreshments</td></tr>
+<tr><td>18 Nov</td><td>dance</td><td>Village hall</td><td>checking {{9}}</td></tr>
+<tr><td>31 Dec</td><td>New Year's Eve party</td><td>Mountfort Hotel</td><td>designing the {{10}}</td></tr>
+</table>` }
+  ],
+  questions: [
+    { id: 1, type: "blank", answer: "collecting",
+      hint: { listen: ["an action done with books", "needing a car"], chip: "ONE WORD" },
+      review: { quote: "one thing you could do is get involved in collecting them", evId: "d1p1b3-ev-q1",
+        en: "'Help with …' = 'get involved in collecting them' (books).",
+        vi: "'help with' ↔ 'get involved in' → tham gia đi thu gom sách." } },
+    { id: 2, type: "blank", answer: "records",
+      hint: { listen: ["something kept up to date", "borrowed and donated books"], chip: "ONE WORD" },
+      review: { quote: "the records that we keep of the books we're given", evId: "d1p1b3-ev-q2",
+        en: "'keep … of books up to date' = 'the records… keep them up to date'.",
+        vi: "'keep records up to date' → cập nhật hồ sơ/sổ sách về các cuốn sách." } },
+    { id: 3, type: "blank", answer: "West",
+      hint: { listen: ["the name of a room", "where the library is"], chip: "ONE WORD" },
+      review: { quote: "a room in the village hall, the West Room", evId: "d1p1b3-ev-q3",
+        en: "The room is named directly: the West Room, on the left as you go in.",
+        vi: "Tên phòng được đọc trực tiếp → West (Phòng Tây, bên trái lối vào)." } },
+    { id: 4, type: "blank", answer: "transport",
+      hint: { listen: ["a kind of help Frank offers", "people from other villages"], chip: "ONE WORD" },
+      review: { quote: "I could help with transport, if that's of any use", evId: "d1p1b3-ev-q4",
+        en: "'transport' is later confirmed by 'we're always in need of more drivers'.",
+        vi: "'transport' ↔ 'drivers' → giúp đưa đón, làm tài xế." } },
+    { id: 5, type: "blank", answer: "art",
+      hint: { listen: ["a hobby group Frank likes", "particular interests"], chip: "ONE WORD" },
+      review: { quote: "particularly if there are any art groups", evId: "d1p1b3-ev-q5",
+        en: "'hobbies such as …' = the hobby group Frank asks about.",
+        vi: "Frank muốn tham gia nhóm sở thích, đặc biệt nhóm nghệ thuật → art." } },
+    { id: 6, type: "blank", answer: "hospital",
+      hint: { listen: ["a place Mrs Carroll needs to go", "an appointment"], chip: "ONE WORD" },
+      review: { quote: "She needs a lift to the hospital next week", evId: "d1p1b3-ev-q6",
+        en: "'Taking Mrs Carroll to …' = 'a lift to the hospital'.",
+        vi: "'a lift to the hospital' ↔ 'take her to the hospital' → đưa đến bệnh viện." } },
+    { id: 7, type: "blank", answer: "garden",
+      hint: { listen: ["a part of Mr Selsbury's house", "outdoor work"], chip: "ONE WORD" },
+      review: { quote: "if you could do some weeding in his garden that would be wonderful", evId: "d1p1b3-ev-q7",
+        en: "'Work in the …' = 'weeding in his garden'.",
+        vi: "'weeding in the garden' → nhổ cỏ, làm việc trong vườn.",
+        trap: "'Kitchen' đã có người trang trí — không phải chỗ cần giúp." } },
+    { id: 8, type: "blank", answer: "quiz",
+      hint: { listen: ["an event on 19 October", "the village hall gets full"], chip: "ONE WORD" },
+      review: { quote: "on the 19th of October, we're holding a quiz", evId: "d1p1b3-ev-q8",
+        en: "The event on 19 Oct is named directly: a quiz.",
+        vi: "Sự kiện ngày 19/10 được nêu trực tiếp → quiz (cuộc đố vui)." } },
+    { id: 9, type: "blank", answer: "tickets",
+      hint: { listen: ["something checked at the door", "sold in advance"], chip: "ONE WORD" },
+      review: { quote: "we sell tickets in advance, and having an extra person to check them at the door", evId: "d1p1b3-ev-q9",
+        en: "'checking …' = 'check them (tickets) at the door'.",
+        vi: "Soát vé ở cửa khi mọi người đến → tickets." } },
+    { id: 10, type: "blank", answer: "poster",
+      hint: { listen: ["something not made yet", "Frank's old job"], chip: "ONE WORD" },
+      review: { quote: "The one thing we haven't got yet is a poster", evId: "d1p1b3-ev-q10",
+        en: "'designing the …' = the missing item Frank (a graphic designer) can make.",
+        vi: "Thứ duy nhất chưa có là áp phích — đúng sở trường thiết kế của Frank → poster." } }
+  ],
+  assist: {
+    vocab: [
+      { w: "co-ordinate", ipa: "/koʊˈɔːr.dən.eɪt/", vi: "điều phối, phối hợp" },
+      { w: "flexible", ipa: "/ˈflek.sə.bəl/", vi: "linh hoạt, linh động" },
+      { w: "purpose-built", ipa: "/ˌpɜːr.pəs ˈbɪlt/", vi: "được xây cho một mục đích riêng" },
+      { w: "struggle to do sth", ipa: "/ˈstrʌɡl/", vi: "gặp khó khăn khi làm gì" },
+      { w: "refreshments", ipa: "/rɪˈfreʃ.mənts/", vi: "đồ ăn nhẹ, thức uống giải khát" },
+      { w: "in advance", ipa: "", vi: "trước (về thời gian)" },
+      { w: "bottleneck", ipa: "/ˈbɒt.əl.nek/", vi: "nút cổ chai, điểm ùn tắc" },
+      { w: "right up my street", ipa: "", vi: "đúng sở trường của tôi" }
+    ],
+    prediction: [
+      "Q1–Q2 need actions/things related to library books",
+      "Q3 needs the NAME of a room — listen for a direction word",
+      "Q6–Q7 are about helping individuals — a place and a part of a house",
+      "Q8–10 fill a table — match each answer to its DATE row"
+    ]
+  },
+  transcript: [
+    { speaker: "Jane", en: "Hello, Jane Fairbanks speaking.", vi: "Xin chào, Jane Fairbanks đang nghe." },
+    { speaker: "Frank", en: "Oh, good morning. My name's Frank Pritchard. I've just retired and moved to Southoe. I'd like to become a volunteer, and I gather you co-ordinate voluntary work in the village.", vi: "Ồ, chào buổi sáng. Tên tôi là Frank Pritchard. Tôi vừa nghỉ hưu và chuyển đến Southoe. Tôi muốn trở thành một tình nguyện viên, và tôi tìm hiểu được rằng bạn điều phối công việc tình nguyện trong làng." },
+    { speaker: "Jane", en: "That's right.", vi: "Đúng vậy." },
+    { speaker: "Frank", en: "What sort of thing could I do?", vi: "Tôi có thể làm gì được?" },
+    { speaker: "Jane", en: "Well, we need help with the village library. We borrow books from the town library, and individuals also donate them. So, <span class='ev' id='d1p1b3-ev-q1'>one thing you could do is get involved in collecting them</span> – if you've got a car, that is.", vi: "Chà, chúng tôi cần trợ giúp trong thư viện làng. Chúng tôi mượn sách từ thư viện thị trấn, và các cá nhân cũng quyên góp sách nữa. Vì vậy, một điều bạn có thể làm là tham gia vào việc thu gom chúng – nếu bạn có ô tô." },
+    { speaker: "Frank", en: "Yes, that's no problem.", vi: "Vâng, không vấn đề." },
+    { speaker: "Jane", en: "The times are pretty flexible so we can arrange it to suit you. Another thing is <span class='ev' id='d1p1b3-ev-q2'>the records that we keep of the books we're given</span>, and those we borrow and need to return to the town library. It would be very useful to have another person to help keep them up to date.", vi: "Thời gian khá linh hoạt nên chúng tôi có thể sắp xếp sao cho phù hợp với bạn. Một điều nữa là hồ sơ chúng tôi ghi lại các cuốn sách được tặng, những cuốn chúng tôi mượn và cần trả lại cho thư viện thị trấn. Sẽ rất hữu ích nếu có thêm một người giúp cập nhật chúng." },
+    { speaker: "Frank", en: "Right. I'm used to working on a computer – I presume they're computerised?", vi: "Tôi làm được. Tôi đã quen làm việc trên máy tính – chắc hồ sơ đã được vi tính hóa?" },
+    { speaker: "Jane", en: "Oh yes.", vi: "Vâng." },
+    { speaker: "Frank", en: "Is the library purpose-built? I haven't noticed it when I've walked round the village.", vi: "Thư viện có được xây riêng không? Tôi không để ý thấy nó khi đi vòng quanh làng." },
+    { speaker: "Jane", en: "No, we simply have the use of a room in the village hall, <span class='ev' id='d1p1b3-ev-q3'>the West Room</span>. It's on the left as you go in.", vi: "Không, chúng tôi chỉ sử dụng một căn phòng trong hội trường làng, Phòng Tây. Nó ở bên trái khi bạn đi vào." },
+    { speaker: "Frank", en: "I must go and have a look inside the hall.", vi: "Tôi phải đến xem bên trong hội trường mới được." },
+    { speaker: "Jane", en: "Yes, it's a nice building.", vi: "Vâng, tòa nhà rất đẹp." },
+    { speaker: "Frank", en: "Do you run a lunch club in the village for elderly people? I know a lot of places do.", vi: "Bạn có tổ chức câu lạc bộ ăn trưa trong làng cho người già không? Tôi thấy nhiều nơi tổ chức như vậy." },
+    { speaker: "Jane", en: "Yes, we have a very successful club.", vi: "Có ạ. Chúng tôi có một câu lạc bộ khá thành công." },
+    { speaker: "Frank", en: "<span class='ev' id='d1p1b3-ev-q4'>I could help with transport, if that's of any use.</span>", vi: "Tôi có thể giúp việc vận chuyển nếu bạn cần." },
+    { speaker: "Jane", en: "Ooo definitely. People come to the club from neighbouring villages, and we're always in need of more drivers.", vi: "Chắc chắn rồi. Mọi người đến câu lạc bộ từ các làng lân cận và chúng tôi luôn cần thêm tài xế." },
+    { speaker: "Frank", en: "And does the club have groups that focus on a particular hobby, too? I could get involved in one or two, <span class='ev' id='d1p1b3-ev-q5'>particularly if there are any art groups</span>.", vi: "Và câu lạc bộ có các nhóm tập trung vào một sở thích cụ thể không? Tôi có thể tham gia một hoặc hai nhóm, đặc biệt nếu có nhóm nghệ thuật nào." },
+    { speaker: "Jane", en: "Excellent. I'll find out where we need help and get back to you.", vi: "Tuyệt vời. Tôi sẽ tìm hiểu chỗ nào cần trợ giúp và liên hệ lại với bạn." },
+    { speaker: "Frank", en: "Fine. What about help for individual residents? Do you arrange that at all?", vi: "Okie. Vậy còn việc giúp đỡ những cá nhân trong khu dân cư? Bạn cũng sắp xếp việc này à?" },
+    { speaker: "Jane", en: "Yes, we do it as a one-off. In fact, there's Mrs Carroll. <span class='ev' id='d1p1b3-ev-q6'>She needs a lift to the hospital next week</span>, and we're struggling to find someone.", vi: "Vâng, có ạ, theo từng lần một. Thực tế là bà Carroll cần được đưa đến bệnh viện tuần tới, và chúng tôi đang chật vật tìm người." },
+    { speaker: "Frank", en: "When's her appointment?", vi: "Bà ấy có hẹn khi nào?" },
+    { speaker: "Jane", en: "On Tuesday. It would take the whole morning.", vi: "Thứ Ba. Chắc sẽ hết cả buổi sáng." },
+    { speaker: "Frank", en: "I could do that.", vi: "Tôi làm được nhé." },
+    { speaker: "Jane", en: "Oh, that would be great. Thank you. And also, next week, we're arranging to have some work done to Mr Selsbury's house before he moves, as he isn't healthy enough to do it himself. We've got some people to decorate his kitchen, but <span class='ev' id='d1p1b3-ev-q7'>if you could do some weeding in his garden that would be wonderful</span>.", vi: "Ồ, thế thì tuyệt quá. Cảm ơn nhiều. Và tuần sau chúng tôi cũng sắp xếp một số công việc ở nhà ông Selsbury trước khi ông ấy chuyển đi, vì ông không đủ khỏe để tự làm. Chúng tôi đã có người trang trí nhà bếp, nhưng nếu bạn có thể nhổ cỏ trong vườn của ông ấy thì thật tuyệt vời." },
+    { speaker: "Frank", en: "OK. I'd enjoy that. And presumably the day and time are flexible.", vi: "Okie, tôi thích việc này. Và chắc là ngày giờ linh hoạt nhỉ." },
+    { speaker: "Jane", en: "Oh yes. Just say when would suit you best, and we'll let Mr Selsbury know.", vi: "Vâng. Bạn cứ nói thời gian nào phù hợp nhất, chúng tôi sẽ báo ông Selsbury." },
+    { speaker: "Frank", en: "Good.", vi: "Được ạ." },
+    { speaker: "Jane", en: "The volunteers group also organises monthly social events, which is a great way to meet other people, of course.", vi: "Nhóm tình nguyện cũng tổ chức các sự kiện xã hội hàng tháng, đó là cách rất tốt để gặp gỡ mọi người." },
+    { speaker: "Frank", en: "Uhuh.", vi: "Vâng." },
+    { speaker: "Jane", en: "So next month, <span class='ev' id='d1p1b3-ev-q8'>on the 19th of October, we're holding a quiz</span> – a couple of residents are great at planning unusual ones, and we always fill the village hall.", vi: "Vào tháng tới, ngày 19 tháng 10, chúng tôi sẽ tổ chức một cuộc đố vui – một vài cư dân rất giỏi lên kế hoạch cho những màn đố lạ, và hội trường làng lúc nào cũng kín chỗ." },
+    { speaker: "Frank", en: "That sounds like fun. Can I do anything to help?", vi: "Nghe có vẻ vui đấy. Tôi có thể giúp gì không?" },
+    { speaker: "Jane", en: "Well, because of the number of people, we need plenty of refreshments for halfway through. So, if you could provide any, we'd be grateful.", vi: "Chà, vì số lượng người đông, chúng tôi cần nhiều đồ ăn nhẹ và thức uống cho giữa buổi. Nếu bạn có thể cung cấp, chúng tôi sẽ rất biết ơn." },
+    { speaker: "Frank", en: "I'm sure I could. I'll think about what to make, and let you know.", vi: "Chắc chắn có thể rồi. Tôi sẽ nghĩ xem làm gì và báo bạn nhé." },
+    { speaker: "Jane", en: "Thank you. Then on November the 18th, we're holding a dance, also in the village hall. We've booked a band that specialises in music of the 1930s – they've been before, and we've had a lot of requests to bring them back.", vi: "Cảm ơn. Sau đó, vào ngày 18 tháng 11, chúng tôi tổ chức một buổi khiêu vũ, cũng tại hội trường làng. Chúng tôi đã đặt một ban nhạc chuyên về âm nhạc thập niên 1930 – họ đã từng đến và có rất nhiều yêu cầu mời họ trở lại." },
+    { speaker: "Frank", en: "I'm not really a dancer, but I'd like to do something to help.", vi: "Tôi không hẳn là người khiêu vũ, nhưng tôi muốn làm gì đó để giúp." },
+    { speaker: "Jane", en: "Well, <span class='ev' id='d1p1b3-ev-q9'>we sell tickets in advance, and having an extra person to check them at the door</span>, as people arrive, would be good – it can be quite a bottleneck if everyone arrives at once!", vi: "Vâng, chúng tôi bán vé trước, và có thêm một người soát vé ở cửa khi mọi người đến thì rất tốt – sẽ dễ ùn tắc nếu tất cả cùng đến một lúc!" },
+    { speaker: "Frank", en: "OK, I'm happy with that.", vi: "Vâng, tôi sẵn sàng giúp." },
+    { speaker: "Jane", en: "We're also arranging a New Year's Eve party. We're expecting that to be a really big event, so instead of the village hall, it'll be held in the Mountfort Hotel.", vi: "Chúng tôi cũng đang sắp xếp một bữa tiệc đêm giao thừa. Chúng tôi kỳ vọng đó sẽ là một sự kiện thực sự lớn, nên thay vì hội trường làng, nó sẽ được tổ chức tại khách sạn Mountfort." },
+    { speaker: "Frank", en: "The …?", vi: "Ở …?" },
+    { speaker: "Jane", en: "Mountfort. M-O-U-N-T-F-O-R-T Hotel. It isn't in Southoe itself, but it's only a couple of miles away. The hotel will be providing dinner and we've booked a band. <span class='ev' id='d1p1b3-ev-q10'>The one thing we haven't got yet is a poster.</span> That isn't something you could do, by any chance, is it?", vi: "Mountfort. M-O-U-N-T-F-O-R-T. Khách sạn không nằm trong Southoe nhưng chỉ cách vài dặm. Khách sạn cung cấp bữa tối và chúng tôi đã đặt ban nhạc. Thứ duy nhất chúng tôi chưa có là một tấm áp phích. Chắc đó không phải việc bạn làm được nhỉ?" },
+    { speaker: "Frank", en: "Well actually, yes. Before I retired I was a graphic designer, so that's right up my street.", vi: "Thực ra là có đó. Trước khi nghỉ hưu tôi là nhà thiết kế đồ họa, nên việc này đúng sở trường của tôi." },
+    { speaker: "Jane", en: "Oh perfect! I'll give you the details, and then perhaps you could send me a draft…", vi: "Tuyệt vời! Tôi sẽ gửi bạn thông tin, và có lẽ bạn gửi lại tôi bản nháp nhé…" },
+    { speaker: "Frank", en: "Of course.", vi: "Vâng." }
+  ]
+};
+
+/* ---------- Bài 4: Cam 17, Test 3, Part 1 ---------- */
+const BAI_D1P1B4 = {
+  id: "d1p1b4",
+  title: "Bài 4 · Cam 17, Test 3, Part 1 — Advice on Surfing Holidays",
+  minutes: 15,
+  groups: [
+    { instruction: "Questions 1–10. Complete the notes below. Write ONE WORD AND/OR A NUMBER for each answer.", from: 1, to: 10,
+      body: `<b>Advice on surfing holidays</b><br><br>
+<i>Jack's advice</i><br>
+● Recommends surfing for {{1}} holidays in the summer<br>
+● Need to be quite {{2}}<br><br>
+<i>Irish surfing locations</i><br>
+● County Clare<br>
+&nbsp;&nbsp;– Lahinch has some good quality {{3}} and surf schools<br>
+&nbsp;&nbsp;– There are famous cliffs nearby<br>
+● County Mayo<br>
+&nbsp;&nbsp;– Good surf school at {{4}} beach<br>
+&nbsp;&nbsp;– Surf camp lasts for one {{5}}<br>
+&nbsp;&nbsp;– Can also explore the local {{6}} by kayak<br><br>
+<i>Weather</i><br>
+● Best month to go: {{7}}<br>
+● Average temperature in summer: approx. {{8}} degrees<br><br>
+<i>Costs</i><br>
+● Equipment<br>
+&nbsp;&nbsp;– Wetsuit and surfboard: {{9}} euros per day<br>
+&nbsp;&nbsp;– Also advisable to hire {{10}} for warmth` }
+  ],
+  questions: [
+    { id: 1, type: "blank", answer: "family",
+      hint: { listen: ["who the holiday is for", "enjoying together"], chip: "ONE WORD" },
+      review: { quote: "it's the kind of holiday all the family can enjoy together", evId: "d1p1b4-ev-q1",
+        en: "'for … holidays' = 'the kind of holiday all the family can enjoy'.",
+        vi: "Kỳ nghỉ cả gia đình có thể cùng tận hưởng → family." } },
+    { id: 2, type: "blank", answer: "fit",
+      hint: { listen: ["a physical quality", "learning quickly, not tiring"], chip: "ONE WORD" },
+      review: { quote: "I've heard you need to be pretty fit", evId: "d1p1b4-ev-q2",
+        en: "'quite …' = 'pretty fit' — 'pretty' works like 'quite'.",
+        vi: "'quite fit' ↔ 'pretty fit' → cần khá khỏe mạnh, cân đối." } },
+    { id: 3, type: "blank", answer: "hotels",
+      hint: { listen: ["places to stay in Lahinch", "quality"], chip: "ONE WORD" },
+      review: { quote: "Are there good hotels there?", evId: "d1p1b4-ev-q3",
+        en: "'good quality …' = 'good hotels… some very nice ones'.",
+        vi: "'good' ↔ 'nice' → có những khách sạn chất lượng tốt ở Lahinch.",
+        trap: "'Hostels' và 'campsites' cũng được nhắc — nhưng chúng là 'basic'." } },
+    { id: 4, type: "blank", answer: "Carrowniskey",
+      hint: { listen: ["a beach name", "spelling read aloud"], chip: "ONE WORD" },
+      review: { quote: "There's a good surf school at Carrowniskey beach", evId: "d1p1b4-ev-q4",
+        en: "The name is spelled out: C-A-double R-O-W-N-I-S-K-E-Y.",
+        vi: "Tên bãi biển được đánh vần trực tiếp → Carrowniskey." } },
+    { id: 5, type: "blank", answer: "week",
+      hint: { listen: ["a length of time", "the surf camp"], chip: "ONE WORD" },
+      review: { quote: "Three hours every day for a week", evId: "d1p1b4-ev-q5",
+        en: "'lasts for one …' = 'for a week'.",
+        vi: "Trại hè lướt sóng kéo dài một tuần → week." } },
+    { id: 6, type: "blank", answer: "bay",
+      hint: { listen: ["a place explored by kayak", "nearby"], chip: "ONE WORD" },
+      review: { quote: "rent some kayaks to have a look around the bay which is nearby", evId: "d1p1b4-ev-q6",
+        en: "'the local …' = 'the bay which is nearby' — local ↔ nearby.",
+        vi: "'local' ↔ 'nearby' → khám phá vịnh gần đó bằng thuyền kayak." } },
+    { id: 7, type: "blank", answer: "September",
+      hint: { listen: ["a month", "warmer water"], chip: "ONE WORD" },
+      review: { quote: "September's my favourite month because the water is warmer then", evId: "d1p1b4-ev-q7",
+        en: "'Best month' = 'my favourite month'.",
+        vi: "'best month' ↔ 'favourite month' → tháng 9, nước ấm hơn.",
+        trap: "Tháng 8 được nhắc nhưng là tháng MƯA nhiều hơn." } },
+    { id: 8, type: "blank", answer: ["19", "nineteen"],
+      hint: { listen: ["an average temperature", "two numbers — choose the average"], chip: "A NUMBER" },
+      review: { quote: "The average temperature is about 19 degrees", evId: "d1p1b4-ev-q8",
+        en: "'approx.' = 'about 19 degrees'.",
+        vi: "Nhiệt độ trung bình khoảng 19 độ → 19.",
+        trap: "25 độ là mức TỐI ĐA ('doesn't go above 25') — không phải trung bình." } },
+    { id: 9, type: "blank", answer: ["30", "thirty"],
+      hint: { listen: ["a daily price in euros", "hiring equipment"], chip: "A NUMBER" },
+      review: { quote: "a daily rate of about 30 euros for the hire of a wetsuit and board", evId: "d1p1b4-ev-q9",
+        en: "'per day' = 'a daily rate'.",
+        vi: "Giá thuê theo ngày khoảng 30 euro → 30.",
+        trap: "40 euro là số tiền TIẾT KIỆM được nếu thuê theo tuần." } },
+    { id: 10, type: "blank", answer: "boots",
+      hint: { listen: ["an item to hire", "keeping warm"], chip: "ONE WORD" },
+      review: { quote: "make sure you also get boots. They keep your feet warm", evId: "d1p1b4-ev-q10",
+        en: "'for warmth' = 'keep your feet warm'.",
+        vi: "'for warmth' ↔ 'keep your feet warm' → thuê thêm ủng để giữ ấm." } }
+  ],
+  assist: {
+    vocab: [
+      { w: "physically demanding", ipa: "", vi: "đòi hỏi cao về thể chất" },
+      { w: "thoroughly recommend", ipa: "", vi: "cực kỳ khuyến khích" },
+      { w: "lively", ipa: "/ˈlaɪv.li/", vi: "sinh động, nhộn nhịp" },
+      { w: "tire out", ipa: "", vi: "làm ai đó mệt nhoài, kiệt sức" },
+      { w: "daily rate", ipa: "", vi: "giá thuê theo ngày" },
+      { w: "wetsuit", ipa: "/ˈwet.suːt/", vi: "bộ đồ lặn/lướt sóng giữ ấm" }
+    ],
+    prediction: [
+      "Q1–Q2 are about WHO surfing suits and WHAT quality you need",
+      "Q4 needs a beach NAME — expect spelling letter by letter",
+      "Q7–Q9 need a month and NUMBERS — beware of extra numbers as distractors",
+      "Q10 needs an item of equipment linked to warmth"
+    ]
+  },
+  transcript: [
+    { speaker: "Woman", en: "Jack, I'm thinking of taking the kids to the seaside on a surfing holiday this summer and I wanted to ask your advice – as I know you're such an expert.", vi: "Jack, tôi đang nghĩ đến việc đưa bọn trẻ đến bờ biển cho một kỳ nghỉ lướt sóng mùa hè này và tôi muốn hỏi lời khuyên của bạn – vì tôi biết bạn là một chuyên gia." },
+    { speaker: "Jack", en: "Well, I don't know about that, but yes, I've done a bit of surfing over the years. I'd thoroughly recommend it. I think <span class='ev' id='d1p1b4-ev-q1'>it's the kind of holiday all the family can enjoy together</span>. The thing about surfing is that it's great for all ages and all abilities. My youngest started when he was only three!", vi: "Tôi không dám nhận là chuyên gia, nhưng vâng, tôi đã lướt sóng nhiều năm qua. Tôi rất khuyến khích. Tôi nghĩ đó là kiểu kỳ nghỉ mà cả gia đình có thể cùng nhau tận hưởng. Điều thú vị về lướt sóng là nó phù hợp cho mọi lứa tuổi và mọi trình độ. Đứa con út của tôi bắt đầu khi mới ba tuổi!" },
+    { speaker: "Woman", en: "Wow! But it's quite physically demanding, isn't it? I've heard you <span class='ev' id='d1p1b4-ev-q2'>need to be pretty fit</span>.", vi: "Chà! Nhưng nó khá đòi hỏi về thể chất, phải không? Tôi nghe nói cần phải khá khỏe mạnh." },
+    { speaker: "Jack", en: "Yes. You'll certainly learn more quickly and won't tire as easily.", vi: "Vâng. Bạn chắc chắn sẽ học nhanh hơn và không dễ mệt." },
+    { speaker: "Woman", en: "Well that should be OK for us. You've been surfing a few times in Ireland, haven't you?", vi: "Vậy chắc ổn với chúng tôi. Bạn đã lướt sóng vài lần ở Ireland rồi phải không?" },
+    { speaker: "Jack", en: "Yes. There's some great surfing there, which people don't always realise.", vi: "Vâng. Ở đó có những chỗ lướt sóng tuyệt vời mà mọi người không phải lúc nào cũng biết." },
+    { speaker: "Woman", en: "And which locations would you recommend? – there seem to be quite a few.", vi: "Vậy bạn muốn giới thiệu những địa điểm nào? – dường như có khá nhiều." },
+    { speaker: "Jack", en: "Yes, there are loads. Last year we went to County Donegal. There are several great places to surf there.", vi: "Vâng, có rất nhiều. Năm ngoái chúng tôi đến Quận Donegal. Có một số nơi tuyệt vời để lướt sóng ở đó." },
+    { speaker: "Woman", en: "What about in County Clare? I read that's also really good for surfing.", vi: "Còn ở Quận Clare thì sao? Tôi đọc thấy nơi đó cũng rất tốt cho lướt sóng." },
+    { speaker: "Jack", en: "Yes, it is. I've been there a few times. Most people go to Lahinch. My kids love it there. The waves aren't too challenging and the town is very lively.", vi: "Đúng vậy. Tôi đã đến đó vài lần. Hầu hết mọi người đến Lahinch. Bọn trẻ nhà tôi thích nơi đó. Sóng không quá thách thức và thị trấn rất nhộn nhịp." },
+    { speaker: "Woman", en: "<span class='ev' id='d1p1b4-ev-q3'>Are there good hotels there?</span>", vi: "Có khách sạn nào tốt không?" },
+    { speaker: "Jack", en: "Yes – some very nice ones and there are also a few basic hostels and campsites. It's great if you need lessons as the surf schools are excellent.", vi: "Vâng – một số rất đẹp và cũng có vài nhà nghỉ, khu cắm trại cơ bản. Nếu bạn cần học lướt sóng thì các trường ở đó rất xuất sắc." },
+    { speaker: "Woman", en: "Sounds good.", vi: "Nghe tuyệt đó." },
+    { speaker: "Jack", en: "Yes and there's lots to see in the area – like those well-known cliffs… I've forgotten the name of them.", vi: "Vâng, và có nhiều thứ để xem trong vùng – như những vách đá nổi tiếng… tôi quên mất tên rồi." },
+    { speaker: "Woman", en: "Oh don't worry – I can look them up.", vi: "À không sao, tôi tra sau cũng được." },
+    { speaker: "Jack", en: "I've also been surfing in County Mayo, which is less well-known for surfing, but we had a really good time. That was a few years ago when the kids were younger. <span class='ev' id='d1p1b4-ev-q4'>There's a good surf school at Carrowniskey beach.</span>", vi: "Tôi cũng đã lướt sóng ở Quận Mayo, nơi ít nổi tiếng về lướt sóng hơn, nhưng chúng tôi đã có khoảng thời gian rất vui. Đó là vài năm trước khi bọn trẻ còn nhỏ. Có một trường dạy lướt sóng tốt ở bãi biển Carrowniskey." },
+    { speaker: "Woman", en: "How do you spell that?", vi: "Bạn đánh vần giúp tôi với." },
+    { speaker: "Jack", en: "C-A-double R-O-W-N-I-S-K-E-Y.", vi: "C-A-hai chữ R-O-W-N-I-S-K-E-Y." },
+    { speaker: "Woman", en: "OK.", vi: "Vâng." },
+    { speaker: "Jack", en: "I put the kids into the surf camp they run during the summer for 10–16 year olds.", vi: "Tôi đăng ký cho bọn trẻ tham gia trại lướt sóng họ tổ chức trong mùa hè cho trẻ 10–16 tuổi." },
+    { speaker: "Woman", en: "Oh right. How long was that for?", vi: "Ừ nhỉ. Kéo dài bao lâu?" },
+    { speaker: "Jack", en: "Three hours every day <span class='ev' id='d1p1b4-ev-q5'>for a week</span>. It was perfect – they were so tired out after that.", vi: "Ba giờ mỗi ngày trong một tuần. Hoàn hảo luôn – sau đó chúng mệt nhoài." },
+    { speaker: "Woman", en: "I can imagine.", vi: "Tôi tưởng tượng được." },
+    { speaker: "Jack", en: "One thing we did while the kids were surfing was to rent some kayaks to <span class='ev' id='d1p1b4-ev-q6'>have a look around the bay which is nearby</span>. It's really beautiful.", vi: "Một điều chúng tôi làm khi bọn trẻ lướt sóng là thuê thuyền kayak để dạo quanh vịnh gần đó. Nó thật sự rất đẹp." },
+    { speaker: "Woman", en: "Oh, I'd love to do that.", vi: "Ồ, tôi cũng thích làm vậy." },
+    { speaker: "Woman", en: "Now the only time I went to Ireland it rained practically every day.", vi: "Lần duy nhất tôi đến Ireland thì trời mưa gần như cả ngày." },
+    { speaker: "Jack", en: "Mmm yes – that can be a problem – but you can surf in the rain, you know.", vi: "Ừm vâng – đó có thể là một vấn đề – nhưng bạn vẫn có thể lướt sóng dưới mưa mà." },
+    { speaker: "Woman", en: "It doesn't have the same appeal, somehow.", vi: "Nhưng không hấp dẫn bằng." },
+    { speaker: "Jack", en: "Well, the weather's been fine the last couple of years when I've been there, but actually, it tends to rain more in August than in the spring or autumn. <span class='ev' id='d1p1b4-ev-q7'>September's my favourite month because the water is warmer then.</span>", vi: "Chà, mấy năm gần đây khi tôi đến thì thời tiết ổn, nhưng thực ra tháng 8 thường mưa nhiều hơn mùa xuân hoặc mùa thu. Tháng 9 là tháng tôi thích nhất vì khi đó nước ấm hơn." },
+    { speaker: "Woman", en: "The only problem is that the kids are back to school then.", vi: "Vấn đề duy nhất là khi đó bọn trẻ đã đi học lại rồi." },
+    { speaker: "Jack", en: "I know. But one good thing about Irish summers is that it doesn't get too hot. <span class='ev' id='d1p1b4-ev-q8'>The average temperature is about 19 degrees</span> and it usually doesn't go above 25 degrees.", vi: "Tôi biết. Nhưng một điều hay về mùa hè Ireland là không quá nóng. Nhiệt độ trung bình khoảng 19 độ và thường không vượt quá 25 độ." },
+    { speaker: "Woman", en: "That sounds alright. Now what about costs?", vi: "Nghe ổn đó. Còn chi phí thì sao?" },
+    { speaker: "Jack", en: "Surfing is a pretty cheap holiday really – the only cost is the hire of equipment. You can expect to pay <span class='ev' id='d1p1b4-ev-q9'>a daily rate of about 30 euros for the hire of a wetsuit and board</span> – but you can save about 40 euros if you hire by the week.", vi: "Lướt sóng thực sự là một kỳ nghỉ khá rẻ – chi phí duy nhất là thuê thiết bị. Bạn có thể trả khoảng 30 euro mỗi ngày cho việc thuê bộ đồ lướt sóng và ván – nhưng có thể tiết kiệm khoảng 40 euro nếu thuê theo tuần." },
+    { speaker: "Woman", en: "That's not too bad.", vi: "Không quá tệ." },
+    { speaker: "Jack", en: "No. It's important to make sure you get good quality wetsuits – you'll all get too cold if you don't. And <span class='ev' id='d1p1b4-ev-q10'>make sure you also get boots. They keep your feet warm</span> and it's easier to surf with them on too.", vi: "Đúng vậy. Quan trọng là phải chọn bộ đồ chất lượng tốt – nếu không cả nhà sẽ bị lạnh. Và nhớ thuê thêm ủng. Chúng giữ ấm bàn chân và mang ủng cũng dễ lướt sóng hơn." },
+    { speaker: "Woman", en: "OK. Well, thanks very much…", vi: "Vâng, cảm ơn nhiều…" }
+  ]
+};
+
+/* ---------- Bài 5: Cam 17, Test 4, Part 1 ---------- */
+const BAI_D1P1B5 = {
+  id: "d1p1b5",
+  title: "Bài 5 · Cam 17, Test 4, Part 1 — Easy Life Cleaning Services",
+  minutes: 15,
+  groups: [
+    { instruction: "Questions 1–10. Complete the notes below. Write ONE WORD for each answer.", from: 1, to: 10,
+      body: `<b>Easy Life Cleaning Services</b><br><br>
+<i>Basic cleaning package offered</i><br>
+● Cleaning all surfaces<br>
+● Cleaning the {{1}} throughout the apartment<br>
+● Cleaning shower, sinks, toilet etc.<br><br>
+<i>Additional services agreed</i><br>
+● Every week<br>
+&nbsp;&nbsp;– Cleaning the {{2}}<br>
+&nbsp;&nbsp;– Ironing clothes – {{3}} only<br>
+● Every month<br>
+&nbsp;&nbsp;– Cleaning all the {{4}} from the inside<br>
+&nbsp;&nbsp;– Washing down the {{5}}<br><br>
+<i>Other possibilities</i><br>
+● They can organise a plumber or an {{6}} if necessary.<br>
+● A special cleaning service is available for customers who are allergic to {{7}}<br><br>
+<i>Information on the cleaners</i><br>
+● Before being hired, all cleaners have a background check carried out by the {{8}}<br>
+● References are required.<br>
+● All cleaners are given {{9}} for two weeks.<br>
+● Customers send a {{10}} after each visit.<br>
+● Usually, each customer has one regular cleaner.` }
+  ],
+  questions: [
+    { id: 1, type: "blank", answer: ["floor", "floors"],
+      hint: { listen: ["a surface in every room", "no carpets"], chip: "ONE WORD" },
+      review: { quote: "the floor would need cleaning", evId: "d1p1b5-ev-q1",
+        en: "No carpets, but the floor needs cleaning — 'in every room' = 'throughout the apartment'.",
+        vi: "Không có thảm nhưng sàn nhà cần lau — 'mọi phòng' ↔ 'throughout' → floor." } },
+    { id: 2, type: "blank", answer: "fridge",
+      hint: { listen: ["a kitchen appliance", "cleaned weekly"], chip: "ONE WORD" },
+      review: { quote: "can you do the fridge?", evId: "d1p1b5-ev-q2",
+        en: "The client asks for the fridge instead of the oven.",
+        vi: "Khách từ chối lò nướng, yêu cầu dọn tủ lạnh → fridge.",
+        trap: "'Oven' được đề nghị trước nhưng khách hầu như không dùng." } },
+    { id: 3, type: "blank", answer: "shirts",
+      hint: { listen: ["items of clothing", "for work"], chip: "ONE WORD" },
+      review: { quote: "just my shirts for work that week", evId: "d1p1b5-ev-q3",
+        en: "'only' = 'just' — just my shirts for work.",
+        vi: "'only' ↔ 'just' → chỉ ủi áo sơ mi đi làm." } },
+    { id: 4, type: "blank", answer: "windows",
+      hint: { listen: ["something cleaned from the inside", "monthly"], chip: "ONE WORD" },
+      review: { quote: "the inside of your windows need cleaning", evId: "d1p1b5-ev-q4",
+        en: "'from the inside' matches 'the inside of your windows'.",
+        vi: "Bên ngoài đã có chuyên gia lau, bên trong cửa sổ hơi bẩn → windows." } },
+    { id: 5, type: "blank", answer: "balcony",
+      hint: { listen: ["an outdoor part of the flat", "washed monthly"], chip: "ONE WORD" },
+      review: { quote: "would you be able to do something about the balcony?", evId: "d1p1b5-ev-q5",
+        en: "'Washing down' = the pressure washer on the balcony.",
+        vi: "Rửa ban công mỗi tháng bằng máy phun áp lực → balcony.",
+        trap: "'Curtains' (rèm) được đề nghị nhưng khách nói không cần." } },
+    { id: 6, type: "blank", answer: "electrician",
+      hint: { listen: ["a professional they can organise", "paired with a plumber"], chip: "ONE WORD" },
+      review: { quote: "And the same thing if you need an electrician", evId: "d1p1b5-ev-q6",
+        en: "'if necessary' = 'if you need' — plumber first, then electrician.",
+        vi: "'if necessary' ↔ 'if you need' → giới thiệu thợ điện đáng tin cậy." } },
+    { id: 7, type: "blank", answer: "dust",
+      hint: { listen: ["something in the air", "allergies"], chip: "ONE WORD" },
+      review: { quote: "capturing up to 99% of all the dust in the air", evId: "d1p1b5-ev-q7",
+        en: "The special vacuum system captures dust — for customers with allergies.",
+        vi: "Hệ thống hút bụi đặc biệt loại bỏ 99% bụi → dust (dị ứng với bụi)." } },
+    { id: 8, type: "blank", answer: "police",
+      hint: { listen: ["who runs the background check", "criminal records"], chip: "ONE WORD" },
+      review: { quote: "undergo a security check with the police", evId: "d1p1b5-ev-q8",
+        en: "'a background check' = 'a security check with the police'.",
+        vi: "'background check' ↔ 'security check with the police' → do cảnh sát thực hiện." } },
+    { id: 9, type: "blank", answer: "training",
+      hint: { listen: ["something given for two weeks", "before starting the job"], chip: "ONE WORD" },
+      review: { quote: "we give them training for it. That lasts for two weeks", evId: "d1p1b5-ev-q9",
+        en: "'given … for two weeks' = 'training… lasts for two weeks'.",
+        vi: "Được đào tạo kỹ lưỡng trong hai tuần, cuối kỳ có bài kiểm tra → training." } },
+    { id: 10, type: "blank", answer: "review",
+      hint: { listen: ["something customers send", "after each visit"], chip: "ONE WORD" },
+      review: { quote: "complete a review of their performance after every visit and to email it to us", evId: "d1p1b5-ev-q10",
+        en: "'send a …' = 'complete a review… and email it to us'.",
+        vi: "Khách hoàn thành đánh giá sau mỗi lần dọn và gửi email → review." } }
+  ],
+  assist: {
+    vocab: [
+      { w: "domestic cleaning", ipa: "", vi: "dọn dẹp nhà cửa (hộ gia đình)" },
+      { w: "polish", ipa: "/ˈpɒl.ɪʃ/", vi: "đánh bóng" },
+      { w: "grubby", ipa: "/ˈɡrʌb.i/", vi: "hơi bẩn, nhem nhuốc" },
+      { w: "pressure washer", ipa: "", vi: "máy phun nước áp lực cao" },
+      { w: "plumber", ipa: "/ˈplʌm.ər/", vi: "thợ sửa ống nước (âm 'b' câm)" },
+      { w: "undergo", ipa: "/ˌʌn.dəˈɡəʊ/", vi: "trải qua (kiểm tra, quá trình)" },
+      { w: "thorough", ipa: "/ˈθʌr.ə/", vi: "kỹ lưỡng, triệt để" },
+      { w: "monitor", ipa: "/ˈmɒn.ɪ.tər/", vi: "giám sát, theo dõi" }
+    ],
+    prediction: [
+      "Q1 needs a SURFACE — the word 'throughout' hints it's in every room",
+      "Q2–Q5 are agreed services — beware of services the client REFUSES",
+      "Q6 is paired with 'a plumber' — expect another profession",
+      "Q8–Q10 are about the cleaners — who checks, what they get, what customers send"
+    ]
+  },
+  transcript: [
+    { speaker: "Jacinta", en: "Hello, Easy Life Cleaning Services, Jacinta speaking.", vi: "Xin chào, Dịch vụ Vệ sinh Easy Life, Jacinta đang nghe." },
+    { speaker: "Client", en: "Oh hello. I'm looking for a cleaning service for my apartment – do you do domestic cleaning?", vi: "Ồ xin chào. Tôi đang tìm dịch vụ dọn dẹp cho căn hộ của mình – bạn có làm dọn dẹp nhà cửa không?" },
+    { speaker: "Jacinta", en: "Sure.", vi: "Có ạ." },
+    { speaker: "Client", en: "Well, it's just a one-bedroom flat. Do you have a basic cleaning package?", vi: "Nó chỉ là một căn hộ một phòng ngủ. Bạn có gói dọn dẹp cơ bản không?" },
+    { speaker: "Jacinta", en: "Yes. For a one-bedroom flat we're probably looking at about two hours for a clean. So we'd do a thorough clean of all surfaces in each room, and polish them where necessary. Does your apartment have carpets?", vi: "Vâng. Với căn hộ một phòng ngủ, việc dọn dẹp mất khoảng hai giờ. Chúng tôi sẽ làm sạch kỹ lưỡng tất cả các bề mặt trong mỗi phòng và đánh bóng khi cần thiết. Căn hộ của bạn có thảm không?" },
+    { speaker: "Client", en: "No, I don't have any, but <span class='ev' id='d1p1b5-ev-q1'>the floor would need cleaning</span>.", vi: "Không, nhưng sàn nhà sẽ cần được lau." },
+    { speaker: "Jacinta", en: "Of course – we'd do that in every room. And we'd do a thorough clean of the kitchen and bathroom.", vi: "Tất nhiên – chúng tôi sẽ lau sàn mọi phòng. Và chúng tôi sẽ làm sạch kỹ nhà bếp và phòng tắm." },
+    { speaker: "Client", en: "OK.", vi: "Okie." },
+    { speaker: "Jacinta", en: "Then we have some additional services which you can request if you want. So for example, we can clean your oven for you every week.", vi: "Chúng tôi còn có một số dịch vụ bổ sung mà bạn có thể yêu cầu. Ví dụ, chúng tôi có thể vệ sinh lò nướng hàng tuần cho bạn." },
+    { speaker: "Client", en: "Actually, I hardly ever use that, but <span class='ev' id='d1p1b5-ev-q2'>can you do the fridge?</span>", vi: "Thực ra tôi hầu như không dùng lò nướng, nhưng bạn dọn tủ lạnh được không?" },
+    { speaker: "Jacinta", en: "Sure. Would you like that done every week?", vi: "Chắc chắn rồi. Bạn muốn làm hàng tuần chứ?" },
+    { speaker: "Client", en: "Yes, definitely. And would ironing clothes be an additional service you can do?", vi: "Vâng, chắc chắn. Và ủi quần áo có phải dịch vụ bổ sung bạn làm được không?" },
+    { speaker: "Jacinta", en: "Yes, of course.", vi: "Chắc chắn có ạ." },
+    { speaker: "Client", en: "It wouldn't be much, <span class='ev' id='d1p1b5-ev-q3'>just my shirts for work that week</span>.", vi: "Không nhiều đâu, chỉ áo sơ mi tôi mặc đi làm trong tuần thôi." },
+    { speaker: "Jacinta", en: "That's fine. And we could also clean your microwave if you want.", vi: "Được ạ. Và chúng tôi cũng có thể vệ sinh lò vi sóng nếu bạn muốn." },
+    { speaker: "Client", en: "No, I wipe that out pretty regularly so there's no need for that.", vi: "Không, tôi lau nó khá thường xuyên nên không cần." },
+    { speaker: "Jacinta", en: "We also offer additional services that you might want a bit less often, say every month. So for example, if <span class='ev' id='d1p1b5-ev-q4'>the inside of your windows need cleaning</span>, we could do that.", vi: "Chúng tôi cũng có các dịch vụ bổ sung ít thường xuyên hơn, chẳng hạn hàng tháng. Ví dụ, nếu bên trong cửa sổ của bạn cần lau, chúng tôi có thể làm." },
+    { speaker: "Client", en: "Yes, that'd be good. I'm on the fifteenth floor, so the outside gets done regularly by specialists, but the inside does get a bit grubby.", vi: "Vâng, thế thì tốt. Tôi ở tầng 15, bên ngoài đã có chuyên gia lau thường xuyên, nhưng bên trong thì hơi bẩn." },
+    { speaker: "Jacinta", en: "And we could arrange for your curtains to get cleaned if necessary.", vi: "Và chúng tôi có thể sắp xếp giặt rèm cửa nếu cần." },
+    { speaker: "Client", en: "No, they're OK. But <span class='ev' id='d1p1b5-ev-q5'>would you be able to do something about the balcony?</span> It's quite small and I don't use it much, but it could do with a wash every month or so.", vi: "Không, rèm ổn. Nhưng bạn có thể làm gì đó với ban công không? Nó khá nhỏ và tôi không dùng nhiều, nhưng nên rửa mỗi tháng một lần." },
+    { speaker: "Jacinta", en: "Yes, we can get the pressure washer onto that.", vi: "Vâng, chúng tôi sẽ dùng máy phun áp lực để rửa." },
+    { speaker: "Jacinta", en: "Now if you're interested, we do offer some other possibilities to do with general maintenance. For example, if you have a problem with water and you need a plumber in a hurry, we can put you in touch with a reliable one who can come out straightaway. <span class='ev' id='d1p1b5-ev-q6'>And the same thing if you need an electrician.</span>", vi: "Nếu bạn quan tâm, chúng tôi còn cung cấp dịch vụ bảo trì chung. Ví dụ, nếu bạn gặp sự cố về nước và cần thợ sửa ống nước gấp, chúng tôi có thể giới thiệu một người đáng tin cậy đến ngay. Và thợ điện cũng vậy." },
+    { speaker: "Client", en: "Right. That's good to know. I've only just moved here so I don't have any of those sorts of contacts.", vi: "Ồ, tốt quá. Tôi mới chuyển đến nên không có những mối liên hệ như vậy." },
+    { speaker: "Jacinta", en: "And I don't know if this is of interest to you, but we also offer a special vacuum cleaning system which can improve the indoor air quality of your home by <span class='ev' id='d1p1b5-ev-q7'>capturing up to 99% of all the dust in the air</span>. So if you're troubled by allergies, this can make a big difference.", vi: "Và không biết bạn có quan tâm không, chúng tôi còn có hệ thống hút bụi đặc biệt cải thiện chất lượng không khí trong nhà bằng cách loại bỏ tới 99% bụi trong không khí. Nếu bạn bị dị ứng, điều này tạo khác biệt lớn." },
+    { speaker: "Client", en: "Right. In fact, I don't have that sort of problem, but I'll bear it in mind. Now can you tell me a bit about your cleaning staff?", vi: "Thực ra tôi không bị dị ứng, nhưng tôi sẽ lưu ý. Giờ bạn kể tôi nghe về nhân viên vệ sinh nhé?" },
+    { speaker: "Jacinta", en: "Of course. So all our cleaners are very carefully selected. When they apply to us, they have to <span class='ev' id='d1p1b5-ev-q8'>undergo a security check with the police</span> to make sure they don't have any sort of criminal background, and, of course, they have to provide references as well. Then if we think they might be suitable for the job, <span class='ev' id='d1p1b5-ev-q9'>we give them training for it. That lasts for two weeks</span> so it's very thorough, and at the end of it, they have a test. If they pass that, we take them on, but we monitor them very carefully – we ask all our clients to <span class='ev' id='d1p1b5-ev-q10'>complete a review of their performance after every visit and to email it to us</span>. So we can pick up any problems straightaway and deal with them.", vi: "Tất nhiên. Các nhân viên vệ sinh đều được lựa chọn rất cẩn thận. Khi nộp đơn, họ phải trải qua kiểm tra an ninh với cảnh sát để đảm bảo không có tiền án, và tất nhiên phải cung cấp người tham chiếu. Nếu chúng tôi thấy họ phù hợp, chúng tôi đào tạo họ trong hai tuần rất kỹ lưỡng, cuối khóa có bài kiểm tra. Nếu đạt, chúng tôi nhận vào làm, nhưng giám sát rất cẩn thận – chúng tôi yêu cầu tất cả khách hàng hoàn thành đánh giá về hiệu suất của họ sau mỗi lần dọn và gửi email cho chúng tôi. Nhờ vậy chúng tôi phát hiện và xử lý vấn đề ngay lập tức." },
+    { speaker: "Client", en: "OK, well that all sounds good. And will I always have the same cleaner?", vi: "Nghe ổn đó. Tôi sẽ luôn có một nhân viên dọn dẹp cố định chứ?" },
+    { speaker: "Jacinta", en: "Yes, we do our best to organise it that way, and we usually manage it.", vi: "Vâng, chúng tôi cố gắng hết sức sắp xếp như vậy, và thường là được." },
+    { speaker: "Client", en: "Good. That's fine. Right, so I'd like to go ahead and…", vi: "Tốt. Vậy tôi muốn sử dụng dịch vụ và…" }
+  ]
+};
+
+/* ---------- Practice wrapper + registry ---------- */
+const PRACTICE_D1_P1 = {
+  id: "d1p1",
+  title: "Cam 17 · Note & Table Completion",
+  bais: [BAI_D1P1B1, BAI_D1P1B2, BAI_D1P1B3, BAI_D1P1B4, BAI_D1P1B5]
+};
+
+const PRACTICES = {
+  d1p1: PRACTICE_D1_P1
+};
+
+</script>
+<script>
+/* ===== LISTENING IELTS PRACTICE — RENDER ENGINE v2 =====
+   Data-driven. Define TYPE_NAMES[6], PRACTICE_TITLES{}, PRACTICE_D{d}_P{p} objects,
+   and PRACTICES{} before this script. NO AUDIO by design.
+   v2: a practice may contain multiple "bài" (sub-exercises) via P.bais = [unit, ...].
+   Each unit has its own Start gate, timer, Submit, Review and transcript.
+   A practice without .bais behaves as a single unit (v1-compatible). */
+
+/* ===== STATE & REGISTRIES ===== */
+const AppState = { current:"overview", practices:{}, activeBai:{} };
+// per UNIT id: { started, finished, score, ok:{qid:bool}, timerId, remaining,
+//               mapAns:{qid:labelIdx}, selChip:labelIdx|null, retrying:{qid:true} }
+
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function st(uid){ if(!AppState.practices[uid]) AppState.practices[uid]={started:false,finished:false,score:0,ok:{},timerId:null,remaining:0,mapAns:{},selChip:null,retrying:{}}; return AppState.practices[uid]; }
+
+const UNITS={}, UNIT_PARENT={};
+Object.keys(PRACTICES).forEach(k=>{
+  const P=PRACTICES[k];
+  if(P.bais){ P.bais.forEach(b=>{ UNITS[b.id]=b; UNIT_PARENT[b.id]=k; }); }
+  else { UNITS[k]=P; UNIT_PARENT[k]=k; }
+});
+function unit(id){return UNITS[id];}
+function unitsOf(pid){const P=PRACTICES[pid];return P?(P.bais?P.bais.map(b=>b.id):[pid]):[];}
+function practiceFinished(pid){const us=unitsOf(pid);return us.length>0&&us.every(u=>AppState.practices[u]&&AppState.practices[u].finished);}
+
+/* build TYPES structure: 6 dạng × 15 practices */
+const TYPES = TYPE_NAMES.map((name,ti)=>({
+  n:ti+1, name,
+  practices:Array.from({length:15},(_,i)=>{
+    const id="d"+(ti+1)+"p"+(i+1);
+    return {id, num:i+1, title:PRACTICE_TITLES[id]||null, filled:!!PRACTICES[id]};
+  })
+}));
+
+/* ===== SIDEBAR ===== */
+function renderSidebar(){
+  let h=`<div class="nav-home" data-page="overview" onclick="go('overview')"><span>🏠</span><span>Overview</span></div>`;
+  TYPES.forEach(t=>{
+    h+=`<div class="nav-group-label">Dạng ${t.n} · ${esc(t.name)}</div>`;
+    t.practices.forEach(p=>{
+      h+=`<div class="nav-item" id="nav-${p.id}" data-page="${p.id}" onclick="go('${p.id}')">
+        <span class="idx">${p.num}</span>
+        <span>Practice ${p.num}${p.title?" · "+esc(p.title):""}</span>
+        <span class="done" id="done-${p.id}" style="display:none">✓</span>
+      </div>`;
+    });
+  });
+  document.getElementById("nav").innerHTML=h;
+}
+
+/* ===== OVERVIEW ===== */
+function renderOverview(){
+  let cards="";
+  TYPES.forEach(t=>{
+    let chips="";
+    t.practices.forEach(p=>{
+      chips+=`<div class="pchip" id="chip-${p.id}" onclick="go('${p.id}')">
+        <span>Practice ${p.num}${p.title?" · "+esc(p.title):""}</span>
+        <span class="st">${p.filled?"Ready":"Empty"}</span></div>`;
+    });
+    cards+=`<div class="type-card">
+      <div class="th"><span class="tnum">${t.n}</span><span class="tname">${esc(t.name)}</span></div>
+      ${chips}
+      <div class="tcount" id="tcount-${t.n}">0 / 15 finished</div>
+    </div>`;
+  });
+  return `<div class="page" id="page-overview">
+    <div class="hero">
+      <h2>Listening — IELTS Practice</h2>
+      <p>Luyện 6 dạng câu hỏi IELTS Listening, mỗi dạng 15 practice. Bấm <b>Start</b> để tính giờ từng bài, làm bài, bấm <b>Submit</b>, rồi học lại từng câu qua Review và transcript song ngữ. Audio do giáo viên phát riêng trong lớp.</p>
+      <div class="stats">
+        <div><b>90</b> practices</div><div><b>6</b> question types</div><div><b>15</b> per type</div>
+        <div><b id="ovDone">0</b> finished</div>
+      </div>
+    </div>
+    <div class="type-grid">${cards}</div>
+  </div>`;
+}
+
+/* ===== PRACTICE PAGE ===== */
+function renderPracticePage(meta){
+  const P=PRACTICES[meta.id];
+  const dnum=meta.id.match(/d(\d+)/)[1];
+  if(!P){
+    return `<div class="page" id="page-${meta.id}">
+      <div class="p-header"><span class="badge-mint">DẠNG ${dnum}</span>
+        <span class="ptitle">Practice ${meta.num}</span><span class="spacer"></span></div>
+      <div class="placeholder-card"><div class="big">📥</div><b>Chưa có nội dung</b>
+        Paste questions + answers + transcript để fill slot này.</div>
+    </div>`;
+  }
+  if(P.bais){
+    const tabs=P.bais.map((b,i)=>`<button class="bai-tab${i===0?" active":""}" id="bt-${b.id}" data-label="Bài ${i+1}"
+      onclick="switchBai('${meta.id}','${b.id}')">Bài ${i+1}</button>`).join("");
+    const blocks=P.bais.map((b,i)=>renderUnit(b,i===0,dnum)).join("");
+    return `<div class="page" id="page-${meta.id}">
+      <div class="p-header">
+        <span class="badge-mint">DẠNG ${dnum}</span>
+        <span class="ptitle">${esc(P.title)}</span>
+        <span class="spacer"></span>
+        <span class="phead-count">${P.bais.length} bài</span>
+      </div>
+      <div class="bai-tabs">${tabs}</div>
+      ${blocks}
+    </div>`;
+  }
+  /* single-unit practice (v1 layout: controls in main header) */
+  return `<div class="page" id="page-${meta.id}">
+    <div class="p-header">
+      <span class="badge-mint">DẠNG ${dnum}</span>
+      <span class="ptitle">${esc(P.title)}</span>
+      <span class="spacer"></span>
+      <span class="timer-chip" id="timer-${meta.id}" aria-live="off"></span>
+      <span class="score-chip" id="score-${meta.id}"></span>
+      <button class="btn btn-finish" id="submit-${meta.id}" onclick="trySubmit('${meta.id}')" style="display:none">Submit</button>
+    </div>
+    ${unitBody(P)}
+  </div>`;
+}
+
+/* one bài block inside a multi-bài practice */
+function renderUnit(u,active,dnum){
+  return `<div class="bai-block${active?" active":""}" id="bai-${u.id}">
+    <div class="bai-bar">
+      <span class="bai-title">${esc(u.title)}</span>
+      <span class="spacer"></span>
+      <span class="timer-chip" id="timer-${u.id}" aria-live="off"></span>
+      <span class="score-chip dark" id="score-${u.id}"></span>
+      <button class="btn btn-finish btn-sm" id="submit-${u.id}" onclick="trySubmit('${u.id}')" style="display:none">Submit</button>
+    </div>
+    ${unitBody(u)}
+  </div>`;
+}
+
+/* gate + workspace for any unit */
+function unitBody(u){
+  const mins=u.minutes||15;
+  return `<div class="notice-bar" id="notice-${u.id}"></div>
+    <div class="start-gate" id="gate-${u.id}">
+      <div class="start-card">
+        <div class="big">🎧</div>
+        <h3>Bắt đầu</h3>
+        <p>Bấm Start khi bạn đã sẵn sàng.</p>
+        <div class="meta">⏱ ${mins} minutes · ${u.questions.length} questions</div>
+        <button class="btn btn-primary" onclick="startPractice('${u.id}')">▶ Start</button>
+      </div>
+    </div>
+    <div class="workspace" id="ws-${u.id}" style="display:none">
+      <section class="col-work" id="work-${u.id}">
+        <div class="col-head"><h3>✍️ Workspace</h3></div>
+        ${renderGroups(u)}
+        ${renderTranscript(u)}
+      </section>
+      <aside class="col-assist" id="assist-${u.id}">
+        ${renderAssist(u)}
+      </aside>
+    </div>`;
+}
+
+function switchBai(pid,uid){
+  AppState.activeBai[pid]=uid;
+  const P=PRACTICES[pid];
+  P.bais.forEach(b=>{
+    document.getElementById("bai-"+b.id).classList.toggle("active",b.id===uid);
+    document.getElementById("bt-"+b.id).classList.toggle("active",b.id===uid);
+  });
+  document.querySelectorAll("#page-"+pid+" .col-work,#page-"+pid+" .col-assist").forEach(c=>c.scrollTop=0);
+}
+
+function tokenize(html,P){
+  return String(html).replace(/\{\{(\d+)\}\}/g,(m,n)=>
+    `<span class="blank-num">${n}</span><input type="text" class="blank-input inline" id="in-${P.id}-q${n}" autocomplete="off" aria-label="Answer ${n}">`);
+}
+
+function renderGroups(P){
+  let out="", usedBody=false, mapDone=false;
+  (P.groups||[]).forEach(g=>{
+    out+=`<div class="q-group-instruction">${esc(g.instruction)}</div>`;
+    if(g.optionsBox) out+=`<div class="options-box">${g.optionsBox}</div>`;
+    const qs=P.questions.filter(q=>q.id>=g.from&&q.id<=g.to);
+    if(g.body){ out+=`<div class="body-block">${tokenize(g.body,P)}</div>`; }
+    else if(!usedBody && P.body && qs.some(q=>q.type==="blank"&&!q.prompt)){
+      out+=`<div class="body-block">${tokenize(P.body,P)}</div>`; usedBody=true;
+    }
+    if(!mapDone && P.map && qs.some(q=>q.type==="map")){ out+=renderMap(P); mapDone=true; }
+    qs.forEach(q=>{ out+=renderQuestion(P,q); });
+  });
+  return out;
+}
+
+function renderQuestion(P,q){
+  if(q.type==="map") return "";
+  if(q.type==="blank"&&!q.prompt) return "";
+  let input="";
+  if(q.type==="mcq"){
+    input=`<div class="mcq-options" role="radiogroup" data-qid="${q.id}" id="mcq-${P.id}-q${q.id}">`+
+      q.choices.map(c=>`<div class="mcq-option" role="radio" aria-checked="false" tabindex="0"
+        onclick="selectMCQ(this,'${P.id}',${q.id})" onkeydown="if(event.key==='Enter'||event.key===' ')selectMCQ(this,'${P.id}',${q.id})" data-val="${esc(c)}">${esc(c)}</div>`).join("")+`</div>`;
+  } else if(q.type==="dropdown"){
+    input=`<select class="q-dropdown" id="in-${P.id}-q${q.id}"><option value="">— choose —</option>`+
+      q.choices.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join("")+`</select>`;
+  } else {
+    const hasTok=/\{\{\d+\}\}/.test(q.prompt||"");
+    input=hasTok?"":`<input type="text" class="blank-input" id="in-${P.id}-q${q.id}" placeholder="Type your answer…" autocomplete="off">`;
+  }
+  return `<div class="q-card" id="qc-${P.id}-q${q.id}">
+    <div class="q-head"><span class="q-num">${q.id}</span></div>
+    ${q.prompt?`<div class="q-prompt">${tokenize(q.prompt,P)}</div>`:""}
+    ${input}
+  </div>`;
+}
+
+function renderMap(P){
+  const m=P.map;
+  const zones=m.zones.map(z=>`<div class="map-zone" id="zone-${P.id}-q${z.q}" style="left:${z.x}%;top:${z.y}%"
+      onclick="tapZone('${P.id}',${z.q})" ondragover="event.preventDefault()" ondrop="dropZone(event,'${P.id}',${z.q})"
+      tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ')tapZone('${P.id}',${z.q})">Q${z.q}</div>`).join("");
+  const chips=m.labels.map((l,i)=>`<span class="label-chip" id="lc-${P.id}-${i}" draggable="true"
+      ondragstart="dragLabel(event,'${P.id}',${i})" onclick="tapChip('${P.id}',${i})"
+      tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ')tapChip('${P.id}',${i})">${esc(l)}</span>`).join("");
+  return `<div class="label-bank" id="bank-${P.id}">${chips}</div>
+    <div class="map-wrap"><img src="${m.image}" alt="${esc(P.title)} map">${zones}</div>`;
+}
+
+function renderTranscript(P){
+  if(!P.transcript) return "";
+  return `<div class="transcript-sec" id="ts-${P.id}">
+    <div class="col-head"><h3>📜 Transcript</h3>
+      <button class="btn btn-sm btn-outline" id="tsvi-${P.id}" onclick="toggleTsVI('${P.id}')">🇻🇳 Hiện bản dịch</button></div>
+    ${P.transcript.map(t=>`<div class="ts-turn">
+      ${t.speaker?`<div class="ts-speaker">${esc(t.speaker)}</div>`:""}
+      <div class="ts-en">${t.en}</div>
+      ${t.vi?`<div class="ts-vi">${esc(t.vi)}</div>`:""}
+    </div>`).join("")}
+  </div>`;
+}
+
+/* ===== LEARNING ASSISTANT ===== */
+const MID_TABS={prediction:"Prediction",mapTips:"Map Tips",preview:"Preview",strategy:"Strategy"};
+
+function renderAssist(P){
+  const a=P.assist||{};
+  const midKey=Object.keys(MID_TABS).find(k=>a[k]&&a[k].length);
+  let tabs=`<button class="tab-btn active" id="tb-${P.id}-hint" onclick="switchTab('${P.id}','hint')">🎯 Hint</button>`;
+  if(midKey) tabs+=`<button class="tab-btn" id="tb-${P.id}-mid" onclick="switchTab('${P.id}','mid')">${MID_TABS[midKey]}</button>`;
+  if(a.vocab&&a.vocab.length) tabs+=`<button class="tab-btn" id="tb-${P.id}-vocab" onclick="switchTab('${P.id}','vocab')">📚 Vocabulary</button>`;
+  tabs+=`<button class="tab-btn" id="tb-${P.id}-review" onclick="switchTab('${P.id}','review')" style="display:none">✅ Review</button>`;
+
+  const hintPane=`<div class="tab-pane active" id="pane-${P.id}-hint">
+    <div class="hint-note">Hints tell you WHAT to listen for and WHAT form to expect — never the answer.</div>
+    ${P.questions.map(q=>`<div class="hint-card"><span class="q-num">${q.id}</span>
+      <div><div class="hint-listen">Listen carefully for</div>
+      <ul>${(q.hint&&q.hint.listen?q.hint.listen:[]).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+      ${q.hint&&q.hint.chip?`<span class="hint-chip">${esc(q.hint.chip)}</span>`:""}</div></div>`).join("")}
+  </div>`;
+  const midPane=midKey?`<div class="tab-pane" id="pane-${P.id}-mid">
+    <div class="assist-list">${a[midKey].map(x=>`<div class="a-item">${esc(x)}</div>`).join("")}</div></div>`:"";
+  const vocabPane=(a.vocab&&a.vocab.length)?`<div class="tab-pane" id="pane-${P.id}-vocab">
+    <div class="hint-note" id="vnote-${P.id}">Words in this recording — theme vocabulary, no answers.</div>
+    ${a.vocab.map(v=>`<div class="vocab-card"><b>${esc(v.w)}</b>${v.ipa?`<span class="ipa">${esc(v.ipa)}</span>`:""}
+      ${v.vi?`<div class="vi">${esc(v.vi)}</div>`:""}</div>`).join("")}</div>`:"";
+  return `<div class="tabbar" id="tabs-${P.id}">${tabs}</div>
+    ${hintPane}${midPane}${vocabPane}
+    <div class="tab-pane" id="pane-${P.id}-review"></div>`;
+}
+
+function switchTab(uid,key){
+  const tb=document.getElementById("tabs-"+uid);
+  tb.querySelectorAll(".tab-btn").forEach(b=>b.classList.toggle("active",b.id==="tb-"+uid+"-"+key));
+  ["hint","mid","vocab","review"].forEach(k=>{
+    const p=document.getElementById("pane-"+uid+"-"+k);
+    if(p)p.classList.toggle("active",k===key);
+  });
+}
+
+/* ===== BUILD ALL PAGES ===== */
+function buildAll(){
+  renderSidebar();
+  let html=renderOverview();
+  TYPES.forEach(t=>t.practices.forEach(p=>{ html+=renderPracticePage(p); }));
+  document.getElementById("main").innerHTML=html;
+  Object.keys(PRACTICES).forEach(pid=>{
+    const P=PRACTICES[pid];
+    if(P.bais)AppState.activeBai[pid]=P.bais[0].id;
+  });
+  go("overview");
+}
+
+/* ===== NAVIGATION ===== */
+function go(pageId){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  const el=document.getElementById("page-"+pageId); if(el)el.classList.add("active");
+  document.querySelectorAll(".nav-item,.nav-home").forEach(n=>n.classList.toggle("active",n.dataset.page===pageId));
+  AppState.current=pageId;
+  document.getElementById("resetFab").classList.toggle("show", pageId!=="overview" && !!PRACTICES[pageId]);
+  document.querySelectorAll(".col-work,.col-assist").forEach(c=>c.scrollTop=0);
+  window.scrollTo(0,0);
+  const uid=activeUnitOf(pageId);
+  const s=uid?AppState.practices[uid]:null;
+  document.getElementById("assistToggle").style.display =
+    (uid&&s&&s.started&&window.innerWidth<=1280)?"block":"none";
+}
+function activeUnitOf(pid){
+  if(!PRACTICES[pid])return null;
+  return PRACTICES[pid].bais?(AppState.activeBai[pid]||PRACTICES[pid].bais[0].id):pid;
+}
+
+/* ===== START GATE + TIMER (per unit) ===== */
+function startPractice(uid){
+  const s=st(uid); if(s.started)return;
+  s.started=true;
+  document.getElementById("gate-"+uid).style.display="none";
+  document.getElementById("ws-"+uid).style.display="grid";
+  document.getElementById("submit-"+uid).style.display="inline-block";
+  startTimer(uid);
+  if(window.innerWidth<=1280)document.getElementById("assistToggle").style.display="block";
+}
+function fmt(sec){const m=Math.floor(sec/60),s=sec%60;return String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");}
+function startTimer(uid){
+  const P=unit(uid), s=st(uid);
+  s.remaining=(P.minutes||15)*60;
+  const chip=document.getElementById("timer-"+uid);
+  chip.textContent="⏱ "+fmt(s.remaining); chip.classList.add("show");
+  s.timerId=setInterval(()=>{
+    s.remaining--;
+    chip.textContent="⏱ "+fmt(Math.max(0,s.remaining));
+    if(s.remaining<=120)chip.classList.add("warn");
+    if(s.remaining<=0){ stopTimer(uid); doSubmit(uid,true); }
+  },1000);
+}
+function stopTimer(uid){const s=st(uid); if(s.timerId){clearInterval(s.timerId);s.timerId=null;}}
+
+/* ===== INPUT INTERACTION ===== */
+function selectMCQ(el,uid,qid){
+  const s=st(uid);
+  if(s.finished && !s.retrying[qid])return;
+  const box=el.parentElement;
+  box.querySelectorAll(".mcq-option").forEach(o=>{o.classList.remove("selected");o.setAttribute("aria-checked","false");});
+  el.classList.add("selected");el.setAttribute("aria-checked","true");
+}
+function hasRetrying(s){return Object.keys(s.retrying).length>0;}
+function dragLabel(ev,uid,idx){
+  const s=st(uid);
+  if(s.finished&&!hasRetrying(s)){ev.preventDefault();return;}
+  ev.dataTransfer.setData("text/plain",String(idx));
+}
+function dropZone(ev,uid,qid){
+  ev.preventDefault();
+  const idx=parseInt(ev.dataTransfer.getData("text/plain"),10);
+  if(!isNaN(idx))assignLabel(uid,qid,idx);
+}
+function tapChip(uid,idx){
+  const s=st(uid);
+  if(s.finished&&!hasRetrying(s))return;
+  const chip=document.getElementById("lc-"+uid+"-"+idx);
+  if(chip.classList.contains("used"))return;
+  const was=s.selChip===idx;
+  s.selChip=was?null:idx;
+  document.querySelectorAll("#bank-"+uid+" .label-chip").forEach(c=>c.classList.remove("selected"));
+  if(!was)chip.classList.add("selected");
+}
+function tapZone(uid,qid){
+  const s=st(uid);
+  if(s.finished && !s.retrying[qid])return;
+  if(s.selChip!==null){ assignLabel(uid,qid,s.selChip); s.selChip=null;
+    document.querySelectorAll("#bank-"+uid+" .label-chip").forEach(c=>c.classList.remove("selected"));
+  } else if(s.mapAns[qid]!==undefined){ unassignLabel(uid,qid); }
+}
+function assignLabel(uid,qid,idx){
+  const s=st(uid), P=unit(uid);
+  if(s.finished && !s.retrying[qid])return;
+  const holder=Object.keys(s.mapAns).find(q=>s.mapAns[q]===idx);
+  if(holder!==undefined){
+    if(s.finished)return;
+    unassignLabel(uid,parseInt(holder,10));
+  }
+  if(s.mapAns[qid]!==undefined)unassignLabel(uid,qid);
+  s.mapAns[qid]=idx;
+  const z=document.getElementById("zone-"+uid+"-q"+qid);
+  z.textContent=P.map.labels[idx]; z.classList.add("filled");
+  document.getElementById("lc-"+uid+"-"+idx).classList.add("used");
+}
+function unassignLabel(uid,qid){
+  const s=st(uid);
+  const idx=s.mapAns[qid]; if(idx===undefined)return;
+  delete s.mapAns[qid];
+  const z=document.getElementById("zone-"+uid+"-q"+qid);
+  z.textContent="Q"+qid; z.classList.remove("filled");
+  document.getElementById("lc-"+uid+"-"+idx).classList.remove("used");
+}
+
+/* ===== ANSWERS + GRADING ===== */
+function getAnswer(P,q){
+  const s=st(P.id);
+  if(q.type==="mcq"){const sel=document.querySelector("#mcq-"+P.id+"-q"+q.id+" .selected");return sel?sel.dataset.val:"";}
+  if(q.type==="map"){const idx=s.mapAns[q.id];return idx===undefined?"":P.map.labels[idx];}
+  const el=document.getElementById("in-"+P.id+"-q"+q.id);return el?el.value:"";
+}
+function norm(x){return String(x).toLowerCase().trim().replace(/[.,;]/g,"").replace(/\s+/g," ");}
+function isCorrect(q,val){
+  if(Array.isArray(q.answer))return q.answer.some(a=>norm(a)===norm(val));
+  return norm(q.answer)===norm(val);
+}
+function displayAnswer(q){return q.display||(Array.isArray(q.answer)?q.answer[0]:q.answer);}
+
+/* ===== SUBMIT FLOW ===== */
+function trySubmit(uid){
+  const P=unit(uid);
+  const un=P.questions.filter(q=>!getAnswer(P,q)).length;
+  if(un>0){
+    const nb=document.getElementById("notice-"+uid);
+    nb.innerHTML=`<span>${un} câu chưa trả lời — Submit anyway?</span>
+      <button class="btn btn-sm btn-primary" onclick="doSubmit('${uid}',false)">Submit</button>
+      <button class="btn btn-sm btn-outline" onclick="hideNotice('${uid}')">Keep working</button>`;
+    nb.classList.add("show");
+  } else doSubmit(uid,false);
+}
+function hideNotice(uid){const nb=document.getElementById("notice-"+uid);nb.classList.remove("show");nb.innerHTML="";}
+
+function markQuestion(P,q,ok){
+  if(q.type==="mcq"){
+    const box=document.getElementById("mcq-"+P.id+"-q"+q.id);
+    box.querySelectorAll(".mcq-option").forEach(o=>{
+      o.classList.remove("correct","incorrect");
+      if(isCorrect(q,o.dataset.val))o.classList.add("correct");
+      else if(o.classList.contains("selected"))o.classList.add("incorrect");
+    });
+  } else if(q.type==="map"){
+    const z=document.getElementById("zone-"+P.id+"-q"+q.id);
+    z.classList.remove("correct","incorrect");
+    z.classList.add(ok?"correct":"incorrect");
+  } else {
+    const el=document.getElementById("in-"+P.id+"-q"+q.id);
+    el.disabled=true; el.classList.remove("correct","incorrect");
+    el.classList.add(ok?"correct":"incorrect");
+  }
+}
+
+function doSubmit(uid,auto){
+  hideNotice(uid);
+  const P=unit(uid), s=st(uid);
+  if(s.finished)return;
+  stopTimer(uid);
+  s.finished=true; s.retrying={}; s.selChip=null;
+  document.querySelectorAll("#bank-"+uid+" .label-chip").forEach(c=>c.classList.remove("selected"));
+  let correct=0;
+  P.questions.forEach(q=>{
+    const val=getAnswer(P,q); const ok=!!val&&isCorrect(q,val);
+    s.ok[q.id]=ok; if(ok)correct++;
+    markQuestion(P,q,ok);
+  });
+  s.score=correct;
+  const sc=document.getElementById("score-"+uid);
+  sc.textContent=correct+" / "+P.questions.length; sc.classList.add("show");
+  const sb=document.getElementById("submit-"+uid); sb.textContent="✓ Finished"; sb.disabled=true;
+  if(auto){
+    const nb=document.getElementById("notice-"+uid);
+    nb.innerHTML=`<span>⏰ Time's up — your answers were submitted automatically.</span>
+      <button class="btn btn-sm btn-outline" onclick="hideNotice('${uid}')">OK</button>`;
+    nb.classList.add("show");
+  }
+  buildReview(uid);
+  const ts=document.getElementById("ts-"+uid); if(ts)ts.classList.add("revealed");
+  const hide=id=>{const e=document.getElementById(id);if(e)e.style.display="none";};
+  hide("tb-"+uid+"-hint"); hide("tb-"+uid+"-mid");
+  const tv=document.getElementById("tb-"+uid+"-vocab"); if(tv)tv.textContent="📚 Key Vocabulary";
+  const vn=document.getElementById("vnote-"+uid); if(vn)vn.textContent="Key vocabulary from this recording.";
+  const tr=document.getElementById("tb-"+uid+"-review"); tr.style.display="inline-block";
+  switchTab(uid,"review");
+  updatePracticeStatus(UNIT_PARENT[uid]);
+  updateProgress();
+}
+
+/* practice-level status: nav ✓, overview chip, bài tab ✓ */
+function updatePracticeStatus(pid){
+  const P=PRACTICES[pid]; if(!P)return;
+  const us=unitsOf(pid);
+  const finCount=us.filter(u=>AppState.practices[u]&&AppState.practices[u].finished).length;
+  const all=finCount===us.length;
+  document.getElementById("done-"+pid).style.display=all?"inline":"none";
+  const chip=document.getElementById("chip-"+pid);
+  if(chip){
+    chip.classList.toggle("done",all);
+    const stEl=chip.querySelector(".st");
+    if(us.length>1){
+      stEl.textContent=finCount===0?"Ready":(all?"Done "+finCount+"/"+us.length+" bài":finCount+"/"+us.length+" bài");
+    } else {
+      const s=AppState.practices[pid];
+      stEl.textContent=(s&&s.finished)?"Done "+s.score+"/"+P.questions.length:"Ready";
+    }
+  }
+  if(P.bais){
+    P.bais.forEach((b,i)=>{
+      const bt=document.getElementById("bt-"+b.id);
+      if(bt){
+        const fin=AppState.practices[b.id]&&AppState.practices[b.id].finished;
+        bt.textContent=bt.dataset.label+(fin?" ✓":"");
+      }
+    });
+  }
+}
+
+/* ===== REVIEW + RETRY ===== */
+function reviewCard(P,q){
+  const s=st(P.id), ok=s.ok[q.id], val=getAnswer(P,q), r=q.review||{};
+  return `<div class="review-card ${ok?"ok":"bad"}" id="rv-${P.id}-q${q.id}">
+    <div class="rv-head"><span class="q-num">${q.id}</span>
+      <span class="rv-verdict ${ok?"ok":"bad"}" id="vd-${P.id}-q${q.id}">${ok?"✅ Correct":"❌ Incorrect"}</span></div>
+    <div class="rv-answers">
+      <div class="rv-row"><span class="rv-lbl">Your answer</span><span class="rv-your ${ok?"neutral":""}" id="ya-${P.id}-q${q.id}">${esc(val||"(blank)")}</span></div>
+      <div class="rv-row"><span class="rv-lbl">Correct</span><span class="rv-correct">${esc(displayAnswer(q))}</span></div>
+    </div>
+    ${r.quote?`<blockquote class="xp-quote">“${esc(r.quote)}”</blockquote>`:""}
+    ${r.evId?`<button class="btn btn-sm btn-outline" onclick="jumpTo('${r.evId}')">📍 Show in transcript</button>`:""}
+    ${r.en?`<div class="rv-en">${esc(r.en)}</div>`:""}
+    ${r.vi?`<div class="rv-vi">${esc(r.vi)}</div>`:""}
+    ${r.trap?`<div class="rv-trap">⚠ ${esc(r.trap)}</div>`:""}
+    <button class="btn btn-sm btn-primary rv-retry" id="rt-${P.id}-q${q.id}" onclick="retryQ('${P.id}',${q.id})"
+      style="display:${ok?"none":"inline-block"}">↻ Retry this Question</button>
+    <button class="btn btn-sm btn-primary rv-retry" id="ck-${P.id}-q${q.id}" onclick="checkQ('${P.id}',${q.id})"
+      style="display:none">✔ Check</button>
+  </div>`;
+}
+function buildReview(uid){
+  const P=unit(uid);
+  document.getElementById("pane-"+uid+"-review").innerHTML=P.questions.map(q=>reviewCard(P,q)).join("");
+}
+function retryQ(uid,qid){
+  const P=unit(uid), s=st(uid), q=P.questions.find(x=>x.id===qid);
+  s.retrying[qid]=true;
+  if(q.type==="map"){
+    const z=document.getElementById("zone-"+uid+"-q"+qid);
+    z.classList.remove("correct","incorrect");
+    unassignLabel(uid,qid);
+  } else if(q.type==="mcq"){
+    document.getElementById("mcq-"+uid+"-q"+qid).querySelectorAll(".mcq-option")
+      .forEach(o=>o.classList.remove("correct","incorrect"));
+  } else {
+    const el=document.getElementById("in-"+uid+"-q"+qid);
+    el.disabled=false; el.classList.remove("correct","incorrect"); el.focus();
+  }
+  document.getElementById("vd-"+uid+"-q"+qid).textContent="✏️ Retrying…";
+  document.getElementById("vd-"+uid+"-q"+qid).className="rv-verdict retrying";
+  document.getElementById("rt-"+uid+"-q"+qid).style.display="none";
+  document.getElementById("ck-"+uid+"-q"+qid).style.display="inline-block";
+  const el=q.type==="map"
+    ? document.getElementById("zone-"+uid+"-q"+qid)
+    : document.getElementById("qc-"+uid+"-q"+qid) || document.getElementById("in-"+uid+"-q"+qid);
+  if(el&&el.scrollIntoView)el.scrollIntoView({behavior:"smooth",block:"center"});
+}
+function checkQ(uid,qid){
+  const P=unit(uid), s=st(uid), q=P.questions.find(x=>x.id===qid);
+  const val=getAnswer(P,q); const ok=!!val&&isCorrect(q,val);
+  s.ok[qid]=ok; delete s.retrying[qid];
+  markQuestion(P,q,ok);
+  const card=document.getElementById("rv-"+uid+"-q"+qid);
+  card.className="review-card "+(ok?"ok":"bad");
+  const vd=document.getElementById("vd-"+uid+"-q"+qid);
+  vd.textContent=ok?"✅ Correct":"❌ Incorrect"; vd.className="rv-verdict "+(ok?"ok":"bad");
+  const ya=document.getElementById("ya-"+uid+"-q"+qid);
+  ya.textContent=val||"(blank)"; ya.className="rv-your "+(ok?"neutral":"");
+  document.getElementById("ck-"+uid+"-q"+qid).style.display="none";
+  document.getElementById("rt-"+uid+"-q"+qid).style.display=ok?"none":"inline-block";
+  const correct=P.questions.filter(x=>s.ok[x.id]).length;
+  s.score=correct;
+  document.getElementById("score-"+uid).textContent=correct+" / "+P.questions.length;
+  updatePracticeStatus(UNIT_PARENT[uid]);
+}
+
+/* ===== RESET (current bài of current practice) ===== */
+function resetCurrent(){
+  const pid=AppState.current; const P=PRACTICES[pid]; if(!P)return;
+  if(P.bais){
+    const uid=activeUnitOf(pid);
+    const u=unit(uid);
+    stopTimer(uid);
+    delete AppState.practices[uid];
+    const idx=P.bais.findIndex(b=>b.id===uid);
+    const old=document.getElementById("bai-"+uid);
+    const tmp=document.createElement("div");
+    tmp.innerHTML=renderUnit(u,true,pid.match(/d(\d+)/)[1]);
+    old.replaceWith(tmp.firstElementChild);
+    updatePracticeStatus(pid);
+    updateProgress();
+    return;
+  }
+  stopTimer(pid);
+  delete AppState.practices[pid];
+  const meta={id:pid,num:parseInt(pid.match(/p(\d+)/)[1],10)};
+  const old=document.getElementById("page-"+pid);
+  const tmp=document.createElement("div");
+  tmp.innerHTML=renderPracticePage(meta);
+  const fresh=tmp.firstElementChild;
+  old.replaceWith(fresh);
+  fresh.classList.add("active");
+  updatePracticeStatus(pid);
+  updateProgress();
+}
+
+/* ===== PROGRESS ===== */
+function updateProgress(){
+  const done=Object.keys(PRACTICES).filter(practiceFinished).length;
+  document.getElementById("progressFill").style.width=(done/90*100)+"%";
+  document.getElementById("progressLabel").textContent=done+" / 90 finished";
+  document.getElementById("ovDone").textContent=done;
+  TYPES.forEach(t=>{
+    const d=t.practices.filter(p=>practiceFinished(p.id)).length;
+    const el=document.getElementById("tcount-"+t.n); if(el)el.textContent=d+" / 15 finished";
+  });
+}
+
+/* ===== TRANSCRIPT VI / JUMP / DRAWER ===== */
+function toggleTsVI(uid){
+  const sec=document.getElementById("ts-"+uid);
+  const btn=document.getElementById("tsvi-"+uid);
+  const showing=sec.querySelector(".ts-vi.show");
+  sec.querySelectorAll(".ts-vi").forEach(v=>v.classList.toggle("show",!showing));
+  btn.textContent=showing?"🇻🇳 Hiện bản dịch":"🇻🇳 Ẩn bản dịch";
+}
+function jumpTo(evId){
+  const el=document.getElementById(evId); if(!el)return;
+  if(el.scrollIntoView)el.scrollIntoView({behavior:"smooth",block:"center"});
+  el.classList.add("flash"); setTimeout(()=>el.classList.remove("flash"),2500);
+}
+function toggleAssistDrawer(){
+  const uid=activeUnitOf(AppState.current);
+  const a=uid?document.getElementById("assist-"+uid):null;
+  if(a)a.classList.toggle("open");
+}
+
+buildAll();
+
+</script>
+</body>
+</html>
