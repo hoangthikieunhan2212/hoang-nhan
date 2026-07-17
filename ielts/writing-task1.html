@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Line Graph — World Food &amp; Oil Prices · Annotated Sample (Band 8.0+)</title>
+<style>
+:root{
+  --paper:#FDFDFB; --paper-line:#E8ECF1; --ink:#2B2B33; --ink-soft:#6B6F7B;
+  --frame-pink:#F9C1D9; --frame-pink-soft:#FDEFF5;
+  --sticky:#FFF6D6; --sticky-edge:#F1DE9E;
+  --cat-pattern:#2456A6; --cat-pattern-bg:#E3ECFA;
+  --cat-vocab:#2E8B57;  --cat-vocab-bg:#D9F2E4;
+  --cat-link:#C93A97;   --cat-link-bg:#FBE0F1;
+  --cat-gram:#D97B12;   --cat-gram-bg:#FCEBD3;
+  --cat-coll:#D0342C;   --cat-coll-bg:#FBDEDC;
+  --ok:#2E8B57; --warn:#D97B12; --bad:#D0342C;
+  --hand-green:#4E7C4E; --hand-blue:#2E7BD9; --hand-pink:#E0559B;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Roboto','Segoe UI',system-ui,sans-serif;
+  color:var(--ink); font-size:16px; line-height:1.75;
+  background:var(--paper);
+  background-image:repeating-linear-gradient(to bottom,transparent 0 31px,var(--paper-line) 31px 32px);
+  padding-bottom:80px;
+}
+.hand{font-family:'Segoe Script','Bradley Hand','Comic Sans MS',cursive}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px}
+.card{background:#fff;border:2px solid var(--frame-pink);border-radius:var(--radius);
+  box-shadow:0 2px 8px rgba(0,0,0,.05);padding:22px 26px;margin:18px 0}
+
+/* ---------- Hero ---------- */
+.hero{text-align:center;padding:34px 0 6px}
+.hero h1{font-size:44px;color:var(--hand-green);font-weight:700}
+.hero .badges{margin-top:10px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 14px;border-radius:999px;font-size:13px;font-weight:600;letter-spacing:.4px}
+.badge.type{background:var(--cat-pattern-bg);color:var(--cat-pattern)}
+.badge.band{background:var(--frame-pink-soft);color:#C2447F;border:1.5px solid var(--frame-pink)}
+.badge.time{background:var(--cat-vocab-bg);color:var(--cat-vocab)}
+
+/* ---------- Tabs ---------- */
+.tabbar{position:sticky;top:0;z-index:60;background:rgba(253,253,251,.96);backdrop-filter:blur(4px);
+  padding:10px 0;border-bottom:1.5px solid var(--frame-pink)}
+.tabbar .row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.tab-btn{border:1.5px solid var(--frame-pink);background:#fff;color:var(--ink);
+  padding:8px 18px;border-radius:999px;font-size:14.5px;font-weight:600;cursor:pointer;
+  transition:background .18s,transform .18s}
+.tab-btn:hover{transform:translateY(-1px)}
+.tab-btn.active{background:var(--frame-pink-soft);color:#B0356E;border-color:#F19BC4}
+.tab-panel{display:none;animation:fadeIn .2s ease}
+.tab-panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+/* sub tabs */
+.subtabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 4px}
+.sub-btn{border:1.5px solid #E3D4DB;background:#fff;padding:5px 13px;border-radius:999px;
+  font-size:13px;font-weight:600;color:var(--ink-soft);cursor:pointer}
+.sub-btn.active{background:#fff;border-color:#B0356E;color:#B0356E}
+
+/* ---------- Chart & rubric ---------- */
+.chart-card{text-align:center}
+.chart-card img{max-width:560px;width:100%;border-radius:8px;border:1px solid #eee}
+.chart-card .cap{font-size:12.5px;color:var(--ink-soft);margin-top:8px}
+.rubric{font-size:24px;color:var(--hand-blue);line-height:1.9;text-align:center;padding:8px 10px}
+
+/* ---------- Legend & toggles ---------- */
+.legend{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:5px 13px;border-radius:999px;
+  border:1.5px solid #ddd;background:#f4f4f4;color:var(--ink-soft);font-size:13px;font-weight:600;
+  cursor:pointer;user-select:none;transition:all .15s}
+.chip .dot{width:10px;height:10px;border-radius:50%}
+.chip.on{background:#fff;color:var(--ink)}
+.chip.on[data-cat="pattern"]{border-color:var(--cat-pattern);background:var(--cat-pattern-bg)}
+.chip.on[data-cat="vocab"]{border-color:var(--cat-vocab);background:var(--cat-vocab-bg)}
+.chip.on[data-cat="link"]{border-color:var(--cat-link);background:var(--cat-link-bg)}
+.chip.on[data-cat="gram"]{border-color:var(--cat-gram);background:var(--cat-gram-bg)}
+.chip.on[data-cat="coll"]{border-color:var(--cat-coll);background:var(--cat-coll-bg)}
+.chip.all{border-color:#B0356E}.chip.all.on{background:var(--frame-pink-soft);color:#B0356E}
+
+/* ---------- Two-column study page ---------- */
+.study-grid{display:grid;grid-template-columns:32% 1fr;gap:18px;align-items:start}
+.study-grid>*{min-width:0}
+.vlist{max-width:100%}
+.vocab-col .card{padding:18px 20px}
+.vocab-col h3,.sample-col h3{font-size:26px;letter-spacing:1px;text-align:center;margin-bottom:10px}
+.vlist{list-style:none}
+.vlist li{font-size:19px;line-height:1.7;margin:14px 0;cursor:pointer;padding:4px 8px;border-radius:8px;transition:background .15s}
+.vlist li:hover{background:var(--frame-pink-soft)}
+.vlist li .num{font-weight:700;margin-right:6px}
+.vc-1{color:#E08A2E}.vc-2{color:#2456A6}.vc-3{color:#E08A2E}.vc-4{color:#E0559B}.vc-5{color:#444}
+.vlist small{display:block;font-family:'Roboto',sans-serif;font-size:12px;color:var(--ink-soft)}
+.sticky-note{background:var(--sticky);border:1px solid var(--sticky-edge);border-radius:6px;
+  padding:16px 18px;margin:16px 0;transform:rotate(-1.2deg);position:relative;box-shadow:2px 3px 6px rgba(0,0,0,.08)}
+.sticky-note::after{content:"";position:absolute;right:0;bottom:0;border-style:solid;
+  border-width:0 0 22px 22px;border-color:transparent transparent #f7ecc0 transparent;filter:brightness(.94)}
+.sticky-note .t{color:#C13B3B;font-size:21px;font-weight:700}
+.sticky-note .b{color:var(--hand-blue);font-size:19px}
+.sticky-note p{font-family:'Roboto',sans-serif;font-size:13px;color:var(--ink-soft);margin-top:6px;line-height:1.6}
+
+.sample-col .card{padding:26px 30px}
+.sample p{font-size:17px;line-height:2.15;margin:0 0 26px}
+.sample p:last-child{margin-bottom:0}
+.margin-note{color:var(--hand-pink);font-size:15px;line-height:1.4;display:block;margin:-6px 0 10px}
+
+/* ---------- Annotation marks ---------- */
+.ann{cursor:pointer;border-radius:4px;padding:0 1px;transition:filter .15s}
+.ann:hover{filter:brightness(.92)}
+.ann[data-cat="pattern"]{border-bottom:2.5px solid var(--cat-pattern);font-weight:500}
+.ann[data-cat="pattern"].boxed{border:1.5px solid var(--cat-pattern);border-radius:6px;padding:0 5px;background:var(--cat-pattern-bg)}
+.ann[data-cat="vocab"]{background:var(--cat-vocab-bg)}
+.ann[data-cat="link"]{border:1.5px solid var(--cat-link);background:var(--cat-link-bg);border-radius:8px;padding:0 6px}
+.ann[data-cat="gram"]{text-decoration:underline wavy var(--cat-gram) 1.5px;text-underline-offset:5px}
+.ann[data-cat="coll"]{border:1.6px solid var(--cat-coll);border-radius:50%/60%;padding:0 6px}
+.ann.dimmed{border:none!important;background:none!important;text-decoration:none!important;
+  font-weight:inherit!important;padding:0 1px!important;cursor:default}
+.ann.flash{animation:flash 1.2s ease 2}
+@keyframes flash{0%,100%{box-shadow:none}50%{box-shadow:0 0 0 5px rgba(224,85,155,.35)}}
+
+/* ---------- Popover ---------- */
+#pop{position:absolute;z-index:100;max-width:360px;min-width:280px;background:#fff;border-radius:12px;
+  box-shadow:0 8px 30px rgba(0,0,0,.16);border:1px solid #eee;border-left:4px solid #999;
+  padding:16px 18px;display:none;font-size:14px;line-height:1.65}
+#pop.show{display:block;animation:fadeIn .16s ease}
+#pop .pcat{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.6px;
+  padding:2px 10px;border-radius:999px;margin-bottom:6px}
+#pop h4{font-size:15.5px;margin:2px 0 8px}
+#pop .row{margin:7px 0}
+#pop .lab{font-weight:700;font-size:12.5px;letter-spacing:.3px;color:var(--ink-soft)}
+#pop .formula{font-family:'Consolas','Menlo',monospace;font-size:13px;background:#F6F8FB;
+  border:1px dashed #C9D6EA;border-radius:6px;padding:5px 9px;display:block;margin-top:3px}
+#pop .alts{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+#pop .alts span{background:#F4F4F4;border-radius:999px;padding:2px 10px;font-size:12.5px}
+#pop .bandline{font-size:12.5px;color:#8A5A00;background:#FFF6D6;border-radius:6px;padding:4px 9px;margin-top:8px}
+#pop .close{position:absolute;top:8px;right:12px;border:none;background:none;font-size:18px;cursor:pointer;color:#aaa}
+#backdrop{position:fixed;inset:0;background:rgba(0,0,0,.25);z-index:90;display:none}
+#backdrop.show{display:block}
+
+/* ---------- Analysis (Tab 2) ---------- */
+.pcard .ptitle{font-size:19px;font-weight:700;margin-bottom:10px}
+.pcard .ptitle .tagp{font-size:12px;font-weight:700;letter-spacing:.5px;color:#B0356E;
+  background:var(--frame-pink-soft);border-radius:999px;padding:3px 12px;margin-right:10px;vertical-align:2px}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:15px}
+.kv dt{font-weight:700;color:var(--ink-soft);font-size:13.5px;letter-spacing:.3px;padding-top:2px}
+.kv .formula{font-family:'Consolas',monospace;font-size:13.5px;background:var(--cat-pattern-bg);
+  border:1px dashed var(--cat-pattern);border-radius:6px;padding:4px 10px;display:inline-block;color:#1d4185}
+.scard{border-left:5px solid var(--cat-pattern)}
+.scard .orig{font-size:16.5px;line-height:2.1;background:#FBFBF8;border-radius:8px;padding:12px 16px;margin-bottom:12px}
+.sgrid{display:grid;grid-template-columns:170px 1fr;gap:7px 14px;font-size:14.5px}
+.sgrid dt{font-weight:700;color:var(--ink-soft);font-size:13px;letter-spacing:.3px;padding-top:2px}
+.tpl{font-family:'Consolas',monospace;font-size:13.5px;background:var(--cat-pattern-bg);
+  border:1.5px solid var(--cat-pattern);border-radius:8px;padding:6px 12px;display:inline-block;color:#1d4185}
+.snum{display:inline-block;width:30px;height:30px;line-height:27px;text-align:center;border-radius:50%;
+  border:2px solid var(--cat-pattern);color:var(--cat-pattern);font-weight:700;margin-right:9px;font-size:14px}
+
+/* ---------- Bank (Tab 3) ---------- */
+.bank-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.bitem{background:#fff;border:1.5px solid #eee;border-radius:12px;padding:16px 18px;font-size:14.5px}
+.bitem .w{font-size:16.5px;font-weight:700}
+.bitem .m{color:var(--ink-soft)}
+.bitem .row{margin:5px 0}
+.bitem .lab{font-weight:700;font-size:12px;color:var(--ink-soft);letter-spacing:.4px}
+.bitem .bandchip{float:right;font-size:11.5px;font-weight:700;background:var(--frame-pink-soft);
+  color:#B0356E;border-radius:999px;padding:2px 10px}
+.bitem.v{border-color:var(--cat-vocab)} .bitem.g{border-color:var(--cat-gram)}
+.bitem.l{border-color:var(--cat-link)} .bitem.d{border-color:var(--cat-pattern)}
+.bitem.c{border-color:var(--cat-coll)}
+.trap{background:#FBDEDC;border:1.5px solid var(--cat-coll);border-radius:12px;padding:16px 20px;margin:14px 0;font-size:14.5px}
+.trap b{color:var(--bad)}
+table.para{width:100%;border-collapse:collapse;font-size:14.5px;background:#fff}
+table.para th,table.para td{border:1px solid #eee;padding:9px 13px;text-align:left;vertical-align:top}
+table.para th{background:var(--frame-pink-soft);font-size:13px;letter-spacing:.4px}
+table.para td:first-child{color:var(--ink-soft)}
+.arrow{color:#B0356E;font-weight:700}
+
+/* ---------- Examiner (Tab 4) ---------- */
+.excard{border-left:6px solid #999}
+.excard.ta{border-left-color:var(--cat-pattern)} .excard.cc{border-left-color:var(--cat-link)}
+.excard.lr{border-left-color:var(--cat-vocab)} .excard.gra{border-left-color:var(--cat-gram)}
+.excard h3{font-size:17px;margin-bottom:8px}
+.excard .crit{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.8px;color:#fff;
+  border-radius:999px;padding:3px 12px;margin-right:8px;vertical-align:2px}
+.excard.ta .crit{background:var(--cat-pattern)} .excard.cc .crit{background:var(--cat-link)}
+.excard.lr .crit{background:var(--cat-vocab)} .excard.gra .crit{background:var(--cat-gram)}
+.ev{background:#FBFBF8;border-radius:8px;padding:9px 14px;margin:8px 0;font-size:14.5px}
+.ev q{font-style:italic}
+.ev .tagb{font-size:11.5px;font-weight:700;color:#8A5A00;background:#FFF6D6;border-radius:999px;padding:2px 9px;margin-left:6px}
+.bandup{background:#E7F5EC;border:1.5px solid var(--ok);border-radius:10px;padding:12px 16px;margin-top:10px;font-size:14.5px}
+.bandup b{color:var(--ok)}
+.boxes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+.box{border-radius:12px;padding:16px 20px;font-size:14.5px;border:1.5px solid}
+.box h4{font-size:15.5px;margin-bottom:8px}
+.box ul{padding-left:18px}
+.box li{margin:4px 0}
+.box.vb{background:#EDF8F1;border-color:var(--cat-vocab)}
+.box.gb{background:#FDF3E4;border-color:var(--cat-gram)}
+.box.tb{background:#EAF1FB;border-color:var(--cat-pattern)}
+.box.mb{background:#FBE9E7;border-color:var(--cat-coll)}
+.must{background:#fff;border:2px dashed #B0356E;border-radius:12px;padding:16px 22px;margin:16px 0;font-size:15px}
+.must h4{color:#B0356E;margin-bottom:8px}
+.imit{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.imit .col{border-radius:12px;padding:14px 18px;font-size:14.5px;border:1.5px solid}
+.imit .yes{background:#E7F5EC;border-color:var(--ok)} .imit .no{background:#FBE9E7;border-color:var(--bad)}
+.imit h4{margin-bottom:6px}
+.imit ul{padding-left:18px}
+
+h2.sec{font-size:21px;margin:26px 0 4px;display:flex;align-items:center;gap:10px}
+h2.sec::after{content:"";flex:1;height:1.5px;background:var(--frame-pink)}
+.note-soft{font-size:13.5px;color:var(--ink-soft);margin-bottom:6px}
+
+/* ---------- Mobile ---------- */
+@media (max-width:760px){
+  table.para{display:block;overflow-x:auto;max-width:100%}
+  .study-grid{grid-template-columns:1fr}
+  .vocab-col{order:-1}
+  .vlist{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px}
+  .vlist li{flex:0 0 auto;font-size:16px;border:1px solid var(--frame-pink);margin:0}
+  .bank-grid,.boxes,.imit{grid-template-columns:1fr}
+  .kv,.sgrid{grid-template-columns:1fr}
+  .hero h1{font-size:34px}
+  .rubric{font-size:19px}
+  #pop{position:fixed;left:0!important;right:0;top:auto!important;bottom:0;max-width:none;width:100%;
+    border-radius:16px 16px 0 0;border-left:none;border-top:5px solid #999;max-height:70vh;overflow:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="hero wrap">
+  <h1 class="hand">Line graph</h1>
+  <div class="badges">
+    <span class="badge type">📈 Line graph · xu hướng</span>
+    <span class="badge band">🎯 Band 8.0+ · 4 tiêu chí</span>
+    <span class="badge time">⏳ 2000–2011 · thì quá khứ</span>
+  </div>
+</header>
+
+<nav class="tabbar"><div class="wrap row" data-group="main" id="mainTabs">
+  <button class="tab-btn active" data-tab="t1">1 · Trang chú giải</button>
+  <button class="tab-btn" data-tab="t2">2 · Phân tích câu</button>
+  <button class="tab-btn" data-tab="t3">3 · Ngân hàng ngôn ngữ</button>
+  <button class="tab-btn" data-tab="t4">4 · Examiner &amp; Ghi nhớ</button>
+</div></nav>
+
+<main class="wrap">
+
+<!-- ============ TAB 1 · TRANG CHÚ GIẢI ============ -->
+<section class="tab-panel active" id="t1" data-group="main">
+
+  <div class="card chart-card">
+    <img alt="World Food and Oil Prices 2000 to 2011 — line graph" src="data:image/jpeg;base64,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">
+    <div class="cap">Biểu đồ gốc kèm bài mẫu · Trục trái: Food price index (points) · Trục phải: Average oil price ($/barrel) · Correlation: 93.6%</div>
+  </div>
+
+  <div class="card"><div class="rubric hand">The graph below shows changes in global food and oil prices between 2000 and 2011.</div></div>
+
+  <div class="card">
+    <div class="note-soft" style="text-align:center">Bấm vào từng cụm được đánh dấu để xem chú giải · Bật/tắt từng lớp để học theo một lăng kính</div>
+    <div class="legend" id="layerChips">
+      <span class="chip all on" data-cat="all">Tất cả</span>
+      <span class="chip on" data-cat="pattern"><span class="dot" style="background:var(--cat-pattern)"></span>Pattern</span>
+      <span class="chip on" data-cat="vocab"><span class="dot" style="background:var(--cat-vocab)"></span>Vocab</span>
+      <span class="chip on" data-cat="link"><span class="dot" style="background:var(--cat-link)"></span>Linking</span>
+      <span class="chip on" data-cat="gram"><span class="dot" style="background:var(--cat-gram)"></span>Grammar</span>
+      <span class="chip on" data-cat="coll"><span class="dot" style="background:var(--cat-coll)"></span>Collocation</span>
+      <span class="chip all" data-cat="none">Ẩn hết</span>
+    </div>
+  </div>
+
+  <div class="study-grid">
+    <aside class="vocab-col">
+      <div class="card">
+        <h3 class="hand">vocabulary</h3>
+        <ul class="vlist">
+          <li class="hand vc-1" data-target="n03"><span class="num">1)</span>an 11-year period<br>· the course of 11 years<small>→ bấm để xem trong bài</small></li>
+          <li class="hand vc-2" data-target="n05"><span class="num">2)</span>significantly<br>· markedly</li>
+          <li class="hand vc-3" data-target="n06"><span class="num">3)</span>between … and<br>· from … to</li>
+          <li class="hand vc-4" data-target="n15"><span class="num">4)</span>in – vào năm đó<br>by – trước / đến năm đó</li>
+          <li class="hand vc-5" data-target="n18"><span class="num">5)</span>there was a dramatic increase …</li>
+        </ul>
+      </div>
+      <div class="sticky-note">
+        <div class="t hand">noun clause</div>
+        <div class="b hand">↳ how + S + V</div>
+        <p>Đề: “shows <b>changes in</b> global food and oil prices” có thể paraphrase thành “shows <b>how</b> global food and oil prices <b>changed</b>” — mệnh đề danh từ thay cụm danh từ.</p>
+      </div>
+    </aside>
+
+    <div class="sample-col">
+      <div class="card sample">
+        <h3 class="hand">sample</h3>
+        <span class="margin-note hand">↳ “compares … with”: so sánh A với B · “show how”: dẫn mệnh đề danh từ</span>
+        <p><span class="ann" data-cat="pattern" data-note="n01">The line graph compares</span> the average price of <span class="ann" data-cat="coll" data-note="n02">a barrel of oil</span> with the food price index <span class="ann" data-cat="vocab" data-note="n03">over a period of 11 years</span>.</p>
+
+        <p><span class="ann boxed" data-cat="pattern" data-note="n04">It is clear that</span> average global prices of both oil and food <span class="ann" data-cat="vocab" data-note="n05">rose considerably</span> <span class="ann" data-cat="gram" data-note="n06">between 2000 and 2011</span>. <span class="ann" data-cat="link" data-note="n07">Furthermore</span>, the trends for both commodities were very similar, and so <span class="ann" data-cat="coll" data-note="n08">a strong correlation</span> (93.6%) <span class="ann" data-cat="gram" data-note="n09">is suggested</span>.<span class="margin-note hand">↳ a strong correlation: mối tương quan mạnh</span></p>
+
+        <p><span class="ann" data-cat="link" data-note="n10">In the year 2000</span>, the average global oil price <span class="ann" data-cat="vocab" data-note="n11">was close to</span> $25 per barrel, and the food price index <span class="ann" data-cat="coll" data-note="n12">stood at just under</span> 90 points. Over the following four years both prices <span class="ann" data-cat="vocab" data-note="n13">remained relatively stable</span>, <span class="ann" data-cat="link" data-note="n14">before rising</span> steadily between 2004 and 2007. <span class="ann" data-cat="link" data-note="n15">By 2007</span>, the average oil price <span class="ann" data-cat="gram" data-note="n16">had more than doubled</span>, to nearly $60 per barrel, and food prices <span class="ann" data-cat="gram" data-note="n17">had risen by</span> around 50 points.</p>
+
+        <p><span class="ann" data-cat="pattern" data-note="n18">A dramatic increase in</span> both <span class="ann" data-cat="coll" data-note="n20">commodity prices</span> <span class="ann" data-cat="gram" data-note="n19">was seen</span> from 2007 to 2008, with oil prices <span class="ann" data-cat="coll" data-note="n21">reaching a peak of</span> approximately $130 per barrel and the food price index <span class="ann" data-cat="gram" data-note="n22">rising to</span> 220 points.<span class="margin-note hand">↳ commodity: sản phẩm thô / cơ bản → hàng hóa thị trường</span> <span class="ann" data-cat="link" data-note="n23">However</span>, by the beginning of 2009 the price of oil <span class="ann" data-cat="gram" data-note="n24">had dropped by</span> roughly $90, and the food price index <span class="ann" data-cat="vocab" data-note="n25">was down by</span> about 80 points. <span class="ann" data-cat="link" data-note="n26">Finally</span>, in 2011, the average oil price rose once again, to nearly $100 per barrel, <span class="ann" data-cat="link" data-note="n27">while</span> the food price index <span class="ann" data-cat="coll" data-note="n28">reached its peak</span>, <span class="ann" data-cat="gram" data-note="n29">at almost 240 points</span>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAB 2 · PHÂN TÍCH CÂU ============ -->
+<section class="tab-panel" id="t2" data-group="main">
+  <h2 class="sec">🟦 Section 1 — Cấu trúc bài viết</h2>
+  <p class="note-soft">Bài mẫu chia 4 đoạn theo khuôn kinh điển của biểu đồ xu hướng (dynamic): Introduction → Overview → Body 1 (nửa đầu giai đoạn) → Body 2 (nửa sau giai đoạn).</p>
+
+  <div class="card pcard">
+    <div class="ptitle"><span class="tagp">ĐOẠN 1</span>Introduction — 1 câu</div>
+    <dl class="kv">
+      <dt>Mục đích</dt><dd>Giới thiệu biểu đồ bằng ngôn ngữ của người viết, không chép đề.</dd>
+      <dt>Chức năng</dt><dd>Paraphrase toàn bộ rubric: “shows changes in” → “compares … with”; “global food and oil prices” → “the average price of a barrel of oil / the food price index”; “between 2000 and 2011” → “over a period of 11 years”.</dd>
+      <dt>Vì sao đặt ở đây</dt><dd>Câu mở bắt buộc của mọi bài Task 1; một câu là đủ — kéo dài Introduction làm loãng thời gian dành cho số liệu.</dd>
+      <dt>Formula</dt><dd><span class="formula">The + [line graph] + compares + A + with + B + [khoảng thời gian].</span></dd>
+    </dl>
+  </div>
+
+  <div class="card pcard">
+    <div class="ptitle"><span class="tagp">ĐOẠN 2</span>Overview — 2 câu</div>
+    <dl class="kv">
+      <dt>Mục đích</dt><dd>Nêu bức tranh lớn, không số liệu chi tiết.</dd>
+      <dt>Chức năng</dt><dd>Hai đặc điểm bao trùm: (1) cả hai đại lượng đều tăng mạnh trong toàn giai đoạn; (2) hai đường biến động gần như song song (tương quan 93.6%).</dd>
+      <dt>Vì sao đặt ở đây</dt><dd>TA Band 7+ yêu cầu “presents a clear overview” — đặt ngay đoạn 2 để giám khảo định vị được xu hướng chung trước khi đọc số liệu. Không viết Conclusion cuối bài.</dd>
+      <dt>Formula</dt><dd><span class="formula">It is clear that + [xu hướng chung]. Furthermore, + [đặc điểm bao trùm 2].</span></dd>
+    </dl>
+  </div>
+
+  <div class="card pcard">
+    <div class="ptitle"><span class="tagp">ĐOẠN 3</span>Body 1 — nửa đầu giai đoạn (2000 → 2007)</div>
+    <dl class="kv">
+      <dt>Mục đích</dt><dd>Mô tả pha khởi đầu: điểm xuất phát → đi ngang → tăng dần.</dd>
+      <dt>Chức năng</dt><dd>Neo 5 số liệu đắt giá ($25, 90 points, $60, +50 points, mốc 2004–2007) và luôn ghép đôi hai đại lượng trong cùng câu để so sánh.</dd>
+      <dt>Vì sao đặt ở đây</dt><dd>Biểu đồ dynamic → chia Body theo thời gian (nguyên tắc CC): nửa đầu tương đối phẳng lặng tách khỏi nửa sau đầy biến động — mỗi đoạn một “tính cách” dữ liệu riêng.</dd>
+      <dt>Formula</dt><dd><span class="formula">In + [năm đầu], A + [số liệu], and B + [số liệu]. → [pha ổn định], before + V-ing. → By + [mốc], + had + V3.</span></dd>
+    </dl>
+  </div>
+
+  <div class="card pcard">
+    <div class="ptitle"><span class="tagp">ĐOẠN 4</span>Body 2 — nửa sau giai đoạn (2007 → 2011)</div>
+    <dl class="kv">
+      <dt>Mục đích</dt><dd>Mô tả kịch tính chính: sốc tăng 2008 → sụp đổ 2009 → hồi phục và lập đỉnh 2011.</dd>
+      <dt>Chức năng</dt><dd>Chứa các key features đắt nhất của biểu đồ (đỉnh $130 / 220, cú rơi $90 / 80 points, đỉnh mới 240) — đúng nguyên tắc chọn điểm cực trị và điểm gãy.</dd>
+      <dt>Vì sao đặt ở đây</dt><dd>Trình tự thời gian tự nhiên; bộ từ nối Furthermore → However → Finally tạo progression rõ ràng cho toàn bài.</dd>
+      <dt>Formula</dt><dd><span class="formula">[Biến động lớn] + was seen, with A + V-ing … and B + V-ing … → However, … → Finally, …, while …</span></dd>
+    </dl>
+  </div>
+
+  <h2 class="sec">🟦 Section 2 — Phân tích từng câu</h2>
+  <p class="note-soft">Mỗi thẻ: câu gốc (giữ nguyên chú giải, bấm được) → pattern → ngữ pháp → vì sao → từ vựng → thay thế → khuôn tái dùng.</p>
+
+  <div class="card scard">
+    <div class="ptitle"><span class="snum">1</span>Câu mở bài</div>
+    <div class="orig"><span class="ann" data-cat="pattern" data-note="n01">The line graph compares</span> the average price of <span class="ann" data-cat="coll" data-note="n02">a barrel of oil</span> with the food price index <span class="ann" data-cat="vocab" data-note="n03">over a period of 11 years</span>.</div>
+    <dl class="sgrid">
+      <dt>② Pattern</dt><dd>S + V + O + with + O₂ (câu đơn, hiện tại đơn)</dd>
+      <dt>③ Grammar</dt><dd>Hiện tại đơn cho hành động “biểu đồ so sánh” — bản thân biểu đồ tồn tại ở hiện tại dù dữ liệu ở quá khứ.</dd>
+      <dt>④ Vì sao phù hợp</dt><dd>Câu mở chỉ cần chính xác và gọn; mọi năng lượng paraphrase dồn vào danh từ (barrel of oil, food price index) và cụm thời gian.</dd>
+      <dt>⑤ Vocab đáng học</dt><dd>a barrel of oil · the food price index · over a period of N years</dd>
+      <dt>⑥ Alternatives</dt><dd>The line graph illustrates how oil and food prices changed over an 11-year period.</dd>
+      <dt>⑦ Template</dt><dd><span class="tpl">The line graph compares + A + with + B + over a period of + N + years.</span></dd>
+    </dl>
+  </div>
+
+  <div class="card scard">
+    <div class="ptitle"><span class="snum">2</span>Overview — câu 1</div>
+    <div class="orig"><span class="ann boxed" data-cat="pattern" data-note="n04">It is clear that</span> average global prices of both oil and food <span class="ann" data-cat="vocab" data-note="n05">rose considerably</span> <span class="ann" data-cat="gram" data-note="n06">between 2000 and 2011</span>.</div>
+    <dl class="sgrid">
+      <dt>② Pattern</dt><dd>It is clear that + mệnh đề (chủ ngữ giả “It” + mệnh đề danh từ)</dd>
+      <dt>③ Grammar</dt><dd>Quá khứ đơn “rose” — toàn giai đoạn nằm trong quá khứ; cặp giới từ between…and.</dd>
+      <dt>④ Vì sao phù hợp</dt><dd>Chủ ngữ giả đẩy trọng tâm vào nhận định; “both oil and food” gom hai đối tượng vào một mệnh đề — overview đúng nghĩa là nén, không kể.</dd>
+      <dt>⑤ Vocab đáng học</dt><dd>rose considerably (mức độ khớp biên độ thực tế)</dd>
+      <dt>⑥ Alternatives</dt><dd>Overall, it can be seen that both prices increased markedly over the period shown.</dd>
+      <dt>⑦ Template</dt><dd><span class="tpl">It is clear that + [S] + rose/fell + considerably + between + X + and + Y.</span></dd>
+    </dl>
+  </div>
+
+  <div class="card scard">
+    <div class="ptitle"><span class="snum">3</span>Overview — câu 2</div>
+    <div class="orig"><span class="ann" data-cat="link" data-note="n07">Furthermore</span>, the trends for both commodities were very similar, and so <span class="ann" data-cat="coll" data-note="n08">a strong correlation</span> (93.6%) <span class="ann" data-cat="gram" data-note="n09">is suggested</span>.</div>
+    <dl class="sgrid">
+      <dt>② Pattern</dt><dd>Câu ghép: mệnh đề 1 + and so + mệnh đề 2 (bị động)</dd>
+      <dt>③ Grammar</dt><dd>“and so” chỉ hệ quả suy ra từ dữ liệu; bị động hiện tại “is suggested” cho nhận định.</dd>
+      <dt>④ Vì sao phù hợp</dt><dd>Nhận định về tương quan là suy luận từ hình dạng hai đường — bị động giữ tính khách quan, tránh “I think”. Con số 93.6% lấy từ chính biểu đồ, không phải ý kiến cá nhân.</dd>
+      <dt>⑤ Vocab đáng học</dt><dd>the trends for both commodities · a strong correlation</dd>
+      <dt>⑥ Alternatives</dt><dd>Moreover, the two commodities followed a remarkably similar pattern.</dd>
+      <dt>⑦ Template</dt><dd><span class="tpl">Furthermore, the trends for both + [N] + were very similar.</span></dd>
+    </dl>
+  </div>
+
+  <div class="card scard">
+    <div class="ptitle"><span class="snum">4</span>Body 1 — điểm xuất phát</div>
+    <div class="orig"><span class="ann" data-cat="link" data-note="n10">In the year 2000</span>, the average global oil price <span class="ann" data-cat="vocab" data-note="n11">was close to</span> $25 per barrel, and the food price index <span class="ann" data-cat="coll" data-note="n12">stood at just under</span> 90 points.</div>
+    <dl class="sgrid">
+      <dt>② Pattern</dt><dd>Trạng ngữ thời gian + câu ghép “and” đối xứng (A…, and B…)</dd>
+      <dt>③ Grammar</dt><dd>Quá khứ đơn; giới từ “at” cho mức tĩnh.</dd>
+      <dt>④ Vì sao phù hợp</dt><dd>Cấu trúc đối xứng đặt hai đại lượng cạnh nhau ngay từ số liệu đầu tiên — thiết lập thói quen so sánh song song cho cả bài (nhiệm vụ “make comparisons”).</dd>
+      <dt>⑤ Vocab đáng học</dt><dd>was close to · stood at just under (ngôn ngữ xấp xỉ)</dd>
+      <dt>⑥ Alternatives</dt><dd>In 2000, oil cost roughly $25 a barrel, while the index registered just below 90 points.</dd>
+      <dt>⑦ Template</dt><dd><span class="tpl">In + [năm], A + was close to + [số], and + B + stood at just under + [số].</span></dd>
+    </dl>
+  </div>
+
+  <div class="card scard">
+    <div class="ptitle"><span class="snum">5</span>Body 1 — pha ổn định rồi tăng</div>
+    <div class="orig">Over the following four years both prices <span class="ann" data-cat="vocab" data-note="n13">remained relatively stable</span>, <span class="ann" data-cat="link" data-note="n14">before rising</span> steadily between 2004 and 2007.</div>
+    <dl class="sgrid">
+      <dt>② Pattern</dt><dd>Câu đơn mở rộng bằng “before + V-ing” (rút gọn mệnh đề trạng ngữ)</dd>
+      <dt>③ Grammar</dt><dd>Quá khứ đơn + participle sau “before”; hai trạng từ mức độ (relatively, steadily).</dd>
+      <dt>④ Vì sao phù hợp</dt><dd>Một câu nén hai pha (2000–04 phẳng, 2004–07 tăng dần) — gom 7 năm dữ liệu thành một nhận định thay vì liệt kê từng năm: đây là kháng thể trực tiếp chống lỗi “mechanical recounting”.</dd>
+      <dt>⑤ Vocab đáng học</dt><dd>remained relatively stable · rising steadily</dd>
+      <dt>⑥ Alternatives</dt><dd>Both prices then levelled off for four years and subsequently climbed at a steady pace.</dd>
+      <dt>⑦ Template</dt><dd><span class="tpl">Over the following + N + years + [S] + remained stable, before + V-ing + between + X + and + Y.</span></dd>
+    </dl>
+  </div>
+
+  <div class="card scard">
+    <div class="ptitle"><span class="snum">6</span>Body 1 — chốt mốc 2007</div>
+    <div class="orig"><span class="ann" data-cat="link" data-note="n15">By 2007</span>, the average oil price <span class="ann" data-cat="gram" data-note="n16">had more than doubled</span>, to nearly $60 per barrel, and food prices <span class="ann" data-cat="gram" data-note="n17">had risen by</span> around 50 points.</div>
+    <dl class="sgrid">
+      <dt>② Pattern</dt><dd>By + mốc + quá khứ hoàn thành ×2 (câu ghép đối xứng)</dd>
+      <dt>③ Grammar</dt><dd>Past perfect bắt buộc sau “By + năm”; hai loại giới từ số liệu trong một câu: “to” (mức đích $60) và “by” (lượng tăng 50 points).</dd>
+      <dt>④ Vì sao phù hợp</dt><dd>Chốt đoạn bằng thành quả tích lũy của cả pha tăng — “By” nhìn lại quãng đường thay vì một điểm. Đây là câu trình diễn GRA Band 8 điển hình.</dd>
+      <dt>⑤ Vocab đáng học</dt><dd>had more than doubled (biên độ bằng bội số)</dd>
+      <dt>⑥ Alternatives</dt><dd>By 2007, oil had increased more than twofold, while food prices had gained around 50 points.</dd>
+      <dt>⑦ Template</dt><dd><span class="tpl">By + [năm], A + had more than doubled, to + [mức], and + B + had risen by + [lượng].</span></dd>
+    </dl>
+  </div>
+
+  <div class="card scard">
+    <div class="ptitle"><span class="snum">7</span>Body 2 — cú sốc 2007–2008</div>
+    <div class="orig"><span class="ann" data-cat="pattern" data-note="n18">A dramatic increase in</span> both <span class="ann" data-cat="coll" data-note="n20">commodity prices</span> <span class="ann" data-cat="gram" data-note="n19">was seen</span> from 2007 to 2008, with oil prices <span class="ann" data-cat="coll" data-note="n21">reaching a peak of</span> approximately $130 per barrel and the food price index <span class="ann" data-cat="gram" data-note="n22">rising to</span> 220 points.</div>
+    <dl class="sgrid">
+      <dt>② Pattern</dt><dd>Danh từ hóa + bị động + cấu trúc “with + N + V-ing” kép</dd>
+      <dt>③ Grammar</dt><dd>“A dramatic increase … was seen” (Adj + N thay V + Adv); with-clause nhét hai số liệu minh họa vào cùng câu.</dd>
+      <dt>④ Vì sao phù hợp</dt><dd>Câu quan trọng nhất bài: nhận định (tăng kịch tính) + hai bằng chứng ($130, 220) trong MỘT câu — mật độ thông tin Band 8. Danh từ hóa cũng đổi hình thái so với “rose considerably” ở Overview (LR flexibility).</dd>
+      <dt>⑤ Vocab đáng học</dt><dd>commodity prices · reaching a peak of</dd>
+      <dt>⑥ Alternatives</dt><dd>Both commodities surged between 2007 and 2008, with oil peaking at $130 and food hitting 220 points.</dd>
+      <dt>⑦ Template</dt><dd><span class="tpl">A dramatic increase in + [N] + was seen from X to Y, with + A + reaching a peak of + [số] + and + B + rising to + [số].</span></dd>
+    </dl>
+  </div>
+
+  <div class="card scard">
+    <div class="ptitle"><span class="snum">8</span>Body 2 — cú rơi 2009</div>
+    <div class="orig"><span class="ann" data-cat="link" data-note="n23">However</span>, by the beginning of 2009 the price of oil <span class="ann" data-cat="gram" data-note="n24">had dropped by</span> roughly $90, and the food price index <span class="ann" data-cat="vocab" data-note="n25">was down by</span> about 80 points.</div>
+    <dl class="sgrid">
+      <dt>② Pattern</dt><dd>However + by-phrase + past perfect / be down by (câu ghép)</dd>
+      <dt>③ Grammar</dt><dd>Tái sử dụng bộ máy “by + mốc → had V3”; vế hai đổi sang cấu trúc tính từ “was down by” tránh lặp động từ.</dd>
+      <dt>④ Vì sao phù hợp</dt><dd>“However” đặt đúng điểm gãy dữ liệu — từ nối tương phản dùng khi và chỉ khi xu hướng đảo chiều, không rải cơ học đầu mỗi câu.</dd>
+      <dt>⑤ Vocab đáng học</dt><dd>had dropped by · was down by (một trường nghĩa, hai hình thái)</dd>
+      <dt>⑥ Alternatives</dt><dd>Nevertheless, by early 2009 oil had fallen by some $90, and the index had shed about 80 points.</dd>
+      <dt>⑦ Template</dt><dd><span class="tpl">However, by + [mốc], A + had dropped by + [lượng], and + B + was down by + [lượng].</span></dd>
+    </dl>
+  </div>
+
+  <div class="card scard">
+    <div class="ptitle"><span class="snum">9</span>Body 2 — hồi phục &amp; lập đỉnh</div>
+    <div class="orig"><span class="ann" data-cat="link" data-note="n26">Finally</span>, in 2011, the average oil price rose once again, to nearly $100 per barrel, <span class="ann" data-cat="link" data-note="n27">while</span> the food price index <span class="ann" data-cat="coll" data-note="n28">reached its peak</span>, <span class="ann" data-cat="gram" data-note="n29">at almost 240 points</span>.</div>
+    <dl class="sgrid">
+      <dt>② Pattern</dt><dd>Finally + mệnh đề chính + while + mệnh đề đối chiếu (câu phức tương phản)</dd>
+      <dt>③ Grammar</dt><dd>“while” so sánh song song hai đối tượng trong một câu; bổ ngữ mức “, at + số” sau dấu phẩy.</dd>
+      <dt>④ Vì sao phù hợp</dt><dd>Câu chốt gói cả hai đường về điểm cuối giai đoạn và nêu sự phân kỳ tinh tế: dầu chưa về lại đỉnh cũ, food index thì lập đỉnh mới — một quan sát chọn lọc đúng chất Band 8+.</dd>
+      <dt>⑤ Vocab đáng học</dt><dd>rose once again · reached its peak</dd>
+      <dt>⑥ Alternatives</dt><dd>In the final year, oil recovered to nearly $100, whereas food prices hit their highest level of almost 240 points.</dd>
+      <dt>⑦ Template</dt><dd><span class="tpl">Finally, in + [năm], A + rose once again, to + [mức], while + B + reached its peak, at + [mức].</span></dd>
+    </dl>
+  </div>
+</section>
+
+<!-- ============ TAB 3 · NGÂN HÀNG NGÔN NGỮ ============ -->
+<section class="tab-panel" id="t3" data-group="main">
+  <div class="subtabs" data-group="bank" id="bankTabs">
+    <button class="sub-btn active" data-tab="b1">🟩 Vocabulary</button>
+    <button class="sub-btn" data-tab="b2">🟨 Grammar Focus</button>
+    <button class="sub-btn" data-tab="b3">🟪 Linking Devices</button>
+    <button class="sub-btn" data-tab="b4">📈 Data Patterns</button>
+    <button class="sub-btn" data-tab="b5">🔁 Paraphrase Bank</button>
+    <button class="sub-btn" data-tab="b6">📐 Templates</button>
+  </div>
+
+  <div class="tab-panel active" id="b1" data-group="bank">
+    <h2 class="sec">🟩 Section 3 — Từ vựng đáng học</h2>
+    <div class="bank-grid">
+      <div class="bitem v"><span class="bandchip">Band 8</span><div class="w">commodity prices</div><div class="m">giá hàng hóa cơ bản (sản phẩm thô giao dịch trên thị trường)</div>
+        <div class="row"><span class="lab">COLLOCATION</span> commodity prices/markets · both commodities</div>
+        <div class="row"><span class="lab">VÍ DỤ</span> A dramatic increase in both <i>commodity</i> prices was seen…</div>
+        <div class="row"><span class="lab">THAY THẾ</span> both commodities · the two goods</div></div>
+      <div class="bitem v"><span class="bandchip">Band 8</span><div class="w">a strong correlation</div><div class="m">mối tương quan mạnh giữa hai đại lượng</div>
+        <div class="row"><span class="lab">COLLOCATION</span> a strong/close correlation between A and B</div>
+        <div class="row"><span class="lab">VÍ DỤ</span> …and so <i>a strong correlation</i> (93.6%) is suggested.</div>
+        <div class="row"><span class="lab">THAY THẾ</span> a close relationship · a similar pattern</div></div>
+      <div class="bitem v"><span class="bandchip">Band 7+</span><div class="w">rose considerably</div><div class="m">tăng đáng kể</div>
+        <div class="row"><span class="lab">COLLOCATION</span> rise/increase + considerably/markedly/significantly</div>
+        <div class="row"><span class="lab">VÍ DỤ</span> …both oil and food <i>rose considerably</i> between 2000 and 2011.</div>
+        <div class="row"><span class="lab">THAY THẾ</span> increased markedly · climbed significantly · went up sharply</div></div>
+      <div class="bitem v"><span class="bandchip">Band 7+</span><div class="w">remained relatively stable</div><div class="m">duy trì tương đối ổn định</div>
+        <div class="row"><span class="lab">COLLOCATION</span> remain + stable/constant/steady/unchanged</div>
+        <div class="row"><span class="lab">VÍ DỤ</span> …both prices <i>remained relatively stable</i>…</div>
+        <div class="row"><span class="lab">THAY THẾ</span> levelled off · showed little change</div></div>
+      <div class="bitem v"><span class="bandchip">Band 7+</span><div class="w">stood at just under</div><div class="m">đứng ở mức chỉ dưới …</div>
+        <div class="row"><span class="lab">COLLOCATION</span> stand at + [mức] · just under/over + [số]</div>
+        <div class="row"><span class="lab">VÍ DỤ</span> …the food price index <i>stood at just under</i> 90 points.</div>
+        <div class="row"><span class="lab">THAY THẾ</span> was just below · registered just under</div></div>
+      <div class="bitem v"><span class="bandchip">Band 8</span><div class="w">reach a peak of / reach its peak</div><div class="m">đạt đỉnh ở mức …</div>
+        <div class="row"><span class="lab">COLLOCATION</span> reach/hit a peak of + [số] · peak at</div>
+        <div class="row"><span class="lab">VÍ DỤ</span> …oil prices <i>reaching a peak of</i> approximately $130…</div>
+        <div class="row"><span class="lab">THAY THẾ</span> hit a high of · peaked at · hit its highest level</div></div>
+      <div class="bitem v"><span class="bandchip">Band 7+</span><div class="w">be down by</div><div class="m">giảm đi một lượng …</div>
+        <div class="row"><span class="lab">COLLOCATION</span> be down/up by + [lượng]</div>
+        <div class="row"><span class="lab">VÍ DỤ</span> …the food price index <i>was down by</i> about 80 points.</div>
+        <div class="row"><span class="lab">THAY THẾ</span> had fallen by · decreased by</div></div>
+      <div class="bitem v"><span class="bandchip">Band 8</span><div class="w">a barrel of oil</div><div class="m">một thùng dầu (paraphrase “oil prices” bằng đơn vị đo)</div>
+        <div class="row"><span class="lab">COLLOCATION</span> the price of a barrel of oil · $N per barrel</div>
+        <div class="row"><span class="lab">VÍ DỤ</span> …the average price of <i>a barrel of oil</i>…</div>
+        <div class="row"><span class="lab">THAY THẾ</span> crude oil prices · the average oil price</div></div>
+    </div>
+    <div class="trap">🔎 <b>Quan sát Band 9:</b> bài dùng <b>8 từ xấp xỉ khác nhau, không lặp cái nào</b> — close to · just under · nearly · around · approximately · roughly · about · almost. Ngôn ngữ xấp xỉ vừa an toàn cho TA (số liệu đọc từ biểu đồ) vừa là bằng chứng Range của LR.</div>
+  </div>
+
+  <div class="tab-panel" id="b2" data-group="bank">
+    <h2 class="sec">🟨 Section 4 — Grammar Focus</h2>
+    <div class="bank-grid">
+      <div class="bitem g"><div class="w">Past perfect với “By + năm”</div>
+        <div class="row"><span class="lab">CƠ CHẾ</span> “By 2007” = tính đến trước mốc 2007 → hành động đã hoàn tất trước mốc → had + V3.</div>
+        <div class="row"><span class="lab">KHI DÙNG</span> Chốt thành quả tích lũy của một pha, thay vì mô tả từng bước.</div>
+        <div class="row"><span class="lab">VÍ DỤ</span> By 2007, the average oil price <i>had more than doubled</i>.</div></div>
+      <div class="bitem g"><div class="w">Bị động báo cáo</div>
+        <div class="row"><span class="lab">CƠ CHẾ</span> Loại chủ thể nhận định khỏi câu → không còn “I/we”.</div>
+        <div class="row"><span class="lab">KHI DÙNG</span> Nhận định suy ra từ dữ liệu (is suggested) hoặc sự thay đổi được quan sát (was seen).</div>
+        <div class="row"><span class="lab">VÍ DỤ</span> A dramatic increase… <i>was seen</i> · a strong correlation <i>is suggested</i>.</div></div>
+      <div class="bitem g"><div class="w">with + N + V-ing</div>
+        <div class="row"><span class="lab">CƠ CHẾ</span> Mệnh đề tuyệt đối gắn số liệu minh họa vào nhận định chính mà không cần câu mới.</div>
+        <div class="row"><span class="lab">KHI DÙNG</span> Một nhận định + 2 bằng chứng số trong cùng câu.</div>
+        <div class="row"><span class="lab">VÍ DỤ</span> …was seen…, <i>with oil prices reaching</i> a peak of $130 <i>and the index rising</i> to 220 points.</div></div>
+      <div class="bitem g"><div class="w">Mệnh đề đối chiếu “while”</div>
+        <div class="row"><span class="lab">CƠ CHẾ</span> Hai mệnh đề song song trong một câu phức → so sánh trực tiếp.</div>
+        <div class="row"><span class="lab">KHI DÙNG</span> Hai đối tượng có diễn biến đáng đặt cạnh nhau tại cùng thời điểm.</div>
+        <div class="row"><span class="lab">VÍ DỤ</span> …oil rose to nearly $100, <i>while</i> the index reached its peak.</div></div>
+      <div class="bitem g"><div class="w">before + V-ing</div>
+        <div class="row"><span class="lab">CƠ CHẾ</span> Rút gọn mệnh đề trạng ngữ thời gian → nối hai pha liên tiếp trong một câu.</div>
+        <div class="row"><span class="lab">KHI DÙNG</span> Pha A kết thúc thì pha B bắt đầu (ổn định → tăng).</div>
+        <div class="row"><span class="lab">VÍ DỤ</span> …remained relatively stable, <i>before rising</i> steadily…</div></div>
+      <div class="bitem g"><div class="w">Danh từ hóa (Adj + N ⟷ V + Adv)</div>
+        <div class="row"><span class="lab">CƠ CHẾ</span> Cùng một ý xuất hiện dưới hai hình thái: rose dramatically ⟷ a dramatic increase.</div>
+        <div class="row"><span class="lab">KHI DÙNG</span> Tránh lặp cấu trúc khi cùng trường nghĩa xuất hiện nhiều lần.</div>
+        <div class="row"><span class="lab">VÍ DỤ</span> <i>A dramatic increase</i> in both commodity prices was seen…</div></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="b3" data-group="bank">
+    <h2 class="sec">🟪 Section 5 — Linking Devices</h2>
+    <table class="para">
+      <tr><th>Connector</th><th>Chức năng</th><th>Vị trí</th><th>Thay thế</th></tr>
+      <tr><td><b>Furthermore</b></td><td>Bổ sung nhận định cùng hướng (trong Overview)</td><td>Đầu câu + dấu phẩy</td><td>In addition · Moreover · What is more</td></tr>
+      <tr><td><b>However</b></td><td>Đảo hướng — đặt đúng điểm gãy dữ liệu (đỉnh → sụp)</td><td>Đầu câu + dấu phẩy</td><td>Nevertheless · In contrast</td></tr>
+      <tr><td><b>Finally</b></td><td>Đánh dấu chặng cuối của trình tự thời gian</td><td>Đầu câu + dấu phẩy</td><td>By the end of the period · In the final year</td></tr>
+      <tr><td><b>while</b></td><td>Đối chiếu song song hai đối tượng trong một câu</td><td>Giữa câu, trước mệnh đề 2</td><td>whereas · whilst</td></tr>
+      <tr><td><b>before + V-ing</b></td><td>Nối hai pha liên tiếp trong một câu</td><td>Giữa câu, sau dấu phẩy</td><td>prior to + V-ing · and then + V</td></tr>
+      <tr><td><b>In / By + năm</b></td><td>Tín hiệu thời gian mở câu/đoạn (in = tại năm; by = trước/đến năm → past perfect)</td><td>Đầu câu</td><td>At the start of the period · As of + năm</td></tr>
+    </table>
+    <div class="trap">⚠️ <b>Bẫy CC:</b> bài mẫu chỉ dùng 3 từ nối đầu câu cho 9 câu và đặt chúng đúng ngã rẽ của dữ liệu. Lạm dụng từ nối đầu mỗi câu là lỗi khóa CC ở Band 5.0 — liên kết còn nằm ở referencing (both prices → both commodities → commodity prices) chứ không chỉ ở từ nối.</div>
+  </div>
+
+  <div class="tab-panel" id="b4" data-group="bank">
+    <h2 class="sec">📈 Section 6 — Data Description Patterns</h2>
+    <div class="bank-grid">
+      <div class="bitem d"><div class="w">stood at + [mức]</div><div class="m">đứng ở mức (trạng thái tĩnh)</div><div class="row"><span class="lab">VÍ DỤ</span> the index stood <b>at</b> just under 90 points</div></div>
+      <div class="bitem d"><div class="w">was close to + [mức]</div><div class="m">xấp xỉ ở mức</div><div class="row"><span class="lab">VÍ DỤ</span> the oil price was close to $25 per barrel</div></div>
+      <div class="bitem d"><div class="w">remained relatively stable</div><div class="m">duy trì ổn định (pha đi ngang)</div><div class="row"><span class="lab">VÍ DỤ</span> both prices remained relatively stable</div></div>
+      <div class="bitem d"><div class="w">rose steadily / considerably</div><div class="m">tăng dần / tăng đáng kể</div><div class="row"><span class="lab">VÍ DỤ</span> before rising steadily between 2004 and 2007</div></div>
+      <div class="bitem d"><div class="w">had more than doubled</div><div class="m">đã tăng hơn gấp đôi (biên độ bằng bội số)</div><div class="row"><span class="lab">VÍ DỤ</span> the oil price had more than doubled, <b>to</b> nearly $60</div></div>
+      <div class="bitem d"><div class="w">reaching a peak of + [số]</div><div class="m">đạt đỉnh ở mức</div><div class="row"><span class="lab">VÍ DỤ</span> oil prices reaching a peak <b>of</b> approximately $130</div></div>
+      <div class="bitem d"><div class="w">rising to + [mức đích]</div><div class="m">tăng đến mức</div><div class="row"><span class="lab">VÍ DỤ</span> the index rising <b>to</b> 220 points</div></div>
+      <div class="bitem d"><div class="w">dropped by / was down by + [lượng]</div><div class="m">giảm đi một lượng</div><div class="row"><span class="lab">VÍ DỤ</span> had dropped <b>by</b> roughly $90 · was down <b>by</b> about 80 points</div></div>
+      <div class="bitem d"><div class="w">reached its peak, at + [mức]</div><div class="m">lập đỉnh, ở mức</div><div class="row"><span class="lab">VÍ DỤ</span> reached its peak, <b>at</b> almost 240 points</div></div>
+    </div>
+    <div class="trap">🔴 <b>Bộ ba giới từ quyết định số liệu — lỗi kép GRA + TA:</b><br>
+      rose <b>to</b> $60 = tăng ĐẾN MỨC $60 · rose <b>by</b> 50 points = tăng THÊM 50 điểm · stood <b>at</b> 90 = ĐỨNG Ở MỨC 90.<br>
+      Nhầm “to” và “by” là báo cáo sai biểu đồ: <i>rose by 50%</i> (10%→60%) ≠ <i>rose to 50%</i> (10%→50%).</div>
+  </div>
+
+  <div class="tab-panel" id="b5" data-group="bank">
+    <h2 class="sec">🔁 Section 7 — Paraphrase Bank</h2>
+    <p class="note-soft">Hàng đầu: chính xác những gì bài mẫu đã làm với đề bài. Hàng sau: mở rộng dùng cho mọi đề.</p>
+    <table class="para">
+      <tr><th>Đề bài viết</th><th></th><th>Bài mẫu viết</th></tr>
+      <tr><td>The graph … shows</td><td class="arrow">→</td><td>The line graph compares</td></tr>
+      <tr><td>changes in global food and oil prices</td><td class="arrow">→</td><td>the average price of a barrel of oil … the food price index</td></tr>
+      <tr><td>between 2000 and 2011</td><td class="arrow">→</td><td>over a period of 11 years · an 11-year period</td></tr>
+      <tr><td>oil and food (nhắc lần 3)</td><td class="arrow">→</td><td>both commodities · commodity prices</td></tr>
+    </table>
+    <br>
+    <table class="para">
+      <tr><th>Từ gốc</th><th></th><th>Paraphrase chuẩn Band 7+</th></tr>
+      <tr><td>shows / reveals</td><td class="arrow">→</td><td>illustrates · compares · depicts · shows how + S + V</td></tr>
+      <tr><td>the percentage of</td><td class="arrow">→</td><td>the proportion of · the share of</td></tr>
+      <tr><td>the number of [people]</td><td class="arrow">→</td><td>the figure for [people] · the quantity of</td></tr>
+      <tr><td>from 2010 to 2015</td><td class="arrow">→</td><td>between 2010 and 2015 · over a 5-year period</td></tr>
+      <tr><td>change</td><td class="arrow">→</td><td>trend · movement · variation</td></tr>
+      <tr><td>price</td><td class="arrow">→</td><td>cost · value · the figure for</td></tr>
+    </table>
+  </div>
+
+  <div class="tab-panel" id="b6" data-group="bank">
+    <h2 class="sec">📐 Section 8 — Common Templates</h2>
+    <p class="note-soft">Khuôn tái dùng cho bài KHÁC — mỗi khuôn ghi rõ phạm vi áp dụng.</p>
+    <div class="bank-grid">
+      <div class="bitem d"><div class="w"><span class="tpl">The line graph compares + A + with + B + over a period of + N years.</span></div><div class="row"><span class="lab">ÁP DỤNG</span> Mọi biểu đồ 2 đại lượng; đổi “line graph” theo loại biểu đồ.</div></div>
+      <div class="bitem d"><div class="w"><span class="tpl">It is clear that + [xu hướng chung]. Furthermore, + [đặc điểm bao trùm 2].</span></div><div class="row"><span class="lab">ÁP DỤNG</span> Overview 2 câu cho mọi dạng bài — dynamic lẫn static.</div></div>
+      <div class="bitem d"><div class="w"><span class="tpl">In + [năm đầu], A + was close to + [số], and B + stood at + [số].</span></div><div class="row"><span class="lab">ÁP DỤNG</span> Câu mở Body 1 của mọi biểu đồ theo thời gian.</div></div>
+      <div class="bitem d"><div class="w"><span class="tpl">[S] + remained stable, before + V-ing + between X and Y.</span></div><div class="row"><span class="lab">ÁP DỤNG</span> Chuỗi hai pha liên tiếp (line/bar xu hướng).</div></div>
+      <div class="bitem d"><div class="w"><span class="tpl">By + [năm], + S + had + V3 (had more than doubled / had risen by …).</span></div><div class="row"><span class="lab">ÁP DỤNG</span> Chốt thành quả tích lũy — mọi biểu đồ quá khứ.</div></div>
+      <div class="bitem d"><div class="w"><span class="tpl">A dramatic increase in + N + was seen …, with A + V-ing … and B + V-ing …</span></div><div class="row"><span class="lab">ÁP DỤNG</span> Câu nhận định + 2 bằng chứng số — điểm nhấn của Body.</div></div>
+      <div class="bitem d"><div class="w"><span class="tpl">However, by + [mốc], A + had dropped by + [lượng].</span></div><div class="row"><span class="lab">ÁP DỤNG</span> Điểm đảo chiều của xu hướng.</div></div>
+      <div class="bitem d"><div class="w"><span class="tpl">Finally, in + [năm cuối], A + …, while + B + reached its peak, at + [mức].</span></div><div class="row"><span class="lab">ÁP DỤNG</span> Câu chốt so sánh điểm cuối giai đoạn.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TAB 4 · EXAMINER & GHI NHỚ ============ -->
+<section class="tab-panel" id="t4" data-group="main">
+  <h2 class="sec">🟥 Section 9 — Examiner Notes (band-anchored)</h2>
+
+  <div class="card excard ta">
+    <h3><span class="crit">TA</span>Task Achievement — hành vi Band 8–9</h3>
+    <div class="ev">Overview 2 câu ở đoạn 2, mở bằng tín hiệu <q>It is clear that…</q> — đúng hành vi descriptor <b>“presents a clear overview of main trends”</b>. Nêu cả xu hướng chung lẫn đặc điểm bao trùm (tương quan) mà không rơi vào số liệu chi tiết.<span class="tagb">Band 8+</span></div>
+    <div class="ev">Chọn lọc đúng 10 số liệu neo — toàn bộ là điểm đầu ($25 · 90), điểm chốt pha ($60 · +50), cực trị ($130 · 220), điểm gãy (−$90 · −80) và điểm cuối ($100 · 240). Không liệt kê năm nào ngoài các mốc này → triệt tiêu lỗi mechanical recounting.<span class="tagb">Band 8+</span></div>
+    <div class="ev">Khách quan tuyệt đối: không một câu giải thích nguyên nhân (khủng hoảng 2008…), không nhận xét tốt/xấu, không Conclusion — tránh trọn 3 bẫy khóa TA ở Band 6.<span class="tagb">Band 9</span></div>
+  </div>
+
+  <div class="card excard cc">
+    <h3><span class="crit">CC</span>Coherence &amp; Cohesion — hành vi Band 8–9</h3>
+    <div class="ev">Body chia đôi theo thời gian: 2000–07 (phẳng → tăng dần) vs 2007–11 (sốc → sụp → lập đỉnh). Mỗi đoạn mở bằng tín hiệu định vị: <q>In the year 2000</q> · <q>A dramatic increase … from 2007 to 2008</q>.<span class="tagb">Band 8</span></div>
+    <div class="ev">Referencing bằng từ vựng thay vì đại từ mập mờ: both prices → both commodities → commodity prices — chuỗi thay thế leo thang, không một “it/they” nào thiếu tiền ngữ rõ.<span class="tagb">Band 8+</span></div>
+    <div class="ev">Từ nối thưa và đúng chỗ: Furthermore (bổ sung trong Overview) · However (điểm gãy) · Finally (chặng cuối) · while / before + V-ing (liên kết trong câu). Đa dạng VỊ TRÍ liên kết là hành vi <b>“manages all aspects of cohesion”</b>.<span class="tagb">Band 9</span></div>
+  </div>
+
+  <div class="card excard lr">
+    <h3><span class="crit">LR</span>Lexical Resource — hành vi Band 8–9</h3>
+    <div class="ev">Uncommon items dùng tự nhiên, đúng ngữ cảnh: <q>commodity prices</q> · <q>a strong correlation</q> · <q>a barrel of oil</q> — đúng nghĩa “uncommon” của descriptor: cụm học thuật ít người học biết dùng, không phải từ hiếm C2.<span class="tagb">Band 8</span></div>
+    <div class="ev">Xoay vòng trường nghĩa không lặp hình thái: rose considerably → had more than doubled → a dramatic increase → reaching a peak of → reached its peak; giảm: had dropped by → was down by. Chuyển word form V+Adv ⟷ Adj+N là kỹ thuật flexibility điển hình.<span class="tagb">Band 8+</span></div>
+    <div class="ev">8 từ xấp xỉ khác nhau không lặp cái nào (close to, just under, nearly, around, approximately, roughly, about, almost) — mật độ Range hiếm thấy trong 160 từ.<span class="tagb">Band 9</span></div>
+    <div class="bandup">⬆️ <b>Band-up (tùy chọn văn phong, không phải lỗi):</b> “peak” xuất hiện 2 lần (reaching a peak of / reached its peak). Nếu muốn triệt để hóa variety: lần 2 thay bằng <i>hit its highest level of almost 240 points</i>. Cơ chế: thay collocation cùng trường nghĩa để không hình thái nào lặp lại trong bài.</div>
+  </div>
+
+  <div class="card excard gra">
+    <h3><span class="crit">GRA</span>Grammatical Range &amp; Accuracy — hành vi Band 8–9</h3>
+    <div class="ev">Đủ phổ cấu trúc trong 9 câu: câu đơn (S1) · câu ghép đối xứng (S4) · bị động (S3, S7) · before + V-ing (S5) · past perfect với By ×3 (S6, S8) · with + N + V-ing kép (S7) · câu phức while (S9). Đúng hành vi <b>“uses a wide range of structures with full flexibility”</b>.<span class="tagb">Band 8+</span></div>
+    <div class="ev">Bộ ba giới từ số liệu vận hành không lỗi: <q>to nearly $60</q> (mức đích) · <q>by around 50 points</q> (lượng) · <q>at almost 240 points</q> (mức tĩnh) — chính xác tuyệt đối ở đúng nơi dễ sai nhất của Task 1.<span class="tagb">Band 9</span></div>
+    <div class="ev">Thì nhất quán: quá khứ đơn cho diễn biến, past perfect sau mọi “by + mốc”, hiện tại đơn chỉ cho khung báo cáo (compares, is suggested). Hầu như toàn bộ câu error-free.<span class="tagb">Band 9</span></div>
+  </div>
+
+  <h2 class="sec">🟥 Section 10 — Student Notes</h2>
+
+  <div class="must">
+    <h4>📌 Must remember</h4>
+    <ul>
+      <li>Overview LUÔN ở đoạn 2, mở bằng <i>It is clear that / Overall</i>, không chứa số liệu chi tiết.</li>
+      <li>Chỉ chọn số liệu neo: điểm đầu · cực trị · điểm gãy · điểm cuối — và luôn ghép đôi hai đối tượng trong một câu.</li>
+      <li>“By + năm” → bắt buộc past perfect; <b>to</b> = mức đích, <b>by</b> = lượng thay đổi, <b>at</b> = đứng ở mức.</li>
+      <li>Liên kết không chỉ là từ nối đầu câu: referencing bằng danh từ cấp trên (commodity) và cấu trúc trong câu (while, before + V-ing, with + V-ing).</li>
+      <li>Văn phong khách quan 100%: không nguyên nhân, không cảm xúc, không Conclusion.</li>
+    </ul>
+  </div>
+
+  <div class="imit">
+    <div class="col yes"><h4>✅ Nên bắt chước</h4><ul>
+      <li>Khung 4 đoạn + chia Body theo thời gian cho biểu đồ dynamic</li>
+      <li>Câu “nhận định + with + 2 bằng chứng số” (S7)</li>
+      <li>Bộ máy By + past perfect + to/by/at</li>
+      <li>Chuỗi referencing: both prices → both commodities → commodity prices</li>
+      <li>Kho từ xấp xỉ xoay vòng 8 từ</li>
+    </ul></div>
+    <div class="col no"><h4>🚫 Không copy nguyên xi</h4><ul>
+      <li>Số liệu, mốc năm, “93.6%” — thuộc riêng biểu đồ này</li>
+      <li>“a barrel of oil” — chỉ đúng khi đối tượng là dầu</li>
+      <li>Nhận định tương quan — chỉ viết khi biểu đồ THẬT SỰ cho thấy hai đường song hành (hoặc in sẵn hệ số)</li>
+      <li>Học thuộc cả bài — giám khảo trừ nặng memorised response; chỉ mang KHUÔN đi, không mang RUỘT</li>
+    </ul></div>
+  </div>
+
+  <div class="boxes">
+    <div class="box vb"><h4>📗 Vocabulary Box</h4><ul>
+      <li>commodity prices · a strong correlation</li>
+      <li>a barrel of oil · the figure for …</li>
+      <li>reach a/its peak (of) · hit its highest level</li>
+      <li>stood at just under · remained relatively stable</li>
+      <li>had more than doubled · was down by</li>
+    </ul></div>
+    <div class="box gb"><h4>📙 Grammar Box</h4><ul>
+      <li>By + năm → <b>had + V3</b></li>
+      <li><b>to</b> (mức đích) / <b>by</b> (lượng) / <b>at</b> (mức tĩnh)</li>
+      <li>with + N + V-ing (nhét bằng chứng số)</li>
+      <li>…, while … (so sánh trong một câu)</li>
+      <li>…, before + V-ing (nối hai pha)</li>
+    </ul></div>
+    <div class="box tb"><h4>📘 Template Box</h4><ul>
+      <li>The line graph compares A with B over a period of N years.</li>
+      <li>It is clear that… Furthermore,…</li>
+      <li>A dramatic increase in … was seen…, with A reaching… and B rising to…</li>
+      <li>However, by [mốc], A had dropped by [lượng].</li>
+      <li>Finally, in [năm], A …, while B reached its peak, at [mức].</li>
+    </ul></div>
+    <div class="box mb"><h4>📕 Common Mistakes Box</h4><ul>
+      <li>Trộn cặp giới từ: <i>between … to</i> ❌ (between…and / from…to)</li>
+      <li><i>rose to</i> ≠ <i>rose by</i> — nhầm là sai số liệu (lỗi kép TA+GRA)</li>
+      <li>Liệt kê từng năm như cái máy → TA Band 5</li>
+      <li>Thêm nguyên nhân / surprisingly / Conclusion → TA trần 6.0</li>
+    </ul></div>
+  </div>
+</section>
+
+</main>
+
+<div id="backdrop"></div>
+<div id="pop" role="dialog" aria-modal="false">
+  <button class="close" aria-label="Đóng">×</button>
+  <span class="pcat" id="popCat"></span>
+  <h4 id="popTitle"></h4>
+  <div class="row"><span class="lab">FORMULA</span><span class="formula" id="popFormula"></span></div>
+  <div class="row"><span class="lab">VÌ SAO</span><div id="popWhy"></div></div>
+  <div class="row"><span class="lab">THAY THẾ</span><div class="alts" id="popAlts"></div></div>
+  <div class="bandline" id="popBand"></div>
+</div>
+
+<script>
+/* ============ NOTES — single source of truth (DRY: Tab 1 & Tab 2 dùng chung) ============ */
+const CATMETA = {
+  pattern:{label:'🔵 SENTENCE PATTERN', color:'var(--cat-pattern)', bg:'var(--cat-pattern-bg)'},
+  vocab:{label:'🟢 USEFUL VOCABULARY', color:'var(--cat-vocab)', bg:'var(--cat-vocab-bg)'},
+  link:{label:'🟣 LINKING DEVICE', color:'var(--cat-link)', bg:'var(--cat-link-bg)'},
+  gram:{label:'🟠 GRAMMAR POINT', color:'var(--cat-gram)', bg:'var(--cat-gram-bg)'},
+  coll:{label:'🔴 COLLOCATION', color:'var(--cat-coll)', bg:'var(--cat-coll-bg)'}
+};
+const NOTES = {
+ n01:{cat:'pattern',title:'The line graph compares',formula:'The + [line graph] + compares + A + with + B.',
+  why:'Động từ "compares" báo hiệu ngay nhiệm vụ so sánh giữa hai đại lượng — chính xác hơn "shows" khi biểu đồ có hai trục giá trị. Câu mở paraphrase đề, không chép nguyên văn.',
+  alt:['illustrates','gives information about','shows how A and B changed'],
+  band:'TA — giới thiệu đúng đối tượng · LR — paraphrase động từ đề bài.'},
+ n02:{cat:'coll',title:'a barrel of oil',formula:'the price of + a barrel of oil · $N per barrel',
+  why:'Paraphrase "oil prices" bằng đơn vị đo thực tế (thùng dầu). Cụ thể hóa danh từ trừu tượng bằng đơn vị đo là kỹ thuật paraphrase Band 8.',
+  alt:['crude oil prices','the average oil price'],
+  band:'LR — uncommon paraphrase, chính xác về nghĩa.'},
+ n03:{cat:'vocab',title:'over a period of 11 years',formula:'over a period of + N + years / over an N-year period',
+  why:'Thay "between 2000 and 2011" bằng độ dài giai đoạn — tránh lặp nguyên văn mốc thời gian của đề ngay ở câu mở bài.',
+  alt:['over the course of 11 years','during an 11-year period'],
+  band:'LR — paraphrase hệ thống cụm thời gian.'},
+ n04:{cat:'pattern',title:'It is clear that',formula:'Overall, / It is clear that + [xu hướng chung].',
+  why:'Tín hiệu mở Overview chuẩn: giám khảo định vị được ngay "bức tranh lớn". Đây là hành vi bắt buộc để TA đạt Band 7+ ("presents a clear overview").',
+  alt:['Overall, it can be seen that','It is noticeable that'],
+  band:'TA — overview rõ ràng, đặt ở đoạn 2.'},
+ n05:{cat:'vocab',title:'rose considerably',formula:'rose/increased + considerably (V + Adv mức độ)',
+  why:'Trạng từ mức độ khớp với biên độ tăng thực tế của cả hai đường (gấp nhiều lần). Chọn từ đúng cường độ là tiêu chí word choice của LR — dùng "soared" cho mức tăng nhẹ là lỗi.',
+  alt:['increased markedly','climbed significantly','went up sharply'],
+  band:'LR — collocation trend chuẩn xác.'},
+ n06:{cat:'gram',title:'between 2000 and 2011',formula:'between + A + and + B ⟷ from + A + to + B',
+  why:'Cặp giới từ chỉ khoảng thời gian: "between" bắt buộc đi với "and", "from" bắt buộc đi với "to". Trộn cặp (between…to) là lỗi GRA phổ biến.',
+  alt:['from 2000 to 2011','over the period 2000–2011'],
+  band:'GRA — chính xác cấu trúc giới từ.'},
+ n07:{cat:'link',title:'Furthermore',formula:'Furthermore, + mệnh đề (bổ sung cùng hướng)',
+  why:'Nối hai nhận định của Overview: xu hướng tăng + mối tương quan. Đứng đầu câu, theo sau là dấu phẩy — dùng khi ý sau CỘNG THÊM vào ý trước.',
+  alt:['In addition','Moreover','What is more'],
+  band:'CC — cohesive device đúng chức năng bổ sung.'},
+ n08:{cat:'coll',title:'a strong correlation',formula:'a strong/close correlation + between A and B',
+  why:'Danh từ hóa mối quan hệ giữa hai đường thay vì mô tả dài "the two lines moved in the same direction" — nén thông tin ở mật độ học thuật cao.',
+  alt:['a close relationship','a similar pattern'],
+  band:'LR Band 8 — uncommon academic collocation.'},
+ n09:{cat:'gram',title:'is suggested',formula:'S + is/was + suggested (bị động báo cáo)',
+  why:'Bị động loại bỏ chủ thể nhận định ("I think") — giữ văn phong báo cáo khách quan tuyệt đối mà Task 1 yêu cầu.',
+  alt:['can be observed','is indicated'],
+  band:'GRA — passive giữ tính khách quan.'},
+ n10:{cat:'link',title:'In the year 2000',formula:'In + (the year) + [năm], + mệnh đề',
+  why:'Tín hiệu mở Body 1: neo người đọc vào điểm xuất phát trước khi đưa số liệu — hành vi "signalling" đầu đoạn giúp CC đạt Band 7+.',
+  alt:['In 2000','At the start of the period'],
+  band:'CC — câu phát tín hiệu đầu đoạn thân bài.'},
+ n11:{cat:'vocab',title:'was close to',formula:'was close to + [số liệu] (xấp xỉ)',
+  why:'Ngôn ngữ xấp xỉ cho phép báo số liệu đọc từ biểu đồ mà không cam kết độ chính xác tuyệt đối — kỹ thuật an toàn cho TA.',
+  alt:['was approximately','stood at around','was roughly'],
+  band:'TA + LR — số liệu minh họa chính xác, diễn đạt linh hoạt.'},
+ n12:{cat:'coll',title:'stood at just under',formula:'stood at + [mức] · just under/over + [số]',
+  why:'"Stand at" là collocation báo trạng thái tĩnh của số liệu tại một thời điểm; "just under" tinh chỉnh độ xấp xỉ. Giới từ "at" chỉ MỨC — phân biệt "to" (đến mức) và "by" (thêm/bớt một lượng).',
+  alt:['was just below','registered just under'],
+  band:'LR — collocation số liệu · GRA — giới từ chuẩn.'},
+ n13:{cat:'vocab',title:'remained relatively stable',formula:'remained + stable/constant/steady',
+  why:'Gom 4 năm dữ liệu đi ngang vào MỘT nhận định thay vì liệt kê từng năm — kháng thể trực tiếp chống lỗi mechanical recounting của TA.',
+  alt:['remained constant','levelled off','showed little change'],
+  band:'TA — chọn lọc · LR — collocation trend tĩnh.'},
+ n14:{cat:'link',title:'before rising',formula:'[mệnh đề], + before + V-ing',
+  why:'"Before + V-ing" nối hai pha liên tiếp trong MỘT câu, tránh cắt vụn thành hai câu đơn — vừa là cohesive device trong câu (CC) vừa mở rộng cấu trúc (GRA).',
+  alt:['prior to rising','and then rose'],
+  band:'CC + GRA — liên kết trong câu, đa dạng cấu trúc.'},
+ n15:{cat:'link',title:'By 2007',formula:'By + [năm], + S + had + V3',
+  why:'"By" = tính đến trước thời điểm — bắt buộc kéo theo past perfect vì hành động đã hoàn tất trước mốc. Cặp "By + had V3" là tín hiệu thời gian đắt giá nhất của Task 1 quá khứ. Đối chiếu: "in" = tại đúng năm đó.',
+  alt:['By the end of 2007','As of 2007'],
+  band:'GRA Band 8 — kiểm soát thì tinh vi · CC — tín hiệu thời gian.'},
+ n16:{cat:'gram',title:'had more than doubled',formula:'S + had + more than + doubled/tripled',
+  why:'Past perfect khớp với "By 2007"; "more than doubled" diễn đạt biên độ bằng bội số thay vì lặp "increased" — một cấu trúc phục vụ cả Range (GRA) lẫn variety (LR).',
+  alt:['had increased more than twofold','had risen by over 100%'],
+  band:'GRA Band 8 — past perfect chính xác.'},
+ n17:{cat:'gram',title:'had risen by',formula:'rise + by + [lượng] ≠ rise + to + [mức đích]',
+  why:'"By" báo LƯỢNG thay đổi (tăng thêm 50 điểm), "to" báo MỨC ĐÍCH. Nhầm cặp giới từ này làm sai lệch số liệu — lỗi kép GRA + TA nghiêm trọng nhất của Task 1.',
+  alt:['had gone up by','had climbed by'],
+  band:'GRA + TA — giới từ quyết định tính đúng của số liệu.'},
+ n18:{cat:'pattern',title:'A dramatic increase in',formula:'There was / A + [adj] + increase in + N (+ was seen)',
+  why:'Danh từ hóa (increase làm danh từ) đảo cấu trúc so với "prices increased dramatically" — chuyển word form V+Adv ⟷ Adj+N giúp cùng một ý xuất hiện dưới hai hình thái (LR flexibility).',
+  alt:['There was a dramatic increase in','Both prices surged'],
+  band:'LR + GRA — linh hoạt word form.'},
+ n19:{cat:'gram',title:'was seen',formula:'[sự thay đổi] + was seen/observed + [thời gian]',
+  why:'Bị động đặt trọng tâm vào sự thay đổi thay vì người quan sát — duy trì giọng báo cáo khách quan xuyên suốt bài.',
+  alt:['was observed','occurred','took place'],
+  band:'GRA — passive học thuật.'},
+ n20:{cat:'coll',title:'commodity prices',formula:'commodity prices (danh từ cấp trên gộp oil + food)',
+  why:'"Commodity" (hàng hóa cơ bản) là danh từ cấp trên gộp cả oil lẫn food — referencing bằng TỪ VỰNG thay vì lặp "oil and food prices" lần thứ ba hay dùng "they" mập mờ.',
+  alt:['both commodities','the two commodities'],
+  band:'LR Band 8 — uncommon item · CC — substitution tránh lặp.'},
+ n21:{cat:'coll',title:'reaching a peak of',formula:', with + N + reaching a peak of + [số]',
+  why:'Collocation cực trị kinh điển, nằm trong cấu trúc "with + danh từ + V-ing" — nhét hai số liệu minh họa vào cùng câu với nhận định chính: mật độ thông tin của Band 8.',
+  alt:['hitting a high of','peaking at'],
+  band:'LR — collocation cực trị · GRA — with + V-ing.'},
+ n22:{cat:'gram',title:'rising to',formula:'rise/rising + to + [mức đích]',
+  why:'"To" báo MỨC ĐÍCH (chạm 220 điểm) — đối chiếu trực tiếp với "by" ở câu bên cạnh: hai giới từ mã hóa hai loại thông tin khác nhau.',
+  alt:['climbing to','reaching'],
+  band:'GRA + TA — giới từ đúng giữ số liệu đúng.'},
+ n23:{cat:'link',title:'However',formula:'However, + mệnh đề (đảo hướng)',
+  why:'Báo hiệu điểm gãy của xu hướng (đỉnh 2008 → sụp 2009). Từ nối tương phản đặt đúng chỗ dữ liệu đảo chiều — không rải cơ học đầu mỗi câu.',
+  alt:['Nevertheless','In contrast'],
+  band:'CC — cohesive device đúng chức năng tương phản.'},
+ n24:{cat:'gram',title:'had dropped by',formula:'By + [mốc], S + had dropped by + [lượng]',
+  why:'Tái sử dụng bộ máy "By + past perfect + by" cho pha giảm — tính hệ thống: cùng loại thông tin, cùng khuôn ngữ pháp, người đọc giải mã không tốn công.',
+  alt:['had fallen by','had declined by'],
+  band:'GRA — nhất quán thì · TA — lượng giảm chính xác.'},
+ n25:{cat:'vocab',title:'was down by',formula:'was down/up by + [lượng]',
+  why:'Biến thể tính từ hóa của "dropped by" — tránh lặp động từ trong cùng câu ghép; thêm một hình thái nữa cho trường nghĩa giảm.',
+  alt:['had fallen by','decreased by'],
+  band:'LR — variety trong cùng một câu.'},
+ n26:{cat:'link',title:'Finally',formula:'Finally, + [pha cuối của giai đoạn]',
+  why:'Đánh dấu chặng cuối của trình tự thời gian — cùng Furthermore/However tạo bộ khung tiến trình giúp bài đọc như một câu chuyện dữ liệu có mở–thân–kết.',
+  alt:['By the end of the period','In the final year'],
+  band:'CC — progression rõ ràng.'},
+ n27:{cat:'link',title:'while',formula:'[mệnh đề A], + while + [mệnh đề B]',
+  why:'"While" đặt hai đối tượng vào MỘT câu để so sánh trực tiếp — vừa thực hiện nhiệm vụ "make comparisons" của đề (TA) vừa là câu phức đối lập (GRA Band 7+).',
+  alt:['whereas','whilst'],
+  band:'TA + GRA + CC — một từ phục vụ ba tiêu chí.'},
+ n28:{cat:'coll',title:'reached its peak',formula:'reach + a peak of / its peak (+ , at + mức)',
+  why:'Biến thể sở hữu của "reaching a peak of" ở đoạn trên — cùng trường nghĩa cực trị nhưng đổi hình thái, tránh lặp nguyên xi.',
+  alt:['hit its highest level','peaked'],
+  band:'LR — xoay vòng collocation.'},
+ n29:{cat:'gram',title:'at almost 240 points',formula:', at + [mức] (bổ ngữ mức sau dấu phẩy)',
+  why:'"At" nêu MỨC tại đó sự kiện xảy ra — hoàn thành bộ ba giới từ số liệu to/by/at mà bài mẫu trình diễn đầy đủ và không lỗi.',
+  alt:['at nearly 240 points','at a level of almost 240'],
+  band:'GRA — giới từ mức chuẩn.'}
+};
+
+/* ============ Tabs (scoped by data-group — chống rò tab chéo) ============ */
+document.querySelectorAll('[data-group]').forEach(container=>{
+  if(!container.matches('nav .row, .subtabs')) return;
+  const group = container.dataset.group;
+  container.addEventListener('click', e=>{
+    const btn = e.target.closest('[data-tab]');
+    if(!btn) return;
+    container.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active', b===btn));
+    document.querySelectorAll(`.tab-panel[data-group="${group}"]`).forEach(p=>{
+      p.classList.toggle('active', p.id===btn.dataset.tab);
+    });
+    hidePop();
+  });
+});
+
+/* ============ Popover ============ */
+const pop = document.getElementById('pop');
+const backdrop = document.getElementById('backdrop');
+let currentAnn = null;
+function showPop(el){
+  const n = NOTES[el.dataset.note];
+  if(!n) return;
+  const meta = CATMETA[n.cat];
+  document.getElementById('popCat').textContent = meta.label;
+  document.getElementById('popCat').style.cssText = `background:${meta.bg};color:${meta.color}`;
+  document.getElementById('popTitle').textContent = n.title;
+  document.getElementById('popFormula').textContent = n.formula;
+  document.getElementById('popWhy').textContent = n.why;
+  document.getElementById('popAlts').innerHTML = n.alt.map(a=>`<span>${a}</span>`).join('');
+  document.getElementById('popBand').textContent = '🎯 Band: ' + n.band;
+  pop.style.borderLeftColor = meta.color;
+  pop.style.borderTopColor = meta.color;
+  pop.classList.add('show');
+  currentAnn = el;
+  if(window.innerWidth <= 760){ backdrop.classList.add('show'); return; }
+  const r = el.getBoundingClientRect();
+  const popW = Math.min(360, window.innerWidth-24);
+  let left = window.scrollX + r.left;
+  if(left + popW > window.scrollX + window.innerWidth - 12) left = window.scrollX + window.innerWidth - popW - 12;
+  let top = window.scrollY + r.bottom + 10;
+  pop.style.left = left + 'px';
+  pop.style.top = top + 'px';
+  const pr = pop.getBoundingClientRect();
+  if(pr.bottom > window.innerHeight - 8) pop.style.top = (window.scrollY + r.top - pr.height - 10) + 'px';
+}
+function hidePop(){ pop.classList.remove('show'); backdrop.classList.remove('show'); currentAnn = null; }
+document.addEventListener('click', e=>{
+  const ann = e.target.closest('.ann');
+  if(ann && !ann.classList.contains('dimmed')){ e.stopPropagation(); showPop(ann); return; }
+  if(e.target.closest('#pop .close') || e.target===backdrop){ hidePop(); return; }
+  if(!e.target.closest('#pop')) hidePop();
+});
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') hidePop(); });
+
+/* ============ Layer toggles ============ */
+const chips = document.querySelectorAll('#layerChips .chip');
+const cats = ['pattern','vocab','link','gram','coll'];
+function applyLayers(){
+  const state = {};
+  chips.forEach(c=>{ if(cats.includes(c.dataset.cat)) state[c.dataset.cat] = c.classList.contains('on'); });
+  document.querySelectorAll('#t1 .ann').forEach(a=>{
+    a.classList.toggle('dimmed', !state[a.dataset.cat]);
+  });
+}
+chips.forEach(chip=>{
+  chip.addEventListener('click', ()=>{
+    const c = chip.dataset.cat;
+    if(c==='all'){ chips.forEach(x=>{ if(cats.includes(x.dataset.cat)) x.classList.add('on'); }); setAllChipState(); }
+    else if(c==='none'){ chips.forEach(x=>{ if(cats.includes(x.dataset.cat)) x.classList.remove('on'); }); setAllChipState(); }
+    else { chip.classList.toggle('on'); setAllChipState(); }
+    applyLayers(); hidePop();
+  });
+});
+function setAllChipState(){
+  const onCount = [...chips].filter(x=>cats.includes(x.dataset.cat) && x.classList.contains('on')).length;
+  document.querySelector('#layerChips .chip[data-cat="all"]').classList.toggle('on', onCount===cats.length);
+  document.querySelector('#layerChips .chip[data-cat="none"]').classList.toggle('on', onCount===0);
+}
+
+/* ============ Vocab column → flash annotation ============ */
+document.querySelectorAll('.vlist li').forEach(li=>{
+  li.addEventListener('click', ()=>{
+    const target = document.querySelector(`#t1 .sample .ann[data-note="${li.dataset.target}"]`);
+    if(!target) return;
+    target.scrollIntoView({behavior:'smooth', block:'center'});
+    target.classList.remove('flash'); void target.offsetWidth; target.classList.add('flash');
+  });
+});
+</script>
+</body>
+</html>
