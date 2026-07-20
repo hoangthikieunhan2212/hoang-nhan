@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Passage Reading — IELTS Practice · 50 Passages</title>
+<style>
+:root{
+  --forest:#013220;--moss:#006D6F;--teal:#007A74;--mint:#D8BFD8;--sage:#F5F5DC;
+  --sand:#FFFAF0;--shell:#FFF5EE;--white:#FFFAFA;
+  --blue:#2563EB;--blue-light:#EFF6FF;--amber:#D97706;--amber-light:#FFFBEB;
+  --red:#DC2626;--red-light:#FEF2F2;--green-success:#16A34A;--green-light:#F0FDF4;
+  --text-dark:#013220;--text-mid:#006D6F;--text-soft:#5F8A80;
+  --border:#E3DED0;--shadow-sm:0 1px 3px rgba(1,50,32,.08);--shadow-md:0 4px 16px rgba(1,50,32,.12);
+  --shadow-lg:0 8px 32px rgba(1,50,32,.16);--radius:12px;--radius-sm:8px;--radius-lg:20px;font-size:16px;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--sand);}
+.app-shell{display:flex;}
+/* ---- Sidebar ---- */
+.sidebar{width:220px;position:fixed;top:0;left:0;height:100vh;background:var(--forest);color:#fff;
+  overflow-y:auto;display:flex;flex-direction:column;z-index:100;}
+.brand{padding:20px 18px 14px;border-bottom:1px solid rgba(255,255,255,.08);}
+.brand .badge-mint{display:inline-block;background:rgba(216,191,216,.2);color:var(--mint);
+  border:1px solid rgba(216,191,216,.3);border-radius:99px;padding:3px 10px;font-size:10px;font-weight:800;letter-spacing:.5px;}
+.brand h1{font-size:16px;font-weight:800;margin:10px 0 3px;color:#fff;}
+.brand .sub{font-size:10px;color:var(--mint);opacity:.8;letter-spacing:.5px;}
+.nav{flex:1;padding:8px 0 90px;}
+.nav-home{display:flex;align-items:center;gap:8px;padding:10px 18px;font-size:13px;color:rgba(255,255,255,.75);
+  cursor:pointer;border-left:3px solid transparent;}
+.nav-home:hover{background:rgba(216,191,216,.08);}
+.nav-home.active{background:rgba(216,191,216,.15);border-left-color:var(--mint);color:#fff;}
+.nav-group-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
+  color:rgba(216,191,216,.6);padding:14px 18px 5px;}
+.nav-item{display:flex;align-items:center;gap:8px;padding:8px 18px 8px 26px;font-size:13px;font-weight:500;
+  color:rgba(255,255,255,.7);cursor:pointer;border-left:3px solid transparent;}
+.nav-item:hover{background:rgba(216,191,216,.08);color:#fff;}
+.nav-item.active{background:rgba(216,191,216,.15);border-left-color:var(--mint);color:#fff;}
+.nav-item .idx{width:18px;height:18px;border-radius:99px;background:rgba(255,255,255,.1);font-size:10px;font-weight:800;
+  display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;}
+.nav-item .done{margin-left:auto;color:var(--mint);font-weight:800;}
+.progress-wrap{position:fixed;bottom:0;left:0;width:220px;background:var(--forest);padding:12px 18px 14px;
+  border-top:1px solid rgba(255,255,255,.08);}
+.progress-track{height:6px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--mint);width:0;transition:width .3s;}
+.progress-label{font-size:11px;color:rgba(255,255,255,.7);margin-top:6px;}
+/* ---- Main ---- */
+.main-content{margin-left:220px;flex:1;min-height:100vh;width:calc(100% - 220px);}
+.page{display:none;}
+.page.active{display:block;animation:fadeIn .3s ease;}
+/* ---- Overview ---- */
+.hero{background:linear-gradient(135deg,var(--forest),var(--moss),var(--teal));color:#fff;padding:40px 48px;}
+.hero h2{margin:0 0 8px;font-size:32px;font-weight:800;}
+.hero p{margin:4px 0;opacity:.9;font-size:14px;}
+.hero .stats{margin-top:14px;display:flex;gap:22px;flex-wrap:wrap;font-size:13px;}
+.hero .stats b{font-size:20px;display:block;color:var(--mint);}
+.topic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;padding:32px 48px;}
+.topic-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow-sm);transition:all .2s;}
+.topic-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
+.topic-card .th{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.topic-card .tnum{background:var(--sage);color:var(--forest);border-radius:99px;width:26px;height:26px;font-size:12px;font-weight:800;
+  display:inline-flex;align-items:center;justify-content:center;}
+.topic-card .tname{font-size:15px;font-weight:800;color:var(--forest);}
+.pchip{display:flex;align-items:center;justify-content:space-between;background:var(--shell);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:7px 12px;font-size:13px;margin-bottom:6px;cursor:pointer;color:var(--text-dark);}
+.pchip:hover{border-color:var(--teal);}
+.pchip.done{background:var(--green-light);}
+.pchip .st{font-size:11px;color:var(--text-soft);}
+.pchip.done .st{color:var(--green-success);font-weight:700;}
+.topic-card .tcount{font-size:11px;color:var(--text-soft);margin-top:8px;}
+/* ---- Passage header ---- */
+.p-header{background:linear-gradient(135deg,var(--forest),var(--moss),var(--teal));color:#fff;
+  padding:14px 24px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:20;}
+.p-header .badge-mint{background:rgba(216,191,216,.2);color:var(--mint);border:1px solid rgba(216,191,216,.3);
+  border-radius:99px;padding:3px 11px;font-size:10px;font-weight:800;letter-spacing:.4px;}
+.p-header .ptitle{font-size:18px;font-weight:800;}
+.p-header .spacer{flex:1;}
+.score-chip{background:rgba(255,255,255,.15);color:#fff;border-radius:99px;padding:6px 16px;font-size:14px;font-weight:800;display:none;}
+.score-chip.show{display:inline-block;}
+.btn{padding:10px 20px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;border:none;transition:all .15s;}
+.btn-sm{padding:6px 14px;font-size:13px;}
+.btn-primary{background:var(--forest);color:#fff;}
+.btn-primary:hover{background:var(--moss);transform:translateY(-1px);}
+.btn-outline{background:transparent;color:var(--forest);border:1.5px solid var(--border);}
+.btn-outline-light{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4);}
+.btn-finish{background:var(--mint);color:var(--forest);}
+.btn-finish:disabled{opacity:.5;cursor:default;}
+/* ---- Workspace 3 cols ---- */
+.confirm-bar{display:none;background:var(--amber-light);border-bottom:1px solid #FDE68A;padding:10px 24px;
+  align-items:center;gap:12px;font-size:13px;color:var(--amber);}
+.confirm-bar.show{display:flex;}
+.workspace{display:grid;grid-template-columns:45fr 30fr 25fr;height:calc(100vh - 58px);}
+.workspace>*{overflow-y:auto;padding:24px;}
+.col-passage{border-right:1px solid var(--border);}
+.col-questions{border-right:1px solid var(--border);background:var(--sand);}
+.col-hints{background:var(--shell);}
+.col-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.col-head h3{margin:0;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--text-mid);}
+/* passage */
+.para{margin-bottom:16px;font-size:15px;line-height:1.9;}
+.para-label{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;background:var(--sage);
+  color:var(--forest);border-radius:99px;font-size:11px;font-weight:800;margin-right:10px;vertical-align:top;}
+.para-vi{display:none;margin:6px 0 0 36px;font-size:13.5px;color:var(--text-mid);background:var(--white);
+  border-left:3px solid var(--sage);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:8px 12px;line-height:1.7;}
+.para-vi.show{display:block;}
+.footnote{font-size:12.5px;color:var(--text-soft);font-style:italic;border-top:1px solid var(--border);margin-top:14px;padding-top:10px;}
+.ev{}
+.ev.flash{background:var(--amber-light);border-radius:3px;transition:background .3s;box-shadow:0 0 0 3px var(--amber-light);}
+/* questions */
+.q-group-instruction{background:var(--shell);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  padding:12px 16px;font-size:13px;font-weight:600;color:var(--text-mid);margin:18px 0 12px;}
+.subfam-list{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:12px;font-size:13px;}
+.subfam-list b{color:var(--forest);}
+.subfam-list ul{margin:6px 0 0;padding-left:18px;}
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:12px;box-shadow:var(--shadow-sm);}
+.q-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.q-num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;background:var(--forest);color:#fff;
+  border-radius:99px;font-size:13px;font-weight:800;flex:0 0 auto;}
+.q-type-chip{font-size:10px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;background:var(--sage);color:var(--forest);
+  border-radius:99px;padding:2px 9px;}
+.q-prompt{font-size:14px;margin-bottom:10px;}
+.q-dropdown{width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:inherit;background:var(--white);}
+.q-dropdown:focus{border-color:var(--teal);outline:none;}
+.q-dropdown.correct{border-color:var(--green-success);background:var(--green-light);}
+.q-dropdown.incorrect{border-color:var(--red);background:var(--red-light);}
+.blank-input{border:none;border-bottom:2px solid var(--border);background:transparent;font-size:14px;font-family:inherit;padding:6px 8px;width:100%;}
+.blank-input:focus{border-bottom-color:var(--teal);outline:none;}
+.blank-input.correct{border-bottom-color:var(--green-success);background:var(--green-light);}
+.blank-input.incorrect{border-bottom-color:var(--red);background:var(--red-light);}
+.mcq-option{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;font-size:14px;cursor:pointer;margin-bottom:8px;transition:all .15s;}
+.mcq-option:hover{border-color:var(--teal);background:var(--sage);}
+.mcq-option.selected{border-color:var(--blue);background:var(--blue-light);}
+.mcq-option.correct{border-color:var(--green-success);background:var(--green-light);}
+.mcq-option.incorrect{border-color:var(--red);background:var(--red-light);}
+.your-answer{display:none;font-size:12px;color:var(--red);margin-top:8px;font-weight:600;}
+.your-answer.show{display:block;}
+/* hint panel */
+.hint-note{font-size:12px;color:var(--text-soft);font-style:italic;margin-bottom:12px;line-height:1.5;}
+.hint-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:8px;display:flex;gap:10px;font-size:13px;}
+.hint-card .q-num{width:22px;height:22px;font-size:11px;}
+.hint-loc{font-weight:700;color:var(--forest);}
+.hint-chip{display:inline-block;background:var(--sage);color:var(--forest);border-radius:99px;padding:1px 8px;font-size:11px;font-weight:700;margin-top:4px;}
+/* explanation */
+.xp-block{display:none;margin-top:14px;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--white);}
+.xp-block.revealed{display:block;animation:fadeIn .3s;}
+.xp-sec{padding:13px 16px;border-bottom:1px solid var(--sage);font-size:14px;line-height:1.7;}
+.xp-sec:last-child{border-bottom:none;}
+.xp-label{display:block;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;}
+.loc-pill{display:inline-block;background:var(--blue-light);color:var(--blue);border-radius:99px;padding:3px 12px;font-size:12px;font-weight:700;margin-right:6px;}
+.xp-jump{margin-top:8px;}
+.xp-quote{background:var(--shell);border-left:3px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:10px 14px;margin:0;font-style:italic;font-size:13.5px;}
+.pmap{width:100%;border-collapse:separate;border-spacing:4px;font-size:13px;}
+.pmap th{font-size:10px;text-transform:uppercase;color:var(--text-soft);text-align:left;font-weight:800;padding:0 4px;}
+.pm-q{background:var(--blue-light);color:var(--blue);font-weight:700;border-radius:var(--radius-sm);padding:6px 10px;}
+.pm-p{background:var(--green-light);color:var(--green-success);font-weight:700;border-radius:var(--radius-sm);padding:6px 10px;}
+.pm-s{background:var(--sage);color:var(--forest);font-weight:700;border-radius:var(--radius-sm);padding:6px 10px;font-size:11px;white-space:nowrap;}
+.pm-arrow{color:var(--text-soft);text-align:center;}
+.think-flow{}
+.tf-step{position:relative;background:var(--shell);border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 12px 8px 40px;margin-bottom:14px;font-size:13px;}
+.tf-step:not(:last-child)::after{content:"↓";position:absolute;left:18px;bottom:-14px;color:var(--text-soft);font-size:12px;}
+.tf-n{position:absolute;left:10px;top:8px;width:22px;height:22px;background:var(--forest);color:#fff;border-radius:99px;font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;}
+.tf-conclusion{background:var(--sage);border-radius:var(--radius-sm);padding:8px 12px;font-weight:800;color:var(--forest);font-size:13px;text-align:center;}
+.key-answer{display:inline-block;font-size:16px;font-weight:800;color:var(--green-success);background:var(--white);border:2px solid var(--green-success);border-radius:var(--radius-sm);padding:6px 18px;}
+.xp-vi div{margin-bottom:2px;}
+/* placeholder */
+.placeholder-card{background:var(--white);border:2px dashed var(--border);border-radius:var(--radius);padding:48px;text-align:center;color:var(--text-soft);margin:40px auto;max-width:520px;}
+.placeholder-card .big{font-size:40px;}
+.placeholder-card b{color:var(--forest);display:block;margin:10px 0 6px;font-size:16px;}
+/* reset fab */
+.reset-fab{position:fixed;bottom:24px;right:24px;background:var(--red);color:#fff;border-radius:99px;padding:12px 20px;font-size:13px;font-weight:700;box-shadow:var(--shadow-lg);z-index:200;border:none;cursor:pointer;display:none;}
+.reset-fab.show{display:block;}
+/* hint drawer (responsive) */
+.hint-toggle{display:none;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+@media (max-width:1280px){
+  .workspace{grid-template-columns:55fr 45fr;}
+  .col-hints{position:fixed;top:0;right:0;width:320px;height:100vh;box-shadow:var(--shadow-lg);transform:translateX(100%);transition:transform .25s;z-index:150;}
+  .col-hints.open{transform:translateX(0);}
+  .hint-toggle{display:block;position:fixed;right:0;bottom:80px;background:var(--forest);color:#fff;border:none;border-radius:var(--radius-sm) 0 0 var(--radius-sm);padding:12px 14px;font-size:13px;font-weight:700;cursor:pointer;z-index:151;}
+}
+@media (max-width:1024px){
+  .workspace{grid-template-columns:1fr;height:auto;}
+  .workspace>*{overflow:visible;}
+  .col-passage,.col-questions{border-right:none;border-bottom:1px solid var(--border);}
+}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+
+/* ===== V2 ADDITIONS — 10 question types + pair-highlight analysis ===== */
+:root{
+  --pair-anchor:#FDF3C7;
+  --pair-1:#0F766E;--pair-1-bg:#CCFBF1; --pair-2:#BE185D;--pair-2-bg:#FCE7F3;
+  --pair-3:#1D4ED8;--pair-3-bg:#DBEAFE; --pair-4:#7C3AED;--pair-4-bg:#EDE9FE;
+  --pair-5:#C2410C;--pair-5-bg:#FFEDD5;
+}
+.pr{border-radius:3px;padding:0 3px;font-weight:700;}
+.pr-a{background:var(--pair-anchor);}
+.pr-1{color:var(--pair-1);background:var(--pair-1-bg);}
+.pr-2{color:var(--pair-2);background:var(--pair-2-bg);}
+.pr-3{color:var(--pair-3);background:var(--pair-3-bg);}
+.pr-4{color:var(--pair-4);background:var(--pair-4-bg);}
+.pr-5{color:var(--pair-5);background:var(--pair-5-bg);}
+.qp-row{background:var(--shell);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:8px;font-size:13.5px;line-height:1.9;}
+.qp-row .qp-tag{display:inline-block;font-size:10px;font-weight:800;text-transform:uppercase;color:var(--text-soft);margin-right:8px;}
+.pm-cell{font-weight:700;border-radius:var(--radius-sm);padding:6px 10px;}
+.summary-block{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;font-size:14px;line-height:2.2;margin-bottom:12px;}
+.blank-input.inline{width:130px;display:inline-block;}
+.blank-no{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:var(--forest);color:#fff;border-radius:99px;font-size:10px;font-weight:800;margin-right:4px;vertical-align:middle;}
+.word-box{background:var(--shell);border:1.5px dashed var(--border);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:12px;display:flex;flex-wrap:wrap;gap:6px;font-size:13px;}
+.word-box .wb-item{background:var(--white);border:1px solid var(--border);border-radius:99px;padding:2px 10px;}
+.tbl-completion{width:100%;border-collapse:collapse;font-size:13.5px;margin-bottom:12px;}
+.tbl-completion th{background:var(--sage);color:var(--forest);font-weight:800;padding:8px 10px;border:1px solid var(--border);}
+.tbl-completion td{padding:8px 10px;border:1px solid var(--border);background:var(--white);line-height:1.8;}
+.flow-step{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:16px;position:relative;font-size:13.5px;}
+.flow-step:not(:last-child)::after{content:"↓";position:absolute;left:50%;bottom:-16px;color:var(--text-soft);}
+.diagram-wrap{text-align:center;margin-bottom:12px;}
+.diagram-wrap img{max-width:100%;border:1px solid var(--border);border-radius:var(--radius-sm);}
+.method-toggle{background:none;border:none;color:var(--moss);font-size:12px;font-weight:700;cursor:pointer;padding:0;margin-left:8px;font-family:inherit;}
+.method-body{display:none;margin-top:10px;font-size:13px;}
+.method-body.open{display:block;animation:fadeIn .25s;}
+.method-body ol{margin:0;padding-left:20px;}
+.choose-n-note{font-size:11px;color:var(--text-soft);font-style:italic;margin-bottom:6px;}
+.wf-logic{font-size:13px;color:var(--text-mid);margin-bottom:6px;}
+.elim-row{border-left:3px solid var(--amber);background:var(--amber-light);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:8px 12px;margin-bottom:6px;font-size:13px;}
+.elim-row b{color:var(--amber);}
+.wrong-h{border-left:3px solid var(--amber);background:var(--amber-light);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:8px 12px;margin-bottom:6px;font-size:13px;}
+.wrong-h b{color:var(--amber);}
+.dtree{margin-top:12px;}
+.dt-root{background:var(--forest);color:#fff;border-radius:var(--radius-sm);padding:8px 14px;font-size:12px;font-weight:700;text-align:center;margin-bottom:10px;}
+.dt-branches{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.dt-b{text-align:center;border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px;}
+.dt-b.hit{outline:2px solid var(--moss);}
+.dt-q{display:block;font-size:11px;color:var(--text-soft);margin-bottom:4px;}
+.dt-a{font-size:12px;font-weight:800;border-radius:99px;padding:2px 10px;}
+.dt-a.true{background:var(--green-light);color:var(--green-success);}
+.dt-a.false{background:var(--red-light);color:var(--red);}
+.dt-a.ng{background:var(--sand);color:var(--text-soft);border:1px solid var(--border);}
+
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="badge-mint">IELTS READING</span>
+      <h1>Passage Reading Practice</h1>
+      <div class="sub">50 PASSAGES · 10 TOPICS</div>
+    </div>
+    <nav class="nav" id="nav"></nav>
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">0 / 50 finished</div>
+    </div>
+  </aside>
+  <main class="main-content" id="main"></main>
+</div>
+<button class="reset-fab" id="resetFab" onclick="resetCurrent()">↺ Reset This Passage</button>
+<button class="hint-toggle" id="hintToggle" onclick="toggleHintDrawer()">💡 Hints</button>
+<script>
+/* ===== TOPIC METADATA ===== */
+const TOPIC_NAMES = ["Animals","Topic 2","Topic 3","Topic 4","Topic 5","Topic 6","Topic 7","Topic 8","Topic 9","Topic 10"];
+const PASSAGE_TITLES = { "t1p1":"Insight or evolution?", "t1p2":"The thylacine" };
+
+/* ===== TOPIC 1 · PASSAGE 1 — Insight or evolution? (Cam 17 Test 2 Passage 3) ===== */
+const PASSAGE_T1_P1 = {
+  id:"t1p1", title:"Insight or evolution?",
+  paragraphs:[
+    {label:"A", html:`<span class="ev" id="t1p1-ev-q27">Scientific discovery is popularly believed to result from the sheer genius of such intellectual stars as naturalist Charles Darwin and theoretical physicist Albert Einstein.</span> Our view of such unique contributions to science often disregards the person's prior experience and the efforts of their lesser-known predecessors. <span class="ev" id="t1p1-ev-q37">Conventional wisdom also places great weight on insight in promoting breakthrough scientific achievements, as if ideas spontaneously pop into someone's head – fully formed and functional.</span>`,
+     vi:`Người ta thường tin rằng khám phá khoa học đến từ thiên tài thuần túy của những ngôi sao trí tuệ như Darwin và Einstein. Quan niệm phổ biến đặt nặng vai trò của sự "loé sáng" (insight), như thể ý tưởng tự nhiên bật ra trong đầu ai đó – hoàn chỉnh và vận hành ngay.`},
+    {label:"B", html:`There may be some limited truth to this view. <span class="ev" id="t1p1-ev-q28">However, we believe that it largely misrepresents the real nature of scientific discovery, as well as that of creativity and innovation in many other realms of human endeavor.</span>`,
+     vi:`Quan điểm đó có thể đúng một phần. Tuy nhiên, các tác giả cho rằng nó phần lớn trình bày sai bản chất thực sự của khám phá khoa học và của sáng tạo, đổi mới nói chung.`},
+    {label:"C", html:`Setting aside such greats as Darwin and Einstein – <span class="ev" id="t1p1-ev-q29">whose monumental contributions are duly celebrated</span> – we suggest that innovation is more a process of trial and error, where two steps forward may sometimes come with one step back, as well as one or more steps to the right or left. This evolutionary view of human innovation undermines the notion of creative genius and recognizes the cumulative nature of scientific progress.`,
+     vi:`Gạt sang một bên những vĩ nhân như Darwin và Einstein – những đóng góp lớn lao của họ đã được tôn vinh xứng đáng – các tác giả cho rằng đổi mới thiên về quá trình thử-và-sai, mang tính tích luỹ hơn là thiên tài đột xuất.`},
+    {label:"D", html:`Consider one unheralded scientist: John Nicholson, a mathematical physicist working in the 1910s who postulated the existence of 'proto-elements' in outer space. By combining different numbers of weights of these proto-elements' atoms, Nicholson could recover the weights of all the elements in the then-known periodic table. <span class="ev" id="t1p1-ev-q38">These successes are all the more noteworthy given the fact that Nicholson was wrong about the presence of proto-elements: they do not actually exist.</span> Yet, amid his often fanciful theories and wild speculations, Nicholson also proposed a novel theory about the structure of atoms. <span class="ev" id="t1p1-ev-q30">Niels Bohr, the Nobel prize-winning father of modern atomic theory, jumped off from this interesting idea to conceive his now-famous model of the atom.</span>`,
+     vi:`Nhà khoa học ít tên tuổi John Nicholson đã sai về sự tồn tại của "proto-elements", nhưng ông cũng đề xuất một lý thuyết mới về cấu trúc nguyên tử. Niels Bohr đã dựa trên ý tưởng này để dựng nên mô hình nguyên tử nổi tiếng của mình.`},
+    {label:"E", html:`What are we to make of this story? One might simply conclude that science is a collective and cumulative enterprise. That may be true, but there may be a deeper insight to be gleaned. We propose that science is constantly evolving, much as species of animals do. In biological systems, organisms may display new characteristics that result from random genetic mutations. In the same way, random, arbitrary or accidental mutations of ideas may help pave the way for advances in science. If mutations prove beneficial, then the animal or the scientific theory will continue to thrive and perhaps reproduce.`,
+     vi:`Các tác giả đề xuất rằng khoa học không ngừng tiến hoá giống như các loài động vật: những đột biến ngẫu nhiên của ý tưởng có thể mở đường cho tiến bộ khoa học, và nếu có lợi thì sẽ tồn tại và nhân rộng.`},
+    {label:"F", html:`Support for this evolutionary view of behavioral innovation comes from many domains. Consider one example of an influential innovation in US horseracing. The so-called 'acey-deucy' stirrup placement, in which the rider's foot in his left stirrup is placed as much as 25 centimeters lower than the right, is believed to confer important speed advantages when turning on oval tracks. It was developed by a relatively unknown jockey named Jackie Westrope. Had Westrope conducted methodical investigations or examined extensive film records in a shrewd plan to outrun his rivals? Had he foreseen the speed advantage that would be conferred by riding acey-deucy? No. <span class="ev" id="t1p1-ev-q31">He suffered a leg injury, which left him unable to fully bend his left knee. His modification just happened to coincide with enhanced left-hand turning performance.</span> This led to the rapid and widespread adoption of riding acey-deucy by many riders, a racing style which continues in today's thoroughbred racing.`,
+     vi:`Kiểu để bàn đạp "acey-deucy" trong đua ngựa không đến từ nghiên cứu có kế hoạch: Jackie Westrope bị chấn thương chân trái, không co được đầu gối, và sự điều chỉnh đó tình cờ trùng khớp với lợi thế tốc độ khi rẽ trái.`},
+    {label:"G", html:`Plenty of other stories show that fresh advances can arise from error, misadventure, and also pure serendipity – a happy accident. <span class="ev" id="t1p1-ev-q39">For example, in the early 1970s, two employees of the company 3M each had a problem: Spencer Silver had a product – a glue which was only slightly sticky – and no use for it, while his colleague Art Fry was trying to figure out how to affix temporary bookmarks in his hymn book without damaging its pages. The solution to both these problems was the invention of the brilliantly simple yet phenomenally successful Post-It note.</span> Such examples give lie to the claim that ingenious, designing minds are responsible for human creativity and invention. Far more banal and mechanical forces may be at work; forces that are fundamentally connected to the laws of science.`,
+     vi:`Nhiều tiến bộ đến từ sai lầm, rủi ro và may mắn tình cờ – "tai nạn vui vẻ". Ví dụ Post-It note ra đời từ sự trùng hợp giữa keo dính yếu của Spencer Silver và nhu cầu đánh dấu trang của Art Fry.`},
+    {label:"H", html:`<span class="ev" id="t1p1-ev-q32">The notions of insight, creativity and genius are often invoked, but they remain vague and of doubtful scientific utility, especially when one considers the diverse and enduring contributions of individuals such as Plato, Leonardo da Vinci, Shakespeare, Beethoven, Galileo, Newton, Kepler, Curie, Pasteur and Edison. These notions merely label rather than explain the evolution of human innovations.</span> We need another approach, and there is a promising candidate.`,
+     vi:`Các khái niệm "loé sáng", "sáng tạo", "thiên tài" chỉ dán nhãn chứ không giải thích được sự tiến hoá của đổi mới. Coi Plato hay da Vinci là thiên tài không giúp ta hiểu bản chất quá trình sáng tạo.`},
+    {label:"I", html:`<span class="ev" id="t1p1-ev-q33">The Law of Effect was advanced by psychologist Edward Thorndike in 1898, some 40 years after Charles Darwin published his groundbreaking work on biological evolution, On the Origin of Species.</span> This simple law holds that organisms tend to repeat successful behaviors and to refrain from performing unsuccessful ones. <span class="ev" id="t1p1-ev-q34">Just like Darwin's Law of Natural Selection, the Law of Effect involves an entirely mechanical process of variation and selection, without any end objective in sight.</span>`,
+     vi:`Định luật Hiệu ứng (Law of Effect) do Edward Thorndike đưa ra năm 1898. Giống như Chọn lọc Tự nhiên của Darwin, nó là một quá trình hoàn toàn máy móc gồm biến đổi và chọn lọc, không có mục tiêu định trước.`},
+    {label:"J", html:`Of course, the origin of human innovation demands much further study. <span class="ev" id="t1p1-ev-q35">In particular, the provenance of the raw material on which the Law of Effect operates is not as clearly known as that of the genetic mutations on which the Law of Natural Selection operates.</span> The generation of novel ideas and behaviors may not be entirely random, but constrained by prior successes and failures – of the current individual (such as Bohr) or of predecessors (such as Nicholson).`,
+     vi:`Nguồn gốc của "nguyên liệu thô" mà Định luật Hiệu ứng vận hành trên đó vẫn chưa được biết rõ như đột biến gen trong Chọn lọc Tự nhiên. Ý tưởng mới có thể không hoàn toàn ngẫu nhiên mà bị ràng buộc bởi thành-bại trước đó.`},
+    {label:"K", html:`<span class="ev" id="t1p1-ev-q36">The time seems right for abandoning the naive notions of intelligent design and genius, and for scientifically exploring the true origins of creative behavior.</span>`,
+     vi:`Đã đến lúc từ bỏ những quan niệm ngây thơ về "thiết kế thông minh" và thiên tài, để nghiên cứu khoa học nghiêm túc về nguồn gốc thực sự của hành vi sáng tạo.`}
+  ],
+  groups:[
+    {instruction:"Questions 27–31 — Choose the correct letter, A, B, C or D.", type:"mcq", from:27, to:31},
+    {instruction:"Questions 32–36 — Do the following statements agree with the CLAIMS OF THE WRITER? Write YES / NO / NOT GIVEN.", type:"ynng", from:32, to:36},
+    {instruction:"Questions 37–40 — Complete the summary titled 'The origins of creative behaviour' using the list of words, A–G, below.", type:"completion", layout:"summary",
+      wordBox:["A. invention","B. goals","C. compromise","D. mistakes","E. luck","F. inspiration","G. experiments"],
+      summaryHtml:`<b>The origins of creative behaviour</b><br><br>The traditional view of scientific discovery is that breakthroughs happen when a single great mind has sudden ___37___. Although this can occur, it is not often the case. Advances are more likely to be the result of a longer process. In some cases, this process involves ___38___, such as Nicholson's theory about proto-elements. In others, simple necessity may provoke innovation, as with Westrope's decision to modify the position of his riding stirrups. There is also often an element of ___39___, for example, the coincidence of ideas that led to the invention of the Post-It note. With both the Law of Natural Selection and the Law of Effect, there may be no clear ___40___ involved, but merely a process of variation and selection.`,
+      from:37, to:40}
+  ],
+  questions:[
+    /* ---- MCQ 27-31 ---- */
+    {id:27,type:"mcq",prompt:"The purpose of the first paragraph is to",
+     choices:["A. defend particular ideas.","B. compare certain beliefs.","C. disprove a widely held view.","D. outline a common assumption."],
+     answer:"D. outline a common assumption.",
+     hint:{location:"Paragraph A",chips:["Purpose question","Đọc cả đoạn"]},
+     explain:{locate:{para:"Paragraph A",evId:"t1p1-ev-q27"},
+       steps:["Câu chủ đề nêu một NIỀM TIN phổ biến về sáng kiến khoa học","Đoạn không so sánh các niềm tin khác → loại B","Đoạn không biện minh (defend) hay bác bỏ (disprove) → loại A, C","Đoạn chỉ thuần tuý trình bày một giả định phổ biến"],conclusion:"D — outline a common assumption",
+       wrongOptions:[{o:"A",why:"đoạn không bảo vệ một ý tưởng nào"},{o:"B",why:"không so sánh các niềm tin"},{o:"C",why:"chưa bác bỏ — việc bác bỏ nằm ở đoạn sau"}],
+       en:"The first paragraph merely presents a popular belief about scientific discovery, without defending, comparing or disproving it.",
+       vi:["Đoạn 1 chỉ nêu một niềm tin phổ biến","=> D (outline a common assumption)"]}},
+    {id:28,type:"mcq",prompt:"What are the writers doing in the second paragraph?",
+     choices:["A. criticising an opinion","B. justifying a standpoint","C. explaining an approach","D. supporting an argument"],
+     answer:"A. criticising an opinion",
+     hint:{location:"Paragraph B",chips:["Purpose question"]},
+     explain:{locate:{para:"Paragraph B",evId:"t1p1-ev-q28"},
+       evidence:"However, we believe that it largely misrepresents the real nature of scientific discovery.",
+       pmap:[{q:"criticising an opinion",p:"largely misrepresents",s:"Paraphrase"}],
+       steps:["Đoạn 2 nói quan điểm ở đoạn 1 'phần lớn trình bày sai bản chất'","Đây là chỉ trích một quan điểm, chưa đưa luận điểm riêng"],conclusion:"A — criticising an opinion",
+       en:"The writers say the popular view 'largely misrepresents' the truth — they are criticising an opinion.",
+       vi:["Đoạn 2 chê quan điểm ở đoạn 1 là sai bản chất","=> A (criticising an opinion)"]}},
+    {id:29,type:"mcq",prompt:"In the third paragraph, what do the writers suggest about Darwin and Einstein?",
+     choices:["A. They represent an exception to a general rule.","B. Their way of working has been misunderstood.","C. They are an ideal which others should aspire to.","D. Their achievements deserve greater recognition."],
+     answer:"A. They represent an exception to a general rule.",
+     hint:{location:"Paragraph C",chips:["Scan tên riêng","Darwin/Einstein"]},
+     explain:{locate:{para:"Paragraph C",evId:"t1p1-ev-q29"},
+       evidence:"Setting aside such greats as Darwin and Einstein – whose monumental contributions are duly celebrated – we suggest that innovation is more a process of trial and error.",
+       pmap:[{q:"an exception to a general rule",p:"Setting aside such greats… we suggest that innovation is more a process of trial and error",s:"Inference"}],
+       steps:["Tác giả 'gạt riêng' Darwin/Einstein rồi mới nêu quy luật chung (thử-sai, tích luỹ)","→ họ là ngoại lệ của quy luật chung","'duly celebrated' → loại D (đã được công nhận xứng đáng rồi)"],conclusion:"A — an exception to a general rule",
+       wrongOptions:[{o:"D",why:"bài nói đóng góp của họ đã được tôn vinh xứng đáng ('duly celebrated')"},{o:"B",why:"không được đề cập"},{o:"C",why:"không được đề cập"}],
+       en:"By 'setting aside' Darwin and Einstein before stating the general trial-and-error rule, the writers treat them as exceptions.",
+       vi:["Gạt riêng Darwin/Einstein khỏi quy luật chung => họ là ngoại lệ => A"]}},
+    {id:30,type:"mcq",prompt:"John Nicholson is an example of a person whose idea",
+     choices:["A. established his reputation as an influential scientist.","B. was only fully understood at a later point in history.","C. laid the foundations for someone else's breakthrough.","D. initially met with scepticism from the scientific community."],
+     answer:"C. laid the foundations for someone else's breakthrough.",
+     hint:{location:"Paragraph D",chips:["Scan tên riêng","Nicholson → Bohr"]},
+     explain:{locate:{para:"Paragraph D",evId:"t1p1-ev-q30"},
+       evidence:"Niels Bohr … jumped off from this interesting idea to conceive his now-famous model of the atom.",
+       pmap:[{q:"laid the foundations for someone else's breakthrough",p:"Bohr jumped off from this interesting idea to conceive his now-famous model",s:"Paraphrase"}],
+       steps:["Nicholson sai về proto-elements nhưng đề xuất lý thuyết mới về cấu trúc nguyên tử","Bohr dựa trên ý tưởng đó để tạo mô hình nổi tiếng → Nicholson đặt nền cho đột phá của người khác"],conclusion:"C — laid the foundations for someone else's breakthrough",
+       wrongOptions:[{o:"A",why:"Nicholson được mô tả là nhà khoa học 'không tên tuổi' (unheralded)"},{o:"B",why:"không đề cập việc được hiểu đúng về sau"},{o:"D",why:"không đề cập thái độ hoài nghi của giới khoa học"}],
+       en:"Bohr built his famous atomic model on Nicholson's idea — Nicholson's idea laid the foundation for another's breakthrough.",
+       vi:["Bohr dựa trên ý tưởng của Nicholson => Nicholson đặt nền cho đột phá của người khác => C"]}},
+    {id:31,type:"mcq",prompt:"What is the key point of interest about the 'acey-deucy' stirrup placement?",
+     choices:["A. the simple reason why it was invented","B. the enthusiasm with which it was adopted","C. the research that went into its development","D. the cleverness of the person who first used it"],
+     answer:"A. the simple reason why it was invented",
+     hint:{location:"Paragraph F",chips:["'acey-deucy'","key point"]},
+     explain:{locate:{para:"Paragraph F",evId:"t1p1-ev-q31"},
+       evidence:"He suffered a leg injury, which left him unable to fully bend his left knee. His modification just happened to coincide with enhanced left-hand turning performance.",
+       pmap:[{q:"the simple reason why it was invented",p:"He suffered a leg injury … just happened to coincide",s:"Inference"}],
+       steps:["Kiểu để bàn đạp này ra đời do Westrope tình cờ bị chấn thương chân, KHÔNG qua nghiên cứu","Đoạn tập trung vào LÝ DO/NGUỒN GỐC đơn giản của phát kiến"],conclusion:"A — the simple reason why it was invented",
+       wrongOptions:[{o:"B",why:"tuy được áp dụng rộng rãi nhưng đó không phải trọng tâm đoạn"},{o:"C",why:"sai thông tin — chính xác là KHÔNG qua nghiên cứu"},{o:"D",why:"không được đề cập"}],
+       en:"The point is that the technique arose by accident (a leg injury), i.e. the simple reason it was invented.",
+       vi:["Ra đời do chấn thương tình cờ, không qua nghiên cứu => điểm chính là LÝ DO đơn giản => A"]}},
+    /* ---- YNNG 32-36 ---- */
+    {id:32,type:"ynng",prompt:"Acknowledging people such as Plato or da Vinci as geniuses will help us understand the process by which great minds create new ideas.",
+     choices:["YES","NO","NOT GIVEN"],answer:"NO",
+     hint:{location:"Paragraph H",chips:["Y/N/NG","Scan Plato/da Vinci"]},
+     explain:{locate:{para:"Paragraph H",evId:"t1p1-ev-q32"},
+       evidence:"These notions merely label rather than explain the evolution of human innovations.",
+       pmap:[{q:"will help us understand the process",p:"merely label rather than explain",s:"Contradiction"}],
+       steps:["Câu hỏi: coi họ là thiên tài SẼ GIÚP hiểu quá trình sáng tạo","Bài: các khái niệm này CHỈ DÁN NHÃN chứ KHÔNG giải thích","→ trái ngược với quan điểm tác giả"],conclusion:"NO",
+       en:"The writer says these labels 'merely label rather than explain' — the opposite of the statement.",
+       vi:["Bài nói việc dán nhãn 'thiên tài' KHÔNG giải thích được gì","=> trái ý tác giả => NO"]}},
+    {id:33,type:"ynng",prompt:"The Law of Effect was discovered at a time when psychologists were seeking a scientific reason why creativity occurs.",
+     choices:["YES","NO","NOT GIVEN"],answer:"NOT GIVEN",
+     hint:{location:"Paragraph I",chips:["Y/N/NG","Law of Effect"]},
+     explain:{locate:{para:"Paragraph I",evId:"t1p1-ev-q33"},
+       evidence:"The Law of Effect was advanced by psychologist Edward Thorndike in 1898.",
+       steps:["Bài chỉ nói Thorndike đưa ra Law of Effect năm 1898","KHÔNG hề nói giới tâm lý học lúc đó có đang tìm lý do khoa học của sáng tạo hay không"],conclusion:"NOT GIVEN",
+       en:"The passage never says what psychologists as a group were seeking at that time.",
+       vi:["Bài không đề cập giới tâm lý học lúc đó đang tìm gì","=> thiếu thông tin => NOT GIVEN"]}},
+    {id:34,type:"ynng",prompt:"The Law of Effect states that no planning is involved in the behaviour of organisms.",
+     choices:["YES","NO","NOT GIVEN"],answer:"YES",
+     hint:{location:"Paragraph I",chips:["Y/N/NG","no planning"]},
+     explain:{locate:{para:"Paragraph I",evId:"t1p1-ev-q34"},
+       evidence:"the Law of Effect involves an entirely mechanical process of variation and selection, without any end objective in sight.",
+       pmap:[{q:"no planning is involved",p:"entirely mechanical process … without any end objective",s:"Paraphrase"}],
+       steps:["'không có kế hoạch' = quá trình máy móc, không có mục tiêu định trước","Bài mô tả đúng như vậy → trùng quan điểm"],conclusion:"YES",
+       en:"'Entirely mechanical … without any end objective' matches 'no planning'.",
+       vi:["Quá trình máy móc, không mục tiêu = không có kế hoạch","=> trùng ý => YES"]}},
+    {id:35,type:"ynng",prompt:"The Law of Effect sets out clear explanations about the sources of new ideas and behaviours.",
+     choices:["YES","NO","NOT GIVEN"],answer:"NO",
+     hint:{location:"Paragraph J",chips:["Y/N/NG","sources of new ideas"]},
+     explain:{locate:{para:"Paragraph J",evId:"t1p1-ev-q35"},
+       evidence:"the provenance of the raw material on which the Law of Effect operates is not as clearly known as that of the genetic mutations.",
+       pmap:[{q:"clear explanations about the sources",p:"not as clearly known",s:"Contradiction"}],
+       steps:["Câu hỏi: Law of Effect ĐƯA RA giải thích RÕ RÀNG về nguồn gốc ý tưởng mới","Bài: nguồn gốc 'nguyên liệu thô' KHÔNG được biết rõ","→ trái ngược"],conclusion:"NO",
+       en:"The passage says the source is 'not as clearly known' — contradicting 'clear explanations'.",
+       vi:["Bài nói nguồn gốc KHÔNG rõ ràng","=> trái ý tác giả => NO"]}},
+    {id:36,type:"ynng",prompt:"Many scientists are now turning away from the notion of intelligent design and genius.",
+     choices:["YES","NO","NOT GIVEN"],answer:"NOT GIVEN",
+     hint:{location:"Paragraph K",chips:["Y/N/NG","many scientists"]},
+     explain:{locate:{para:"Paragraph K",evId:"t1p1-ev-q36"},
+       evidence:"The time seems right for abandoning the naive notions of intelligent design and genius.",
+       steps:["Bài chỉ nói 'đã đến lúc nên từ bỏ' (một lời kêu gọi)","KHÔNG nói hiện có NHIỀU nhà khoa học đang thực sự làm điều đó","→ thiếu thông tin về 'many scientists'"],conclusion:"NOT GIVEN",
+       en:"The writer calls for abandoning the notion but never claims many scientists are already doing so.",
+       vi:["Bài kêu gọi 'nên từ bỏ', không nói đã có NHIỀU nhà khoa học làm vậy","=> NOT GIVEN"]}},
+    /* ---- Summary word-box 37-40 ---- */
+    {id:37,type:"completion",prompt:"a single great mind has sudden ______",
+     answer:["F. inspiration","F"],display:"F — inspiration",
+     hint:{location:"Paragraph A",chips:["Word box A–G","Danh từ"]},
+     explain:{locate:{para:"Paragraph A",evId:"t1p1-ev-q37"},
+       evidence:"Conventional wisdom also places great weight on insight … as if ideas spontaneously pop into someone's head – fully formed and functional.",
+       pmap:[{q:"sudden inspiration",p:"insight … ideas spontaneously pop into someone's head",s:"Synonym"}],
+       elimination:[{blank:"has sudden ___",logic:"cần danh từ chỉ sự 'loé sáng' đột ngột → 'inspiration' (F) khớp 'insight'"}],
+       steps:["Quan điểm truyền thống đặt nặng 'insight' — ý tưởng bật ra đột ngột","'sudden ___' = nguồn cảm hứng đột ngột → inspiration"],conclusion:"F — inspiration",
+       en:"'Insight … ideas spontaneously pop into someone's head' paraphrases sudden inspiration.",
+       vi:["Ý tưởng bật ra đột ngột = nguồn cảm hứng => F (inspiration)"]}},
+    {id:38,type:"completion",prompt:"this process involves ______, such as Nicholson's theory about proto-elements",
+     answer:["D. mistakes","D"],display:"D — mistakes",
+     hint:{location:"Paragraph D",chips:["Word box A–G","Danh từ số nhiều"]},
+     explain:{locate:{para:"Paragraph D",evId:"t1p1-ev-q38"},
+       evidence:"Nicholson was wrong about the presence of proto-elements: they do not actually exist.",
+       pmap:[{q:"mistakes",p:"was wrong about the presence of proto-elements",s:"Synonym"}],
+       elimination:[{blank:"involves ___ , such as Nicholson's theory",logic:"lý thuyết proto-elements là SAI → danh từ chỉ lỗi sai → 'mistakes' (D)"}],
+       steps:["Lý thuyết proto-elements của Nicholson là SAI nhưng mở đường cho tiến bộ","→ quá trình bao gồm cả 'mistakes'"],conclusion:"D — mistakes",
+       en:"Nicholson's theory was wrong, i.e. one of the 'mistakes' that can drive advances.",
+       vi:["Lý thuyết Nicholson sai (wrong) => mistakes => D"]}},
+    {id:39,type:"completion",prompt:"There is also often an element of ______, for example, the invention of the Post-It note",
+     answer:["E. luck","E"],display:"E — luck",
+     hint:{location:"Paragraph G",chips:["Word box A–G","Danh từ"]},
+     explain:{locate:{para:"Paragraph G",evId:"t1p1-ev-q39"},
+       evidence:"fresh advances can arise from error, misadventure, and also pure serendipity – a happy accident … the invention of the … Post-It note.",
+       pmap:[{q:"an element of luck",p:"pure serendipity – a happy accident",s:"Synonym"}],
+       elimination:[{blank:"an element of ___",logic:"Post-It note = 'happy accident' → danh từ chỉ sự may mắn → 'luck' (E)"}],
+       steps:["Post-It note được gọi là 'happy accident' / 'serendipity'","→ yếu tố may mắn, tình cờ → luck"],conclusion:"E — luck",
+       en:"'Serendipity – a happy accident' equals luck.",
+       vi:["'happy accident' = sự may mắn tình cờ => E (luck)"]}},
+    {id:40,type:"completion",prompt:"there may be no clear ______ involved, but merely a process of variation and selection",
+     answer:["B. goals","B"],display:"B — goals",
+     hint:{location:"Paragraph I",chips:["Word box A–G","Danh từ số nhiều"]},
+     explain:{locate:{para:"Paragraph I",evId:"t1p1-ev-q34"},
+       evidence:"the Law of Effect involves an entirely mechanical process of variation and selection, without any end objective in sight.",
+       pmap:[{q:"no clear goals",p:"without any end objective",s:"Synonym"}],
+       elimination:[{blank:"no clear ___ involved",logic:"'without any end objective' → danh từ chỉ mục tiêu → 'goals' (B)"}],
+       steps:["Cả hai định luật là quá trình biến đổi–chọn lọc, KHÔNG có mục tiêu định trước","'end objective' = 'goals'"],conclusion:"B — goals",
+       en:"'Without any end objective' matches 'no clear goals'.",
+       vi:["'không có mục tiêu định trước' = no clear goals => B"]}}
+  ]
+};
+
+/* ===== TOPIC 1 · PASSAGE 2 — The thylacine (Cam 17 Test 3 Passage 1) ===== */
+const PASSAGE_T1_P2 = {
+  id:"t1p2", title:"The thylacine",
+  paragraphs:[
+    {label:"A", html:`The extinct thylacine, also known as the Tasmanian tiger, was a marsupial that bore a superficial resemblance to a dog. Its most distinguishing feature was the 13–19 dark brown stripes over its back, beginning at the rear of the body and extending onto the tail. The thylacine's average nose-to-tail length for adult males was 162.6 cm, compared to 153.7 cm for females.`,
+     vi:`Thylacine (hổ Tasmania) là thú có túi đã tuyệt chủng, trông hơi giống chó, đặc trưng bởi 13–19 sọc nâu sẫm trên lưng kéo dài tới đuôi.`},
+    {label:"B", html:`The thylacine appeared to occupy most types of terrain except dense rainforest, with open eucalyptus forest thought to be its prime habitat. In terms of feeding, <span class="ev" id="t1p2-ev-q1">it was exclusively carnivorous</span>, and its stomach was muscular with an ability to distend so that it could eat large amounts of food at one time, probably an adaptation to compensate for long periods when hunting was unsuccessful and food scarce. The thylacine was not a fast runner and probably caught its prey by exhausting it during a long pursuit. <span class="ev" id="t1p2-ev-q2">During long-distance chases, thylacines were likely to have relied more on scent than any other sense.</span> They emerged to hunt during the evening, night and early morning and tended to retreat to the hills and forest for shelter during the day. Despite the common name 'tiger', the thylacine had a shy, nervous temperament. Although mainly nocturnal, it was sighted moving during the day and some individuals were even recorded basking in the sun.`,
+     vi:`Thylacine sống ở hầu hết địa hình trừ rừng mưa rậm; ăn hoàn toàn thịt; dạ dày co giãn để ăn nhiều một lúc. Khi rượt đuổi đường dài, chúng dựa vào khứu giác hơn các giác quan khác. Chủ yếu kiếm ăn về đêm.`},
+    {label:"C", html:`The thylacine had an extended breeding season from winter to spring, with indications that some breeding took place throughout the year. The thylacine, like all marsupials, was tiny and hairless when born. <span class="ev" id="t1p2-ev-q3">Newborns crawled into the pouch on the belly of their mother, and attached themselves to one of the four teats, remaining there for up to three months.</span> When old enough to leave the pouch, the young stayed in a lair such as a deep rocky cave, well-hidden nest or hollow log, whilst the mother hunted.`,
+     vi:`Con non sơ sinh bò vào túi ở bụng mẹ, bám vào một trong bốn núm vú và ở đó tới ba tháng. Đủ lớn thì ra khỏi túi, ẩn trong hang trong khi mẹ đi săn.`},
+    {label:"D", html:`Approximately 4,000 years ago, the thylacine was widespread throughout New Guinea and most of mainland Australia, as well as the island of Tasmania. <span class="ev" id="t1p2-ev-q4">The most recent, well-dated occurrence of a thylacine on the mainland is a carbon-dated fossil from Murray Cave in Western Australia, which is around 3,100 years old.</span> Its extinction coincided closely with the arrival of wild dogs called dingoes in Australia and a similar predator in New Guinea. Dingoes never reached Tasmania, and most scientists see this as the main reason for the thylacine's survival there.`,
+     vi:`Khoảng 4.000 năm trước, thylacine phân bố khắp New Guinea, phần lớn lục địa Úc và đảo Tasmania. Bằng chứng gần nhất ở lục địa là một hoá thạch định tuổi carbon ~3.100 năm. Sự tuyệt chủng trùng với thời điểm chó dingo xuất hiện; dingo không tới được Tasmania.`},
+    {label:"E", html:`<span class="ev" id="t1p2-ev-q6">The dramatic decline of the thylacine in Tasmania, which began in the 1830s and continued for a century, is generally attributed to the relentless efforts of sheep farmers and bounty hunters with shotguns.</span> While this determined campaign undoubtedly played a large part, it is likely that various other factors also contributed to the decline and eventual extinction of the species. These include competition with wild dogs introduced by European settlers, <span class="ev" id="t1p2-ev-q5">loss of habitat along with the disappearance of prey species</span>, and a distemper-like disease which may also have affected the thylacine.`,
+     vi:`Sự suy giảm mạnh của thylacine ở Tasmania (từ thập niên 1830, kéo dài một thế kỷ) chủ yếu do người nuôi cừu và thợ săn tiền thưởng. Ngoài ra còn do cạnh tranh với chó hoang, mất môi trường sống cùng sự biến mất của con mồi, và một loại bệnh.`},
+    {label:"F", html:`<span class="ev" id="t1p2-ev-q7">There was only one successful attempt to breed a thylacine in captivity, at Melbourne Zoo in 1899. This was despite the large numbers that went through some zoos, particularly London Zoo and Tasmania's Hobart Zoo.</span> <span class="ev" id="t1p2-ev-q8">The famous naturalist John Gould foresaw the thylacine's demise when he published his Mammals of Australia between 1848 and 1863</span>, writing, 'The numbers of this singular animal will speedily diminish, extermination will have its full sway, and it will then, like the wolf of England and Scotland, be recorded as an animal of the past.'`,
+     vi:`Chỉ có MỘT lần nhân giống thylacine thành công trong điều kiện nuôi nhốt (Sở thú Melbourne, 1899), dù nhiều con đã qua các sở thú. Nhà tự nhiên học John Gould đã tiên đoán sự diệt vong của loài trong cuốn sách của ông.`},
+    {label:"G", html:`<span class="ev" id="t1p2-ev-q9">However, there seems to have been little public pressure to preserve the thylacine, nor was much concern expressed by scientists at the decline of this species in the decades that followed.</span> A notable exception was T.T. Flynn, Professor of Biology at the University of Tasmania. <span class="ev" id="t1p2-ev-q10">In 1914, he was sufficiently concerned about the scarcity of the thylacine to suggest that some should be captured and placed on a small island.</span> But it was not until 1929, <span class="ev" id="t1p2-ev-q11">with the species on the very edge of extinction, that Tasmania's Animals and Birds Protection Board passed a motion protecting thylacines only for the month of December</span>, which was thought to be their prime breeding season. <span class="ev" id="t1p2-ev-q12">The last known wild thylacine to be killed was shot by a farmer in the north-east of Tasmania in 1930, leaving just captive specimens.</span> Official protection of the species by the Tasmanian government was introduced in July 1936, 59 days before the last known individual died in Hobart Zoo on 7th September, 1936.`,
+     vi:`Ít áp lực công chúng và ít lo ngại từ giới khoa học về sự suy giảm. Ngoại lệ là GS T.T. Flynn, năm 1914 đề xuất bắt một số con thả ra đảo nhỏ. Tới 1929, khi loài bên bờ tuyệt chủng, mới có luật bảo vệ chúng chỉ trong tháng 12. Con hoang cuối cùng bị bắn năm 1930, chỉ còn con nuôi nhốt; con cuối chết ở Sở thú Hobart ngày 7/9/1936.`},
+    {label:"H", html:`<span class="ev" id="t1p2-ev-q13">There have been numerous expeditions and searches for the thylacine over the years, none of which has produced definitive evidence that thylacines still exist.</span> The species was declared extinct by the Tasmanian government in 1986.`,
+     vi:`Đã có nhiều cuộc thám hiểm và tìm kiếm thylacine qua nhiều năm nhưng không đưa ra bằng chứng chắc chắn rằng chúng còn tồn tại. Chính quyền Tasmania tuyên bố loài này tuyệt chủng năm 1986.`}
+  ],
+  footnotes:[],
+  groups:[
+    {instruction:"Questions 1–5 — Complete the sentences below. Choose NO MORE THAN THREE WORDS from the passage. (Notes: Appearance & behaviour / Decline & extinction)", type:"sentence-completion", from:1, to:5},
+    {instruction:"Questions 6–13 — Do the following statements agree with the information in the passage? Write TRUE / FALSE / NOT GIVEN.", type:"tfng", from:6, to:13}
+  ],
+  questions:[
+    /* ---- Sentence Completion 1-5 ---- */
+    {id:1,type:"sentence-completion",prompt:"[Appearance & behaviour] The thylacine ate an entirely ______ diet.",
+     answer:["carnivorous"],display:"carnivorous",
+     hint:{location:"Paragraph B",chips:["≤3 words","Adjective"]},
+     explain:{locate:{para:"Paragraph B",evId:"t1p2-ev-q1"},
+       evidence:"In terms of feeding, it was exclusively carnivorous.",
+       pmap:[{q:"diet",p:"feeding",s:"Synonym"},{q:"entirely",p:"exclusively",s:"Synonym"}],
+       predict:{logic:"trước 'diet', sau 'entirely' → cần tính từ mô tả chế độ ăn",chain:["Adjective"]},
+       steps:["Từ khóa: diet↔feeding, entirely↔exclusively","Đoạn B: 'exclusively carnivorous' → tính từ cần điền: carnivorous"],conclusion:"carnivorous",
+       en:"'Exclusively carnivorous' gives the adjective describing the diet.",
+       vi:["diet = feeding, entirely = exclusively","=> carnivorous"]}},
+    {id:2,type:"sentence-completion",prompt:"It probably depended mainly on ______ when hunting.",
+     answer:["scent"],display:"scent",
+     hint:{location:"Paragraph B",chips:["≤3 words","Noun · sense"]},
+     explain:{locate:{para:"Paragraph B",evId:"t1p2-ev-q2"},
+       evidence:"During long-distance chases, thylacines were likely to have relied more on scent than any other sense.",
+       pmap:[{q:"depended",p:"relied",s:"Synonym"},{q:"hunting",p:"long-distance chases / pursuit",s:"Synonym"}],
+       predict:{logic:"sau 'depended mainly on' → cần danh từ (giác quan)",chain:["Noun"]},
+       steps:["Từ khóa: depended↔relied, hunting↔chases","Đoạn B: dựa vào 'scent' nhiều hơn giác quan khác → scent"],conclusion:"scent",
+       en:"Thylacines 'relied more on scent' — the noun to fill is scent.",
+       vi:["depended = relied; dựa vào khứu giác => scent"]}},
+    {id:3,type:"sentence-completion",prompt:"The young spent the first months of life inside its mother's ______.",
+     answer:["pouch"],display:"pouch",
+     hint:{location:"Paragraph C",chips:["≤3 words","Noun · body part"]},
+     explain:{locate:{para:"Paragraph C",evId:"t1p2-ev-q3"},
+       evidence:"Newborns crawled into the pouch on the belly of their mother … remaining there for up to three months.",
+       pmap:[{q:"young",p:"Newborns",s:"Synonym"},{q:"first months of life",p:"up to three months",s:"Paraphrase"}],
+       predict:{logic:"sau \"mother's\" → cần danh từ chỉ bộ phận",chain:["Noun"]},
+       steps:["Từ khóa: young↔newborns, mother","Đoạn C: bò vào 'pouch' ở bụng mẹ, ở tới 3 tháng → pouch"],conclusion:"pouch",
+       en:"Newborns stayed in the mother's pouch for up to three months.",
+       vi:["young = newborns; ở trong túi (pouch) của mẹ => pouch"]}},
+    {id:4,type:"sentence-completion",prompt:"[Decline & extinction] The last evidence in mainland Australia is a 3,100-year-old ______.",
+     answer:["fossil"],display:"fossil",
+     hint:{location:"Paragraph D",chips:["≤3 words","Noun (after adj)"]},
+     explain:{locate:{para:"Paragraph D",evId:"t1p2-ev-q4"},
+       evidence:"the most recent, well-dated occurrence … is a carbon-dated fossil from Murray Cave … around 3,100 years old.",
+       pmap:[{q:"last evidence",p:"most recent, well-dated occurrence",s:"Paraphrase"}],
+       predict:{logic:"sau tính từ '3,100-year-old' → cần danh từ",chain:["Noun"]},
+       steps:["Từ khóa cố định: số '3,100'","Đoạn D: bằng chứng gần nhất là 'fossil' ~3.100 năm → fossil"],conclusion:"fossil",
+       en:"The most recent mainland occurrence is a 3,100-year-old fossil.",
+       vi:["Số 3,100 định vị câu; bằng chứng là hoá thạch => fossil"]}},
+    {id:5,type:"sentence-completion",prompt:"Reduction in ______ and available sources of food were partly responsible for the decline in Tasmania.",
+     answer:["habitat"],display:"habitat",
+     hint:{location:"Paragraph E",chips:["≤3 words","Noun"]},
+     explain:{locate:{para:"Paragraph E",evId:"t1p2-ev-q5"},
+       evidence:"loss of habitat along with the disappearance of prey species.",
+       pmap:[{q:"reduction in",p:"loss of",s:"Synonym"},{q:"sources of food",p:"prey species",s:"Synonym"}],
+       predict:{logic:"sau 'reduction in' → cần danh từ",chain:["Noun"]},
+       steps:["Từ khóa: reduction in↔loss of; sources of food↔prey species","Đoạn E: 'loss of habitat' → habitat"],conclusion:"habitat",
+       en:"'Loss of habitat' matches 'reduction in habitat'.",
+       vi:["reduction in = loss of => habitat"]}},
+    /* ---- TFNG 6-13 ---- */
+    {id:6,type:"tfng",prompt:"Significant numbers of thylacines were killed by humans from the 1830s onwards.",
+     choices:["TRUE","FALSE","NOT GIVEN"],answer:"TRUE",
+     hint:{location:"Paragraph E",chips:["T/F/NG","Scan '1830s'"]},
+     explain:{locate:{para:"Paragraph E",evId:"t1p2-ev-q6"},
+       evidence:"The dramatic decline … which began in the 1830s … is generally attributed to the relentless efforts of sheep farmers and bounty hunters with shotguns.",
+       pmap:[{q:"killed by humans",p:"efforts of sheep farmers and bounty hunters with shotguns",s:"Paraphrase"}],
+       steps:["Từ khóa cố định: '1830s'","Đoạn E: suy giảm mạnh từ 1830s do nông dân + thợ săn dùng súng → con người giết nhiều"],conclusion:"TRUE",
+       en:"The decline from the 1830s is attributed to farmers and bounty hunters with shotguns.",
+       vi:["Suy giảm từ 1830s do người săn bắn => TRUE"]}},
+    {id:7,type:"tfng",prompt:"Several thylacines were born in zoos during the late 1800s.",
+     choices:["TRUE","FALSE","NOT GIVEN"],answer:"FALSE",
+     hint:{location:"Paragraph F",chips:["T/F/NG","Scan 'zoo'"]},
+     explain:{locate:{para:"Paragraph F",evId:"t1p2-ev-q7"},
+       evidence:"There was only one successful attempt to breed a thylacine in captivity, at Melbourne Zoo in 1899.",
+       pmap:[{q:"Several … born in zoos",p:"only one successful attempt to breed",s:"Contradiction"}],
+       steps:["Câu hỏi: NHIỀU con được sinh ra trong sở thú","Bài: CHỈ MỘT lần nhân giống thành công (1899)","→ trái ngược"],conclusion:"FALSE",
+       en:"Only one captive breeding succeeded — not several.",
+       vi:["Chỉ MỘT lần nhân giống thành công, không phải nhiều => FALSE"]}},
+    {id:8,type:"tfng",prompt:"John Gould's prediction about the thylacine surprised some biologists.",
+     choices:["TRUE","FALSE","NOT GIVEN"],answer:"NOT GIVEN",
+     hint:{location:"Paragraph F",chips:["T/F/NG","Scan 'John Gould'"]},
+     explain:{locate:{para:"Paragraph F",evId:"t1p2-ev-q8"},
+       evidence:"The famous naturalist John Gould foresaw the thylacine's demise when he published his Mammals of Australia.",
+       steps:["Bài chỉ nói Gould tiên đoán sự diệt vong trong sách của ông","KHÔNG đề cập phản ứng (ngạc nhiên hay không) của các nhà sinh học khác"],conclusion:"NOT GIVEN",
+       en:"The passage never mentions other biologists' reaction to Gould's prediction.",
+       vi:["Không nói phản ứng của nhà sinh học nào => NOT GIVEN"]}},
+    {id:9,type:"tfng",prompt:"In the early 1900s, many scientists became worried about the possible extinction of the thylacine.",
+     choices:["TRUE","FALSE","NOT GIVEN"],answer:"FALSE",
+     hint:{location:"Paragraph G",chips:["T/F/NG","Scan 'scientists'"]},
+     explain:{locate:{para:"Paragraph G",evId:"t1p2-ev-q9"},
+       evidence:"nor was much concern expressed by scientists at the decline of this species in the decades that followed.",
+       pmap:[{q:"many scientists became worried",p:"nor was much concern expressed by scientists",s:"Contradiction"}],
+       steps:["Câu hỏi: NHIỀU nhà khoa học lo lắng","Bài: KHÔNG có nhiều lo ngại từ giới khoa học","→ trái ngược"],conclusion:"FALSE",
+       en:"Little concern was expressed by scientists — contradicting 'many … became worried'.",
+       vi:["Bài nói ít lo ngại từ giới khoa học => trái ngược => FALSE"]}},
+    {id:10,type:"tfng",prompt:"T. T. Flynn's proposal to rehome captive thylacines on an island proved to be impractical.",
+     choices:["TRUE","FALSE","NOT GIVEN"],answer:"NOT GIVEN",
+     hint:{location:"Paragraph G",chips:["T/F/NG","Scan 'T.T. Flynn'"]},
+     explain:{locate:{para:"Paragraph G",evId:"t1p2-ev-q10"},
+       evidence:"In 1914, he … suggest[ed] that some should be captured and placed on a small island.",
+       steps:["Bài chỉ nói Flynn ĐỀ XUẤT bắt vài con thả ra đảo nhỏ","KHÔNG nói đề xuất đó có bất khả thi (impractical) hay không"],conclusion:"NOT GIVEN",
+       en:"The passage records the proposal but says nothing about it being impractical.",
+       vi:["Chỉ nêu đề xuất, không nói bất khả thi hay không => NOT GIVEN"]}},
+    {id:11,type:"tfng",prompt:"There were still reasonable numbers of thylacines in existence when a piece of legislation protecting the species during their breeding season was passed.",
+     choices:["TRUE","FALSE","NOT GIVEN"],answer:"FALSE",
+     hint:{location:"Paragraph G",chips:["T/F/NG","'breeding season'"]},
+     explain:{locate:{para:"Paragraph G",evId:"t1p2-ev-q11"},
+       evidence:"with the species on the very edge of extinction, that Tasmania's … Board passed a motion protecting thylacines only for the month of December.",
+       pmap:[{q:"reasonable numbers … in existence",p:"on the very edge of extinction",s:"Contradiction"}],
+       steps:["Luật bảo vệ mùa sinh sản (tháng 12) được thông qua năm 1929","Lúc đó loài 'trên bờ vực tuyệt chủng' → số lượng KHÔNG còn hợp lý","→ trái ngược"],conclusion:"FALSE",
+       en:"When the law passed the species was 'on the very edge of extinction' — not reasonable numbers.",
+       vi:["Lúc ra luật, loài bên bờ tuyệt chủng => không còn số lượng hợp lý => FALSE"]}},
+    {id:12,type:"tfng",prompt:"From 1930 to 1936, the only known living thylacines were all in captivity.",
+     choices:["TRUE","FALSE","NOT GIVEN"],answer:"TRUE",
+     hint:{location:"Paragraph G",chips:["T/F/NG","Scan '1930' / '1936'"]},
+     explain:{locate:{para:"Paragraph G",evId:"t1p2-ev-q12"},
+       evidence:"The last known wild thylacine to be killed was shot by a farmer … in 1930, leaving just captive specimens.",
+       pmap:[{q:"only … living … in captivity",p:"leaving just captive specimens",s:"Paraphrase"}],
+       steps:["1930: con hoang cuối cùng bị bắn → chỉ còn 'captive specimens'","1936: con cuối cùng chết trong sở thú → suốt 1930–36 chỉ còn con nuôi nhốt"],conclusion:"TRUE",
+       en:"After the last wild one died in 1930, only captive specimens remained until 1936.",
+       vi:["1930 con hoang cuối bị bắn, chỉ còn con nuôi nhốt tới 1936 => TRUE"]}},
+    {id:13,type:"tfng",prompt:"Attempts to find living thylacines are now rarely made.",
+     choices:["TRUE","FALSE","NOT GIVEN"],answer:"NOT GIVEN",
+     hint:{location:"Paragraph H",chips:["T/F/NG","'expeditions and searches'"]},
+     explain:{locate:{para:"Paragraph H",evId:"t1p2-ev-q13"},
+       evidence:"There have been numerous expeditions and searches for the thylacine over the years, none of which has produced definitive evidence.",
+       pmap:[{q:"find",p:"expeditions and searches",s:"Synonym"}],
+       steps:["Bài nói đã có NHIỀU cuộc tìm kiếm qua nhiều năm","KHÔNG nói HIỆN TẠI các nỗ lực đó có còn hiếm khi được thực hiện hay không"],conclusion:"NOT GIVEN",
+       en:"The passage mentions past searches but says nothing about how often they are made now.",
+       vi:["Bài không nói hiện tại tìm kiếm hiếm hay thường => NOT GIVEN"]}}
+  ]
+};
+
+const PASSAGES = { "t1p1": PASSAGE_T1_P1, "t1p2": PASSAGE_T1_P2 };
+
+</script>
+<script>
+/* ===== Passage Reading IELTS Practice — render engine v2 =====
+   Supports the 10 question types (see question-types.md) and the signature
+   analysis style: inline color-pair highlighting, predict, elimination.
+   Data contract: SKILL.md. Paste unchanged; only data changes per passage. */
+
+const AppState = { current:"overview", passages:{} };
+const CIRC = ["①","②","③","④","⑤","⑥","⑦","⑧","⑨","⑩","⑪","⑫"];
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function escRe(s){return String(s).replace(/[.*+?^${}()|[\]\\]/g,"\\$&");}
+
+/* ===== Bundled pedagogy: per-type method steps (📘 Method toggle) ===== */
+const TYPE_LABELS = {"completion":"Completion","sentence-completion":"Sentence Completion","diagram":"Diagram Labelling",
+  "short-answer":"Short Answer","matching-headings":"Matching Headings","matching-info":"Matching Information",
+  "matching-features":"Matching Features","matching-endings":"Matching Sentence Endings",
+  "tfng":"True/False/NG","ynng":"Yes/No/NG","mcq":"Multiple Choice"};
+const TYPE_METHODS = {
+  "completion":["Xác định: chọn từ word-box hay điền từ trong bài? Word limit bao nhiêu?","Đọc trước bản tóm tắt/bảng/sơ đồ + tiêu đề; xác định từ khóa cố định (tên, số) vs biến đổi (dễ paraphrase)","DỰ ĐOÁN loại từ cần điền (N/V/Adj, số ít/nhiều); word-box: loại trừ từ không hợp ngữ pháp/nghĩa","Scan khoanh vùng đoạn chứa từ khóa → đọc kỹ → chọn từ khớp dự đoán + đúng word limit","Kiểm tra chính tả + ngữ pháp câu hoàn chỉnh"],
+  "sentence-completion":["Đọc yêu cầu, xác định word limit","Đọc statement, gạch từ khóa, nghĩ từ đồng nghĩa","Dự đoán loại từ cần điền dựa vào từ trước/sau chỗ trống","Scan bài theo keyword → đọc kỹ đoạn chứa thông tin","Điền NGUYÊN VĂN từ trong bài, đúng limit, kiểm tra chính tả"],
+  "diagram":["Xác định word limit","Nhìn tổng quan sơ đồ — KHÔNG cố hiểu mọi chi tiết kỹ thuật","Xác định keyword quanh mỗi nhãn; dự đoán loại từ","Scan bài (đáp án có thể KHÔNG theo thứ tự) — làm câu dễ trước","Điền từ nguyên văn, kiểm tra limit + chính tả"],
+  "short-answer":["Xác định word limit (chú ý 'from the passage' = nguyên văn)","Đọc câu hỏi, dự đoán loại thông tin từ từ để hỏi (What percentage → số; whose name → người)","Scan keyword cố định để định vị","Đọc kỹ và trả lời nguyên văn, đúng limit","Đáp án theo thứ tự câu hỏi — dùng câu trước/sau khoanh vùng câu khó"],
+  "matching-headings":["Đọc kỹ các heading (nhiều hơn số đoạn — có heading thừa); gạch keyword","Đánh dấu các heading GẦN NGHĨA nhau, ghi điểm khác biệt","Đọc CẢ đoạn (topic sentence có thể đầu/cuối/giữa hoặc không có) — tránh bẫy ý chi tiết","Loại trừ heading không liên quan → chọn heading khớp Ý CHÍNH","Câu khó để lại cuối — lúc đó lựa chọn đã ít đi"],
+  "matching-info":["Đọc yêu cầu — chú ý 'NB: may use any letter more than once'","Đọc lướt từng đoạn, note ý chính bên cạnh","Đọc statements, gạch keyword cố định (tên/số/ngày) + nghĩ từ đồng nghĩa","Đối chiếu từng đoạn với statements — tìm THÔNG TIN CỤ THỂ (có thể là ý phụ)","Câu dễ (keyword cố định) làm trước; dùng loại trừ cho câu nhiễu"],
+  "matching-features":["Đọc nhận định trước, xác định keyword","Đọc danh sách đối tượng (tên/quốc gia/mốc thời gian)","Scan + highlight MỌI vị trí các đối tượng trong bài","Đọc kỹ quanh từng vị trí, đối chiếu với nhận định (đã paraphrase)","Đáp án không theo thứ tự; tên có thể dùng lại (NB)"],
+  "matching-endings":["Đọc nửa câu trước — KHOAN đọc endings","Dự đoán ending về ngữ pháp + nghĩa","Đọc lướt endings, loại trừ cái không tương thích","Scan bài theo keyword (nhận định theo thứ tự thông tin trong bài)","Ghép thử: câu phải đúng ngữ pháp + logic + khớp bài"],
+  "tfng":["Đọc kỹ đề: TRUE/FALSE/NOT GIVEN (fact) — không nhầm bộ chữ","Đọc statement, gạch keyword + chú ý qualifying words (all, some, always…)","Nghĩ trước từ đồng nghĩa của keyword biến đổi","Scan theo thứ tự (đáp án theo thứ tự statements) → đọc kỹ","So khớp: trùng hoàn toàn → TRUE · trái ngược → FALSE · không tìm thấy → NOT GIVEN"],
+  "ynng":["Đọc kỹ đề: YES/NO/NOT GIVEN — hỏi về QUAN ĐIỂM tác giả, không phải fact","Phân biệt fact vs opinion; chú ý intensifiers (certainly, quite, likely…)","Gạch keyword + qualifying words; nghĩ từ đồng nghĩa","Scan theo thứ tự → đọc kỹ đoạn chứa quan điểm","Khớp quan điểm → YES · trái quan điểm → NO · không đề cập → NOT GIVEN"],
+  "mcq":["Đọc yêu cầu: chọn 1 hay chọn 2–3 đáp án?","Đọc câu hỏi + options; chú ý ĐIỂM KHÁC NHAU giữa options gần giống","Gạch keyword, nghĩ từ đồng nghĩa (options thường chứa đúng keyword để gây nhiễu)","Scan theo thứ tự câu hỏi → đọc kỹ → loại trừ (biết vì sao option sai)","Double-check với bài trước khi chốt; hết giờ vẫn nên đoán"]
+};
+
+/* ===== TOPICS ===== */
+const TOPICS = TOPIC_NAMES.map((name,ti)=>({
+  n:ti+1, name,
+  passages:[1,2,3,4,5].map(pi=>{
+    const id="t"+(ti+1)+"p"+pi;
+    return {id, num:pi, title:PASSAGE_TITLES[id]||null, filled:!!PASSAGES[id]};
+  })
+}));
+
+/* ===== SIDEBAR / OVERVIEW ===== */
+function renderSidebar(){
+  let h=`<div class="nav-home" data-page="overview" onclick="go('overview')"><span>🏠</span><span>Overview</span></div>`;
+  TOPICS.forEach(t=>{
+    h+=`<div class="nav-group-label">${esc(t.name)}</div>`;
+    t.passages.forEach(p=>{
+      h+=`<div class="nav-item" id="nav-${p.id}" data-page="${p.id}" onclick="go('${p.id}')">
+        <span class="idx">${p.num}</span><span>Passage ${p.num}${p.title?" · "+esc(p.title):""}</span>
+        <span class="done" id="done-${p.id}" style="display:none">✓</span></div>`;
+    });
+  });
+  document.getElementById("nav").innerHTML=h;
+}
+function renderOverview(){
+  let cards="";
+  TOPICS.forEach(t=>{
+    let chips="";
+    t.passages.forEach(p=>{
+      chips+=`<div class="pchip" id="chip-${p.id}" onclick="go('${p.id}')">
+        <span>Passage ${p.num}${p.title?" · "+esc(p.title):""}</span>
+        <span class="st">${p.filled?"Ready":"Empty"}</span></div>`;
+    });
+    cards+=`<div class="topic-card"><div class="th"><span class="tnum">${t.n}</span><span class="tname">${esc(t.name)}</span></div>
+      ${chips}<div class="tcount" id="tcount-${t.n}">0 / 5 finished</div></div>`;
+  });
+  return `<div class="page" id="page-overview">
+    <div class="hero"><h2>Passage Reading — IELTS Practice</h2>
+      <p>Luyện đọc IELTS: làm bài, bấm <b>Finish</b>, học cách giải qua phần giải thích chi tiết.</p>
+      <div class="stats"><div><b>50</b> passages</div><div><b>10</b> topics</div><div><b id="ovDone">0</b> finished</div></div>
+    </div><div class="topic-grid">${cards}</div></div>`;
+}
+
+/* ===== PASSAGE PAGE ===== */
+function renderPassagePage(meta){
+  const P=PASSAGES[meta.id];
+  const tnum=meta.id.match(/t(\d+)/)[1];
+  if(!P){
+    return `<div class="page" id="page-${meta.id}">
+      <div class="p-header"><span class="badge-mint">TOPIC ${tnum}</span><span class="ptitle">Passage ${meta.num}</span><span class="spacer"></span></div>
+      <div class="placeholder-card"><div class="big">📥</div><b>Chưa có nội dung</b>Paste passage + câu hỏi + giải thích để fill slot này.</div></div>`;
+  }
+  return `<div class="page" id="page-${meta.id}">
+    <div class="p-header">
+      <span class="badge-mint">TOPIC ${tnum}</span><span class="ptitle">${esc(P.title)}</span><span class="spacer"></span>
+      <span class="score-chip" id="score-${meta.id}"></span>
+      <button class="btn btn-finish" id="finish-${meta.id}" onclick="tryFinish('${meta.id}')">Finish</button>
+    </div>
+    <div class="confirm-bar" id="confirm-${meta.id}"><span id="confirm-msg-${meta.id}"></span>
+      <button class="btn btn-sm btn-primary" onclick="doFinish('${meta.id}')">Finish anyway</button>
+      <button class="btn btn-sm btn-outline" onclick="hideConfirm('${meta.id}')">Keep working</button></div>
+    <div class="workspace">
+      <section class="col-passage">
+        <div class="col-head"><h3>📖 Passage</h3>
+          <button class="btn btn-sm btn-outline" id="vi-toggle-${meta.id}" onclick="toggleVI('${meta.id}')">🇻🇳 Hiện bản dịch</button></div>
+        ${P.paragraphs.map(pa=>`<div class="para"><span class="para-label">${pa.label}</span>${pa.html}
+          ${pa.vi?`<div class="para-vi">${esc(pa.vi)}</div>`:""}</div>`).join("")}
+        ${P.footnotes?`<div class="footnote">${P.footnotes.map(esc).join("<br>")}</div>`:""}
+      </section>
+      <section class="col-questions"><div class="col-head"><h3>✍️ Questions</h3></div>${renderGroups(P)}</section>
+      <aside class="col-hints" id="hints-${meta.id}">
+        <div class="col-head"><h3>💡 Hints</h3></div>
+        <div class="hint-note">Hints tell you WHERE to look and WHAT form to expect — never the answer.</div>
+        ${P.questions.map(q=>renderHint(q)).join("")}
+      </aside>
+    </div></div>`;
+}
+function renderHint(q){
+  const chips=(q.hint.chips||(q.hint.chip?[q.hint.chip]:[])).map(c=>`<span class="hint-chip">${esc(c)}</span>`).join(" ");
+  return `<div class="hint-card"><span class="q-num">${q.id}</span>
+    <div><span class="hint-loc">${esc(q.hint.location)}</span><div>${chips}</div></div></div>`;
+}
+
+/* ===== GROUPS: instruction + method toggle + type layouts ===== */
+let METHOD_UID=0;
+function renderGroups(P){
+  let out="";
+  P.groups.forEach(g=>{
+    const mid="mth-"+(++METHOD_UID);
+    const steps=TYPE_METHODS[g.type];
+    out+=`<div class="q-group-instruction">${esc(g.instruction)}
+      ${steps?`<button class="method-toggle" onclick="document.getElementById('${mid}').classList.toggle('open')">📘 Method</button>
+      <div class="method-body" id="${mid}"><ol>${steps.map(s=>`<li>${esc(s)}</li>`).join("")}</ol></div>`:""}</div>`;
+    if(g.extra) out+=g.extra;
+    const qs=P.questions.filter(q=>q.id>=g.from&&q.id<=g.to);
+    if(g.type==="completion"&&(g.summaryHtml||g.table||g.flowSteps)) out+=renderCompletionLayout(g,qs);
+    else if(g.type==="diagram"&&g.image) out+=`<div class="diagram-wrap"><img src="${g.image}" alt="diagram"></div>`;
+    if(g.wordBox&&!g.summaryHtml&&!g.table&&!g.flowSteps) out+=renderWordBox(g.wordBox);
+    qs.forEach(q=>{ out+=renderQuestion(q,g); });
+  });
+  return out;
+}
+function renderWordBox(box){
+  return `<div class="word-box">${box.map(w=>`<span class="wb-item">${esc(w)}</span>`).join("")}</div>`;
+}
+function inlineInput(q,g){
+  if(g&&g.wordBox){
+    return `<span class="blank-no">${q.id}</span><select class="q-dropdown inline-dd" id="in-${q.id}" style="width:150px;display:inline-block;padding:4px 8px;">
+      <option value="">—</option>${g.wordBox.map(w=>`<option value="${esc(w)}">${esc(w)}</option>`).join("")}</select>`;
+  }
+  return `<span class="blank-no">${q.id}</span><input type="text" class="blank-input inline" id="in-${q.id}" autocomplete="off">`;
+}
+function renderCompletionLayout(g,qs){
+  const sub=html=>html.replace(/___(\d+)___/g,(m,n)=>{
+    const q=qs.find(x=>x.id===+n); return q?inlineInput(q,g):m;
+  });
+  let out="";
+  if(g.wordBox) out+=renderWordBox(g.wordBox);
+  if(g.summaryHtml) out+=`<div class="summary-block">${sub(g.summaryHtml)}</div>`;
+  if(g.table){
+    out+=`<table class="tbl-completion">${g.table.headers?`<tr>${g.table.headers.map(h=>`<th>${esc(h)}</th>`).join("")}</tr>`:""}
+      ${g.table.rows.map(r=>`<tr>${r.map(c=>`<td>${sub(c)}</td>`).join("")}</tr>`).join("")}</table>`;
+  }
+  if(g.flowSteps) out+=g.flowSteps.map(s=>`<div class="flow-step">${sub(s)}</div>`).join("");
+  return out;
+}
+
+/* ===== QUESTION CARD ===== */
+function hasInlineInput(q,g){return !!(g&&g.type==="completion"&&(g.summaryHtml||g.table||g.flowSteps));}
+function renderQuestion(q,g){
+  let input="";
+  const inline=hasInlineInput(q,g);
+  if(!inline){
+    if(q.type==="mcq"){
+      const note=q.choose?`<div class="choose-n-note">Choose ${q.choose} answers</div>`:"";
+      input=note+`<div class="mcq-options" data-qid="${q.id}" data-choose="${q.choose||1}" role="${q.choose?'group':'radiogroup'}">`+
+        q.choices.map(c=>`<div class="mcq-option" role="${q.choose?'checkbox':'radio'}" aria-checked="false"
+          onclick="selectMCQ(this,${q.id})" data-val="${esc(c)}">${esc(c)}</div>`).join("")+`</div>`;
+    } else if(q.choices){ /* tfng, ynng, all matching types, completion with box (no layout) */
+      input=`<select class="q-dropdown" id="in-${q.id}"><option value="">— choose —</option>`+
+        q.choices.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join("")+`</select>`;
+    } else { /* sentence-completion, short-answer, diagram, completion w/o layout */
+      input=`<input type="text" class="blank-input" id="in-${q.id}" placeholder="Type your answer…" autocomplete="off">`;
+    }
+  }
+  return `<div class="q-card" id="qc-${q.id}">
+    <div class="q-head"><span class="q-num">${q.id}</span><span class="q-type-chip">${TYPE_LABELS[q.type]||q.type}</span></div>
+    ${q.prompt?`<div class="q-prompt" id="qp-${q.id}">${esc(q.prompt)}</div>`:""}
+    ${input}
+    <div class="your-answer" id="ya-${q.id}"></div>
+    <div class="xp-block" id="xp-${q.id}">${renderExplain(q)}</div></div>`;
+}
+
+/* ===== PAIR HIGHLIGHTING (signature analysis style) ===== */
+function markPairs(text,rows,anchors,side){
+  /* side "q" marks row.q terms; "p" marks row.p terms; anchors always yellow. Auto — no manual markup. */
+  let html=esc(text||"");
+  (anchors||[]).forEach(a=>{
+    html=html.replace(new RegExp("("+escRe(esc(a))+")","i"),'<span class="pr pr-a">$1</span>');
+  });
+  (rows||[]).forEach((r,i)=>{
+    const term=side==="q"?r.q:r.p; if(!term)return;
+    const cls="pr-"+(i%5+1);
+    html=html.replace(new RegExp("("+escRe(esc(term))+")","i"),'<span class="pr '+cls+'">$1</span>');
+  });
+  return html;
+}
+
+/* ===== EXPLANATION (renders only sections that exist — Golden Rule) ===== */
+function renderExplain(q){
+  const e=q.explain||{}; let secs=[];
+  const push=(c,l,h,bg)=>secs.push({c,l,h,bg});
+  if(e.keyword) push("var(--blue)","Keyword",`<span class="pm-cell pr-3" style="display:inline-block">${esc(e.keyword)}</span>`);
+  if(e.locate) push("var(--blue)","Locate Evidence",
+    `<span class="loc-pill">${esc(e.locate.para)}</span>`+
+    (e.locate.evId?`<div class="xp-jump"><button class="btn btn-sm btn-outline" onclick="jumpTo('${e.locate.evId}')">📍 Jump to Evidence</button></div>`:""));
+  if(e.pmap&&e.pmap.length&&(q.prompt||e.evidence)){
+    let h="";
+    if(q.prompt) h+=`<div class="qp-row"><span class="qp-tag">Question</span>${markPairs(q.prompt,e.pmap,e.anchors,"q")}</div>`;
+    if(e.evidence) h+=`<div class="qp-row"><span class="qp-tag">Passage</span>${markPairs(e.evidence,e.pmap,e.anchors,"p")}</div>`;
+    push("var(--forest)","Question ↔ Passage",h);
+  } else if(e.evidence){
+    push("var(--moss)","Evidence Sentence",`<blockquote class="xp-quote">“${esc(e.evidence)}”</blockquote>`);
+  }
+  if(e.pmap&&e.pmap.length) push("var(--forest)","Paraphrase Mapping",renderPmap(e.pmap));
+  if(e.grammar) push("var(--blue)","Grammar Analysis",esc(e.grammar));
+  if(e.predict) push("var(--amber)","Predicted Word Form (Loại từ cần điền)",
+    (e.predict.logic?`<div class="wf-logic">${esc(e.predict.logic)}</div>`:"")+
+    `<div class="wf-chain">${(e.predict.chain||[]).map((p,i)=>(i?'<span class="wf-arrow">↓</span>':"")+`<span class="wf-pill">${esc(p)}</span>`).join("")}</div>`);
+  if(e.elimination&&e.elimination.length) push("var(--amber)","Elimination",
+    e.elimination.map(r=>`<div class="elim-row"><b>${esc(r.blank)}</b> → ${esc(r.logic)}</div>`).join(""));
+  if(e.mainIdea) push("var(--blue)","Main Idea",esc(e.mainIdea));
+  if(e.topicSentence) push("var(--moss)","Topic Sentence",
+    `<blockquote class="xp-quote">“${esc(e.topicSentence)}”</blockquote>`+
+    (e.evId?`<div class="xp-jump"><button class="btn btn-sm btn-outline" onclick="jumpTo('${e.evId}')">📍 Jump to Evidence</button></div>`:""));
+  if(e.steps&&e.steps.length){
+    let h=`<div class="think-flow">${e.steps.map((s,i)=>`<div class="tf-step"><span class="tf-n">${i+1}</span>${esc(s)}</div>`).join("")}
+      ${e.conclusion?`<div class="tf-conclusion">Conclusion → ${esc(e.conclusion)}</div>`:""}</div>`;
+    if(q.type==="tfng"||q.type==="ynng") h+=renderDTree(q);
+    push("var(--forest)","Thinking Process",h);
+  }
+  const wrong=e.wrongHeadings||e.wrongOptions;
+  if(wrong&&wrong.length) push("var(--amber)","Why the others are wrong",
+    wrong.map(w=>`<div class="wrong-h"><b>${esc(w.h||w.o||"")}</b> — ${esc(w.why)}</div>`).join(""));
+  const keyAns=q.display||(Array.isArray(q.answer)?q.answer.join(", "):q.answer);
+  push("var(--green-success)","Key Answer",`<span class="key-answer">${esc(keyAns)}</span>`,"var(--green-light)");
+  if(e.en) push("var(--text-mid)","English Explanation",esc(e.en));
+  if(e.vi) push("var(--text-mid)","Vietnamese Explanation",
+    `<div class="xp-vi">${(Array.isArray(e.vi)?e.vi:[e.vi]).map(x=>`<div>${esc(x)}</div>`).join("")}</div>`);
+  if(e.trap) push("var(--amber)","Common Trap",esc(e.trap),"var(--amber-light)");
+  return secs.map((s,i)=>`<div class="xp-sec"${s.bg?` style="background:${s.bg}"`:""}>
+    <span class="xp-label" style="color:${s.c}">${CIRC[i]||"•"} ${s.l}</span>${s.h}</div>`).join("");
+}
+function renderPmap(rows){
+  const hasO=rows.some(r=>r.o);
+  return `<table class="pmap"><thead><tr><th>Question</th><th></th><th>Passage</th>${hasO?"<th>Original</th>":""}<th>Skill</th></tr></thead><tbody>`+
+    rows.map((r,i)=>{const c="pr-"+(i%5+1);
+      return `<tr><td class="pm-cell ${c}">${esc(r.q)}</td><td class="pm-arrow">→</td><td class="pm-cell ${c}">${esc(r.p)}</td>${hasO?`<td class="pm-cell pr-a">${esc(r.o||"")}</td>`:""}<td class="pm-s">${esc(r.s||"")}${r.note?`<br><span style="font-weight:400">${esc(r.note)}</span>`:""}</td></tr>`;}).join("")+
+    `</tbody></table>`;
+}
+function renderDTree(q){
+  const yn=q.type==="ynng";
+  const labels=yn?["YES","NO","NOT GIVEN"]:["TRUE","FALSE","NOT GIVEN"];
+  const cls=["true","false","ng"];
+  const ans=String(q.answer).toUpperCase();
+  return `<div class="dtree"><div class="dt-root">Statement → Locate → Compare${yn?" (claims of the writer)":" (information)"}</div>
+    <div class="dt-branches">${["Same?","Contradiction?","Missing?"].map((qq,i)=>
+      `<div class="dt-b${ans===labels[i]?" hit":""}"><span class="dt-q">${qq}</span><span class="dt-a ${cls[i]}">${labels[i]}</span></div>`).join("")}</div></div>`;
+}
+
+/* ===== BUILD / NAV ===== */
+function buildAll(){
+  renderSidebar();
+  let html=renderOverview();
+  TOPICS.forEach(t=>t.passages.forEach(p=>{ html+=renderPassagePage(p); }));
+  document.getElementById("main").innerHTML=html;
+  go("overview");
+}
+function go(pageId){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  const el=document.getElementById("page-"+pageId); if(el)el.classList.add("active");
+  document.querySelectorAll(".nav-item,.nav-home").forEach(n=>n.classList.toggle("active",n.dataset.page===pageId));
+  AppState.current=pageId;
+  document.getElementById("resetFab").classList.toggle("show", pageId!=="overview" && !!PASSAGES[pageId]);
+  document.querySelectorAll(".col-passage,.col-questions,.col-hints").forEach(c=>c.scrollTop=0);
+  window.scrollTo(0,0);
+  const ht=document.getElementById("hintToggle");
+  if(ht) ht.style.display=(pageId!=="overview"&&PASSAGES[pageId]&&window.innerWidth<=1280)?"block":"none";
+}
+
+/* ===== INTERACTION / GRADING ===== */
+function selectMCQ(el,qid){
+  const box=el.parentElement; if(box.dataset.locked)return;
+  const chooseN=+box.dataset.choose||1;
+  if(chooseN===1){
+    box.querySelectorAll(".mcq-option").forEach(o=>{o.classList.remove("selected");o.setAttribute("aria-checked","false");});
+    el.classList.add("selected");el.setAttribute("aria-checked","true");
+  } else {
+    if(el.classList.contains("selected")){el.classList.remove("selected");el.setAttribute("aria-checked","false");return;}
+    const sel=box.querySelectorAll(".mcq-option.selected");
+    if(sel.length>=chooseN){sel[0].classList.remove("selected");sel[0].setAttribute("aria-checked","false");}
+    el.classList.add("selected");el.setAttribute("aria-checked","true");
+  }
+}
+function getAnswer(q){
+  const box=document.querySelector(`.mcq-options[data-qid="${q.id}"]`);
+  if(box){
+    const sel=[...box.querySelectorAll(".selected")].map(o=>o.dataset.val);
+    return q.choose?sel:(sel[0]||"");
+  }
+  const el=document.getElementById("in-"+q.id);return el?el.value:"";
+}
+function norm(s){return String(s).toLowerCase().trim().replace(/[.,;'"]/g,"").replace(/\s+/g," ");}
+function isCorrect(q,val){
+  if(q.choose){ /* graded as a set */
+    const want=(Array.isArray(q.answer)?q.answer:[q.answer]).map(norm).sort();
+    const got=(Array.isArray(val)?val:[val]).map(norm).sort();
+    return want.length===got.length&&want.every((w,i)=>got[i]===w||got[i].indexOf(w+".")===0||got[i].indexOf(w+" ")===0);
+  }
+  if(Array.isArray(q.answer)) return q.answer.some(a=>norm(a)===norm(val));
+  return norm(q.answer)===norm(val);
+}
+function tryFinish(pid){
+  const P=PASSAGES[pid];
+  const un=P.questions.filter(q=>{const v=getAnswer(q);return Array.isArray(v)?v.length===0:!v;}).length;
+  if(un>0){
+    document.getElementById("confirm-msg-"+pid).textContent=`${un} câu chưa trả lời.`;
+    document.getElementById("confirm-"+pid).classList.add("show");
+  } else doFinish(pid);
+}
+function hideConfirm(pid){document.getElementById("confirm-"+pid).classList.remove("show");}
+function doFinish(pid){
+  hideConfirm(pid);
+  const P=PASSAGES[pid]; let correct=0;
+  P.questions.forEach(q=>{
+    const val=getAnswer(q);
+    const answered=Array.isArray(val)?val.length>0:!!val;
+    const ok=answered&&isCorrect(q,val); if(ok)correct++;
+    const box=document.querySelector(`.mcq-options[data-qid="${q.id}"]`);
+    if(box){
+      box.dataset.locked="1";
+      const wants=(Array.isArray(q.answer)?q.answer:[q.answer]).map(norm);
+      box.querySelectorAll(".mcq-option").forEach(o=>{
+        if(wants.some(w=>norm(o.dataset.val)===w))o.classList.add("correct");
+        else if(o.classList.contains("selected"))o.classList.add("incorrect");
+      });
+    } else {
+      const el=document.getElementById("in-"+q.id);
+      if(el){el.disabled=true;el.classList.add(ok?"correct":"incorrect");}
+    }
+    if(!ok){
+      const ya=document.getElementById("ya-"+q.id);
+      const shown=Array.isArray(val)?val.join(", "):val;
+      if(ya){ya.textContent="Your answer: "+(shown||"(blank)");ya.classList.add("show");}
+    }
+    document.getElementById("xp-"+q.id).classList.add("revealed");
+  });
+  const sc=document.getElementById("score-"+pid);
+  sc.textContent=correct+" / "+P.questions.length; sc.classList.add("show");
+  const fb=document.getElementById("finish-"+pid); fb.textContent="✓ Finished"; fb.disabled=true;
+  AppState.passages[pid]={finished:true,score:correct};
+  document.getElementById("done-"+pid).style.display="inline";
+  const chip=document.getElementById("chip-"+pid); if(chip){chip.classList.add("done");
+    const st=chip.querySelector(".st"); if(st)st.textContent="Done "+correct+"/"+P.questions.length;}
+  updateProgress();
+}
+function resetCurrent(){
+  const pid=AppState.current; const P=PASSAGES[pid]; if(!P)return;
+  P.questions.forEach(q=>{
+    const box=document.querySelector(`.mcq-options[data-qid="${q.id}"]`);
+    if(box){delete box.dataset.locked;
+      box.querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected","correct","incorrect"));}
+    else{const el=document.getElementById("in-"+q.id);
+      if(el){el.disabled=false;el.value="";el.classList.remove("correct","incorrect");}}
+    const ya=document.getElementById("ya-"+q.id); if(ya)ya.classList.remove("show");
+    document.getElementById("xp-"+q.id).classList.remove("revealed");
+  });
+  document.getElementById("score-"+pid).classList.remove("show");
+  const fb=document.getElementById("finish-"+pid); fb.textContent="Finish"; fb.disabled=false;
+  delete AppState.passages[pid];
+  document.getElementById("done-"+pid).style.display="none";
+  const chip=document.getElementById("chip-"+pid); if(chip){chip.classList.remove("done");
+    const st=chip.querySelector(".st"); if(st)st.textContent="Ready";}
+  updateProgress();
+}
+function updateProgress(){
+  const done=Object.values(AppState.passages).filter(p=>p.finished).length;
+  document.getElementById("progressFill").style.width=(done/50*100)+"%";
+  document.getElementById("progressLabel").textContent=done+" / 50 finished";
+  const ov=document.getElementById("ovDone"); if(ov)ov.textContent=done;
+  TOPICS.forEach(t=>{
+    const d=t.passages.filter(p=>AppState.passages[p.id]&&AppState.passages[p.id].finished).length;
+    const el=document.getElementById("tcount-"+t.n); if(el)el.textContent=d+" / 5 finished";
+  });
+}
+
+/* ===== VI TOGGLE / JUMP / DRAWER ===== */
+function toggleVI(pid){
+  const page=document.getElementById("page-"+pid);
+  const btn=document.getElementById("vi-toggle-"+pid);
+  const showing=page.querySelector(".para-vi.show");
+  page.querySelectorAll(".para-vi").forEach(v=>v.classList.toggle("show",!showing));
+  btn.textContent=showing?"🇻🇳 Hiện bản dịch":"🇻🇳 Ẩn bản dịch";
+}
+function jumpTo(evId){
+  const el=document.getElementById(evId); if(!el)return;
+  el.scrollIntoView({behavior:"smooth",block:"center"});
+  el.classList.add("flash"); setTimeout(()=>el.classList.remove("flash"),2500);
+}
+function toggleHintDrawer(){
+  const h=document.getElementById("hints-"+AppState.current); if(h)h.classList.toggle("open");
+}
+
+buildAll();
+
+</script>
+</body>
+</html>
