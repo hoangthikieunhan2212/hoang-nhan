@@ -1241,12 +1241,12 @@ const GAPS=[
 
 /* ---- WORD ORDERING: 6 ---- */
 const ORDER=[
- {words:["I","used","to","work","on-site","five","days","a","week","."],ans:"i used to work on-site five days a week."},
- {words:["I","am","used","to","working","from","home","now","."],ans:"i am used to working from home now."},
- {words:["It","took","me","a","month","to","get","used","to","the","commute","."],ans:"it took me a month to get used to the commute."},
- {words:["My","new","office","is","spacious","and","well-equipped","."],ans:["My new office is spacious and well-equipped.","My new office is well-equipped and spacious."]}
- {words:["I","can't","imagine","going","back","to","a","toxic","workplace","."],ans:"i can't imagine going back to a toxic workplace."},
- {words:["Looking","back",",","I","truly","appreciate","this","flexibility","."],ans:"looking back, i truly appreciate this flexibility."}
+ {words:["I","used","to","work","on-site","five","days","a","week","."],ans:["I used to work on-site five days a week."]},
+ {words:["I","am","used","to","working","from","home","now","."],ans:["I am used to working from home now."]},
+ {words:["It","took","me","a","month","to","get","used","to","the","commute","."],ans:["It took me a month to get used to the commute."]},
+ {words:["My","new","office","is","spacious","and","well-equipped","."],ans:["My new office is spacious and well-equipped.","My new office is well-equipped and spacious."]},
+ {words:["I","can't","imagine","going","back","to","a","toxic","workplace","."],ans:["I can't imagine going back to a toxic workplace."]},
+ {words:["Looking","back",",","I","truly","appreciate","this","flexibility","."],ans:["Looking back, I truly appreciate this flexibility."]}
 ];
 
 /* ---- SPEAKING 2A ---- */
@@ -1637,6 +1637,7 @@ function renderOrder(){
     return `<div class="q-block">
       <div class="q-text"><span class="qn">${i+1}.</span> ${sh.map(w=>`<span class="hint-chip" style="margin:2px;">${esc(w)}</span>`).join(" ")}</div>
       <input class="blank-input" id="ord${i}" style="width:100%;min-width:200px;" placeholder="Type the full sentence here…">
+      ${o.ans.length>1?'<div style="font-size:12px;color:var(--text-soft);font-style:italic;margin-top:6px;">💡 More than one order is correct here.</div>':""}
     </div>`;
   }).join("");
 }
@@ -1645,11 +1646,12 @@ $("ordCheck").addEventListener("click",()=>{
   let s=0;
   ORDER.forEach((o,i)=>{
     const inp=$("ord"+i);
-    const v=norm(inp.value).replace(/\s+([.,])/g,"$1");
-    const ok=v===norm(o.ans).replace(/\s+([.,])/g,"$1");
+    const tidy=x=>norm(x).replace(/\s+([.,])/g,"$1");
+    const v=tidy(inp.value);
+    const ok=o.ans.some(a=>tidy(a)===v);
     inp.classList.remove("correct","incorrect");
     inp.classList.add(ok?"correct":"incorrect");
-    if(ok)s++;else inp.title="Answer: "+o.ans;
+    if(ok)s++;else inp.title="Answer: "+o.ans.join("  /  ");
   });
   $("ordScore").textContent=s+"/6";$("ordMsg").textContent=s===6?"Perfect word order!":"Hover an incorrect box to see the answer, then Reset and retry.";
   $("ordFb").className="feedback-box show "+(s>=5?"success":s>=3?"info":"error");
