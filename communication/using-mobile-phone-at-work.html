@@ -1,0 +1,2105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Using Mobile Phones at Work — English Communication Lesson</title>
+<style>
+:root{
+  --forest:#013220; --moss:#006D6F; --teal:#007A74; --mint:#D8BFD8;
+  --sage:#F5F5DC; --sand:#FFFAF0; --shell:#FFF5EE; --white:#FFFAFA;
+  --blue:#2563EB; --blue-light:#EFF6FF; --amber:#D97706; --amber-light:#FFFBEB;
+  --red:#DC2626; --red-light:#FEF2F2; --green-success:#16A34A; --green-light:#F0FDF4;
+  --text-dark:#013220; --text-mid:#006D6F; --text-soft:#5F8A80;
+  --border:#E3DED0;
+  --shadow-sm:0 1px 3px rgba(1,50,32,0.08);
+  --shadow-md:0 4px 16px rgba(1,50,32,0.12);
+  --shadow-lg:0 8px 32px rgba(1,50,32,0.16);
+  --radius:12px; --radius-sm:8px; --radius-lg:20px;
+  font-size:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--sand);}
+.app-shell{display:flex;min-height:100vh;}
+
+/* SIDEBAR */
+.sidebar{width:220px;background:var(--forest);position:fixed;top:0;bottom:0;left:0;display:flex;flex-direction:column;padding:22px 0;z-index:100;overflow-y:auto;}
+.brand{padding:0 18px 20px;border-bottom:1px solid rgba(255,255,255,0.1);}
+.brand .lvl{display:inline-block;background:rgba(216,191,216,0.2);color:var(--mint);border:1px solid rgba(216,191,216,0.3);font-size:10px;font-weight:800;letter-spacing:1px;padding:3px 10px;border-radius:99px;}
+.brand h2{color:#fff;font-size:17px;font-weight:800;margin-top:10px;line-height:1.3;}
+.brand .cat{color:var(--mint);opacity:.8;font-size:11px;font-weight:600;letter-spacing:.5px;}
+.nav{flex:1;padding:16px 0;}
+.nav-group{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(216,191,216,0.6);padding:14px 18px 6px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 18px;color:rgba(255,255,255,0.7);font-size:13px;font-weight:500;cursor:pointer;border-left:3px solid transparent;transition:all .2s;}
+.nav-item:hover{background:rgba(216,191,216,0.08);color:#fff;}
+.nav-item.active{background:rgba(216,191,216,0.15);border-left-color:var(--mint);color:#fff;font-weight:700;}
+.nav-item .ic{width:20px;font-size:16px;text-align:center;}
+.prog-wrap{padding:16px 18px 0;border-top:1px solid rgba(255,255,255,0.1);}
+.prog-label{font-size:10px;color:rgba(216,191,216,0.6);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+.prog-track{height:6px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;}
+.prog-fill{height:100%;background:var(--mint);border-radius:99px;width:11%;transition:width .5s ease;}
+
+/* MAIN */
+.main-content{flex:1;margin-left:220px;min-width:0;}
+.page{display:none;}
+.page.active{display:block;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+.hero{background:linear-gradient(135deg,var(--forest),var(--moss),var(--teal));color:#fff;padding:48px;}
+.hero.small{padding:32px 48px;}
+.hero-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:4px 12px;border-radius:99px;letter-spacing:.4px;}
+.badge-white{background:rgba(255,255,255,0.15);color:#fff;}
+.badge-mint{background:rgba(216,191,216,0.2);color:var(--mint);border:1px solid rgba(216,191,216,0.3);}
+.badge-blue{background:var(--blue-light);color:var(--blue);}
+.badge-amber{background:var(--amber-light);color:var(--amber);}
+.badge-green{background:var(--green-light);color:var(--green-success);}
+.badge-red{background:var(--red-light);color:var(--red);}
+.badge-forest{background:var(--sage);color:var(--forest);}
+.hero h1{font-size:36px;font-weight:800;line-height:1.2;margin-bottom:12px;}
+.hero.small h1{font-size:26px;}
+.hero p{max-width:560px;font-size:15px;opacity:.9;}
+.outcomes{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px;}
+
+.section{padding:40px 48px;border-bottom:1px solid var(--border);}
+.section-header{margin-bottom:24px;}
+.part-label{display:inline-block;background:var(--forest);color:var(--mint);font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 10px;border-radius:99px;text-transform:uppercase;}
+.section-title{font-size:22px;font-weight:800;color:var(--forest);margin-top:10px;}
+.section-subtitle{font-size:14px;color:var(--text-soft);margin-top:4px;}
+
+.info-box{background:var(--sage);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:14px 18px;font-size:14px;color:var(--text-mid);margin-bottom:20px;}
+.listening-notice{background:var(--amber-light);border:1px solid #FDE68A;color:var(--amber);padding:12px 16px;font-size:13px;border-radius:var(--radius-sm);margin-bottom:20px;}
+
+/* JOURNEY */
+.journey{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;}
+.j-step{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;position:relative;transition:all .2s;}
+.j-step:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--teal);}
+.j-num{width:28px;height:28px;border-radius:99px;background:var(--forest);color:var(--mint);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.j-step h4{font-size:14px;font-weight:800;color:var(--forest);}
+.j-step .j-part{font-size:11px;font-weight:700;color:var(--moss);letter-spacing:.5px;text-transform:uppercase;margin-top:2px;}
+.j-step p{font-size:13px;color:var(--text-soft);margin-top:6px;}
+
+/* TABS */
+.tab-scroll{position:relative;margin-bottom:24px;}
+.tab-scroll::after{content:"";position:absolute;top:0;bottom:2px;right:0;width:34px;pointer-events:none;opacity:0;transition:opacity .2s;
+  background:linear-gradient(to right,rgba(255,250,240,0),var(--sand));}
+.tab-scroll.more-right::after{opacity:1;}
+.tab-scroll .scroll-cue{position:absolute;top:50%;right:4px;transform:translateY(-50%);pointer-events:none;opacity:0;transition:opacity .2s;
+  color:var(--moss);font-size:16px;font-weight:800;z-index:2;}
+.tab-scroll.more-right .scroll-cue{opacity:1;}
+.tab-bar{border-bottom:2px solid var(--border);display:flex;gap:4px;overflow-x:auto;margin-bottom:0;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:thin;}
+.tab-bar::-webkit-scrollbar{height:4px;}
+.tab-bar::-webkit-scrollbar-thumb{background:var(--border);border-radius:99px;}
+.tab-btn{padding:10px 18px;font-size:13px;font-weight:600;color:var(--text-soft);border:none;background:transparent;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;font-family:inherit;transition:all .15s;flex:0 0 auto;scroll-snap-align:start;min-height:44px;}
+.tab-btn:hover{color:var(--forest);}
+.tab-btn.active{color:var(--forest);border-bottom-color:var(--forest);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;animation:fadeIn .3s ease;}
+
+/* VOCAB */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.vocab-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;cursor:pointer;position:relative;transition:all .2s;}
+.vocab-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--teal);}
+.flip-hint{position:absolute;top:10px;right:12px;font-size:10px;font-weight:700;color:var(--text-soft);background:var(--shell);padding:2px 8px;border-radius:99px;}
+.vocab-card .word{color:var(--forest);font-size:17px;font-weight:700;padding-right:44px;}
+.vocab-card .ipa{color:var(--blue);font-size:13px;font-style:italic;}
+.vocab-card .pos{display:inline-block;background:var(--sage);color:var(--forest);font-size:10px;font-weight:800;padding:2px 8px;border-radius:99px;margin:6px 0;}
+.vocab-card .vi{color:var(--text-mid);font-size:14px;font-weight:600;}
+.vocab-card .example{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--sage);color:var(--text-soft);font-size:13px;}
+.vocab-card.flipped .example{display:block;animation:fadeIn .3s ease;}
+.vocab-card .example b{color:var(--forest);}
+
+/* PHRASE */
+.phrase-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;margin-bottom:10px;transition:all .2s;}
+.phrase-card:hover{box-shadow:var(--shadow-sm);border-color:var(--teal);}
+.phrase-en{color:var(--forest);font-weight:700;font-size:15px;min-width:250px;}
+.phrase-vi{color:var(--text-soft);font-size:13px;}
+
+/* PRONUN */
+.pron-box{background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius);padding:20px;margin-bottom:16px;}
+.pron-box h4{color:var(--blue);font-weight:700;font-size:15px;margin-bottom:8px;}
+.pron-box p{font-size:14px;color:var(--text-dark);}
+.pron-arrow{display:inline-block;background:var(--blue);color:#fff;font-size:11px;font-weight:700;padding:2px 10px;border-radius:99px;margin:0 6px;}
+.pron-practice{background:var(--sage);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;margin-top:12px;font-size:14px;color:var(--text-dark);}
+.pron-practice div{margin:4px 0;}
+
+/* PASSAGE */
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.legend span{font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;}
+.hl-vocab{background:var(--sage);border-radius:3px;padding:1px 3px;font-weight:700;color:var(--forest);}
+.hl-phrase{border-bottom:2px solid var(--moss);font-weight:700;color:var(--moss);}
+.hl-pron{background:var(--blue-light);border-radius:3px;padding:1px 3px;color:var(--blue);font-weight:700;}
+.hl-accent{background:var(--amber-light);border-radius:3px;padding:1px 3px;color:var(--amber);font-weight:700;}
+.passage{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;font-size:15px;line-height:1.9;}
+.passage h4{color:var(--forest);font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin:20px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--sage);}
+.passage h4:first-child{margin-top:0;}
+.passage .vi-line{color:var(--text-soft);font-size:13px;font-style:italic;display:block;margin-bottom:10px;}
+
+/* EXERCISE */
+.exercise{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:20px;}
+.exercise-title{color:var(--forest);font-weight:700;font-size:16px;margin-bottom:8px;}
+.exercise-instruction{color:var(--text-soft);font-size:13px;background:var(--shell);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:18px;}
+.q-block{padding:14px 0;border-bottom:1px solid var(--sage);}
+.q-block:last-of-type{border-bottom:none;}
+.q-text{font-size:14px;font-weight:600;color:var(--text-dark);margin-bottom:10px;}
+.q-text .qn{color:var(--moss);font-weight:800;margin-right:6px;}
+.mcq-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;}
+.mcq-option{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;font-size:14px;cursor:pointer;background:var(--white);transition:all .15s;display:flex;gap:8px;align-items:flex-start;}
+.mcq-option:hover{border-color:var(--teal);background:var(--sage);}
+.mcq-option.selected{border-color:var(--blue);background:var(--blue-light);}
+.mcq-option.correct{border-color:var(--green-success);background:var(--green-light);}
+.mcq-option.incorrect{border-color:var(--red);background:var(--red-light);}
+.mcq-option .ltr{font-weight:800;color:var(--moss);}
+.blank-input{border:none;border-bottom:2px solid var(--forest);background:transparent;min-width:130px;font-size:15px;font-family:inherit;color:var(--text-dark);padding:2px 4px;outline:none;}
+.blank-input:focus{border-bottom-color:var(--blue);}
+.blank-input.correct{border-bottom-color:var(--green-success);background:var(--green-light);}
+.blank-input.incorrect{border-bottom-color:var(--red);background:var(--red-light);}
+
+.btn-group{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+.btn{padding:10px 20px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:inherit;transition:all .2s;}
+.btn-primary{background:var(--forest);color:#fff;}
+.btn-primary:hover{background:var(--moss);transform:translateY(-1px);}
+.btn-secondary{background:var(--sage);color:var(--forest);}
+.btn-secondary:hover{background:var(--mint);}
+.btn-outline{background:transparent;color:var(--forest);border:1.5px solid var(--border);}
+.btn-outline:hover{border-color:var(--moss);background:var(--sage);}
+.btn-sm{padding:6px 14px;font-size:13px;}
+
+.feedback-box{padding:14px 18px;border-radius:var(--radius-sm);display:none;gap:12px;align-items:center;margin-top:16px;font-size:14px;font-weight:600;}
+.feedback-box.show{display:flex;}
+.feedback-box.success{background:var(--green-light);color:var(--green-success);border:1px solid #BBF7D0;}
+.feedback-box.error{background:var(--red-light);color:var(--red);border:1px solid #FECACA;}
+.feedback-box.info{background:var(--blue-light);color:var(--blue);border:1px solid #BFDBFE;}
+.score-badge{width:48px;height:48px;min-width:48px;border-radius:99px;background:var(--white);color:var(--forest);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px;}
+
+.reset-fab{position:fixed;bottom:24px;right:24px;background:var(--red);color:#fff;border:none;border-radius:99px;padding:12px 20px;font-size:13px;font-weight:700;box-shadow:var(--shadow-lg);z-index:200;cursor:pointer;font-family:inherit;transition:transform .2s;}
+.reset-fab:hover{transform:scale(1.05);}
+
+/* GRAMMAR / TENSE CARD */
+.tense-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;}
+.tense-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px;}
+.tense-card h4{color:var(--forest);font-size:16px;font-weight:800;}
+.tense-card .t-explain{font-size:13px;color:var(--text-soft);margin:6px 0 12px;}
+.formula-pill{display:inline-block;background:var(--forest);color:#fff;font-size:13px;font-weight:700;padding:6px 14px;border-radius:99px;margin-bottom:12px;font-family:'Courier New',monospace;}
+.t-row{background:var(--shell);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:8px;font-size:14px;}
+.t-row .t-tag{font-size:10px;font-weight:800;color:var(--moss);letter-spacing:1px;display:block;}
+.t-row b{color:var(--forest);}
+.t-row .vi{display:block;color:var(--text-soft);font-size:12px;font-style:italic;}
+
+/* SPEAKING */
+.scenario-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:20px;}
+.scenario-header{background:linear-gradient(135deg,var(--forest),var(--moss));color:#fff;padding:16px 20px;display:flex;gap:12px;align-items:center;}
+.scenario-header .sc-ico{font-size:22px;}
+.scenario-header h4{font-size:16px;font-weight:800;}
+.scenario-header .sc-sub{font-size:12px;opacity:.85;}
+.scenario-body{padding:20px;}
+.scenario-situation{background:var(--shell);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;font-size:14px;margin-bottom:14px;}
+.mini-label{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--moss);margin:14px 0 6px;}
+.hint-row{display:flex;gap:8px;flex-wrap:wrap;}
+.hint-chip{background:var(--sage);color:var(--moss);font-size:13px;font-weight:600;padding:5px 12px;border-radius:99px;}
+.sample-response{display:none;background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius-sm);padding:14px 16px;font-size:14px;margin-top:14px;color:var(--text-dark);}
+.sample-response.revealed{display:block;animation:fadeIn .3s ease;}
+.sample-response .vi{display:block;color:var(--text-soft);font-size:13px;font-style:italic;margin-top:4px;}
+.dialogue-box{background:var(--shell);border-radius:var(--radius-sm);padding:14px 16px;font-size:14px;margin-bottom:10px;}
+.dialogue-box .sp{font-weight:800;color:var(--forest);margin-right:6px;}
+textarea.speak-input{width:100%;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;font-family:inherit;font-size:14px;color:var(--text-dark);background:var(--white);resize:vertical;min-height:70px;outline:none;}
+textarea.speak-input:focus{border-color:var(--teal);}
+.word-count{font-size:12px;color:var(--text-soft);margin-top:4px;}
+
+.check-item{display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:var(--radius-sm);cursor:pointer;font-size:14px;transition:background .15s;}
+.check-item:hover{background:var(--sage);}
+.check-item input{accent-color:var(--forest);width:17px;height:17px;cursor:pointer;}
+
+/* REFLEX */
+.draw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;}
+.draw-zone{background:var(--sage);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;}
+.draw-zone h4{color:var(--forest);font-size:15px;font-weight:800;margin-bottom:8px;}
+.draw-zone .zone-desc{font-size:13px;color:var(--text-mid);font-style:italic;margin-bottom:16px;}
+.draw-btn{width:130px;height:130px;border-radius:99px;background:var(--white);border:4px solid var(--moss);color:var(--moss);font-weight:800;font-size:14px;letter-spacing:1px;line-height:1.3;cursor:pointer;margin:18px auto;display:flex;align-items:center;justify-content:center;text-align:center;transition:all .2s;font-family:inherit;}
+.draw-btn:hover{transform:scale(1.05);box-shadow:var(--shadow-md);}
+.draw-result{border:2px dashed var(--moss);border-radius:var(--radius-sm);background:var(--white);padding:18px;min-height:70px;text-align:center;display:flex;flex-direction:column;justify-content:center;}
+.draw-result .big{font-size:24px;font-weight:800;color:var(--forest);display:block;}
+.draw-result .small{font-size:13px;color:var(--text-soft);font-style:italic;}
+.alt-badge{background:var(--moss);color:#fff;font-size:11px;font-weight:700;padding:4px 14px;border-radius:99px;letter-spacing:.5px;display:inline-block;}
+.tier2-hint{background:var(--amber-light);border:1.5px dashed #FDE68A;border-radius:var(--radius-sm);padding:12px 16px;font-size:14px;margin-top:14px;}
+.tier2-hint b{color:var(--amber);}
+.tier2-hint ul{margin:6px 0 0 18px;color:var(--text-dark);}
+.count-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px;}
+.count-display{background:var(--forest);color:#fff;font-size:34px;font-weight:800;padding:8px 22px;border-radius:var(--radius-sm);font-variant-numeric:tabular-nums;letter-spacing:2px;}
+.count-display.timeup{background:var(--red);}
+.preset-pill{border:1.5px solid var(--border);background:var(--white);border-radius:99px;padding:8px 16px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;transition:all .15s;color:var(--text-dark);}
+.preset-pill.active{border-color:var(--moss);background:var(--sage);color:var(--forest);}
+.btn-start{background:var(--moss);color:#fff;border:none;border-radius:99px;padding:8px 18px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;}
+.btn-timer-reset{background:var(--white);border:1.5px solid var(--border);border-radius:99px;padding:8px 18px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;color:var(--text-dark);}
+
+/* LISTENING */
+.book-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:18px;}
+.book-table th{background:var(--forest);color:#fff;font-size:12px;font-weight:800;letter-spacing:.5px;padding:10px 14px;text-align:left;}
+.book-table td{padding:12px 14px;border-bottom:1px solid var(--sage);font-size:14px;vertical-align:top;}
+.book-table td:first-child{font-weight:800;color:var(--forest);background:var(--shell);width:80px;}
+.book-table .free{color:var(--text-soft);font-style:italic;}
+.book-table .fixed{font-weight:700;color:var(--moss);}
+.word-bank{display:flex;gap:8px;flex-wrap:wrap;background:var(--shell);border:1.5px dashed var(--border);border-radius:var(--radius-sm);padding:14px;margin-bottom:18px;}
+.bank-item{background:var(--white);border:1px solid var(--border);border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:var(--forest);}
+.transcript-block{display:none;}
+.transcript-block.revealed{display:block;animation:fadeIn .3s ease;}
+.transcript-card{background:var(--sand);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:16px;}
+.transcript-card .t-head{background:var(--forest);color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:800;}
+.transcript-card .t-body{padding:18px;}
+.dialogue-line{padding:8px 0;border-bottom:1px solid var(--sage);font-size:14px;}
+.dialogue-line:last-child{border-bottom:none;}
+.dialogue-line .speaker{color:var(--forest);font-weight:700;margin-right:6px;}
+.dialogue-line .vi{display:block;color:var(--text-soft);font-size:13px;font-style:italic;padding-left:22px;margin-top:2px;}
+
+/* TYPING RACE */
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.type-src{background:var(--shell);border:1px solid var(--border);border-radius:var(--radius);padding:18px;font-size:13.5px;line-height:1.75;white-space:pre-wrap;max-height:420px;overflow-y:auto;}
+textarea.type-box{width:100%;min-height:420px;border:1.5px solid var(--border);border-radius:var(--radius);padding:16px;font-family:inherit;font-size:14px;line-height:1.7;color:var(--text-dark);background:var(--white);resize:vertical;outline:none;}
+textarea.type-box:focus{border-color:var(--teal);}
+textarea.type-box:disabled{background:var(--sage);color:var(--text-soft);}
+.type-hud{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px;}
+.countdown-overlay{font-size:34px;font-weight:800;color:var(--moss);}
+.score-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:18px;}
+.score-table th{background:var(--sage);color:var(--forest);font-size:12px;font-weight:800;padding:10px 14px;text-align:left;}
+.score-table td{padding:10px 14px;border-bottom:1px solid var(--sage);font-size:14px;}
+
+/* QUIZ */
+.quiz-screen{display:none;}
+.quiz-screen.active{display:block;animation:fadeIn .3s ease;}
+.quiz-start{text-align:center;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:48px 28px;}
+.quiz-start h3{font-size:24px;font-weight:800;color:var(--forest);margin-bottom:8px;}
+.quiz-start p{color:var(--text-soft);font-size:14px;max-width:420px;margin:0 auto 20px;}
+.quiz-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
+.quiz-counter{font-size:13px;font-weight:800;color:var(--moss);letter-spacing:.5px;}
+.timer-pill{background:var(--forest);color:#fff;font-size:14px;font-weight:800;padding:5px 16px;border-radius:99px;font-variant-numeric:tabular-nums;}
+.timer-pill.danger{background:var(--red);animation:pulse .6s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.55;}}
+.timer-track{height:6px;background:var(--sage);border-radius:99px;overflow:hidden;margin-bottom:20px;}
+.timer-bar{height:100%;background:var(--moss);border-radius:99px;width:100%;transition:width 1s linear;}
+.timer-bar.danger{background:var(--red);}
+.quiz-q{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:26px;}
+.quiz-q .qtype{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--moss);}
+.quiz-q h3{font-size:18px;font-weight:800;color:var(--forest);margin:6px 0 18px;}
+.quiz-opts{display:grid;gap:10px;}
+.quiz-explain{display:none;margin-top:14px;background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius-sm);padding:12px 16px;font-size:14px;color:var(--text-dark);}
+.quiz-explain.show{display:block;}
+.quiz-result{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:44px 28px;text-align:center;}
+.big-score{font-size:56px;font-weight:800;color:var(--forest);}
+.quiz-result .verdict{font-size:16px;font-weight:700;color:var(--moss);margin-bottom:18px;}
+.summary-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.summary-table td{padding:10px 16px;border-bottom:1px solid var(--sage);font-size:14px;}
+.summary-table td:first-child{font-weight:700;color:var(--forest);width:34%;background:var(--shell);}
+
+@media(max-width:900px){.type-grid{grid-template-columns:1fr;}textarea.type-box{min-height:220px;}}
+@media(max-width:768px){
+  .sidebar{position:relative;width:100%;height:auto;}
+  .main-content{margin-left:0;}
+  .app-shell{flex-direction:column;}
+  .hero,.hero.small{padding:24px;}
+  .hero h1{font-size:26px;}
+  .section{padding:24px;}
+  .vocab-grid{grid-template-columns:1fr;}
+  .tab-btn{padding:10px 12px;font-size:12px;}
+  .tab-scroll::after{width:26px;}
+}
+
+/* === MOBILE PHONES LESSON ADDITIONS === */
+/* Matching exercise */
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.match-col h5{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--moss);margin-bottom:10px;}
+.match-item{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:10px;font-size:14px;display:flex;gap:10px;align-items:center;}
+.match-item .m-num{width:26px;height:26px;min-width:26px;border-radius:99px;background:var(--forest);color:var(--mint);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.match-item .m-ltr{width:26px;height:26px;min-width:26px;border-radius:99px;background:var(--sage);color:var(--forest);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.match-item select{margin-left:auto;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:6px 8px;font-family:inherit;font-size:14px;background:var(--white);color:var(--text-dark);outline:none;cursor:pointer;}
+.match-item select:focus{border-color:var(--teal);}
+.match-item.correct{border-color:var(--green-success);background:var(--green-light);}
+.match-item.incorrect{border-color:var(--red);background:var(--red-light);}
+/* Pros & Cons */
+.pc-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.pc-card{border-radius:var(--radius);padding:20px;border:1px solid var(--border);}
+.pc-card.pros{background:var(--green-light);border-color:#BBF7D0;}
+.pc-card.cons{background:var(--red-light);border-color:#FECACA;}
+.pc-card h4{font-size:15px;font-weight:800;margin-bottom:10px;}
+.pc-card.pros h4{color:var(--green-success);}
+.pc-card.cons h4{color:var(--red);}
+.pc-card ul{margin-left:18px;font-size:14px;line-height:1.8;}
+.pc-card b{color:var(--forest);}
+/* Radio-style pleased/not pleased */
+.pl-row{display:flex;gap:8px;flex-wrap:wrap;}
+.pl-btn{border:1.5px solid var(--border);background:var(--white);border-radius:99px;padding:7px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;color:var(--text-soft);transition:all .15s;min-height:40px;}
+.pl-btn:hover{border-color:var(--teal);background:var(--sage);}
+.pl-btn.sel{border-color:var(--blue);background:var(--blue-light);color:var(--blue);}
+.pl-btn.correct{border-color:var(--green-success);background:var(--green-light);color:var(--green-success);}
+.pl-btn.incorrect{border-color:var(--red);background:var(--red-light);color:var(--red);}
+/* Phone number practice */
+.phone-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}
+.phone-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center;cursor:pointer;transition:all .2s;}
+.phone-card:hover{box-shadow:var(--shadow-md);border-color:var(--teal);}
+.phone-card .p-label{font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--moss);}
+.phone-card .p-num{font-size:22px;font-weight:800;color:var(--forest);letter-spacing:2px;margin:6px 0;font-variant-numeric:tabular-nums;}
+.phone-card .p-say{display:none;font-size:13px;color:var(--text-soft);font-style:italic;border-top:1px solid var(--sage);padding-top:8px;margin-top:8px;}
+.phone-card.flipped .p-say{display:block;animation:fadeIn .3s ease;}
+/* Dialogue with inline gaps */
+.dlg-line{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:10px;font-size:14.5px;line-height:1.9;}
+.dlg-line .who{font-weight:800;color:var(--forest);margin-right:6px;}
+.dlg-line.gemma{border-left:4px solid var(--moss);}
+.dlg-line.sam{border-left:4px solid var(--blue);}
+@media(max-width:768px){
+  .match-wrap{grid-template-columns:1fr;}
+  .pc-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+  <div class="brand">
+    <span class="lvl">A2 → B1</span>
+    <h2>Mobile Phones at Work</h2>
+    <div class="cat">Communication English</div>
+  </div>
+  <nav class="nav" id="nav">
+    <div class="nav-group">Start</div>
+    <div class="nav-item active" data-page="p-overview"><span class="ic">🏠</span> Overview</div>
+    <div class="nav-group">Part 1</div>
+    <div class="nav-item" data-page="p-warmup"><span class="ic">🔥</span> Warm-up</div>
+    <div class="nav-group">Part 2</div>
+    <div class="nav-item" data-page="p-reading"><span class="ic">📚</span> Reading &amp; Vocabulary</div>
+    <div class="nav-group">Part 3</div>
+    <div class="nav-item" data-page="p-grammar"><span class="ic">🧩</span> Grammar: HAVE GOT</div>
+    <div class="nav-group">Part 4</div>
+    <div class="nav-item" data-page="p-discussion"><span class="ic">💬</span> Discussion</div>
+    <div class="nav-group">Part 5</div>
+    <div class="nav-item" data-page="p-listening"><span class="ic">🎧</span> Listening</div>
+    <div class="nav-group">Part 6</div>
+    <div class="nav-item" data-page="p-speaking"><span class="ic">🎤</span> Speaking</div>
+    <div class="nav-group">Part 7</div>
+    <div class="nav-item" data-page="p-review"><span class="ic">🏆</span> Quiz Game</div>
+  </nav>
+  <div class="prog-wrap">
+    <div class="prog-label">Progress</div>
+    <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+  </div>
+</aside>
+
+<main class="main-content">
+
+<!-- ============ OVERVIEW ============ -->
+<div class="page active" id="p-overview">
+  <div class="hero">
+    <div class="hero-meta">
+      <span class="badge badge-white">Communication English</span>
+      <span class="badge badge-white">CEFR A2 → B1</span>
+      <span class="badge badge-white">⏱ 120 minutes</span>
+    </div>
+    <h1>Using Mobile Phones at Work</h1>
+    <p>Your phone is the most useful tool on your desk — and the most dangerous one. This lesson gives you the language to argue both sides: the <b>pros</b>, the <b>cons</b>, and how to disagree politely in a real conversation. Along the way you'll master <b>HAVE GOT</b>, the structure British speakers use every single day.</p>
+    <div class="outcomes">
+      <span class="badge badge-mint">Vocabulary</span>
+      <span class="badge badge-mint">Reading</span>
+      <span class="badge badge-mint">Grammar</span>
+      <span class="badge badge-mint">Discussion</span>
+      <span class="badge badge-mint">Listening</span>
+      <span class="badge badge-mint">Speaking</span>
+      <span class="badge badge-mint">Review</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Learning Outcomes</span>
+      <h2 class="section-title">By the end of this lesson, you will be able to…</h2>
+      <p class="section-subtitle">Six things you can actually do afterwards.</p>
+    </div>
+    <div class="journey">
+      <div class="j-step"><div class="j-num">1</div><h4>Read Phone Numbers</h4><div class="j-part">Warm-up</div><p>Say a hotline number out loud the way native speakers do — and use workplace vocabulary.</p></div>
+      <div class="j-step"><div class="j-num">2</div><h4>Argue Both Sides</h4><div class="j-part">Reading</div><p>Explain the pros and cons of phones at work with a clear 4-part structure.</p></div>
+      <div class="j-step"><div class="j-num">3</div><h4>Use HAVE GOT</h4><div class="j-part">Grammar</div><p>Talk about possessions, schedules and illnesses like a British speaker.</p></div>
+      <div class="j-step"><div class="j-num">4</div><h4>Disagree Politely</h4><div class="j-part">Discussion</div><p>Say "yes, but…" in five natural ways instead of just "no".</p></div>
+      <div class="j-step"><div class="j-num">5</div><h4>Understand Phone Calls</h4><div class="j-part">Listening</div><p>Catch invitations, requests, cancellations and apologies — and the speaker's reaction.</p></div>
+      <div class="j-step"><div class="j-num">6</div><h4>Give Your Opinion</h4><div class="j-part">Speaking</div><p>Speak for 60–90 seconds on a double-edged topic with reasons and examples.</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Learning Journey</span>
+      <h2 class="section-title">How this lesson works</h2>
+      <p class="section-subtitle">Five stages. Each one prepares you for the next.</p>
+    </div>
+    <div class="journey">
+      <div class="j-step"><div class="j-num">1</div><h4>Language Input</h4><div class="j-part">Parts 1–3</div><p>Warm-up vocabulary, the reading, and the HAVE GOT structure.</p></div>
+      <div class="j-step"><div class="j-num">2</div><h4>Guided Practice</h4><div class="j-part">Parts 2–3 exercises</div><p>Matching, MCQ, word ordering, and the Pros &amp; Cons template.</p></div>
+      <div class="j-step"><div class="j-num">3</div><h4>Language Recognition</h4><div class="j-part">Parts 4–5</div><p>Gemma &amp; Sam's argument, then six real phone calls.</p></div>
+      <div class="j-step"><div class="j-num">4</div><h4>Real-world Communication</h4><div class="j-part">Part 6</div><p>Reflex practice, extended speaking, and open debate.</p></div>
+      <div class="j-step"><div class="j-num">5</div><h4>Reflection &amp; Review</h4><div class="j-part">Part 7</div><p>30-question timed Quiz Game + self-assessment.</p></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p-warmup">Start Lesson: Warm-up →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ WARM-UP ============ -->
+<div class="page" id="p-warmup">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 1</span><span class="badge badge-white">Warm-up &amp; Revision</span></div>
+    <h1>Warm-up &amp; Revision</h1>
+    <p>Two quick jobs before we start: match the workplace words, then practise saying phone numbers out loud.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Task 1</span>
+      <h2 class="section-title">Workplace Vocabulary — Matching</h2>
+      <p class="section-subtitle">Match each phrase in Column A with its meaning in Column B.</p>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">🔗 Match A with B</div>
+      <div class="exercise-instruction">Choose a letter (a–d) for each phrase, then press <b>Check Answers</b>.</div>
+      <div class="match-wrap">
+        <div class="match-col">
+          <h5>Column A — Phrases</h5>
+          <div id="matchA"></div>
+        </div>
+        <div class="match-col">
+          <h5>Column B — Meanings</h5>
+          <div id="matchB"></div>
+        </div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="mtCheck">Check Answers</button>
+        <button class="btn btn-outline" id="mtReset">↻ Reset</button>
+      </div>
+      <div class="feedback-box" id="mtFb"><span class="score-badge" id="mtScore">0/4</span><span id="mtMsg"></span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Task 2</span>
+      <h2 class="section-title">Reading Phone Numbers Out Loud</h2>
+      <p class="section-subtitle">Tap each card to see how a native speaker says it.</p>
+    </div>
+    <div class="info-box">
+      <b>Three rules for saying numbers:</b><br>
+      1️⃣ <b>0</b> = "oh" (informal) or "zero" (formal, US).<br>
+      2️⃣ Two identical digits together = <b>"double"</b> → 77 = "double seven".<br>
+      3️⃣ Read in small groups, with a tiny pause between them — never one long string.
+    </div>
+    <div class="phone-grid" id="phoneGrid"></div>
+    <div class="btn-group">
+      <button class="btn btn-outline btn-sm" id="phoneFlipAll">↻ Reveal all</button>
+      <button class="btn btn-primary" data-goto="p-reading">Next: Reading &amp; Vocabulary →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ READING & VOCABULARY ============ -->
+<div class="page" id="p-reading">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 2</span><span class="badge badge-white">Language Input</span></div>
+    <h1>Reading &amp; Vocabulary</h1>
+    <p>The full argument, both sides. Learn the words first, then read them working inside a real text.</p>
+  </div>
+  <div class="section">
+    <div class="tab-bar" data-group="rd">
+      <button class="tab-btn active" data-group="rd" data-tab="r1">2A · Vocabulary</button>
+      <button class="tab-btn" data-group="rd" data-tab="r2">2B · The Reading</button>
+      <button class="tab-btn" data-group="rd" data-tab="r3">2C · Pros &amp; Cons Template</button>
+      <button class="tab-btn" data-group="rd" data-tab="r4">2D · Context Passage</button>
+      <button class="tab-btn" data-group="rd" data-tab="r5">2E · Practice</button>
+    </div>
+
+    <!-- 2A VOCAB -->
+    <div class="tab-panel active" data-group="rd" data-panel="r1">
+      <h3 style="font-size:15px;font-weight:800;color:var(--forest);margin-bottom:12px;">The Good Side — Benefits</h3>
+      <div class="vocab-grid" id="vgPros"></div>
+      <h3 style="font-size:15px;font-weight:800;color:var(--forest);margin:26px 0 12px;">The Bad Side — Problems</h3>
+      <div class="vocab-grid" id="vgCons"></div>
+      <h3 style="font-size:15px;font-weight:800;color:var(--forest);margin:26px 0 12px;">Giving Your Opinion</h3>
+      <div class="vocab-grid" id="vgOpin"></div>
+      <div class="pron-box" style="margin-top:22px;">
+        <h4>🔊 Pronunciation — stress in long words</h4>
+        <p>Long "opinion" words carry ONE strong beat. Say the loud part louder and longer; everything else stays quiet.</p>
+        <div class="pron-practice">
+          <div>pro<b>DUC</b>tivity · effi<b>CIEN</b>cy · flexi<b>BIL</b>ity · dis<b>TRAC</b>tion</div>
+          <div>indis<b>PEN</b>sable · noti<b>FI</b>cations · <b>SE</b>curity → /sɪˈkjʊərəti/</div>
+          <div>⚠️ <b>double-edged sword</b> → /ˌdʌbl ˈedʒd ˈsɔːd/ — the <b>w</b> in <i>sword</i> is silent.</div>
+        </div>
+      </div>
+      <div class="btn-group"><button class="btn btn-outline btn-sm" data-flipall="vgPros,vgCons,vgOpin">↻ Flip all cards</button></div>
+    </div>
+
+    <!-- 2B READING -->
+    <div class="tab-panel" data-group="rd" data-panel="r2">
+      <div class="info-box">Read once for the big picture. Then read again and notice every <b>bold</b> word — those are the ones you just learned.</div>
+      <div class="read-passage" style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;font-size:15px;line-height:1.9;">
+        <p>Mobile phones have become an <b>indispensable</b> tool in the modern workplace. On one hand, they offer significant <b>PROS</b>.</p>
+        <p>Using mobile devices responsibly <b>boosts productivity and efficiency</b>. Employees can quickly communicate with team members, check work emails, and access essential work-related applications. Mobile phones <b>enhance flexibility</b>, which is especially beneficial for <b>remote staff</b>, <b>field operations</b>, and <b>hybrid workers</b>. Businesses can also <b>leverage</b> this by encouraging employees to use <b>project management</b> and document-sharing apps on their personal devices. Furthermore, allowing access to personal phones enables staff to handle <b>urgent family matters</b> without disrupting the working environment, ultimately increasing <b>employee satisfaction and trust</b>.</p>
+        <div class="build-vi" style="font-size:13px;color:var(--text-soft);font-style:italic;margin:8px 0 18px;">(Điện thoại di động đã trở thành công cụ không thể thiếu tại nơi làm việc hiện đại. Một mặt, chúng mang lại nhiều ưu điểm đáng kể: tăng năng suất và hiệu quả, tăng tính linh hoạt cho nhân viên làm từ xa, ngoài thực địa hoặc hybrid, và giúp nhân viên xử lý việc cá nhân khẩn cấp — từ đó nâng cao sự hài lòng và niềm tin.)</div>
+
+        <p>On the other hand, there are notable <b>CONS</b>.</p>
+        <p><b>Misusing</b> smartphones — such as excessive personal texting, calling, or <b>scrolling through social media</b> during working hours — leads to severe <b>distraction</b> and <b>dropped productivity</b>. Additionally, <b>security and privacy concerns</b> arise when corporate data is accessed on personal devices, increasing the risks of <b>data leaks</b> or mixing private and professional data. <b>Poor etiquette</b>, like answering calls in meetings or <b>open workspaces</b>, shows a lack of respect and disrupts colleagues. Finally, companies face <b>management challenges</b>, requiring strict <b>protocols</b> like strong passwords, <b>remote data-wiping</b> features, and continuous <b>awareness training</b>.</p>
+        <div class="build-vi" style="font-size:13px;color:var(--text-soft);font-style:italic;margin:8px 0 0;">(Mặt khác, cũng có những nhược điểm rõ rệt: lạm dụng điện thoại gây xao nhãng và giảm năng suất; rủi ro bảo mật và quyền riêng tư khi truy cập dữ liệu công ty trên máy cá nhân; văn hóa sử dụng kém như nghe điện thoại trong họp; và thách thức quản lý đòi hỏi quy định nghiêm ngặt.)</div>
+      </div>
+
+      <div class="section-header" style="margin-top:30px;">
+        <span class="part-label">Summary</span>
+        <h2 class="section-title">The Two Sides at a Glance</h2>
+      </div>
+      <div class="pc-grid">
+        <div class="pc-card pros">
+          <h4>✅ PROS — the case FOR</h4>
+          <ul>
+            <li><b>Productivity:</b> quick communication with the team</li>
+            <li><b>Flexibility:</b> great for remote, field and hybrid staff</li>
+            <li><b>Work tools:</b> project management &amp; document-sharing apps</li>
+            <li><b>Peace of mind:</b> handle urgent family matters</li>
+            <li><b>Result:</b> higher employee satisfaction and trust</li>
+          </ul>
+        </div>
+        <div class="pc-card cons">
+          <h4>❌ CONS — the case AGAINST</h4>
+          <ul>
+            <li><b>Distraction:</b> texting and social media in work hours</li>
+            <li><b>Security:</b> data leaks, private and work data mixed</li>
+            <li><b>Etiquette:</b> answering calls in meetings is disrespectful</li>
+            <li><b>Management:</b> needs passwords, remote data-wiping</li>
+            <li><b>Result:</b> dropped productivity and extra training costs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2C TEMPLATE -->
+    <div class="tab-panel" data-group="rd" data-panel="r3">
+      <div class="info-box"><b>The 4-part answer.</b> Any "advantages and disadvantages" question in the world can be answered with this shape. Learn the shape once, change only the content.</div>
+      <div id="tmplList"></div>
+
+      <div class="section-header" style="margin-top:30px;">
+        <span class="part-label">Sample</span>
+        <h2 class="section-title">The Template, Filled In</h2>
+        <p class="section-subtitle">Same four boxes — now with real content about mobile phones.</p>
+      </div>
+      <div class="exercise">
+        <div class="dialogue-box" style="margin-bottom:10px;"><b>[Introduction]</b> Nowadays, <b>using mobile phones in the workplace</b> has become very popular. In my opinion, it has both advantages and disadvantages.</div>
+        <div class="dialogue-box" style="margin-bottom:10px;"><b>[Pros]</b> On the one hand, the main benefit of <b>mobile phones</b> is <b>boosting productivity and efficiency</b>. This is because <b>employees can quickly communicate with team members</b>.</div>
+        <div class="dialogue-box" style="margin-bottom:10px;"><b>[Cons]</b> On the other hand, there are also some drawbacks. The biggest problem is <b>dropped productivity</b>. As a result, <b>scrolling through social media during working hours wastes work time</b>.</div>
+        <div class="dialogue-box"><b>[Conclusion]</b> In conclusion, while <b>using mobile phones at work</b> brings some clear advantages, it also has some negative points. Overall, I think <b>employees should use them responsibly to maintain work efficiency</b>.</div>
+      </div>
+
+      <div class="section-header" style="margin-top:30px;">
+        <span class="part-label">Your Turn</span>
+        <h2 class="section-title">Build Your Own Answer</h2>
+        <p class="section-subtitle">Fill the four boxes — your full answer assembles below. Say it aloud.</p>
+      </div>
+      <div class="exercise">
+        <div class="exercise-title">🛠 Answer Machine</div>
+        <div class="free-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:16px;">
+          <div class="free-field"><label>Topic</label><input id="tTopic" placeholder="using mobile phones at work"></div>
+          <div class="free-field"><label>Benefit 1</label><input id="tBen" placeholder="boosting productivity"></div>
+          <div class="free-field"><label>Because…</label><input id="tBec" placeholder="employees can reply instantly"></div>
+          <div class="free-field"><label>Biggest problem</label><input id="tProb" placeholder="constant distraction"></div>
+          <div class="free-field"><label>As a result…</label><input id="tRes" placeholder="people lose focus"></div>
+          <div class="free-field"><label>Your final opinion</label><input id="tOpin" placeholder="staff should use them responsibly"></div>
+        </div>
+        <div class="mini-label">💬 Your answer</div>
+        <div class="build-sentence" id="tmplOut" style="background:var(--shell);border-radius:var(--radius-sm);padding:16px 18px;font-size:15px;line-height:1.9;min-height:56px;"><span style="color:var(--text-soft);font-style:italic;">Start typing above…</span></div>
+        <div class="btn-group"><button class="btn btn-outline btn-sm" id="tmplClear">↻ Clear</button></div>
+      </div>
+    </div>
+
+    <!-- 2D CONTEXT PASSAGE -->
+    <div class="tab-panel" data-group="rd" data-panel="r4">
+      <div class="info-box"><b>2D — Comprehensive Context Passage.</b> One person answering the exam question, using every block of this lesson: the reading vocabulary, the opinion phrases, HAVE GOT, and the polite-disagreement language. This is your model. Read it aloud twice.</div>
+      <div class="legend">
+        <span class="hl-vocab">Vocabulary</span>
+        <span class="hl-phrase">Useful Phrase</span>
+        <span class="hl-pron">Pronunciation focus</span>
+        <span class="hl-accent">Grammar: HAVE GOT</span>
+      </div>
+      <div class="passage">
+        <h4>My situation</h4>
+        <p><span class="hl-phrase">From my perspective</span>, using a smartphone at work is <span class="hl-phrase">a double-edged sword</span>. <span class="hl-accent">I've got</span> a company phone and a personal one, and honestly <span class="hl-accent">I've got</span> about forty apps between them. <span class="hl-accent">I've got</span> a team meeting at nine every morning, so the first thing I do is check my calendar app on the way to the office.
+        <span class="vi-line">(Từ góc nhìn của tôi, dùng điện thoại thông minh tại nơi làm việc là con dao hai lưỡi. Tôi có một điện thoại công ty và một điện thoại cá nhân. Tôi có cuộc họp nhóm lúc 9 giờ mỗi sáng.)</span></p>
+
+        <h4>The good side</h4>
+        <p>On the one hand, the biggest benefit is that phones <span class="hl-vocab">boost productivity and efficiency</span>. They <span class="hl-vocab">enhance flexibility</span>, which really helps <span class="hl-vocab">remote staff</span>, <span class="hl-vocab">field operations</span> and <span class="hl-vocab">hybrid workers</span>. I can <span class="hl-phrase">handle urgent matters on the go</span> — last week a client emailed at lunchtime and I replied before I got back to my desk. My company also lets us use <span class="hl-vocab">project management</span> apps on our own devices, which <span class="hl-phrase">streamlines communication</span> a lot.
+        <span class="vi-line">(Một mặt, lợi ích lớn nhất là điện thoại giúp tăng năng suất và hiệu quả, tăng tính linh hoạt cho nhân viên làm từ xa, ngoài thực địa và hybrid. Tôi có thể xử lý việc khẩn cấp khi đang di chuyển.)</span></p>
+
+        <h4>The bad side</h4>
+        <p>On the other hand, the main drawback is <span class="hl-vocab">constant distraction</span>. <span class="hl-vocab">Scrolling through social media</span> during working hours causes <span class="hl-vocab">dropped <span class="hl-pron">productivity</span></span>, and there are real <span class="hl-vocab"><span class="hl-pron">security</span> and privacy concerns</span> — <span class="hl-vocab">data leaks</span> happen when work files sit on a personal phone. And <span class="hl-vocab">poor etiquette</span> is everywhere: answering a call in a meeting or an <span class="hl-vocab">open workspace</span> is just rude. It also <span class="hl-phrase">blurs the line between work and personal life</span>, which can <span class="hl-phrase">lead to digital burnout</span>.
+        <span class="vi-line">(Mặt khác, nhược điểm chính là sự xao nhãng liên tục. Lướt mạng xã hội trong giờ làm gây giảm năng suất, và có rủi ro thật về bảo mật và quyền riêng tư.)</span></p>
+
+        <h4>My conclusion</h4>
+        <p>My colleague disagrees with me. He says phones are always good. <span class="hl-phrase">You're right in some ways, but</span> I don't think you can text and concentrate at the same time. <span class="hl-phrase">Yeah, there are a lot of advantages… but</span> when your manager is sitting right in front of you, <span class="hl-phrase">maybe it's time to</span> switch off. In conclusion, I believe smartphones are highly useful work tools, provided that users discipline themselves.
+        <span class="vi-line">(Đồng nghiệp tôi không đồng ý. Anh ấy nói điện thoại luôn tốt. Bạn đúng ở vài khía cạnh, nhưng tôi không nghĩ bạn có thể vừa nhắn tin vừa tập trung. Tóm lại, tôi tin điện thoại là công cụ hữu ích, miễn là người dùng biết tự kỷ luật.)</span></p>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" data-goto="p-grammar">Next: Grammar — HAVE GOT →</button>
+      </div>
+    </div>
+
+    <!-- 2E PRACTICE -->
+    <div class="tab-panel" data-group="rd" data-panel="r5">
+      <div class="section-header">
+        <span class="part-label">Exercise 1</span>
+        <h2 class="section-title">Vocabulary — 12 Multiple Choice</h2>
+        <p class="section-subtitle">Read the English explanation and choose the right word.</p>
+      </div>
+      <div class="exercise">
+        <div class="exercise-title">📖 Choose the correct word</div>
+        <div class="exercise-instruction">Select one option per question, then press <b>Show Answers</b>.</div>
+        <div id="rvList"></div>
+        <div class="btn-group">
+          <button class="btn btn-primary" id="rvCheck">Show Answers</button>
+          <button class="btn btn-outline" id="rvReset">↻ Reset</button>
+        </div>
+        <div class="feedback-box" id="rvFb"><span class="score-badge" id="rvScore">0/12</span><span id="rvMsg"></span></div>
+      </div>
+
+      <div class="section-header" style="margin-top:30px;">
+        <span class="part-label">Exercise 2</span>
+        <h2 class="section-title">Reading Comprehension</h2>
+        <p class="section-subtitle">Answer according to the passage in tab 2B.</p>
+      </div>
+      <div class="exercise">
+        <div class="exercise-title">📚 Multiple Choice</div>
+        <div class="exercise-instruction">Choose the best answer.</div>
+        <div id="rcList"></div>
+        <div class="btn-group">
+          <button class="btn btn-primary" id="rcCheck">Show Answers</button>
+          <button class="btn btn-outline" id="rcReset">↻ Reset</button>
+        </div>
+        <div class="feedback-box" id="rcFb"><span class="score-badge" id="rcScore">0/6</span><span id="rcMsg"></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GRAMMAR ============ -->
+<div class="page" id="p-grammar">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 3</span><span class="badge badge-white">Grammar Focus</span></div>
+    <h1>HAVE GOT</h1>
+    <p>The structure British speakers use every day for possessions, schedules and illnesses. Same meaning as <i>have</i> — different shape.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">The Big Idea</span>
+      <h2 class="section-title">"Have got" = "have"</h2>
+    </div>
+    <div class="info-box" style="font-size:15px;">
+      📱 <b>Think of it like a phone and a phone case.</b> <i>I have a new phone</i> and <i>I've got a new phone</i> mean exactly the same thing — the phone is identical. <b>Got</b> is just the case: it changes how it looks and feels, not what it does.<br><br>
+      British speakers snap the case on almost every time they <b>speak</b>. Americans usually leave it off. In <b>writing</b>, everyone tends to leave it off — it's slightly more formal that way.
+    </div>
+    <div class="listening-notice">⚠️ <b>The three traps:</b> ① Past tense has NO <i>got</i> → <i>I <b>had</b> a bike</i>, never <s>I had got a bike</s>. ② <i>Have got</i> is only for <b>state</b>, not actions → <i>I <b>have</b> breakfast at 7:30</i>, never <s>I have got breakfast</s>. ③ Questions and negatives never use <i>do/does</i> with <i>got</i> → <i><b>Have</b> you got a minute?</i>, not <s>Do you have got…</s></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Structure</span>
+      <h2 class="section-title">The Three Forms</h2>
+    </div>
+    <div class="tense-grid" id="tenseGrid"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">In Conversation</span>
+      <h2 class="section-title">Sophie Explains It to Niwat</h2>
+      <p class="section-subtitle">The whole grammar point, as a real dialogue. Read both roles aloud.</p>
+    </div>
+    <div class="exercise" id="dlgGrammar"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Exercise 1</span>
+      <h2 class="section-title">Multiple Choice</h2>
+      <p class="section-subtitle">Choose the correct phrase to complete each sentence.</p>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">🧩 Choose the correct phrase</div>
+      <div class="exercise-instruction">Careful — some sentences need plain <b>have</b>, not <b>have got</b>.</div>
+      <div id="ggList"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="ggCheck">Show Answers</button>
+        <button class="btn btn-outline" id="ggReset">↻ Reset</button>
+      </div>
+      <div class="feedback-box" id="ggFb"><span class="score-badge" id="ggScore">0/8</span><span id="ggMsg"></span></div>
+    </div>
+
+    <div class="section-header" style="margin-top:30px;">
+      <span class="part-label">Exercise 2</span>
+      <h2 class="section-title">Word Ordering</h2>
+      <p class="section-subtitle">Put the words in the correct order to make a natural sentence.</p>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">🔀 Build the sentence</div>
+      <div class="exercise-instruction">Type the full sentence using ALL the words given. Capital letter at the start, correct punctuation at the end.</div>
+      <div id="goList"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="goCheck">Check Answers</button>
+        <button class="btn btn-outline" id="goReset">↻ Reset</button>
+      </div>
+      <div class="feedback-box" id="goFb"><span class="score-badge" id="goScore">0/6</span><span id="goMsg"></span></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p-discussion">Next: Discussion →</button>
+      <button class="btn btn-outline" data-goto="p-reading">← Reading</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DISCUSSION ============ -->
+<div class="page" id="p-discussion">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 4</span><span class="badge badge-white">Language Recognition</span></div>
+    <h1>Discussion</h1>
+    <p>Gemma and Sam are arguing about phones. Notice how they disagree — nobody ever just says "no".</p>
+  </div>
+  <div class="section">
+    <div class="info-box"><b>Why this matters.</b> In English, disagreeing directly sounds aggressive. Native speakers almost always <b>agree a little first</b>, then turn: <i>"Yeah, but…"</i> / <i>"You're right in some ways, but…"</i>. Learn these five and you can disagree with anyone politely.</div>
+
+    <div class="tab-bar" data-group="dsc">
+      <button class="tab-btn active" data-group="dsc" data-tab="d1">Tab 1 · Agreeing &amp; Disagreeing</button>
+      <button class="tab-btn" data-group="dsc" data-tab="d2">Tab 2 · Making Suggestions</button>
+      <button class="tab-btn" data-group="dsc" data-tab="d3">Tab 3 · Debate</button>
+    </div>
+
+    <!-- D1 -->
+    <div class="tab-panel active" data-group="dsc" data-panel="d1">
+      <div class="section-header">
+        <span class="part-label">Task 1</span>
+        <h2 class="section-title">Check Your Understanding — Gap Fill</h2>
+        <p class="section-subtitle">Complete the dialogue with a phrase from the box.</p>
+      </div>
+      <div class="word-bank" id="d1Bank"></div>
+      <div class="exercise">
+        <div class="exercise-title">💬 Sam &amp; Gemma — the argument</div>
+        <div class="exercise-instruction">Type the exact phrase from the box into each blank.</div>
+        <div id="d1List"></div>
+        <div class="btn-group">
+          <button class="btn btn-primary" id="d1Check">Check Answers</button>
+          <button class="btn btn-outline" id="d1Reset">↻ Reset</button>
+        </div>
+        <div class="feedback-box" id="d1Fb"><span class="score-badge" id="d1Score">0/5</span><span id="d1Msg"></span></div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" data-toggle="d1Key">📄 Show / Hide Answer Key &amp; Explanations</button>
+      </div>
+      <div class="transcript-block" id="d1Key">
+        <div class="transcript-card">
+          <div class="t-head"><span>✅ Answer Key — Tab 1</span></div>
+          <div class="t-body" id="d1KeyBody"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D2 -->
+    <div class="tab-panel" data-group="dsc" data-panel="d2">
+      <div class="section-header">
+        <span class="part-label">Task 2</span>
+        <h2 class="section-title">Check Your Understanding — Gap Fill</h2>
+        <p class="section-subtitle">The conversation continues. Now they're making suggestions and switching their phones off.</p>
+      </div>
+      <div class="word-bank" id="d2Bank"></div>
+      <div class="exercise">
+        <div class="exercise-title">💬 Sam &amp; Gemma — switching off</div>
+        <div class="exercise-instruction">Type the exact phrase from the box into each blank.</div>
+        <div id="d2List"></div>
+        <div class="btn-group">
+          <button class="btn btn-primary" id="d2Check">Check Answers</button>
+          <button class="btn btn-outline" id="d2Reset">↻ Reset</button>
+        </div>
+        <div class="feedback-box" id="d2Fb"><span class="score-badge" id="d2Score">0/5</span><span id="d2Msg"></span></div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" data-toggle="d2Key">📄 Show / Hide Answer Key &amp; Explanations</button>
+      </div>
+      <div class="transcript-block" id="d2Key">
+        <div class="transcript-card">
+          <div class="t-head"><span>✅ Answer Key — Tab 2</span></div>
+          <div class="t-body" id="d2KeyBody"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D3 DEBATE -->
+    <div class="tab-panel" data-group="dsc" data-panel="d3">
+      <div class="section-header">
+        <span class="part-label">Task 3</span>
+        <h2 class="section-title">Your Turn to Disagree</h2>
+        <p class="section-subtitle">Work in pairs. One person makes the statement, the other disagrees politely — using the phrases above, never a flat "no".</p>
+      </div>
+      <div id="debateList"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary" data-goto="p-listening">Next: Listening →</button>
+        <button class="btn btn-outline" data-goto="p-grammar">← Grammar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LISTENING ============ -->
+<div class="page" id="p-listening">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 5</span><span class="badge badge-white">Language Recognition</span></div>
+    <h1>Listening</h1>
+    <p>Six phone calls. Two questions each: what is the call about, and how does the listener feel about it?</p>
+  </div>
+  <div class="section">
+    <div class="listening-notice">🎧 <b>Let's Listen</b> — six short conversations. Do Task 1 first (what the call is about), then listen again for Task 2 (the reaction). Only open the transcript after you finish both.</div>
+
+    <div class="section-header">
+      <span class="part-label">Task 1</span>
+      <h2 class="section-title">What Is Each Call About?</h2>
+      <p class="section-subtitle">Choose the correct answer for each conversation.</p>
+    </div>
+    <div class="info-box"><b>Six call types to listen for:</b> an <b>invitation</b> (would you like to…?) · a <b>request</b> (would it be okay if…?) · a <b>cancellation</b> (I have to cancel…) · an <b>apology</b> (I wanted to apologize…) · a <b>suggestion</b> (shall we…?) · a <b>promise</b> (you promised you would…).</div>
+    <div class="exercise">
+      <div class="exercise-title">🎯 Task 1 — the purpose of the call</div>
+      <div class="exercise-instruction">Select one option per conversation, then press <b>Show Answers</b>.</div>
+      <div id="l1List"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="l1Check">Show Answers</button>
+        <button class="btn btn-outline" id="l1Reset">↻ Reset</button>
+      </div>
+      <div class="feedback-box" id="l1Fb"><span class="score-badge" id="l1Score">0/6</span><span id="l1Msg"></span></div>
+    </div>
+
+    <div class="section-header" style="margin-top:30px;">
+      <span class="part-label">Task 2</span>
+      <h2 class="section-title">Pleased or Not Pleased?</h2>
+      <p class="section-subtitle">Listen again. How does the person feel <b>after</b> the call?</p>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">😊 Task 2 — the reaction</div>
+      <div class="exercise-instruction">Click one button per conversation, then press <b>Check Answers</b>.</div>
+      <div id="l2List"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="l2Check">Check Answers</button>
+        <button class="btn btn-outline" id="l2Reset">↻ Reset</button>
+      </div>
+      <div class="feedback-box" id="l2Fb"><span class="score-badge" id="l2Score">0/6</span><span id="l2Msg"></span></div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-secondary" data-toggle="trBlock">📄 Show / Hide Transcript &amp; Answer Key</button>
+    </div>
+    <div class="transcript-block" id="trBlock">
+      <div class="transcript-card">
+        <div class="t-head"><span>✅ Answer Key &amp; Explanations</span></div>
+        <div class="t-body" id="lKeyBody"></div>
+      </div>
+      <div class="transcript-card">
+        <div class="t-head"><span>📄 Transcript — six phone calls</span></div>
+        <div class="t-body" id="trBody"></div>
+      </div>
+      <div class="transcript-card">
+        <div class="t-head"><span>📚 Phone Language — from these recordings</span></div>
+        <div class="t-body" id="trVocab"></div>
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p-speaking">Next: Speaking →</button>
+      <button class="btn btn-outline" data-goto="p-discussion">← Discussion</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SPEAKING ============ -->
+<div class="page" id="p-speaking">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 6</span><span class="badge badge-white">Guided Production + Reflex</span></div>
+    <h1>Speaking</h1>
+    <p>Build your opinion carefully (6A), then throw away the notes and speak instantly (6B).</p>
+  </div>
+
+  <div class="section">
+    <div class="tab-bar" data-group="spk">
+      <button class="tab-btn active" data-group="spk" data-tab="s1">6A · Speaking (4 Levels)</button>
+      <button class="tab-btn" data-group="spk" data-tab="s2">6B · Reflex Practice ⚡</button>
+    </div>
+
+    <!-- 6A -->
+    <div class="tab-panel active" data-group="spk" data-panel="s1">
+      <div class="section-header">
+        <span class="part-label">Ideas</span>
+        <h2 class="section-title">Brainstorming — Both Sides</h2>
+        <p class="section-subtitle">Before you speak, know what you're going to say.</p>
+      </div>
+      <div class="pc-grid">
+        <div class="pc-card pros">
+          <h4>✅ Advantages</h4>
+          <ul>
+            <li><b>Instant communication &amp; collaboration:</b> quick messages, video calls, work chat via Slack, Zalo, Teams</li>
+            <li><b>Flexibility &amp; remote work:</b> handle urgent tasks, approve emails, check progress from anywhere</li>
+            <li><b>Access to work tools:</b> Trello, Google Drive, Notion, and instant information lookup</li>
+          </ul>
+        </div>
+        <div class="pc-card cons">
+          <h4>❌ Disadvantages</h4>
+          <ul>
+            <li><b>Distraction &amp; decreased productivity:</b> social media notifications break your <i>flow state</i></li>
+            <li><b>Blurring work-life boundaries:</b> the <i>always-on culture</i> causes stress and <i>burnout</i></li>
+            <li><b>Security risks:</b> unsafe apps and public Wi-Fi increase the risk of data leaks</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-header" style="margin-top:36px;">
+        <span class="part-label">Level 1</span>
+        <h2 class="section-title">Simple Questions</h2>
+        <p class="section-subtitle">Answer out loud in FULL sentences. Use at least one word from Part 2.</p>
+      </div>
+      <div id="lv1List"></div>
+
+      <div class="section-header" style="margin-top:36px;">
+        <span class="part-label">Level 2</span>
+        <h2 class="section-title">Sentence Completion</h2>
+        <p class="section-subtitle">Say the whole sentence aloud, then compare with the model.</p>
+      </div>
+      <div id="lv2List"></div>
+
+      <div class="section-header" style="margin-top:36px;">
+        <span class="part-label">Level 3</span>
+        <h2 class="section-title">Short Dialogue — Role Play</h2>
+        <p class="section-subtitle">A is given. You are <b>B</b>. Write your line, say it aloud, then reveal the model.</p>
+      </div>
+      <div id="lv3List"></div>
+
+      <div class="section-header" style="margin-top:36px;">
+        <span class="part-label">Level 4</span>
+        <h2 class="section-title">Independent Speaking</h2>
+        <p class="section-subtitle">Speak for 60–90 seconds. Follow the template — it keeps you on track.</p>
+      </div>
+      <div id="lv4List"></div>
+
+      <div class="section-header" style="margin-top:36px;">
+        <span class="part-label">Checklist</span>
+        <h2 class="section-title">Speaking Checklist</h2>
+      </div>
+      <div class="exercise" id="spkCheck"></div>
+
+      <div class="btn-group">
+        <button class="btn btn-primary" data-goto="p-review">Next: Quiz Game →</button>
+        <button class="btn btn-outline" data-goto="p-listening">← Listening</button>
+      </div>
+    </div>
+
+    <!-- 6B REFLEX -->
+    <div class="tab-panel" data-group="spk" data-panel="s2">
+      <div class="tab-bar" data-group="rfx">
+        <button class="tab-btn active" data-group="rfx" data-tab="t1">Tier 1 · Lucky Draw 🎲</button>
+        <button class="tab-btn" data-group="rfx" data-tab="t2">Tier 2 · Extended Speaking ⏱</button>
+      </div>
+
+      <div class="tab-panel active" data-group="rfx" data-panel="t1">
+        <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;">
+          <div>
+            <span class="part-label">Tier 1</span>
+            <h2 class="section-title">Lucky Draw</h2>
+            <p class="section-subtitle">No thinking time. Draw → speak immediately. One-word answers do not count.</p>
+          </div>
+          <span class="alt-badge">IN-CLASS ALTERNATIVE: draw paper cards</span>
+        </div>
+        <div class="draw-grid">
+          <div class="draw-zone">
+            <h4>📚 Zone 1 — Vocabulary Review</h4>
+            <div class="zone-desc">Make ONE full sentence with the word you draw.</div>
+            <button class="draw-btn" id="drawWordBtn">DRAW<br>A WORD</button>
+            <div class="draw-result" id="drawWordRes"><span class="small">Press the button to draw…</span></div>
+          </div>
+          <div class="draw-zone">
+            <h4>💬 Zone 2 — Speaking Situations</h4>
+            <div class="zone-desc">Respond with a COMPLETE sentence, using today's phrases.</div>
+            <button class="draw-btn" id="drawSitBtn">DRAW A<br>SITUATION</button>
+            <div class="draw-result" id="drawSitRes"><span class="small">Press the button to draw…</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-group="rfx" data-panel="t2">
+        <div class="section-header">
+          <span class="part-label">Tier 2</span>
+          <h2 class="section-title">Extended Speaking</h2>
+          <p class="section-subtitle">Speak for 1–3 minutes without stopping. Use the timer — do not guess the time.</p>
+        </div>
+        <div id="promptList"></div>
+        <div class="exercise" style="margin-top:20px;">
+          <div class="exercise-title">⏱ Countdown Timer</div>
+          <div class="exercise-instruction">Choose a length, press START, wait for 3… 2… 1… GO!, then speak until 00:00.</div>
+          <div class="count-row">
+            <div class="count-display" id="countDisp">01:00</div>
+            <button class="preset-pill active" data-sec="60">1 min</button>
+            <button class="preset-pill" data-sec="120">2 min</button>
+            <button class="preset-pill" data-sec="180">3 min</button>
+            <button class="btn-start" id="countStart">▶ Start</button>
+            <button class="btn-timer-reset" id="countReset">↺ Reset</button>
+            <span class="countdown-overlay" id="countGo"></span>
+          </div>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-primary" data-goto="p-review">Next: Quiz Game →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ REVIEW ============ -->
+<div class="page" id="p-review">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 7</span><span class="badge badge-white">Consolidation</span></div>
+    <h1>Final Review</h1>
+    <p>30 questions. 10 seconds each. No second chances — just like a real conversation.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Quiz Game</span>
+      <h2 class="section-title">Mobile Phones at Work — Quiz</h2>
+      <p class="section-subtitle">Definition · Context · Grammar · Listening · Reading. All English. All from this lesson.</p>
+    </div>
+
+    <div class="quiz-screen active" id="qzStart">
+      <div class="quiz-start">
+        <h3>🏆 Ready?</h3>
+        <p><b>30 questions · 10 seconds each · 4 options.</b> If the timer hits zero, the question is marked wrong and the correct answer is revealed. Trust your instinct.</p>
+        <button class="btn btn-primary" id="qzBegin">▶ Start the Quiz</button>
+      </div>
+    </div>
+
+    <div class="quiz-screen" id="qzPlay">
+      <div class="quiz-head">
+        <span class="quiz-counter" id="qzCounter">QUESTION 1 / 30</span>
+        <span class="timer-pill" id="qzTimer">⏳ 10s</span>
+      </div>
+      <div class="timer-track"><div class="timer-bar" id="qzBar"></div></div>
+      <div class="quiz-q">
+        <div class="qtype" id="qzType">DEFINITION</div>
+        <h3 id="qzQuestion">…</h3>
+        <div class="quiz-opts" id="qzOpts"></div>
+        <div class="quiz-explain" id="qzExplain"></div>
+        <div class="btn-group">
+          <button class="btn btn-primary" id="qzSubmit">Submit</button>
+          <button class="btn btn-primary" id="qzNext" style="display:none;">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz-screen" id="qzResult">
+      <div class="quiz-result">
+        <div class="big-score" id="qzFinal">0 / 30</div>
+        <div class="verdict" id="qzVerdict"></div>
+        <div class="btn-group" style="justify-content:center;">
+          <button class="btn btn-primary" id="qzAgain">↻ Play Again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Self-Assessment</span>
+      <h2 class="section-title">How do you feel now?</h2>
+      <p class="section-subtitle">Tick honestly. Anything unticked = go back and review that part.</p>
+    </div>
+    <div class="exercise" id="selfCheck"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Summary</span>
+      <h2 class="section-title">Lesson Summary</h2>
+    </div>
+    <table class="summary-table">
+      <tr><td>Estimated Duration</td><td>120 minutes (2 sessions of 60 min)</td></tr>
+      <tr><td>CEFR Level</td><td>A2 → B1</td></tr>
+      <tr><td>Vocabulary Learned</td><td>36 items: workplace terms, benefits of mobile phones, problems and risks, opinion phrases, and polite-disagreement language</td></tr>
+      <tr><td>Grammar Focus</td><td><b>HAVE GOT</b> — affirmative (S + have/has got), negative (haven't/hasn't got), question (Have/Has + S + got?); past uses <b>had</b> without <i>got</i>; British vs. American usage</td></tr>
+      <tr><td>Pronunciation Focus</td><td>Word stress in long nouns (productivity, efficiency, flexibility, security) · silent <b>w</b> in <i>sword</i> · contractions I've / She's / haven't got</td></tr>
+      <tr><td>Communication Functions</td><td>Reading phone numbers aloud · presenting pros and cons · agreeing partially then disagreeing · making suggestions (Shall we…? / maybe it's time to…) · recognising invitations, requests, cancellations, apologies and promises on the phone</td></tr>
+      <tr><td>Skills Practiced</td><td>Speaking (guided + reflex + extended) · Listening (purpose + speaker attitude) · Reading (pros/cons text + comprehension) · Writing structure (4-part template)</td></tr>
+      <tr><td>Interaction Types Used</td><td>Matching · Flip cards · MCQ · Gap fill · Word ordering · Answer machine · Role-play dialogue · Pleased/not-pleased buttons · Lucky Draw (shuffle-bag) · 3-2-1-GO countdown timer · Timed quiz game · Checklists</td></tr>
+    </table>
+    <div class="btn-group">
+      <button class="btn btn-outline" data-goto="p-overview">← Back to Overview</button>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+<button class="reset-fab" id="resetFab">🔄 Reset All</button>
+<script>
+/* ================== DATA ================== */
+
+/* ---- WARM-UP MATCHING ---- */
+const MATCH_A=[
+ {n:1,text:"Open workspace",ans:"b"},
+ {n:2,text:"Field operations",ans:"d"},
+ {n:3,text:"Hybrid work",ans:"a"},
+ {n:4,text:"Project management tool",ans:"c"}
+];
+const MATCH_B=[
+ {l:"a",text:"Công việc kết hợp (làm tại văn phòng và làm từ xa)"},
+ {l:"b",text:"Không gian làm việc mở, không có tường ngăn"},
+ {l:"c",text:"Công cụ/ứng dụng quản lý dự án"},
+ {l:"d",text:"Hoạt động công tác bên ngoài thực địa"}
+];
+const MATCH_EXPLAIN={
+ 1:"<b>Open workspace</b> = không gian làm việc mở, không có tường ngăn giữa các bàn.",
+ 2:"<b>Field operations</b> = các hoạt động tác nghiệp ngoài thực địa (ngoài văn phòng).",
+ 3:"<b>Hybrid work</b> = mô hình làm việc linh hoạt, kết hợp văn phòng và tại nhà.",
+ 4:"<b>Project management tool</b> = công cụ/phần mềm quản lý tiến độ công việc (Trello, Notion…)."
+};
+
+/* ---- PHONE NUMBERS ---- */
+const PHONES=[
+ {label:"IT Helpdesk",num:"1900 6035",say:"one nine double-oh … six oh three five"},
+ {label:"HR Hotline",num:"028 3822 7700",say:"oh two eight … three eight double-two … double-seven double-oh"},
+ {label:"Security Desk",num:"0912 445 108",say:"oh nine one two … double-four five … one oh eight"},
+ {label:"Reception",num:"024 3936 5566",say:"oh two four … three nine three six … double-five double-six"}
+];
+
+/* ---- READING VOCABULARY ---- */
+const VOCAB_PROS=[
+ {w:"indispensable",ipa:"/ˌɪndɪˈspensəbl/",pos:"adj",vi:"không thể thiếu",ex:"So necessary that you cannot work without it.|<b>Mobile phones have become an indispensable tool.</b>"},
+ {w:"boost productivity",ipa:"/buːst ˌprɒdʌkˈtɪvəti/",pos:"verb phr.",vi:"tăng năng suất",ex:"To make people produce more work in the same time.|<b>Using devices responsibly boosts productivity.</b>"},
+ {w:"efficiency",ipa:"/ɪˈfɪʃnsi/",pos:"noun",vi:"hiệu quả, hiệu suất",ex:"Doing a job well without wasting time or energy.|<b>Phones improve workflow efficiency.</b>"},
+ {w:"enhance flexibility",ipa:"/ɪnˈhɑːns ˌfleksəˈbɪləti/",pos:"verb phr.",vi:"tăng tính linh hoạt",ex:"To make it easier to change where and when you work.|<b>Mobile phones enhance flexibility.</b>"},
+ {w:"remote staff",ipa:"/rɪˈməʊt stɑːf/",pos:"noun",vi:"nhân viên làm việc từ xa",ex:"Employees who work away from the office.|<b>This is beneficial for remote staff.</b>"},
+ {w:"field operations",ipa:"/fiːld ˌɒpəˈreɪʃnz/",pos:"noun",vi:"hoạt động ngoài thực địa",ex:"Work done outside the office — at sites, shops or client locations.|<b>Field operations need mobile access.</b>"},
+ {w:"hybrid workers",ipa:"/ˈhaɪbrɪd ˈwɜːkəz/",pos:"noun",vi:"nhân viên làm việc kết hợp",ex:"People who work some days at home, some days in the office.|<b>Hybrid workers rely on their phones.</b>"},
+ {w:"leverage",ipa:"/ˈliːvərɪdʒ/",pos:"verb",vi:"tận dụng",ex:"To use something you already have to get an advantage.|<b>Businesses can leverage personal devices.</b>"},
+ {w:"project management tool",ipa:"/ˈprɒdʒekt ˈmænɪdʒmənt tuːl/",pos:"noun",vi:"công cụ quản lý dự án",ex:"An app that tracks tasks and deadlines, like Trello or Notion.|<b>We use a project management tool daily.</b>"},
+ {w:"employee satisfaction",ipa:"/ɪmˈplɔɪiː ˌsætɪsˈfækʃn/",pos:"noun",vi:"sự hài lòng của nhân viên",ex:"How happy workers feel about their job.|<b>Trust increases employee satisfaction.</b>"}
+];
+const VOCAB_CONS=[
+ {w:"misuse",ipa:"/ˌmɪsˈjuːz/",pos:"verb",vi:"lạm dụng, dùng sai",ex:"To use something in a wrong or harmful way.|<b>Misusing smartphones leads to distraction.</b>"},
+ {w:"distraction",ipa:"/dɪˈstrækʃn/",pos:"noun",vi:"sự xao nhãng",ex:"Something that stops you concentrating on your work.|<b>Constant notifications cause distraction.</b>"},
+ {w:"dropped productivity",ipa:"/drɒpt ˌprɒdʌkˈtɪvəti/",pos:"noun phr.",vi:"năng suất giảm sút",ex:"When people get less work done than before.|<b>Social media leads to dropped productivity.</b>"},
+ {w:"scroll through social media",ipa:"/skrəʊl θruː ˈsəʊʃl ˈmiːdiə/",pos:"verb phr.",vi:"lướt mạng xã hội",ex:"To move slowly down a feed, looking at posts.|<b>He scrolls through social media at his desk.</b>"},
+ {w:"security concerns",ipa:"/sɪˈkjʊərəti kənˈsɜːnz/",pos:"noun",vi:"lo ngại về bảo mật",ex:"Worries that private information could be stolen.|<b>Security concerns arise with personal devices.</b>"},
+ {w:"data leak",ipa:"/ˈdeɪtə liːk/",pos:"noun",vi:"rò rỉ dữ liệu",ex:"When private company information escapes to outsiders.|<b>This increases the risk of data leaks.</b>"},
+ {w:"poor etiquette",ipa:"/pɔːr ˈetɪket/",pos:"noun",vi:"văn hóa ứng xử kém",ex:"Bad manners — behaving rudely in a social situation.|<b>Answering calls in meetings is poor etiquette.</b>"},
+ {w:"open workspace",ipa:"/ˈəʊpən ˈwɜːkspeɪs/",pos:"noun",vi:"không gian làm việc mở",ex:"An office with no walls between the desks.|<b>Phone calls disturb the open workspace.</b>"},
+ {w:"protocol",ipa:"/ˈprəʊtəkɒl/",pos:"noun",vi:"quy định, quy trình",ex:"An official set of rules everyone must follow.|<b>Companies need strict security protocols.</b>"},
+ {w:"remote data-wiping",ipa:"/rɪˈməʊt ˈdeɪtə ˈwaɪpɪŋ/",pos:"noun",vi:"xóa dữ liệu từ xa",ex:"Deleting everything on a lost phone from another computer.|<b>Remote data-wiping protects company files.</b>"},
+ {w:"burnout",ipa:"/ˈbɜːnaʊt/",pos:"noun",vi:"kiệt sức",ex:"Complete exhaustion from working too much for too long.|<b>Always-on culture can cause digital burnout.</b>"},
+ {w:"awareness training",ipa:"/əˈweənəs ˈtreɪnɪŋ/",pos:"noun",vi:"đào tạo nâng cao nhận thức",ex:"Courses that teach staff to spot risks and act safely.|<b>Continuous awareness training is required.</b>"}
+];
+const VOCAB_OPIN=[
+ {w:"a double-edged sword",ipa:"/ə ˌdʌbl ˈedʒd ˈsɔːd/",pos:"idiom",vi:"con dao hai lưỡi",ex:"Something with both good and bad effects.|<b>It's a double-edged sword, but I believe it helps.</b>"},
+ {w:"From my perspective, …",ipa:"/frəm maɪ pəˈspektɪv/",pos:"phrase",vi:"Từ góc nhìn của tôi",ex:"A polite way to introduce your own opinion.|<b>From my perspective, phones help more than they hurt.</b>"},
+ {w:"streamline communication",ipa:"/ˈstriːmlaɪn kəˌmjuːnɪˈkeɪʃn/",pos:"verb phr.",vi:"tối ưu hóa giao tiếp",ex:"To make communication faster and simpler.|<b>Chat apps streamline communication.</b>"},
+ {w:"handle urgent matters on the go",ipa:"/ˈhændl ˈɜːdʒənt ˈmætəz/",pos:"verb phr.",vi:"xử lý việc khẩn khi đang di chuyển",ex:"To deal with important things while travelling.|<b>I can handle urgent matters on the go.</b>"},
+ {w:"blur the line between…",ipa:"/blɜː ðə laɪn/",pos:"verb phr.",vi:"xóa mờ ranh giới giữa…",ex:"To make the difference between two things unclear.|<b>Phones blur the line between work and personal life.</b>"},
+ {w:"always-on culture",ipa:"/ˈɔːlweɪz ɒn ˈkʌltʃə/",pos:"noun",vi:"văn hóa luôn sẵn sàng làm việc",ex:"A workplace where people are expected to reply at any hour.|<b>Always-on culture causes stress.</b>"}
+];
+
+/* ---- PROS & CONS TEMPLATE ---- */
+const TMPL=[
+ {label:"1 · INTRODUCTION",vi:"Giới thiệu chủ đề + khẳng định đây là chủ đề có 2 mặt.",en:"\"Nowadays, <b>[topic]</b> has become very popular. In my opinion, it has both advantages and disadvantages.\""},
+ {label:"2 · PROS",vi:"Nêu 1 lợi ích + giải thích/ví dụ.",en:"\"On the one hand, the main benefit of <b>[topic]</b> is <b>[benefit 1]</b>. This is because <b>[short explanation]</b>. For example, <b>[short example]</b>.\""},
+ {label:"3 · CONS",vi:"Nêu 1 tác hại + giải thích/hậu quả.",en:"\"On the other hand, there are also some drawbacks. The biggest problem is <b>[drawback 1]</b>. As a result, <b>[consequence]</b>.\""},
+ {label:"4 · CONCLUSION",vi:"Tóm tắt lại + nêu góc nhìn cá nhân.",en:"\"In conclusion, while <b>[topic]</b> brings some clear advantages, it also has some negative points. Overall, I think <b>[your final opinion]</b>.\""}
+];
+
+/* ---- READING PRACTICE MCQ (12) ---- */
+const RV=[
+ {q:"So necessary that you cannot work without it.",o:["optional","indispensable","temporary","hybrid"],a:1},
+ {q:"To make people produce more work in the same amount of time.",o:["boost productivity","blur the line","misuse devices","scroll through"],a:0},
+ {q:"Employees who do their job away from the office.",o:["open workspace","field operations","remote staff","protocol"],a:2},
+ {q:"Work done outside the office — at sites, shops or client locations.",o:["field operations","hybrid work","awareness training","data leak"],a:0},
+ {q:"To use something you already have in order to gain an advantage.",o:["misuse","leverage","distract","wipe"],a:1},
+ {q:"Something that stops you concentrating on your work.",o:["efficiency","satisfaction","a distraction","a protocol"],a:2},
+ {q:"When private company information escapes to people outside the company.",o:["a data leak","a project tool","a hybrid model","an open workspace"],a:0},
+ {q:"Bad manners — for example answering a call in the middle of a meeting.",o:["strong protocol","poor etiquette","remote wiping","field operations"],a:1},
+ {q:"Deleting everything on a lost phone from another computer.",o:["awareness training","data mixing","remote data-wiping","streamlining"],a:2},
+ {q:"Complete exhaustion caused by working too much for too long.",o:["flexibility","burnout","efficiency","leverage"],a:1},
+ {q:"Something that has both good and bad effects at the same time.",o:["an open workspace","a project management tool","an always-on culture","a double-edged sword"],a:3},
+ {q:"A workplace where people are expected to answer messages at any hour.",o:["always-on culture","hybrid work","field operations","flexible working"],a:0}
+];
+/* ---- READING COMPREHENSION (6) ---- */
+const RC=[
+ {q:"According to the passage, who benefits most from the flexibility phones give?",o:["Only office managers","Remote staff, field operations and hybrid workers","Only the IT department","Customers of the company"],a:1},
+ {q:"How can businesses 'leverage' personal phones, according to the text?",o:["By banning them completely during work hours","By buying a phone for every employee","By encouraging staff to use project management and document-sharing apps","By checking employees' private messages"],a:2},
+ {q:"Why does allowing personal phone access increase employee satisfaction?",o:["Staff can handle urgent family matters without disrupting work","Staff can play games during meetings","Staff get a higher salary","Staff can leave work early"],a:0},
+ {q:"What security problem does the passage mention?",o:["Phones run out of battery too quickly","Corporate data on personal devices risks data leaks","Employees lose their passwords every week","Phone signals are weak in open workspaces"],a:1},
+ {q:"Which behaviour does the passage give as an example of poor etiquette?",o:["Using a document-sharing app","Checking work emails at home","Answering calls in meetings or open workspaces","Turning the phone to silent"],a:2},
+ {q:"What do companies need in order to manage the risks?",o:["Strong passwords, remote data-wiping and awareness training","More open workspaces","Fewer hybrid workers","Free phones for all staff"],a:0}
+];
+
+/* ---- GRAMMAR: HAVE GOT ---- */
+const TENSES=[
+ {name:"AFFIRMATIVE (+)",explain:"Say what someone owns, what they look like, what's on their schedule, or what illness they have.",formula:"S + have / has + got",rows:[
+  {tag:"POSSESSION",en:"I<b>'ve got</b> a new computer.",vi:"Tôi có một cái máy tính mới."},
+  {tag:"APPEARANCE",en:"She<b>'s got</b> long, brown hair.",vi:"Cô ấy có mái tóc dài màu nâu."},
+  {tag:"SCHEDULE",en:"I<b>'ve got</b> swimming practice at seven.",vi:"Tôi có buổi tập bơi lúc 7 giờ."},
+  {tag:"ILLNESS",en:"Fred<b>'s got</b> a terrible cold.",vi:"Fred bị cảm nặng."},
+  {tag:"ABSTRACT",en:"I<b>'ve got</b> an idea for the weekend.",vi:"Tôi có một ý tưởng cho cuối tuần."}
+ ]},
+ {name:"NEGATIVE (−)",explain:"Add not between have/has and got. In speech, always contract it.",formula:"S + have / has + not + got",rows:[
+  {tag:"FULL FORM",en:"They <b>have not got</b> any red chilli peppers.",vi:"Họ không có quả ớt đỏ nào."},
+  {tag:"CONTRACTED",en:"They <b>haven't got</b> any time.",vi:"Họ không có thời gian."},
+  {tag:"THIRD PERSON",en:"He <b>hasn't got</b> many friends.",vi:"Anh ấy không có nhiều bạn."},
+  {tag:"EXAMPLE",en:"Daisy <b>hasn't got</b> her books yet.",vi:"Daisy vẫn chưa có sách của mình."},
+  {tag:"⚠️ WATCH OUT",en:"Never use <i>do/does</i> with <b>got</b>: <s>They don't have got…</s>",vi:"Không dùng do/does cùng với 'got'."}
+ ]},
+ {name:"QUESTION (?)",explain:"Move have/has to the front. No do/does needed.",formula:"Have / Has + S + got …?",rows:[
+  {tag:"YES/NO",en:"<b>Have</b> you <b>got</b> a minute?",vi:"Bạn có rảnh một phút không?"},
+  {tag:"WE",en:"<b>Have</b> we <b>got</b> any red chilli peppers at home?",vi:"Ở nhà mình có quả ớt đỏ nào không?"},
+  {tag:"EVERYTHING",en:"<b>Have</b> you <b>got</b> everything you need?",vi:"Bạn đã có đủ mọi thứ cần thiết chưa?"},
+  {tag:"⚠️ PAST",en:"No <i>got</i> in the past: I <b>had</b> a racing bicycle. <s>I had got…</s>",vi:"Quá khứ chỉ dùng 'had', không dùng 'had got'."},
+  {tag:"🇬🇧 vs 🇺🇸",en:"UK: <i>Have you got change?</i> · US: <i><b>Do</b> you <b>have</b> change?</i>",vi:"Anh-Anh dùng have got; Anh-Mỹ dùng do + have."}
+ ]}
+];
+const DLG_GRAMMAR=[
+ {sp:"Niwat",en:"Give me some examples, please.",vi:"Cho tôi vài ví dụ với."},
+ {sp:"Sophie",en:"Certainly, here you are: I<b>'ve got</b> a new computer. They <b>haven't got</b> any red chilli peppers. She<b>'s got</b> long, brown hair. He <b>hasn't got</b> many friends.",vi:"Chắc chắn rồi, đây: Tôi có máy tính mới. Họ không có quả ớt đỏ nào. Cô ấy có tóc dài màu nâu. Anh ấy không có nhiều bạn."},
+ {sp:"Niwat",en:"So the negative is <b>have/has + not + got</b>?",vi:"Vậy dạng phủ định là have/has + not + got à?"},
+ {sp:"Sophie",en:"Yes, but don't forget the contraction. Daisy <b>hasn't got</b> her books yet. You <b>haven't got</b> 50 p, have you?",vi:"Đúng, nhưng đừng quên dạng rút gọn. Daisy chưa có sách. Bạn không có 50 xu à?"},
+ {sp:"Niwat",en:"Is <b>has got</b> only used for things?",vi:"'Has got' chỉ dùng cho đồ vật thôi à?"},
+ {sp:"Sophie",en:"No, it's also used for timetabled events or illnesses. I<b>'ve got</b> swimming practice at seven. Fred<b>'s got</b> a terrible cold. You can use <b>have got</b> for abstract things too: I<b>'ve got</b> an idea for the weekend.",vi:"Không, nó còn dùng cho sự kiện theo lịch hoặc bệnh tật. Tôi có buổi tập bơi lúc 7 giờ. Fred bị cảm nặng. Bạn cũng dùng được cho những thứ trừu tượng: Tôi có một ý tưởng cho cuối tuần."},
+ {sp:"Niwat",en:"Can I use <b>have got</b> in the past? For example: <i>I had got a racing bicycle when I was younger.</i>",vi:"Tôi dùng 'have got' ở quá khứ được không? Ví dụ: Hồi trẻ tôi từng có một chiếc xe đạp đua."},
+ {sp:"Sophie",en:"No, it's only used in the present tense. For the past you use <b>had</b> without <b>got</b>: I <b>had</b> a racing bicycle.",vi:"Không, nó chỉ dùng ở thì hiện tại. Với quá khứ bạn dùng 'had' mà không có 'got': Tôi từng có một chiếc xe đạp đua."},
+ {sp:"Niwat",en:"What about the question form?",vi:"Thế còn dạng câu hỏi thì sao?"},
+ {sp:"Sophie",en:"You use <b>have/has + subject + got</b>. <b>Have</b> you <b>got</b> everything you need? <b>Have</b> we <b>got</b> any red chilli peppers at home? <b>Have</b> you <b>got</b> a minute?",vi:"Bạn dùng have/has + chủ ngữ + got. Bạn đã có đủ thứ cần chưa? Nhà mình có ớt đỏ không? Bạn rảnh một phút không?"},
+ {sp:"Niwat",en:"Hang on a minute, I've heard <b>Do you have…?</b> a lot too.",vi:"Khoan đã, tôi cũng nghe nhiều câu 'Do you have…?' mà."},
+ {sp:"Sophie",en:"Yes, <b>have got</b> is more used in British English and <b>have</b> is more American. The question and negative form is different with <b>have</b> — you need the auxiliary <b>do/does</b>: <i>I have two sisters. Do you have change for ten dollars? He doesn't have a clue about soccer.</i>",vi:"Đúng, 'have got' dùng nhiều trong Anh-Anh, còn 'have' thiên về Anh-Mỹ. Dạng câu hỏi và phủ định của 'have' khác — cần trợ động từ do/does."},
+ {sp:"Niwat",en:"Anything else I should know?",vi:"Còn gì tôi nên biết nữa không?"},
+ {sp:"Sophie",en:"In British English we use <b>have got</b> more in speaking and <b>have</b> more in writing — it's a little more formal.",vi:"Trong tiếng Anh-Anh, chúng tôi dùng 'have got' nhiều khi nói và 'have' nhiều khi viết — nó trang trọng hơn một chút."},
+ {sp:"Niwat",en:"OK, I<b>'ve got</b> it now!",vi:"OK, giờ thì tôi hiểu rồi!"},
+ {sp:"Sophie",en:"Very clever! Yes, you can also use <b>have got</b> to mean 'understand'.",vi:"Thông minh lắm! Đúng vậy, bạn cũng có thể dùng 'have got' với nghĩa là 'hiểu'."}
+];
+const GG=[
+ {q:"_______ lots of friends at school.",o:["They've got","They are"],a:0,e:"Diễn tả sở hữu/mối quan hệ → They have got lots of friends."},
+ {q:"_______ a new laptop.",o:["She's got","She gets"],a:0,e:"Diễn tả sở hữu đồ vật → She has got a new laptop."},
+ {q:"_______ a minute?",o:["Have you got","Do you get"],a:0,e:"Câu hỏi lịch sự hỏi ai đó có rảnh không → Have you got a minute?"},
+ {q:"_______ breakfast at 7:30.",o:["I have","I have got"],a:0,e:"'have breakfast' là cụm cố định chỉ HÀNH ĐỘNG ăn — không dùng have got."},
+ {q:"_______ a maths class later.",o:["We do","We've got"],a:1,e:"Diễn tả lịch học/lịch trình → We have got a maths class later."},
+ {q:"_______ a terrible cold at the moment.",o:["He is","He's got"],a:1,e:"Diễn tả tình trạng bệnh → He has got a terrible cold."},
+ {q:"_______ very hot in the summer.",o:["Everybody gets","Everybody's got"],a:0,e:"'get' ở đây mang nghĩa 'trở nên' → Everybody gets very hot."},
+ {q:"_______ a great time last night.",o:["We had","We had got"],a:0,e:"Hành động ở quá khứ (last night) → chỉ dùng 'had', không dùng 'had got'."}
+];
+const GO=[
+ {words:["has","hair","she","got","dark"],ans:["She has got dark hair.","She's got dark hair."]},
+ {words:["have?","you","shopping list","the","got"],ans:["Have you got the shopping list?"]},
+ {words:["got","'ve","tennis","I","practice","7 at"],ans:["I've got tennis practice at 7.","I have got tennis practice at 7."]},
+ {words:["need","got","everything","we","have?","we"],ans:["Have we got everything we need?"]},
+ {words:["you","got","haven't","much","basket","in","your"],ans:["You haven't got much in your basket."]},
+ {words:["has?","any","ideas","Oliver","good","got"],ans:["Has Oliver got any good ideas?"]}
+];
+
+/* ---- DISCUSSION TAB 1 ---- */
+const D1_BANK=["Er... yeah but sometimes","Yeah, but","You're right in some ways... but","Yeah, there are a lot of advantages ... but","Yeah ... but in a good way"];
+const D1=[
+ {who:"Sam",cls:"sam",pre:"Sorry. I was just sending a message. I was multitasking! I'm with you now.",gap:null},
+ {who:"Gemma",cls:"gemma",pre:"",gap:{id:"d1g1",ans:["You're right in some ways... but","You're right in some ways but","You're right in some ways ... but"]},post:" I don't think you can send messages and talk to someone in real life at the same time! That's my point. The real-life person should come first. Don't you think?"},
+ {who:"Sam",cls:"sam",pre:"",gap:{id:"d1g2",ans:["Er... yeah but sometimes","Er yeah but sometimes","Er... yeah, but sometimes"]},post:" you just need to send a quick message. I don't think it's rude. In fact, I think it's rude to ignore messages, actually."},
+ {who:"Gemma",cls:"gemma",pre:"Yeah, I suppose so. ",gap:{id:"d1g3",ans:["Yeah, there are a lot of advantages ... but","Yeah there are a lot of advantages but","Yeah, there are a lot of advantages but","Yeah, there are a lot of advantages... but"]},post:" for me, the biggest disadvantage of having a mobile phone is that we're constantly being distracted from what's happening in the real world!"},
+ {who:"Sam",cls:"sam",pre:"",gap:{id:"d1g4",ans:["Yeah ... but in a good way","Yeah but in a good way","Yeah... but in a good way"]},post:" You can carry on what you're doing, and you can keep up with your friends at the same time."},
+ {who:"Gemma",cls:"gemma",pre:"",gap:{id:"d1g5",ans:["Yeah, but","Yeah but"]},post:" when you've got one of your best mates sitting right in front of you, maybe it's time to switch off?"}
+];
+const D1_KEY=[
+ {n:1,ans:"You're right in some ways... but",e:"Gemma thừa nhận Sam có lý khi cố làm nhiều việc cùng lúc (<b>multitasking</b>), nhưng cô ngay lập tức phản bác rằng không thể vừa nhắn tin vừa nói chuyện trực tiếp với người đối diện."},
+ {n:2,ans:"Er... yeah but sometimes",e:"Sam ngập ngừng biện hộ rằng đôi khi (<b>sometimes</b>) chỉ cần gửi một tin nhắn nhanh thì không phải là bất lịch sự."},
+ {n:3,ans:"Yeah, there are a lot of advantages ... but",e:"Gemma công nhận điện thoại có nhiều điểm tiện lợi, nhưng đưa ra lập luận đối lập (<b>but</b>) về tác hại lớn nhất: sự xao nhãng khỏi thực tế."},
+ {n:4,ans:"Yeah ... but in a good way",e:"Sam nhìn nhận việc cập nhật tin tức bạn bè liên tục trong khi làm việc khác theo hướng tích cực (<b>in a good way</b>)."},
+ {n:5,ans:"Yeah, but",e:"Gemma dùng cụm phản biện ngắn gọn để kéo Sam về thực tế: nhưng khi bạn bè đang ngồi ngay trước mặt thì nên tắt máy."}
+];
+
+/* ---- DISCUSSION TAB 2 ---- */
+const D2_BANK=["Shall we","Let's come on","maybe it's time to","We've just got to","Let's"];
+const D2=[
+ {who:"Gemma",cls:"gemma",pre:"Yeah, there are a lot of advantages ... but when you've got one of your best mates sitting right in front of you, ",gap:{id:"d2g1",ans:["maybe it's time to"]},post:" switch off?"},
+ {who:"Sam",cls:"sam",pre:"You mean... actually switching off our phones right now?",gap:null},
+ {who:"Gemma",cls:"gemma",pre:"",gap:{id:"d2g2",ans:["Shall we"]},post:"? What do you think?"},
+ {who:"Sam",cls:"sam",pre:"Er, OK. It'll give me something to post on Facebook later.",gap:null},
+ {who:"Gemma",cls:"gemma",pre:"Yeah, ",gap:{id:"d2g3",ans:["Let's come on","Let's, come on","come on let's"]},post:" focus on the advantages! Honestly, we haven't had a good chat in real life for ages."},
+ {who:"Sam",cls:"sam",pre:"All right - you're absolutely right.",gap:null},
+ {who:"Gemma",cls:"gemma",pre:"OK! Brilliant. On three then!",gap:null},
+ {who:"Gemma and Sam",cls:"gemma",pre:"One ... two... three ... off!",gap:null},
+ {who:"Sam",cls:"sam",pre:"Wow! We did it.",gap:null},
+ {who:"Gemma",cls:"gemma",pre:"That didn't hurt too much!",gap:null},
+ {who:"Sam",cls:"sam",pre:"Not yet.",gap:null},
+ {who:"Gemma",cls:"gemma",pre:"I've got a plan! ",gap:{id:"d2g4",ans:["Let's"]},post:" just leave them off until we finish our drinks."},
+ {who:"Sam",cls:"sam",pre:"Yeah, that might be a good idea.",gap:null},
+ {who:"Gemma",cls:"gemma",pre:"",gap:{id:"d2g5",ans:["We've just got to","We have just got to"]},post:" get used to knowing no one can contact me."},
+ {who:"Sam",cls:"sam",pre:"Yeah, it does... but I like this feeling of freedom. I'm going to keep mine off all day.",gap:null},
+ {who:"Gemma",cls:"gemma",pre:"Wow. Really? Now that is something to post on Facebook. 'Sam survives a whole day without his phone!'",gap:null}
+];
+const D2_KEY=[
+ {n:1,ans:"maybe it's time to",e:"Cấu trúc đề nghị nhẹ nhàng: <b>\"maybe it's time to + V-bare\"</b> (có lẽ đã đến lúc nên làm gì đó)."},
+ {n:2,ans:"Shall we",e:"Câu hỏi rủ rê, đề xuất làm chung hành động: <b>\"Shall we…?\"</b> (Chúng ta cùng làm nhé?)."},
+ {n:3,ans:"Let's come on",e:"Cụm mang tính cổ vũ, hối thúc tích cực: <b>\"Let's… come on\"</b> (Nào, hãy cùng…)."},
+ {n:4,ans:"Let's",e:"Gemma đưa ra kế hoạch: <b>\"Let's just leave them off…\"</b> (Hãy cứ tắt máy cho đến khi uống xong nước)."},
+ {n:5,ans:"We've just got to",e:"Gemma diễn tả sự cần thiết phải làm quen với việc không ai liên lạc được — đối mặt với nỗi sợ mất kết nối (<b>FOMO</b>). Chú ý: đây cũng là một ví dụ của <b>have got</b>!"}
+];
+const DEBATE=[
+ {stm:"\"Companies should ban all personal phones during working hours.\"",hint:"Agree a little first, then turn: <i>You're right in some ways, but…</i>"},
+ {stm:"\"If you're in a meeting, answering your phone is always rude.\"",hint:"Try: <i>Yeah, but… / Er… yeah but sometimes…</i>"},
+ {stm:"\"Phones make employees more productive, not less.\"",hint:"Try: <i>Yeah, there are a lot of advantages… but…</i>"},
+ {stm:"\"Checking work messages after 9 p.m. is just part of the job now.\"",hint:"Try: <i>Yeah… but in a good way</i> — or disagree completely, politely."},
+ {stm:"\"It's fine to use your personal phone for company files.\"",hint:"Think about security concerns and data leaks."},
+ {stm:"\"Turning your phone off for a whole day is impossible in 2026.\"",hint:"Try: <i>maybe it's time to… / Shall we…?</i>"}
+];
+
+/* ---- LISTENING ---- */
+const L1=[
+ {q:"Conversation 1",o:["an apology for missing a movie","an invitation to a movie","a cancellation of a movie"],a:1},
+ {q:"Conversation 2",o:["a suggestion about a stereo","a request to borrow a stereo","a complaint about a stereo"],a:1},
+ {q:"Conversation 3",o:["a complaint about a date","an invitation to go on a date","a cancellation of a date"],a:2},
+ {q:"Conversation 4",o:["a request to change a meeting time","an offer to change a meeting time","a promise to change a meeting time"],a:0},
+ {q:"Conversation 5",o:["a suggestion about where to have dinner","an apology for missing dinner","a complaint about dinner"],a:1},
+ {q:"Conversation 6",o:["a complaint about helping Becky move","an invitation to help Becky move","a promise to help Becky move"],a:2}
+];
+const L2_KEY=["pleased","not pleased","not pleased","pleased","not pleased","pleased"];
+const L_KEY_EXPLAIN=[
+ {n:1,t1:"b. an invitation to a movie",t2:"pleased",e:"David gọi hỏi Jenny có rảnh Sunday không rồi rủ đi xem phim (<i>\"Would you like to see a movie with me?\"</i>). Jenny vui vẻ nhận lời (<i>\"Oh, yeah. That sounds great. Thanks.\"</i>)."},
+ {n:2,t1:"b. a request to borrow a stereo",t2:"not pleased",e:"Bob gọi Tony để mượn dàn máy (<i>\"Would it be okay for me to borrow your stereo on Sunday?\"</i>). Tony không vui vì Bob lại mượn đồ tiếp (<i>\"He wants to borrow my stereo, again!\"</i>)."},
+ {n:3,t1:"c. a cancellation of a date",t2:"not pleased",e:"Rita gọi John hủy buổi xem kịch (<i>\"…I'm afraid I have to cancel our date.\"</i>). John đã mua vé rồi nên không hài lòng (<i>\"Yeah, I've already bought the tickets. Oh well.\"</i>)."},
+ {n:4,t1:"a. a request to change a meeting time",t2:"pleased",e:"Paul xin đổi giờ hẹn ăn tối từ 6 sang 7 giờ (<i>\"…can we meet at seven o'clock instead?\"</i>). David thấy đổi giờ còn tiện hơn cho mình (<i>\"No problem. Actually, that's better for me, too.\"</i>)."},
+ {n:5,t1:"b. an apology for missing dinner",t2:"not pleased",e:"Người gọi xin lỗi Joan vì lỡ bữa tối (<i>\"I wanted to call and apologize to you… I forgot to call you\"</i>). Joan vẫn trách vì đáng lẽ phải gọi báo trước (<i>\"…but you really should have called.\"</i>)."},
+ {n:6,t1:"c. a promise to help Becky move",t2:"pleased",e:"Đoạn hội thoại nhắc về lời hứa giúp chuyển nhà của Howard (<i>\"…you promised me that you would help me move…\"</i>). Becky nhẹ nhõm vì Howard vẫn giúp được vào buổi sáng (<i>\"Oh, good. Thanks!\"</i>)."}
+];
+const TRANSCRIPT=[
+ {n:"1",lines:[
+  {sp:"A",en:"Hello.",vi:"Alô."},
+  {sp:"B",en:"Hi, Jenny. This is David. How are things?",vi:"Chào Jenny. David đây. Dạo này thế nào?"},
+  {sp:"A",en:"Pretty good, thanks.",vi:"Khá tốt, cảm ơn."},
+  {sp:"B",en:"Listen. <b>I was wondering if</b> you're doing anything on Sunday.",vi:"Này. Tôi đang tự hỏi Chủ nhật cậu có bận gì không."},
+  {sp:"A",en:"No, I don't think so.",vi:"Không, tôi nghĩ là không."},
+  {sp:"B",en:"Great. <b>Would you like to</b> see a movie with me?",vi:"Tuyệt. Cậu có muốn đi xem phim với tôi không?"},
+  {sp:"A",en:"Oh, yeah. That sounds great. Thanks.",vi:"Ồ có chứ. Nghe hay đấy. Cảm ơn nhé."}
+ ]},
+ {n:"2",lines:[
+  {sp:"A",en:"Hello.",vi:"Alô."},
+  {sp:"B",en:"Hi, Tony. This is Bob.",vi:"Chào Tony. Bob đây."},
+  {sp:"A",en:"Hi, Bob. <b>What's up?</b>",vi:"Chào Bob. Có chuyện gì thế?"},
+  {sp:"B",en:"Oh, nothing much. But <b>I have a favor to ask</b>. <b>Would it be okay for me to</b> borrow your stereo on Sunday? Mine isn't working very well, and I have some new CDs I'd like to listen to.",vi:"Ồ, không có gì nhiều. Nhưng tôi có việc muốn nhờ. Chủ nhật tôi mượn dàn máy của cậu được không? Của tôi hỏng rồi, mà tôi có mấy đĩa CD mới muốn nghe."},
+  {sp:"A",en:"Um. Well, okay. I guess that's all right.",vi:"Ừm. Thôi được. Chắc là ổn thôi."},
+  {sp:"B",en:"Thanks. See you tomorrow.",vi:"Cảm ơn. Mai gặp nhé."},
+  {sp:"A",en:"Yeah. Bye.",vi:"Ừ. Chào."},
+  {sp:"C",en:"Who was that?",vi:"Ai gọi thế?"},
+  {sp:"A",en:"Oh, it was Bob. He wants to borrow my stereo, <b>again</b>!",vi:"Ồ, Bob đấy. Nó lại muốn mượn dàn máy của tôi nữa!"},
+  {sp:"C",en:"Not again!",vi:"Lại nữa à!"}
+ ]},
+ {n:"3",lines:[
+  {sp:"A",en:"Hello.",vi:"Alô."},
+  {sp:"B",en:"Hi, John. This is Rita.",vi:"Chào John. Rita đây."},
+  {sp:"A",en:"Hi. <b>How's it going?</b>",vi:"Chào. Dạo này sao rồi?"},
+  {sp:"B",en:"Well, okay, but <b>I'm afraid I have to cancel</b> our date. Remember? We were going to see a play together.",vi:"À, ổn, nhưng tôi e là phải hủy buổi hẹn. Nhớ không? Chúng ta định đi xem kịch cùng nhau."},
+  {sp:"A",en:"Yeah, I've already bought the tickets.",vi:"Ừ, tôi mua vé rồi đấy."},
+  {sp:"B",en:"Oh, I'm so sorry, but I have to drive my dad to the airport.",vi:"Ồ, tôi rất xin lỗi, nhưng tôi phải chở bố tôi ra sân bay."},
+  {sp:"A",en:"<b>Oh well.</b> I'll see if I can get someone else to go with me.",vi:"Thôi đành vậy. Tôi sẽ xem có ai đi cùng được không."},
+  {sp:"B",en:"Yeah. Sorry about that.",vi:"Ừ. Xin lỗi vì chuyện đó nhé."}
+ ]},
+ {n:"4",lines:[
+  {sp:"A",en:"Hello.",vi:"Alô."},
+  {sp:"B",en:"Hello, David. This is Paul.",vi:"Chào David. Paul đây."},
+  {sp:"A",en:"Oh, hi.",vi:"Ồ, chào."},
+  {sp:"B",en:"Listen, you know we're <b>supposed to</b> meet at six tonight for dinner?",vi:"Này, cậu biết là tối nay chúng ta hẹn ăn tối lúc 6 giờ đúng không?"},
+  {sp:"A",en:"Yeah, is there a problem?",vi:"Ừ, có vấn đề gì à?"},
+  {sp:"B",en:"No, but <b>can we meet at seven o'clock instead?</b> I think I'm going to be late.",vi:"Không, nhưng hay là mình gặp lúc 7 giờ thay vì 6 giờ nhé? Tôi e là sẽ đến muộn."},
+  {sp:"A",en:"No problem. Actually, <b>that's better for me, too</b>.",vi:"Không sao. Thật ra thế lại tiện hơn cho tôi."},
+  {sp:"B",en:"Great. See you at seven o'clock.",vi:"Tuyệt. Gặp lúc 7 giờ nhé."}
+ ]},
+ {n:"5",lines:[
+  {sp:"A",en:"Hi, Joan. I know it's late, but <b>I wanted to call and apologize to you</b>.",vi:"Chào Joan. Tôi biết là muộn rồi, nhưng tôi muốn gọi để xin lỗi cậu."},
+  {sp:"B",en:"Well, I was wondering why you didn't meet me for dinner.",vi:"À, tôi đang thắc mắc sao cậu không đến ăn tối với tôi."},
+  {sp:"A",en:"I am so sorry, but my husband called me at work and told me that he was not feeling well. So, I had to go home and take care of him. I was so busy, <b>I forgot to call you</b>.",vi:"Tôi rất xin lỗi, chồng tôi gọi đến chỗ làm báo là anh ấy không khỏe. Nên tôi phải về nhà chăm sóc anh ấy. Tôi bận quá nên quên gọi cho cậu."},
+  {sp:"B",en:"Well, I understand your problem, but <b>you really should have called</b>.",vi:"Thôi, tôi hiểu hoàn cảnh của cậu, nhưng đáng lẽ cậu thực sự nên gọi báo."}
+ ]},
+ {n:"6",lines:[
+  {sp:"A",en:"Hi, Howard! How are you doing?",vi:"Chào Howard! Cậu khỏe không?"},
+  {sp:"B",en:"Oh, Becky! I'm doing pretty good. I'm leaving for my big vacation to Europe this Saturday.",vi:"Ồ, Becky! Tôi khá ổn. Thứ Bảy này tôi lên đường đi nghỉ ở châu Âu."},
+  {sp:"A",en:"What? You are?",vi:"Cái gì? Thật hả?"},
+  {sp:"B",en:"Yeah, why?",vi:"Ừ, sao thế?"},
+  {sp:"A",en:"Well, <b>you promised me that you would</b> help me move into my new apartment this Saturday.",vi:"Thì cậu đã hứa với tôi là thứ Bảy này sẽ giúp tôi dọn sang căn hộ mới mà."},
+  {sp:"B",en:"Oh, that's right. I forgot. Well, don't worry. My plane leaves at night. <b>I can still help you</b> in the morning, I guess.",vi:"Ồ, đúng rồi. Tôi quên mất. Đừng lo. Máy bay của tôi cất cánh buổi tối. Chắc tôi vẫn giúp cậu buổi sáng được."},
+  {sp:"A",en:"Oh, good. Thanks!",vi:"Ồ, tốt quá. Cảm ơn nhé!"},
+  {sp:"B",en:"Sure.",vi:"Không có gì."}
+ ]}
+];
+const TR_VOCAB=[
+ {w:"I was wondering if…",vi:"Tôi đang tự hỏi liệu… (mở đầu lịch sự cho lời mời/đề nghị)"},
+ {w:"Would you like to…?",vi:"Bạn có muốn… không? (lời MỜI)"},
+ {w:"I have a favor to ask",vi:"Tôi có việc muốn nhờ (mở đầu lời NHỜ VẢ)"},
+ {w:"Would it be okay for me to…?",vi:"Tôi… có được không? (lời YÊU CẦU lịch sự)"},
+ {w:"I'm afraid I have to cancel…",vi:"Tôi e là phải hủy… (lời HỦY HẸN)"},
+ {w:"Can we meet at … instead?",vi:"Hay là mình gặp lúc… thay vì…? (yêu cầu ĐỔI LỊCH)"},
+ {w:"I wanted to call and apologize",vi:"Tôi muốn gọi để xin lỗi (lời XIN LỖI)"},
+ {w:"You promised me that you would…",vi:"Cậu đã hứa với tôi là sẽ… (nhắc lại LỜI HỨA)"},
+ {w:"You really should have called",vi:"Đáng lẽ cậu thực sự nên gọi (trách móc nhẹ)"},
+ {w:"What's up? / How's it going?",vi:"Có chuyện gì thế? / Dạo này sao rồi? (chào hỏi thân mật)"},
+ {w:"Oh well.",vi:"Thôi đành vậy. (chấp nhận điều không như ý)"},
+ {w:"be supposed to + V",vi:"lẽ ra phải / đã hẹn là sẽ…"}
+];
+
+/* ---- SPEAKING ---- */
+const LV1=[
+ {q:"How many hours a day do you spend on your phone at work? Is that too much?",model:"To be honest, I've got my phone in my hand about three hours a day at work. From my perspective, that's too much — at least an hour of it is scrolling through social media."},
+ {q:"Does your company have a rule about phones? What is it?",model:"We haven't got a strict rule, but there's one protocol: no phones in client meetings. Everyone leaves them face-down on the table."},
+ {q:"What's your favourite work app, and why is it useful?",model:"I've got about forty apps, but my favourite is our project management tool. It streamlines communication because I can check every deadline in one place."},
+ {q:"Have you ever been distracted by your phone at work? What happened?",model:"Yes, definitely. Last month a notification distracted me during a report, and I made a mistake in the numbers. It caused dropped productivity for the whole afternoon."}
+];
+const LV2=[
+ {stem:"From my perspective, the biggest advantage of phones at work is ______ , because ______ .",model:"From my perspective, the biggest advantage of phones at work is flexibility, because I can handle urgent matters on the go instead of waiting until I'm back at my desk."},
+ {stem:"On the other hand, the main problem is ______ . As a result, ______ .",model:"On the other hand, the main problem is constant distraction. As a result, employees lose their focus and productivity drops."},
+ {stem:"In my office, we've got ______ , but we haven't got ______ .",model:"In my office, we've got a good document-sharing system, but we haven't got any awareness training about security."},
+ {stem:"Answering a call in a meeting is ______ , because ______ .",model:"Answering a call in a meeting is poor etiquette, because it shows a lack of respect and disrupts your colleagues."},
+ {stem:"Overall, I think companies should ______ , provided that ______ .",model:"Overall, I think companies should allow personal phones, provided that employees discipline themselves to minimise distractions."}
+];
+const LV3=[
+ {title:"The distracted colleague",sub:"Your teammate is always on his phone. You need to say something.",lines:[
+  {sp:"A",t:"Sorry, I was just replying to a message. I can multitask, honestly!"},
+  {sp:"B",t:"__________ (Disagree politely — use one of the five phrases from Part 4.)"},
+  {sp:"A",t:"Come on, it's only a few seconds each time."},
+  {sp:"B",t:"__________ (Give ONE concrete consequence, using vocabulary from Part 2.)"}
+ ],model:"B (1): You're right in some ways, but I don't really think you can text and concentrate at the same time. The person in front of you should come first.\nB (2): Yeah, there are a lot of advantages… but those few seconds add up. Constant notifications break your flow state, and that's exactly what causes dropped productivity."},
+ {title:"The new company phone policy",sub:"Your manager wants to ban all personal phones. You're not sure.",lines:[
+  {sp:"A",t:"From next month, no personal phones at all during working hours. What do you think?"},
+  {sp:"B",t:"__________ (Give the pros AND cons — don't just agree or refuse.)"},
+  {sp:"A",t:"So what would you suggest instead?"},
+  {sp:"B",t:"__________ (Make a suggestion using 'Shall we…?' or 'maybe it's time to…')"}
+ ],model:"B (1): It's a double-edged sword. On the one hand, it would definitely reduce distraction and solve some security concerns. On the other hand, staff have got families — they need to handle urgent matters, and a total ban could really damage employee satisfaction.\nB (2): Maybe it's time to try something softer first. Shall we start with phone-free meetings and some awareness training, and see if productivity improves?"}
+];
+const LV4=[
+ {title:"Advantages and disadvantages of smartphones at work",task:"Speak for 60–90 seconds. Follow the 4-part template from Part 2C.",template:"1️⃣ Introduction — \"Nowadays, ___ has become very popular. In my opinion, it has both advantages and disadvantages.\"\n2️⃣ Pros — \"On the one hand, the main benefit is ___. This is because ___. For example, ___.\"\n3️⃣ Cons — \"On the other hand, the biggest problem is ___. As a result, ___.\"\n4️⃣ Conclusion — \"In conclusion, while ___, it also ___. Overall, I think ___.\"",model:"In my opinion, using a smartphone at work is a double-edged sword. On the one hand, its biggest advantage is unmatched mobility and convenience. Smartphones allow employees to stay connected and handle urgent tasks on the go. For instance, if I'm away from my desk, I can still reply to an urgent client email or check a project deadline on apps like Slack or Google Drive. This significantly boosts workflow efficiency. On the other hand, the primary drawback is constant distraction. Non-work notifications from social media or messaging apps can easily disrupt an employee's concentration, leading to lower productivity. Moreover, being accessible 24/7 via phone often blurs the line between personal life and work, which can cause digital burnout over time. Overall, I believe smartphones are highly useful work tools, provided that users discipline themselves to minimize distractions."},
+ {title:"Should companies ban smartphones?",task:"Practice prompt: \"Some companies strictly ban smartphones during working hours to maintain productivity. Do you agree or disagree with this policy? Give reasons and examples from your personal experience.\"",template:"🎯 State your position clearly in ONE sentence.\n➕ Give TWO reasons, each with an example.\n⚖️ Admit ONE point for the other side — \"You're right in some ways, but…\"\n🔚 Restate your position with a practical suggestion.",model:"I disagree with a total ban, although I understand why some companies do it. My first reason is that a ban ignores how modern work actually happens: hybrid workers and field operations staff genuinely need their phones to access project management tools. In my last job, our sales team could not have worked without them. My second reason is trust. Employees who can handle urgent family matters feel respected, and that increases employee satisfaction. You're right in some ways — misuse is real, and scrolling through social media all afternoon does cause dropped productivity. But the answer is awareness training and clear protocols, not a ban. Overall, I think companies should set phone-free meetings and trust their staff for everything else."}
+];
+const SPK_CHECK=["I used today's vocabulary.","I gave BOTH advantages and disadvantages.","I used the 4-part template structure.","I used 'have got' at least twice.","I disagreed politely instead of saying just 'no'.","I spoke in full sentences, without reading."];
+
+/* ---- REFLEX ---- */
+const REFLEX_WORDS=[
+ {w:"indispensable",vi:"không thể thiếu"},{w:"boost productivity",vi:"tăng năng suất"},
+ {w:"efficiency",vi:"hiệu quả, hiệu suất"},{w:"enhance flexibility",vi:"tăng tính linh hoạt"},
+ {w:"remote staff",vi:"nhân viên làm từ xa"},{w:"field operations",vi:"hoạt động ngoài thực địa"},
+ {w:"hybrid workers",vi:"nhân viên làm việc kết hợp"},{w:"leverage",vi:"tận dụng"},
+ {w:"project management tool",vi:"công cụ quản lý dự án"},{w:"employee satisfaction",vi:"sự hài lòng của nhân viên"},
+ {w:"misuse",vi:"lạm dụng, dùng sai"},{w:"distraction",vi:"sự xao nhãng"},
+ {w:"dropped productivity",vi:"năng suất giảm sút"},{w:"scroll through social media",vi:"lướt mạng xã hội"},
+ {w:"security concerns",vi:"lo ngại về bảo mật"},{w:"data leak",vi:"rò rỉ dữ liệu"},
+ {w:"poor etiquette",vi:"văn hóa ứng xử kém"},{w:"open workspace",vi:"không gian làm việc mở"},
+ {w:"protocol",vi:"quy định, quy trình"},{w:"remote data-wiping",vi:"xóa dữ liệu từ xa"},
+ {w:"burnout",vi:"kiệt sức"},{w:"awareness training",vi:"đào tạo nâng cao nhận thức"},
+ {w:"a double-edged sword",vi:"con dao hai lưỡi"},{w:"streamline communication",vi:"tối ưu hóa giao tiếp"},
+ {w:"handle urgent matters on the go",vi:"xử lý việc khẩn khi di chuyển"},
+ {w:"blur the line between…",vi:"xóa mờ ranh giới giữa…"},{w:"always-on culture",vi:"văn hóa luôn sẵn sàng làm việc"},
+ {w:"Have you got a minute?",vi:"Bạn rảnh một phút không?"},
+ {w:"I've got a plan!",vi:"Tôi có một kế hoạch!"},
+ {w:"maybe it's time to…",vi:"có lẽ đã đến lúc nên…"}
+];
+const REFLEX_SITUATIONS=[
+ "Your phone rings in the middle of a meeting. What do you do and say?",
+ "A colleague says: \"Phones never hurt productivity.\" Disagree politely in a full sentence.",
+ "Your manager asks: \"Have you got a minute?\" — reply, then ask her the same question back.",
+ "Explain to a new employee ONE company phone rule, and why it exists.",
+ "Someone calls to cancel your dinner plans. React politely — you're disappointed but understanding.",
+ "Invite a colleague to lunch on the phone. Use \"I was wondering if…\" and \"Would you like to…?\"",
+ "Describe your favourite work app in 3 sentences, using 'I've got'.",
+ "Your friend is scrolling on his phone while you're talking. Say something — kindly.",
+ "Ask a colleague for a favour on the phone: you want to borrow something for the weekend.",
+ "You forgot to call someone about a cancelled meeting. Apologise on the phone."
+];
+const REFLEX_PROMPTS=[
+ {title:"⚖️ Advantages and disadvantages",task:"Talk about the advantages AND disadvantages of using a smartphone at work. Give at least one example for each side.",hints:["<b>Nowadays, ___ has become very popular…</b>","<b>On the one hand… / On the other hand…</b>","boost productivity · enhance flexibility · handle urgent matters on the go","distraction · data leak · poor etiquette · burnout","<b>In conclusion / Overall, I think…</b>"]},
+ {title:"📱 My phone at work",task:"Describe how you actually use your phone during a normal working day — from the morning commute to the evening.",hints:["<b>I've got… / I haven't got…</b>","<b>Have you got…?</b> (ask your partner back)","project management tool · open workspace · remote staff","<b>From my perspective, …</b>"]},
+ {title:"🚫 The phone ban debate",task:"\"Some companies strictly ban smartphones during working hours to maintain productivity.\" Do you agree or disagree? Give reasons and examples.",hints:["State your position in ONE sentence first","Two reasons, each with an example","Admit one point for the other side: <b>You're right in some ways, but…</b>","End with a practical suggestion: <b>maybe it's time to… / Shall we…?</b>"]}
+];
+
+const SELF_CHECK=["I can say a phone number out loud naturally.","I understand today's vocabulary about phones at work.","I can present both advantages and disadvantages using the 4-part template.","I can use have got in affirmative, negative and question forms.","I can disagree politely instead of saying just 'no'.","I can understand invitations, requests, cancellations and apologies on the phone.","I can speak for 60 seconds on this topic without notes.","I feel more confident discussing this topic."];
+
+/* ---- QUIZ: 30 unique questions ---- */
+const QUIZ=[
+ {t:"DEFINITION",q:"So necessary that you cannot work without it.",o:["optional","hybrid","indispensable","temporary"],a:2,e:"Indispensable = không thể thiếu. The passage calls phones an indispensable tool."},
+ {t:"DEFINITION",q:"An office with no walls between the desks.",o:["an open workspace","field operations","a protocol","a data leak"],a:0,e:"Open workspace = không gian làm việc mở, không có tường ngăn."},
+ {t:"DEFINITION",q:"Work done outside the office — at sites, shops or client locations.",o:["hybrid work","remote wiping","field operations","awareness training"],a:2,e:"Field operations = các hoạt động tác nghiệp ngoài thực địa."},
+ {t:"DEFINITION",q:"A model where you work some days at home and some days in the office.",o:["shift work","hybrid work","field operations","open workspace"],a:1,e:"Hybrid work = mô hình kết hợp văn phòng và làm việc từ xa."},
+ {t:"DEFINITION",q:"An app that tracks tasks and deadlines, like Trello or Notion.",o:["a data leak","a security protocol","an always-on culture","a project management tool"],a:3,e:"Project management tool = công cụ/phần mềm quản lý tiến độ công việc."},
+ {t:"DEFINITION",q:"When private company information escapes to people outside the company.",o:["a distraction","poor etiquette","a protocol","a data leak"],a:3,e:"Data leak = rò rỉ dữ liệu."},
+ {t:"DEFINITION",q:"Complete exhaustion caused by working too much for too long.",o:["leverage","efficiency","flexibility","burnout"],a:3,e:"Burnout = kiệt sức. 'Always-on culture' often causes digital burnout."},
+ {t:"DEFINITION",q:"Deleting everything on a lost phone from another computer.",o:["streamlining","awareness training","remote data-wiping","leveraging"],a:2,e:"Remote data-wiping = xóa dữ liệu từ xa — a key security protocol."},
+ {t:"DEFINITION",q:"Something that has both good and bad effects at the same time.",o:["an open workspace","an indispensable tool","a double-edged sword","a hybrid model"],a:2,e:"A double-edged sword = con dao hai lưỡi. Note: the w in 'sword' is silent."},
+ {t:"DEFINITION",q:"A workplace where people are expected to answer messages at any hour.",o:["hybrid work","field operations","flexible working","always-on culture"],a:3,e:"Always-on culture = văn hóa luôn sẵn sàng làm việc, gây căng thẳng."},
+ {t:"CONTEXT",q:"\"He spends the whole afternoon looking at Facebook and TikTok at his desk.\" He is ___.",o:["leveraging his device","handling urgent matters","streamlining communication","scrolling through social media"],a:3,e:"Scroll through social media = lướt mạng xã hội — a classic cause of distraction."},
+ {t:"CONTEXT",q:"\"He answered a call in the middle of the client meeting.\" This is an example of ___.",o:["remote data-wiping","boosted productivity","enhanced flexibility","poor etiquette"],a:3,e:"Poor etiquette = văn hóa ứng xử kém; it shows a lack of respect for colleagues."},
+ {t:"CONTEXT",q:"\"I replied to the client's email while I was in the taxi.\" She can ___.",o:["blur the line","misuse the device","handle urgent matters on the go","cause a data leak"],a:2,e:"Handle urgent matters on the go = xử lý việc khẩn khi đang di chuyển."},
+ {t:"CONTEXT",q:"\"Now I answer work messages at 11 p.m. every night.\" Phones ___ work and personal life.",o:["streamline","boost","leverage","blur the line between"],a:3,e:"Blur the line between work and personal life = xóa mờ ranh giới giữa công việc và đời sống."},
+ {t:"CONTEXT",q:"\"Our chat app replaced 50 emails a day.\" It really ___.",o:["streamlines communication","causes burnout","misuses data","drops productivity"],a:0,e:"Streamline communication = tối ưu hóa, làm mượt quá trình giao tiếp."},
+ {t:"CONTEXT",q:"Which is a PRO of phones at work according to the reading?",o:["Increasing data leaks","Enhancing flexibility for remote staff","Disrupting colleagues in meetings","Requiring stricter protocols"],a:1,e:"Enhancing flexibility for remote staff, field operations and hybrid workers is listed under PROS."},
+ {t:"CONTEXT",q:"Which is a CON of phones at work according to the reading?",o:["Higher employee satisfaction","Faster team communication","Security and privacy concerns","Access to work applications"],a:2,e:"Security and privacy concerns arise when corporate data is on personal devices."},
+ {t:"GRAMMAR",q:"Choose the correct sentence about possession.",o:["They are lots of friends at school.","They've got lots of friends at school.","They have got friends is at school.","They do got lots of friends."],a:1,e:"have got + noun expresses possession or relationships."},
+ {t:"GRAMMAR",q:"\"_______ a minute?\" — the polite way to ask if someone is free.",o:["Do you get","Have you got","Are you got","Do you have got"],a:1,e:"Have + subject + got…? Never use do/does together with got."},
+ {t:"GRAMMAR",q:"\"_______ breakfast at 7:30 every day.\"",o:["I have","I have got","I've got","I am got"],a:0,e:"'Have breakfast' is a fixed phrase for an ACTION — have got never works with meals."},
+ {t:"GRAMMAR",q:"\"We _______ a maths class later.\" (schedule)",o:["do","are","have got","get"],a:2,e:"Have got also works for timetabled events: We've got a maths class later."},
+ {t:"GRAMMAR",q:"\"He _______ a terrible cold at the moment.\" (illness)",o:["is","has got","does have","gets"],a:1,e:"Have got is used for illnesses: He's got a terrible cold."},
+ {t:"GRAMMAR",q:"\"We _______ a great time last night.\"",o:["had got","have got","had","has got"],a:2,e:"There is NO 'had got' — for the past you use 'had' alone."},
+ {t:"GRAMMAR",q:"Which negative form is correct?",o:["He doesn't have got a car.","He hasn't got a car.","He not has got a car.","He haven't got a car."],a:1,e:"S + has/have + not + got. He hasn't got a car."},
+ {t:"GRAMMAR",q:"Which sentence is American English rather than British?",o:["Have you got change for ten dollars?","Have we got any peppers at home?","Do you have change for ten dollars?","I've got a new computer."],a:2,e:"American English prefers do/does + have; British English prefers have got in speech."},
+ {t:"GRAMMAR",q:"Put in order: has / hair / she / got / dark",o:["She got has dark hair.","Dark hair she has got.","She has got dark hair.","Has she got dark hair."],a:2,e:"S + has + got + object: She has got dark hair."},
+ {t:"LISTENING",q:"\"Would it be okay for me to borrow your stereo?\" This call is a ___.",o:["request","cancellation","apology","complaint"],a:0,e:"'Would it be okay for me to…?' is a polite REQUEST."},
+ {t:"LISTENING",q:"\"I'm afraid I have to cancel our date.\" This call is a ___.",o:["suggestion","invitation","promise","cancellation"],a:3,e:"'I'm afraid I have to cancel…' signals a CANCELLATION."},
+ {t:"LISTENING",q:"\"I wanted to call and apologize to you.\" This call is an ___.",o:["apology","invitation","request","offer"],a:0,e:"'I wanted to call and apologize' signals an APOLOGY."},
+ {t:"CONTEXT",q:"Your colleague says phones never cause problems. The most POLITE way to disagree is:",o:["No, that's completely wrong.","You're right in some ways, but…","I don't want to talk about it.","You clearly know nothing."],a:1,e:"English speakers agree a little first, then turn with 'but' — this keeps the conversation friendly."}
+];
+
+/* ================== HELPERS ================== */
+const $=id=>document.getElementById(id);
+function norm(s){return s.toLowerCase().replace(/[\u2018\u2019]/g,"'").replace(/[\u2013\u2014]/g,"-").replace(/\.\.\./g,"…").replace(/…/g," … ").replace(/\s+/g," ").replace(/\s*-\s*/g,"-").replace(/\s+([.,?!])/g,"$1").trim();}
+function shuffledCopy(a){const c=[...a];for(let i=c.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[c[i],c[j]]=[c[j],c[i]];}return c;}
+const ALL_TIMERS=[];
+function trackInterval(fn,ms){const id=setInterval(fn,ms);ALL_TIMERS.push(id);return id;}
+function clearAllTimers(){ALL_TIMERS.forEach(clearInterval);ALL_TIMERS.length=0;}
+
+/* ================== NAVIGATION ================== */
+const PAGES=["p-overview","p-warmup","p-reading","p-grammar","p-discussion","p-listening","p-speaking","p-review"];
+const visited=new Set(["p-overview"]);
+function gotoPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  $(id).classList.add("active");
+  document.querySelectorAll(".nav-item").forEach(n=>n.classList.toggle("active",n.dataset.page===id));
+  visited.add(id);
+  $("progFill").style.width=Math.round(visited.size/PAGES.length*100)+"%";
+  window.scrollTo({top:0,behavior:"smooth"});
+  if(typeof syncAllCues==="function")syncAllCues();
+}
+document.querySelectorAll(".nav-item").forEach(n=>n.addEventListener("click",()=>gotoPage(n.dataset.page)));
+document.addEventListener("click",e=>{
+  const g=e.target.closest("[data-goto]");if(g){gotoPage(g.dataset.goto);return;}
+  const t=e.target.closest("[data-toggle]");if(t){$(t.dataset.toggle).classList.toggle("revealed");return;}
+});
+
+/* ================== TABS (with scroll affordance) ================== */
+document.querySelectorAll(".tab-bar").forEach(bar=>{
+  const wrap=document.createElement("div");
+  wrap.className="tab-scroll";
+  bar.parentNode.insertBefore(wrap,bar);
+  wrap.appendChild(bar);
+  const cue=document.createElement("span");
+  cue.className="scroll-cue";cue.textContent="›";
+  wrap.appendChild(cue);
+  const sync=()=>{
+    const more=bar.scrollWidth-bar.clientWidth-bar.scrollLeft>4;
+    wrap.classList.toggle("more-right",more);
+  };
+  bar.addEventListener("scroll",sync,{passive:true});
+  window.addEventListener("resize",sync);
+  bar._syncCue=sync;
+  sync();
+});
+function syncAllCues(){document.querySelectorAll(".tab-bar").forEach(b=>b._syncCue&&b._syncCue());}
+document.querySelectorAll(".tab-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const bar=btn.closest(".tab-bar");
+    const group=bar.dataset.group;
+    bar.querySelectorAll(".tab-btn").forEach(b=>b.classList.toggle("active",b===btn));
+    document.querySelectorAll(`.tab-panel[data-group="${group}"]`).forEach(p=>{
+      p.classList.toggle("active",p.dataset.panel===btn.dataset.tab);
+    });
+    if(btn.scrollIntoView)btn.scrollIntoView({block:"nearest",inline:"nearest",behavior:"smooth"});
+    setTimeout(syncAllCues,350);
+  });
+});
+
+/* ================== VOCAB CARDS ================== */
+function renderVocab(id,arr){
+  $(id).innerHTML=arr.map(v=>{
+    const parts=v.ex.split("|");
+    return `<div class="vocab-card"><span class="flip-hint">tap ↻</span>
+      <div class="word">${v.w}</div>
+      <div class="ipa">${v.ipa}</div>
+      <div><span class="pos">${v.pos}</span></div>
+      <div class="vi">${v.vi}</div>
+      <div class="example">💡 ${parts[0]}<br>${parts[1]||""}</div>
+    </div>`;
+  }).join("");
+}
+renderVocab("vgPros",VOCAB_PROS);renderVocab("vgCons",VOCAB_CONS);renderVocab("vgOpin",VOCAB_OPIN);
+document.addEventListener("click",e=>{
+  const c=e.target.closest(".vocab-card");if(c)c.classList.toggle("flipped");
+  const f=e.target.closest("[data-flipall]");
+  if(f)f.dataset.flipall.split(",").forEach(gid=>$(gid).querySelectorAll(".vocab-card").forEach(cc=>cc.classList.add("flipped")));
+});
+
+/* ================== WARM-UP: MATCHING ================== */
+$("matchA").innerHTML=MATCH_A.map(m=>`<div class="match-item" data-n="${m.n}">
+  <span class="m-num">${m.n}</span><span>${m.text}</span>
+  <select id="mt${m.n}"><option value="">?</option>${MATCH_B.map(b=>`<option value="${b.l}">${b.l}</option>`).join("")}</select>
+</div>`).join("");
+$("matchB").innerHTML=MATCH_B.map(b=>`<div class="match-item"><span class="m-ltr">${b.l}</span><span>${b.text}</span></div>`).join("");
+$("mtCheck").addEventListener("click",()=>{
+  let s=0;
+  MATCH_A.forEach(m=>{
+    const sel=$("mt"+m.n),row=$("matchA").querySelector(`.match-item[data-n="${m.n}"]`);
+    const ok=sel.value===m.ans;
+    row.classList.remove("correct","incorrect");
+    row.classList.add(ok?"correct":"incorrect");
+    if(ok)s++;else sel.value=m.ans;
+  });
+  $("mtScore").textContent=s+"/4";
+  $("mtMsg").innerHTML=s===4?"Perfect! All four matched. 🏆":"Corrected for you — read the explanations: "+MATCH_A.map(m=>MATCH_EXPLAIN[m.n]).join(" · ");
+  $("mtFb").className="feedback-box show "+(s===4?"success":s>=2?"info":"error");
+});
+$("mtReset").addEventListener("click",()=>{
+  MATCH_A.forEach(m=>{$("mt"+m.n).value="";$("matchA").querySelector(`.match-item[data-n="${m.n}"]`).classList.remove("correct","incorrect");});
+  $("mtFb").className="feedback-box";
+});
+
+/* ================== WARM-UP: PHONE NUMBERS ================== */
+$("phoneGrid").innerHTML=PHONES.map(p=>`<div class="phone-card">
+  <div class="p-label">${p.label}</div>
+  <div class="p-num">${p.num}</div>
+  <div class="p-say">🗣 "${p.say}"</div>
+</div>`).join("");
+$("phoneGrid").addEventListener("click",e=>{
+  const c=e.target.closest(".phone-card");if(c)c.classList.toggle("flipped");
+});
+$("phoneFlipAll").addEventListener("click",()=>$("phoneGrid").querySelectorAll(".phone-card").forEach(c=>c.classList.add("flipped")));
+
+/* ================== MCQ ENGINE ================== */
+function buildMCQ(listId,data){
+  $(listId).innerHTML=data.map((it,i)=>`<div class="q-block" data-q="${i}">
+    <div class="q-text"><span class="qn">${i+1}.</span>${it.q}</div>
+    <div class="mcq-opts">${it.o.map((o,j)=>`<div class="mcq-option" data-i="${j}"><span class="ltr">${"ABCD"[j]}.</span><span>${o}</span></div>`).join("")}</div>
+  </div>`).join("");
+  $(listId).addEventListener("click",e=>{
+    const opt=e.target.closest(".mcq-option");if(!opt)return;
+    const block=opt.closest(".q-block");
+    if(block.dataset.locked==="1")return;
+    block.querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected"));
+    opt.classList.add("selected");
+  });
+  return{
+    check(){
+      let score=0;
+      $(listId).querySelectorAll(".q-block").forEach((block,i)=>{
+        block.dataset.locked="1";
+        const opts=block.querySelectorAll(".mcq-option");
+        const sel=block.querySelector(".mcq-option.selected");
+        opts[data[i].a].classList.add("correct");
+        if(sel){if(+sel.dataset.i===data[i].a)score++;else sel.classList.add("incorrect");}
+      });
+      return score;
+    },
+    reset(){
+      $(listId).querySelectorAll(".q-block").forEach(b=>{b.dataset.locked="";b.querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected","correct","incorrect"));});
+    }
+  };
+}
+function tierMsg(s,t){
+  const r=s/t;
+  if(r===1)return"Perfect! 🏆";
+  if(r>=0.8)return"Excellent — just review the ones you missed.";
+  if(r>=0.6)return"Good. Read the material once more, then retry.";
+  return"Go back and review, then try again. You'll get there.";
+}
+function wire(listId,btnCheck,btnReset,fb,scoreEl,msgEl,data,total){
+  const eng=buildMCQ(listId,data);
+  $(btnCheck).addEventListener("click",()=>{
+    const s=eng.check();
+    $(scoreEl).textContent=s+"/"+total;$(msgEl).textContent=tierMsg(s,total);
+    $(fb).className="feedback-box show "+(s>=total*0.8?"success":s>=total*0.5?"info":"error");
+  });
+  $(btnReset).addEventListener("click",()=>{eng.reset();$(fb).className="feedback-box";});
+  return eng;
+}
+const rvEng=wire("rvList","rvCheck","rvReset","rvFb","rvScore","rvMsg",RV,12);
+const rcEng=wire("rcList","rcCheck","rcReset","rcFb","rcScore","rcMsg",RC,6);
+const l1Eng=wire("l1List","l1Check","l1Reset","l1Fb","l1Score","l1Msg",L1,6);
+
+/* ================== TEMPLATE ================== */
+$("tmplList").innerHTML=TMPL.map(t=>`<div class="exercise" style="margin-bottom:14px;">
+  <span class="step-label" style="background:var(--sage);color:var(--moss);font-size:12px;font-weight:800;letter-spacing:.5px;padding:4px 12px;border-radius:99px;display:inline-block;margin-bottom:10px;">${t.label}</span>
+  <div class="dialogue-box">${t.en}</div>
+  <div class="build-vi" style="font-size:13px;color:var(--text-soft);font-style:italic;margin-top:6px;">${t.vi}</div>
+</div>`).join("");
+const TF_IDS=["tTopic","tBen","tBec","tProb","tRes","tOpin"];
+function tmplAssemble(){
+  const v=TF_IDS.map(id=>$(id).value.trim());
+  const[topic,ben,bec,prob,res,opin]=v;
+  if(!v.some(x=>x)){$("tmplOut").innerHTML='<span style="color:var(--text-soft);font-style:italic;">Start typing above…</span>';return;}
+  const T=topic||"___",B=ben||"___",C=bec||"___",P=prob||"___",R=res||"___",O=opin||"___";
+  $("tmplOut").innerHTML=
+    `Nowadays, <b>${T}</b> has become very popular. In my opinion, it has both advantages and disadvantages. `+
+    `On the one hand, the main benefit of <b>${T}</b> is <b>${B}</b>. This is because <b>${C}</b>. `+
+    `On the other hand, there are also some drawbacks. The biggest problem is <b>${P}</b>. As a result, <b>${R}</b>. `+
+    `In conclusion, while <b>${T}</b> brings some clear advantages, it also has some negative points. Overall, I think <b>${O}</b>.`;
+}
+TF_IDS.forEach(id=>$(id).addEventListener("input",tmplAssemble));
+$("tmplClear").addEventListener("click",()=>{TF_IDS.forEach(id=>$(id).value="");tmplAssemble();});
+
+/* ================== GRAMMAR ================== */
+$("tenseGrid").innerHTML=TENSES.map(t=>`<div class="tense-card">
+  <h4>${t.name}</h4>
+  <div class="t-explain">${t.explain}</div>
+  <div class="formula-pill">${t.formula}</div>
+  ${t.rows.map(r=>`<div class="t-row"><span class="t-tag">${r.tag}</span>${r.en}<span class="vi">${r.vi}</span></div>`).join("")}
+</div>`).join("");
+$("dlgGrammar").innerHTML=`<div class="exercise-title">💬 Have got — explained</div>`+
+  DLG_GRAMMAR.map(l=>`<div class="dlg-line ${l.sp==="Sophie"?"gemma":"sam"}"><span class="who">${l.sp}:</span>${l.en}<span class="vi" style="display:block;color:var(--text-soft);font-size:13px;font-style:italic;margin-top:4px;">${l.vi}</span></div>`).join("");
+
+/* GG: two-option MCQ with explanations */
+$("ggList").innerHTML=GG.map((g,i)=>`<div class="q-block" data-q="${i}">
+  <div class="q-text"><span class="qn">${i+1}.</span>${g.q}</div>
+  <div class="mcq-opts">${g.o.map((o,j)=>`<div class="mcq-option" data-i="${j}"><span class="ltr">${"AB"[j]}.</span><span>${o}</span></div>`).join("")}</div>
+  <div class="quiz-explain" id="ggEx${i}" style="margin-top:10px;">${g.e}</div>
+</div>`).join("");
+$("ggList").addEventListener("click",e=>{
+  const opt=e.target.closest(".mcq-option");if(!opt)return;
+  const block=opt.closest(".q-block");
+  if(block.dataset.locked==="1")return;
+  block.querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected"));
+  opt.classList.add("selected");
+});
+$("ggCheck").addEventListener("click",()=>{
+  let s=0;
+  $("ggList").querySelectorAll(".q-block").forEach((block,i)=>{
+    block.dataset.locked="1";
+    const opts=block.querySelectorAll(".mcq-option");
+    const sel=block.querySelector(".mcq-option.selected");
+    opts[GG[i].a].classList.add("correct");
+    if(sel){if(+sel.dataset.i===GG[i].a)s++;else sel.classList.add("incorrect");}
+    $("ggEx"+i).classList.add("show");
+  });
+  $("ggScore").textContent=s+"/8";$("ggMsg").textContent=tierMsg(s,8);
+  $("ggFb").className="feedback-box show "+(s>=7?"success":s>=5?"info":"error");
+});
+$("ggReset").addEventListener("click",()=>{
+  $("ggList").querySelectorAll(".q-block").forEach((b,i)=>{
+    b.dataset.locked="";
+    b.querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected","correct","incorrect"));
+    $("ggEx"+i).classList.remove("show");
+  });
+  $("ggFb").className="feedback-box";
+});
+
+/* GO: word ordering */
+function renderGO(){
+  $("goList").innerHTML=GO.map((o,i)=>{
+    const sh=shuffledCopy(o.words);
+    return `<div class="q-block">
+      <div class="q-text"><span class="qn">${i+1}.</span> ${sh.map(w=>`<span class="hint-chip" style="margin:2px;">${w}</span>`).join(" ")}</div>
+      <input class="blank-input" id="go${i}" style="width:100%;min-width:200px;" placeholder="Type the full sentence here…">
+      ${o.ans.length>1?'<div style="font-size:12px;color:var(--text-soft);font-style:italic;margin-top:6px;">💡 More than one form is correct here.</div>':""}
+    </div>`;
+  }).join("");
+}
+renderGO();
+$("goCheck").addEventListener("click",()=>{
+  let s=0;
+  GO.forEach((o,i)=>{
+    const inp=$("go"+i);const v=norm(inp.value);
+    const ok=o.ans.some(a=>norm(a)===v);
+    inp.classList.remove("correct","incorrect");
+    inp.classList.add(ok?"correct":"incorrect");
+    if(ok)s++;else inp.title="Answer: "+o.ans.join("  /  ");
+  });
+  $("goScore").textContent=s+"/6";
+  $("goMsg").textContent=s===6?"Perfect word order! 🏆":"Hover an incorrect box to see the answer, then Reset and retry.";
+  $("goFb").className="feedback-box show "+(s>=5?"success":s>=3?"info":"error");
+});
+$("goReset").addEventListener("click",()=>{renderGO();$("goFb").className="feedback-box";});
+
+/* ================== DISCUSSION GAP FILLS ================== */
+function renderBank(id,arr){$(id).innerHTML=arr.map(w=>`<span class="bank-item">${w}</span>`).join("");}
+renderBank("d1Bank",D1_BANK);renderBank("d2Bank",D2_BANK);
+function renderDialogue(listId,data){
+  let n=0;
+  $(listId).innerHTML=data.map(l=>{
+    let inner=l.pre||"";
+    if(l.gap){n++;inner+=`<input class="blank-input" id="${l.gap.id}" placeholder="(${n}) …" style="min-width:210px;">`+(l.post||"");}
+    return `<div class="dlg-line ${l.cls}"><span class="who">${l.who}:</span>${inner}</div>`;
+  }).join("");
+}
+renderDialogue("d1List",D1);renderDialogue("d2List",D2);
+function wireGap(data,btnCheck,btnReset,fb,scoreEl,msgEl,total){
+  const gaps=data.filter(l=>l.gap).map(l=>l.gap);
+  $(btnCheck).addEventListener("click",()=>{
+    let s=0;
+    gaps.forEach(g=>{
+      const inp=$(g.id);const v=norm(inp.value);
+      const ok=g.ans.some(a=>norm(a)===v);
+      inp.classList.remove("correct","incorrect");
+      inp.classList.add(ok?"correct":"incorrect");
+      if(ok)s++;else inp.title="Answer: "+g.ans[0];
+    });
+    $(scoreEl).textContent=s+"/"+total;
+    $(msgEl).textContent=s===total?"Perfect! You caught every phrase. 🏆":"Hover the red boxes for the answer, or open the answer key below.";
+    $(fb).className="feedback-box show "+(s>=total*0.8?"success":s>=total*0.5?"info":"error");
+  });
+  $(btnReset).addEventListener("click",()=>{
+    gaps.forEach(g=>{const i=$(g.id);i.value="";i.classList.remove("correct","incorrect");i.title="";});
+    $(fb).className="feedback-box";
+  });
+  return gaps;
+}
+const d1Gaps=wireGap(D1,"d1Check","d1Reset","d1Fb","d1Score","d1Msg",5);
+const d2Gaps=wireGap(D2,"d2Check","d2Reset","d2Fb","d2Score","d2Msg",5);
+function renderKey(id,arr){
+  $(id).innerHTML=arr.map(k=>`<div style="padding:10px 0;border-bottom:1px solid var(--sage);font-size:14px;">
+    <b style="color:var(--forest);">${k.n}. ${k.ans}</b><div style="color:var(--text-soft);margin-top:4px;">${k.e}</div></div>`).join("");
+}
+renderKey("d1KeyBody",D1_KEY);renderKey("d2KeyBody",D2_KEY);
+$("debateList").innerHTML=DEBATE.map((d,i)=>`<div class="exercise" style="margin-bottom:14px;">
+  <div class="q-text"><span class="qn">${i+1}.</span>${d.stm}</div>
+  <div class="tier2-hint" style="margin-top:8px;">${d.hint}</div>
+</div>`).join("");
+
+/* ================== LISTENING TASK 2 ================== */
+$("l2List").innerHTML=L2_KEY.map((_,i)=>`<div class="q-block">
+  <div class="q-text"><span class="qn">${i+1}.</span>Conversation ${i+1} — how does the person feel after the call?</div>
+  <div class="pl-row">
+    <button class="pl-btn" data-i="${i}" data-v="pleased">😊 pleased</button>
+    <button class="pl-btn" data-i="${i}" data-v="not pleased">😒 not pleased</button>
+  </div>
+</div>`).join("");
+let l2Locked=false;
+$("l2List").addEventListener("click",e=>{
+  const b=e.target.closest(".pl-btn");if(!b||l2Locked)return;
+  $("l2List").querySelectorAll(`.pl-btn[data-i="${b.dataset.i}"]`).forEach(x=>x.classList.remove("sel"));
+  b.classList.add("sel");
+});
+$("l2Check").addEventListener("click",()=>{
+  l2Locked=true;let s=0;
+  L2_KEY.forEach((key,i)=>{
+    const pair=$("l2List").querySelectorAll(`.pl-btn[data-i="${i}"]`);
+    const sel=[...pair].find(x=>x.classList.contains("sel"));
+    const keyBtn=[...pair].find(x=>x.dataset.v===key);
+    keyBtn.classList.add("correct");
+    if(sel){if(sel.dataset.v===key)s++;else sel.classList.add("incorrect");}
+  });
+  $("l2Score").textContent=s+"/6";$("l2Msg").textContent=tierMsg(s,6);
+  $("l2Fb").className="feedback-box show "+(s>=5?"success":s>=3?"info":"error");
+});
+$("l2Reset").addEventListener("click",()=>{
+  l2Locked=false;
+  $("l2List").querySelectorAll(".pl-btn").forEach(b=>b.classList.remove("sel","correct","incorrect"));
+  $("l2Fb").className="feedback-box";
+});
+$("lKeyBody").innerHTML=L_KEY_EXPLAIN.map(k=>`<div style="padding:10px 0;border-bottom:1px solid var(--sage);font-size:14px;">
+  <b style="color:var(--forest);">${k.n}. Task 1: ${k.t1} · Task 2: ${k.t2}</b>
+  <div style="color:var(--text-soft);margin-top:4px;">${k.e}</div></div>`).join("");
+$("trBody").innerHTML=TRANSCRIPT.map(t=>`
+  <div style="font-weight:800;color:var(--forest);font-size:14px;margin:14px 0 4px;">Conversation ${t.n}</div>
+  ${t.lines.map(l=>`<div class="dialogue-line"><span class="speaker">${l.sp}:</span>${l.en}<span class="vi">${l.vi}</span></div>`).join("")}`).join("");
+$("trVocab").innerHTML=TR_VOCAB.map(v=>`<div class="phrase-card" style="margin-bottom:8px;"><span class="phrase-en" style="min-width:250px;">${v.w}</span><span class="phrase-vi">${v.vi}</span></div>`).join("");
+
+/* ================== SPEAKING ================== */
+$("lv1List").innerHTML=LV1.map((x,i)=>`<div class="exercise" style="margin-bottom:14px;">
+  <div class="q-text"><span class="qn">Q${i+1}.</span>${x.q}</div>
+  <button class="btn btn-secondary btn-sm" data-reveal="lv1m${i}">💡 Model answer</button>
+  <div class="sample-response" id="lv1m${i}">${x.model}</div>
+</div>`).join("");
+$("lv2List").innerHTML=LV2.map((x,i)=>`<div class="exercise" style="margin-bottom:14px;">
+  <div class="q-text"><span class="qn">${i+1}.</span>${x.stem}</div>
+  <button class="btn btn-secondary btn-sm" data-reveal="lv2m${i}">💡 Model answer</button>
+  <div class="sample-response" id="lv2m${i}">${x.model}</div>
+</div>`).join("");
+$("lv3List").innerHTML=LV3.map((d,i)=>`<div class="scenario-card">
+  <div class="scenario-header"><span class="sc-ico">🎭</span><div><h4>${d.title}</h4><div class="sc-sub">${d.sub}</div></div></div>
+  <div class="scenario-body">
+    ${d.lines.map(l=>`<div class="dialogue-box"><span class="sp">${l.sp}:</span>${l.t}</div>`).join("")}
+    <div class="mini-label">✍️ Your line(s) as B — write, then say aloud</div>
+    <textarea class="speak-input" id="lv3in${i}" placeholder="Write B's answers here…"></textarea>
+    <div class="word-count" id="lv3wc${i}">0 words</div>
+    <button class="btn btn-secondary btn-sm" style="margin-top:10px;" data-reveal="lv3m${i}">💡 Model lines</button>
+    <div class="sample-response" id="lv3m${i}" style="white-space:pre-line;">${d.model}</div>
+  </div>
+</div>`).join("");
+LV3.forEach((_,i)=>$("lv3in"+i).addEventListener("input",e=>{
+  const n=e.target.value.trim()?e.target.value.trim().split(/\s+/).length:0;
+  $("lv3wc"+i).textContent=n+" words";
+}));
+$("lv4List").innerHTML=LV4.map((x,i)=>`<div class="scenario-card">
+  <div class="scenario-header"><span class="sc-ico">🎤</span><div><h4>${x.title}</h4><div class="sc-sub">${x.task}</div></div></div>
+  <div class="scenario-body">
+    <div class="mini-label">🧭 Template — follow it while speaking</div>
+    <div class="scenario-situation" style="white-space:pre-line;">${x.template}</div>
+    <button class="btn btn-secondary btn-sm" data-reveal="lv4m${i}">💡 Full model answer</button>
+    <div class="sample-response" id="lv4m${i}">${x.model}</div>
+  </div>
+</div>`).join("");
+document.addEventListener("click",e=>{
+  const r=e.target.closest("[data-reveal]");
+  if(r)$(r.dataset.reveal).classList.toggle("revealed");
+});
+$("spkCheck").innerHTML=`<div class="exercise-title">✅ Tick what you did</div>`+SPK_CHECK.map(c=>`<label class="check-item"><input type="checkbox">${c}</label>`).join("");
+
+/* ================== REFLEX ================== */
+function makeBag(pool){let bag=[];return{draw(){if(bag.length===0)bag=shuffledCopy(pool);return bag.pop();}};}
+const wordBag=makeBag(REFLEX_WORDS),sitBag=makeBag(REFLEX_SITUATIONS);
+$("drawWordBtn").addEventListener("click",()=>{
+  const w=wordBag.draw();
+  $("drawWordRes").innerHTML=`<span class="big">${w.w}</span><span class="small">${w.vi}</span>`;
+});
+$("drawSitBtn").addEventListener("click",()=>{
+  const s=sitBag.draw();
+  $("drawSitRes").innerHTML=`<span style="font-size:16px;font-weight:700;color:var(--forest);">${s}</span>`;
+});
+$("promptList").innerHTML=REFLEX_PROMPTS.map(p=>`<div class="exercise" style="margin-bottom:14px;">
+  <div class="exercise-title">${p.title}</div>
+  <div class="info-box" style="margin-bottom:0;">${p.task}</div>
+  <div class="tier2-hint"><b>💡 Use today's words &amp; structures:</b><ul>${p.hints.map(h=>`<li>${h}</li>`).join("")}</ul></div>
+</div>`).join("");
+
+/* ================== COUNTDOWN (3-2-1-GO) ================== */
+let cdSec=60,cdLeft=60,cdInt=null,cdGoInt=null;
+function cdShow(){const m=String(Math.floor(cdLeft/60)).padStart(2,"0"),s=String(cdLeft%60).padStart(2,"0");$("countDisp").textContent=m+":"+s;}
+document.querySelectorAll(".preset-pill").forEach(p=>p.addEventListener("click",()=>{
+  document.querySelectorAll(".preset-pill").forEach(x=>x.classList.toggle("active",x===p));
+  cdSec=+p.dataset.sec;cdReset();
+}));
+function cdReset(){
+  if(cdInt){clearInterval(cdInt);cdInt=null;}
+  if(cdGoInt){clearInterval(cdGoInt);cdGoInt=null;}
+  cdLeft=cdSec;$("countDisp").classList.remove("timeup");$("countGo").textContent="";cdShow();
+}
+$("countStart").addEventListener("click",()=>{
+  if(cdInt||cdGoInt)return;
+  cdReset();
+  let n=3;$("countGo").textContent=n+"…";
+  cdGoInt=trackInterval(()=>{
+    n--;
+    if(n>0){$("countGo").textContent=n+"…";}
+    else{
+      clearInterval(cdGoInt);cdGoInt=null;
+      $("countGo").textContent="GO! 🎤";
+      cdInt=trackInterval(()=>{
+        cdLeft--;cdShow();
+        if(cdLeft<=0){clearInterval(cdInt);cdInt=null;$("countDisp").classList.add("timeup");$("countDisp").textContent="00:00";$("countGo").textContent="⏰ Time's up!";}
+      },1000);
+    }
+  },1000);
+});
+$("countReset").addEventListener("click",cdReset);
+cdShow();
+
+/* ================== QUIZ GAME ================== */
+let qzOrder=[],qzIdx=0,qzScore=0,qzTimerInt=null,qzTimeLeft=10,qzSelected=null,qzAnswered=false;
+function qzScreen(id){["qzStart","qzPlay","qzResult"].forEach(s=>$(s).classList.toggle("active",s===id));}
+function qzStopTimer(){if(qzTimerInt){clearInterval(qzTimerInt);qzTimerInt=null;}}
+function qzRenderQ(){
+  const q=QUIZ[qzOrder[qzIdx]];
+  qzSelected=null;qzAnswered=false;
+  $("qzCounter").textContent=`QUESTION ${qzIdx+1} / 30`;
+  $("qzType").textContent=q.t;
+  $("qzQuestion").textContent=q.q;
+  $("qzOpts").innerHTML=q.o.map((o,j)=>`<div class="mcq-option" data-i="${j}"><span class="ltr">${"ABCD"[j]}.</span><span>${o}</span></div>`).join("");
+  $("qzExplain").className="quiz-explain";$("qzExplain").textContent="";
+  $("qzSubmit").style.display="";$("qzNext").style.display="none";
+  qzTimeLeft=10;
+  $("qzTimer").textContent="⏳ 10s";$("qzTimer").classList.remove("danger");
+  $("qzBar").style.width="100%";$("qzBar").classList.remove("danger");
+  qzStopTimer();
+  qzTimerInt=trackInterval(()=>{
+    qzTimeLeft--;
+    $("qzTimer").textContent="⏳ "+qzTimeLeft+"s";
+    $("qzBar").style.width=(qzTimeLeft/10*100)+"%";
+    if(qzTimeLeft<=3){$("qzTimer").classList.add("danger");$("qzBar").classList.add("danger");}
+    if(qzTimeLeft<=0){qzStopTimer();qzGrade(true);}
+  },1000);
+}
+$("qzOpts").addEventListener("click",e=>{
+  if(qzAnswered)return;
+  const opt=e.target.closest(".mcq-option");if(!opt)return;
+  $("qzOpts").querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected"));
+  opt.classList.add("selected");qzSelected=+opt.dataset.i;
+});
+function qzGrade(timedOut){
+  if(qzAnswered)return;
+  qzAnswered=true;qzStopTimer();
+  const q=QUIZ[qzOrder[qzIdx]];
+  const opts=$("qzOpts").querySelectorAll(".mcq-option");
+  opts[q.a].classList.add("correct");
+  let msg;
+  if(timedOut){msg="⏰ Time's up! The correct answer is "+"ABCD"[q.a]+". "+q.e;}
+  else if(qzSelected===q.a){qzScore++;msg="✅ Correct! "+q.e;}
+  else{if(qzSelected!==null)opts[qzSelected].classList.add("incorrect");msg="❌ Not quite. "+q.e;}
+  $("qzExplain").textContent=msg;$("qzExplain").className="quiz-explain show";
+  $("qzSubmit").style.display="none";$("qzNext").style.display="";
+}
+$("qzSubmit").addEventListener("click",()=>{if(qzSelected===null)return;qzGrade(false);});
+$("qzNext").addEventListener("click",()=>{
+  qzIdx++;
+  if(qzIdx>=30){qzStopTimer();qzShowResult();}
+  else qzRenderQ();
+});
+function qzShowResult(){
+  qzScreen("qzResult");
+  $("qzFinal").textContent=qzScore+" / 30";
+  const r=qzScore/30;
+  $("qzVerdict").textContent=r>=0.93?"🏆 Outstanding — you truly own this lesson!":r>=0.8?"🌟 Excellent — a quick review of your misses and you're done.":r>=0.6?"👍 Good work — revisit Part 2 vocabulary, then play again.":"💪 Keep going — reread the 2D Context Passage and try again.";
+}
+function qzStart(){
+  qzOrder=shuffledCopy(QUIZ.map((_,i)=>i));
+  qzIdx=0;qzScore=0;
+  qzScreen("qzPlay");qzRenderQ();
+}
+$("qzBegin").addEventListener("click",qzStart);
+$("qzAgain").addEventListener("click",qzStart);
+
+/* ================== SELF CHECK ================== */
+$("selfCheck").innerHTML=`<div class="exercise-title">✅ Self-Assessment</div>`+SELF_CHECK.map(c=>`<label class="check-item"><input type="checkbox">${c}</label>`).join("");
+
+/* ================== GLOBAL RESET ================== */
+$("resetFab").addEventListener("click",()=>{
+  if(!confirm("Reset ALL exercises, timers and quiz progress?"))return;
+  clearAllTimers();
+  qzTimerInt=null;cdInt=null;cdGoInt=null;
+  MATCH_A.forEach(m=>{$("mt"+m.n).value="";$("matchA").querySelector(`.match-item[data-n="${m.n}"]`).classList.remove("correct","incorrect");});
+  $("mtFb").className="feedback-box";
+  $("phoneGrid").querySelectorAll(".phone-card").forEach(c=>c.classList.remove("flipped"));
+  rvEng.reset();$("rvFb").className="feedback-box";
+  rcEng.reset();$("rcFb").className="feedback-box";
+  l1Eng.reset();$("l1Fb").className="feedback-box";
+  TF_IDS.forEach(id=>$(id).value="");tmplAssemble();
+  $("ggList").querySelectorAll(".q-block").forEach((b,i)=>{
+    b.dataset.locked="";
+    b.querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected","correct","incorrect"));
+    $("ggEx"+i).classList.remove("show");
+  });
+  $("ggFb").className="feedback-box";
+  renderGO();$("goFb").className="feedback-box";
+  [d1Gaps,d2Gaps].forEach(gs=>gs.forEach(g=>{const i=$(g.id);i.value="";i.classList.remove("correct","incorrect");i.title="";}));
+  $("d1Fb").className="feedback-box";$("d2Fb").className="feedback-box";
+  l2Locked=false;
+  $("l2List").querySelectorAll(".pl-btn").forEach(b=>b.classList.remove("sel","correct","incorrect"));
+  $("l2Fb").className="feedback-box";
+  LV3.forEach((_,i)=>{$("lv3in"+i).value="";$("lv3wc"+i).textContent="0 words";});
+  cdReset();
+  document.querySelectorAll(".sample-response").forEach(s=>s.classList.remove("revealed"));
+  document.querySelectorAll(".transcript-block").forEach(t=>t.classList.remove("revealed"));
+  document.querySelectorAll(".check-item input").forEach(c=>c.checked=false);
+  document.querySelectorAll(".vocab-card").forEach(c=>c.classList.remove("flipped"));
+  $("drawWordRes").innerHTML='<span class="small">Press the button to draw…</span>';
+  $("drawSitRes").innerHTML='<span class="small">Press the button to draw…</span>';
+  qzScreen("qzStart");
+  gotoPage("p-overview");
+});
+
+/* ================== SELF-VERIFICATION ================== */
+(function verify(){
+  const dupes=new Set();let dup=0;
+  QUIZ.forEach(q=>{if(dupes.has(q.q))dup++;dupes.add(q.q);});
+  const bad=QUIZ.filter(q=>q.o.length!==4||q.a<0||q.a>3).length;
+  console.assert(QUIZ.length===30,"QUIZ must have 30, has "+QUIZ.length);
+  console.assert(dup===0,"QUIZ duplicates: "+dup);
+  console.assert(bad===0,"QUIZ malformed: "+bad);
+  console.assert(D1_BANK.length===5&&d1Gaps.length===5,"Tab1: bank/gaps mismatch");
+  console.assert(D2_BANK.length===5&&d2Gaps.length===5,"Tab2: bank/gaps mismatch");
+  console.assert(REFLEX_WORDS.length===30,"REFLEX_WORDS must be 30, has "+REFLEX_WORDS.length);
+  console.assert(REFLEX_SITUATIONS.length===10,"REFLEX_SITUATIONS must be 10");
+  console.log("[verify] quiz=30 ✓ d1="+d1Gaps.length+"/"+D1_BANK.length+" ✓ d2="+d2Gaps.length+"/"+D2_BANK.length+" ✓ reflex="+REFLEX_WORDS.length+"/"+REFLEX_SITUATIONS.length+" ✓");
+})();
+</script>
+</body>
+</html>
