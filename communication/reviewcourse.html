@@ -1,0 +1,2130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speaking Core Review — Sessions 1–32</title>
+<style>
+:root{
+  --forest:#2D5016; --moss:#4A7C2F; --mint:#A8C97F; --sage:#D4E8B8;
+  --sand:#F5F0E8; --white:#FFFFFF;
+  --blue:#2563EB; --blue-light:#EFF6FF;
+  --amber:#D97706; --amber-light:#FFFBEB;
+  --red:#DC2626; --red-light:#FEF2F2;
+  --green-success:#16A34A; --green-light:#F0FDF4;
+  --text-dark:#1A2E0A; --text-mid:#3D5C20; --text-soft:#6B8C4A;
+  --border:#C8DFA0;
+  --shadow-sm:0 1px 3px rgba(45,80,22,0.08);
+  --shadow-md:0 4px 16px rgba(45,80,22,0.12);
+  --shadow-lg:0 8px 32px rgba(45,80,22,0.16);
+  --radius:12px; --radius-sm:8px; --radius-lg:20px;
+  font-size:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--sand)}
+.app-shell{display:flex;min-height:100vh}
+
+/* SIDEBAR */
+.sidebar{width:220px;background:var(--forest);position:fixed;top:0;left:0;bottom:0;overflow-y:auto;z-index:100}
+.brand{padding:22px 18px 18px;border-bottom:1px solid rgba(168,201,127,0.2)}
+.level-badge{display:inline-block;background:var(--mint);color:var(--forest);font-size:10px;font-weight:800;padding:3px 10px;border-radius:99px;letter-spacing:.5px}
+.brand h2{color:#fff;font-size:16px;font-weight:800;margin-top:8px;line-height:1.3}
+.brand p{color:var(--mint);opacity:.8;font-size:11px;margin-top:3px}
+.nav-section{padding:14px 0 4px}
+.nav-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(168,201,127,0.6);padding:0 18px 6px}
+.nav-item{display:flex;align-items:center;gap:9px;padding:9px 18px;color:rgba(255,255,255,0.7);font-size:13px;font-weight:500;cursor:pointer;border-left:3px solid transparent;transition:all .2s}
+.nav-item:hover{color:#fff;background:rgba(168,201,127,0.08)}
+.nav-item.active{color:#fff;background:rgba(168,201,127,0.15);border-left-color:var(--mint)}
+.nav-item .ic{width:20px;font-size:15px;text-align:center;flex-shrink:0}
+.progress-wrap{padding:16px 18px 24px}
+.progress-track{height:6px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden}
+.progress-fill{height:100%;background:var(--mint);width:0;transition:width .5s ease}
+.progress-text{font-size:10px;color:rgba(168,201,127,0.7);margin-top:7px}
+
+/* MAIN */
+.main-content{flex:1;margin-left:220px;min-width:0}
+.page{display:none}
+.page.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.hero{background:linear-gradient(135deg,var(--forest),var(--moss),#5A9E3A);padding:44px 48px;color:#fff}
+.hero-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:4px 12px;border-radius:99px}
+.badge-white{background:rgba(255,255,255,0.15);color:#fff}
+.badge-mint{background:rgba(168,201,127,0.2);color:var(--mint);border:1px solid rgba(168,201,127,0.3)}
+.hero h1{font-size:34px;font-weight:800;line-height:1.2}
+.hero .sub{max-width:560px;margin-top:12px;font-size:14px;opacity:.92}
+.hero-h1-sm{font-size:26px}
+
+.section{padding:36px 48px;border-bottom:1px solid var(--border)}
+.section-header{margin-bottom:22px}
+.part-label{display:inline-block;background:var(--forest);color:var(--mint);font-size:10px;font-weight:800;padding:3px 10px;border-radius:99px;letter-spacing:.5px}
+.section-title{font-size:22px;font-weight:800;color:var(--forest);margin-top:9px}
+.section-subtitle{font-size:13px;color:var(--text-soft);margin-top:5px}
+
+/* CARDS */
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:14px}
+.card h4{color:var(--forest);font-size:16px;font-weight:800;margin-bottom:10px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+
+.vocab-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;cursor:pointer;transition:all .2s;position:relative}
+.vocab-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--mint)}
+.vocab-card .tap{position:absolute;top:10px;right:12px;font-size:10px;color:var(--text-soft)}
+.vocab-card .word{color:var(--forest);font-size:17px;font-weight:700}
+.vocab-card .pos{display:inline-block;background:var(--sage);color:var(--forest);font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
+.vocab-card .vi{color:var(--text-mid);font-weight:600;font-size:14px;margin-top:6px}
+.vocab-card .example{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--sage);color:var(--text-soft);font-size:13px;font-style:italic}
+.vocab-card.flipped .example{display:block}
+
+.phrase-card{display:flex;flex-wrap:wrap;gap:10px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:13px 16px;margin-bottom:9px}
+.phrase-en{color:var(--forest);font-weight:700;font-size:15px;min-width:270px;flex:1}
+.phrase-vi{color:var(--text-soft);font-size:14px;flex:1}
+
+.formula{background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius-sm);padding:14px 18px;margin:12px 0}
+.formula .f-title{color:var(--blue);font-weight:800;font-size:14px;margin-bottom:6px}
+.formula code{display:block;background:var(--white);border:1px solid #BFDBFE;border-radius:var(--radius-sm);padding:9px 13px;font-size:14px;color:var(--text-dark);font-family:'Consolas',monospace;margin:6px 0}
+
+.info-box{background:var(--sage);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:14px 18px;font-size:14px;color:var(--text-mid);margin:12px 0}
+.warn-box{background:var(--amber-light);border:1px solid #FDE68A;color:var(--amber);padding:12px 16px;font-size:13px;border-radius:var(--radius-sm);margin:12px 0}
+.err-box{background:var(--red-light);border:1px solid #FECACA;padding:12px 16px;border-radius:var(--radius-sm);margin:10px 0;font-size:14px}
+.err-box .bad{color:var(--red);font-weight:700}
+.err-box .good{color:var(--green-success);font-weight:700;margin-top:5px;display:block}
+
+.sample{background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius-sm);padding:13px 16px;margin-top:10px;font-size:14px;color:var(--text-dark);display:none}
+.sample.revealed{display:block;animation:fadeIn .3s ease}
+.sample b{color:var(--blue)}
+
+table.tbl{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin:12px 0}
+table.tbl th{background:var(--forest);color:#fff;font-size:12px;font-weight:700;padding:10px 14px;text-align:left}
+table.tbl td{padding:10px 14px;border-bottom:1px solid var(--sage);font-size:14px;vertical-align:top}
+table.tbl tr:last-child td{border-bottom:none}
+table.tbl td:first-child{font-weight:700;color:var(--forest)}
+
+.tab-bar{display:flex;gap:4px;border-bottom:2px solid var(--border);overflow-x:auto;margin-bottom:18px}
+.tab-btn{padding:10px 18px;font-size:13px;font-weight:600;color:var(--text-soft);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s}
+.tab-btn.active{color:var(--forest);border-bottom-color:var(--forest)}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:fadeIn .3s ease}
+
+.btn{padding:10px 20px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;border:none;cursor:pointer;transition:all .2s;font-family:inherit}
+.btn-primary{background:var(--forest);color:#fff}
+.btn-primary:hover{background:var(--moss);transform:translateY(-1px)}
+.btn-secondary{background:var(--sage);color:var(--forest)}
+.btn-secondary:hover{background:var(--mint)}
+.btn-outline{background:transparent;color:var(--forest);border:1.5px solid var(--border)}
+.btn-outline:hover{border-color:var(--moss);background:var(--sage)}
+.btn-sm{padding:6px 14px;font-size:13px}
+.btn-group{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+
+.chip{display:inline-block;background:var(--sage);color:var(--moss);font-size:13px;font-weight:600;padding:4px 12px;border-radius:99px;margin:3px 4px 3px 0}
+
+.blank-input{border:none;border-bottom:2px solid var(--forest);background:transparent;min-width:130px;font-size:15px;font-family:inherit;color:var(--text-dark);padding:2px 4px;outline:none}
+.blank-input:focus{border-bottom-color:var(--blue)}
+.blank-input.correct{border-bottom-color:var(--green-success);background:var(--green-light)}
+.blank-input.incorrect{border-bottom-color:var(--red);background:var(--red-light)}
+.q-item{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:10px;font-size:15px}
+.feedback-box{padding:14px 18px;border-radius:var(--radius-sm);display:none;align-items:center;gap:12px;margin-top:14px;font-size:14px;font-weight:600}
+.feedback-box.show{display:flex}
+.feedback-box.success{background:var(--green-light);color:var(--green-success);border:1px solid #BBF7D0}
+.feedback-box.error{background:var(--red-light);color:var(--red);border:1px solid #FECACA}
+
+.check-item{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border-radius:var(--radius-sm);cursor:pointer;font-size:14px;transition:background .2s}
+.check-item:hover{background:var(--sage)}
+.check-item input{accent-color:var(--forest);margin-top:3px;flex-shrink:0}
+
+.reset-fab{position:fixed;bottom:24px;right:24px;background:var(--red);color:#fff;border:none;border-radius:99px;padding:12px 20px;font-size:13px;font-weight:700;box-shadow:var(--shadow-lg);cursor:pointer;z-index:200;font-family:inherit;transition:transform .2s}
+.reset-fab:hover{transform:scale(1.05)}
+
+@media(max-width:768px){
+  .sidebar{position:static;width:100%;height:auto}
+  .main-content{margin-left:0}
+  .hero{padding:24px}
+  .section{padding:24px}
+  .hero h1{font-size:26px}
+  .vocab-grid,.grid2{grid-template-columns:1fr}
+  .phrase-en{min-width:100%}
+}
+</style>
+</head>
+<body>
+<div class="app-shell">
+
+<aside class="sidebar">
+  <div class="brand">
+    <span class="level-badge">A2 → B1</span>
+    <h2>Speaking Core Review</h2>
+    <p>Sessions 1–32 · Ôn tập cốt lõi</p>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">Tổng quan</div>
+    <div class="nav-item active" data-page="p0"><span class="ic">🏠</span>Overview</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">Khung trả lời</div>
+    <div class="nav-item" data-page="p1"><span class="ic">🧩</span>Templates cốt lõi</div>
+    <div class="nav-item" data-page="p2"><span class="ic">🔗</span>Câu & Liên từ</div>
+    <div class="nav-item" data-page="p3"><span class="ic">🔄</span>Retelling</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">Chủ đề</div>
+    <div class="nav-item" data-page="p4"><span class="ic">👤</span>People &amp; Family</div>
+    <div class="nav-item" data-page="p5"><span class="ic">🌍</span>Culture &amp; Job</div>
+    <div class="nav-item" data-page="p6"><span class="ic">🚌</span>Transport &amp; Traffic</div>
+    <div class="nav-item" data-page="p7"><span class="ic">🏠</span>Home · Sport · Shop</div>
+    <div class="nav-item" data-page="p8"><span class="ic">🔢</span>Numbers &amp; Time</div>
+    <div class="nav-item" data-page="p12"><span class="ic">🩺</span>Health</div>
+    <div class="nav-item" data-page="p13"><span class="ic">🌦</span>Weather</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">Phát âm &amp; Lỗi</div>
+    <div class="nav-item" data-page="p9"><span class="ic">🔊</span>Chunking &amp; Stress</div>
+    <div class="nav-item" data-page="p10"><span class="ic">⚠️</span>Lỗi thường gặp</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">Củng cố</div>
+    <div class="nav-item" data-page="p11"><span class="ic">✅</span>Self-check</div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-track"><div class="progress-fill" id="pbar"></div></div>
+    <div class="progress-text" id="ptext">0 / 12 sections</div>
+  </div>
+</aside>
+
+<main class="main-content">
+
+<!-- ============ P0 OVERVIEW ============ -->
+<div class="page active" id="p0">
+  <div class="hero">
+    <div class="hero-meta">
+      <span class="badge badge-white">Review</span>
+      <span class="badge badge-white">A2 → B1</span>
+      <span class="badge badge-white">32 sessions</span>
+    </div>
+    <h1>Speaking Core Review</h1>
+    <p class="sub">Tất cả kiến thức speaking cốt lõi từ Session 1 đến Session 32 — gom lại thành các khung trả lời, cụm từ và cấu trúc mà em thực sự dùng khi nói. Không học thuộc lòng: học <b>khung</b>, rồi thay <b>nội dung</b>.</p>
+    <div class="hero-meta" style="margin-top:18px">
+      <span class="badge badge-mint">🧩 6 khung trả lời</span>
+      <span class="badge badge-mint">📚 8 chủ đề</span>
+      <span class="badge badge-mint">🔊 Phát âm &amp; ngắt nghỉ</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">START HERE</span>
+      <div class="section-title">Cách dùng bài review này</div>
+      <div class="section-subtitle">Đọc 3 phút trước khi bắt đầu</div>
+    </div>
+
+    <div class="info-box">
+      <b>Nguyên tắc số 1:</b> Trong speaking A2–B1, người ta không đánh giá em biết bao nhiêu từ khó. Người ta nghe xem em có <b>nói trọn ý</b> và <b>nói liền mạch</b> hay không. Vì vậy toàn bộ khoá học xoay quanh <b>khung câu (template)</b> — có khung thì não em không phải nghĩ "nói gì tiếp theo", chỉ cần nghĩ "điền gì vào chỗ này".
+    </div>
+
+    <div class="card">
+      <h4>💡 Ví von cho dễ hiểu</h4>
+      <p style="font-size:14px;color:var(--text-mid)">Khung câu giống như <b>khuôn bánh</b>. Cùng một cái khuôn, em đổ bột socola ra bánh socola, đổ bột trà xanh ra bánh trà xanh. Người mới học hay cố "nặn bánh bằng tay" — mỗi lần nói lại nặn lại từ đầu, vừa chậm vừa méo. Có khuôn rồi thì chỉ việc đổi nhân.</p>
+      <p style="font-size:14px;color:var(--text-mid);margin-top:9px">Ví dụ khung <code style="background:var(--sage);padding:2px 6px;border-radius:4px">for a couple of reasons</code>: hỏi về music, sport, cooking, travelling — cùng một khuôn, chỉ đổi nhân.</p>
+    </div>
+
+    <table class="tbl">
+      <tr><th style="width:26%">Trang</th><th>Nội dung</th></tr>
+      <tr><td>Templates cốt lõi</td><td>6 khung trả lời dùng được cho mọi câu hỏi</td></tr>
+      <tr><td>Câu &amp; Liên từ</td><td>S–V–O, cụm danh từ, because/because of, although/despite</td></tr>
+      <tr><td>Retelling</td><td>Kể lại hội thoại đã nghe — kỹ năng chính của Session 14–16</td></tr>
+      <tr><td>People &amp; Family</td><td>Ngoại hình, tính cách, tuổi, quan hệ gia đình</td></tr>
+      <tr><td>Culture &amp; Job</td><td>Quốc tịch, văn hoá, nghề nghiệp, chức danh</td></tr>
+      <tr><td>Transport &amp; Traffic</td><td>Phương tiện, trải nghiệm, vấn đề–nguyên nhân–giải pháp</td></tr>
+      <tr><td>Home · Sport · Shop</td><td>Nhà ở, thể thao, quần áo, khiếu nại mua hàng</td></tr>
+      <tr><td>Numbers &amp; Time</td><td>Số, ngày tháng, giờ, số điện thoại</td></tr>
+      <tr><td>Health</td><td>Bộ phận cơ thể, triệu chứng, bệnh, điều trị, khám bệnh</td></tr>
+      <tr><td>Weather</td><td>Mùa, tính từ thời tiết, khí hậu, mưa bão, word partners</td></tr>
+      <tr><td>Chunking &amp; Stress</td><td>Ngắt nghỉ, nhấn trọng âm, âm schwa</td></tr>
+      <tr><td>Lỗi thường gặp</td><td>Những lỗi em đã mắc trong lớp — sửa dứt điểm</td></tr>
+    </table>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p1">Bắt đầu: Templates cốt lõi →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ P1 TEMPLATES ============ -->
+<div class="page" id="p1">
+  <div class="hero">
+    <div class="hero-meta"><span class="badge badge-white">Part 1</span><span class="badge badge-white">Sessions 2, 12, 13, 21, 22</span></div>
+    <h1 class="hero-h1-sm">🧩 6 khung trả lời cốt lõi</h1>
+    <p class="sub">Đây là phần quan trọng nhất của cả khoá. Học thuộc 6 khung này, em trả lời được ~80% câu hỏi speaking ở trình độ A2–B1.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">TEMPLATE 1</span>
+      <div class="section-title">Trả lời "Do you like…?" — 2 lý do</div>
+      <div class="section-subtitle">Dùng khi được hỏi có/không, thích/không thích, có quan trọng không</div>
+    </div>
+
+    <div class="formula">
+      <div class="f-title">CÔNG THỨC</div>
+      <code>S + V + for a couple of reasons.</code>
+      <code>The first reason is that + S V O.</code>
+      <code>The second reason is that + S V O.</code>
+    </div>
+
+    <div class="info-box">
+      <b>Vì sao "a couple of" chứ không phải "two"?</b> "A couple of" nghe tự nhiên và mềm hơn — người bản xứ dùng khi không muốn cam kết chính xác con số. Có thể thay bằng <b>several reasons</b> (một vài).
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h4>Do you like music?</h4>
+        <p style="font-size:14px">I like music <b>for a couple of reasons</b>. <b>The first reason is that</b> it helps me decrease my stress after a hard-studying day. <b>The second reason is that</b> it helps me unwind.</p>
+      </div>
+      <div class="card">
+        <h4>Do you like sports?</h4>
+        <p style="font-size:14px">I like sports <b>for a couple of reasons</b>. <b>The first reason is that</b> I can improve my mental health. <b>The second is that</b> it helps me have a good shape.</p>
+      </div>
+      <div class="card">
+        <h4>Do you think cooking is important?</h4>
+        <p style="font-size:14px">I think cooking is an important skill <b>for a couple of reasons</b>. <b>The first reason is that</b> it is a fundamental life skill. <b>The second reason is that</b> it helps me save money.</p>
+      </div>
+      <div class="card">
+        <h4>Do you like traveling?</h4>
+        <p style="font-size:14px">I like traveling <b>for a couple of reasons</b>. <b>The first reason is that</b> I can explore history and local food there. <b>The second reason is that</b> it helps me explore different cultures.</p>
+      </div>
+    </div>
+
+    <div class="warn-box">⚠️ Lưu ý: sau <b>"is that"</b> phải là một <b>mệnh đề đầy đủ</b> (S + V + O). Không viết "The first reason is that helping me relax" — sai. Phải là "…is that <b>it helps</b> me relax".</div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">TEMPLATE 2</span>
+      <div class="section-title">R–E–I: Reason → Example → Impact</div>
+      <div class="section-subtitle">Dùng khi được hỏi về bản thân, ý kiến, hoặc phải bảo vệ quan điểm</div>
+    </div>
+
+    <div class="formula">
+      <div class="f-title">CÔNG THỨC</div>
+      <code>[Ý kiến] + because + S V O.        ← REASON</code>
+      <code>For example, / For instance, …      ← EXAMPLE</code>
+      <code>This helps me… / As a result, …     ← IMPACT</code>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h4>How are you similar to your parents?</h4>
+        <p style="font-size:14px">I am <b>similar to</b> my mother <b>because</b> we are both kind and helpful. <b>For example</b>, I am willing to help my friends when they need support. <b>This helps me</b> have many friends.</p>
+      </div>
+      <div class="card">
+        <h4>Are you a reliable friend?</h4>
+        <p style="font-size:14px">Yes, I think I'm a reliable friend <b>because</b> I keep promises to my friends. <b>For example</b>, I always help my friends when they need help.</p>
+      </div>
+      <div class="card">
+        <h4>Should parents be friends with their children?</h4>
+        <p style="font-size:14px">I think they should, <b>because</b> children can share daily issues with their parents more easily. <b>For example</b>, I can ask my mom for advice when I have problems communicating with my friends.</p>
+      </div>
+      <div class="card">
+        <h4>Are you a considerate person?</h4>
+        <p style="font-size:14px">I try to be a considerate person <b>because</b> I always think about others. <b>For example</b>, I keep quiet when people study.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">TEMPLATE 3</span>
+      <div class="section-title">Kể một tính cách em tự rèn: TRAIT → TIME → ACTION → RESULT</div>
+      <div class="section-subtitle">Session 2 — "What traits did you learn by yourself?"</div>
+    </div>
+
+    <div class="formula">
+      <div class="f-title">CÔNG THỨC</div>
+      <code>I learned to be more + [adj] by myself.       ← TRAIT</code>
+      <code>I learned this when + [past clause].          ← TIME</code>
+      <code>I had to + [actions].                         ← ACTION</code>
+      <code>As a result, + [outcome].                     ← RESULT</code>
+    </div>
+
+    <div class="card">
+      <h4>Mẫu chuẩn — Independence</h4>
+      <p style="font-size:14px">I learned to be more <b>independent</b>. / I learned this <b>when</b> I started living away from home for my university studies. / I had to learn how to manage my budget, do my laundry, and solve my problems without my parents' help. / <b>As a result</b>, I am confident in taking care of my life and making my own decisions.</p>
+      <p style="font-size:13px;color:var(--text-soft);margin-top:9px">Dấu <b>/</b> = chỗ ngắt nghỉ khi nói. Xem trang Chunking để hiểu tại sao ngắt ở đó.</p>
+    </div>
+
+    <div class="card">
+      <h4>Mẫu — Patience</h4>
+      <p style="font-size:14px">I learned to be more <b>patient</b> by myself. I learned this when I <b>took up</b> cooking as a hobby. Instead of rushing, I spent hours carefully preparing the ingredients and waiting for the food to cook perfectly. As a result, I feel much calmer when facing difficult tasks.</p>
+    </div>
+
+    <div class="info-box"><b>Take up + V-ing</b> = bắt đầu một sở thích/hoạt động mới. <i>I took up learning swimming last year.</i> Ngược lại: <b>give up + V-ing</b> = bỏ. <i>She gave up cycling to work because of traffic jams.</i></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">TEMPLATE 4</span>
+      <div class="section-title">Vấn đề → Nguyên nhân → Giải pháp</div>
+      <div class="section-subtitle">Session 21–22 — dùng cực nhiều cho chủ đề traffic, nhưng áp dụng được mọi chủ đề</div>
+    </div>
+
+    <div class="formula">
+      <div class="f-title">CẤP ĐỘ 1 — cơ bản</div>
+      <code>Traffic + be + [trạng thái] + because of + [nguyên nhân].</code>
+      <div class="f-title" style="margin-top:12px">CẤP ĐỘ 2 — đầy đủ</div>
+      <code>There is + [vấn đề: cụm danh từ] + because of + [nguyên nhân],</code>
+      <code>so you/drivers/the government should + [giải pháp].</code>
+    </div>
+
+    <div class="card">
+      <h4>3 cách mở đầu cho sinh động hơn</h4>
+      <table class="tbl">
+        <tr><td>It can be seen that…</td><td>Có thể thấy rằng…</td></tr>
+        <tr><td>There is no doubt that…</td><td>Không còn nghi ngờ gì rằng… / Chắc chắn rằng…</td></tr>
+        <tr><td>It is quite clear that…</td><td>Khá rõ ràng rằng…</td></tr>
+      </table>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h4>Kẹt xe</h4>
+        <p style="font-size:14px">There is <b>traffic congestion</b> on the bridge <b>because of rush hour</b>, <b>so</b> you should use public transport.</p>
+      </div>
+      <div class="card">
+        <h4>Đèn giao thông hỏng</h4>
+        <p style="font-size:14px"><b>It can be seen that</b> traffic is chaotic <b>because</b> traffic lights are broken, <b>so</b> you should control the traffic.</p>
+      </div>
+      <div class="card">
+        <h4>Đường ngập</h4>
+        <p style="font-size:14px"><b>It can be seen that</b> traffic is difficult <b>because of</b> flooded roads, <b>so</b> drivers should avoid this road.</p>
+      </div>
+      <div class="card">
+        <h4>Đỗ xe trái phép</h4>
+        <p style="font-size:14px">There is <b>blocked traffic</b> <b>because of</b> illegal car parking on the road, <b>so</b> drivers should park <b>properly</b>.</p>
+      </div>
+    </div>
+
+    <div class="warn-box">⚠️ <b>because</b> + mệnh đề (S V O) · <b>because of</b> + danh từ / V-ing. Đây là lỗi #1 của cả lớp. "because of the road is narrow" ❌ → "because <b>the road is</b> narrow" ✅ hoặc "because of <b>the narrow road</b>" ✅</div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">TEMPLATE 5</span>
+      <div class="section-title">Đề xuất giải pháp bằng modal verb</div>
+      <div class="section-subtitle">Session 21 — làm cho phần thảo luận ý kiến sinh động</div>
+    </div>
+
+    <table class="tbl">
+      <tr><th style="width:20%">Modal</th><th style="width:32%">Sắc thái</th><th>Ví dụ</th></tr>
+      <tr><td>should</td><td>đưa ra lời khuyên</td><td>The government <b>should</b> offer lower bus fares.</td></tr>
+      <tr><td>need to</td><td>cần ai đó hành động (mạnh hơn)</td><td>The government <b>needs to</b> purchase new buses.</td></tr>
+      <tr><td>want to</td><td>muốn ai đó làm cho mình</td><td>I <b>want</b> the city <b>to</b> build more bike lanes.</td></tr>
+      <tr><td>can</td><td>khả năng / lựa chọn</td><td>The government <b>can</b> raise taxi fares.</td></tr>
+    </table>
+
+    <div class="card">
+      <h4>Đoạn mẫu hoàn chỉnh — Bad public transport</h4>
+      <p style="font-size:14px">The problem is bad public transport. To solve this problem there are many solutions. <b>First</b>, the government <b>should</b> buy new buses and add air conditioning to old ones to make customers more comfortable. <b>Second</b>, the government <b>needs to</b> decrease bus fares on the weekend to encourage everyone to use them. <b>Finally</b>, the government <b>can</b> raise taxi fares so that buses become a cheaper and more attractive option.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">TEMPLATE 6</span>
+      <div class="section-title">Thuyết trình một chủ đề (sport / home / special day)</div>
+      <div class="section-subtitle">Session 16, 23–26 — khung mở bài → thân bài → kết</div>
+    </div>
+
+    <div class="formula">
+      <div class="f-title">KHUNG THUYẾT TRÌNH THỂ THAO</div>
+      <code>Today I would like to talk about + [sport].</code>
+      <code>First, this sport is very popular in many countries such as…</code>
+      <code>Let's move on to the basic rules of this sport.</code>
+      <code>For [sport], this sport is mainly an individual / a team sport.</code>
+      <code>The playing time depends on… / lasts about…</code>
+      <code>In order to win, [điều kiện thắng].</code>
+      <code>Next, to play this sport we need some basic equipment such as…</code>
+      <code>This sport is usually played in / on / at…</code>
+    </div>
+
+    <div class="formula">
+      <div class="f-title">KHUNG NÓI VỀ NHÀ Ở</div>
+      <code>Today, I'd like to talk about the place where I live.</code>
+      <code>I currently live in + [khu vực] in + [loại nhà].</code>
+      <code>My place consists of + [liệt kê phòng].</code>
+      <code>One of the main reasons why I like my home is + [lý do].</code>
+      <code>The [room] is the room I like the most because of + [lý do].</code>
+      <code>Therefore, I'm quite happy with my current living environment.</code>
+    </div>
+
+    <div class="formula">
+      <div class="f-title">KHUNG NÓI VỀ NGÀY LỄ</div>
+      <code>[Day] is a special day celebrated on + [ngày].</code>
+      <code>It is a time when people + [hoạt động].</code>
+      <code>On this day, people often + [hoạt động].</code>
+      <code>It is important because + [lý do].</code>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p2">Next: Câu &amp; Liên từ →</button>
+      <button class="btn btn-outline" data-goto="p0">← Overview</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ P2 SENTENCE ============ -->
+<div class="page" id="p2">
+  <div class="hero">
+    <div class="hero-meta"><span class="badge badge-white">Part 2</span><span class="badge badge-white">Sessions 5, 6, 11, 15</span></div>
+    <h1 class="hero-h1-sm">🔗 Cấu trúc câu &amp; Liên từ</h1>
+    <p class="sub">Biết template rồi thì phải biết <b>lắp câu cho đúng</b>. Đây là bộ khung ngữ pháp tối thiểu để câu không bị vỡ.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">CORE</span>
+      <div class="section-title">S – V – O và cụm danh từ</div>
+      <div class="section-subtitle">Nền móng của mọi câu tiếng Anh</div>
+    </div>
+
+    <div class="card">
+      <h4>💡 Ví von</h4>
+      <p style="font-size:14px;color:var(--text-mid)">Câu tiếng Anh giống như <b>một chuyến xe</b>: <b>S</b> là tài xế (ai), <b>V</b> là hành động (làm gì), <b>O</b> là hàng hoá (làm cái gì). Thiếu tài xế thì xe không chạy — đó là lý do câu tiếng Anh <b>luôn phải có chủ ngữ</b>, kể cả khi tiếng Việt bỏ đi được.</p>
+      <div class="err-box" style="margin-top:10px">
+        <span class="bad">❌ Is very important for people.</span>
+        <span class="good">✅ <b>It</b> is very important for people.</span>
+      </div>
+    </div>
+
+    <div class="formula">
+      <div class="f-title">CỤM DANH TỪ — 2 dạng</div>
+      <code>Dạng 1:  mạo từ + tính từ + danh từ chính  →  a good display</code>
+      <code>Dạng 2:  danh từ phụ + danh từ chính       →  a variety of sports facilities</code>
+    </div>
+
+    <div class="warn-box">⚠️ Số nhiều thì <b>bỏ mạo từ</b>: <i>an outdoor activity</i> → <i>outdoor activities</i> (không có "an").</div>
+
+    <div class="card">
+      <h4>Chuyển câu dài thành cụm danh từ (kỹ thuật nâng band)</h4>
+      <table class="tbl">
+        <tr><th style="width:48%">Mệnh đề (dài)</th><th>Cụm danh từ (gọn, tự nhiên hơn)</th></tr>
+        <tr><td>traffic moves slowly</td><td>slow-moving traffic</td></tr>
+        <tr><td>traffic lights are broken</td><td>broken traffic lights</td></tr>
+        <tr><td>the road is too narrow</td><td>a narrow road</td></tr>
+        <tr><td>traffic is chaotic</td><td>chaotic traffic</td></tr>
+        <tr><td>cars park illegally on the road</td><td>illegal car parking</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">LINKING</span>
+      <div class="section-title">Bảng liên từ đầy đủ</div>
+      <div class="section-subtitle">Cột "theo sau là gì" là phần em hay sai nhất</div>
+    </div>
+
+    <table class="tbl">
+      <tr><th style="width:24%">Liên từ</th><th style="width:26%">Theo sau là</th><th>Nghĩa &amp; ví dụ</th></tr>
+      <tr><td>because / since / as</td><td>mệnh đề (S V O)</td><td>bởi vì — <i>because the road is narrow</i></td></tr>
+      <tr><td>because of / due to</td><td>danh từ / V-ing</td><td>bởi vì — <i>because of the narrow road</i></td></tr>
+      <tr><td>although / even though</td><td>mệnh đề (S V O)</td><td>mặc dù — <i>Although they have facilities, people are less fit.</i></td></tr>
+      <tr><td>despite / in spite of</td><td>danh từ / V-ing</td><td>mặc dù — <i>Despite having facilities, people are less fit.</i></td></tr>
+      <tr><td>instead of</td><td>danh từ / V-ing</td><td>thay vì — <i>Instead of going out, I do assignments at home.</i></td></tr>
+      <tr><td>so</td><td>mệnh đề</td><td>nên, vì vậy</td></tr>
+      <tr><td>but / however / nevertheless</td><td>mệnh đề</td><td>nhưng, tuy nhiên</td></tr>
+      <tr><td>in addition / additionally</td><td>mệnh đề</td><td>thêm nữa, ngoài ra</td></tr>
+      <tr><td>after that / then / next</td><td>mệnh đề</td><td>sau đó</td></tr>
+      <tr><td>as a result</td><td>mệnh đề</td><td>kết quả là</td></tr>
+      <tr><td>compared to</td><td>danh từ</td><td>so với — <i>Compared to Canada, in Vietnam family is very important.</i></td></tr>
+      <tr><td>whether … or not</td><td>mệnh đề</td><td>liệu … hay không — <i>whether it fits my finances or not</i></td></tr>
+    </table>
+
+    <div class="info-box"><b>Mẹo nhớ:</b> từ nào <b>ngắn</b> (because, although) đi với <b>câu dài</b> (mệnh đề). Từ nào <b>dài</b> (because of, in spite of) đi với <b>cụm ngắn</b> (danh từ). Ngắn–dài, dài–ngắn.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">PATTERNS</span>
+      <div class="section-title">Cấu trúc câu thường dùng</div>
+      <div class="section-subtitle">Học thuộc dạng, thay từ vào</div>
+    </div>
+
+    <div class="grid2">
+      <div class="card"><h4>Diễn tả xu hướng</h4><p style="font-size:14px"><b>tend to + V</b> — có xu hướng<br><i>Teenagers tend to become rebels.</i></p></div>
+      <div class="card"><h4>Muốn ai làm gì</h4><p style="font-size:14px"><b>want + SO + to + V</b><br><i>My teacher wants me to complete this assignment.</i></p></div>
+      <div class="card"><h4>Mất bao lâu / dành bao lâu</h4><p style="font-size:14px"><b>take + SO + time + to V</b><br><b>spend + time + V-ing</b><br><i>I spend most of the time studying.</i></p></div>
+      <div class="card"><h4>Dễ / khó làm gì</h4><p style="font-size:14px"><b>It's + adj + for SO + to + V</b><br><i>It is easy for children to share daily issues.</i></p></div>
+      <div class="card"><h4>Từng làm (nay không còn)</h4><p style="font-size:14px"><b>used to + V</b><br><i>I used to want to become a singer when I was 18.</i></p></div>
+      <div class="card"><h4>Mục đích</h4><p style="font-size:14px"><b>to + V</b> / <b>in order to + V</b><br><i>In order to win, the fastest horse wins.</i></p></div>
+      <div class="card"><h4>Thích cái này hơn cái kia</h4><p style="font-size:14px"><b>prefer + N/V-ing + to + N/V-ing</b><br><i>Italians prefer slow dining to fast food.</i></p></div>
+      <div class="card"><h4>Giúp ai làm gì</h4><p style="font-size:14px"><b>help + SO + V-bare</b><br><i>It helps me save money.</i></p></div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p3">Next: Retelling →</button>
+      <button class="btn btn-outline" data-goto="p1">← Templates</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ P3 RETELLING ============ -->
+<div class="page" id="p3">
+  <div class="hero">
+    <div class="hero-meta"><span class="badge badge-white">Part 3</span><span class="badge badge-white">Sessions 4, 14, 16, 17</span></div>
+    <h1 class="hero-h1-sm">🔄 Retelling — Kể lại hội thoại</h1>
+    <p class="sub">Nghe một đoạn hội thoại → kể lại cho người khác. Đây là kỹ năng chiếm nhiều thời lượng nhất của khoá và cũng là phần em dễ mất điểm nhất.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">STRUCTURE</span>
+      <div class="section-title">Khung retelling 2 tầng</div>
+      <div class="section-subtitle">Main idea trước, supporting idea sau — kiểu diễn dịch</div>
+    </div>
+
+    <div class="formula">
+      <div class="f-title">CƠ BẢN</div>
+      <code>He / She described + [chủ đề].</code>
+      <code>He / She said that + [nội dung, lùi thì].</code>
+      <div class="f-title" style="margin-top:12px">NÂNG CAO</div>
+      <code>They were talking about + [chủ đề].</code>
+      <code>B said that… and guessed that…</code>
+    </div>
+
+    <div class="card">
+      <h4>💡 Ví von</h4>
+      <p style="font-size:14px;color:var(--text-mid)">Retelling giống như <b>chuyển ảnh từ máy này sang máy khác</b>. Ảnh gốc là hội thoại trực tiếp (hiện tại). Khi chuyển sang máy khác, ảnh phải đổi định dạng — đó chính là <b>lùi thì</b>. Không đổi định dạng thì máy kia không mở được ảnh.</p>
+    </div>
+
+    <table class="tbl">
+      <tr><th>Trực tiếp</th><th>Lùi thì (reported)</th></tr>
+      <tr><td>will</td><td>would</td></tr>
+      <tr><td>go</td><td>went</td></tr>
+      <tr><td>am / is / are</td><td>was / were</td></tr>
+      <tr><td>have / has</td><td>had</td></tr>
+      <tr><td>feel</td><td>felt</td></tr>
+      <tr><td>do / does</td><td>did</td></tr>
+      <tr><td>can</td><td>could</td></tr>
+      <tr><td>need</td><td>needed</td></tr>
+    </table>
+
+    <div class="section-header" style="margin-top:26px">
+      <div class="section-title" style="font-size:18px">Ví dụ đối chiếu</div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h4>Mô tả tóc</h4>
+        <p style="font-size:13px;color:var(--text-soft)">A: It's quite long. B: What colour is it? A: It's light brown and a little curly.</p>
+        <p style="font-size:14px;margin-top:8px">→ <b>He described someone's hair. He said that</b> someone <b>had</b> quite long, slightly curly, light brown hair.</p>
+      </div>
+      <div class="card">
+        <h4>Mô tả tuổi sếp</h4>
+        <p style="font-size:13px;color:var(--text-soft)">A: Is your boss young? B: He's in his thirties, I guess. About 35.</p>
+        <p style="font-size:14px;margin-top:8px">→ <b>They were talking about</b> B's boss. B <b>said that</b> his boss <b>was</b> in his thirties and <b>guessed that</b> he <b>was</b> about 35.</p>
+      </div>
+      <div class="card">
+        <h4>Mô tả tính cách bạn cùng phòng</h4>
+        <p style="font-size:14px">She <b>described</b> her roommate's personality. She <b>said that</b> she <b>was</b> generous and talkative <b>because</b> she always made things to give to her friends and she <b>loved</b> calling people on the phone.</p>
+      </div>
+      <div class="card">
+        <h4>Yêu cầu taxi</h4>
+        <p style="font-size:14px">She <b>said that</b> she <b>needed</b> a taxi to the train station. She <b>was</b> in a hurry <b>because</b> she <b>had to catch</b> a train.</p>
+      </div>
+    </div>
+
+    <div class="warn-box">⚠️ Sau <b>said that</b>, nếu chủ ngữ là he/she/it thì động từ vẫn phải chia đúng thì quá khứ: "he <b>was</b>", "she <b>had</b>", "they <b>were</b>". Đừng bỏ sót -ed / -s.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">PRACTICE</span>
+      <div class="section-title">Luyện lùi thì</div>
+      <div class="section-subtitle">Điền động từ đúng dạng, sau đó bấm Kiểm tra</div>
+    </div>
+
+    <div id="retell-quiz"></div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="checkRetell()">Kiểm tra</button>
+      <button class="btn btn-outline" onclick="resetRetell()">Làm lại</button>
+    </div>
+    <div class="feedback-box" id="retell-fb"></div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p4">Next: People &amp; Family →</button>
+      <button class="btn btn-outline" data-goto="p2">← Câu &amp; Liên từ</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ P4 PEOPLE ============ -->
+<div class="page" id="p4">
+  <div class="hero">
+    <div class="hero-meta"><span class="badge badge-white">Topic 1</span><span class="badge badge-white">Sessions 1, 2, 10, 11, 13, 15</span></div>
+    <h1 class="hero-h1-sm">👤 People &amp; Family</h1>
+    <p class="sub">Mô tả ngoại hình, tính cách, tuổi tác và quan hệ gia đình — chủ đề nền tảng nhất, xuất hiện trong mọi bài thi nói.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">APPEARANCE</span>
+      <div class="section-title">Mô tả ngoại hình</div>
+      <div class="section-subtitle">Có thứ tự cố định — không được đảo</div>
+    </div>
+
+    <div class="formula">
+      <div class="f-title">THỨ TỰ TÍNH TỪ CHO TÓC (bắt buộc)</div>
+      <code>opinion → size → shape → colour + hair</code>
+      <code>She has <b>long wavy black</b> hair.  ✅</code>
+      <code>She has <b>black long wavy</b> hair.  ❌</code>
+    </div>
+
+    <div class="formula">
+      <div class="f-title">3 CÁCH NÓI</div>
+      <code>She / He has + [adj] + hair.</code>
+      <code>Her hair is + [adj].</code>
+      <code>He has + [adj] hair, + a [adj] face, + and [colour] eyes.</code>
+    </div>
+
+    <table class="tbl">
+      <tr><th style="width:20%">Nhóm</th><th>Từ vựng</th></tr>
+      <tr><td>Height</td><td>short · not so tall · average · tall · tallish (hơi cao) · shortish</td></tr>
+      <tr><td>Hair — size</td><td>short · shoulder-length · long · longish</td></tr>
+      <tr><td>Hair — shape</td><td>wavy · curly · straight</td></tr>
+      <tr><td>Face</td><td>oval · thin · square · round</td></tr>
+      <tr><td>Eyes</td><td>dark brown · light brown · black · blue</td></tr>
+      <tr><td>Skin / complexion</td><td>fair skin · dark skin · wrinkles</td></tr>
+      <tr><td>Build / figure</td><td>slim · well-built · a good figure · attractive</td></tr>
+      <tr><td>Style</td><td>well-dressed · untidy-looking · good-looking · terrific</td></tr>
+    </table>
+
+    <div class="info-box"><b>Hậu tố -ish</b> = "hơi hơi", nhẹ hơn tính từ gốc: tall<b>ish</b> (hơi cao), short<b>ish</b>, old<b>ish</b>, young<b>ish</b>, long<b>ish</b>. Rất tự nhiên khi nói, dùng thay cho "a little tall".</div>
+
+    <div class="card">
+      <h4>Đoạn mẫu hoàn chỉnh</h4>
+      <p style="font-size:14px">I have long wavy black hair and a thin face. I'm not so tall, about 160 cm. I'm slim and well-dressed.</p>
+      <p style="font-size:14px;margin-top:9px">My friend is a terrific girl. She has long straight blonde hair and an oval face. She is tallish, about 167 cm. She has fair skin and a good figure. She is attractive.</p>
+      <p style="font-size:14px;margin-top:9px">My neighbour is an elderly person. He has short white hair. He has dark skin and wrinkles on his face. He is shortish, about 155 cm. He is untidy-looking.</p>
+    </div>
+
+    <div class="warn-box">⚠️ Nói chiều cao: <b>He is 180 cm tall</b> ✅ / <b>His height is 180 cm</b> ✅ / <s>He was tall 180 cm</s> ❌</div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">AGE</span>
+      <div class="section-title">Diễn tả tuổi tác</div>
+      <div class="section-subtitle">Đừng chỉ nói con số — dùng nhóm tuổi nghe tự nhiên hơn</div>
+    </div>
+
+    <div class="formula">
+      <code>be + in his / her / their + twenties / thirties / forties…</code>
+      <code>be + in his / her teens</code>
+      <code>be between the ages of … and …</code>
+    </div>
+
+    <table class="tbl">
+      <tr><th style="width:24%">Nhóm tuổi</th><th style="width:16%">Độ tuổi</th><th>Ghi chú &amp; ví dụ</th></tr>
+      <tr><td>childhood</td><td>0–12</td><td>thời thơ ấu — <i>I enjoyed my childhood a lot.</i></td></tr>
+      <tr><td>baby</td><td>0–1</td><td>em bé</td></tr>
+      <tr><td>toddler</td><td>1–3</td><td>trẻ chập chững — <i>The toddler is learning to speak.</i></td></tr>
+      <tr><td>kid / child</td><td>4–12</td><td>kid = spoken, child = formal hơn</td></tr>
+      <tr><td>teens / teenage years</td><td>13–19</td><td>early teens 13–15 · mid-teens 15–17 · late teens 17–19</td></tr>
+      <tr><td>young adult</td><td>18–25</td><td><i>Young adults often look for career opportunities in major cities.</i></td></tr>
+      <tr><td>middle-aged</td><td>40–60</td><td><i>She's a middle-aged woman.</i> ❌ <s>she is middle age</s></td></tr>
+      <tr><td>elderly</td><td>65+</td><td>lịch sự hơn "old" — <i>Elderly people need regular exercise.</i></td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">PERSONALITY</span>
+      <div class="section-title">Tính cách — bấm vào thẻ để xem ví dụ</div>
+      <div class="section-subtitle">Chọn 5–6 từ em thích nhất và dùng đi dùng lại cho thuần thục</div>
+    </div>
+
+    <div class="tab-bar" data-tabgroup="trait">
+      <button class="tab-btn active" data-tab="t-pos">Positive</button>
+      <button class="tab-btn" data-tab="t-neg">Negative</button>
+      <button class="tab-btn" data-tab="t-soc">Social</button>
+      <button class="tab-btn" data-tab="t-work">Work &amp; Mind</button>
+      <button class="tab-btn" data-tab="t-coll">Collocations</button>
+    </div>
+    <div class="tab-panel active" id="t-pos"><div class="vocab-grid" id="g-pos"></div></div>
+    <div class="tab-panel" id="t-neg"><div class="vocab-grid" id="g-neg"></div></div>
+    <div class="tab-panel" id="t-soc"><div class="vocab-grid" id="g-soc"></div></div>
+    <div class="tab-panel" id="t-work"><div class="vocab-grid" id="g-work"></div></div>
+    <div class="tab-panel" id="t-coll"><div class="vocab-grid" id="g-coll"></div></div>
+
+    <div class="info-box" style="margin-top:18px"><b>Introvert vs extrovert — cách phân biệt chuẩn:</b> khác nhau ở <b>cách nạp lại năng lượng</b> (the way they recharge their battery). Introvert nạp bằng cách ở một mình; extrovert nạp bằng cách ở cùng người khác. Không phải "nhút nhát vs bạo dạn".</div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">FAMILY</span>
+      <div class="section-title">Gia đình &amp; quan hệ</div>
+    </div>
+
+    <div class="formula">
+      <div class="f-title">GIỚI THIỆU GIA ĐÌNH</div>
+      <code>There are + [số] + people in my family.</code>
+      <code>They are + [liệt kê].</code>
+      <code>My + [người] + is / are + [tuổi hoặc mô tả].</code>
+    </div>
+
+    <div class="card">
+      <h4>Mẫu</h4>
+      <p style="font-size:14px">There are four people in my family. They are my parents, my older brother and me. My cousins are 21 and 18 <b>respectively</b>. I don't remember <b>the age of</b> my two brothers — they are <b>in their thirties</b>.</p>
+    </div>
+
+    <div id="fam-phrases"></div>
+
+    <div class="warn-box">⚠️ <b>have /v/</b> vs <b>has /s/</b> — phát âm khác nhau. <b>the</b> đọc /ði/ trước nguyên âm (the <b>a</b>ge, the <b>a</b>im, the <b>o</b>rganization), đọc /ðə/ trước phụ âm (the purpose, the goal).</div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p5">Next: Culture &amp; Job →</button>
+      <button class="btn btn-outline" data-goto="p3">← Retelling</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ P5 CULTURE & JOB ============ -->
+<div class="page" id="p5">
+  <div class="hero">
+    <div class="hero-meta"><span class="badge badge-white">Topic 2</span><span class="badge badge-white">Sessions 3, 5, 7, 8, 16</span></div>
+    <h1 class="hero-h1-sm">🌍 Culture, Job &amp; Phone</h1>
+    <p class="sub">Quốc tịch – văn hoá – nghề nghiệp – chức danh – gọi điện thoại. Đây là nhóm chủ đề "giới thiệu bản thân mở rộng".</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">CULTURE</span>
+      <div class="section-title">Quốc gia, quốc tịch &amp; văn hoá</div>
+    </div>
+
+    <div class="formula">
+      <code>That person is living in + [nation], they are + [nationality].</code>
+      <code>[Nation] is known for its + [đặc điểm văn hoá].</code>
+      <code>In [nationality] culture, + [mệnh đề].</code>
+      <code>Compared to [nation 1], in [nation 2], …</code>
+      <code>Overall, [nationality 1] culture is different from [nationality 2] culture.</code>
+    </div>
+
+    <div class="card">
+      <h4>Phân biệt 3 khái niệm hay lẫn</h4>
+      <table class="tbl">
+        <tr><td>Country / Nation</td><td>I'm from <b>Vietnam</b>.</td></tr>
+        <tr><td>Nationality</td><td>You are <b>Vietnamese</b>. / a Vietnamese student</td></tr>
+        <tr><td>Language</td><td>I speak <b>Vietnamese</b>.</td></tr>
+      </table>
+      <p style="font-size:13px;color:var(--text-soft);margin-top:8px">Mạo từ: <b>a</b> Vietnamese student (một) · <b>the</b> Vietnamese people (nhóm cụ thể) · Vietnamese people (chung chung).</p>
+    </div>
+
+    <table class="tbl">
+      <tr><th style="width:18%">Nước</th><th>Đặc điểm văn hoá</th></tr>
+      <tr><td>Vietnam</td><td>family-oriented · gathering · respect for elders · traditional festivals · street food culture</td></tr>
+      <tr><td>Canada</td><td>multicultural society · politeness &amp; equality · work–life balance · respect for personal space</td></tr>
+      <tr><td>China</td><td>collectivism · long history &amp; traditions · importance of family &amp; education · family ties</td></tr>
+      <tr><td>Italy</td><td>strong family bond · food &amp; dining culture · art, history &amp; fashion · expressive communication</td></tr>
+      <tr><td>Japan</td><td>discipline · punctuality · respect for rules · group harmony</td></tr>
+    </table>
+
+    <div class="card">
+      <h4>Đoạn so sánh mẫu</h4>
+      <p style="font-size:14px">In Canada, people respect personal space. <b>Compared to</b> Canada, in Vietnam, family is very important — people live close to their family. <b>Overall</b>, Vietnamese culture is different from Canadian culture.</p>
+    </div>
+
+    <div id="culture-vocab" class="vocab-grid" style="margin-top:16px"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">JOB</span>
+      <div class="section-title">Nghề nghiệp &amp; chức danh</div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h4>Nghề nghiệp (occupation)</h4>
+        <p style="font-size:14px;line-height:2">
+          <span class="chip">business owner</span><span class="chip">office worker</span><span class="chip">lawyer</span><span class="chip">worker</span><span class="chip">driver</span><span class="chip">farmer</span><span class="chip">doctor</span><span class="chip">nurse</span><span class="chip">dentist</span><span class="chip">chef</span><span class="chip">receptionist</span><span class="chip">waiter / waitress / server</span>
+        </p>
+      </div>
+      <div class="card">
+        <h4>Cấp bậc trong công ty (level)</h4>
+        <table class="tbl" style="margin:0">
+          <tr><td>Chairman</td><td>chủ tịch hội đồng quản trị</td></tr>
+          <tr><td>BOD</td><td>board of directors</td></tr>
+          <tr><td>CEO / COO</td><td>tổng giám đốc / giám đốc vận hành</td></tr>
+          <tr><td>Manager</td><td>quản lý</td></tr>
+          <tr><td>Leader / Supervisor</td><td>trưởng nhóm / giám sát</td></tr>
+          <tr><td>Senior / Junior</td><td>nhân viên có/ít kinh nghiệm</td></tr>
+          <tr><td>Intern</td><td>thực tập sinh</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-box"><b>Why do people work?</b> Dùng <b>to + V</b> để chỉ mục đích: <i>People work <b>to</b> earn money, <b>to</b> gain experience, and <b>to</b> build their career.</i></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">PHONE</span>
+      <div class="section-title">Gọi điện thoại</div>
+      <div class="section-subtitle">Session 8 — cụm động từ bắt buộc thuộc</div>
+    </div>
+    <div id="phone-phrases"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">DIRECTION</span>
+      <div class="section-title">Chỉ đường</div>
+      <div class="section-subtitle">Session 9 — chú ý giới từ</div>
+    </div>
+
+    <div class="formula">
+      <code>Turn right / left at the corner of + [place].</code>
+      <code>[Place] + is + on your right / left.</code>
+      <code>[Place 1] + is + [preposition] + [place 2].</code>
+      <code>The bookstore is <b>next to</b> the post office.</code>
+      <code>The bank is <b>across from</b> the hotel.   (đối diện)</code>
+    </div>
+
+    <div class="warn-box">⚠️ <b>on your right</b> (bên tay phải của bạn) ≠ <b>on the right of + place</b> (bên phải của một vật). Đừng trộn hai cái.</div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p6">Next: Transport &amp; Traffic →</button>
+      <button class="btn btn-outline" data-goto="p4">← People &amp; Family</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ P6 TRANSPORT ============ -->
+<div class="page" id="p6">
+  <div class="hero">
+    <div class="hero-meta"><span class="badge badge-white">Topic 3</span><span class="badge badge-white">Sessions 17–22</span></div>
+    <h1 class="hero-h1-sm">🚌 Transport &amp; Traffic</h1>
+    <p class="sub">6 sessions liên tiếp — chủ đề được dạy kỹ nhất khoá. Bao gồm: phương tiện, trải nghiệm tốt/xấu, và khung vấn đề–nguyên nhân–giải pháp.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">VOCAB</span>
+      <div class="section-title">Từ vựng giao thông — bấm để xem ví dụ</div>
+    </div>
+    <div class="vocab-grid" id="traffic-vocab"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">EXPERIENCE</span>
+      <div class="section-title">Kể trải nghiệm dùng phương tiện</div>
+      <div class="section-subtitle">Session 18 — khung good / bad experience</div>
+    </div>
+
+    <div class="formula">
+      <div class="f-title">KHUNG TRẢI NGHIỆM TỐT</div>
+      <code>I had a good experience with + [phương tiện].</code>
+      <code>I booked… / The driver was… / The [vehicle] was in good condition.</code>
+      <code>The thing I liked most was + [điểm tốt nhất].</code>
+      <code>I was satisfied with…</code>
+      <div class="f-title" style="margin-top:12px">KHUNG TRẢI NGHIỆM XẤU</div>
+      <code>I was disappointed with + [phương tiện] + because + [lý do].</code>
+      <code>I had to wait… / The driver cancelled… / It took me a lot of time to…</code>
+      <code>I felt uncomfortable when I used it.</code>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h4>✅ Good experience</h4>
+        <p style="font-size:14px">I had a good experience with a ride-hailing motorbike. I booked the ride on my phone when I went home from school. The driver was friendly and polite, he arrived in just a few minutes and at a <b>reasonable price</b>. The motorbike was <b>in good condition</b>. <b>The thing I liked most was</b> that he drove carefully, and I was <b>satisfied with</b> this driver.</p>
+      </div>
+      <div class="card">
+        <h4>❌ Bad experience</h4>
+        <p style="font-size:14px">I was <b>disappointed with</b> a ride-hailing motorbike recently <b>because</b> I had to wait for the driver for a long time but no one showed up, and the driver <b>cancelled the ride at the last minute</b>. It took me a lot of time to rebook. I felt uncomfortable when I used it.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>Mẫu — Subway (từ mini-test)</h4>
+      <p style="font-size:14px">I think the subway is <b>one of the best ways to travel</b> in big cities. The trains are clean, modern and air-conditioned, <b>so it's</b> really comfortable. The system is also easy to use and everything is <b>very well organised</b>. <b>The thing I like most is that it is</b> very fast and convenient — I don't have to worry about traffic jams. The ticket price is <b>reasonable</b>, so it's <b>good value for money</b>.</p>
+    </div>
+
+    <div class="warn-box">⚠️ Lỗi lớp hay mắc: "so <b>it's</b> really comfortable" — không được bỏ "it's". Và "very <b>well organised</b>" chứ không phải "very good-organized".</div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">PROBLEMS</span>
+      <div class="section-title">12 vấn đề giao thông — bảng tra nhanh</div>
+      <div class="section-subtitle">Dùng với Template 4 (Vấn đề → Nguyên nhân → Giải pháp)</div>
+    </div>
+
+    <table class="tbl">
+      <tr><th style="width:22%">Tình huống</th><th style="width:26%">Problem</th><th style="width:26%">Reason</th><th>Solution</th></tr>
+      <tr><td>Kẹt xe</td><td>traffic is congested / heavy</td><td>rush hour / too many cars</td><td>leave earlier / use public transport</td></tr>
+      <tr><td>Quá nhiều xe máy</td><td>the street is crowded</td><td>too many motorbikes</td><td>use buses / limit vehicles</td></tr>
+      <tr><td>Đèn giao thông hỏng</td><td>chaotic traffic</td><td>broken traffic lights</td><td>fix the lights / control traffic</td></tr>
+      <tr><td>Đường hẹp</td><td>slow-moving traffic</td><td>a narrow road</td><td>build bigger roads</td></tr>
+      <tr><td>Đang thi công</td><td>traffic is blocked</td><td>road construction</td><td>choose another route</td></tr>
+      <tr><td>Người băng qua đường bừa</td><td>dangerous traffic</td><td>unsafe road crossing</td><td>use the zebra crossing</td></tr>
+      <tr><td>Đỗ xe trái phép</td><td>blocked traffic</td><td>illegal car parking</td><td>park properly</td></tr>
+      <tr><td>Thiếu xe công cộng</td><td>crowded traffic</td><td>lack of buses</td><td>improve public transport</td></tr>
+      <tr><td>Thời tiết xấu</td><td>slow traffic</td><td>heavy rain</td><td>drive carefully / stay home</td></tr>
+      <tr><td>Không có làn xe đạp</td><td>unsafe traffic</td><td>no bike lanes</td><td>build bike lanes</td></tr>
+      <tr><td>Nhiều tai nạn</td><td>dangerous traffic</td><td>people drive too fast</td><td>follow the rules</td></tr>
+      <tr><td>Đường ngập</td><td>traffic is difficult</td><td>a flooded road</td><td>avoid it / improve the system</td></tr>
+    </table>
+
+    <div class="info-box"><b>Nhóm từ đồng nghĩa (dùng luân phiên để tránh lặp):</b> traffic congestion ~ traffic jam ~ heavy traffic ~ slow traffic ~ crowded traffic ~ blocked traffic ~ bumper to bumper.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">REACT</span>
+      <div class="section-title">Nói về cách xử lý khi gặp vấn đề</div>
+    </div>
+    <div class="formula">
+      <code>When I <b>encounter / run into</b> [vấn đề], I will + [hành động].</code>
+      <code>When I run into this problem on the road, I should + [hành động].</code>
+      <code>When I run into this problem on the road, <b>it's a good idea to</b> + [hành động].</code>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p7">Next: Home · Sport · Shop →</button>
+      <button class="btn btn-outline" data-goto="p5">← Culture &amp; Job</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ P7 HOME SPORT SHOP ============ -->
+<div class="page" id="p7">
+  <div class="hero">
+    <div class="hero-meta"><span class="badge badge-white">Topic 4</span><span class="badge badge-white">Sessions 23–30</span></div>
+    <h1 class="hero-h1-sm">🏠 Home · Sport · Clothes · Shopping</h1>
+    <p class="sub">4 chủ đề đời sống. Mỗi chủ đề có một khung nói riêng — học khung trước, từ vựng sau.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">ACCOMMODATION</span>
+      <div class="section-title">Nhà ở</div>
+      <div class="section-subtitle">Sessions 23–24</div>
+    </div>
+
+    <div class="formula">
+      <div class="f-title">KHUNG THUYẾT TRÌNH VỀ NHÀ</div>
+      <code>Today, I'd like to talk about the place where I live.</code>
+      <code>I currently live in + [khu vực] + in + [loại nhà].</code>
+      <code>My place <b>consists of</b> + [liệt kê phòng].</code>
+      <code>One of the main reasons why I like my home is + [lý do].</code>
+      <code>The [room] is the room I like the most because of + [lý do].</code>
+      <code>Therefore, I'm quite happy with my current living environment.</code>
+    </div>
+
+    <div class="card">
+      <h4>Đoạn mẫu</h4>
+      <p style="font-size:14px">Today, I'd like to talk about the place where I live. I currently live in the countryside in a <b>detached house</b>. My place <b>consists of</b> a living room, three bedrooms, a kitchen and a bathroom. One of the main reasons why I like my home is that it has a large yard with a small garden, and there is a fence around the house. The bedroom is the room I like the most because of its convenience for sleeping and studying.</p>
+      <p style="font-size:14px;margin-top:9px"><b>However</b>, I have rented a small house in the <b>suburbs</b> to live in while I study. It's a <b>convenient location</b> — it is <b>situated close to</b> my university, which makes my <b>daily commute</b> much easier and helps me save a lot of time. <b>Although</b> there is usually a traffic jam because I have to go to school at rush hour, it doesn't affect me too much.</p>
+    </div>
+
+    <div class="card">
+      <h4>Yếu tố cân nhắc khi chọn nhà</h4>
+      <p style="font-size:14px">When choosing a home, there are several important factors that I usually <b>take into consideration</b>. <b>First of all</b>, the location and commuting is probably the most important one. <b>Another factor is</b> the living environment — I like to stay in a place that has privacy.</p>
+      <p style="font-size:14px;margin-top:9px">The first question I will ask the landlord is the rent price, because it helps me check <b>whether</b> it fits my finances <b>or not</b>.</p>
+    </div>
+
+    <div id="home-vocab" class="vocab-grid"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">SPORT</span>
+      <div class="section-title">Thể thao</div>
+      <div class="section-subtitle">Sessions 25–26</div>
+    </div>
+
+    <div class="card">
+      <h4>Lợi ích của chơi thể thao</h4>
+      <p style="font-size:14px;line-height:2">
+        <span class="chip">keep fit / keep shape — giữ dáng</span>
+        <span class="chip">stay healthy — giữ sức khoẻ</span>
+        <span class="chip">reduce / decrease stress — giảm căng thẳng</span>
+        <span class="chip">unwind — thư giãn</span>
+        <span class="chip">improve mental health</span>
+        <span class="chip">widen my networking</span>
+      </p>
+    </div>
+
+    <div class="formula">
+      <div class="f-title">KHUNG THUYẾT TRÌNH MÔN THỂ THAO (dùng lại được cho mọi môn)</div>
+      <code>Today I would like to talk about + [môn].</code>
+      <code>First, this sport is very popular in many countries such as…</code>
+      <code>Let's move on to the basic rules of this sport.</code>
+      <code>For [môn], this sport is mainly an individual / a team sport.</code>
+      <code>The playing time depends on… / lasts about…</code>
+      <code>In order to win, + [điều kiện thắng].</code>
+      <code>Next, to play this sport we need some basic equipment such as…</code>
+      <code>This sport is usually played in / on / at + [nơi chốn].</code>
+    </div>
+
+    <div class="grid2">
+      <div class="card"><h4>Swimming</h4><p style="font-size:14px">Mainly an <b>individual sport</b>. Playing time depends on the distance — 50 m lasts about 20–30 seconds, 1500 m about 15–20 minutes. <b>In order to win</b>, the person who reaches the finish line first wins. Equipment: a swimming suit, a swimming cap and goggles. Played in a swimming pool.</p></div>
+      <div class="card"><h4>Volleyball</h4><p style="font-size:14px">Mainly a <b>team sport</b> — usually 6 people per team. Playing time is not fixed in minutes but divided into <b>sets</b>; a match lasts 3 to 5 sets, and a set ends when a team reaches 25 points. Equipment: a volleyball and a net. Played on indoor or outdoor courts, or on the beach.</p></div>
+      <div class="card"><h4>Golf</h4><p style="font-size:14px">An <b>individual sport</b>. The playing time depends on the number of holes — a match usually consists of 9 or 18 holes. <b>To win</b>, a player must complete all holes with the <b>fewest strokes</b>. Equipment: golf clubs and golf balls. Played on a golf course.</p></div>
+      <div class="card"><h4>Cycling</h4><p style="font-size:14px">Both an <b>individual and a team sport</b> — in teams, athletes support each other throughout the race. Short races last several minutes; long races can last several hours. To win, complete the race in the shortest time. Equipment: a bicycle, a helmet, sports clothing. Played on streets, cycling tracks or mountain trails.</p></div>
+    </div>
+
+    <div class="info-box"><b>Cụm động từ quan trọng:</b> <b>take up</b> (took up) — bắt đầu · <b>give up</b> (gave up) — từ bỏ · <b>take part in ~ attend ~ participate in</b> — tham gia · <b>choose to + V</b> (chose) · <b>learn how to + V</b></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">CLOTHES</span>
+      <div class="section-title">Quần áo</div>
+      <div class="section-subtitle">Sessions 27–28</div>
+    </div>
+
+    <div class="formula">
+      <div class="f-title">MÔ TẢ MỘT MÓN ĐỒ</div>
+      <code>It's <b>imported from</b> + [nước]. / It's <b>made in</b> + [nước].</code>
+      <code>It's <b>made of</b> + [chất liệu: leather / wool / silk / denim / cotton].</code>
+      <code>It's <b>well-made</b> / the quality seems good.</code>
+      <code>It was <b>on sale for</b> $… / It was <b>a bargain</b> at $…</code>
+      <code>It'll <b>look great with</b> + [món khác]. / It <b>goes perfectly with</b>…</code>
+    </div>
+
+    <div class="formula">
+      <div class="f-title">NHẬN XÉT NGƯỜI KHÁC MẶC ĐẸP</div>
+      <code>It's beautiful on her because it <b>suits her</b>.</code>
+      <code>I think it's <b>a good choice</b> for her.</code>
+      <code>It <b>makes her look better</b>.</code>
+      <code>Is it too tight? / Are the arms long enough?</code>
+    </div>
+
+    <div class="card">
+      <h4>Mẫu mô tả tranh (picture description)</h4>
+      <p style="font-size:14px">There are two girls in the picture; they are in a clothing store. The girl with the brown hair is holding a red dress, and the girl with blonde hair is saying that it is beautiful on her because it <b>suits her</b>, and she thinks it is <b>a good choice</b>.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">SHOPPING PROBLEMS</span>
+      <div class="section-title">Vấn đề khi mua hàng</div>
+      <div class="section-subtitle">Sessions 29–30 — khung Initially → However → Result</div>
+    </div>
+
+    <table class="tbl">
+      <tr><th style="width:34%">Loại vấn đề</th><th>Cách nói</th></tr>
+      <tr><td>missing accessory</td><td>They said this camcorder had a case, but there's no case.</td></tr>
+      <tr><td>wrong item received</td><td>I bought a small T-shirt but the store gave me a large one.</td></tr>
+      <tr><td>damaged goods</td><td>I ordered some glasses, but one of them came broken.</td></tr>
+      <tr><td>defective goods</td><td>The blue shirt is missing a button and looks dirty.</td></tr>
+      <tr><td>late delivery</td><td>My product arrived a few days late.</td></tr>
+    </table>
+
+    <div class="card">
+      <h4>Cảm xúc khi gặp vấn đề</h4>
+      <p style="font-size:14px;line-height:2"><span class="chip">confused</span><span class="chip">disappointed</span><span class="chip">angry</span><span class="chip">frustrated</span><span class="chip">annoyed</span><span class="chip">stressed</span></p>
+    </div>
+
+    <div class="formula">
+      <div class="f-title">KHUNG KỂ CHUYỆN KHIẾU NẠI</div>
+      <code><b>Initially</b>, + [vấn đề] + and I was quite + [cảm xúc xấu].</code>
+      <code><b>However, after that</b>, + [cửa hàng xử lý].</code>
+      <code>I felt more + [cảm xúc tốt] + and <b>appreciated</b> their + [hành động].</code>
+    </div>
+
+    <div class="card">
+      <h4>Đoạn mẫu hoàn chỉnh</h4>
+      <p style="font-size:14px">Recently, I bought a smartphone at a phone store near my house. It was an <b>affordable price</b>; I chose it because of the colour and because it has many new features. <b>However</b>, about two days later, the screen didn't work, so I decided to go back to the store. I was quite <b>annoyed</b>, but the staff were really polite and friendly. They <b>apologised</b> to me, and after that they <b>exchanged</b> it for the same new phone. I was surprised because they <b>solved the problem</b> in only 10 minutes. They made me feel <b>respected and valued</b>, and I was <b>satisfied with</b> this store. I think I will <b>recommend</b> this store to my friends.</p>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p8">Next: Numbers &amp; Time →</button>
+      <button class="btn btn-outline" data-goto="p6">← Transport &amp; Traffic</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ P8 NUMBERS ============ -->
+<div class="page" id="p8">
+  <div class="hero">
+    <div class="hero-meta"><span class="badge badge-white">Topic 5</span><span class="badge badge-white">Sessions 31–32</span></div>
+    <h1 class="hero-h1-sm">🔢 Numbers, Dates &amp; Time</h1>
+    <p class="sub">Nghe và nói số là kỹ năng "cứng" — sai một chữ số là sai cả câu. Phần này chỉ cần thuộc quy tắc, không cần sáng tạo.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">CARDINAL</span>
+      <div class="section-title">Số đếm</div>
+    </div>
+
+    <table class="tbl">
+      <tr><th style="width:26%">Đơn vị</th><th>Tiếng Anh</th></tr>
+      <tr><td>trăm</td><td>hundred</td></tr>
+      <tr><td>nghìn</td><td>thousand</td></tr>
+      <tr><td>triệu</td><td>million</td></tr>
+      <tr><td>tỉ</td><td>billion</td></tr>
+      <tr><td>12 (một tá)</td><td>a dozen</td></tr>
+    </table>
+
+    <div class="info-box">
+      <b>Quy tắc viết:</b><br>
+      • Hàng chục + đơn vị có <b>dấu gạch nối</b>: 74 → seventy-<b>four</b><br>
+      • <b>Dấu phẩy</b> cho số tự nhiên (1,234,567) · <b>dấu chấm</b> cho số thập phân (3.14)<br>
+      • 1,234,567 → <b>one million two hundred thirty-four thousand five hundred sixty-seven</b>
+    </div>
+
+    <div class="warn-box">⚠️ <b>thousand</b> (số đếm + thousand + noun: <i>two thousand people</i>) vs <b>thousands of</b> (hàng ngàn: <i>thousands of people</i>). Có "of" thì có "s".</div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">ORDINAL</span>
+      <div class="section-title">Số thứ tự &amp; ngày tháng</div>
+    </div>
+
+    <div class="info-box">
+      • Đọc: <b>the</b> + số thứ tự<br>
+      • Số tận cùng <b>-ty</b> → đổi thành <b>-tieth</b>: thirty → thir<b>tieth</b><br>
+      • Đuôi <b>-ve</b> → đổi thành <b>-fth</b>: five → fi<b>fth</b><br>
+      • Hầu hết kết thúc bằng <b>-th</b>, trừ: 1<b>st</b> (first), 2<b>nd</b> (second), 3<b>rd</b> (third)
+    </div>
+
+    <table class="tbl">
+      <tr><th style="width:30%">Mục</th><th>Chi tiết</th></tr>
+      <tr><td>Weekday</td><td>Monday → Friday</td></tr>
+      <tr><td>Weekend</td><td>Saturday, Sunday</td></tr>
+      <tr><td>Viết đầy đủ</td><td>Monday, February 19, 2025</td></tr>
+      <tr><td>Rút gọn (Mỹ)</td><td>Mon., Feb. 19, 2025 — dạng số MM/DD/YYYY</td></tr>
+      <tr><td>Rút gọn (Anh)</td><td>Mon., 19 Feb. 2025 — dạng số DD/MM/YYYY</td></tr>
+      <tr><td>Không rút gọn</td><td>May, June, July</td></tr>
+      <tr><td>Cách đọc (Anh)</td><td>24th April → <i>the twenty-fourth of April</i></td></tr>
+      <tr><td>Cách đọc (Mỹ)</td><td>14th December 1977 → <i>December fourteenth, 1977</i></td></tr>
+      <tr><td>Giới từ</td><td><b>on</b> + thứ (ngày cụ thể) · <b>every</b> + thứ (định kỳ) · <b>in</b> + năm</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">TIME</span>
+      <div class="section-title">Giờ</div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h4>Đọc thẳng (phổ biến nhất)</h4>
+        <table class="tbl" style="margin:0">
+          <tr><td>6:20</td><td>six twenty</td></tr>
+          <tr><td>9:16</td><td>nine sixteen</td></tr>
+          <tr><td>9:05</td><td>nine <b>O</b>-five</td></tr>
+        </table>
+        <p style="font-size:13px;color:var(--text-soft);margin-top:8px">Phút &lt; 10 phải thêm số 0, đọc là "Oh".</p>
+      </div>
+      <div class="card">
+        <h4>Giờ hơn / giờ kém / quarter</h4>
+        <table class="tbl" style="margin:0">
+          <tr><td>6:20</td><td>twenty <b>past</b> six</td></tr>
+          <tr><td>8:10</td><td>ten <b>past</b> eight</td></tr>
+          <tr><td>3:35</td><td>twenty-five <b>to</b> four</td></tr>
+          <tr><td>5:40</td><td>twenty <b>to</b> six</td></tr>
+          <tr><td>7:15</td><td>a <b>quarter past</b> seven</td></tr>
+          <tr><td>12:45</td><td>a <b>quarter to</b> one</td></tr>
+          <tr><td>10:00</td><td>ten <b>o'clock</b></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">PHONE NUMBERS</span>
+      <div class="section-title">Số điện thoại &amp; số thẻ</div>
+      <div class="section-subtitle">Đọc từng số, tách nhóm 3–4 số cho dễ nghe</div>
+    </div>
+
+    <table class="tbl">
+      <tr><th style="width:30%">Trường hợp</th><th>Cách đọc</th></tr>
+      <tr><td>Số 0</td><td>"Oh" hoặc "zero"</td></tr>
+      <tr><td>2 số giống nhau liền nhau</td><td><b>double</b> + số — 07788 → oh double-seven double-eight</td></tr>
+      <tr><td>2 số 0 liền nhau</td><td><b>hundred</b> — 536 400 200 → five three six, four hundred, two hundred</td></tr>
+      <tr><td>3 số giống nhau liền nhau</td><td><b>triple</b> + số — 510333 → five one oh triple-three</td></tr>
+    </table>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p12">Next: Health →</button>
+      <button class="btn btn-outline" data-goto="p7">← Home · Sport · Shop</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============ P12 HEALTH ============ -->
+<div class="page" id="p12">
+  <div class="hero">
+    <div class="hero-meta"><span class="badge badge-white">Topic 6</span><span class="badge badge-white">Health lesson</span></div>
+    <h1 class="hero-h1-sm">🩺 Health</h1>
+    <p class="sub">Nói về cơ thể, mô tả triệu chứng khi bị bệnh, đi khám, và khuyên bạn bị ốm. Ngữ pháp trọng tâm: <b>past simple</b> + <b>should</b> để khuyên + linking words.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">BODY</span>
+      <div class="section-title">Bộ phận cơ thể bên trong</div>
+      <div class="section-subtitle">Bấm vào thẻ để xem ví dụ</div>
+    </div>
+    <div class="vocab-grid" id="body-vocab"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">SYMPTOMS</span>
+      <div class="section-title">Triệu chứng</div>
+      <div class="section-subtitle">A symptom is a sign that you are sick — something you feel in your body</div>
+    </div>
+    <div class="vocab-grid" id="symptom-vocab"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">ILLNESS → TREATMENT</span>
+      <div class="section-title">Bệnh · triệu chứng · cách điều trị</div>
+      <div class="section-subtitle">Học theo cụm ba: bệnh gì → dấu hiệu gì → làm gì</div>
+    </div>
+
+    <table class="tbl">
+      <tr><th style="width:20%">Illness</th><th style="width:42%">Symptoms</th><th>Treatment (should…)</th></tr>
+      <tr><td>the flu</td><td>a sudden high fever · body aches · a sore throat · feeling dizzy</td><td>see a doctor · take the medicine · get some rest</td></tr>
+      <tr><td>a cold</td><td>a runny nose · a stuffy nose · sneezing · a sore throat</td><td>drink warm water · gargle with salt water · stay off your feet</td></tr>
+      <tr><td>food poisoning</td><td>a terrible stomachache · vomiting</td><td>rest the stomach · drink water · see a doctor if it is serious</td></tr>
+      <tr><td>an allergy</td><td>itchy skin · a skin rash · shortness of breath</td><td>avoid allergens · take allergy pills · put ice on the itchy skin</td></tr>
+      <tr><td>indigestion</td><td>heat in the body · stomach discomfort after eating</td><td>avoid fried and spicy food · let the liver rest</td></tr>
+      <tr><td>constipation</td><td>difficulty going to the toilet · feeling dizzy</td><td>drink more water · eat more vegetables</td></tr>
+    </table>
+
+    <div class="info-box"><b>Cấu trúc lõi để nói:</b> <code style="background:var(--white);padding:2px 6px;border-radius:4px">When I have a/an [illness], I have experienced [symptoms]. I should [treatment].</code></div>
+
+    <div class="card">
+      <h4>Ví dụ</h4>
+      <p style="font-size:14px">When I have <b>a flu</b>, I have experienced sudden high fever, body aches, a sore throat, and I feel dizzy. I <b>should</b> see a doctor or take the medicine.</p>
+      <p style="font-size:14px;margin-top:9px">When I have <b>food poisoning</b>, I have experienced a terrible stomachache and vomiting. I <b>should</b> rest my stomach and drink a lot of water.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">PHRASES</span>
+      <div class="section-title">Cụm từ thường dùng</div>
+    </div>
+    <div class="tab-bar" data-tabgroup="health">
+      <button class="tab-btn active" data-tab="h-sick">Talking about being sick</button>
+      <button class="tab-btn" data-tab="h-clinic">At the clinic</button>
+    </div>
+    <div class="tab-panel active" id="h-sick"><div id="sick-phrases"></div></div>
+    <div class="tab-panel" id="h-clinic"><div id="clinic-phrases"></div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">STORY FRAME</span>
+      <div class="section-title">Khung kể chuyện bị bệnh</div>
+      <div class="section-subtitle">Dùng past simple + linking words</div>
+    </div>
+
+    <div class="formula">
+      <code><b>At first</b>, + [em nghĩ gì lúc đầu].</code>
+      <code><b>However</b>, + [triệu chứng xuất hiện].</code>
+      <code><b>So</b> I decided to + [hành động].</code>
+      <code>The doctor said I <b>should</b> + [điều trị].</code>
+      <code><b>Therefore</b>, I + [em đã làm gì].</code>
+      <code><b>As a result</b>, + [kết quả]. <b>After a few days</b>, I felt healthy again.</code>
+    </div>
+
+    <div class="card">
+      <h4>Đoạn mẫu</h4>
+      <p style="font-size:14px"><b>At first</b>, he felt great. <b>However</b>, on Sunday afternoon he felt sick. He had a headache, a fever, a sore throat, a runny nose and a stuffy nose. His body aches made it hard to sleep. "It seems like the flu," he thought. <b>So</b> Steve decided to see a doctor. He took a day off and <b>made an appointment</b> at a clinic near his house. At the clinic, he had to <b>register</b>, <b>get a number</b>, and <b>wait in line</b>. The doctor did a <b>general check-up</b> and said it was probably nothing serious. "You <b>should</b> take the medicine three times a day after meals, drink warm water, and <b>stay off your feet</b> for a day." Steve followed the advice. <b>Therefore</b>, he stayed home to rest. <b>As a result</b>, he <b>got rid of</b> the cold. <b>After a few days</b>, he felt healthy again.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">PRONUNCIATION</span>
+      <div class="section-title">Trọng âm từ chỉ sức khoẻ</div>
+    </div>
+
+    <div class="card">
+      <h4>Rule 1 — Hầu hết danh từ 2 âm tiết: nhấn âm ĐẦU</h4>
+      <p style="font-size:15px"><b style="color:var(--forest)">FE</b>ver · <b style="color:var(--forest)">STO</b>mach · <b style="color:var(--forest)">LI</b>ver · <b style="color:var(--forest)">KID</b>neys · <b style="color:var(--forest)">PA</b>tient</p>
+      <p style="font-size:13px;color:var(--text-soft);margin-top:6px">🗣 The <b>PA</b>tient has a <b>FE</b>ver and a <b>STO</b>machache.</p>
+    </div>
+    <div class="card">
+      <h4>Rule 2 — Từ kết thúc bằng -tion: nhấn âm TRƯỚC nó</h4>
+      <p style="font-size:15px">indi<b style="color:var(--forest)">GES</b>tion · consti<b style="color:var(--forest)">PA</b>tion · prescr<b style="color:var(--forest)">IP</b>tion</p>
+    </div>
+    <div class="card">
+      <h4>Rule 3 — Ba từ bẫy</h4>
+      <p style="font-size:15px"><b style="color:var(--forest)">AL</b>lergy (KHÔNG phải al-LER-gy) · <b style="color:var(--forest)">ME</b>dicine (thường đọc 2 âm: MED-sin) · <b style="color:var(--forest)">VO</b>miting</p>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p13">Next: Weather →</button>
+      <button class="btn btn-outline" data-goto="p8">← Numbers &amp; Time</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ P13 WEATHER ============ -->
+<div class="page" id="p13">
+  <div class="hero">
+    <div class="hero-meta"><span class="badge badge-white">Topic 7</span><span class="badge badge-white">Weather lesson</span></div>
+    <h1 class="hero-h1-sm">🌦 Weather</h1>
+    <p class="sub">Mô tả thời tiết và mùa, so sánh khí hậu, nói về sự thay đổi nhiệt độ — và làm small talk, kiểu mở đầu hội thoại phổ biến nhất trong tiếng Anh.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">CORE</span>
+      <div class="section-title">3 cấu trúc lõi</div>
+      <div class="section-subtitle">Chỉ cần 3 cái này là nói được về thời tiết</div>
+    </div>
+
+    <div class="formula">
+      <div class="f-title">1 — HỎI</div>
+      <code>What's the weather like (today)?</code>
+      <code>What's it like outside?</code>
+      <code>Is it still raining?</code>
+      <div class="f-title" style="margin-top:12px">2 — MÔ TẢ THỜI TIẾT HIỆN TẠI</div>
+      <code>It is + [adjective].          → It's really hot and humid today.</code>
+      <code>There is + [noun].            → There is no wind. / There is a strong wind.</code>
+      <div class="f-title" style="margin-top:12px">3 — MÔ TẢ SỰ THAY ĐỔI</div>
+      <code>It's getting + [adj -er].     → It's getting warmer / darker / stronger.</code>
+      <code>The temperature is going up / down.</code>
+    </div>
+
+    <div class="card">
+      <h4>💡 Ví von</h4>
+      <p style="font-size:14px;color:var(--text-mid)">Ba cấu trúc này giống <b>ba nút trên điều khiển TV</b>: một nút để hỏi, một nút để tả cảnh hiện tại, một nút để tả cảnh đang đổi. Người mới học chỉ dùng một nút nên nói mãi câu "It's hot" — nghe rất đơn điệu.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">VOCAB</span>
+      <div class="section-title">Mùa &amp; tính từ thời tiết</div>
+    </div>
+    <div class="vocab-grid" id="weather-vocab"></div>
+
+    <div class="section-header" style="margin-top:26px">
+      <div class="section-title" style="font-size:18px">Thang nhiệt độ — từ nóng nhất đến lạnh nhất</div>
+    </div>
+    <div class="card">
+      <p style="font-size:15px;line-height:2.2;text-align:center">
+        <span class="chip" style="background:#FEE2E2;color:#B91C1C">Boiling 🥵</span> →
+        <span class="chip" style="background:#FEF3C7;color:#B45309">Hot</span> →
+        <span class="chip" style="background:#FEF9C3;color:#A16207">Warm</span> →
+        <span class="chip">Cool</span> →
+        <span class="chip" style="background:#DBEAFE;color:#1D4ED8">Chilly</span> →
+        <span class="chip" style="background:#BFDBFE;color:#1E40AF">Cold</span> →
+        <span class="chip" style="background:#E0E7FF;color:#3730A3">Freezing 🥶</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">CLIMATE</span>
+      <div class="section-title">3 loại khí hậu</div>
+    </div>
+    <table class="tbl">
+      <tr><th style="width:20%">Climate</th><th style="width:16%">Ví dụ</th><th>Đặc điểm</th></tr>
+      <tr><td>tropical (TROpical)</td><td>🇻🇳 Vietnam</td><td>nóng quanh năm, có <b>rainy season</b> và <b>dry season</b>, tháng 4 có thể boiling gần 40°C</td></tr>
+      <tr><td>subtropical (subTROpical)</td><td>🇰🇷 South Korea</td><td>mùa hè nóng và ẩm, mùa đông khá lạnh</td></tr>
+      <tr><td>temperate (TEMperate)</td><td>🇬🇧 The UK</td><td>bốn mùa rõ rệt: xuân ấm, hè nóng nắng, thu mát và nhiều gió, đông lạnh — có khi freezing</td></tr>
+    </table>
+    <div class="warn-box">⚠️ Trọng âm: <b>TEM</b>perate — KHÔNG phải "tem-per-ATE". <b>TRO</b>pical, sub<b>TRO</b>pical.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">WORD PARTNERS</span>
+      <div class="section-title">Từ đi cặp — nói sai là lộ ngay</div>
+      <div class="section-subtitle">Đây là phần khiến người Việt nghe "lạ tai" nhất khi nói tiếng Anh</div>
+    </div>
+
+    <div class="card">
+      <h4>💡 Ví von</h4>
+      <p style="font-size:14px;color:var(--text-mid)">Word partners giống như <b>đôi đũa</b>: đũa phải đi với đũa, không ai cầm một đũa một thìa. "Big wind" đúng ngữ pháp nhưng người bản xứ nghe như cầm đũa lệch.</p>
+    </div>
+
+    <table class="tbl">
+      <tr><th style="width:34%">✅ Đúng</th><th style="width:34%">❌ Sai</th><th>Nghĩa</th></tr>
+      <tr><td><b>thick</b> fog</td><td>bad fog</td><td>sương mù dày</td></tr>
+      <tr><td><b>strong</b> wind</td><td>big wind</td><td>gió mạnh</td></tr>
+      <tr><td><b>heavy</b> rain</td><td>big rain</td><td>mưa to</td></tr>
+      <tr><td><b>light</b> showers</td><td>small rain</td><td>mưa nhẹ, mưa rào nhỏ</td></tr>
+      <tr><td><b>pour with</b> rain</td><td>rain very much</td><td>mưa như trút</td></tr>
+      <tr><td>the sun <b>came out</b></td><td>the sun appeared</td><td>trời hửng nắng</td></tr>
+      <tr><td>the sky is <b>clear</b></td><td>the sky is clean</td><td>trời quang</td></tr>
+    </table>
+
+    <div class="formula">
+      <div class="f-title">QUY TẮC TẠO TÍNH TỪ: noun + -y</div>
+      <code>sun → sunny · cloud → cloudy · wind → windy · rain → rainy</code>
+      <code>snow → snowy · fog → foggy · ice → icy</code>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">STORM</span>
+      <div class="section-title">Mô tả một cơn giông từ đầu đến cuối</div>
+    </div>
+    <div class="card">
+      <p style="font-size:14px"><b>First</b>, the air becomes extremely <b>humid</b>. Then you hear <b>thunder</b> and see <b>lightning</b> — a real <b>thunderstorm</b>! It begins to <b>pour with rain</b>: <b>heavy rain</b>, not a small shower. A <b>strong wind</b> shakes the trees. An hour later, only <b>light showers</b> are left. Then <b>the sun comes out</b>, and the sky is <b>clear</b> again.</p>
+    </div>
+    <div class="info-box"><b>thunder</b> = sấm (tiếng nghe được) · <b>lightning</b> = chớp (ánh sáng nhìn thấy). Âm /θ/ trong <b>th</b>under và <b>th</b>ick: lưỡi đặt giữa hai hàm răng. Riêng wea<b>th</b>er là âm mềm /ð/.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">SMALL TALK</span>
+      <div class="section-title">Hội thoại mẫu</div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h4>Ở trạm xe buýt ☁️</h4>
+        <p style="font-size:14px"><b>A:</b> Good morning! What's it like outside today?<br>
+        <b>B:</b> It's really nice — sunny and warm, and there is no wind.<br>
+        <b>A:</b> Really? It was so cloudy this morning. Is it still raining?<br>
+        <b>B:</b> No, it's not raining anymore. The sun came out, and the sky is clear now.</p>
+      </div>
+      <div class="card">
+        <h4>Sắp có giông ⛈️</h4>
+        <p style="font-size:14px"><b>A:</b> It feels so hot and sticky this afternoon. Do you think the weather will change?<br>
+        <b>B:</b> Yes — the air is extremely humid, and I just heard thunder. It's going to pour with rain soon. Let's go inside before the heavy rain starts!</p>
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p9">Next: Chunking &amp; Stress →</button>
+      <button class="btn btn-outline" data-goto="p12">← Health</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ P9 PRONUNCIATION ============ -->
+<div class="page" id="p9">
+  <div class="hero">
+    <div class="hero-meta"><span class="badge badge-white">Delivery</span><span class="badge badge-white">Sessions 2, 32</span></div>
+    <h1 class="hero-h1-sm">🔊 Chunking, Stress &amp; Schwa</h1>
+    <p class="sub">Nói đúng ngữ pháp mà nghe vẫn "đều đều" thì người nghe vẫn mệt. Ba kỹ thuật dưới đây quyết định độ tự nhiên khi nói.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">FLUENCY</span>
+      <div class="section-title">Fluency thực sự là gì?</div>
+    </div>
+    <div class="card">
+      <p style="font-size:14px;line-height:2">
+        <span class="chip">the ability to maintain flow and rhythm</span>
+        <span class="chip">minimal interruptions</span>
+        <span class="chip">chunking — grouping words into meaningful units</span>
+        <span class="chip">strategic pausing</span>
+        <span class="chip">processing speed &amp; spontaneity</span>
+        <span class="chip">self-awareness in speech</span>
+      </p>
+      <p style="font-size:14px;color:var(--text-mid);margin-top:12px"><b>Điểm mấu chốt:</b> fluency <b>không</b> phải là nói nhanh. Fluency là <b>nói có nhịp</b> — ngắt đúng chỗ, dừng có chủ ý.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">CHUNKING</span>
+      <div class="section-title">Ngắt nghỉ theo cụm ý nghĩa</div>
+    </div>
+
+    <div class="card">
+      <h4>💡 Ví von</h4>
+      <p style="font-size:14px;color:var(--text-mid)">Một câu tiếng Anh giống như <b>một chuỗi hạt</b>. Không ai đọc từng hạt một, cũng không ai nuốt cả chuỗi trong một hơi. Người ta cầm theo <b>từng đoạn</b>. Chunking chính là chia chuỗi thành từng đoạn cầm vừa tay.</p>
+    </div>
+
+    <div class="info-box">
+      <b>Một cụm (thought group) thường là:</b><br>
+      • Chủ ngữ + động từ — <i>Yesterday, / I went / to the market.</i><br>
+      • Cụm danh từ — <i>The cute tall girl / is my sister.</i><br>
+      • Cụm giới từ (thời gian, nơi chốn) — <i>We will meet / at 7 PM / in front of the cinema.</i><br>
+      • Trước liên từ (and, but, or, so, because, which) — <i>I wanted to go out, / but it started to rain.</i>
+    </div>
+
+    <div class="card">
+      <h4>Xử lý giọng khi ngắt</h4>
+      <table class="tbl" style="margin:0">
+        <tr><td>Trong cụm</td><td>đọc liền mạch, nối âm (liaison), <b>không dừng</b></td></tr>
+        <tr><td>Từ quan trọng nhất trong cụm</td><td>nhấn mạnh, ngân dài, cao giọng (thường là danh từ, động từ chính, tính từ)</td></tr>
+        <tr><td>Cuối cụm (chưa hết câu)</td><td>giọng đi ngang hoặc hơi lên</td></tr>
+        <tr><td>Cuối câu</td><td>giọng <b>hạ hẳn</b> xuống</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h4>Ví dụ thực tế</h4>
+      <p style="font-size:14px">Câu gốc: <i>"If you want to improve your accent you need to practice every day."</i></p>
+      <p style="font-size:15px;margin-top:8px;color:var(--forest);font-weight:600">If you want to improve your accent, / you need to practice / every day.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">SENTENCE STRESS</span>
+      <div class="section-title">Quy tắc "cá lớn nuốt cá bé"</div>
+      <div class="section-subtitle">Chống bệnh flat tone — giọng đều đều không lên không xuống</div>
+    </div>
+
+    <table class="tbl">
+      <tr><th style="width:34%">Loại từ</th><th style="width:30%">Cách đọc</th><th>Gồm những gì</th></tr>
+      <tr><td>Content words (từ khoá)</td><td>to, rõ, ngân dài</td><td>danh từ, động từ chính, tính từ, trạng từ, từ phủ định (not, can't)</td></tr>
+      <tr><td>Structure words (từ phụ)</td><td>nhỏ, lướt nhanh, hạ giọng</td><td>đại từ (I, you, he), giới từ (in, on, at), mạo từ (a, an, the), trợ động từ (do, can, is)</td></tr>
+    </table>
+
+    <div class="card">
+      <h4>Ví dụ</h4>
+      <p style="font-size:15px">I <b style="color:var(--forest)">WANT</b> to <b style="color:var(--forest)">BUY</b> a <b style="color:var(--forest)">CAR</b>.</p>
+      <p style="font-size:13px;color:var(--text-soft);margin-top:6px">3 từ in đậm nổi lên, phần còn lại lướt qua.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">SCHWA</span>
+      <div class="section-title">Âm schwa /ə/ — âm lướt</div>
+    </div>
+
+    <div class="info-box">Khi các từ phụ biến thành /ə/, các từ chính <b>tự động nổi bật lên</b>, tạo ra giai điệu nhịp nhàng. Đây là bí quyết để nghe "như người bản xứ" mà không cần đổi giọng.</div>
+
+    <table class="tbl">
+      <tr><th style="width:20%">Từ</th><th style="width:26%">Đọc chậm (sai khi nói nhanh)</th><th>Đọc tự nhiên</th></tr>
+      <tr><td>to</td><td>/tuː/</td><td>/tə/</td></tr>
+      <tr><td>for</td><td>/fɔːr/</td><td>/fər/</td></tr>
+      <tr><td>can</td><td>/kæn/</td><td>/kən/</td></tr>
+      <tr><td>at</td><td>/æt/</td><td>/ət/</td></tr>
+    </table>
+
+    <div class="card">
+      <h4>Luyện tập</h4>
+      <p style="font-size:15px">I want to <b style="color:var(--forest)">GO</b> to the <b style="color:var(--forest)">STORE</b> to buy some <b style="color:var(--forest)">MILK</b>.</p>
+      <p style="font-size:14px;color:var(--blue);margin-top:8px;font-family:Consolas,monospace">i-wən-tə <b>GO</b>-tə-ðə <b>STORE</b>-tə-bai-səm <b>MILK</b></p>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p10">Next: Lỗi thường gặp →</button>
+      <button class="btn btn-outline" data-goto="p13">← Weather</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ P10 MISTAKES ============ -->
+<div class="page" id="p10">
+  <div class="hero">
+    <div class="hero-meta"><span class="badge badge-white">Fix</span><span class="badge badge-white">Từ chính bài của em</span></div>
+    <h1 class="hero-h1-sm">⚠️ Lỗi thường gặp — sửa dứt điểm</h1>
+    <p class="sub">Đây là các lỗi thực tế xuất hiện trong bài nói và bài viết của em suốt khoá học. Sửa được 10 lỗi này là lên rõ rệt.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">TOP 12</span>
+      <div class="section-title">Bảng lỗi &amp; cách sửa</div>
+    </div>
+    <div id="mistakes"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">PRACTICE</span>
+      <div class="section-title">Sửa câu sai</div>
+      <div class="section-subtitle">Gõ câu đúng vào ô, sau đó bấm Xem đáp án</div>
+    </div>
+    <div id="fix-quiz"></div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="revealFix()">Xem đáp án</button>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p11">Next: Self-check →</button>
+      <button class="btn btn-outline" data-goto="p9">← Chunking &amp; Stress</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ P11 SELF CHECK ============ -->
+<div class="page" id="p11">
+  <div class="hero">
+    <div class="hero-meta"><span class="badge badge-white">Final</span></div>
+    <h1 class="hero-h1-sm">✅ Tự đánh giá</h1>
+    <p class="sub">Tick những gì em đã làm được. Ô nào chưa tick được thì quay lại trang tương ứng.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">CHECKLIST</span>
+      <div class="section-title">Em đã sẵn sàng chưa?</div>
+    </div>
+    <div class="card" id="checklist"></div>
+    <div class="feedback-box info" id="check-fb" style="background:var(--blue-light);color:var(--blue);border:1px solid #BFDBFE"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">SUMMARY</span>
+      <div class="section-title">Bảng tóm tắt cả khoá</div>
+    </div>
+    <table class="tbl">
+      <tr><th style="width:30%">Kiến thức</th><th>Câu chốt phải thuộc</th></tr>
+      <tr><td>Trả lời 2 lý do</td><td>… for a couple of reasons. The first reason is that… The second reason is that…</td></tr>
+      <tr><td>Đưa ý kiến</td><td>… because… For example,… This helps me… / As a result,…</td></tr>
+      <tr><td>Tính cách tự rèn</td><td>I learned to be more… I learned this when… As a result,…</td></tr>
+      <tr><td>Vấn đề–giải pháp</td><td>There is [problem] because of [reason], so [who] should [solution].</td></tr>
+      <tr><td>Retelling</td><td>He/She said that + [lùi thì]</td></tr>
+      <tr><td>Thuyết trình</td><td>Today I would like to talk about… First,… Let's move on to… Next,…</td></tr>
+      <tr><td>Because vs because of</td><td>because + mệnh đề · because of + danh từ/V-ing</td></tr>
+      <tr><td>Thứ tự tả tóc</td><td>opinion → size → shape → colour + hair</td></tr>
+      <tr><td>Nhấn trọng âm</td><td>content words to rõ · structure words lướt nhanh /ə/</td></tr>
+      <tr><td>Kể chuyện bị bệnh</td><td>At first… However… So… Therefore… As a result…</td></tr>
+      <tr><td>Bệnh–triệu chứng–chữa</td><td>When I have a/an [illness], I have experienced… I should…</td></tr>
+      <tr><td>Thời tiết</td><td>It is + adj · There is + noun · It's getting + -er · temperature going up/down</td></tr>
+      <tr><td>Word partners</td><td>thick fog · strong wind · heavy rain · light showers</td></tr>
+      <tr><td>Ngắt nghỉ</td><td>ngắt theo cụm ý nghĩa, hạ giọng cuối câu</td></tr>
+    </table>
+
+    <div class="btn-group">
+      <button class="btn btn-outline" data-goto="p0">← Về Overview</button>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<button class="reset-fab" onclick="resetAll()">🔄 Reset All</button>
+
+<script>
+/* ---------- DATA ---------- */
+const TRAITS = {
+  pos:[
+    ['confident','tự tin','I believe in myself, so I feel confident when speaking.'],
+    ['determined','quyết đoán, kiên định','She is determined to finish her degree.'],
+    ['ambitious','tham vọng, cầu tiến','He is ambitious and wants to become a manager.'],
+    ['optimistic','lạc quan','Optimistic people think good things will happen.'],
+    ['hard-working / diligent','chăm chỉ','He works a lot and tries his best — he is diligent.'],
+    ['flexible / adaptable','linh hoạt, dễ thích nghi','I am adaptable, so I can work in any team.'],
+    ['generous','hào phóng','She is generous — she always shares her food.'],
+    ['loyal','trung thành','A loyal friend never leaves you.'],
+    ['patient','kiên nhẫn','I am patient — I can wait a long time without getting annoyed.'],
+    ['open-minded','cởi mở','Open-minded people accept new ideas easily.']
+  ],
+  neg:[
+    ['arrogant','kiêu ngạo','He is arrogant because he thinks he is better than everyone.'],
+    ['stubborn','bướng bỉnh','She is stubborn and never changes her mind.'],
+    ['pessimistic','bi quan','Pessimistic people think bad things will happen.'],
+    ['lazy / laid-back','lười biếng / thụ động','He is lazy — he just sits around all day watching TV.'],
+    ['selfish','ích kỷ','A selfish person only thinks about himself.'],
+    ['moody','dễ thay đổi cảm xúc','Her mood changes quickly — she is moody.'],
+    ['unreliable','không đáng tin cậy','That person is unreliable — they often break promises.'],
+    ['sensitive','nhạy cảm','He is sensitive, so be careful with your words.'],
+    ['inconsiderate','thiếu tế nhị, vô ý','He is inconsiderate — he never keeps the place clean.'],
+    ['messy','bừa bộn','My roommate is messy and never tidies up.']
+  ],
+  soc:[
+    ['outgoing / extroverted','hướng ngoại','Extroverts recharge their battery by being with people.'],
+    ['introverted','hướng nội','Introverts recharge their battery by being alone.'],
+    ['sociable','hoà đồng','I am quite sociable because I enjoy meeting people.'],
+    ['friendly / approachable','thân thiện, dễ gần','The staff were really polite and friendly.'],
+    ['supportive','biết hỗ trợ người khác','She is supportive — she always encourages her friends.'],
+    ['assertive','quyết đoán, biết bảo vệ quan điểm','Assertive people express their opinions clearly.'],
+    ['strict','nghiêm khắc','My teacher is strict about deadlines.'],
+    ['persuasive','có sức thuyết phục','A persuasive speaker can change your mind.'],
+    ['honest','trung thực','Honest people always tell the truth.'],
+    ['enthusiastic','nhiệt tình','He is enthusiastic about every new project.'],
+    ['caring / thoughtful','quan tâm, chu đáo','She is caring — she took care of her mom when she was sick.'],
+    ['considerate','biết điều, biết ý','I try to be considerate — I keep quiet when people study.'],
+    ['talkative','nói nhiều','She is talkative — she loves calling people on the phone.']
+  ],
+  work:[
+    ['intelligent / smart / clever','thông minh','He is a clever student who learns quickly.'],
+    ['creative / innovative','sáng tạo, đổi mới','Creative people find new ways to solve problems.'],
+    ['logical / rational','lý trí, logic','A logical thinker looks at the facts first.'],
+    ['meticulous / detail-oriented','tỉ mỉ, chú ý chi tiết','She is meticulous about her work.'],
+    ['efficient','hiệu quả','An efficient worker finishes tasks quickly and well.'],
+    ['organised / disciplined','ngăn nắp, kỷ luật','I learned to be more disciplined by myself.'],
+    ['proactive','chủ động','Proactive people act before being asked.'],
+    ['studious','ham học','I am a studious person because I spend time studying every day.'],
+    ['reliable / trustworthy','đáng tin cậy','I want a reliable roommate who keeps my belongings safe.'],
+    ['neat / tidy','gọn gàng','I really want a neat roommate — the room looks comfortable.']
+  ],
+  coll:[
+    ['a people person','người giỏi giao tiếp','She is a people person — everyone likes talking to her.'],
+    ['team player','người làm việc nhóm tốt','A team player supports everyone in the group.'],
+    ['quick learner','người học nhanh','I am a quick learner — I picked up the job in one week.'],
+    ['critical thinker','người có tư duy phản biện','Critical thinkers ask why before they believe something.'],
+    ['risk taker','người thích mạo hiểm','Risk takers are not afraid of failure.'],
+    ['get along with','hoà hợp với','I get along with my co-workers because we like drinking milk tea together.'],
+    ['let someone down','làm ai thất vọng','He let me down because I had to wait an hour for him.'],
+    ['have a falling out','cãi nhau to','When we have different opinions, we will probably have a falling out.'],
+    ['come between','xen vào (giữa hai người)','He let another girl come between him and his partner.'],
+    ['take sides','chọn phe','I don\'t want to take sides when my friends argue.']
+  ]
+};
+
+const FAM_PHRASES = [
+  ['There are four people in my family.','Gia đình tôi có bốn người.'],
+  ['They are my parents, my older brother and me.','Đó là bố mẹ, anh trai và tôi.'],
+  ['My cousins are 21 and 18 respectively.','Các anh chị họ tôi lần lượt 21 và 18 tuổi.'],
+  ['They are in their thirties.','Họ khoảng ba mươi mấy.'],
+  ['nephew / niece','cháu trai / cháu gái'],
+  ['a rebellious phase','giai đoạn nổi loạn'],
+  ['a conflict resolver','người giải quyết xung đột'],
+  ['keep in touch','giữ liên lạc'],
+  ['emotionally distant','xa cách về mặt tình cảm'],
+  ['a lack of connection','thiếu sự kết nối'],
+  ['be a role model for children','làm gương cho con cái'],
+  ['ask someone for advice','xin lời khuyên từ ai'],
+  ['boss someone around','sai bảo, ra lệnh cho ai'],
+  ['obey / annoy','vâng lời / làm phiền']
+];
+
+const PHONE_PHRASES = [
+  ['Can I speak to…?','Cho tôi nói chuyện với… được không?'],
+  ['take a message','nhận lời nhắn'],
+  ['leave a message','để lại lời nhắn'],
+  ['give someone a message','chuyển lời nhắn cho ai'],
+  ['You\'re breaking up.','Tín hiệu bị đứt quãng.'],
+  ['I\'m cutting out.','Sóng của tôi bị mất.'],
+  ['pick up','bắt máy'],
+  ['hang up','cúp máy'],
+  ['I lost him / her.','Tôi bị mất kết nối với anh/cô ấy.'],
+  ['get a phone call','nhận được cuộc gọi'],
+  ['Hold on a second.','Chờ một chút.']
+];
+
+const CULTURE_VOCAB = [
+  ['culture / cultural','n / adj','văn hoá / thuộc về văn hoá','Cultural: relating to the habits, traditions and beliefs of a society.'],
+  ['belief','n','niềm tin','My belief gives me hope during difficult times.'],
+  ['heritage','n','di sản','Vietnam has a rich cultural heritage.'],
+  ['citizenship','n','quốc tịch, quyền công dân','He has dual citizenship.'],
+  ['origin','n','nguồn gốc','This chair is made in Japan.'],
+  ['family-oriented','adj','đề cao gia đình','Vietnamese culture is family-oriented.'],
+  ['collectivism','n','chủ nghĩa tập thể','Chinese culture respects collectivism.'],
+  ['group harmony','n','sự hoà hợp trong nhóm','In Japanese culture, people care about group harmony.'],
+  ['punctuality','n','sự đúng giờ','Japan is known for its punctuality.'],
+  ['personal space','n','không gian riêng','Canadians usually respect personal space.'],
+  ['older generations / elders','n','thế hệ trước / người lớn tuổi','People usually show respect to older generations.'],
+  ['family ties','n','mối quan hệ gia đình','In Chinese culture, people value family ties.']
+];
+
+const TRAFFIC_VOCAB = [
+  ['traffic congestion','n','tắc nghẽn giao thông','There is traffic congestion on the bridge because of rush hour.'],
+  ['traffic jam','n','kẹt xe','I don\'t have to worry about traffic jams.'],
+  ['bumper to bumper','phr','xe nối đuôi sát nhau','It\'s bumper to bumper, so keep away from the bridge.'],
+  ['rush hour','n','giờ cao điểm','I have to go to school at rush hour.'],
+  ['fare','n','giá vé','How much is the fare? — It\'s $2.50.'],
+  ['exact change','n','tiền lẻ đúng số','You need the exact change.'],
+  ['detour','n','đường vòng','Follow the detour sign.'],
+  ['road construction','n','công trình sửa đường','Traffic is blocked because of road construction.'],
+  ['collision','n','va chạm, tai nạn','There has been a collision, so avoid the bridge.'],
+  ['backed up','adj','ùn ứ, dồn lại','There is a lot of traffic backed up.'],
+  ['light traffic','n','đường vắng','Traffic is unusually light today.'],
+  ['moving smoothly','phr','di chuyển thông suốt','Traffic is moving smoothly on Kennedy Bridge.'],
+  ['zebra crossing','n','vạch qua đường','Pedestrians should use the zebra crossing.'],
+  ['bike lane','n','làn xe đạp','The government should build more bike lanes.'],
+  ['public transport','n','giao thông công cộng','You should use public transport at rush hour.'],
+  ['ride-hailing motorbike','n','xe ôm công nghệ','I booked the ride-hailing motorbike on my phone.'],
+  ['reasonable price','n','giá hợp lý','He arrived quickly and at a reasonable price.'],
+  ['in good condition','phr','trong tình trạng tốt','The motorbike was in good condition.'],
+  ['cancel the ride','v','huỷ chuyến','The driver cancelled the ride at the last minute.'],
+  ['good value for money','phr','đáng đồng tiền','The ticket price is reasonable, so it\'s good value for money.'],
+  ['air-conditioned','adj','có điều hoà','The trains are clean, modern and air-conditioned.'],
+  ['shuttle flight','n','chuyến bay con thoi','What time is the next shuttle flight to Boston?'],
+  ['passenger','n','hành khách','For how many passengers?'],
+  ['in a hurry','phr','đang vội','I\'m in a hurry because my flight leaves in two hours.']
+];
+
+const HOME_VOCAB = [
+  ['detached house','n','nhà riêng biệt','I currently live in a detached house in the countryside.'],
+  ['the suburbs','n','vùng ngoại ô','I rented a small house in the suburbs.'],
+  ['consist of','v','bao gồm','My place consists of a living room and three bedrooms.'],
+  ['utility room','n','phòng đồ dùng / phòng giặt','A utility room stores the washing machine and cleaning tools.'],
+  ['daily commute','n','việc đi lại hằng ngày','It makes my daily commute much easier.'],
+  ['situated close to','phr','nằm gần','It is situated close to my university.'],
+  ['landlord','n','chủ nhà cho thuê','The first question I will ask the landlord is the rent price.'],
+  ['rent price','n','giá thuê','It helps me check whether it fits my finances or not.'],
+  ['privacy','n','sự riêng tư','I like to stay in a place that has privacy.'],
+  ['take into consideration','phr','cân nhắc, xem xét','There are several factors I take into consideration.'],
+  ['a large yard','n','sân rộng','It has a large yard with a small garden.'],
+  ['fence','n','hàng rào','There is a fence around my house.']
+];
+
+
+const BODY_VOCAB = [
+  ['brain','n','não','My brain felt heavy after long hours on the computer.'],
+  ['heart','n','tim','The doctor listened to his heart and his lungs.'],
+  ['lungs','n','phổi','When you get a sore throat, your lungs can suffer too.'],
+  ['liver','n','gan','He loves fried and spicy food, so his liver needs a break.'],
+  ['kidneys','n','thận','The doctor said his liver and his kidneys needed a break.'],
+  ['stomach','n','dạ dày','If you eat spoiled food, you will feel the pain in your stomach.'],
+  ['blood vessels','n','mạch máu','She checked his blood vessels and his backbone too.'],
+  ['backbone','n','xương sống','Sitting badly all day is not good for your backbone.'],
+  ['throat','n','cổ họng','My throat is in trouble — I have a sore throat.']
+];
+
+const SYMPTOM_VOCAB = [
+  ['a fever','n','sốt','He had a fever and a sore throat.'],
+  ['a headache','n','đau đầu','My brain will complain — I will probably get a headache.'],
+  ['a sore throat','n','đau họng','I got a sore throat after going out in the cold.'],
+  ['a runny nose','n','chảy nước mũi','He had a runny nose and a stuffy nose.'],
+  ['a stuffy nose','n','nghẹt mũi','A stuffy nose makes it hard to breathe.'],
+  ['sneezing','v','hắt hơi','He was sneezing all morning.'],
+  ['body aches','n','đau nhức người','His body aches made it hard to sleep.'],
+  ['a stomachache','n','đau bụng','He had a terrible stomachache and was vomiting all night.'],
+  ['vomiting','v','nôn','He was vomiting all night after eating spoiled food.'],
+  ['feeling dizzy','phr','chóng mặt','She felt dizzy when she stood up too quickly.'],
+  ['itchy skin','n','ngứa da','Put ice on the itchy skin.'],
+  ['a skin rash','n','phát ban','His cousin had itchy skin and a skin rash.'],
+  ['shortness of breath','n','khó thở','The allergy even caused shortness of breath.'],
+  ['heat in the body','phr','nóng trong người','He loves spicy food, so he had heat in the body.']
+];
+
+const SICK_PHRASES = [
+  ['I feel sick.','Tôi thấy không khoẻ.'],
+  ['It seems like the flu.','Có vẻ như bị cúm.'],
+  ['I have experienced…','Tôi đã gặp phải (triệu chứng)…'],
+  ['It started two days ago.','Nó bắt đầu từ hai ngày trước.'],
+  ['I want to get rid of this cough.','Tôi muốn hết cơn ho này.'],
+  ['Nothing else seems to be doing the job.','Không có cách nào khác có vẻ hiệu quả.'],
+  ['Give it a try.','Thử xem sao.'],
+  ['You should stay off your feet.','Bạn nên nghỉ ngơi, đừng đi lại.'],
+  ['You will feel better in no time.','Bạn sẽ khoẻ lại rất nhanh thôi.'],
+  ['It is getting better on its own.','Nó đang tự khỏi dần.'],
+  ['I am really into healthy living.','Tôi rất quan tâm đến lối sống lành mạnh.'],
+  ['I took a day off.','Tôi xin nghỉ một ngày.']
+];
+
+const CLINIC_PHRASES = [
+  ['Do you have an appointment?','Bạn có đặt lịch hẹn chưa?'],
+  ['I would like to register.','Tôi muốn đăng ký khám.'],
+  ['get a number','lấy số thứ tự'],
+  ['wait in line','xếp hàng chờ'],
+  ['It is your turn.','Đến lượt bạn rồi.'],
+  ['a general check-up','khám tổng quát'],
+  ['What seems to be the problem?','Bạn thấy vấn đề gì?'],
+  ['It is probably nothing serious.','Có lẽ không có gì nghiêm trọng.'],
+  ['You are supposed to take the medicine three times a day after meals.','Bạn phải uống thuốc ba lần một ngày sau bữa ăn.'],
+  ['make an appointment','đặt lịch hẹn'],
+  ['gargle with salt water','súc miệng nước muối'],
+  ['avoid allergens','tránh các tác nhân gây dị ứng']
+];
+
+const WEATHER_VOCAB = [
+  ['spring','n','mùa xuân','In spring it is warm, and the sky is often blue.'],
+  ['summer','n','mùa hè','In summer it can be hot and sunny.'],
+  ['autumn / fall','n','mùa thu','In autumn it is cool and windy, and the mornings are chilly.'],
+  ['winter','n','mùa đông','In winter it is cold — sometimes freezing, with snowy mornings.'],
+  ['sunny','adj','nắng','It is hot and sunny today.'],
+  ['cloudy','adj','nhiều mây','Tokyo was cloudy and rainy.'],
+  ['windy','adj','nhiều gió','Beijing was cold and windy, with a low of 0°C.'],
+  ['foggy','adj','có sương mù','Thick fog makes driving dangerous.'],
+  ['icy','adj','đóng băng','Icy roads are dangerous in winter.'],
+  ['humid','adj','ẩm, oi','It is really hot and humid today.'],
+  ['chilly','adj','se lạnh','The mornings are chilly in autumn.'],
+  ['freezing','adj','lạnh cóng','New York was freezing at minus ten!'],
+  ['boiling','adj','nóng như thiêu','In April the city can be boiling, nearly 40°C.'],
+  ['thunder','n','sấm','Suddenly we heard thunder and saw lightning.'],
+  ['lightning','n','chớp','We heard thunder and saw lightning — a real thunderstorm!'],
+  ['a thunderstorm','n','cơn giông','He has never seen a tropical thunderstorm.'],
+  ['heavy rain','n','mưa to','It began to pour with rain: heavy rain, not a small shower.'],
+  ['light showers','n','mưa rào nhẹ','An hour later, only light showers were left.'],
+  ['rainy season','n','mùa mưa','Vietnam has a rainy season and a dry season.'],
+  ['dry season','n','mùa khô','In the dry season it is hot and sunny.']
+];
+
+const MISTAKES = [
+  ['because of + mệnh đề','because of the road is narrow','because <b>the road is</b> narrow  /  because of <b>the narrow road</b>'],
+  ['Thiếu chủ ngữ','Is very important for people.','<b>It</b> is very important for people.'],
+  ['Thiếu "it\'s" sau "so"','The trains are clean so really comfortable.','The trains are clean, so <b>it\'s</b> really comfortable.'],
+  ['Sai dạng phủ định quá khứ','She don\'t wanted to do something.','She <b>didn\'t want to do anything</b>.'],
+  ['Sai giới từ với "similar"','I am similar <b>with</b> my mom.','I am similar <b>to</b> my mom.'],
+  ['Sai trật tự tính từ tóc','She has black long wavy hair.','She has <b>long wavy black</b> hair.'],
+  ['Nói chiều cao sai','He was tall 180 cm.','He <b>is 180 cm tall</b>. / <b>His height is</b> 180 cm.'],
+  ['"middle age" thay vì "middle-aged"','She is middle age.','She is a <b>middle-aged</b> woman.'],
+  ['Danh từ không đếm được','I have many homework<b>s</b>.','I have <b>a lot of homework</b>.'],
+  ['Sai dạng tính từ ghép','everything is very good-organized','everything is very <b>well organised</b>'],
+  ['Thiếu "to" sau "used"','I used to want become a singer.','I used to want <b>to</b> become a singer.'],
+  ['Sai chính tả / phát âm hay lẫn','product (v) · alive · life','<b>produce</b> (v) sản xuất · <b>product</b> (n) sản phẩm · alive /v/ · life /f/']
+];
+
+const RETELL_Q = [
+  ['A: "I will go to the market." → He said that he ___ go to the market.','would'],
+  ['A: "She is in her thirties." → He said that she ___ in her thirties.','was'],
+  ['A: "I have to catch a train." → She said that she ___ to catch a train.','had'],
+  ['A: "I need a taxi." → She said that she ___ a taxi.','needed'],
+  ['A: "We feel tired." → They said that they ___ tired.','felt'],
+  ['A: "I can drive." → He said that he ___ drive.','could']
+];
+
+const FIX_Q = [
+  ['Because of the road is too narrow, traffic moves slowly.','Because <b>the road is</b> too narrow, traffic moves slowly. / <b>Because of the narrow road</b>, traffic moves slowly.'],
+  ['I am similar with my father because we are both patient.','I am similar <b>to</b> my father because we are both patient.'],
+  ['She has black long straight hair and a oval face.','She has <b>long straight black</b> hair and <b>an</b> oval face.'],
+  ['The trains are modern so very comfortable.','The trains are modern, <b>so they are</b> very comfortable.'],
+  ['I like music for a couple of reasons. The first reason is helping me relax.','…The first reason is <b>that it helps</b> me relax.'],
+  ['He don\'t wanted to do anything yesterday.','He <b>didn\'t want</b> to do anything yesterday.']
+];
+
+const CHECKLIST = [
+  'Tôi nói được 2 lý do bằng khung "for a couple of reasons" mà không cần nghĩ.',
+  'Tôi phân biệt được because và because of, dùng đúng 100%.',
+  'Tôi tả được một người: tóc → mặt → mắt → chiều cao → dáng người, đúng thứ tự.',
+  'Tôi có 6 tính từ tính cách yêu thích và dùng được ngay trong câu.',
+  'Tôi kể lại được một hội thoại bằng "He/She said that…" với động từ lùi thì đúng.',
+  'Tôi nói được khung Vấn đề → Nguyên nhân → Giải pháp cho ít nhất 5 tình huống giao thông.',
+  'Tôi kể được một trải nghiệm tốt và một trải nghiệm xấu khi dùng phương tiện.',
+  'Tôi thuyết trình được về nhà ở của tôi trong 60 giây.',
+  'Tôi thuyết trình được về một môn thể thao theo khung 7 bước.',
+  'Tôi kể được một câu chuyện khiếu nại theo khung Initially → However → Result.',
+  'Tôi đọc đúng giờ, ngày tháng và số điện thoại.',
+  'Tôi mô tả được triệu chứng và khuyên bạn bị ốm bằng "should".',
+  'Tôi mô tả được thời tiết hôm nay và sự thay đổi bằng "It is getting…".',
+  'Tôi ngắt nghỉ theo cụm ý nghĩa và hạ giọng ở cuối câu.'
+];
+
+/* ---------- RENDER ---------- */
+function vocabCard(w,pos,vi,ex){
+  return `<div class="vocab-card" onclick="this.classList.toggle('flipped')">
+    <div class="tap">tap ↻</div>
+    <div><span class="word">${w}</span>${pos?`<span class="pos">${pos}</span>`:''}</div>
+    <div class="vi">${vi}</div>
+    <div class="example">${ex}</div>
+  </div>`;
+}
+function traitCard(a){ return vocabCard(a[0],'',a[1],a[2]); }
+function phraseCard(en,vi){ return `<div class="phrase-card"><div class="phrase-en">${en}</div><div class="phrase-vi">${vi}</div></div>`; }
+
+document.getElementById('g-pos').innerHTML  = TRAITS.pos.map(traitCard).join('');
+document.getElementById('g-neg').innerHTML  = TRAITS.neg.map(traitCard).join('');
+document.getElementById('g-soc').innerHTML  = TRAITS.soc.map(traitCard).join('');
+document.getElementById('g-work').innerHTML = TRAITS.work.map(traitCard).join('');
+document.getElementById('g-coll').innerHTML = TRAITS.coll.map(traitCard).join('');
+document.getElementById('fam-phrases').innerHTML   = FAM_PHRASES.map(p=>phraseCard(p[0],p[1])).join('');
+document.getElementById('phone-phrases').innerHTML = PHONE_PHRASES.map(p=>phraseCard(p[0],p[1])).join('');
+document.getElementById('culture-vocab').innerHTML = CULTURE_VOCAB.map(v=>vocabCard(v[0],v[1],v[2],v[3])).join('');
+document.getElementById('traffic-vocab').innerHTML = TRAFFIC_VOCAB.map(v=>vocabCard(v[0],v[1],v[2],v[3])).join('');
+document.getElementById('home-vocab').innerHTML    = HOME_VOCAB.map(v=>vocabCard(v[0],v[1],v[2],v[3])).join('');
+
+document.getElementById('body-vocab').innerHTML    = BODY_VOCAB.map(v=>vocabCard(v[0],v[1],v[2],v[3])).join('');
+document.getElementById('symptom-vocab').innerHTML = SYMPTOM_VOCAB.map(v=>vocabCard(v[0],v[1],v[2],v[3])).join('');
+document.getElementById('weather-vocab').innerHTML = WEATHER_VOCAB.map(v=>vocabCard(v[0],v[1],v[2],v[3])).join('');
+document.getElementById('sick-phrases').innerHTML   = SICK_PHRASES.map(x=>phraseCard(x[0],x[1])).join('');
+document.getElementById('clinic-phrases').innerHTML = CLINIC_PHRASES.map(x=>phraseCard(x[0],x[1])).join('');
+
+
+document.getElementById('mistakes').innerHTML = MISTAKES.map((m,i)=>`
+  <div class="card">
+    <h4>${i+1}. ${m[0]}</h4>
+    <div class="err-box">
+      <span class="bad">❌ ${m[1]}</span>
+      <span class="good">✅ ${m[2]}</span>
+    </div>
+  </div>`).join('');
+
+document.getElementById('retell-quiz').innerHTML = RETELL_Q.map((q,i)=>{
+  const parts = q[0].split('___');
+  return `<div class="q-item">${i+1}. ${parts[0]}<input class="blank-input" data-ans="${q[1]}" data-i="${i}">${parts[1]||''}</div>`;
+}).join('');
+
+document.getElementById('fix-quiz').innerHTML = FIX_Q.map((q,i)=>`
+  <div class="card">
+    <h4>${i+1}. Sửa câu sau</h4>
+    <div class="err-box"><span class="bad">❌ ${q[0]}</span></div>
+    <input class="blank-input" style="width:100%;min-width:0" placeholder="Gõ câu đúng của em…">
+    <div class="sample" id="fx${i}"><b>Đáp án:</b> ${q[1]}</div>
+  </div>`).join('');
+
+document.getElementById('checklist').innerHTML = CHECKLIST.map((c,i)=>`
+  <label class="check-item"><input type="checkbox" onchange="updateCheck()"><span>${c}</span></label>`).join('');
+
+/* ---------- INTERACTION ---------- */
+const pages=['p0','p1','p2','p3','p4','p5','p6','p7','p8','p12','p13','p9','p10','p11'];
+const visited=new Set(['p0']);
+function goto(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.page===id));
+  visited.add(id);
+  const pct=Math.round(visited.size/pages.length*100);
+  document.getElementById('pbar').style.width=pct+'%';
+  document.getElementById('ptext').textContent=visited.size+' / '+pages.length+' sections';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.nav-item').forEach(n=>n.onclick=()=>goto(n.dataset.page));
+document.querySelectorAll('[data-goto]').forEach(b=>b.onclick=()=>goto(b.dataset.goto));
+
+document.querySelectorAll('.tab-btn').forEach(b=>{
+  b.onclick=()=>{
+    const bar=b.parentElement;
+    bar.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    const wrap=bar.parentElement;
+    wrap.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById(b.dataset.tab).classList.add('active');
+  };
+});
+
+function checkRetell(){
+  let ok=0;
+  document.querySelectorAll('#retell-quiz .blank-input').forEach(inp=>{
+    const v=inp.value.trim().toLowerCase();
+    const correct = v===inp.dataset.ans;
+    inp.classList.toggle('correct',correct);
+    inp.classList.toggle('incorrect',!correct && v!=='');
+    if(correct) ok++;
+  });
+  const fb=document.getElementById('retell-fb');
+  fb.className='feedback-box show '+(ok===RETELL_Q.length?'success':'error');
+  fb.textContent = ok===RETELL_Q.length ? '🎉 Đúng hết '+ok+'/'+RETELL_Q.length+'! Em nắm chắc phần lùi thì rồi.' : 'Đúng '+ok+'/'+RETELL_Q.length+' — xem lại bảng lùi thì phía trên rồi thử lại nhé.';
+}
+function resetRetell(){
+  document.querySelectorAll('#retell-quiz .blank-input').forEach(i=>{i.value='';i.className='blank-input';});
+  document.getElementById('retell-fb').className='feedback-box';
+}
+function revealFix(){ document.querySelectorAll('.sample').forEach(s=>s.classList.add('revealed')); }
+
+function updateCheck(){
+  const boxes=document.querySelectorAll('#checklist input');
+  const n=[...boxes].filter(b=>b.checked).length;
+  const fb=document.getElementById('check-fb');
+  fb.classList.add('show');
+  fb.textContent = n===boxes.length ? '🎉 Hoàn hảo — em đã sẵn sàng cho bài mock test!' : `Đã tick ${n}/${boxes.length}. Ô nào chưa tick, quay lại trang tương ứng ôn thêm.`;
+}
+
+function resetAll(){
+  document.querySelectorAll('.blank-input').forEach(i=>{i.value='';i.className='blank-input';});
+  document.querySelectorAll('.sample').forEach(s=>s.classList.remove('revealed'));
+  document.querySelectorAll('.vocab-card').forEach(c=>c.classList.remove('flipped'));
+  document.querySelectorAll('input[type=checkbox]').forEach(c=>c.checked=false);
+  document.querySelectorAll('.feedback-box').forEach(f=>f.className='feedback-box');
+  goto('p0');
+}
+goto('p0');
+</script>
+</body>
+</html>
