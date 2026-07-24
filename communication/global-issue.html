@@ -1,0 +1,1985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Issues That Matter — English Communication Lesson</title>
+<style>
+:root{
+  --forest:#013220; --moss:#006D6F; --teal:#007A74; --mint:#D8BFD8;
+  --sage:#F5F5DC; --sand:#FFFAF0; --shell:#FFF5EE; --white:#FFFAFA;
+  --blue:#2563EB; --blue-light:#EFF6FF; --amber:#D97706; --amber-light:#FFFBEB;
+  --red:#DC2626; --red-light:#FEF2F2; --green-success:#16A34A; --green-light:#F0FDF4;
+  --text-dark:#013220; --text-mid:#006D6F; --text-soft:#5F8A80;
+  --border:#E3DED0;
+  --shadow-sm:0 1px 3px rgba(1,50,32,0.08);
+  --shadow-md:0 4px 16px rgba(1,50,32,0.12);
+  --shadow-lg:0 8px 32px rgba(1,50,32,0.16);
+  --radius:12px; --radius-sm:8px; --radius-lg:20px;
+  font-size:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--sand);}
+.app-shell{display:flex;min-height:100vh;}
+
+/* SIDEBAR */
+.sidebar{width:220px;background:var(--forest);position:fixed;top:0;bottom:0;left:0;display:flex;flex-direction:column;padding:22px 0;z-index:100;overflow-y:auto;}
+.brand{padding:0 18px 20px;border-bottom:1px solid rgba(255,255,255,0.1);}
+.brand .lvl{display:inline-block;background:rgba(216,191,216,0.2);color:var(--mint);border:1px solid rgba(216,191,216,0.3);font-size:10px;font-weight:800;letter-spacing:1px;padding:3px 10px;border-radius:99px;}
+.brand h2{color:#fff;font-size:17px;font-weight:800;margin-top:10px;line-height:1.3;}
+.brand .cat{color:var(--mint);opacity:.8;font-size:11px;font-weight:600;letter-spacing:.5px;}
+.nav{flex:1;padding:16px 0;}
+.nav-group{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(216,191,216,0.6);padding:14px 18px 6px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 18px;color:rgba(255,255,255,0.7);font-size:13px;font-weight:500;cursor:pointer;border-left:3px solid transparent;transition:all .2s;}
+.nav-item:hover{background:rgba(216,191,216,0.08);color:#fff;}
+.nav-item.active{background:rgba(216,191,216,0.15);border-left-color:var(--mint);color:#fff;font-weight:700;}
+.nav-item .ic{width:20px;font-size:16px;text-align:center;}
+.prog-wrap{padding:16px 18px 0;border-top:1px solid rgba(255,255,255,0.1);}
+.prog-label{font-size:10px;color:rgba(216,191,216,0.6);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+.prog-track{height:6px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;}
+.prog-fill{height:100%;background:var(--mint);border-radius:99px;width:11%;transition:width .5s ease;}
+
+/* MAIN */
+.main-content{flex:1;margin-left:220px;min-width:0;}
+.page{display:none;}
+.page.active{display:block;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+.hero{background:linear-gradient(135deg,var(--forest),var(--moss),var(--teal));color:#fff;padding:48px;}
+.hero.small{padding:32px 48px;}
+.hero-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:4px 12px;border-radius:99px;letter-spacing:.4px;}
+.badge-white{background:rgba(255,255,255,0.15);color:#fff;}
+.badge-mint{background:rgba(216,191,216,0.2);color:var(--mint);border:1px solid rgba(216,191,216,0.3);}
+.badge-blue{background:var(--blue-light);color:var(--blue);}
+.badge-amber{background:var(--amber-light);color:var(--amber);}
+.badge-green{background:var(--green-light);color:var(--green-success);}
+.badge-red{background:var(--red-light);color:var(--red);}
+.badge-forest{background:var(--sage);color:var(--forest);}
+.hero h1{font-size:36px;font-weight:800;line-height:1.2;margin-bottom:12px;}
+.hero.small h1{font-size:26px;}
+.hero p{max-width:560px;font-size:15px;opacity:.9;}
+.outcomes{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px;}
+
+.section{padding:40px 48px;border-bottom:1px solid var(--border);}
+.section-header{margin-bottom:24px;}
+.part-label{display:inline-block;background:var(--forest);color:var(--mint);font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 10px;border-radius:99px;text-transform:uppercase;}
+.section-title{font-size:22px;font-weight:800;color:var(--forest);margin-top:10px;}
+.section-subtitle{font-size:14px;color:var(--text-soft);margin-top:4px;}
+
+.info-box{background:var(--sage);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:14px 18px;font-size:14px;color:var(--text-mid);margin-bottom:20px;}
+.listening-notice{background:var(--amber-light);border:1px solid #FDE68A;color:var(--amber);padding:12px 16px;font-size:13px;border-radius:var(--radius-sm);margin-bottom:20px;}
+
+/* JOURNEY */
+.journey{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;}
+.j-step{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;position:relative;transition:all .2s;}
+.j-step:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--teal);}
+.j-num{width:28px;height:28px;border-radius:99px;background:var(--forest);color:var(--mint);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.j-step h4{font-size:14px;font-weight:800;color:var(--forest);}
+.j-step .j-part{font-size:11px;font-weight:700;color:var(--moss);letter-spacing:.5px;text-transform:uppercase;margin-top:2px;}
+.j-step p{font-size:13px;color:var(--text-soft);margin-top:6px;}
+
+/* TABS */
+.tab-scroll{position:relative;margin-bottom:24px;}
+.tab-scroll::after{content:"";position:absolute;top:0;bottom:2px;right:0;width:34px;pointer-events:none;opacity:0;transition:opacity .2s;
+  background:linear-gradient(to right,rgba(255,250,240,0),var(--sand));}
+.tab-scroll.more-right::after{opacity:1;}
+.tab-scroll .scroll-cue{position:absolute;top:50%;right:4px;transform:translateY(-50%);pointer-events:none;opacity:0;transition:opacity .2s;
+  color:var(--moss);font-size:16px;font-weight:800;z-index:2;}
+.tab-scroll.more-right .scroll-cue{opacity:1;}
+.tab-bar{border-bottom:2px solid var(--border);display:flex;gap:4px;overflow-x:auto;margin-bottom:0;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:thin;}
+.tab-bar::-webkit-scrollbar{height:4px;}
+.tab-bar::-webkit-scrollbar-thumb{background:var(--border);border-radius:99px;}
+.tab-btn{padding:10px 18px;font-size:13px;font-weight:600;color:var(--text-soft);border:none;background:transparent;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;font-family:inherit;transition:all .15s;flex:0 0 auto;scroll-snap-align:start;min-height:44px;}
+.tab-btn:hover{color:var(--forest);}
+.tab-btn.active{color:var(--forest);border-bottom-color:var(--forest);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;animation:fadeIn .3s ease;}
+
+/* VOCAB */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.vocab-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;cursor:pointer;position:relative;transition:all .2s;}
+.vocab-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--teal);}
+.flip-hint{position:absolute;top:10px;right:12px;font-size:10px;font-weight:700;color:var(--text-soft);background:var(--shell);padding:2px 8px;border-radius:99px;}
+.vocab-card .word{color:var(--forest);font-size:17px;font-weight:700;padding-right:44px;}
+.vocab-card .ipa{color:var(--blue);font-size:13px;font-style:italic;}
+.vocab-card .pos{display:inline-block;background:var(--sage);color:var(--forest);font-size:10px;font-weight:800;padding:2px 8px;border-radius:99px;margin:6px 0;}
+.vocab-card .vi{color:var(--text-mid);font-size:14px;font-weight:600;}
+.vocab-card .example{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--sage);color:var(--text-soft);font-size:13px;}
+.vocab-card.flipped .example{display:block;animation:fadeIn .3s ease;}
+.vocab-card .example b{color:var(--forest);}
+
+/* PHRASE */
+.phrase-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;margin-bottom:10px;transition:all .2s;}
+.phrase-card:hover{box-shadow:var(--shadow-sm);border-color:var(--teal);}
+.phrase-en{color:var(--forest);font-weight:700;font-size:15px;min-width:250px;}
+.phrase-vi{color:var(--text-soft);font-size:13px;}
+
+/* PRONUN */
+.pron-box{background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius);padding:20px;margin-bottom:16px;}
+.pron-box h4{color:var(--blue);font-weight:700;font-size:15px;margin-bottom:8px;}
+.pron-box p{font-size:14px;color:var(--text-dark);}
+.pron-arrow{display:inline-block;background:var(--blue);color:#fff;font-size:11px;font-weight:700;padding:2px 10px;border-radius:99px;margin:0 6px;}
+.pron-practice{background:var(--sage);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;margin-top:12px;font-size:14px;color:var(--text-dark);}
+.pron-practice div{margin:4px 0;}
+
+/* PASSAGE */
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.legend span{font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;}
+.hl-vocab{background:var(--sage);border-radius:3px;padding:1px 3px;font-weight:700;color:var(--forest);}
+.hl-phrase{border-bottom:2px solid var(--moss);font-weight:700;color:var(--moss);}
+.hl-pron{background:var(--blue-light);border-radius:3px;padding:1px 3px;color:var(--blue);font-weight:700;}
+.hl-accent{background:var(--amber-light);border-radius:3px;padding:1px 3px;color:var(--amber);font-weight:700;}
+.passage{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;font-size:15px;line-height:1.9;}
+.passage h4{color:var(--forest);font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin:20px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--sage);}
+.passage h4:first-child{margin-top:0;}
+.passage .vi-line{color:var(--text-soft);font-size:13px;font-style:italic;display:block;margin-bottom:10px;}
+
+/* EXERCISE */
+.exercise{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:20px;}
+.exercise-title{color:var(--forest);font-weight:700;font-size:16px;margin-bottom:8px;}
+.exercise-instruction{color:var(--text-soft);font-size:13px;background:var(--shell);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:18px;}
+.q-block{padding:14px 0;border-bottom:1px solid var(--sage);}
+.q-block:last-of-type{border-bottom:none;}
+.q-text{font-size:14px;font-weight:600;color:var(--text-dark);margin-bottom:10px;}
+.q-text .qn{color:var(--moss);font-weight:800;margin-right:6px;}
+.mcq-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;}
+.mcq-option{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;font-size:14px;cursor:pointer;background:var(--white);transition:all .15s;display:flex;gap:8px;align-items:flex-start;}
+.mcq-option:hover{border-color:var(--teal);background:var(--sage);}
+.mcq-option.selected{border-color:var(--blue);background:var(--blue-light);}
+.mcq-option.correct{border-color:var(--green-success);background:var(--green-light);}
+.mcq-option.incorrect{border-color:var(--red);background:var(--red-light);}
+.mcq-option .ltr{font-weight:800;color:var(--moss);}
+.blank-input{border:none;border-bottom:2px solid var(--forest);background:transparent;min-width:130px;font-size:15px;font-family:inherit;color:var(--text-dark);padding:2px 4px;outline:none;}
+.blank-input:focus{border-bottom-color:var(--blue);}
+.blank-input.correct{border-bottom-color:var(--green-success);background:var(--green-light);}
+.blank-input.incorrect{border-bottom-color:var(--red);background:var(--red-light);}
+
+.btn-group{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+.btn{padding:10px 20px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:inherit;transition:all .2s;}
+.btn-primary{background:var(--forest);color:#fff;}
+.btn-primary:hover{background:var(--moss);transform:translateY(-1px);}
+.btn-secondary{background:var(--sage);color:var(--forest);}
+.btn-secondary:hover{background:var(--mint);}
+.btn-outline{background:transparent;color:var(--forest);border:1.5px solid var(--border);}
+.btn-outline:hover{border-color:var(--moss);background:var(--sage);}
+.btn-sm{padding:6px 14px;font-size:13px;}
+
+.feedback-box{padding:14px 18px;border-radius:var(--radius-sm);display:none;gap:12px;align-items:center;margin-top:16px;font-size:14px;font-weight:600;}
+.feedback-box.show{display:flex;}
+.feedback-box.success{background:var(--green-light);color:var(--green-success);border:1px solid #BBF7D0;}
+.feedback-box.error{background:var(--red-light);color:var(--red);border:1px solid #FECACA;}
+.feedback-box.info{background:var(--blue-light);color:var(--blue);border:1px solid #BFDBFE;}
+.score-badge{width:48px;height:48px;min-width:48px;border-radius:99px;background:var(--white);color:var(--forest);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px;}
+
+.reset-fab{position:fixed;bottom:24px;right:24px;background:var(--red);color:#fff;border:none;border-radius:99px;padding:12px 20px;font-size:13px;font-weight:700;box-shadow:var(--shadow-lg);z-index:200;cursor:pointer;font-family:inherit;transition:transform .2s;}
+.reset-fab:hover{transform:scale(1.05);}
+
+/* GRAMMAR / TENSE CARD */
+.tense-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;}
+.tense-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px;}
+.tense-card h4{color:var(--forest);font-size:16px;font-weight:800;}
+.tense-card .t-explain{font-size:13px;color:var(--text-soft);margin:6px 0 12px;}
+.formula-pill{display:inline-block;background:var(--forest);color:#fff;font-size:13px;font-weight:700;padding:6px 14px;border-radius:99px;margin-bottom:12px;font-family:'Courier New',monospace;}
+.t-row{background:var(--shell);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:8px;font-size:14px;}
+.t-row .t-tag{font-size:10px;font-weight:800;color:var(--moss);letter-spacing:1px;display:block;}
+.t-row b{color:var(--forest);}
+.t-row .vi{display:block;color:var(--text-soft);font-size:12px;font-style:italic;}
+
+/* SPEAKING */
+.scenario-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:20px;}
+.scenario-header{background:linear-gradient(135deg,var(--forest),var(--moss));color:#fff;padding:16px 20px;display:flex;gap:12px;align-items:center;}
+.scenario-header .sc-ico{font-size:22px;}
+.scenario-header h4{font-size:16px;font-weight:800;}
+.scenario-header .sc-sub{font-size:12px;opacity:.85;}
+.scenario-body{padding:20px;}
+.scenario-situation{background:var(--shell);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;font-size:14px;margin-bottom:14px;}
+.mini-label{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--moss);margin:14px 0 6px;}
+.hint-row{display:flex;gap:8px;flex-wrap:wrap;}
+.hint-chip{background:var(--sage);color:var(--moss);font-size:13px;font-weight:600;padding:5px 12px;border-radius:99px;}
+.sample-response{display:none;background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius-sm);padding:14px 16px;font-size:14px;margin-top:14px;color:var(--text-dark);}
+.sample-response.revealed{display:block;animation:fadeIn .3s ease;}
+.sample-response .vi{display:block;color:var(--text-soft);font-size:13px;font-style:italic;margin-top:4px;}
+.dialogue-box{background:var(--shell);border-radius:var(--radius-sm);padding:14px 16px;font-size:14px;margin-bottom:10px;}
+.dialogue-box .sp{font-weight:800;color:var(--forest);margin-right:6px;}
+textarea.speak-input{width:100%;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;font-family:inherit;font-size:14px;color:var(--text-dark);background:var(--white);resize:vertical;min-height:70px;outline:none;}
+textarea.speak-input:focus{border-color:var(--teal);}
+.word-count{font-size:12px;color:var(--text-soft);margin-top:4px;}
+
+.check-item{display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:var(--radius-sm);cursor:pointer;font-size:14px;transition:background .15s;}
+.check-item:hover{background:var(--sage);}
+.check-item input{accent-color:var(--forest);width:17px;height:17px;cursor:pointer;}
+
+/* REFLEX */
+.draw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;}
+.draw-zone{background:var(--sage);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;}
+.draw-zone h4{color:var(--forest);font-size:15px;font-weight:800;margin-bottom:8px;}
+.draw-zone .zone-desc{font-size:13px;color:var(--text-mid);font-style:italic;margin-bottom:16px;}
+.draw-btn{width:130px;height:130px;border-radius:99px;background:var(--white);border:4px solid var(--moss);color:var(--moss);font-weight:800;font-size:14px;letter-spacing:1px;line-height:1.3;cursor:pointer;margin:18px auto;display:flex;align-items:center;justify-content:center;text-align:center;transition:all .2s;font-family:inherit;}
+.draw-btn:hover{transform:scale(1.05);box-shadow:var(--shadow-md);}
+.draw-result{border:2px dashed var(--moss);border-radius:var(--radius-sm);background:var(--white);padding:18px;min-height:70px;text-align:center;display:flex;flex-direction:column;justify-content:center;}
+.draw-result .big{font-size:24px;font-weight:800;color:var(--forest);display:block;}
+.draw-result .small{font-size:13px;color:var(--text-soft);font-style:italic;}
+.alt-badge{background:var(--moss);color:#fff;font-size:11px;font-weight:700;padding:4px 14px;border-radius:99px;letter-spacing:.5px;display:inline-block;}
+.tier2-hint{background:var(--amber-light);border:1.5px dashed #FDE68A;border-radius:var(--radius-sm);padding:12px 16px;font-size:14px;margin-top:14px;}
+.tier2-hint b{color:var(--amber);}
+.tier2-hint ul{margin:6px 0 0 18px;color:var(--text-dark);}
+.count-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px;}
+.count-display{background:var(--forest);color:#fff;font-size:34px;font-weight:800;padding:8px 22px;border-radius:var(--radius-sm);font-variant-numeric:tabular-nums;letter-spacing:2px;}
+.count-display.timeup{background:var(--red);}
+.preset-pill{border:1.5px solid var(--border);background:var(--white);border-radius:99px;padding:8px 16px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;transition:all .15s;color:var(--text-dark);}
+.preset-pill.active{border-color:var(--moss);background:var(--sage);color:var(--forest);}
+.btn-start{background:var(--moss);color:#fff;border:none;border-radius:99px;padding:8px 18px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;}
+.btn-timer-reset{background:var(--white);border:1.5px solid var(--border);border-radius:99px;padding:8px 18px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;color:var(--text-dark);}
+
+/* LISTENING */
+.book-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:18px;}
+.book-table th{background:var(--forest);color:#fff;font-size:12px;font-weight:800;letter-spacing:.5px;padding:10px 14px;text-align:left;}
+.book-table td{padding:12px 14px;border-bottom:1px solid var(--sage);font-size:14px;vertical-align:top;}
+.book-table td:first-child{font-weight:800;color:var(--forest);background:var(--shell);width:80px;}
+.book-table .free{color:var(--text-soft);font-style:italic;}
+.book-table .fixed{font-weight:700;color:var(--moss);}
+.word-bank{display:flex;gap:8px;flex-wrap:wrap;background:var(--shell);border:1.5px dashed var(--border);border-radius:var(--radius-sm);padding:14px;margin-bottom:18px;}
+.bank-item{background:var(--white);border:1px solid var(--border);border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:var(--forest);}
+.transcript-block{display:none;}
+.transcript-block.revealed{display:block;animation:fadeIn .3s ease;}
+.transcript-card{background:var(--sand);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:16px;}
+.transcript-card .t-head{background:var(--forest);color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:800;}
+.transcript-card .t-body{padding:18px;}
+.dialogue-line{padding:8px 0;border-bottom:1px solid var(--sage);font-size:14px;}
+.dialogue-line:last-child{border-bottom:none;}
+.dialogue-line .speaker{color:var(--forest);font-weight:700;margin-right:6px;}
+.dialogue-line .vi{display:block;color:var(--text-soft);font-size:13px;font-style:italic;padding-left:22px;margin-top:2px;}
+
+/* TYPING RACE */
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.type-src{background:var(--shell);border:1px solid var(--border);border-radius:var(--radius);padding:18px;font-size:13.5px;line-height:1.75;white-space:pre-wrap;max-height:420px;overflow-y:auto;}
+textarea.type-box{width:100%;min-height:420px;border:1.5px solid var(--border);border-radius:var(--radius);padding:16px;font-family:inherit;font-size:14px;line-height:1.7;color:var(--text-dark);background:var(--white);resize:vertical;outline:none;}
+textarea.type-box:focus{border-color:var(--teal);}
+textarea.type-box:disabled{background:var(--sage);color:var(--text-soft);}
+.type-hud{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px;}
+.countdown-overlay{font-size:34px;font-weight:800;color:var(--moss);}
+.score-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:18px;}
+.score-table th{background:var(--sage);color:var(--forest);font-size:12px;font-weight:800;padding:10px 14px;text-align:left;}
+.score-table td{padding:10px 14px;border-bottom:1px solid var(--sage);font-size:14px;}
+
+/* QUIZ */
+.quiz-screen{display:none;}
+.quiz-screen.active{display:block;animation:fadeIn .3s ease;}
+.quiz-start{text-align:center;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:48px 28px;}
+.quiz-start h3{font-size:24px;font-weight:800;color:var(--forest);margin-bottom:8px;}
+.quiz-start p{color:var(--text-soft);font-size:14px;max-width:420px;margin:0 auto 20px;}
+.quiz-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
+.quiz-counter{font-size:13px;font-weight:800;color:var(--moss);letter-spacing:.5px;}
+.timer-pill{background:var(--forest);color:#fff;font-size:14px;font-weight:800;padding:5px 16px;border-radius:99px;font-variant-numeric:tabular-nums;}
+.timer-pill.danger{background:var(--red);animation:pulse .6s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.55;}}
+.timer-track{height:6px;background:var(--sage);border-radius:99px;overflow:hidden;margin-bottom:20px;}
+.timer-bar{height:100%;background:var(--moss);border-radius:99px;width:100%;transition:width 1s linear;}
+.timer-bar.danger{background:var(--red);}
+.quiz-q{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:26px;}
+.quiz-q .qtype{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--moss);}
+.quiz-q h3{font-size:18px;font-weight:800;color:var(--forest);margin:6px 0 18px;}
+.quiz-opts{display:grid;gap:10px;}
+.quiz-explain{display:none;margin-top:14px;background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius-sm);padding:12px 16px;font-size:14px;color:var(--text-dark);}
+.quiz-explain.show{display:block;}
+.quiz-result{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:44px 28px;text-align:center;}
+.big-score{font-size:56px;font-weight:800;color:var(--forest);}
+.quiz-result .verdict{font-size:16px;font-weight:700;color:var(--moss);margin-bottom:18px;}
+.summary-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.summary-table td{padding:10px 16px;border-bottom:1px solid var(--sage);font-size:14px;}
+.summary-table td:first-child{font-weight:700;color:var(--forest);width:34%;background:var(--shell);}
+
+@media(max-width:900px){.type-grid{grid-template-columns:1fr;}textarea.type-box{min-height:220px;}}
+@media(max-width:768px){
+  .sidebar{position:relative;width:100%;height:auto;}
+  .main-content{margin-left:0;}
+  .app-shell{flex-direction:column;}
+  .hero,.hero.small{padding:24px;}
+  .hero h1{font-size:26px;}
+  .section{padding:24px;}
+  .vocab-grid{grid-template-columns:1fr;}
+  .tab-btn{padding:10px 12px;font-size:12px;}
+  .tab-scroll::after{width:26px;}
+}
+
+/* === GLOBAL ISSUES ADDITIONS === */
+/* Matching (reused) */
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.match-col h5{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--moss);margin-bottom:10px;}
+.match-item{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:10px;font-size:14px;display:flex;gap:10px;align-items:center;}
+.match-item .m-num{width:26px;height:26px;min-width:26px;border-radius:99px;background:var(--forest);color:var(--mint);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.match-item .m-ltr{width:26px;height:26px;min-width:26px;border-radius:99px;background:var(--sage);color:var(--forest);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.match-item select{margin-left:auto;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:6px 8px;font-family:inherit;font-size:14px;background:var(--white);color:var(--text-dark);outline:none;cursor:pointer;min-height:38px;}
+.match-item select:focus{border-color:var(--teal);}
+.match-item.correct{border-color:var(--green-success);background:var(--green-light);}
+.match-item.incorrect{border-color:var(--red);background:var(--red-light);}
+/* Word stress pairs */
+.stress-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px;}
+.stress-head{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:14px;}
+.stress-side{flex:1;min-width:150px;text-align:center;border-radius:var(--radius-sm);padding:14px;cursor:pointer;transition:all .2s;}
+.stress-side.noun{background:var(--blue-light);border:1.5px solid #BFDBFE;}
+.stress-side.verb{background:var(--amber-light);border:1.5px solid #FDE68A;}
+.stress-side:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+.stress-side .s-tag{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;}
+.stress-side.noun .s-tag{color:var(--blue);}
+.stress-side.verb .s-tag{color:var(--amber);}
+.stress-side .s-word{font-size:24px;font-weight:800;color:var(--forest);margin:4px 0;}
+.stress-side .s-word .loud{background:var(--forest);color:var(--mint);border-radius:4px;padding:0 5px;}
+.stress-side .s-ipa{font-size:12px;color:var(--text-soft);font-style:italic;}
+.stress-arrow{font-size:22px;color:var(--moss);font-weight:800;}
+.svo-row{display:flex;gap:6px;flex-wrap:wrap;align-items:stretch;margin-top:8px;}
+.svo-chip{border-radius:var(--radius-sm);padding:8px 12px;font-size:14px;background:var(--shell);border:1px solid var(--border);}
+.svo-chip .svo-tag{display:block;font-size:9px;font-weight:800;letter-spacing:1px;color:var(--moss);}
+.svo-chip b{color:var(--forest);}
+.svo-label{font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--moss);margin-top:12px;}
+/* P-E-R */
+.per-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+.per-card{border-radius:var(--radius);padding:20px;border:1px solid var(--border);}
+.per-card.p{background:var(--red-light);border-color:#FECACA;}
+.per-card.e{background:var(--amber-light);border-color:#FDE68A;}
+.per-card.r{background:var(--green-light);border-color:#BBF7D0;}
+.per-letter{width:40px;height:40px;border-radius:99px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#fff;margin-bottom:10px;}
+.per-card.p .per-letter{background:var(--red);}
+.per-card.e .per-letter{background:var(--amber);}
+.per-card.r .per-letter{background:var(--green-success);}
+.per-card h4{font-size:15px;font-weight:800;color:var(--forest);margin-bottom:6px;}
+.per-card p{font-size:13.5px;color:var(--text-dark);}
+.per-card .per-struct{font-size:13px;color:var(--text-soft);font-style:italic;margin-top:8px;padding-top:8px;border-top:1px solid rgba(1,50,32,.08);}
+.per-line{border-left:4px solid var(--border);padding:10px 14px;margin-bottom:8px;background:var(--white);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:14px;}
+.per-line.p{border-left-color:var(--red);}
+.per-line.e{border-left-color:var(--amber);}
+.per-line.r{border-left-color:var(--green-success);}
+.per-line .pl-tag{font-size:10px;font-weight:800;letter-spacing:1px;color:var(--moss);display:block;}
+.per-line .vi{display:block;color:var(--text-soft);font-size:13px;font-style:italic;margin-top:3px;}
+/* Issue overview cards */
+.issue-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;}
+.issue-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:all .2s;}
+.issue-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--teal);}
+.issue-card .i-ico{font-size:28px;}
+.issue-card h4{font-size:15px;font-weight:800;color:var(--forest);margin:6px 0 2px;}
+.issue-card .i-vi{font-size:12px;color:var(--text-soft);font-style:italic;margin-bottom:10px;}
+.issue-card .i-row{font-size:13.5px;margin-bottom:6px;}
+.issue-card .i-row b{color:var(--moss);}
+/* Translate */
+.tr-item{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:12px;}
+.tr-vn{font-size:14.5px;color:var(--text-dark);display:flex;gap:10px;align-items:flex-start;}
+.tr-num{width:26px;height:26px;min-width:26px;border-radius:99px;background:var(--forest);color:var(--mint);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.tr-input{width:100%;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:9px 12px;font-family:inherit;font-size:14px;margin-top:10px;outline:none;box-sizing:border-box;color:var(--text-dark);background:var(--white);}
+.tr-input:focus{border-color:var(--teal);}
+.tr-ans{display:none;background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius-sm);padding:10px 14px;font-size:14px;margin-top:10px;color:var(--text-dark);}
+.tr-ans.revealed{display:block;animation:fadeIn .3s ease;}
+/* T/F table */
+.tf-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.tf-table th{background:var(--forest);color:#fff;font-size:12px;font-weight:800;padding:10px 12px;text-align:left;}
+.tf-table th:not(:first-child){text-align:center;width:80px;}
+.tf-table td{padding:12px;border-bottom:1px solid var(--sage);font-size:14px;}
+.tf-table td:not(:first-child){text-align:center;}
+.tf-btn{min-width:52px;min-height:40px;border:1.5px solid var(--border);background:var(--white);border-radius:var(--radius-sm);font-weight:800;font-size:13px;cursor:pointer;font-family:inherit;color:var(--text-soft);transition:all .15s;}
+.tf-btn:hover{border-color:var(--teal);background:var(--sage);}
+.tf-btn.sel{border-color:var(--blue);background:var(--blue-light);color:var(--blue);}
+.tf-btn.correct{border-color:var(--green-success);background:var(--green-light);color:var(--green-success);}
+.tf-btn.incorrect{border-color:var(--red);background:var(--red-light);color:var(--red);}
+/* Speech builder */
+.sp-field{margin-bottom:14px;}
+.sp-field label{display:block;font-size:12px;font-weight:800;letter-spacing:.5px;color:var(--moss);margin-bottom:6px;}
+.sp-out{background:var(--shell);border-radius:var(--radius-sm);padding:16px 18px;font-size:15px;line-height:1.9;min-height:56px;}
+.topic-pill{border:1.5px solid var(--border);background:var(--white);border-radius:99px;padding:8px 16px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;color:var(--text-dark);min-height:40px;transition:all .15s;}
+.topic-pill.active{border-color:var(--moss);background:var(--sage);color:var(--forest);}
+@media(max-width:768px){
+  .match-wrap{grid-template-columns:1fr;}
+  .stress-head{flex-direction:column;}
+  .stress-arrow{transform:rotate(90deg);}
+}
+
+/* === KEYWORD SPEECH BUILDER === */
+.kw-section{border-radius:var(--radius);padding:16px 18px;margin-bottom:14px;border:1px solid var(--border);}
+.kw-section.p{background:var(--red-light);border-color:#FECACA;}
+.kw-section.c{background:var(--blue-light);border-color:#BFDBFE;}
+.kw-section.e{background:var(--amber-light);border-color:#FDE68A;}
+.kw-section.r{background:var(--green-light);border-color:#BBF7D0;}
+.kw-head{display:flex;gap:10px;align-items:center;font-size:14px;font-weight:800;color:var(--forest);margin-bottom:12px;}
+.kw-dot{width:28px;height:28px;min-width:28px;border-radius:99px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;}
+.kw-dot.p{background:var(--red);}
+.kw-dot.c{background:var(--blue);}
+.kw-dot.e{background:var(--amber);}
+.kw-dot.r{background:var(--green-success);}
+.kw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;}
+.kw-field label{display:block;font-size:12px;font-weight:800;color:var(--text-dark);margin-bottom:5px;}
+.kw-field .kw-eg{display:block;font-size:11px;font-weight:500;color:var(--text-soft);font-style:italic;margin-top:2px;}
+.kw-field input{width:100%;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;font-family:inherit;font-size:14px;background:var(--white);color:var(--text-dark);outline:none;box-sizing:border-box;min-height:42px;}
+.kw-field input:focus{border-color:var(--teal);background:#fff;}
+.kw-field input.filled{border-color:var(--moss);}
+/* Speech output */
+.sp-out{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:20px;font-size:15.5px;line-height:2;}
+.sp-out .sp-move{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:2px 8px;border-radius:99px;color:#fff;margin-right:6px;vertical-align:middle;}
+.sp-out .sp-move.p{background:var(--red);}
+.sp-out .sp-move.c{background:var(--blue);}
+.sp-out .sp-move.e{background:var(--amber);}
+.sp-out .sp-move.r{background:var(--green-success);}
+.sp-out .kw-fill{background:var(--sage);border-radius:4px;padding:1px 6px;font-weight:800;color:var(--forest);}
+.sp-out .sp-para{margin-bottom:12px;}
+.sp-out .sp-para:last-child{margin-bottom:0;}
+
+/* === DISCUSSION IDEA CARDS === */
+.disc-qvi{font-size:13px;color:var(--text-soft);font-style:italic;margin-top:4px;padding-left:26px;}
+.idea-card{background:var(--sand);border:1px solid var(--border);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:14px 16px;margin-bottom:12px;}
+.idea-head{display:flex;gap:10px;align-items:center;margin-bottom:10px;}
+.idea-num{width:24px;height:24px;min-width:24px;border-radius:99px;background:var(--moss);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.idea-label{font-size:14px;font-weight:800;color:var(--forest);}
+.idea-row{font-size:14px;line-height:1.75;margin-bottom:6px;color:var(--text-dark);}
+.idea-tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1px;padding:2px 8px;border-radius:99px;margin-right:8px;vertical-align:middle;color:#fff;}
+.idea-tag.op{background:var(--forest);}
+.idea-tag.re{background:var(--teal);}
+.idea-card .btn-sm{min-height:40px;padding:9px 16px;}
+.idea-en{display:none;background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius-sm);padding:12px 14px;margin-top:10px;}
+.idea-en.revealed{display:block;animation:fadeIn .3s ease;}
+.exercise > .btn-group .btn-sm{min-height:40px;padding:9px 16px;}
+.idea-en-label{font-size:12px;font-weight:800;color:var(--blue);letter-spacing:.5px;margin-bottom:8px;text-transform:uppercase;}
+.idea-en .idea-tag.op{background:var(--blue);}
+.idea-en .idea-tag.re{background:#60A5FA;}
+</style>
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+  <div class="brand">
+    <span class="lvl">A2 → B1</span>
+    <h2>Global Issues</h2>
+    <div class="cat">Communication English</div>
+  </div>
+  <nav class="nav" id="nav">
+    <div class="nav-group">Start</div>
+    <div class="nav-item active" data-page="p-overview"><span class="ic">🏠</span> Overview</div>
+    <div class="nav-group">Part 1</div>
+    <div class="nav-item" data-page="p-vocab"><span class="ic">📖</span> Vocabulary</div>
+    <div class="nav-group">Part 2</div>
+    <div class="nav-item" data-page="p-pron"><span class="ic">🔊</span> Word Stress</div>
+    <div class="nav-group">Part 3</div>
+    <div class="nav-item" data-page="p-structures"><span class="ic">🧱</span> Key Structures</div>
+    <div class="nav-group">Part 4</div>
+    <div class="nav-item" data-page="p-listening"><span class="ic">🎧</span> Listening</div>
+    <div class="nav-group">Part 5</div>
+    <div class="nav-item" data-page="p-speaking"><span class="ic">🧠</span> P-E-R Speaking</div>
+    <div class="nav-group">Part 6</div>
+    <div class="nav-item" data-page="p-review"><span class="ic">🏆</span> Quiz Game</div>
+  </nav>
+  <div class="prog-wrap">
+    <div class="prog-label">Progress</div>
+    <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+  </div>
+</aside>
+
+<main class="main-content">
+
+<!-- ============ OVERVIEW ============ -->
+<div class="page active" id="p-overview">
+  <div class="hero">
+    <div class="hero-meta">
+      <span class="badge badge-white">Communication English</span>
+      <span class="badge badge-white">CEFR A2 → B1</span>
+      <span class="badge badge-white">⏱ 120 minutes</span>
+    </div>
+    <h1>Global Issues That Matter</h1>
+    <p>The world's biggest problems, in simple English. By the end you'll be able to name each issue, explain <b>what causes it</b>, and suggest <b>what we can do about it</b> — using one clear framework: <b>Problem → Effect → Resolution</b>.</p>
+    <div class="outcomes">
+      <span class="badge badge-mint">Vocabulary</span>
+      <span class="badge badge-mint">Word Stress</span>
+      <span class="badge badge-mint">Key Structures</span>
+      <span class="badge badge-mint">Listening</span>
+      <span class="badge badge-mint">Speaking</span>
+      <span class="badge badge-mint">Review</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Learning Outcomes</span>
+      <h2 class="section-title">By the end of this lesson, you will be able to…</h2>
+      <p class="section-subtitle">Three things — and the third is the real goal.</p>
+    </div>
+    <div class="journey">
+      <div class="j-step"><div class="j-num">1</div><h4>Name the Issue</h4><div class="j-part">What is it?</div><p>Say what each global issue is, in simple English a beginner can understand.</p></div>
+      <div class="j-step"><div class="j-num">2</div><h4>Explain the Cause</h4><div class="j-part">Why does it happen?</div><p>Give one clear, realistic cause — not a vague "because it's bad".</p></div>
+      <div class="j-step"><div class="j-num">3</div><h4>Suggest a Solution</h4><div class="j-part">What can we do?</div><p>Offer a basic solution that a government or a normal person could actually do.</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">The 8 Issues</span>
+      <h2 class="section-title">What we're covering today</h2>
+      <p class="section-subtitle">Each card: the issue → one cause → one solution. This is the whole lesson in one screen.</p>
+    </div>
+    <div class="issue-grid" id="issueGrid"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Learning Journey</span>
+      <h2 class="section-title">How this lesson works</h2>
+      <p class="section-subtitle">Five stages. Each one prepares you for the next.</p>
+    </div>
+    <div class="journey">
+      <div class="j-step"><div class="j-num">1</div><h4>Language Input</h4><div class="j-part">Parts 1–3</div><p>The 8 issues, the noun/verb stress rule, and 4 sentence structures.</p></div>
+      <div class="j-step"><div class="j-num">2</div><h4>Guided Practice</h4><div class="j-part">Parts 1–3 exercises</div><p>Matching, stress drills, and 10 translation sentences.</p></div>
+      <div class="j-step"><div class="j-num">3</div><h4>Language Recognition</h4><div class="j-part">Part 4</div><p>Six people describe a problem — identify it and check the details.</p></div>
+      <div class="j-step"><div class="j-num">4</div><h4>Real-world Communication</h4><div class="j-part">Part 5</div><p>Build a P-E-R speech, then speak for one minute without notes.</p></div>
+      <div class="j-step"><div class="j-num">5</div><h4>Reflection &amp; Review</h4><div class="j-part">Part 6</div><p>30-question timed Quiz Game + self-assessment.</p></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p-vocab">Start Lesson: Vocabulary →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ VOCABULARY ============ -->
+<div class="page" id="p-vocab">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 1</span><span class="badge badge-white">Language Input</span></div>
+    <h1>Vocabulary</h1>
+    <p>Eight issues, plus the words you need to talk about causes and solutions. Tap any card to flip it.</p>
+  </div>
+  <div class="section">
+    <div class="tab-bar" data-group="vc">
+      <button class="tab-btn active" data-group="vc" data-tab="v1">1A · The Issues</button>
+      <button class="tab-btn" data-group="vc" data-tab="v2">1B · Causes &amp; Solutions</button>
+      <button class="tab-btn" data-group="vc" data-tab="v3">1C · Matching</button>
+      <button class="tab-btn" data-group="vc" data-tab="v4">1D · Context Passage</button>
+    </div>
+
+    <!-- V1 -->
+    <div class="tab-panel active" data-group="vc" data-panel="v1">
+      <div class="info-box"><b>Notice the word endings.</b> Many issue words end in <b>-tion</b> (pollu<b>tion</b>, overpopula<b>tion</b>) or <b>-ment</b> (unemploy<b>ment</b>). These endings mean the word is a <b>noun</b> — a thing, a problem. That's why we say "There has been an increase in <i>pollution</i>", never "in <i>pollute</i>".</div>
+      <div class="vocab-grid" id="vgIssue"></div>
+      <div class="btn-group"><button class="btn btn-outline btn-sm" data-flipall="vgIssue">↻ Flip all cards</button></div>
+    </div>
+
+    <!-- V2 -->
+    <div class="tab-panel" data-group="vc" data-panel="v2">
+      <h3 style="font-size:15px;font-weight:800;color:var(--forest);margin-bottom:12px;">Talking about CAUSES — why it happens</h3>
+      <div class="vocab-grid" id="vgCause"></div>
+      <h3 style="font-size:15px;font-weight:800;color:var(--forest);margin:26px 0 12px;">Talking about SOLUTIONS — what we can do</h3>
+      <div class="vocab-grid" id="vgSol"></div>
+      <div class="btn-group"><button class="btn btn-outline btn-sm" data-flipall="vgCause,vgSol">↻ Flip all cards</button></div>
+    </div>
+
+    <!-- V3 MATCHING -->
+    <div class="tab-panel" data-group="vc" data-panel="v3">
+      <div class="section-header">
+        <span class="part-label">Practice</span>
+        <h2 class="section-title">Match the Word to its Definition</h2>
+        <p class="section-subtitle">Choose a letter for each word, then check.</p>
+      </div>
+      <div class="exercise">
+        <div class="exercise-title">🔗 Match A with B</div>
+        <div class="exercise-instruction">Every definition uses simple English — no Vietnamese. Read carefully.</div>
+        <div class="match-wrap">
+          <div class="match-col"><h5>Column A — Words</h5><div id="matchA"></div></div>
+          <div class="match-col"><h5>Column B — Definitions</h5><div id="matchB"></div></div>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-primary" id="mtCheck">Check Answers</button>
+          <button class="btn btn-outline" id="mtReset">↻ Reset</button>
+        </div>
+        <div class="feedback-box" id="mtFb"><span class="score-badge" id="mtScore">0/8</span><span id="mtMsg"></span></div>
+      </div>
+
+      <div class="section-header" style="margin-top:30px;">
+        <span class="part-label">Exercise 2</span>
+        <h2 class="section-title">Vocabulary — Multiple Choice</h2>
+        <p class="section-subtitle">Read the simple English explanation and choose the right word.</p>
+      </div>
+      <div class="exercise">
+        <div class="exercise-title">📖 Choose the correct word</div>
+        <div class="exercise-instruction">Select one option per question, then press <b>Show Answers</b>.</div>
+        <div id="vqList"></div>
+        <div class="btn-group">
+          <button class="btn btn-primary" id="vqCheck">Show Answers</button>
+          <button class="btn btn-outline" id="vqReset">↻ Reset</button>
+        </div>
+        <div class="feedback-box" id="vqFb"><span class="score-badge" id="vqScore">0/12</span><span id="vqMsg"></span></div>
+      </div>
+    </div>
+
+    <!-- V4 CONTEXT PASSAGE -->
+    <div class="tab-panel" data-group="vc" data-panel="v4">
+      <div class="info-box"><b>1D — Comprehensive Context Passage.</b> One person talking about their city — using every issue word, the four key structures, the stress pairs, and the full P-E-R shape. This is your model for Part 5. Read it aloud twice.</div>
+      <div class="legend">
+        <span class="hl-vocab">Issue vocabulary</span>
+        <span class="hl-phrase">Key structure</span>
+        <span class="hl-pron">Stress pair (noun/verb)</span>
+        <span class="hl-accent">P-E-R move</span>
+      </div>
+      <div class="passage">
+        <h4>The problem</h4>
+        <p><span class="hl-accent">[P]</span> <span class="hl-phrase">There has been an <span class="hl-pron">increase</span> in</span> <span class="hl-vocab">air pollution</span> in my city because of too many motorbikes. <span class="hl-vocab">Traffic</span> is terrible too — at rush hour it takes an hour and a half to cross the city. And <span class="hl-vocab">garbage</span> is everywhere: the <span class="hl-vocab">landfills</span> are full and there is no room for new ones.
+        <span class="vi-line">(Đang có sự gia tăng về ô nhiễm không khí ở thành phố tôi vì có quá nhiều xe máy. Giao thông cũng rất tệ. Và rác thải thì ở khắp nơi.)</span></p>
+
+        <h4>The causes</h4>
+        <p>Why? Mostly <span class="hl-vocab">overpopulation</span>. Too many people move here, so the city faces a serious <span class="hl-vocab">housing shortage</span> — and <span class="hl-vocab">unemployment</span> <span class="hl-phrase">is a growing problem</span> for young people. Factories <span class="hl-pron">increase</span> the pollution when they <span class="hl-vocab">dump</span> chemicals into the river, and we <span class="hl-pron">import</span> more packaged food every year, which creates even more <span class="hl-vocab">waste</span>.
+        <span class="vi-line">(Tại sao? Chủ yếu là do bùng nổ dân số. Quá nhiều người chuyển đến nên thành phố thiếu hụt nhà ở nghiêm trọng, và thất nghiệp là vấn đề nhức nhối với người trẻ.)</span></p>
+
+        <h4>The effect</h4>
+        <p><span class="hl-accent">[E]</span> If we don't stop this, we'll <span class="hl-vocab">face health problems</span> like coughing and lung disease. The environment will get dirty, tourists won't come, and the <span class="hl-vocab">economy suffers</span>. <span class="hl-vocab">Global warming</span> makes it worse — our summers are hotter and our winters are warmer every year.
+        <span class="vi-line">(Nếu không ngăn chặn, chúng ta sẽ gặp vấn đề sức khỏe như ho và bệnh phổi. Môi trường sẽ bẩn, khách du lịch không đến, và kinh tế bị ảnh hưởng.)</span></p>
+
+        <h4>The solution</h4>
+        <p><span class="hl-accent">[R]</span> <span class="hl-phrase">The government really needs to help</span> build more affordable houses and <span class="hl-vocab">create more jobs</span>. <span class="hl-phrase">We have to do something about</span> the waste we produce — I <span class="hl-vocab">reduce</span> my own garbage by buying fresh food instead of frozen dinners, and I bring my own cup to the coffee shop. Everyone can <span class="hl-vocab">take action</span>: use <span class="hl-vocab">public transport</span>, <span class="hl-vocab">plant more trees</span>, and <span class="hl-vocab">recycle</span>.
+        <span class="vi-line">(Chính phủ thực sự cần giúp xây thêm nhà giá rẻ và tạo thêm việc làm. Chúng ta phải làm gì đó về lượng rác thải mình tạo ra. Ai cũng có thể hành động.)</span></p>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" data-goto="p-pron">Next: Word Stress →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ WORD STRESS ============ -->
+<div class="page" id="p-pron">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 2</span><span class="badge badge-white">Pronunciation</span></div>
+    <h1>Word Stress — Noun vs Verb</h1>
+    <p>Same spelling. Different stress. Different meaning. Get this wrong and people hear the wrong word.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">The Rule</span>
+      <h2 class="section-title">First syllable = noun · Second syllable = verb</h2>
+    </div>
+    <div class="info-box" style="font-size:15px;">
+      📌 For two-syllable words that work as BOTH a noun and a verb: stress the <b>FIRST</b> syllable for the <b>noun</b>, and the <b>SECOND</b> syllable for the <b>verb</b>.<br>
+      🎯 <b>RE</b>cord (N) · re<b>CORD</b> (V)<br><br>
+      <span style="font-style:italic;color:var(--text-soft);">(Quy tắc: với từ hai âm tiết vừa là danh từ vừa là động từ — nhấn âm tiết ĐẦU khi là danh từ, nhấn âm tiết SAU khi là động từ.)</span>
+    </div>
+    <div class="info-box">🥁 <b>Think of it like a drum beat.</b> The noun beats early — <i>BOOM-ta</i>. The verb beats late — <i>ta-BOOM</i>. Clap it while you say it: clap loud on the stressed part. Your mouth will follow your hands.</div>
+    <div class="listening-notice">⚠️ <b>Why it matters here:</b> "There is an <b>IN</b>crease in pollution" (noun — a thing) vs "Factories in<b>CREASE</b> pollution" (verb — an action). Same letters, opposite job in the sentence.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">4 Word Pairs</span>
+      <h2 class="section-title">Study each pair</h2>
+      <p class="section-subtitle">Tap either side to hear how it fits in a sentence. Say both versions aloud, five times each.</p>
+    </div>
+    <div id="stressList"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Practice</span>
+      <h2 class="section-title">Noun or Verb?</h2>
+      <p class="section-subtitle">Read each sentence. Is the bold word stressed on the FIRST or SECOND syllable?</p>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">🔊 Choose the stress</div>
+      <div class="exercise-instruction">Ask yourself: is this word a THING (noun) or an ACTION (verb)?</div>
+      <div id="stqList"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="stqCheck">Show Answers</button>
+        <button class="btn btn-outline" id="stqReset">↻ Reset</button>
+      </div>
+      <div class="feedback-box" id="stqFb"><span class="score-badge" id="stqScore">0/8</span><span id="stqMsg"></span></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p-structures">Next: Key Structures →</button>
+      <button class="btn btn-outline" data-goto="p-vocab">← Vocabulary</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ KEY STRUCTURES ============ -->
+<div class="page" id="p-structures">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 3</span><span class="badge badge-white">Key Structures</span></div>
+    <h1>Four Structures, Any Issue</h1>
+    <p>Learn these four sentence shapes and you can talk about every problem in this lesson — and every problem outside it.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">The Toolkit</span>
+      <h2 class="section-title">The Four Structures</h2>
+      <p class="section-subtitle">Two describe the problem. Two propose the solution.</p>
+    </div>
+    <div id="structList"></div>
+    <div class="listening-notice">⚠️ <b>Grammar trap:</b> after <b>an increase in…</b> and <b>do something about…</b>, always use a <b>noun</b> — pollu<b>tion</b>, not pollute. After <b>needs to</b> and <b>have to</b>, always use a <b>bare verb</b> — <i>build</i>, not <i>building</i>.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Exercise 1</span>
+      <h2 class="section-title">Translation — 10 Sentences</h2>
+      <p class="section-subtitle">Translate each Vietnamese sentence into English. Type your answer, then reveal to compare.</p>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">✍️ Translate into English</div>
+      <div class="exercise-instruction">Write your version first — <b>then</b> reveal. Comparing after you try is what makes it stick.</div>
+      <div id="trList"></div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" id="trRevealAll">💡 Reveal all answers</button>
+        <button class="btn btn-outline" id="trReset">↻ Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Exercise 2</span>
+      <h2 class="section-title">Gap Fill — Choose the Structure</h2>
+      <p class="section-subtitle">Which structure fits the situation? Type the missing words.</p>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">🧱 Complete the sentence</div>
+      <div class="exercise-instruction">Type only the missing part. Watch for noun vs bare verb.</div>
+      <div id="gapList"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="gapCheck">Check Answers</button>
+        <button class="btn btn-outline" id="gapReset">↻ Reset</button>
+      </div>
+      <div class="feedback-box" id="gapFb"><span class="score-badge" id="gapScore">0/8</span><span id="gapMsg"></span></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p-listening">Next: Listening →</button>
+      <button class="btn btn-outline" data-goto="p-pron">← Word Stress</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LISTENING ============ -->
+<div class="page" id="p-listening">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 4</span><span class="badge badge-white">Language Recognition</span></div>
+    <h1>Listening</h1>
+    <p>Six people, six problems. Nobody names their issue directly — you have to work it out from the clues.</p>
+  </div>
+  <div class="section">
+    <div class="listening-notice">🎧 <b>Listening 2 · CD 3-38</b> — six short monologues. Do Task 1 first (which issue?), then listen again for Task 2 (true or false?). Only open the tapescript after you finish both.</div>
+
+    <div class="section-header">
+      <span class="part-label">Task 1</span>
+      <h2 class="section-title">What Issue Are They Talking About?</h2>
+      <p class="section-subtitle">Listen for the key words — the speaker never says the name of the issue.</p>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">🎯 Task 1 — identify the issue</div>
+      <div class="exercise-instruction">Select one option per speaker, then press <b>Show Answers</b>.</div>
+      <div id="t1List"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="t1Check">Show Answers</button>
+        <button class="btn btn-outline" id="t1Reset">↻ Reset</button>
+      </div>
+      <div class="feedback-box" id="t1Fb"><span class="score-badge" id="t1Score">0/6</span><span id="t1Msg"></span></div>
+    </div>
+
+    <div class="section-header" style="margin-top:30px;">
+      <span class="part-label">Task 2</span>
+      <h2 class="section-title">True or False?</h2>
+      <p class="section-subtitle">Listen again for the details — some statements are very close to what the speaker said, but not quite.</p>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">✅ Task 2 — check the details</div>
+      <div class="exercise-instruction">Click <b>T</b> or <b>F</b> for each statement, then press <b>Check Answers</b>.</div>
+      <table class="tf-table" id="tfTable"></table>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="tfCheck">Check Answers</button>
+        <button class="btn btn-outline" id="tfReset">↻ Reset</button>
+      </div>
+      <div class="feedback-box" id="tfFb"><span class="score-badge" id="tfScore">0/6</span><span id="tfMsg"></span></div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-secondary" data-toggle="trBlock">📄 Show / Hide Tapescript &amp; Answer Key</button>
+    </div>
+    <div class="transcript-block" id="trBlock">
+      <div class="transcript-card">
+        <div class="t-head"><span>✅ Answer Key &amp; Explanations</span></div>
+        <div class="t-body" id="keyBody"></div>
+      </div>
+      <div class="transcript-card">
+        <div class="t-head"><span>📄 Tapescript — six speakers (EN + VI)</span></div>
+        <div class="t-body" id="tapeBody"></div>
+      </div>
+      <div class="transcript-card">
+        <div class="t-head"><span>📚 Vocabulary Review — from this recording</span></div>
+        <div class="t-body" id="tapeVocab"></div>
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p-speaking">Next: P-E-R Speaking →</button>
+      <button class="btn btn-outline" data-goto="p-structures">← Key Structures</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SPEAKING ============ -->
+<div class="page" id="p-speaking">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 5</span><span class="badge badge-white">Critical Thinking + Speaking</span></div>
+    <h1>P-E-R Speaking</h1>
+    <p>Problem → Effect → Resolution. Three moves, one minute, any issue in the world.</p>
+  </div>
+
+  <div class="section">
+    <div class="tab-bar" data-group="spk">
+      <button class="tab-btn active" data-group="spk" data-tab="s1">5A · The Framework</button>
+      <button class="tab-btn" data-group="spk" data-tab="s2">5B · Sample Speeches</button>
+      <button class="tab-btn" data-group="spk" data-tab="s3">5C · Build Your Speech</button>
+      <button class="tab-btn" data-group="spk" data-tab="s4">5D · Reflex Practice ⚡</button>
+    </div>
+
+    <!-- 5A -->
+    <div class="tab-panel active" data-group="spk" data-panel="s1">
+      <div class="info-box" style="font-size:15px;">🩺 <b>Think of it like a doctor's visit.</b> The doctor names what's wrong (<b>Problem</b>), warns what happens if you ignore it (<b>Effect</b>), then writes the prescription (<b>Resolution</b>). Skip any step and nobody takes you seriously — a problem with no solution is just complaining.</div>
+      <div class="per-grid">
+        <div class="per-card p">
+          <div class="per-letter">P</div>
+          <h4>Problem</h4>
+          <p>State the issue clearly. What is happening? How bad is it?</p>
+          <div class="per-struct">"There has been an increase in…"<br>"… is a growing problem…"</div>
+        </div>
+        <div class="per-card e">
+          <div class="per-letter">E</div>
+          <h4>Effect</h4>
+          <p>What will happen if we do nothing? Give a clear consequence.</p>
+          <div class="per-struct">"If we don't stop this, we'll…"<br>"If people don't…, they…"</div>
+        </div>
+        <div class="per-card r">
+          <div class="per-letter">R</div>
+          <h4>Resolution</h4>
+          <p>What should we do about it? Give a practical solution.</p>
+          <div class="per-struct">"The government really needs to…"<br>"We have to do something about…"</div>
+        </div>
+      </div>
+      <div class="section-header" style="margin-top:30px;">
+        <span class="part-label">Model</span>
+        <h2 class="section-title">A Complete P-E-R Speech</h2>
+      </div>
+      <div class="exercise">
+        <div class="exercise-title">🌫️ Sample — Air Pollution</div>
+        <div class="per-line p"><span class="pl-tag">P — PROBLEM</span>There has been an increase in air pollution in my city. There are too many cars and factories.</div>
+        <div class="per-line e"><span class="pl-tag">E — EFFECT</span>If we don't stop this, we'll face health problems like coughing and lung diseases.</div>
+        <div class="per-line r"><span class="pl-tag">R — RESOLUTION</span>The government and citizens need to plant more trees and use public buses.</div>
+      </div>
+    </div>
+
+    <!-- 5B -->
+    <div class="tab-panel" data-group="spk" data-panel="s2">
+      <div class="info-box">Four full P-E-R speeches, English and Vietnamese side by side. Read each one aloud before you write your own.</div>
+      <div id="sampleList"></div>
+    </div>
+
+    <!-- 5C -->
+    <div class="tab-panel" data-group="spk" data-panel="s3">
+      <div class="section-header">
+        <span class="part-label">Your Turn</span>
+        <h2 class="section-title">Build Your 1-Minute Speech</h2>
+        <p class="section-subtitle">Pick a topic, fill the three boxes, and your speech assembles below. Aim for 3–5 sentences.</p>
+      </div>
+      <div class="exercise">
+        <div class="exercise-title">✍️ Speech Builder</div>
+        <div class="mini-label">1️⃣ Choose your topic</div>
+        <div class="hint-row" id="topicRow"></div>
+        <div class="info-box" style="margin-top:16px;">✏️ <b>You only type keywords — the template writes the sentences.</b> Type 2–4 words per box (not a full sentence). Leave any box empty and that sentence is simply skipped.</div>
+
+        <div class="kw-section p">
+          <div class="kw-head"><span class="kw-dot p">P</span> Problem — what is happening?</div>
+          <div class="kw-grid">
+            <div class="kw-field"><label>① Main issue <span class="kw-eg">e.g. air pollution</span></label><input id="kwIssue" placeholder="air pollution"></div>
+            <div class="kw-field"><label>② Because of… <span class="kw-eg">e.g. too many motorbikes</span></label><input id="kwBecause" placeholder="too many motorbikes"></div>
+            <div class="kw-field"><label>③ Second issue <span class="kw-eg">e.g. traffic</span></label><input id="kwIssue2" placeholder="traffic"></div>
+          </div>
+        </div>
+
+        <div class="kw-section c">
+          <div class="kw-head"><span class="kw-dot c">C</span> Cause — why does it happen?</div>
+          <div class="kw-grid">
+            <div class="kw-field"><label>④ Root cause <span class="kw-eg">e.g. overpopulation</span></label><input id="kwCause" placeholder="overpopulation"></div>
+            <div class="kw-field"><label>⑤ Who suffers most <span class="kw-eg">e.g. young people</span></label><input id="kwWho" placeholder="young people"></div>
+          </div>
+        </div>
+
+        <div class="kw-section e">
+          <div class="kw-head"><span class="kw-dot e">E</span> Effect — what if we do nothing?</div>
+          <div class="kw-grid">
+            <div class="kw-field"><label>⑥ We will face… <span class="kw-eg">e.g. health problems</span></label><input id="kwFace" placeholder="health problems"></div>
+            <div class="kw-field"><label>⑦ Like… (example) <span class="kw-eg">e.g. coughing and lung disease</span></label><input id="kwLike" placeholder="coughing and lung disease"></div>
+          </div>
+        </div>
+
+        <div class="kw-section r">
+          <div class="kw-head"><span class="kw-dot r">R</span> Resolution — what should we do?</div>
+          <div class="kw-grid">
+            <div class="kw-field"><label>⑧ Government should… <span class="kw-eg">bare verb: build more houses</span></label><input id="kwGov" placeholder="build more houses"></div>
+            <div class="kw-field"><label>⑨ I personally… <span class="kw-eg">e.g. bring my own cup</span></label><input id="kwMe" placeholder="bring my own cup"></div>
+            <div class="kw-field"><label>⑩ Everyone can… <span class="kw-eg">e.g. use public transport and recycle</span></label><input id="kwAll" placeholder="use public transport and recycle"></div>
+          </div>
+        </div>
+
+        <div class="btn-group" style="margin-top:8px;">
+          <button class="btn btn-secondary btn-sm" id="spExample">✨ Fill with example</button>
+          <button class="btn btn-outline btn-sm" id="spClear">🗑️ Clear all</button>
+        </div>
+
+        <div class="mini-label" style="margin-top:18px;">🎤 Your full speech — read it aloud</div>
+        <div class="sp-out" id="spOut"><span style="color:var(--text-soft);font-style:italic;">Type a keyword above and your speech appears here…</span></div>
+        <div class="word-count" id="wcTotal" style="margin-top:6px;">0 words total</div>
+      </div>
+
+      <div class="section-header" style="margin-top:30px;">
+        <span class="part-label">Before You Speak</span>
+        <h2 class="section-title">Critical Thinking Checklist</h2>
+      </div>
+      <div class="exercise" id="ctCheck"></div>
+
+      <div class="section-header" style="margin-top:30px;">
+        <span class="part-label">Timer</span>
+        <h2 class="section-title">Speak for One Minute — No Notes</h2>
+        <p class="section-subtitle">Close the boxes above. Press START, wait for 3… 2… 1… GO!, then speak.</p>
+      </div>
+      <div class="exercise">
+        <div class="count-row">
+          <div class="count-display" id="countDisp">01:00</div>
+          <button class="preset-pill active" data-sec="60">1 min</button>
+          <button class="preset-pill" data-sec="120">2 min</button>
+          <button class="preset-pill" data-sec="180">3 min</button>
+          <button class="btn-start" id="countStart">▶ START</button>
+          <button class="btn-timer-reset" id="countReset">↺ Reset</button>
+          <span class="countdown-overlay" id="countGo"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5D REFLEX -->
+    <div class="tab-panel" data-group="spk" data-panel="s4">
+      <div class="section-header" style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;">
+        <div>
+          <span class="part-label">Reflex</span>
+          <h2 class="section-title">Lucky Draw</h2>
+          <p class="section-subtitle">No thinking time. Draw → speak immediately. One-word answers do not count.</p>
+        </div>
+        <span class="alt-badge">IN-CLASS ALTERNATIVE: draw paper cards</span>
+      </div>
+      <div class="draw-grid">
+        <div class="draw-zone">
+          <h4>📚 Zone 1 — Vocabulary Review</h4>
+          <div class="zone-desc">Make ONE full sentence with the word you draw.</div>
+          <button class="draw-btn" id="drawWordBtn">DRAW<br>A WORD</button>
+          <div class="draw-result" id="drawWordRes"><span class="small">Press the button to draw…</span></div>
+        </div>
+        <div class="draw-zone">
+          <h4>💬 Zone 2 — Speaking Challenges</h4>
+          <div class="zone-desc">Respond with a COMPLETE answer, using today's structures.</div>
+          <button class="draw-btn" id="drawSitBtn">DRAW A<br>CHALLENGE</button>
+          <div class="draw-result" id="drawSitRes"><span class="small">Press the button to draw…</span></div>
+        </div>
+      </div>
+      <div class="section-header" style="margin-top:30px;">
+        <span class="part-label">Discussion</span>
+        <h2 class="section-title">Group Discussion Questions</h2>
+        <p class="section-subtitle">No right answer. Give your opinion and one reason.</p>
+      </div>
+      <div id="discList"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary" data-goto="p-review">Next: Quiz Game →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ REVIEW ============ -->
+<div class="page" id="p-review">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 6</span><span class="badge badge-white">Consolidation</span></div>
+    <h1>Final Review</h1>
+    <p>30 questions. 10 seconds each. No second chances — just like a real conversation.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Quiz Game</span>
+      <h2 class="section-title">Global Issues — Quiz</h2>
+      <p class="section-subtitle">Definition · Cause · Solution · Stress · Structure · Listening.</p>
+    </div>
+
+    <div class="quiz-screen active" id="qzStart">
+      <div class="quiz-start">
+        <h3>🏆 Ready?</h3>
+        <p><b>30 questions · 10 seconds each · 4 options.</b> If the timer hits zero, the question is marked wrong and the correct answer is revealed. Trust your instinct.</p>
+        <button class="btn btn-primary" id="qzBegin">▶ Start the Quiz</button>
+      </div>
+    </div>
+
+    <div class="quiz-screen" id="qzPlay">
+      <div class="quiz-head">
+        <span class="quiz-counter" id="qzCounter">QUESTION 1 / 30</span>
+        <span class="timer-pill" id="qzTimer">⏳ 10s</span>
+      </div>
+      <div class="timer-track"><div class="timer-bar" id="qzBar"></div></div>
+      <div class="quiz-q">
+        <div class="qtype" id="qzType">DEFINITION</div>
+        <h3 id="qzQuestion">…</h3>
+        <div class="quiz-opts" id="qzOpts"></div>
+        <div class="quiz-explain" id="qzExplain"></div>
+        <div class="btn-group">
+          <button class="btn btn-primary" id="qzSubmit">Submit</button>
+          <button class="btn btn-primary" id="qzNext" style="display:none;">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz-screen" id="qzResult">
+      <div class="quiz-result">
+        <div class="big-score" id="qzFinal">0 / 30</div>
+        <div class="verdict" id="qzVerdict"></div>
+        <div class="btn-group" style="justify-content:center;">
+          <button class="btn btn-primary" id="qzAgain">↻ Play Again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Self-Assessment</span>
+      <h2 class="section-title">How do you feel now?</h2>
+      <p class="section-subtitle">Tick honestly. Anything unticked = go back and review that part.</p>
+    </div>
+    <div class="exercise" id="selfCheck"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Summary</span>
+      <h2 class="section-title">Lesson Summary</h2>
+    </div>
+    <table class="summary-table">
+      <tr><td>Estimated Duration</td><td>120 minutes (2 sessions of 60 min)</td></tr>
+      <tr><td>CEFR Level</td><td>A2 → B1</td></tr>
+      <tr><td>Vocabulary Learned</td><td>34 items: 8 global issues, cause words, and solution words</td></tr>
+      <tr><td>Grammar / Structures</td><td>Four core structures: <b>There has been an increase in + noun</b> · <b>… is a growing problem</b> · <b>The government really needs to + bare verb</b> · <b>We have to do something about + noun</b></td></tr>
+      <tr><td>Pronunciation Focus</td><td>Noun vs verb word stress in two-syllable pairs: <b>RE</b>cord/re<b>CORD</b> · <b>IN</b>crease/in<b>CREASE</b> · <b>IM</b>port/im<b>PORT</b> · <b>IN</b>sult/in<b>SULT</b></td></tr>
+      <tr><td>Communication Functions</td><td>Naming a global issue · explaining its cause · proposing a basic solution · delivering a structured 1-minute P-E-R speech · identifying an issue from spoken clues</td></tr>
+      <tr><td>Skills Practiced</td><td>Speaking (guided + reflex + timed) · Listening (topic ID + true/false detail) · Translation VI→EN · Critical thinking (cause &amp; effect)</td></tr>
+      <tr><td>Interaction Types Used</td><td>Flip cards · Matching · MCQ · Translation reveal · Gap fill · Stress drill · Speech builder · Lucky Draw (shuffle-bag) · 3-2-1-GO countdown timer · Timed quiz game · Checklists</td></tr>
+    </table>
+    <div class="btn-group">
+      <button class="btn btn-outline" data-goto="p-overview">← Back to Overview</button>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+<button class="reset-fab" id="resetFab">🔄 Reset All</button>
+<script>
+/* ================== DATA ================== */
+
+/* ---- 8 ISSUES: cause + solution ---- */
+const ISSUES=[
+ {ico:"💨",en:"Air Pollution",vi:"Ô nhiễm không khí",cause:"Too many motorbikes, cars and factories release smoke into the air.",sol:"Use public transport, plant more trees, control factory emissions."},
+ {ico:"🌊",en:"Water Pollution",vi:"Ô nhiễm nguồn nước",cause:"Factories dump chemicals and waste into rivers and the sea.",sol:"The government must force industries to clean up and treat their waste."},
+ {ico:"🌡️",en:"Global Warming",vi:"Nóng lên toàn cầu",cause:"Gases from factories and cars trap heat in the atmosphere.",sol:"Use clean energy, drive less, and reduce electricity waste."},
+ {ico:"🗑️",en:"Garbage / Trash",vi:"Rác thải",cause:"We buy too much packaged food, and landfills are already full.",sol:"Create less garbage, reuse containers, and recycle."},
+ {ico:"👥",en:"Overpopulation",vi:"Bùng nổ dân số",cause:"Too many people move into one city looking for work.",sol:"Develop jobs and services in smaller towns, not only big cities."},
+ {ico:"🏠",en:"Housing Shortage",vi:"Thiếu hụt nhà ở",cause:"Cities grow faster than new homes can be built, so prices rise.",sol:"The government needs to build more affordable houses."},
+ {ico:"💼",en:"Unemployment",vi:"Nạn thất nghiệp",cause:"There are more workers than jobs, and skills don't match the market.",sol:"Create more jobs and provide training for young people."},
+ {ico:"🚗",en:"Traffic",vi:"Ùn tắc giao thông",cause:"Too many cars and not enough roads or public transport.",sol:"Build a better subway system and encourage buses."}
+];
+
+/* ---- VOCAB ---- */
+const VOCAB_ISSUE=[
+ {w:"air pollution",ipa:"/er pəˈluːʃn/",pos:"noun",vi:"ô nhiễm không khí",ex:"Dirty, unsafe things in the air we breathe.|<b>There has been an increase in air pollution because of too many motorbikes.</b>"},
+ {w:"water pollution",ipa:"/ˈwɔːtər pəˈluːʃn/",pos:"noun",vi:"ô nhiễm nguồn nước",ex:"Dirty, unsafe things in the water we drink or swim in.|<b>There has been an increase in water pollution in big cities.</b>"},
+ {w:"global warming",ipa:"/ˈɡloʊbl ˈwɔːrmɪŋ/",pos:"noun",vi:"nóng lên toàn cầu",ex:"The Earth becoming hotter because of gases from factories and cars.|<b>Global warming is a growing problem that all countries face.</b>"},
+ {w:"garbage / trash",ipa:"/ˈɡɑːrbɪdʒ/ · /træʃ/",pos:"noun",vi:"rác thải",ex:"Things people do not want and throw away.|<b>There has been an increase in plastic garbage in the ocean.</b>"},
+ {w:"overpopulation",ipa:"/ˌoʊvərˌpɒpjʊˈleɪʃn/",pos:"noun",vi:"bùng nổ dân số",ex:"The problem of having too many people living in one area or country.|<b>We have to do something about overpopulation now.</b>"},
+ {w:"housing shortage",ipa:"/ˈhaʊzɪŋ ˈʃɔːrtɪdʒ/",pos:"noun",vi:"thiếu hụt nhà ở",ex:"A problem when there are not enough houses for everyone.|<b>Housing shortage is a growing problem in urban areas.</b>"},
+ {w:"unemployment",ipa:"/ˌʌnɪmˈplɔɪmənt/",pos:"noun",vi:"nạn thất nghiệp",ex:"When many people do not have a job but want to work.|<b>Unemployment is a growing problem in our country right now.</b>"},
+ {w:"traffic",ipa:"/ˈtræfɪk/",pos:"noun",vi:"ùn tắc giao thông",ex:"Too many cars on the road, so everything moves very slowly.|<b>The traffic is terrible during rush hour.</b>"},
+ {w:"war",ipa:"/wɔːr/",pos:"noun",vi:"chiến tranh",ex:"When countries fight each other with weapons.|<b>The news is full of war and countries dropping bombs.</b>"},
+ {w:"poverty",ipa:"/ˈpɑːvərti/",pos:"noun",vi:"nghèo đói",ex:"When people do not have enough money for food or a home.|<b>Poverty is a growing problem in some regions.</b>"}
+];
+const VOCAB_CAUSE=[
+ {w:"dump (waste)",ipa:"/dʌmp/",pos:"verb",vi:"thải, đổ (chất thải)",ex:"To throw something away in a careless, harmful place.|<b>Industries were dumping chemicals into the water.</b>"},
+ {w:"chemicals",ipa:"/ˈkemɪklz/",pos:"noun",vi:"hóa chất",ex:"Man-made substances, often dangerous to people and nature.|<b>Factories dump chemicals into the river.</b>"},
+ {w:"landfill",ipa:"/ˈlændfɪl/",pos:"noun",vi:"bãi chôn lấp rác",ex:"A huge hole in the ground where garbage is buried.|<b>The landfills are full and there is no room for new ones.</b>"},
+ {w:"packaged food",ipa:"/ˈpækɪdʒd fuːd/",pos:"noun",vi:"thực phẩm đóng gói",ex:"Food sold in plastic trays, boxes or wrappers.|<b>I buy fewer packaged foods now.</b>"},
+ {w:"rush hour",ipa:"/ˈrʌʃ aʊər/",pos:"noun",vi:"giờ cao điểm",ex:"The time of day when the most people travel to or from work.|<b>It takes 90 minutes to cross the city during rush hour.</b>"},
+ {w:"emissions",ipa:"/ɪˈmɪʃnz/",pos:"noun",vi:"khí thải",ex:"Gases that go into the air from cars and factories.|<b>Car emissions cause global warming.</b>"},
+ {w:"high-rise building",ipa:"/ˈhaɪ raɪz ˈbɪldɪŋ/",pos:"noun",vi:"tòa nhà cao tầng",ex:"A very tall building with many floors.|<b>Cities can only expand upward with high-rise buildings.</b>"},
+ {w:"crowded",ipa:"/ˈkraʊdɪd/",pos:"adj",vi:"đông đúc, chật chội",ex:"Full of too many people in a small space.|<b>I can't stand crowded cities.</b>"}
+];
+const VOCAB_SOL=[
+ {w:"take action",ipa:"/teɪk ˈækʃn/",pos:"verb phr.",vi:"hành động, có biện pháp",ex:"To actually DO something about a problem, not just talk.|<b>I hope the government listens to us and takes action.</b>"},
+ {w:"clean up",ipa:"/kliːn ʌp/",pos:"phr. verb",vi:"dọn dẹp, làm sạch",ex:"To remove the dirt or waste from a place.|<b>We asked the mayor to force industries to clean up the river.</b>"},
+ {w:"reduce",ipa:"/rɪˈduːs/",pos:"verb",vi:"giảm bớt",ex:"To make something smaller in amount.|<b>I've decided to try to create less garbage.</b>"},
+ {w:"recycle",ipa:"/ˌriːˈsaɪkl/",pos:"verb",vi:"tái chế",ex:"To use materials again instead of throwing them away.|<b>Everyone should recycle paper and plastic.</b>"},
+ {w:"public transport",ipa:"/ˈpʌblɪk ˈtrænspɔːrt/",pos:"noun",vi:"phương tiện công cộng",ex:"Buses, trains and subways that everyone can use.|<b>We need to use public transport more often.</b>"},
+ {w:"affordable houses",ipa:"/əˈfɔːrdəbl ˈhaʊzɪz/",pos:"noun",vi:"nhà giá rẻ",ex:"Homes that ordinary people have enough money to buy.|<b>The government needs to build more affordable houses.</b>"},
+ {w:"create jobs",ipa:"/kriˈeɪt dʒɑːbz/",pos:"verb phr.",vi:"tạo việc làm",ex:"To make new work opportunities for people.|<b>The government really needs to help create more jobs.</b>"},
+ {w:"face health problems",ipa:"/feɪs helθ ˈprɑːbləmz/",pos:"verb phr.",vi:"gặp vấn đề sức khỏe",ex:"To have illnesses caused by a situation.|<b>If we don't stop this, we'll face health problems.</b>"},
+ {w:"the economy suffers",ipa:"/ðə ɪˈkɑːnəmi ˈsʌfərz/",pos:"phrase",vi:"kinh tế bị ảnh hưởng",ex:"Business and money in a country get worse.|<b>Tourists won't come and the economy suffers.</b>"},
+ {w:"plant more trees",ipa:"/plænt mɔːr triːz/",pos:"verb phr.",vi:"trồng thêm cây",ex:"To put more trees in the ground to clean the air.|<b>Citizens need to plant more trees.</b>"},
+ {w:"mayor",ipa:"/ˈmeɪər/",pos:"noun",vi:"thị trưởng",ex:"The leader of a city government.|<b>We wrote a letter to the mayor.</b>"},
+ {w:"subway",ipa:"/ˈsʌbweɪ/",pos:"noun",vi:"tàu điện ngầm",ex:"An underground train system in a city.|<b>The only thing that moves quickly is the subway.</b>"}
+];
+
+/* ---- MATCHING ---- */
+const MATCH_A=[
+ {n:1,text:"Air / Water Pollution",ans:"d"},
+ {n:2,text:"Global Warming",ans:"b"},
+ {n:3,text:"Unemployment",ans:"c"},
+ {n:4,text:"Housing Shortage",ans:"f"},
+ {n:5,text:"Overpopulation",ans:"e"},
+ {n:6,text:"Garbage / Trash",ans:"a"},
+ {n:7,text:"Landfill",ans:"h"},
+ {n:8,text:"Take action",ans:"g"}
+];
+const MATCH_B=[
+ {l:"a",text:"Things people do not want and throw away."},
+ {l:"b",text:"The Earth becoming hotter because of gases from factories and cars."},
+ {l:"c",text:"When many people do not have a job but want to work."},
+ {l:"d",text:"Dirty things in the air we breathe or water we drink that make them unsafe."},
+ {l:"e",text:"The problem of having too many people living in one area or country."},
+ {l:"f",text:"A problem when there are not enough houses for everyone."},
+ {l:"g",text:"To actually DO something about a problem, not just talk about it."},
+ {l:"h",text:"A huge hole in the ground where garbage is buried."}
+];
+
+/* ---- VOCAB MCQ (12) ---- */
+const VQ=[
+ {q:"Dirty, unsafe things in the air we breathe.",o:["global warming","air pollution","overpopulation","unemployment"],a:1},
+ {q:"The Earth becoming hotter because of gases from factories and cars.",o:["global warming","water pollution","a landfill","a housing shortage"],a:0},
+ {q:"When many people want to work but do not have a job.",o:["poverty","overpopulation","unemployment","emissions"],a:2},
+ {q:"A problem when there are not enough houses for everyone.",o:["a landfill","rush hour","crowded cities","a housing shortage"],a:3},
+ {q:"Too many people living in one area or country.",o:["overpopulation","unemployment","traffic","war"],a:0},
+ {q:"A huge hole in the ground where garbage is buried.",o:["a subway","a high-rise","a landfill","a factory"],a:2},
+ {q:"To throw waste away in a careless, harmful place.",o:["recycle","dump","reduce","clean up"],a:1},
+ {q:"The time of day when the most people travel to or from work.",o:["rush hour","emissions","landfill","subway"],a:0},
+ {q:"To use materials again instead of throwing them away.",o:["dump","import","recycle","suffer"],a:2},
+ {q:"Buses, trains and subways that everyone can use.",o:["high-rise buildings","public transport","packaged food","affordable houses"],a:1},
+ {q:"To actually DO something about a problem, not just talk about it.",o:["face problems","take action","be crowded","increase"],a:1},
+ {q:"Homes that ordinary people have enough money to buy.",o:["high-rise buildings","landfills","affordable houses","packaged food"],a:2}
+];
+
+/* ---- WORD STRESS ---- */
+const STRESS=[
+ {noun:{word:"RE|cord",ipa:"/ˈrekɔːrd/",mean:"a best result, or a music disc"},
+  verb:{word:"re|CORD",ipa:"/rɪˈkɔːrd/",mean:"to save sound or video"},
+  nounSent:[["S","The runner"],["V","broke"],["O","the world <b>REcord</b>"]],
+  verbSent:[["S","You"],["V","should <b>reCORD</b>"],["O","the lesson"]]},
+ {noun:{word:"IN|crease",ipa:"/ˈɪnkriːs/",mean:"a rise in amount"},
+  verb:{word:"in|CREASE",ipa:"/ɪnˈkriːs/",mean:"to make something bigger"},
+  nounSent:[["THERE","There"],["IS","is"],["O","an <b>INcrease</b> in prices"]],
+  verbSent:[["S","Factories"],["V","<b>inCREASE</b>"],["O","air pollution"]]},
+ {noun:{word:"IM|port",ipa:"/ˈɪmpɔːrt/",mean:"a product brought from abroad"},
+  verb:{word:"im|PORT",ipa:"/ɪmˈpɔːrt/",mean:"to bring goods in from abroad"},
+  nounSent:[["S","Rice"],["IS","is"],["O","a major <b>IMport</b>"]],
+  verbSent:[["S","We"],["V","<b>imPORT</b>"],["O","cars from Japan"]]},
+ {noun:{word:"IN|sult",ipa:"/ˈɪnsʌlt/",mean:"a rude remark"},
+  verb:{word:"in|SULT",ipa:"/ɪnˈsʌlt/",mean:"to say something rude to someone"},
+  nounSent:[["S","That"],["V","was"],["O","a big <b>INsult</b>"]],
+  verbSent:[["S","(You)"],["V","Don't <b>inSULT</b>"],["O","other people"]]}
+];
+const STQ=[
+ {q:"There has been an <b>increase</b> in water pollution.",o:["INcrease (noun — first)","inCREASE (verb — second)"],a:0,e:"'an increase' → it's a THING after 'an' → noun → stress the FIRST syllable."},
+ {q:"Factories <b>increase</b> pollution when they dump chemicals.",o:["INcrease (noun — first)","inCREASE (verb — second)"],a:1,e:"'Factories ___ pollution' → it's the ACTION of the sentence → verb → stress the SECOND syllable."},
+ {q:"The runner broke the world <b>record</b>.",o:["REcord (noun — first)","reCORD (verb — second)"],a:0,e:"'the world record' → a THING → noun → stress the FIRST syllable."},
+ {q:"You should <b>record</b> the lesson.",o:["REcord (noun — first)","reCORD (verb — second)"],a:1,e:"After 'should' comes a verb → stress the SECOND syllable."},
+ {q:"Rice is a major <b>import</b> for that country.",o:["IMport (noun — first)","imPORT (verb — second)"],a:0,e:"'a major import' → a THING → noun → stress the FIRST syllable."},
+ {q:"We <b>import</b> cars from Japan.",o:["IMport (noun — first)","imPORT (verb — second)"],a:1,e:"'We ___ cars' → the ACTION → verb → stress the SECOND syllable."},
+ {q:"That was a big <b>insult</b>.",o:["INsult (noun — first)","inSULT (verb — second)"],a:0,e:"'a big insult' → a THING → noun → stress the FIRST syllable."},
+ {q:"Don't <b>insult</b> other people.",o:["INsult (noun — first)","inSULT (verb — second)"],a:1,e:"After 'Don't' comes a verb → stress the SECOND syllable."}
+];
+
+/* ---- KEY STRUCTURES ---- */
+const STRUCTS=[
+ {ico:"📈",en:"There has been an increase in + <b>NOUN</b>",vi:"Đang có sự gia tăng về…",use:"Use when something is getting worse or more frequent.",ex:"There has been an increase in <b>air pollution</b>."},
+ {ico:"⚠️",en:"… + <b>is a growing problem</b>",vi:"… là một vấn đề đang nhức nhối",use:"Use to describe a serious issue that keeps getting bigger.",ex:"<b>Unemployment</b> is a growing problem."},
+ {ico:"🏛️",en:"The government really needs to help + <b>BARE VERB</b>",vi:"Chính phủ thực sự cần giúp…",use:"Use to give a strong suggestion for a solution.",ex:"The government really needs to help <b>build</b> more houses."},
+ {ico:"🚨",en:"We have to do something about + <b>NOUN</b>",vi:"Chúng ta phải làm gì đó về…",use:"Use to express urgency — we must act now.",ex:"We have to do something about <b>overpopulation</b>."}
+];
+const TRANSLATE=[
+ {vn:"Đang có sự gia tăng về ô nhiễm nguồn nước ở các thành phố lớn.",en:"There has been an increase in water pollution in big cities."},
+ {vn:"Thất nghiệp là một vấn đề đang nhức nhối ở nước ta hiện nay.",en:"Unemployment is a growing problem in our country right now."},
+ {vn:"Chính phủ thực sự cần giúp xây thêm nhà cho người dân.",en:"The government really needs to help build more houses."},
+ {vn:"Chúng ta phải làm gì đó về vấn đề bùng nổ dân số ngay bây giờ.",en:"Now we have to do something about overpopulation."},
+ {vn:"Đang có sự gia tăng về lượng rác thải nhựa ngoài đại dương.",en:"There has been an increase in plastic garbage in the ocean."},
+ {vn:"Nóng lên toàn cầu là một vấn đề đang nhức nhối mà tất cả quốc gia phải đối mặt.",en:"Global warming is a growing problem that all countries face."},
+ {vn:"Chính phủ thực sự cần giúp tạo ra nhiều việc làm cho người trẻ.",en:"The government really needs to help create more jobs for young people."},
+ {vn:"Đang có sự gia tăng về ô nhiễm không khí vì có quá nhiều xe máy.",en:"There has been an increase in air pollution because of too many motorbikes."},
+ {vn:"Thiếu hụt nhà ở là một vấn đề đang nhức nhối tại các đô thị.",en:"Housing shortage is a growing problem in urban areas."},
+ {vn:"Chúng ta phải làm gì đó về lượng rác thải chúng ta bỏ ra mỗi ngày.",en:"We have to do something about the trash we throw away every day."}
+];
+const GAPS=[
+ {pre:"There has been an",post:"in air pollution.",ans:["increase"],hint:"noun — a rise"},
+ {pre:"Global warming",post:"that all countries face.",ans:["is a growing problem"],hint:"structure 2"},
+ {pre:"The government really needs to help",post:"more affordable houses.",ans:["build"],hint:"bare verb"},
+ {pre:"We have to do something about",post:"right now.",ans:["overpopulation"],hint:"noun — too many people"},
+ {pre:"Factories",post:"pollution when they dump chemicals.",ans:["increase"],hint:"verb — stress the 2nd syllable"},
+ {pre:"If we don't stop this, we'll face",post:"like coughing.",ans:["health problems"],hint:"the Effect move"},
+ {pre:"The government really needs to help",post:"more jobs for young people.",ans:["create"],hint:"bare verb"},
+ {pre:"We have to do something about the",post:"we throw away every day.",ans:["trash","garbage"],hint:"noun — waste"}
+];
+
+/* ---- LISTENING (answers corrected against the tapescript) ---- */
+const T1=[
+ {q:"Speaker 1",o:["a. air pollution","b. water pollution","c. overpopulation"],a:1},
+ {q:"Speaker 2",o:["a. global warming","b. water pollution","c. unemployment"],a:0},
+ {q:"Speaker 3",o:["a. poverty","b. overpopulation","c. war"],a:2},
+ {q:"Speaker 4",o:["a. crime","b. traffic","c. air pollution"],a:1},
+ {q:"Speaker 5",o:["a. air pollution","b. garbage","c. unemployment"],a:1},
+ {q:"Speaker 6",o:["a. housing","b. poverty","c. crime"],a:0}
+];
+const TF=[
+ {n:1,stmt:"He wants to be the mayor of his city.",ans:"F",e:"He wrote a letter <b>to</b> the mayor asking him to act — he never says he wants to <b>be</b> the mayor."},
+ {n:2,stmt:"She's going to move to Chicago.",ans:"T",e:"\"That's why we've decided to move to Chicago. There's plenty of snow and rain up there!\""},
+ {n:3,stmt:"He reads a lot of sports magazines.",ans:"T",e:"\"whenever I want to read something, I just pick up one of those sports magazines\" — he stopped the newspaper and reads these instead."},
+ {n:4,stmt:"She bought a new car.",ans:"F",e:"The opposite — she took an apartment next to the subway station because the subway is the only fast thing in the city."},
+ {n:5,stmt:"She buys less packaged food, like frozen dinners.",ans:"T",e:"\"I buy fewer packaged foods now… instead of buying frozen prepared dinners… I buy fresh meats and produce.\""},
+ {n:6,stmt:"He moved to a small apartment downtown.",ans:"F",e:"He moved to a small <b>town in the country</b>, not downtown — he says he can't stand crowded cities."}
+];
+const T1_EXPLAIN=[
+ {n:1,ans:"b. water pollution",e:"\"the river has always been really polluted… asking him to force these industries to clean up the river.\""},
+ {n:2,ans:"a. global warming",e:"\"much hotter summers and warmer winters… this is the effect of that global warming.\""},
+ {n:3,ans:"c. war",e:"\"countries fighting each other, dropping bombs, and terrible things like that.\""},
+ {n:4,ans:"b. traffic",e:"\"impossible to get across the city… during rush hour. There are too many cars on the roads.\""},
+ {n:5,ans:"b. garbage",e:"\"One of the biggest problems we face is garbage. Where can we put it all?\""},
+ {n:6,ans:"a. housing",e:"\"everyone will have to live in giant high-rise buildings if they want to live in cities.\""}
+];
+const TAPE=[
+ {n:1,en:"I grew up around here, and the river has always been really <b>polluted</b>. Industries were <b>dumping</b> all sorts of <b>chemicals</b> and waste into the water, so the river really smelled bad. You wouldn't even think of swimming in it. Well, I decided to do something about it. My neighbors and I wrote a letter to the <b>mayor</b> asking him to force these industries to <b>clean up</b> the river. I really hope the government listens to us and <b>takes action</b>.",
+  vi:"Tôi lớn lên ở quanh đây, và con sông lúc nào cũng bị ô nhiễm nặng. Các nhà máy xí nghiệp thải đủ loại hóa chất và chất thải xuống nước, khiến sông có mùi rất hôi. Bạn sẽ chẳng bao giờ nghĩ đến chuyện bơi ở đó đâu. Vì vậy, tôi quyết định phải làm điều gì đó. Tôi và các hàng xóm đã viết một lá thư gửi thị trưởng, yêu cầu ông ấy buộc các xí nghiệp này phải làm sạch con sông. Tôi thực sự hy vọng chính quyền sẽ lắng nghe chúng tôi và có hành động cụ thể."},
+ {n:2,en:"Over the last few years we've been having much hotter summers and warmer winters. When I was a kid here, we used to have a lot of fluffy, white snow in the winter. Now we don't get that. And there hasn't been much rain for a couple of years. I guess this is the effect of that <b>global warming</b> I keep hearing about in the news. That's why we've decided to move to Chicago. There's plenty of snow and rain up there!",
+  vi:"Vài năm trở lại đây, mùa hè thì nóng hơn nhiều còn mùa đông thì lại ấm hơn. Hồi tôi còn là một đứa trẻ ở đây, mùa đông thường có rất nhiều tuyết trắng xốp. Bây giờ thì không còn như vậy nữa. Và vài năm nay cũng chẳng có mấy mưa. Tôi đoán đây là ảnh hưởng của hiện tượng nóng lên toàn cầu mà tôi vẫn thường nghe trên tin tức. Đó là lý do tại sao chúng tôi quyết định chuyển đến Chicago. Ở trên đó có rất nhiều tuyết và mưa!"},
+ {n:3,en:"When did the world get so crazy? That's what I'd like to know. For years, I thought everything was fine. Now all I read about in the newspaper is countries <b>fighting each other</b>, <b>dropping bombs</b>, and terrible things like that. You know what I did about it? I stopped reading the newspaper. Now, whenever I want to read something, I just pick up one of those <b>sports magazines</b>. No bad news in there!",
+  vi:"Thế giới trở nên điên rồ như thế này từ khi nào vậy? Đó là điều tôi muốn biết đấy. Trong nhiều năm, tôi cứ nghĩ mọi thứ đều ổn. Bây giờ tất cả những gì tôi đọc được trên báo chỉ toàn là các quốc gia đánh nhau, ném bom và những điều tồi tệ tương tự. Bạn biết tôi đã làm gì không? Tôi dừng đọc báo luôn. Giờ đây, mỗi khi muốn đọc gì đó, tôi chỉ cầm một cuốn tạp chí thể thao lên. Chẳng có tin xấu nào trong đó cả!"},
+ {n:4,en:"It's almost impossible to get across the city in less than an hour and a half during <b>rush hour</b>. There are too many cars on the roads. There are only two freeways, and they just can't handle all the <b>traffic</b>. The only thing that moves quickly in this city is the <b>subway</b>. That's why I took an apartment right next to the subway station.",
+  vi:"Hầu như không thể đi xuyên qua thành phố trong vòng dưới một tiếng rưỡi vào giờ cao điểm. Có quá nhiều xe hơi trên đường. Chỉ có hai đường cao tốc và chúng hoàn toàn không thể đáp ứng nổi lượng giao thông này. Thứ duy nhất di chuyển nhanh chóng ở thành phố này là tàu điện ngầm. Đó là lý do tại sao tôi đã thuê một căn hộ ngay cạnh trạm tàu điện ngầm."},
+ {n:5,en:"One of the biggest problems we face is <b>garbage</b>. Where can we put it all? In the past, everything used to get buried in giant <b>landfills</b>, but in many countries today, the landfills are full and there is no room to start new ones. That's why I've decided to try to create less garbage. I buy fewer <b>packaged foods</b> now. For example, instead of buying frozen prepared dinners in plastic trays and cardboard boxes, I buy fresh meats and produce. I also take my own cup to the coffee shop so I don't have to use paper cups. Creating less garbage is really the only solution.",
+  vi:"Một trong những vấn đề lớn nhất mà chúng ta đang phải đối mặt là rác thải. Chúng ta có thể chất tất cả đống rác đó ở đâu chứ? Trong quá khứ, mọi thứ thường được chôn lấp ở các bãi rác khổng lồ, nhưng ở nhiều quốc gia ngày nay, các bãi rác đã đầy và không còn chỗ để mở bãi mới. Đó là lý do tôi quyết định cố gắng tạo ra ít rác thải hơn. Giờ đây tôi mua ít thực phẩm đóng gói hơn. Ví dụ, thay vì mua các bữa ăn đông lạnh chế biến sẵn đựng trong khay nhựa và hộp carton, tôi mua thịt và nông sản tươi. Tôi cũng mang theo cốc riêng đến quán cà phê để không phải dùng cốc giấy. Tạo ra ít rác thải hơn thực sự là giải pháp duy nhất."},
+ {n:6,en:"In the future, everyone will have to live in giant <b>high-rise buildings</b> if they want to live in cities. These new buildings might be a hundred stories tall, or more. If cities keep getting bigger, the only way they can expand is upward. I can't stand <b>crowded</b> cities myself. That's why I moved to a small town in the country.",
+  vi:"Trong tương lai, mọi người sẽ phải sống trong những tòa nhà cao tầng khổng lồ nếu muốn sống ở thành phố. Những tòa nhà mới này có thể cao đến một trăm tầng, hoặc hơn nữa. Nếu các thành phố tiếp tục phình to ra, cách duy nhất để chúng mở rộng là phát triển lên cao. Bản thân tôi thì không thể chịu nổi những thành phố đông đúc. Đó là lý do tại sao tôi đã chuyển đến một thị trấn nhỏ ở vùng quê."}
+];
+const TAPE_VOCAB=[
+ {w:"dump waste / chemicals",vi:"thải, đổ chất thải / hóa chất"},
+ {w:"force someone to do something",vi:"buộc ai đó phải làm gì"},
+ {w:"clean up",vi:"dọn dẹp, làm sạch"},
+ {w:"take action",vi:"có hành động cụ thể"},
+ {w:"the effect of…",vi:"ảnh hưởng của…"},
+ {w:"drop bombs",vi:"ném bom"},
+ {w:"get across the city",vi:"đi xuyên qua thành phố"},
+ {w:"can't handle all the traffic",vi:"không đáp ứng nổi lượng giao thông"},
+ {w:"be buried in landfills",vi:"được chôn lấp ở bãi rác"},
+ {w:"there is no room to…",vi:"không còn chỗ để…"},
+ {w:"create less garbage",vi:"tạo ra ít rác thải hơn"},
+ {w:"expand upward",vi:"mở rộng lên cao"},
+ {w:"I can't stand…",vi:"Tôi không thể chịu nổi…"}
+];
+
+/* ---- P-E-R SAMPLES ---- */
+const SAMPLES=[
+ {ico:"💨",title:"Air Pollution",lines:[
+  {t:"p",tag:"P — PROBLEM",en:"There has been an increase in <b>air pollution</b> because of too many motorbikes.",vi:"Thành phố có quá nhiều xe máy nên ô nhiễm không khí đang tăng lên."},
+  {t:"e",tag:"E — EFFECT",en:"If we don't reduce smoke, we'll <b>face health problems</b> like coughing and sore throats.",vi:"Nếu không giảm khói bụi, chúng ta sẽ gặp vấn đề sức khỏe như ho và đau họng."},
+  {t:"r",tag:"R — RESOLUTION",en:"We <b>need to</b> use <b>public buses</b> more often.",vi:"Chúng ta cần đi xe buýt nhiều hơn."}]},
+ {ico:"🗑️",title:"Garbage",lines:[
+  {t:"p",tag:"P — PROBLEM",en:"There has been an increase in plastic <b>garbage / trash</b> on the streets and rivers.",vi:"Đang có sự gia tăng về rác thải nhựa ở trên đường và sông hồ."},
+  {t:"e",tag:"E — EFFECT",en:"If we don't clean up, the environment will be dirty and the <b>economy suffers</b> because tourists won't come.",vi:"Nếu không dọn dẹp, môi trường sẽ bẩn và kinh tế bị ảnh hưởng vì khách du lịch không đến."},
+  {t:"r",tag:"R — RESOLUTION",en:"People <b>need to</b> throw trash in the <b>trash can</b>.",vi:"Mọi người cần bỏ rác vào thùng rác."}]},
+ {ico:"💼",title:"Unemployment",lines:[
+  {t:"p",tag:"P — PROBLEM",en:"<b>Unemployment</b> is a growing problem for young people right now.",vi:"Nạn thất nghiệp là một vấn đề đang nhức nhối ở người trẻ hiện nay."},
+  {t:"e",tag:"E — EFFECT",en:"If people don't have jobs, they have no money and the <b>economy suffers</b>.",vi:"Nếu không có việc làm, họ sẽ không có tiền và kinh tế bị ảnh hưởng."},
+  {t:"r",tag:"R — RESOLUTION",en:"The government <b>really needs to help</b> create more jobs for young people.",vi:"Chính phủ thực sự cần giúp tạo ra nhiều việc làm hơn."}]},
+ {ico:"🏠",title:"Housing Shortage",lines:[
+  {t:"p",tag:"P — PROBLEM",en:"Because of <b>overpopulation</b>, the city is facing a serious <b>housing shortage</b>.",vi:"Vì bùng nổ dân số nên thành phố đang bị thiếu hụt nhà ở."},
+  {t:"e",tag:"E — EFFECT",en:"If people have no homes, many must live in very small, difficult places.",vi:"Nếu không có nhà, nhiều người phải sống ở nơi chật hẹp và gặp nhiều khó khăn."},
+  {t:"r",tag:"R — RESOLUTION",en:"The government <b>needs to</b> build more <b>affordable houses</b>.",vi:"Chính phủ cần xây thêm nhiều nhà giá rẻ."}]}
+];
+const TOPICS=["💨 Air Pollution","🌊 Water Pollution","🌡️ Global Warming","🗑️ Garbage","💼 Unemployment","🏠 Housing Shortage","👥 Overpopulation","🚗 Traffic"];
+const CT_CHECK=["Did I clearly state the problem (P)?","Did I give a real cause (C) — not just \"because it is bad\"?","Did I give a real consequence (E)?","Is my resolution (R) specific and practical?","Did I use vocabulary from Part 1 in my keywords?","Can I say the whole speech out loud WITHOUT looking at the screen?"];
+
+/* ---- REFLEX ---- */
+const REFLEX_WORDS=[
+ {w:"air pollution",vi:"ô nhiễm không khí"},{w:"water pollution",vi:"ô nhiễm nguồn nước"},
+ {w:"global warming",vi:"nóng lên toàn cầu"},{w:"garbage / trash",vi:"rác thải"},
+ {w:"overpopulation",vi:"bùng nổ dân số"},{w:"housing shortage",vi:"thiếu hụt nhà ở"},
+ {w:"unemployment",vi:"nạn thất nghiệp"},{w:"traffic",vi:"ùn tắc giao thông"},
+ {w:"war",vi:"chiến tranh"},{w:"poverty",vi:"nghèo đói"},
+ {w:"dump waste",vi:"thải chất thải"},{w:"chemicals",vi:"hóa chất"},
+ {w:"landfill",vi:"bãi chôn lấp rác"},{w:"packaged food",vi:"thực phẩm đóng gói"},
+ {w:"rush hour",vi:"giờ cao điểm"},{w:"emissions",vi:"khí thải"},
+ {w:"high-rise building",vi:"tòa nhà cao tầng"},{w:"crowded",vi:"đông đúc"},
+ {w:"take action",vi:"hành động, có biện pháp"},{w:"clean up",vi:"dọn dẹp, làm sạch"},
+ {w:"reduce",vi:"giảm bớt"},{w:"recycle",vi:"tái chế"},
+ {w:"public transport",vi:"phương tiện công cộng"},{w:"affordable houses",vi:"nhà giá rẻ"},
+ {w:"create jobs",vi:"tạo việc làm"},{w:"face health problems",vi:"gặp vấn đề sức khỏe"},
+ {w:"the economy suffers",vi:"kinh tế bị ảnh hưởng"},{w:"plant more trees",vi:"trồng thêm cây"},
+ {w:"mayor",vi:"thị trưởng"},{w:"subway",vi:"tàu điện ngầm"}
+];
+const REFLEX_SITUATIONS=[
+ "Name ONE global issue in your city and give ONE cause. Full sentence.",
+ "Use \"There has been an increase in…\" to describe a real problem where you live.",
+ "Use \"… is a growing problem\" about young people in Vietnam today.",
+ "Give ONE practical solution the government could do this year.",
+ "Give ONE thing YOU personally can do this week to create less garbage.",
+ "Explain 'global warming' to a 10-year-old child — in three simple sentences.",
+ "Say this pair correctly, then use each in a sentence: INcrease / inCREASE.",
+ "Your friend says \"One person can't change anything.\" Disagree politely and explain.",
+ "Which is worse in your city: traffic or air pollution? Give your opinion + one reason.",
+ "Give a full P-E-R answer (Problem → Effect → Resolution) about the housing shortage."
+];
+const DISCUSS=[
+ {q:"Which global issue affects your daily life the most? Why?",
+  qvi:"Vấn đề toàn cầu nào ảnh hưởng nhất đến cuộc sống hàng ngày của bạn? Tại sao?",
+  ideas:[
+   {label:"Ô nhiễm môi trường / Khói bụi",labelEn:"Environmental Pollution / Dust & Smog",
+    opVi:"Ô nhiễm không khí và khói bụi giao thông.",
+    reVi:"Mỗi ngày đi làm/đi học đều phải hít khói bụi, gây dị ứng, ho và làm chất lượng cuộc sống giảm đi rõ rệt.",
+    opEn:"Air pollution and traffic-related smog.",
+    reEn:"Inhaling dust and exhaust fumes during my daily commute causes allergies and coughing, noticeably reducing my quality of life."},
+   {label:"Biến đổi khí hậu / Thời tiết khắc nghiệt",labelEn:"Climate Change / Extreme Weather",
+    opVi:"Thời tiết thất thường và nắng nóng gay gắt.",
+    reVi:"Nắng nóng khiến chi phí tiền điện bùng nổ (máy lạnh chạy liên tục) và làm cơ thể luôn mệt mỏi khi ra đường.",
+    opEn:"Unpredictable weather and extreme heatwaves.",
+    reEn:"Blistering heat causes electricity bills to surge due to continuous air-conditioner use and leaves me feeling exhausted whenever I step outside."},
+   {label:"Kinh tế / Lạm phát",labelEn:"Economy / Inflation",
+    opVi:"Giá cả sinh hoạt tăng cao do biến động kinh tế toàn cầu.",
+    reVi:"Cùng một số tiền nhưng giờ mua được ít thực phẩm và hàng hóa hơn hẳn so với trước đây.",
+    opEn:"Rising costs of living driven by global economic fluctuations.",
+    reEn:"The exact same amount of money buys significantly less food and everyday goods compared to before."}
+  ]},
+ {q:"Speaker 3 stopped reading the newspaper to avoid bad news. Is that a good solution or is he just hiding from the problem?",
+  qvi:"Người nói 3 ngừng đọc báo để tránh tin xấu. Đây là giải pháp tốt hay chỉ là trốn tránh?",
+  ideas:[
+   {label:"Trốn tránh thực tế",labelEn:"Hiding from reality",
+    opVi:"Đây chỉ là hành vi trốn tránh.",
+    reVi:"Giống như \"đà điểu chui đầu vào cát\", không đọc báo không làm cho chiến tranh hay thiên tai mất đi. Ngược lại, nó khiến mình mất cảnh giác và không có sự chuẩn bị tốt cho các biến động.",
+    opEn:"This is merely an act of avoidance.",
+    reEn:"Like an \"ostrich burying its head in the sand,\" ignoring the news won't make wars or natural disasters disappear. On the contrary, it lowers your awareness and leaves you unprepared for major shifts."},
+   {label:"Giải pháp tốt cho sức khỏe tinh thần",labelEn:"A good solution for mental health",
+    opVi:"Đây là giải pháp hợp lý để bảo vệ sức khỏe tâm thần (mental health).",
+    reVi:"Một cá nhân không thể tự dừng chiến tranh trên thế giới, nhưng tiếp thu quá nhiều thông tin tiêu cực mỗi ngày sẽ gây quá tải lo âu và trầm cảm.",
+    opEn:"This is a sensible move to protect one's mental health.",
+    reEn:"An individual cannot single-handedly stop global conflicts, but consuming an overwhelming stream of negative information every day leads to anxiety overload and depression."}
+  ]},
+ {q:"Speaker 2 moved to Chicago and speaker 6 moved to the countryside. Is moving away a real solution to a global issue?",
+  qvi:"Chuyển đi nơi khác có phải là giải pháp thực sự cho một vấn đề toàn cầu?",
+  ideas:[
+   {label:"Không phải giải pháp thực sự",labelEn:"Not a real solution",
+    opVi:"Không, đây không phải là giải pháp gốc rễ.",
+    reVi:"Đây chỉ là giải pháp tạm thời cho cá nhân. Nếu ai cũng bỏ chạy thay vì tìm cách khắc phục (như giảm ô nhiễm, trồng cây), thì nơi ở mới rồi cũng sẽ sớm gặp lại các vấn đề tương tự.",
+    opEn:"No, this does not address the root cause.",
+    reEn:"It is only a temporary personal fix. If everyone runs away instead of working to tackle the issues (such as reducing pollution or planting trees), the new destination will soon face the exact same problems."},
+   {label:"Là giải pháp thích nghi cá nhân",labelEn:"A personal adaptation strategy",
+    opVi:"Có, đối với mức độ cá nhân thì đó là giải pháp thực tế nhất.",
+    reVi:"Vấn đề toàn cầu cần hàng chục năm để thay đổi, trong khi đời người có hạn; việc di chuyển giúp họ cải thiện chất lượng sống ngay lập tức.",
+    opEn:"Yes, on an individual level, it is the most practical choice.",
+    reEn:"Global issues take decades to resolve, while a human lifetime is limited. Relocating allows individuals to immediately improve their quality of life."}
+  ]},
+ {q:"Should the government or ordinary people take more responsibility for pollution? Why?",
+  qvi:"Chính phủ hay người dân nên chịu trách nhiệm nhiều hơn về ô nhiễm? Tại sao?",
+  ideas:[
+   {label:"Chính phủ chịu trách nhiệm chính",labelEn:"Government holds primary responsibility",
+    opVi:"Chính phủ nên chịu trách nhiệm lớn hơn.",
+    reVi:"Chỉ chính phủ mới có quyền lực đưa ra luật pháp, xử phạt các nhà máy xí nghiệp xả thải và đầu tư vào hạ tầng năng lượng tái tạo quy mô lớn.",
+    opEn:"The government should bear a larger share of the responsibility.",
+    reEn:"Only governments have the authority to enact laws, penalize polluting factories, and invest heavily in large-scale renewable energy infrastructure."},
+   {label:"Trách nhiệm như nhau / Người dân là nòng cốt",labelEn:"Equal responsibility / Citizens as the core",
+    opVi:"Cả hai cần chịu trách nhiệm ngang nhau, nhưng hành động của người dân quyết định sự thành bại.",
+    reVi:"Dù chính phủ ra luật nhưng nếu người dân vẫn tiếp tục xả rác bừa bãi và dùng đồ nhựa một lần thì ô nhiễm không bao giờ chấm dứt.",
+    opEn:"Both share equal responsibility, but citizens' actions determine success or failure.",
+    reEn:"Regardless of how strict laws are, if people continue to litter and rely on single-use plastics, pollution will never truly end."}
+  ]},
+ {q:"Speaker 5 brings her own cup to the coffee shop. What small habit could you start this month?",
+  qvi:"Thói quen nhỏ nào bạn có thể bắt đầu trong tháng này?",
+  ideas:[
+   {label:"Mang túi cá nhân",labelEn:"Bring reusable bags",
+    opVi:"Luôn mang theo túi vải (túi dùng nhiều lần) khi đi siêu thị hoặc chợ.",
+    reVi:"Việc này rất dễ thực hiện và giúp cắt giảm hàng chục túi nilon mỗi tuần.",
+    opEn:"Always carry a cloth tote bag when going grocery or market shopping.",
+    reEn:"It is effortless to do and cuts down on dozens of plastic bags every week."},
+   {label:"Tắt thiết bị điện",labelEn:"Unplug electronics",
+    opVi:"Rút phích cắm và tắt toàn bộ thiết bị điện khi không sử dụng.",
+    reVi:"Vừa tiết kiệm tiền điện cho bản thân, vừa giảm tiêu thụ năng lượng chung của xã hội.",
+    opEn:"Unplug appliances and turn off all electrical devices when they are not in use.",
+    reEn:"This saves money on electricity bills while reducing overall energy consumption for society."},
+   {label:"Giảm đồ nhựa dùng 1 lần",labelEn:"Reduce single-use plastics",
+    opVi:"Mang theo bình nước cá nhân và từ chối lấy ống hút nhựa / muỗng nhựa khi mua đồ ăn thức uống ngoài cửa hàng.",
+    reVi:"",
+    opEn:"Carry a personal water bottle and decline plastic straws or cutlery when purchasing food and drinks to go.",
+    reEn:""}
+  ]},
+ {q:"Is overpopulation the root cause of most other issues on this list? Argue for or against.",
+  qvi:"Bùng nổ dân số có phải là nguyên nhân gốc rễ của hầu hết các vấn đề khác? Đồng ý hay Phản đối?",
+  ideas:[
+   {label:"ĐỒNG Ý",labelEn:"AGREE",
+    opVi:"Đồng ý, bùng nổ dân số là nguyên nhân cốt lõi.",
+    reVi:"Càng đông người thì nhu cầu về ăn ở, di chuyển, tiêu thụ năng lượng càng tăng → dẫn đến kẹt xe, cạn kiệt tài nguyên, xả nhiều rác thải và ô nhiễm hơn.",
+    opEn:"Agree — overpopulation is the core driver.",
+    reEn:"A larger population directly inflates demand for housing, transportation, and energy consumption. This leads to traffic congestion, resource depletion, increased waste generation, and worsening pollution."},
+   {label:"PHẢN ĐỐI",labelEn:"AGAINST",
+    opVi:"Phản đối, nguyên nhân gốc rễ là thói quen tiêu dùng và cách quản lý kém, chứ không phải do số lượng người.",
+    reVi:"Nhờ công nghệ hiện đại, Trái Đất có đủ tài nguyên nuôi sống con người nếu chúng ta biết phân bổ công bằng, giảm lãng phí thực phẩm và chuyển sang dùng năng lượng sạch.",
+    opEn:"Disagree — the root causes are consumption habits and poor management, not population size.",
+    reEn:"Thanks to modern technology, the Earth has enough resources to sustain humanity if we distribute them fairly, eliminate food waste, and transition to clean energy."}
+  ]}
+];
+
+const SELF_CHECK=["I can name all 8 global issues in English.","I can explain each issue in simple English, without Vietnamese.","I can give one realistic cause for each issue.","I can suggest one basic solution for each issue.","I know the noun/verb stress rule and can say INcrease vs inCREASE.","I can use all four key structures correctly.","I understood the six listening speakers.","I can deliver a 1-minute P-E-R speech without notes."];
+
+/* ---- QUIZ: 30 unique questions ---- */
+const QUIZ=[
+ {t:"DEFINITION",q:"Dirty, unsafe things in the air we breathe.",o:["global warming","overpopulation","air pollution","a landfill"],a:2,e:"Air pollution = ô nhiễm không khí."},
+ {t:"DEFINITION",q:"The Earth becoming hotter because of gases from factories and cars.",o:["global warming","a housing shortage","emissions","water pollution"],a:0,e:"Global warming = nóng lên toàn cầu."},
+ {t:"DEFINITION",q:"When many people want to work but do not have a job.",o:["poverty","overpopulation","traffic","unemployment"],a:3,e:"Unemployment = nạn thất nghiệp. Notice the -ment ending: it's a noun."},
+ {t:"DEFINITION",q:"A problem when there are not enough houses for everyone.",o:["a housing shortage","rush hour","a landfill","a high-rise"],a:0,e:"Housing shortage = thiếu hụt nhà ở."},
+ {t:"DEFINITION",q:"Too many people living in one area or country.",o:["crowded streets","poverty","overpopulation","emissions"],a:2,e:"Overpopulation = bùng nổ dân số."},
+ {t:"DEFINITION",q:"Things people do not want and throw away.",o:["garbage","imports","chemicals","records"],a:0,e:"Garbage / trash = rác thải."},
+ {t:"DEFINITION",q:"A huge hole in the ground where garbage is buried.",o:["a subway","a freeway","a high-rise","a landfill"],a:3,e:"Landfill = bãi chôn lấp rác. Speaker 5 says they are full."},
+ {t:"DEFINITION",q:"Buses, trains and subways that everyone can use.",o:["public transport","affordable houses","packaged food","field operations"],a:0,e:"Public transport = phương tiện công cộng — a key solution for traffic."},
+ {t:"DEFINITION",q:"To actually DO something about a problem, not just talk about it.",o:["to face problems","to be crowded","to take action","to suffer"],a:2,e:"Take action = hành động, có biện pháp cụ thể."},
+ {t:"DEFINITION",q:"The leader of a city government.",o:["the subway","the landfill","the citizen","the mayor"],a:3,e:"Mayor = thị trưởng. Speaker 1 wrote a letter to the mayor."},
+ {t:"CAUSE",q:"What causes water pollution, according to speaker 1?",o:["Too many cars on the roads","People buying frozen dinners","Cities expanding upward","Industries dumping chemicals and waste into the water"],a:3,e:"Speaker 1: industries were dumping all sorts of chemicals and waste into the water."},
+ {t:"CAUSE",q:"What is the main cause of air pollution in a Vietnamese city?",o:["Landfills are full","Too many motorbikes, cars and factories","Not enough houses","Countries fighting each other"],a:1,e:"Vehicle and factory emissions are the main source of urban air pollution."},
+ {t:"CAUSE",q:"Why are landfills a problem today, according to speaker 5?",o:["They are too expensive to build","They are full and there is no room for new ones","They are too far from the city","They only accept fresh food"],a:1,e:"Speaker 5: the landfills are full and there is no room to start new ones."},
+ {t:"CAUSE",q:"Why is traffic so bad in speaker 4's city?",o:["The subway is broken","There are only two freeways and too many cars","Everyone works from home","There are no buses at all"],a:1,e:"Speaker 4: only two freeways, and they just can't handle all the traffic."},
+ {t:"CAUSE",q:"Why does a housing shortage happen in big cities?",o:["People prefer living in the countryside","Houses last only ten years","Cities grow faster than new homes can be built","The government builds too many houses"],a:2,e:"Overpopulation in cities outpaces house building, so prices rise and homes run out."},
+ {t:"SOLUTION",q:"What did speaker 1 and his neighbours DO about the polluted river?",o:["They moved to another city","They stopped swimming in it","They wrote a letter to the mayor","They cleaned the river themselves"],a:2,e:"They wrote a letter asking the mayor to force the industries to clean up the river."},
+ {t:"SOLUTION",q:"What does speaker 5 do to create less garbage?",o:["She burns her trash at home","She buys more frozen dinners","She buys fresh food and brings her own cup","She started a new landfill"],a:2,e:"She buys fresh meats and produce instead of packaged food, and takes her own cup to the coffee shop."},
+ {t:"SOLUTION",q:"Which is the best basic solution for air pollution?",o:["Build more freeways","Use public transport and plant more trees","Buy more packaged food","Move all factories into the city"],a:1,e:"Reducing emissions and increasing green space are the standard basic solutions."},
+ {t:"SOLUTION",q:"Which is the best basic solution for unemployment?",o:["Create more jobs and train young people","Reduce public transport","Build more landfills","Import more cars"],a:0,e:"The government really needs to help create more jobs for young people."},
+ {t:"SOLUTION",q:"Which is the best basic solution for a housing shortage?",o:["Ban people from moving","Build more affordable houses","Make houses more expensive","Close the subway"],a:1,e:"The government needs to build more affordable houses — homes ordinary people can pay for."},
+ {t:"STRESS",q:"\"There has been an INcrease in pollution.\" Why is the stress on the first syllable?",o:["Because it is a verb","Because it is plural","Because it is past tense","Because it is a noun"],a:3,e:"Two-syllable noun → stress the FIRST syllable. 'an increase' is a thing."},
+ {t:"STRESS",q:"\"Factories ___ pollution.\" How do you say the word 'increase' here?",o:["INcrease (first syllable)","inCREASE (second syllable)","Both are the same","You cannot use it here"],a:1,e:"Here it is the ACTION of the sentence → verb → stress the SECOND syllable."},
+ {t:"STRESS",q:"Which sentence stresses 'record' on the SECOND syllable?",o:["The runner broke the world record.","That record is very old.","You should record the lesson.","I bought a new record."],a:2,e:"After 'should' comes a verb → reCORD."},
+ {t:"STRESS",q:"\"Rice is a major ___.\" Which form is correct?",o:["IMport (noun)","importing","imported","imPORT (verb)"],a:0,e:"'a major import' is a THING → noun → stress the FIRST syllable."},
+ {t:"STRUCTURE",q:"Complete: \"There has been an increase ___ air pollution.\"",o:["on","in","at","for"],a:1,e:"The fixed structure is: an increase IN + noun."},
+ {t:"STRUCTURE",q:"Which sentence is correct?",o:["Unemployment is a grow problem.","Unemployment is a growing problem.","Unemployment is growing problem.","Unemployment a growing problem is."],a:1,e:"… is a growing problem = là một vấn đề đang nhức nhối."},
+ {t:"STRUCTURE",q:"Complete: \"The government really needs to help ___ more houses.\"",o:["building","built","build","builds"],a:2,e:"After 'needs to help' use a BARE verb: build."},
+ {t:"STRUCTURE",q:"Complete: \"We have to do something about ___.\"",o:["overpopulation","populated","overpopulate","popular"],a:0,e:"After 'do something about' use a NOUN: overpopulation."},
+ {t:"LISTENING",q:"Speaker 6 says he moved where?",o:["To a high-rise downtown","To a small town in the country","To Chicago","Next to the subway station"],a:1,e:"He can't stand crowded cities, so he moved to a small town in the country."},
+ {t:"LISTENING",q:"Speaker 3 stopped reading the newspaper. What does he read now?",o:["Nothing at all","Sports magazines","Science books","The news online"],a:1,e:"\"whenever I want to read something, I just pick up one of those sports magazines.\""}
+];
+
+/* ================== HELPERS ================== */
+const $=id=>document.getElementById(id);
+function norm(s){return s.toLowerCase().replace(/[\u2018\u2019]/g,"'").replace(/[\u2013\u2014]/g,"-").replace(/\s+/g," ").replace(/\s+([.,?!])/g,"$1").replace(/[.]$/,"").trim();}
+function shuffledCopy(a){const c=[...a];for(let i=c.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[c[i],c[j]]=[c[j],c[i]];}return c;}
+const ALL_TIMERS=[];
+function trackInterval(fn,ms){const id=setInterval(fn,ms);ALL_TIMERS.push(id);return id;}
+function clearAllTimers(){ALL_TIMERS.forEach(clearInterval);ALL_TIMERS.length=0;}
+function wordCount(s){return s.trim()?s.trim().split(/\s+/).length:0;}
+
+/* ================== NAVIGATION ================== */
+const PAGES=["p-overview","p-vocab","p-pron","p-structures","p-listening","p-speaking","p-review"];
+const visited=new Set(["p-overview"]);
+function gotoPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  $(id).classList.add("active");
+  document.querySelectorAll(".nav-item").forEach(n=>n.classList.toggle("active",n.dataset.page===id));
+  visited.add(id);
+  $("progFill").style.width=Math.round(visited.size/PAGES.length*100)+"%";
+  window.scrollTo({top:0,behavior:"smooth"});
+  if(typeof syncAllCues==="function")syncAllCues();
+}
+document.querySelectorAll(".nav-item").forEach(n=>n.addEventListener("click",()=>gotoPage(n.dataset.page)));
+document.addEventListener("click",e=>{
+  const g=e.target.closest("[data-goto]");if(g){gotoPage(g.dataset.goto);return;}
+  const t=e.target.closest("[data-toggle]");if(t){$(t.dataset.toggle).classList.toggle("revealed");return;}
+});
+
+/* ================== TABS ================== */
+document.querySelectorAll(".tab-bar").forEach(bar=>{
+  const wrap=document.createElement("div");
+  wrap.className="tab-scroll";
+  bar.parentNode.insertBefore(wrap,bar);
+  wrap.appendChild(bar);
+  const cue=document.createElement("span");
+  cue.className="scroll-cue";cue.textContent="›";
+  wrap.appendChild(cue);
+  const sync=()=>{wrap.classList.toggle("more-right",bar.scrollWidth-bar.clientWidth-bar.scrollLeft>4);};
+  bar.addEventListener("scroll",sync,{passive:true});
+  window.addEventListener("resize",sync);
+  bar._syncCue=sync;sync();
+});
+function syncAllCues(){document.querySelectorAll(".tab-bar").forEach(b=>b._syncCue&&b._syncCue());}
+document.querySelectorAll(".tab-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const bar=btn.closest(".tab-bar"),group=bar.dataset.group;
+    bar.querySelectorAll(".tab-btn").forEach(b=>b.classList.toggle("active",b===btn));
+    document.querySelectorAll(`.tab-panel[data-group="${group}"]`).forEach(p=>p.classList.toggle("active",p.dataset.panel===btn.dataset.tab));
+    if(btn.scrollIntoView)btn.scrollIntoView({block:"nearest",inline:"nearest",behavior:"smooth"});
+    setTimeout(syncAllCues,350);
+  });
+});
+
+/* ================== ISSUE CARDS ================== */
+$("issueGrid").innerHTML=ISSUES.map(i=>`<div class="issue-card">
+  <div class="i-ico">${i.ico}</div>
+  <h4>${i.en}</h4>
+  <div class="i-vi">${i.vi}</div>
+  <div class="i-row"><b>Cause:</b> ${i.cause}</div>
+  <div class="i-row"><b>Solution:</b> ${i.sol}</div>
+</div>`).join("");
+
+/* ================== VOCAB CARDS ================== */
+function renderVocab(id,arr){
+  $(id).innerHTML=arr.map(v=>{
+    const parts=v.ex.split("|");
+    return `<div class="vocab-card"><span class="flip-hint">tap ↻</span>
+      <div class="word">${v.w}</div><div class="ipa">${v.ipa}</div>
+      <div><span class="pos">${v.pos}</span></div><div class="vi">${v.vi}</div>
+      <div class="example">💡 ${parts[0]}<br>${parts[1]||""}</div></div>`;
+  }).join("");
+}
+renderVocab("vgIssue",VOCAB_ISSUE);renderVocab("vgCause",VOCAB_CAUSE);renderVocab("vgSol",VOCAB_SOL);
+document.addEventListener("click",e=>{
+  const c=e.target.closest(".vocab-card");if(c)c.classList.toggle("flipped");
+  const f=e.target.closest("[data-flipall]");
+  if(f)f.dataset.flipall.split(",").forEach(g=>$(g).querySelectorAll(".vocab-card").forEach(cc=>cc.classList.add("flipped")));
+});
+
+/* ================== MATCHING ================== */
+$("matchA").innerHTML=MATCH_A.map(m=>`<div class="match-item" data-n="${m.n}">
+  <span class="m-num">${m.n}</span><span>${m.text}</span>
+  <select id="mt${m.n}"><option value="">?</option>${MATCH_B.map(b=>`<option value="${b.l}">${b.l}</option>`).join("")}</select>
+</div>`).join("");
+$("matchB").innerHTML=MATCH_B.map(b=>`<div class="match-item"><span class="m-ltr">${b.l}</span><span>${b.text}</span></div>`).join("");
+$("mtCheck").addEventListener("click",()=>{
+  let s=0;
+  MATCH_A.forEach(m=>{
+    const sel=$("mt"+m.n),row=$("matchA").querySelector(`.match-item[data-n="${m.n}"]`);
+    const ok=sel.value===m.ans;
+    row.classList.remove("correct","incorrect");row.classList.add(ok?"correct":"incorrect");
+    if(ok)s++;else sel.value=m.ans;
+  });
+  $("mtScore").textContent=s+"/8";
+  $("mtMsg").textContent=s===8?"Perfect! All eight matched. 🏆":"Corrected for you — read each definition again and retry.";
+  $("mtFb").className="feedback-box show "+(s>=7?"success":s>=4?"info":"error");
+});
+$("mtReset").addEventListener("click",()=>{
+  MATCH_A.forEach(m=>{$("mt"+m.n).value="";$("matchA").querySelector(`.match-item[data-n="${m.n}"]`).classList.remove("correct","incorrect");});
+  $("mtFb").className="feedback-box";
+});
+
+/* ================== MCQ ENGINE ================== */
+function buildMCQ(listId,data,letters){
+  const L=letters||"ABCD";
+  $(listId).innerHTML=data.map((it,i)=>`<div class="q-block" data-q="${i}">
+    <div class="q-text"><span class="qn">${i+1}.</span>${it.q}</div>
+    <div class="mcq-opts">${it.o.map((o,j)=>`<div class="mcq-option" data-i="${j}"><span class="ltr">${L[j]}.</span><span>${o}</span></div>`).join("")}</div>
+    ${it.e?`<div class="quiz-explain" id="${listId}Ex${i}" style="margin-top:10px;">${it.e}</div>`:""}
+  </div>`).join("");
+  $(listId).addEventListener("click",e=>{
+    const opt=e.target.closest(".mcq-option");if(!opt)return;
+    const block=opt.closest(".q-block");
+    if(block.dataset.locked==="1")return;
+    block.querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected"));
+    opt.classList.add("selected");
+  });
+  return{
+    check(){
+      let score=0;
+      $(listId).querySelectorAll(".q-block").forEach((block,i)=>{
+        block.dataset.locked="1";
+        const opts=block.querySelectorAll(".mcq-option");
+        const sel=block.querySelector(".mcq-option.selected");
+        opts[data[i].a].classList.add("correct");
+        if(sel){if(+sel.dataset.i===data[i].a)score++;else sel.classList.add("incorrect");}
+        const ex=$(listId+"Ex"+i);if(ex)ex.classList.add("show");
+      });
+      return score;
+    },
+    reset(){
+      $(listId).querySelectorAll(".q-block").forEach((b,i)=>{
+        b.dataset.locked="";
+        b.querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected","correct","incorrect"));
+        const ex=$(listId+"Ex"+i);if(ex)ex.classList.remove("show");
+      });
+    }
+  };
+}
+function tierMsg(s,t){const r=s/t;return r===1?"Perfect! 🏆":r>=0.8?"Excellent — just review the ones you missed.":r>=0.6?"Good. Read the material once more, then retry.":"Go back and review, then try again. You'll get there.";}
+function wire(listId,btnCheck,btnReset,fb,scoreEl,msgEl,data,total,letters){
+  const eng=buildMCQ(listId,data,letters);
+  $(btnCheck).addEventListener("click",()=>{
+    const s=eng.check();
+    $(scoreEl).textContent=s+"/"+total;$(msgEl).textContent=tierMsg(s,total);
+    $(fb).className="feedback-box show "+(s>=total*0.8?"success":s>=total*0.5?"info":"error");
+  });
+  $(btnReset).addEventListener("click",()=>{eng.reset();$(fb).className="feedback-box";});
+  return eng;
+}
+const vqEng=wire("vqList","vqCheck","vqReset","vqFb","vqScore","vqMsg",VQ,12);
+const stqEng=wire("stqList","stqCheck","stqReset","stqFb","stqScore","stqMsg",STQ,8,"AB");
+const t1Eng=wire("t1List","t1Check","t1Reset","t1Fb","t1Score","t1Msg",T1,6,"abc");
+
+/* ================== WORD STRESS CARDS ================== */
+function svo(rows){return rows.map(r=>`<span class="svo-chip"><span class="svo-tag">${r[0]}</span>${r[1]}</span>`).join("");}
+$("stressList").innerHTML=STRESS.map(s=>{
+  const nw=s.noun.word.split("|"),vw=s.verb.word.split("|");
+  return `<div class="stress-card">
+    <div class="stress-head">
+      <div class="stress-side noun">
+        <div class="s-tag">NOUN · stress 1st</div>
+        <div class="s-word"><span class="loud">${nw[0]}</span>${nw[1]}</div>
+        <div class="s-ipa">${s.noun.ipa} — ${s.noun.mean}</div>
+      </div>
+      <div class="stress-arrow">⇄</div>
+      <div class="stress-side verb">
+        <div class="s-tag">VERB · stress 2nd</div>
+        <div class="s-word">${vw[0]}<span class="loud">${vw[1]}</span></div>
+        <div class="s-ipa">${s.verb.ipa} — ${s.verb.mean}</div>
+      </div>
+    </div>
+    <div class="svo-label">Noun sentence</div><div class="svo-row">${svo(s.nounSent)}</div>
+    <div class="svo-label">Verb sentence</div><div class="svo-row">${svo(s.verbSent)}</div>
+  </div>`;
+}).join("");
+
+/* ================== KEY STRUCTURES ================== */
+$("structList").innerHTML=STRUCTS.map(s=>`<div class="exercise" style="margin-bottom:14px;">
+  <div class="exercise-title">${s.ico} ${s.en}</div>
+  <div class="build-vi" style="font-size:13px;color:var(--text-soft);font-style:italic;margin-bottom:8px;">${s.vi}</div>
+  <div class="exercise-instruction" style="margin-bottom:10px;">${s.use}</div>
+  <div class="dialogue-box">${s.ex}</div>
+</div>`).join("");
+
+/* ================== TRANSLATION ================== */
+$("trList").innerHTML=TRANSLATE.map((t,i)=>`<div class="tr-item">
+  <div class="tr-vn"><span class="tr-num">${i+1}</span><span>${t.vn}</span></div>
+  <input class="tr-input" id="tr${i}" placeholder="Type your English translation…">
+  <div class="btn-group" style="margin-top:8px;"><button class="btn btn-secondary btn-sm" data-tr="${i}">💡 Show answer</button></div>
+  <div class="tr-ans" id="trA${i}">✅ ${t.en}</div>
+</div>`).join("");
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-tr]");
+  if(b){const i=b.dataset.tr,el=$("trA"+i);el.classList.toggle("revealed");b.textContent=el.classList.contains("revealed")?"🙈 Hide answer":"💡 Show answer";}
+});
+$("trRevealAll").addEventListener("click",()=>{
+  TRANSLATE.forEach((_,i)=>$("trA"+i).classList.add("revealed"));
+  document.querySelectorAll("[data-tr]").forEach(b=>b.textContent="🙈 Hide answer");
+});
+$("trReset").addEventListener("click",()=>{
+  TRANSLATE.forEach((_,i)=>{$("tr"+i).value="";$("trA"+i).classList.remove("revealed");});
+  document.querySelectorAll("[data-tr]").forEach(b=>b.textContent="💡 Show answer");
+});
+
+/* ================== GAP FILL ================== */
+$("gapList").innerHTML=GAPS.map((g,i)=>`<div class="q-block">
+  <div class="q-text"><span class="qn">${i+1}.</span>${g.pre} <input class="blank-input" id="gap${i}" placeholder="…"> ${g.post}
+  <span style="color:var(--text-soft);font-size:12px;font-style:italic;">(${g.hint})</span></div>
+</div>`).join("");
+$("gapCheck").addEventListener("click",()=>{
+  let s=0;
+  GAPS.forEach((g,i)=>{
+    const inp=$("gap"+i),v=norm(inp.value);
+    const ok=g.ans.some(a=>norm(a)===v);
+    inp.classList.remove("correct","incorrect");inp.classList.add(ok?"correct":"incorrect");
+    if(ok)s++;else inp.title="Answer: "+g.ans.join(" / ");
+  });
+  $("gapScore").textContent=s+"/8";$("gapMsg").textContent=s===8?"Perfect! 🏆":"Hover a red box to see the answer, then Reset and retry.";
+  $("gapFb").className="feedback-box show "+(s>=7?"success":s>=4?"info":"error");
+});
+$("gapReset").addEventListener("click",()=>{
+  GAPS.forEach((_,i)=>{const inp=$("gap"+i);inp.value="";inp.classList.remove("correct","incorrect");inp.title="";});
+  $("gapFb").className="feedback-box";
+});
+
+/* ================== LISTENING TASK 2 (T/F) ================== */
+$("tfTable").innerHTML=`<thead><tr><th>Statement</th><th>True</th><th>False</th></tr></thead><tbody>`+
+ TF.map((r,i)=>`<tr>
+   <td><b style="color:var(--moss);">${i+1}.</b> ${r.stmt}</td>
+   <td><button class="tf-btn" data-i="${i}" data-v="T">T</button></td>
+   <td><button class="tf-btn" data-i="${i}" data-v="F">F</button></td>
+ </tr>`).join("")+`</tbody>`;
+let tfLocked=false;
+$("tfTable").addEventListener("click",e=>{
+  const b=e.target.closest(".tf-btn");if(!b||tfLocked)return;
+  $("tfTable").querySelectorAll(`.tf-btn[data-i="${b.dataset.i}"]`).forEach(x=>x.classList.remove("sel"));
+  b.classList.add("sel");
+});
+$("tfCheck").addEventListener("click",()=>{
+  tfLocked=true;let s=0;
+  TF.forEach((r,i)=>{
+    const pair=$("tfTable").querySelectorAll(`.tf-btn[data-i="${i}"]`);
+    const sel=[...pair].find(x=>x.classList.contains("sel"));
+    [...pair].find(x=>x.dataset.v===r.ans).classList.add("correct");
+    if(sel){if(sel.dataset.v===r.ans)s++;else sel.classList.add("incorrect");}
+  });
+  $("tfScore").textContent=s+"/6";$("tfMsg").textContent=tierMsg(s,6);
+  $("tfFb").className="feedback-box show "+(s>=5?"success":s>=3?"info":"error");
+});
+$("tfReset").addEventListener("click",()=>{
+  tfLocked=false;
+  $("tfTable").querySelectorAll(".tf-btn").forEach(b=>b.classList.remove("sel","correct","incorrect"));
+  $("tfFb").className="feedback-box";
+});
+$("keyBody").innerHTML=`<div style="font-weight:800;color:var(--forest);margin-bottom:8px;">Task 1 — which issue?</div>`+
+ T1_EXPLAIN.map(k=>`<div style="padding:9px 0;border-bottom:1px solid var(--sage);font-size:14px;">
+   <b style="color:var(--forest);">${k.n}. ${k.ans}</b><div style="color:var(--text-soft);margin-top:3px;">${k.e}</div></div>`).join("")+
+ `<div style="font-weight:800;color:var(--forest);margin:16px 0 8px;">Task 2 — true or false?</div>`+
+ TF.map(k=>`<div style="padding:9px 0;border-bottom:1px solid var(--sage);font-size:14px;">
+   <b style="color:var(--forest);">${k.n}. ${k.ans==="T"?"TRUE":"FALSE"}</b> — ${k.stmt}
+   <div style="color:var(--text-soft);margin-top:3px;">${k.e}</div></div>`).join("");
+$("tapeBody").innerHTML=TAPE.map(t=>`
+  <div style="font-weight:800;color:var(--forest);font-size:14px;margin:14px 0 4px;">Speaker ${t.n}</div>
+  <div class="dialogue-line">${t.en}<span class="vi">${t.vi}</span></div>`).join("");
+$("tapeVocab").innerHTML=TAPE_VOCAB.map(v=>`<div class="phrase-card" style="margin-bottom:8px;"><span class="phrase-en" style="min-width:250px;">${v.w}</span><span class="phrase-vi">${v.vi}</span></div>`).join("");
+
+/* ================== P-E-R SAMPLES ================== */
+$("sampleList").innerHTML=SAMPLES.map(s=>`<div class="exercise" style="margin-bottom:16px;">
+  <div class="exercise-title">${s.ico} ${s.title}</div>
+  ${s.lines.map(l=>`<div class="per-line ${l.t}"><span class="pl-tag">${l.tag}</span>${l.en}<span class="vi">${l.vi}</span></div>`).join("")}
+</div>`).join("");
+
+/* ================== KEYWORD SPEECH BUILDER ================== */
+$("topicRow").innerHTML=TOPICS.map((t,i)=>`<button class="topic-pill${i===0?" active":""}" data-topic="${i}">${t}</button>`).join("");
+let curTopic=TOPICS[0];
+$("topicRow").addEventListener("click",e=>{
+  const b=e.target.closest(".topic-pill");if(!b)return;
+  $("topicRow").querySelectorAll(".topic-pill").forEach(x=>x.classList.toggle("active",x===b));
+  curTopic=TOPICS[+b.dataset.topic];spAssemble();
+});
+const KW_IDS=["kwIssue","kwBecause","kwIssue2","kwCause","kwWho","kwFace","kwLike","kwGov","kwMe","kwAll"];
+const KW_EXAMPLE={kwIssue:"air pollution",kwBecause:"too many motorbikes",kwIssue2:"traffic",
+  kwCause:"overpopulation",kwWho:"young people",kwFace:"health problems",kwLike:"coughing and lung disease",
+  kwGov:"build more affordable houses",kwMe:"bring my own cup to the coffee shop",kwAll:"use public transport and recycle"};
+function kw(id){return $(id).value.trim();}
+function fill(t){return `<span class="kw-fill">${t}</span>`;}
+function fillCap(t){return fill(t.charAt(0).toUpperCase()+t.slice(1));}
+/* Each frame is taken from the 1D Context Passage. A sentence only appears
+   when the keyword it needs has been typed — nothing is invented. */
+function spAssemble(){
+  KW_IDS.forEach(id=>$(id).classList.toggle("filled",!!kw(id)));
+  const v={};KW_IDS.forEach(id=>v[id]=kw(id));
+  const any=KW_IDS.some(id=>v[id]);
+  if(!any){
+    $("spOut").innerHTML='<span style="color:var(--text-soft);font-style:italic;">Type a keyword above and your speech appears here…</span>';
+    $("wcTotal").textContent="0 words total";return;
+  }
+  const P=[],C=[],E=[],R=[];
+  if(v.kwIssue&&v.kwBecause)P.push(`There has been an increase in ${fill(v.kwIssue)} in my city because of ${fill(v.kwBecause)}.`);
+  else if(v.kwIssue)P.push(`There has been an increase in ${fill(v.kwIssue)} in my city.`);
+  if(v.kwIssue2)P.push(`${fillCap(v.kwIssue2)} is a serious problem too.`);
+  if(v.kwCause)C.push(`Why? Mostly ${fill(v.kwCause)}.`);
+  if(v.kwWho)C.push(`And it is a growing problem for ${fill(v.kwWho)}.`);
+  if(v.kwFace&&v.kwLike)E.push(`If we don't stop this, we'll face ${fill(v.kwFace)} like ${fill(v.kwLike)}.`);
+  else if(v.kwFace)E.push(`If we don't stop this, we'll face ${fill(v.kwFace)}.`);
+  if(v.kwFace||v.kwLike)E.push(`The environment will get dirty and the economy suffers.`);
+  if(v.kwGov)R.push(`The government really needs to help ${fill(v.kwGov)}.`);
+  if(v.kwIssue)R.push(`We have to do something about ${fill(v.kwIssue)}.`);
+  if(v.kwMe)R.push(`Personally, I ${fill(v.kwMe)}.`);
+  if(v.kwAll)R.push(`Everyone can take action: ${fill(v.kwAll)}.`);
+  const para=(cls,tag,arr)=>arr.length?`<div class="sp-para"><span class="sp-move ${cls}">${tag}</span>${arr.join(" ")}</div>`:"";
+  $("spOut").innerHTML=`<div style="font-weight:800;color:var(--moss);margin-bottom:12px;">Topic: ${curTopic}</div>`+
+    para("p","P",P)+para("c","C",C)+para("e","E",E)+para("r","R",R);
+  const total=wordCount($("spOut").innerText.replace(/^Topic:.*$/m,"").replace(/\b[PCER]\b/g,""));
+  $("wcTotal").textContent=total+" words total"+(total>=45?" ✅ about one minute":total>0?" — add more keywords to reach 45+":"");
+}
+KW_IDS.forEach(id=>$(id).addEventListener("input",spAssemble));
+$("spClear").addEventListener("click",()=>{KW_IDS.forEach(id=>$(id).value="");spAssemble();});
+$("spExample").addEventListener("click",()=>{
+  KW_IDS.forEach(id=>$(id).value=KW_EXAMPLE[id]);
+  $("topicRow").querySelectorAll(".topic-pill").forEach((x,i)=>x.classList.toggle("active",i===0));
+  curTopic=TOPICS[0];spAssemble();
+});
+
+$("ctCheck").innerHTML=`<div class="exercise-title">🧠 Check before you speak</div>`+CT_CHECK.map(c=>`<label class="check-item"><input type="checkbox">${c}</label>`).join("");
+
+/* ================== REFLEX ================== */
+function makeBag(pool){let bag=[];return{draw(){if(bag.length===0)bag=shuffledCopy(pool);return bag.pop();}};}
+const wordBag=makeBag(REFLEX_WORDS),sitBag=makeBag(REFLEX_SITUATIONS);
+$("drawWordBtn").addEventListener("click",()=>{
+  const w=wordBag.draw();
+  $("drawWordRes").innerHTML=`<span class="big">${w.w}</span><span class="small">${w.vi}</span>`;
+});
+$("drawSitBtn").addEventListener("click",()=>{
+  const s=sitBag.draw();
+  $("drawSitRes").innerHTML=`<span style="font-size:16px;font-weight:700;color:var(--forest);">${s}</span>`;
+});
+$("discList").innerHTML=DISCUSS.map((d,i)=>`<div class="exercise" style="margin-bottom:16px;">
+  <div class="q-text"><span class="qn">${i+1}.</span>${d.q}</div>
+  <div class="disc-qvi">${d.qvi}</div>
+  <div class="mini-label" style="margin-top:14px;">💡 Ý tưởng gợi ý — brainstorm trước khi nói</div>
+  ${d.ideas.map((x,j)=>`
+    <div class="idea-card">
+      <div class="idea-head"><span class="idea-num">${j+1}</span><span class="idea-label">${x.label}</span></div>
+      <div class="idea-row"><span class="idea-tag op">Ý KIẾN</span>${x.opVi}</div>
+      ${x.reVi?`<div class="idea-row"><span class="idea-tag re">LÝ DO</span>${x.reVi}</div>`:""}
+      <div class="btn-group" style="margin-top:10px;">
+        <button class="btn btn-secondary btn-sm" data-idea="d${i}i${j}">🇬🇧 Xem mẫu tiếng Anh</button>
+      </div>
+      <div class="idea-en" id="d${i}i${j}">
+        <div class="idea-en-label">${x.labelEn}</div>
+        <div class="idea-row"><span class="idea-tag op">OPINION</span>${x.opEn}</div>
+        ${x.reEn?`<div class="idea-row"><span class="idea-tag re">REASON</span>${x.reEn}</div>`:""}
+      </div>
+    </div>`).join("")}
+  <div class="btn-group" style="margin-top:6px;">
+    <button class="btn btn-outline btn-sm" data-ideaall="${i}">🇬🇧 Hiện tất cả tiếng Anh của câu ${i+1}</button>
+  </div>
+</div>`).join("");
+function ideaBtnLabel(el,shown){el.textContent=shown?"🙈 Ẩn tiếng Anh":"🇬🇧 Xem mẫu tiếng Anh";}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-idea]");
+  if(b){const el=$(b.dataset.idea);el.classList.toggle("revealed");ideaBtnLabel(b,el.classList.contains("revealed"));return;}
+  const a=e.target.closest("[data-ideaall]");
+  if(a){
+    const i=a.dataset.ideaall;
+    const cards=DISCUSS[i].ideas.map((_,j)=>$("d"+i+"i"+j));
+    const showAll=!cards.every(c=>c.classList.contains("revealed"));
+    cards.forEach(c=>c.classList.toggle("revealed",showAll));
+    document.querySelectorAll(`[data-idea^="d${i}i"]`).forEach(btn=>ideaBtnLabel(btn,showAll));
+    a.textContent=showAll?`🙈 Ẩn tiếng Anh của câu ${+i+1}`:`🇬🇧 Hiện tất cả tiếng Anh của câu ${+i+1}`;
+  }
+});
+
+/* ================== COUNTDOWN ================== */
+let cdSec=60,cdLeft=60,cdInt=null,cdGoInt=null;
+function cdShow(){const m=String(Math.floor(cdLeft/60)).padStart(2,"0"),s=String(cdLeft%60).padStart(2,"0");$("countDisp").textContent=m+":"+s;}
+document.querySelectorAll(".preset-pill").forEach(p=>p.addEventListener("click",()=>{
+  document.querySelectorAll(".preset-pill").forEach(x=>x.classList.toggle("active",x===p));
+  cdSec=+p.dataset.sec;cdReset();
+}));
+function cdReset(){
+  if(cdInt){clearInterval(cdInt);cdInt=null;}
+  if(cdGoInt){clearInterval(cdGoInt);cdGoInt=null;}
+  cdLeft=cdSec;$("countDisp").classList.remove("timeup");$("countGo").textContent="";cdShow();
+}
+$("countStart").addEventListener("click",()=>{
+  if(cdInt||cdGoInt)return;
+  cdReset();
+  let n=3;$("countGo").textContent=n+"…";
+  cdGoInt=trackInterval(()=>{
+    n--;
+    if(n>0){$("countGo").textContent=n+"…";}
+    else{
+      clearInterval(cdGoInt);cdGoInt=null;$("countGo").textContent="GO! 🎤";
+      cdInt=trackInterval(()=>{
+        cdLeft--;cdShow();
+        if(cdLeft<=0){clearInterval(cdInt);cdInt=null;$("countDisp").classList.add("timeup");$("countDisp").textContent="00:00";$("countGo").textContent="⏰ Time's up!";}
+      },1000);
+    }
+  },1000);
+});
+$("countReset").addEventListener("click",cdReset);
+cdShow();
+
+/* ================== QUIZ GAME ================== */
+let qzOrder=[],qzIdx=0,qzScore=0,qzTimerInt=null,qzTimeLeft=10,qzSelected=null,qzAnswered=false;
+function qzScreen(id){["qzStart","qzPlay","qzResult"].forEach(s=>$(s).classList.toggle("active",s===id));}
+function qzStopTimer(){if(qzTimerInt){clearInterval(qzTimerInt);qzTimerInt=null;}}
+function qzRenderQ(){
+  const q=QUIZ[qzOrder[qzIdx]];
+  qzSelected=null;qzAnswered=false;
+  $("qzCounter").textContent=`QUESTION ${qzIdx+1} / 30`;
+  $("qzType").textContent=q.t;$("qzQuestion").textContent=q.q;
+  $("qzOpts").innerHTML=q.o.map((o,j)=>`<div class="mcq-option" data-i="${j}"><span class="ltr">${"ABCD"[j]}.</span><span>${o}</span></div>`).join("");
+  $("qzExplain").className="quiz-explain";$("qzExplain").textContent="";
+  $("qzSubmit").style.display="";$("qzNext").style.display="none";
+  qzTimeLeft=10;
+  $("qzTimer").textContent="⏳ 10s";$("qzTimer").classList.remove("danger");
+  $("qzBar").style.width="100%";$("qzBar").classList.remove("danger");
+  qzStopTimer();
+  qzTimerInt=trackInterval(()=>{
+    qzTimeLeft--;
+    $("qzTimer").textContent="⏳ "+qzTimeLeft+"s";
+    $("qzBar").style.width=(qzTimeLeft/10*100)+"%";
+    if(qzTimeLeft<=3){$("qzTimer").classList.add("danger");$("qzBar").classList.add("danger");}
+    if(qzTimeLeft<=0){qzStopTimer();qzGrade(true);}
+  },1000);
+}
+$("qzOpts").addEventListener("click",e=>{
+  if(qzAnswered)return;
+  const opt=e.target.closest(".mcq-option");if(!opt)return;
+  $("qzOpts").querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected"));
+  opt.classList.add("selected");qzSelected=+opt.dataset.i;
+});
+function qzGrade(timedOut){
+  if(qzAnswered)return;
+  qzAnswered=true;qzStopTimer();
+  const q=QUIZ[qzOrder[qzIdx]];
+  const opts=$("qzOpts").querySelectorAll(".mcq-option");
+  opts[q.a].classList.add("correct");
+  let msg;
+  if(timedOut)msg="⏰ Time's up! The correct answer is "+"ABCD"[q.a]+". "+q.e;
+  else if(qzSelected===q.a){qzScore++;msg="✅ Correct! "+q.e;}
+  else{if(qzSelected!==null)opts[qzSelected].classList.add("incorrect");msg="❌ Not quite. "+q.e;}
+  $("qzExplain").textContent=msg;$("qzExplain").className="quiz-explain show";
+  $("qzSubmit").style.display="none";$("qzNext").style.display="";
+}
+$("qzSubmit").addEventListener("click",()=>{if(qzSelected===null)return;qzGrade(false);});
+$("qzNext").addEventListener("click",()=>{
+  qzIdx++;
+  if(qzIdx>=30){qzStopTimer();qzShowResult();}else qzRenderQ();
+});
+function qzShowResult(){
+  qzScreen("qzResult");
+  $("qzFinal").textContent=qzScore+" / 30";
+  const r=qzScore/30;
+  $("qzVerdict").textContent=r>=0.93?"🏆 Outstanding — you truly own this lesson!":r>=0.8?"🌟 Excellent — a quick review of your misses and you're done.":r>=0.6?"👍 Good work — revisit Part 1 vocabulary, then play again.":"💪 Keep going — reread the 1D Context Passage and try again.";
+}
+function qzStart(){qzOrder=shuffledCopy(QUIZ.map((_,i)=>i));qzIdx=0;qzScore=0;qzScreen("qzPlay");qzRenderQ();}
+$("qzBegin").addEventListener("click",qzStart);
+$("qzAgain").addEventListener("click",qzStart);
+
+/* ================== SELF CHECK ================== */
+$("selfCheck").innerHTML=`<div class="exercise-title">✅ Self-Assessment</div>`+SELF_CHECK.map(c=>`<label class="check-item"><input type="checkbox">${c}</label>`).join("");
+
+/* ================== GLOBAL RESET ================== */
+$("resetFab").addEventListener("click",()=>{
+  if(!confirm("Reset ALL exercises, timers and quiz progress?"))return;
+  clearAllTimers();
+  qzTimerInt=null;cdInt=null;cdGoInt=null;
+  MATCH_A.forEach(m=>{$("mt"+m.n).value="";$("matchA").querySelector(`.match-item[data-n="${m.n}"]`).classList.remove("correct","incorrect");});
+  $("mtFb").className="feedback-box";
+  vqEng.reset();$("vqFb").className="feedback-box";
+  stqEng.reset();$("stqFb").className="feedback-box";
+  t1Eng.reset();$("t1Fb").className="feedback-box";
+  TRANSLATE.forEach((_,i)=>{$("tr"+i).value="";$("trA"+i).classList.remove("revealed");});
+  document.querySelectorAll("[data-tr]").forEach(b=>b.textContent="💡 Show answer");
+  GAPS.forEach((_,i)=>{const inp=$("gap"+i);inp.value="";inp.classList.remove("correct","incorrect");inp.title="";});
+  $("gapFb").className="feedback-box";
+  tfLocked=false;
+  $("tfTable").querySelectorAll(".tf-btn").forEach(b=>b.classList.remove("sel","correct","incorrect"));
+  $("tfFb").className="feedback-box";
+  KW_IDS.forEach(id=>{$(id).value="";$(id).classList.remove("filled");});spAssemble();
+  cdReset();
+  document.querySelectorAll(".transcript-block").forEach(t=>t.classList.remove("revealed"));
+  document.querySelectorAll(".check-item input").forEach(c=>c.checked=false);
+  document.querySelectorAll(".vocab-card").forEach(c=>c.classList.remove("flipped"));
+  document.querySelectorAll(".idea-en").forEach(el=>el.classList.remove("revealed"));
+  document.querySelectorAll("[data-idea]").forEach(btn=>btn.textContent="🇬🇧 Xem mẫu tiếng Anh");
+  document.querySelectorAll("[data-ideaall]").forEach(btn=>{btn.textContent=`🇬🇧 Hiện tất cả tiếng Anh của câu ${+btn.dataset.ideaall+1}`;});
+  $("drawWordRes").innerHTML='<span class="small">Press the button to draw…</span>';
+  $("drawSitRes").innerHTML='<span class="small">Press the button to draw…</span>';
+  qzScreen("qzStart");
+  gotoPage("p-overview");
+});
+
+/* ================== SELF-VERIFICATION ================== */
+(function verify(){
+  const dupes=new Set();let dup=0;
+  QUIZ.forEach(q=>{if(dupes.has(q.q))dup++;dupes.add(q.q);});
+  console.assert(QUIZ.length===30,"QUIZ must be 30, has "+QUIZ.length);
+  console.assert(dup===0,"QUIZ duplicates: "+dup);
+  console.assert(QUIZ.filter(q=>q.o.length!==4||q.a<0||q.a>3).length===0,"QUIZ malformed");
+  console.assert(MATCH_A.length===MATCH_B.length,"matching mismatch");
+  console.assert(new Set(MATCH_A.map(m=>m.ans)).size===MATCH_A.length,"matching answers not unique");
+  console.assert(REFLEX_WORDS.length===30,"REFLEX_WORDS must be 30");
+  console.assert(REFLEX_SITUATIONS.length===10,"REFLEX_SITUATIONS must be 10");
+  console.assert(DISCUSS.length===6,"DISCUSS must be 6");
+  const ideaN=DISCUSS.reduce((n,d)=>n+d.ideas.length,0);
+  console.assert(ideaN===14,"expected 14 ideas, got "+ideaN);
+  console.assert(DISCUSS.every(d=>d.ideas.every(x=>x.opVi&&x.opEn)),"every idea needs VI+EN opinion");
+  console.assert(T1.length===6&&TF.length===6&&TAPE.length===6,"listening arrays must be 6");
+  console.log("[verify] quiz=30 ✓ match="+MATCH_A.length+" ✓ listening=6/6/6 ✓ reflex=30/10 ✓");
+})();
+</script>
+</body>
+</html>
