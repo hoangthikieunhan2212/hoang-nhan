@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speaking Mock Test — Sessions 1–32</title>
+<style>
+:root{
+  --forest:#2D5016; --moss:#4A7C2F; --mint:#A8C97F; --sage:#D4E8B8;
+  --sand:#F5F0E8; --white:#FFFFFF;
+  --blue:#2563EB; --blue-light:#EFF6FF;
+  --amber:#D97706; --amber-light:#FFFBEB;
+  --red:#DC2626; --red-light:#FEF2F2;
+  --green-success:#16A34A; --green-light:#F0FDF4;
+  --text-dark:#1A2E0A; --text-mid:#3D5C20; --text-soft:#6B8C4A;
+  --border:#C8DFA0;
+  --shadow-sm:0 1px 3px rgba(45,80,22,0.08);
+  --shadow-md:0 4px 16px rgba(45,80,22,0.12);
+  --shadow-lg:0 8px 32px rgba(45,80,22,0.16);
+  --radius:12px; --radius-sm:8px; --radius-lg:20px;
+  font-size:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--sand)}
+.app-shell{display:flex;min-height:100vh}
+
+.sidebar{width:220px;background:var(--forest);position:fixed;top:0;left:0;bottom:0;overflow-y:auto;z-index:100}
+.brand{padding:22px 18px 18px;border-bottom:1px solid rgba(168,201,127,0.2)}
+.level-badge{display:inline-block;background:var(--mint);color:var(--forest);font-size:10px;font-weight:800;padding:3px 10px;border-radius:99px;letter-spacing:.5px}
+.brand h2{color:#fff;font-size:16px;font-weight:800;margin-top:8px;line-height:1.3}
+.brand p{color:var(--mint);opacity:.8;font-size:11px;margin-top:3px}
+.nav-section{padding:14px 0 4px}
+.nav-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(168,201,127,0.6);padding:0 18px 6px}
+.nav-item{display:flex;align-items:center;gap:9px;padding:9px 18px;color:rgba(255,255,255,0.7);font-size:13px;font-weight:500;cursor:pointer;border-left:3px solid transparent;transition:all .2s}
+.nav-item:hover{color:#fff;background:rgba(168,201,127,0.08)}
+.nav-item.active{color:#fff;background:rgba(168,201,127,0.15);border-left-color:var(--mint)}
+.nav-item .ic{width:20px;font-size:15px;text-align:center;flex-shrink:0}
+.score-panel{padding:16px 18px 24px;border-top:1px solid rgba(168,201,127,0.2);margin-top:10px}
+.score-panel .lbl{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(168,201,127,0.6);margin-bottom:8px}
+.progress-track{height:6px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden}
+.progress-fill{height:100%;background:var(--mint);width:0;transition:width .5s ease}
+.progress-text{font-size:11px;color:rgba(255,255,255,0.75);margin-top:7px}
+
+.main-content{flex:1;margin-left:220px;min-width:0}
+.page{display:none}
+.page.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.hero{background:linear-gradient(135deg,var(--forest),var(--moss),#5A9E3A);padding:44px 48px;color:#fff}
+.hero-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:4px 12px;border-radius:99px}
+.badge-white{background:rgba(255,255,255,0.15);color:#fff}
+.badge-mint{background:rgba(168,201,127,0.2);color:var(--mint);border:1px solid rgba(168,201,127,0.3)}
+.hero h1{font-size:34px;font-weight:800;line-height:1.2}
+.hero-h1-sm{font-size:26px}
+.hero .sub{max-width:600px;margin-top:12px;font-size:14px;opacity:.92}
+
+.section{padding:36px 48px;border-bottom:1px solid var(--border)}
+.section-header{margin-bottom:22px}
+.part-label{display:inline-block;background:var(--forest);color:var(--mint);font-size:10px;font-weight:800;padding:3px 10px;border-radius:99px;letter-spacing:.5px}
+.section-title{font-size:22px;font-weight:800;color:var(--forest);margin-top:9px}
+.section-subtitle{font-size:13px;color:var(--text-soft);margin-top:5px}
+
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:14px}
+.card h4{color:var(--forest);font-size:16px;font-weight:800;margin-bottom:10px}
+.info-box{background:var(--sage);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:14px 18px;font-size:14px;color:var(--text-mid);margin:12px 0}
+.warn-box{background:var(--amber-light);border:1px solid #FDE68A;color:var(--amber);padding:12px 16px;font-size:13px;border-radius:var(--radius-sm);margin:12px 0}
+.blue-box{background:var(--blue-light);border:1px solid #BFDBFE;color:var(--text-dark);padding:14px 18px;font-size:14px;border-radius:var(--radius-sm);margin:12px 0}
+.blue-box b{color:var(--blue)}
+
+/* MCQ */
+.q-block{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;margin-bottom:14px}
+.q-num{display:inline-block;background:var(--sage);color:var(--forest);font-size:11px;font-weight:800;padding:3px 10px;border-radius:99px;margin-bottom:9px}
+.q-def{font-size:16px;color:var(--text-dark);font-weight:600;margin-bottom:14px;line-height:1.5}
+.mcq-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:9px}
+.mcq-option{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;font-size:14px;cursor:pointer;transition:all .2s;background:var(--white);display:flex;gap:9px;align-items:center}
+.mcq-option:hover{border-color:var(--mint);background:var(--sage)}
+.mcq-option.selected{border-color:var(--blue);background:var(--blue-light)}
+.mcq-option.correct{border-color:var(--green-success);background:var(--green-light)}
+.mcq-option.incorrect{border-color:var(--red);background:var(--red-light)}
+.mcq-option .k{font-weight:800;color:var(--forest);flex-shrink:0}
+.mcq-option.locked{pointer-events:none}
+.q-explain{display:none;margin-top:12px;padding:11px 15px;background:var(--sage);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:13px;color:var(--text-mid)}
+.q-explain.show{display:block;animation:fadeIn .3s ease}
+
+.feedback-box{padding:16px 20px;border-radius:var(--radius-sm);display:none;align-items:center;gap:14px;margin-top:16px;font-size:15px;font-weight:600}
+.feedback-box.show{display:flex}
+.feedback-box.success{background:var(--green-light);color:var(--green-success);border:1px solid #BBF7D0}
+.feedback-box.error{background:var(--red-light);color:var(--red);border:1px solid #FECACA}
+.feedback-box.info{background:var(--blue-light);color:var(--blue);border:1px solid #BFDBFE}
+.score-badge{width:52px;height:52px;border-radius:99px;background:var(--white);color:var(--forest);font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid currentColor}
+
+/* SPEAKING */
+.topic-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:18px}
+.topic-head{background:linear-gradient(135deg,var(--forest),var(--moss));color:#fff;padding:18px 22px;display:flex;gap:14px;align-items:flex-start}
+.topic-head .n{width:34px;height:34px;border-radius:99px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex-shrink:0}
+.topic-head h3{font-size:18px;font-weight:800;line-height:1.3}
+.topic-head p{font-size:12px;opacity:.9;margin-top:3px}
+.topic-body{padding:20px 22px}
+.cue{background:var(--sand);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:13px 17px;font-size:15px;font-weight:600;color:var(--forest);margin-bottom:16px}
+.sub-label{font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--text-soft);margin:16px 0 8px}
+.exp-q{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:11px 15px;margin-bottom:8px;font-size:14px;display:flex;gap:10px}
+.exp-q .b{color:var(--moss);font-weight:800;flex-shrink:0}
+.exp-q .vi{color:var(--text-soft);font-size:13px;display:block;margin-top:3px}
+.chip{display:inline-block;background:var(--sage);color:var(--moss);font-size:13px;font-weight:600;padding:4px 12px;border-radius:99px;margin:3px 4px 3px 0}
+.frame{background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius-sm);padding:13px 17px;margin-top:12px}
+.frame .ft{color:var(--blue);font-weight:800;font-size:13px;margin-bottom:7px}
+.frame code{display:block;background:var(--white);border:1px solid #BFDBFE;border-radius:6px;padding:8px 12px;font-size:13.5px;color:var(--text-dark);font-family:Consolas,monospace;margin:5px 0}
+.sample{background:var(--green-light);border:1px solid #BBF7D0;border-radius:var(--radius-sm);padding:14px 18px;margin-top:12px;font-size:14px;display:none}
+.sample.revealed{display:block;animation:fadeIn .3s ease}
+.sample .st{color:var(--green-success);font-weight:800;font-size:13px;margin-bottom:7px}
+
+.btn{padding:10px 20px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;border:none;cursor:pointer;transition:all .2s;font-family:inherit}
+.btn-primary{background:var(--forest);color:#fff}
+.btn-primary:hover{background:var(--moss);transform:translateY(-1px)}
+.btn-secondary{background:var(--sage);color:var(--forest)}
+.btn-secondary:hover{background:var(--mint)}
+.btn-outline{background:transparent;color:var(--forest);border:1.5px solid var(--border)}
+.btn-outline:hover{border-color:var(--moss);background:var(--sage)}
+.btn-sm{padding:6px 14px;font-size:13px}
+.btn-group{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+
+table.tbl{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin:12px 0}
+table.tbl th{background:var(--forest);color:#fff;font-size:12px;font-weight:700;padding:10px 14px;text-align:left}
+table.tbl td{padding:10px 14px;border-bottom:1px solid var(--sage);font-size:14px;vertical-align:top}
+table.tbl tr:last-child td{border-bottom:none}
+table.tbl td:first-child{font-weight:700;color:var(--forest)}
+
+.timer{position:fixed;top:16px;right:24px;background:var(--white);border:2px solid var(--forest);border-radius:99px;padding:9px 20px;font-weight:800;color:var(--forest);font-size:15px;box-shadow:var(--shadow-md);z-index:150;display:none;align-items:center;gap:9px}
+.timer.show{display:flex}
+.timer.warn{border-color:var(--red);color:var(--red)}
+.reset-fab{position:fixed;bottom:24px;right:24px;background:var(--red);color:#fff;border:none;border-radius:99px;padding:12px 20px;font-size:13px;font-weight:700;box-shadow:var(--shadow-lg);cursor:pointer;z-index:200;font-family:inherit;transition:transform .2s}
+.reset-fab:hover{transform:scale(1.05)}
+
+@media(max-width:768px){
+  .sidebar{position:static;width:100%;height:auto}
+  .main-content{margin-left:0}
+  .hero{padding:24px}
+  .section{padding:22px}
+  .hero h1{font-size:26px}
+  .mcq-list{grid-template-columns:1fr}
+  .timer{top:auto;bottom:80px;right:16px}
+}
+@media print{
+  .sidebar,.reset-fab,.timer,.btn{display:none!important}
+  .main-content{margin-left:0}
+  .page{display:block!important}
+  .sample{display:block!important}
+}
+</style>
+</head>
+<body>
+
+<div class="timer" id="timer">⏱ <span id="tval">30:00</span></div>
+
+<div class="app-shell">
+<aside class="sidebar">
+  <div class="brand">
+    <span class="level-badge">MOCK TEST</span>
+    <h2>Speaking Mock Test</h2>
+    <p>Sessions 1–32 · A2 → B1</p>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">Bài thi</div>
+    <div class="nav-item active" data-page="m0"><span class="ic">📋</span>Hướng dẫn</div>
+    <div class="nav-item" data-page="m1"><span class="ic">📝</span>Part 1 — Vocabulary</div>
+    <div class="nav-item" data-page="m2"><span class="ic">🗣️</span>Part 2 — Speaking</div>
+    <div class="nav-item" data-page="m3"><span class="ic">📊</span>Kết quả &amp; Chấm điểm</div>
+  </div>
+  <div class="score-panel">
+    <div class="lbl">Part 1 Progress</div>
+    <div class="progress-track"><div class="progress-fill" id="pbar"></div></div>
+    <div class="progress-text" id="ptext">0 / 30 đã trả lời</div>
+  </div>
+</aside>
+
+<main class="main-content">
+
+<!-- ===== M0 INSTRUCTIONS ===== -->
+<div class="page active" id="m0">
+  <div class="hero">
+    <div class="hero-meta">
+      <span class="badge badge-white">Mock Test</span>
+      <span class="badge badge-white">A2 → B1</span>
+      <span class="badge badge-white">~55 phút</span>
+    </div>
+    <h1>Speaking Mock Test</h1>
+    <p class="sub">Bài kiểm tra tổng hợp toàn bộ kiến thức từ Session 1 đến Session 32. Gồm 2 phần: từ vựng (30 câu trắc nghiệm) và nói (5 chủ đề).</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">HƯỚNG DẪN</span>
+      <div class="section-title">Cấu trúc bài thi</div>
+    </div>
+
+    <table class="tbl">
+      <tr><th style="width:20%">Phần</th><th style="width:26%">Nội dung</th><th style="width:18%">Thời gian</th><th>Cách chấm</th></tr>
+      <tr><td>Part 1</td><td>30 câu trắc nghiệm từ vựng — đọc định nghĩa tiếng Anh, chọn từ đúng</td><td>30 phút</td><td>Tự động, 1 điểm/câu</td></tr>
+      <tr><td>Part 2</td><td>5 chủ đề nói, mỗi chủ đề có 4 câu hỏi mở rộng ý</td><td>25 phút (5 phút/chủ đề)</td><td>Theo rubric 4 tiêu chí</td></tr>
+    </table>
+
+    <div class="info-box">
+      <b>Part 1 — cách làm:</b> Mỗi câu cho một <b>định nghĩa tiếng Anh đơn giản</b>, em chọn từ khớp nhất trong 4 phương án. Ví dụ:<br>
+      <i style="display:block;margin-top:6px">"A situation when there are too many vehicles and they cannot move." → <b>traffic congestion</b></i>
+    </div>
+
+    <div class="blue-box">
+      <b>Part 2 — cách làm:</b> Mỗi chủ đề có 1 câu hỏi chính + 4 câu hỏi mở rộng ý. Em không phải trả lời từng câu rời rạc — hãy dùng chúng làm <b>gợi ý để nói một đoạn liền mạch 60–90 giây</b>. Có sẵn khung câu và từ gợi ý dưới mỗi chủ đề. Bấm "Xem bài mẫu" chỉ <b>sau khi</b> đã tự nói xong.
+    </div>
+
+    <div class="warn-box">⚠️ Bấm "Bắt đầu Part 1" sẽ khởi động đồng hồ 30 phút. Không xem trước câu hỏi Part 1 nếu muốn kết quả chính xác.</div>
+
+    <div class="card">
+      <h4>Phạm vi kiến thức được kiểm tra</h4>
+      <p style="font-size:14px;line-height:2">
+        <span class="chip">Describing people</span><span class="chip">Personality traits</span><span class="chip">Family &amp; relationships</span><span class="chip">Culture &amp; nationality</span><span class="chip">Jobs &amp; positions</span><span class="chip">Direction</span><span class="chip">Phone calls</span><span class="chip">Transportation</span><span class="chip">Traffic problems</span><span class="chip">Accommodation</span><span class="chip">Sports</span><span class="chip">Clothes</span><span class="chip">Shopping problems</span><span class="chip">Health &amp; symptoms</span><span class="chip">Weather &amp; climate</span>
+      </p>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="startTest()">▶ Bắt đầu Part 1 (30 phút)</button>
+      <button class="btn btn-outline" data-goto="m2">Xem trước Part 2 (không tính giờ)</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== M1 PART 1 ===== -->
+<div class="page" id="m1">
+  <div class="hero">
+    <div class="hero-meta"><span class="badge badge-white">PART 1</span><span class="badge badge-white">30 câu</span><span class="badge badge-white">30 phút</span></div>
+    <h1 class="hero-h1-sm">📝 Vocabulary — Multiple Choice</h1>
+    <p class="sub">Read the simple English definition and choose the word that matches it best. Đọc định nghĩa và chọn từ khớp nhất.</p>
+  </div>
+
+  <div class="section">
+    <div id="mcq-wrap"></div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="submitPart1()">✓ Nộp bài Part 1</button>
+      <button class="btn btn-outline" onclick="resetPart1()">Làm lại</button>
+    </div>
+    <div class="feedback-box" id="p1-fb"></div>
+    <div class="btn-group" id="p1-next" style="display:none">
+      <button class="btn btn-primary" data-goto="m2">Tiếp tục: Part 2 — Speaking →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== M2 PART 2 ===== -->
+<div class="page" id="m2">
+  <div class="hero">
+    <div class="hero-meta"><span class="badge badge-white">PART 2</span><span class="badge badge-white">5 chủ đề</span><span class="badge badge-white">~25 phút</span></div>
+    <h1 class="hero-h1-sm">🗣️ Speaking — 5 Topics</h1>
+    <p class="sub">Với mỗi chủ đề: đọc câu hỏi chính, dùng 4 câu hỏi mở rộng làm dàn ý, rồi nói liền mạch 60–90 giây. Ghi âm lại để tự nghe.</p>
+  </div>
+
+  <div class="section">
+    <div class="info-box">
+      <b>Quy trình cho mỗi chủ đề:</b> đọc câu hỏi chính (10s) → lướt 4 câu mở rộng và chọn 2–3 ý (30s) → nói liền mạch 60–90s → bấm "Xem bài mẫu" để đối chiếu. <b>Đừng xem mẫu trước khi nói.</b>
+    </div>
+    <div id="topics-wrap"></div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="m3">Xem tiêu chí chấm điểm →</button>
+      <button class="btn btn-outline" data-goto="m1">← Về Part 1</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== M3 RESULTS ===== -->
+<div class="page" id="m3">
+  <div class="hero">
+    <div class="hero-meta"><span class="badge badge-white">RESULTS</span></div>
+    <h1 class="hero-h1-sm">📊 Kết quả &amp; Tiêu chí chấm</h1>
+    <p class="sub">Part 1 chấm tự động. Part 2 chấm theo rubric bên dưới — giáo viên chấm hoặc em tự chấm sau khi nghe lại bản ghi âm.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">PART 1</span>
+      <div class="section-title">Kết quả trắc nghiệm</div>
+    </div>
+    <div class="feedback-box info show" id="final-p1">Chưa nộp bài Part 1.</div>
+    <div id="wrong-list"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">PART 2</span>
+      <div class="section-title">Rubric chấm nói — thang 4 điểm mỗi tiêu chí</div>
+      <div class="section-subtitle">Tổng 16 điểm cho mỗi chủ đề</div>
+    </div>
+
+    <table class="tbl">
+      <tr><th style="width:22%">Tiêu chí</th><th style="width:19%">4 — Tốt</th><th style="width:19%">3 — Khá</th><th style="width:19%">2 — Trung bình</th><th>1 — Yếu</th></tr>
+      <tr>
+        <td>Task completion<br><span style="font-weight:400;color:var(--text-soft);font-size:12px">Trả lời đủ ý</span></td>
+        <td>Trả lời trọn vẹn câu hỏi chính, dùng ít nhất 3/4 câu mở rộng</td>
+        <td>Trả lời đúng câu chính, dùng 2 câu mở rộng</td>
+        <td>Trả lời được nhưng thiếu ý, chỉ dùng 1 gợi ý</td>
+        <td>Lạc đề hoặc nói dưới 20 giây</td>
+      </tr>
+      <tr>
+        <td>Structure<br><span style="font-weight:400;color:var(--text-soft);font-size:12px">Dùng khung câu</span></td>
+        <td>Dùng đúng khung đã học, có liên từ nối mượt</td>
+        <td>Dùng khung nhưng thiếu 1 phần</td>
+        <td>Có cố dùng khung nhưng lẫn lộn</td>
+        <td>Nói rời rạc, không có khung</td>
+      </tr>
+      <tr>
+        <td>Vocabulary<br><span style="font-weight:400;color:var(--text-soft);font-size:12px">Từ vựng chủ đề</span></td>
+        <td>Dùng ≥5 từ/cụm đúng chủ đề, chính xác</td>
+        <td>Dùng 3–4 từ đúng chủ đề</td>
+        <td>Dùng 1–2 từ, còn lại từ chung chung</td>
+        <td>Không dùng từ vựng đã học</td>
+      </tr>
+      <tr>
+        <td>Delivery<br><span style="font-weight:400;color:var(--text-soft);font-size:12px">Ngắt nghỉ &amp; nhấn</span></td>
+        <td>Ngắt theo cụm ý nghĩa, nhấn content words, hạ giọng cuối câu</td>
+        <td>Ngắt đúng phần lớn, đôi chỗ đều giọng</td>
+        <td>Ngắt tuỳ tiện, giọng khá phẳng</td>
+        <td>Ngắt sai chỗ, flat tone hoàn toàn</td>
+      </tr>
+    </table>
+
+    <div class="card">
+      <h4>Thang quy đổi tổng 5 chủ đề (tối đa 80 điểm)</h4>
+      <table class="tbl" style="margin:0">
+        <tr><td>68–80</td><td>Vững — sẵn sàng lên chủ đề khó hơn</td></tr>
+        <tr><td>56–67</td><td>Khá — cần luyện thêm delivery và độ dài câu trả lời</td></tr>
+        <tr><td>40–55</td><td>Trung bình — ôn lại khung câu và từ vựng chủ đề yếu nhất</td></tr>
+        <tr><td>&lt; 40</td><td>Cần học lại các session tương ứng trước khi test lại</td></tr>
+      </table>
+    </div>
+
+    <div class="section-header" style="margin-top:26px">
+      <div class="section-title" style="font-size:18px">Bảng tự chấm</div>
+      <div class="section-subtitle">In ra hoặc chép vào vở, điền sau khi nghe lại bản ghi âm</div>
+    </div>
+
+    <table class="tbl">
+      <tr><th>Chủ đề</th><th style="width:13%">Task</th><th style="width:13%">Structure</th><th style="width:13%">Vocab</th><th style="width:13%">Delivery</th><th style="width:12%">Tổng /16</th></tr>
+      <tr><td>1. Describing a person</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>2. Traffic in your city</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>3. The place where you live</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>4. A sport you know</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>5. A time you were sick</td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td><b>TOTAL /80</b></td><td colspan="5"></td></tr>
+    </table>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="window.print()">🖨️ In bài thi</button>
+      <button class="btn btn-outline" data-goto="m0">← Về Hướng dẫn</button>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<button class="reset-fab" onclick="resetAll()">🔄 Reset All</button>
+
+<script>
+/* ============ PART 1 DATA — 20 MCQ ============ */
+/* Mỗi câu: [định nghĩa tiếng Anh, [4 lựa chọn], index đáp án đúng, giải thích] */
+const MCQ = [
+[ "A situation when there are too many vehicles on the road and they move very slowly or stop.",
+  ["road construction","public transport","bike lane","traffic congestion"], 3,
+  "traffic congestion = tắc nghẽn giao thông. Đồng nghĩa: traffic jam, heavy traffic, blocked traffic." ],
+
+[ "The time of day when most people travel to or from work, so the roads are very busy.",
+  ["rush hour","detour","weekday","shuttle"], 0,
+  "rush hour = giờ cao điểm. Ví dụ: I have to go to school at rush hour." ],
+
+[ "The money you pay to travel on a bus, train or taxi.",
+  ["budget","bargain","rent","fare"], 3,
+  "fare = giá vé (đi lại). \"How much is the fare?\" — \"It's $2.50.\" Đừng nhầm với price (giá hàng hoá)." ],
+
+[ "A person who is travelling in a car, bus, train or plane but is not driving it.",
+  ["driver","cyclist","passenger","landlord"], 2,
+  "passenger = hành khách. \"For how many passengers?\" — câu hỏi chuẩn khi gọi taxi." ],
+
+[ "A different road you must take because the usual road is closed.",
+  ["zebra crossing","detour","bike lane","corner"], 1,
+  "detour = đường vòng. \"Follow the detour sign\" — làm theo biển chỉ đường vòng." ],
+
+[ "Someone you work with at the same company.",
+  ["landlord","supervisor","chairman","co-worker"], 3,
+  "co-worker (= colleague) = đồng nghiệp. \"I get along with my co-workers.\"" ],
+
+[ "To have a good relationship with someone and not argue with them.",
+  ["let someone down","come between","get along with","take sides"], 2,
+  "get along with = hoà hợp với. \"I get along with my co-workers because we like drinking milk tea together.\"" ],
+
+[ "To make someone feel disappointed because you did not do what you promised.",
+  ["let someone down","keep in touch","take up","give up"], 0,
+  "let someone down = làm ai thất vọng. \"He let me down because I had to wait an hour for him.\"" ],
+
+[ "A person you cannot trust because they often break their promises.",
+  ["considerate","unreliable","generous","assertive"], 1,
+  "unreliable = không đáng tin cậy. \"That person is unreliable — they often break promises and don't do what they say.\"" ],
+
+[ "A person who always thinks about other people's feelings before acting.",
+  ["arrogant","stubborn","considerate","moody"], 2,
+  "considerate = biết điều, biết ý. \"I try to be a considerate person because I always think about others.\"" ],
+
+[ "A person whose mood changes very quickly.",
+  ["optimistic","diligent","loyal","moody"], 3,
+  "moody = dễ thay đổi cảm xúc. Từ này có 5 chữ cái — bài tập Session 3." ],
+
+[ "A person who gets energy from being with other people, not from being alone.",
+  ["introverted","pessimistic","extroverted","meticulous"], 2,
+  "extroverted / outgoing = hướng ngoại. Khác biệt nằm ở cách recharge their battery — bằng người khác (extrovert) hay một mình (introvert)." ],
+
+[ "A person who is between 40 and 60 years old.",
+  ["elderly","a toddler","middle-aged","a young adult"], 2,
+  "middle-aged = trung niên (40–60). Nhớ: \"She's a middle-aged woman\" ✅, KHÔNG phải \"she is middle age\" ❌." ],
+
+[ "A polite word for people who are 65 years old or older.",
+  ["elderly","kids","teens","adults"], 0,
+  "elderly = người cao tuổi — lịch sự hơn \"old\". \"Elderly people need regular exercise.\"" ],
+
+[ "A house that is not joined to any other house.",
+  ["the suburbs","a utility room","a fence","a detached house"], 3,
+  "detached house = nhà riêng biệt (không dính nhà bên cạnh). \"I currently live in the countryside in a detached house.\"" ],
+
+[ "The areas around the outside of a city where people live.",
+  ["the countryside","the suburbs","the city centre","the neighbourhood"], 1,
+  "the suburbs = vùng ngoại ô. \"I rented a small house in the suburbs to live in while I study.\"" ],
+
+[ "The journey you make between your home and your work or school every day.",
+  ["a detour","a shuttle","a daily commute","a ride"], 2,
+  "daily commute = việc đi lại hằng ngày. \"It is situated close to my university, which makes my daily commute much easier.\"" ],
+
+[ "To start doing a new hobby or activity.",
+  ["give up","take up","take part in","let down"], 1,
+  "take up + V-ing = bắt đầu một sở thích mới. \"I took up learning swimming last year.\" Ngược lại: give up = từ bỏ." ],
+
+[ "Something you buy that is very good quality for a low price.",
+  ["a fare","a budget","a bargain","a rent"], 2,
+  "a bargain = món hời. \"They were a pretty good bargain, too — only $125.\" / \"I thought it was a bargain at $200.\"" ],
+
+[ "An item you bought that is broken, dirty or has a missing part.",
+  ["a wrong item","defective goods","a missing accessory","late delivery"], 1,
+  "defective goods = hàng bị lỗi. \"The blue shirt is missing a button and looks dirty\" — she seemed frustrated." ],
+
+/* --- HEALTH (Sessions bổ sung: Health p2) --- */
+[ "A sign that you are sick — something you feel in your body, like pain or a fever.",
+  ["a treatment","a symptom","a remedy","an appointment"], 1,
+  "symptom = triệu chứng. A symptom is a sign that you are sick — something you feel in your body." ],
+
+[ "When your nose is blocked and you cannot breathe through it easily.",
+  ["a runny nose","a sore throat","a stuffy nose","shortness of breath"], 2,
+  "stuffy nose = nghẹt mũi. Đừng nhầm với runny nose = chảy nước mũi (nước mũi chảy ra)." ],
+
+[ "An illness you get after eating food that is old or spoiled.",
+  ["indigestion","an allergy","constipation","food poisoning"], 3,
+  "food poisoning = ngộ độc thực phẩm. \"His brother ate spoiled food at a night market and got food poisoning.\"" ],
+
+[ "To arrange a fixed time to see a doctor.",
+  ["wait in line","make an appointment","get a number","take a day off"], 1,
+  "make an appointment = đặt lịch hẹn. \"I called the clinic to make an appointment for a general check-up.\"" ],
+
+[ "To completely remove something bad, such as a cough or a cold.",
+  ["give it a try","stay off your feet","get rid of","in no time"], 2,
+  "get rid of = loại bỏ, khỏi hẳn. \"I want to get rid of this cough, so I drink warm water every day.\"" ],
+
+/* --- WEATHER --- */
+[ "The type of climate in Vietnam: hot all year, with a rainy season and a dry season.",
+  ["temperate","subtropical","tropical","freezing"], 2,
+  "tropical = nhiệt đới. Trọng âm: TROpical. Vietnam is TROpical, Korea is subTROpical, the UK is TEMperate." ],
+
+[ "The type of climate in the UK, with four clear seasons — warm summers and cold winters.",
+  ["tropical","temperate","subtropical","humid"], 1,
+  "temperate = ôn đới. Trọng âm TEMperate (KHÔNG phải tem-per-ATE)." ],
+
+[ "When the air feels hot, wet and sticky.",
+  ["chilly","foggy","icy","humid"], 3,
+  "humid = ẩm, oi. \"It's really hot and humid today.\" Đối lập: dry season = mùa khô." ],
+
+[ "Rain that falls very hard and heavily.",
+  ["a light shower","heavy rain","thick fog","a strong wind"], 1,
+  "heavy rain = mưa to. Word partner bắt buộc: HEAVY rain (không nói \"big rain\"), STRONG wind, THICK fog." ],
+
+[ "The loud noise you hear in the sky during a storm.",
+  ["lightning","thunder","a shower","a cloud"], 1,
+  "thunder = sấm (tiếng). lightning = chớp (ánh sáng). Âm /θ/ — lưỡi giữa hai hàm răng: THunder." ]
+
+];
+
+/* ============ PART 2 DATA — 5 TOPICS ============ */
+const TOPICS = [
+{
+  n:1,
+  title:"Describing a person",
+  ref:"Sessions 2, 10, 13, 15",
+  cue:"Describe a person you know well. What do they look like, and what kind of person are they?",
+  cueVi:"Hãy mô tả một người mà em biết rõ. Người đó trông thế nào và có tính cách ra sao?",
+  qs:[
+    ["What does this person look like? Describe their hair, face and height.","Người đó trông thế nào? Tả tóc, gương mặt và chiều cao."],
+    ["How old is this person? Use an age group, not just a number.","Người đó bao nhiêu tuổi? Dùng nhóm tuổi thay vì chỉ nói con số."],
+    ["What are two personality traits of this person? Give an example for each.","Hai nét tính cách của người đó là gì? Cho ví dụ cho mỗi nét."],
+    ["How are you similar to or different from this person?","Em giống hay khác người đó ở điểm nào?"]
+  ],
+  chips:["long wavy black hair","an oval face","fair skin","tallish","in her twenties","middle-aged","patient","hard-working","get along with","similar to"],
+  frame:[
+    "Today I would like to talk about + [person].",
+    "He / She has + [opinion → size → shape → colour] + hair, + a [adj] face, and + [colour] eyes.",
+    "He / She is + [height], about + [number] cm.",
+    "He / She is + [trait] because + [reason]. For example, + [example].",
+    "I am similar to him / her because we are both + [trait]."
+  ],
+  sample:"Today I would like to talk about my older sister. She has long straight black hair, an oval face and dark brown eyes. She is tallish, about 165 cm, and she has fair skin and a good figure. She is in her twenties. / She is very <b>hard-working</b> because she works a lot and always tries her best. For example, she studies every evening after work and never complains. She is also quite <b>considerate</b> — she always thinks about other people before she acts. For instance, she keeps quiet when I am studying. / I am <b>similar to</b> her because we are both patient. However, she is more <b>organised</b> than me — she plans everything, while I decide at the last minute."
+},
+{
+  n:2,
+  title:"Traffic in your city",
+  ref:"Sessions 19–22",
+  cue:"Is traffic in your city good or bad? Describe the main problems and suggest some solutions.",
+  cueVi:"Giao thông ở thành phố em tốt hay tệ? Mô tả các vấn đề chính và đề xuất giải pháp.",
+  qs:[
+    ["What is the biggest traffic problem in your city, and why does it happen?","Vấn đề giao thông lớn nhất ở thành phố em là gì, và tại sao nó xảy ra?"],
+    ["What do you do when you run into this problem on the road?","Em làm gì khi gặp vấn đề này trên đường?"],
+    ["What should the government do to solve it? Give two solutions.","Chính quyền nên làm gì để giải quyết? Cho hai giải pháp."],
+    ["Do you think public transport is important? Why?","Em có nghĩ giao thông công cộng quan trọng không? Vì sao?"]
+  ],
+  chips:["traffic congestion","rush hour","bumper to bumper","too many motorbikes","narrow roads","broken traffic lights","public transport","bike lanes","drive carefully","park properly"],
+  frame:[
+    "It can be seen that + [problem] + because + [reason], so + [who] + should + [solution].",
+    "There is + [problem: noun phrase] + because of + [reason], so you should + [solution].",
+    "When I run into this problem on the road, it's a good idea to + [action].",
+    "The government should / needs to / can + [solution]."
+  ],
+  sample:"<b>It can be seen that</b> traffic in my city is quite bad. The biggest problem is <b>traffic congestion</b>, especially <b>at rush hour</b> in the morning and in the evening. <b>There is</b> heavy traffic <b>because of</b> too many motorbikes on the road, and it is often <b>bumper to bumper</b>. / When I <b>run into</b> this problem, <b>it's a good idea to</b> leave home earlier or take a different route. Sometimes I choose the subway instead. / <b>To solve this problem there are many solutions.</b> First, the government <b>should</b> improve public transport and buy new buses so that people don't need to drive. Second, the government <b>needs to</b> build more bike lanes so that cyclists feel safe. / I think public transport is important <b>for a couple of reasons</b>. <b>The first reason is that</b> it can protect the environment by decreasing vehicle emissions. <b>The second reason is that</b> it helps decrease traffic jams."
+},
+{
+  n:3,
+  title:"The place where you live",
+  ref:"Sessions 23–24",
+  cue:"Talk about the place where you live. Describe it and explain what you like and dislike about it.",
+  cueVi:"Nói về nơi em đang sống. Mô tả nó và giải thích em thích và không thích điều gì.",
+  qs:[
+    ["Where do you live and what type of accommodation is it? How many rooms does it have?","Em sống ở đâu và đó là loại nhà gì? Có bao nhiêu phòng?"],
+    ["Which room do you like the most, and why?","Em thích phòng nào nhất, và tại sao?"],
+    ["What factors do you take into consideration when choosing a home?","Em cân nhắc những yếu tố nào khi chọn nhà?"],
+    ["What would you ask a landlord before renting a place?","Em sẽ hỏi chủ nhà điều gì trước khi thuê?"]
+  ],
+  chips:["a detached house","the suburbs","consist of","a large yard","a fence","a daily commute","situated close to","privacy","take into consideration","the rent price","whether … or not"],
+  frame:[
+    "Today, I'd like to talk about the place where I live.",
+    "I currently live in + [area] + in + [type of accommodation].",
+    "My place <b>consists of</b> + [list of rooms].",
+    "The [room] is the room I like the most because of + [reason].",
+    "When choosing a home, there are several factors that I take into consideration. First of all, … Another factor is …",
+    "Therefore, I'm quite happy with my current living environment."
+  ],
+  sample:"Today, I'd like to talk about the place where I live. I currently live in the <b>suburbs</b> in a small rented house. My place <b>consists of</b> a living room, two bedrooms, a kitchen and a bathroom. / The bedroom is the room I like the most <b>because of</b> its convenience for sleeping and studying — it is quiet and it has a large window. / When choosing a home, there are several important factors that I usually <b>take into consideration</b>. <b>First of all</b>, the location and commuting is probably the most important one, because I prefer living in a place that makes my <b>daily commute</b> much easier. <b>Another factor is</b> the living environment — I like to stay in a place that has <b>privacy</b>, because it will affect my life when I live there. / The first question I will ask the <b>landlord</b> is the <b>rent price</b>, because it helps me check <b>whether</b> it fits my finances <b>or not</b>. <b>Therefore</b>, I'm quite happy with my current living environment."
+},
+{
+  n:4,
+  title:"A sport you know",
+  ref:"Sessions 25–26",
+  cue:"Choose one sport and talk about it. Explain the rules, the equipment, and why people play it.",
+  cueVi:"Chọn một môn thể thao và nói về nó. Giải thích luật chơi, dụng cụ, và vì sao người ta chơi nó.",
+  qs:[
+    ["Which countries is this sport popular in? Is it a team sport or an individual sport?","Môn này phổ biến ở những nước nào? Là môn đồng đội hay cá nhân?"],
+    ["How long does a match last, and how do you win?","Một trận kéo dài bao lâu, và làm sao để thắng?"],
+    ["What basic equipment do you need, and where is it played?","Cần dụng cụ cơ bản gì, và chơi ở đâu?"],
+    ["What are the benefits of playing sports in general?","Lợi ích chung của việc chơi thể thao là gì?"]
+  ],
+  chips:["an individual sport","a team sport","the playing time depends on","lasts about","in order to win","basic equipment","take up","give up","keep fit","stay healthy","reduce stress","widen my networking"],
+  frame:[
+    "Today I would like to talk about + [sport].",
+    "First, this sport is very popular in many countries <b>such as</b> …",
+    "Let's move on to the basic rules of this sport.",
+    "For [sport], this sport is mainly <b>an individual / a team sport</b>.",
+    "The playing time <b>depends on</b> … / <b>lasts about</b> …",
+    "<b>In order to win</b>, + [condition].",
+    "Next, to play this sport we need some <b>basic equipment such as</b> …",
+    "This sport is usually played <b>in / on / at</b> + [place]."
+  ],
+  sample:"Today I would like to talk about <b>badminton</b>. First, this sport is very popular in many countries <b>such as</b> China, Indonesia, Malaysia and Vietnam. / <b>Let's move on to the basic rules of this sport.</b> For badminton, this sport can be both <b>an individual sport</b> and <b>a team sport</b> — you can play singles or doubles. The playing time is not fixed in minutes but it is <b>divided into sets</b>; a match usually <b>lasts about</b> 40 to 60 minutes. <b>In order to win</b>, a player must win two sets, and a set ends when a player reaches 21 points. / Next, to play this sport we need some <b>basic equipment such as</b> a racket, a shuttlecock and sports shoes. This sport is usually played <b>on</b> an indoor court. / I <b>took up</b> badminton two years ago, and I play it <b>for a couple of reasons</b>. <b>The first reason is that</b> it helps me <b>keep fit</b> and <b>reduce stress</b> after a hard-studying day. <b>The second reason is that</b> I play with my friends, so it helps me <b>widen my networking</b>."
+},
+{
+  n:5,
+  title:"A time you were sick",
+  ref:"Health lesson · past simple + should",
+  cue:"Talk about a time when you were sick. Describe your symptoms, what you did, and what advice you would give a sick friend.",
+  cueVi:"Nói về một lần em bị bệnh. Mô tả triệu chứng, em đã làm gì, và em sẽ khuyên bạn bị bệnh thế nào.",
+  qs:[
+    ["What symptoms did you have, and which part of your body was in trouble?","Em có những triệu chứng gì, và bộ phận nào bị ảnh hưởng?"],
+    ["What did you decide to do? Did you go to a clinic or stay home?","Em quyết định làm gì? Em đi khám hay ở nhà?"],
+    ["What treatment did you follow, and what was the result?","Em điều trị thế nào, và kết quả ra sao?"],
+    ["What advice would you give a friend who has the same problem?","Em sẽ khuyên gì với người bạn gặp vấn đề tương tự?"]
+  ],
+  chips:["a fever","a sore throat","a runny nose","a stuffy nose","body aches","the flu","food poisoning","an allergy","make an appointment","a general check-up","take the medicine","stay off your feet","get rid of","in no time","give it a try"],
+  frame:[
+    "Last week / Last month, I felt sick. <b>At first</b>, + [what you thought].",
+    "I had + [symptoms]. It seemed like + [illness].",
+    "<b>So</b> I decided to + [action: see a doctor / stay home].",
+    "The doctor said I <b>should</b> + [treatment].",
+    "<b>Therefore</b>, I + [what you did]. <b>As a result</b>, + [outcome].",
+    "If a friend has the same problem, I would say: You <b>should</b> + [advice]. You'll feel better <b>in no time</b>."
+  ],
+  sample:"Last month I felt sick. <b>At first</b>, I thought I was just a little tired after a long week. <b>However</b>, on Sunday afternoon I had <b>a fever</b>, <b>a sore throat</b> and <b>a stuffy nose</b>, and my <b>body aches</b> made it hard to sleep. It seemed like <b>the flu</b>. / <b>So</b> I decided to see a doctor. I took a day off and <b>made an appointment</b> at a clinic near my house. I had to register, get a number and <b>wait in line</b> with the other patients. The doctor did <b>a general check-up</b> and said it was probably nothing serious — just a bad cold. / She told me I <b>should take the medicine</b> three times a day after meals, drink warm water and <b>stay off my feet</b> for a day. <b>Therefore</b>, I stayed home and rested. My sister told me to <b>give</b> her herbal tea <b>a try</b>, so I drank it four times a day. <b>As a result</b>, I <b>got rid of</b> the cold after a few days. / If a friend has the same problem, I would say: You <b>should</b> rest and drink warm water. Give herbal tea a try — you'll feel better <b>in no time</b>!"
+}
+];
+
+/* ============ RENDER ============ */
+const KEYS=['A','B','C','D'];
+let answers = new Array(MCQ.length).fill(null);
+let submitted = false;
+
+document.getElementById('mcq-wrap').innerHTML = MCQ.map((q,i)=>`
+  <div class="q-block" id="qb${i}">
+    <span class="q-num">Question ${i+1}</span>
+    <div class="q-def">${q[0]}</div>
+    <div class="mcq-list">
+      ${q[1].map((opt,j)=>`<div class="mcq-option" data-q="${i}" data-o="${j}"><span class="k">${KEYS[j]}</span><span>${opt}</span></div>`).join('')}
+    </div>
+    <div class="q-explain" id="ex${i}">💡 ${q[3]}</div>
+  </div>`).join('');
+
+document.querySelectorAll('.mcq-option').forEach(o=>{
+  o.onclick=()=>{
+    if(submitted) return;
+    const qi=+o.dataset.q, oi=+o.dataset.o;
+    document.querySelectorAll(`.mcq-option[data-q="${qi}"]`).forEach(x=>x.classList.remove('selected'));
+    o.classList.add('selected');
+    answers[qi]=oi;
+    updateProgress();
+  };
+});
+
+document.getElementById('topics-wrap').innerHTML = TOPICS.map(t=>`
+  <div class="topic-card">
+    <div class="topic-head">
+      <div class="n">${t.n}</div>
+      <div>
+        <h3>${t.title}</h3>
+        <p>${t.ref} · nói 60–90 giây</p>
+      </div>
+    </div>
+    <div class="topic-body">
+      <div class="cue">${t.cue}<span style="display:block;font-weight:400;color:var(--text-soft);font-size:13px;margin-top:4px">${t.cueVi}</span></div>
+
+      <div class="sub-label">Câu hỏi mở rộng ý — dùng làm dàn ý</div>
+      ${t.qs.map((q,i)=>`<div class="exp-q"><span class="b">${i+1}</span><span>${q[0]}<span class="vi">${q[1]}</span></span></div>`).join('')}
+
+      <div class="sub-label">Từ vựng gợi ý</div>
+      <div>${t.chips.map(c=>`<span class="chip">${c}</span>`).join('')}</div>
+
+      <div class="frame">
+        <div class="ft">KHUNG CÂU</div>
+        ${t.frame.map(f=>`<code>${f}</code>`).join('')}
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary btn-sm" onclick="document.getElementById('sp${t.n}').classList.toggle('revealed')">👁 Xem bài mẫu</button>
+      </div>
+      <div class="sample" id="sp${t.n}">
+        <div class="st">BÀI MẪU — Band tham chiếu A2+/B1</div>
+        <p>${t.sample}</p>
+        <p style="font-size:12px;color:var(--text-soft);margin-top:10px">Dấu <b>/</b> = chỗ chuyển ý. Từ in đậm = từ vựng và khung câu cần dùng.</p>
+      </div>
+    </div>
+  </div>`).join('');
+
+/* ============ LOGIC ============ */
+function updateProgress(){
+  const n=answers.filter(a=>a!==null).length;
+  document.getElementById('pbar').style.width=(n/MCQ.length*100)+'%';
+  document.getElementById('ptext').textContent=n+' / '+MCQ.length+' đã trả lời';
+}
+
+function submitPart1(){
+  const unanswered=answers.filter(a=>a===null).length;
+  if(unanswered>0 && !confirm(`Còn ${unanswered} câu chưa trả lời. Vẫn nộp bài?`)) return;
+  submitted=true;
+  stopTimer();
+  let score=0;
+  const wrong=[];
+  MCQ.forEach((q,i)=>{
+    const correct=q[2];
+    document.querySelectorAll(`.mcq-option[data-q="${i}"]`).forEach(o=>{
+      const oi=+o.dataset.o;
+      o.classList.add('locked');
+      o.classList.remove('selected');
+      if(oi===correct) o.classList.add('correct');
+      else if(oi===answers[i]) o.classList.add('incorrect');
+    });
+    document.getElementById('ex'+i).classList.add('show');
+    if(answers[i]===correct) score++;
+    else wrong.push([i+1,q[0],q[1][correct],q[3]]);
+  });
+
+  const pct=Math.round(score/MCQ.length*100);
+  const fb=document.getElementById('p1-fb');
+  fb.className='feedback-box show '+(pct>=70?'success':pct>=50?'info':'error');
+  fb.innerHTML=`<div class="score-badge">${score}</div><div>Điểm Part 1: <b>${score}/${MCQ.length}</b> (${pct}%)<br><span style="font-weight:400;font-size:13px">${pct>=85?'Xuất sắc — em nắm rất chắc từ vựng cả khoá.':pct>=70?'Tốt — chỉ cần ôn lại vài từ ở phần giải thích bên dưới mỗi câu.':pct>=50?'Khá — hãy đọc kỹ phần giải thích và quay lại bài review.':'Cần ôn lại — mở bài Speaking Core Review và học lại từ vựng từng chủ đề.'}</span></div>`;
+  document.getElementById('p1-next').style.display='flex';
+
+  document.getElementById('final-p1').className='feedback-box show '+(pct>=70?'success':'info');
+  document.getElementById('final-p1').innerHTML=`<div class="score-badge">${score}</div><div>Part 1: <b>${score}/${MCQ.length}</b> — ${pct}%</div>`;
+  document.getElementById('wrong-list').innerHTML = wrong.length
+    ? `<div class="card"><h4>Các câu cần ôn lại (${wrong.length})</h4>`+wrong.map(w=>
+        `<div style="padding:11px 0;border-bottom:1px solid var(--sage)">
+          <div style="font-size:13px;color:var(--text-soft)">Câu ${w[0]} — ${w[1]}</div>
+          <div style="font-size:14px;margin-top:4px"><b style="color:var(--green-success)">✓ ${w[2]}</b></div>
+          <div style="font-size:13px;color:var(--text-mid);margin-top:3px">${w[3]}</div>
+        </div>`).join('')+`</div>`
+    : `<div class="card"><h4>🎉 Không có câu nào sai</h4><p style="font-size:14px">Em nắm chắc toàn bộ từ vựng của khoá học.</p></div>`;
+
+  window.scrollTo({top:document.getElementById('p1-fb').offsetTop-100,behavior:'smooth'});
+}
+
+function resetPart1(){
+  submitted=false;
+  answers=new Array(MCQ.length).fill(null);
+  document.querySelectorAll('.mcq-option').forEach(o=>o.className='mcq-option');
+  document.querySelectorAll('.q-explain').forEach(e=>e.classList.remove('show'));
+  document.getElementById('p1-fb').className='feedback-box';
+  document.getElementById('p1-next').style.display='none';
+  updateProgress();
+}
+
+/* TIMER */
+let timerId=null, remain=30*60;
+function startTest(){
+  goto('m1');
+  remain=30*60;
+  document.getElementById('timer').classList.add('show');
+  document.getElementById('timer').classList.remove('warn');
+  clearInterval(timerId);
+  timerId=setInterval(()=>{
+    remain--;
+    const m=String(Math.floor(remain/60)).padStart(2,'0');
+    const s=String(remain%60).padStart(2,'0');
+    document.getElementById('tval').textContent=m+':'+s;
+    if(remain<=180) document.getElementById('timer').classList.add('warn');
+    if(remain<=0){ clearInterval(timerId); if(!submitted) submitPart1(); }
+  },1000);
+}
+function stopTimer(){ clearInterval(timerId); document.getElementById('timer').classList.remove('show'); }
+
+/* NAV */
+function goto(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.page===id));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.nav-item').forEach(n=>n.onclick=()=>goto(n.dataset.page));
+document.querySelectorAll('[data-goto]').forEach(b=>b.onclick=()=>goto(b.dataset.goto));
+
+function resetAll(){
+  resetPart1();
+  stopTimer();
+  document.querySelectorAll('.sample').forEach(s=>s.classList.remove('revealed'));
+  document.getElementById('final-p1').className='feedback-box info show';
+  document.getElementById('final-p1').textContent='Chưa nộp bài Part 1.';
+  document.getElementById('wrong-list').innerHTML='';
+  goto('m0');
+}
+updateProgress();
+</script>
+</body>
+</html>
