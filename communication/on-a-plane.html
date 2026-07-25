@@ -366,6 +366,20 @@ textarea.type-box:disabled{background:var(--sage);color:var(--text-soft);}
   .op-table th,.op-table td{padding:7px 5px;font-size:11px;}
   .op-pick{width:30px;height:30px;}
 }
+
+/* === ROLE PLAY KEYWORD BUILDER === */
+.rp-build{background:var(--sand);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;margin-top:14px;}
+.rp-build-head{display:flex;gap:8px;align-items:center;font-size:13px;font-weight:800;color:var(--forest);margin-bottom:12px;}
+.rp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;}
+.rp-field label{display:block;font-size:12px;font-weight:800;color:var(--text-dark);margin-bottom:5px;}
+.rp-field .rp-eg{display:block;font-size:11px;font-weight:500;color:var(--text-soft);font-style:italic;margin-top:2px;}
+.rp-field input{width:100%;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;font-family:inherit;font-size:14px;background:var(--white);color:var(--text-dark);outline:none;box-sizing:border-box;min-height:42px;}
+.rp-field input:focus{border-color:var(--teal);background:#fff;}
+.rp-field input.filled{border-color:var(--moss);}
+.rp-out{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:18px;font-size:15px;line-height:1.95;margin-top:14px;}
+.rp-out .rp-fill{background:var(--sage);border-radius:4px;padding:1px 7px;font-weight:800;color:var(--forest);}
+.rp-out .rp-placeholder{color:var(--text-soft);font-style:italic;}
+.rp-wc{font-size:12px;color:var(--text-soft);margin-top:6px;}
 </style>
 </head>
 <body>
@@ -1364,6 +1378,14 @@ const QUIZ=[
  {t:"LISTENING",q:"'The flight attendants were really impolite.' The speaker's opinion of the SERVICE is:",o:["Good","Okay","Not good","Excellent"],a:2,e:"Impolite crew = Not good service. (Listening 3.2.)"}
 ];
 
+/* ============ ROLE PLAY KEYWORD BUILDERS ============ */
+const RP_BUILD=[
+  {slots:[{id:"seat",label:"Số ghế của bạn",eg:"15A"},{id:"problem",label:"Vấn đề gặp phải",eg:"the cabin is very crowded"},{id:"ask",label:"Câu nhờ giúp",eg:"could you help me find my seat"},{id:"solve",label:"Cách giải quyết",eg:"put my bag in the overhead compartment"}],frames:["I'm a passenger today. First, I look at my ticket — my seat number is {seat}.","But there's a problem: {problem}.","So I ask a flight attendant: \"Excuse me, {ask}?\"","She helps me. Then I {solve}, sit down, and fasten my seat belt. Problem solved!"]},
+  {slots:[{id:"seat",label:"Loại ghế của bạn",eg:"an aisle seat"},{id:"problem",label:"Vấn đề gặp phải",eg:"the overhead compartment is completely full"},{id:"ask",label:"Câu nhờ giúp",eg:"could you help me with my bag"},{id:"solve",label:"Kết quả",eg:"she finds another place for it"}],frames:["I'm sitting in {seat} on the plane. I want to put my bag away.","But there's a problem: {problem} — there's no room for my bag.","So I ask a flight attendant: \"Excuse me, {ask}?\"","{solve}. Finally, I sit down, fasten my seat belt, and enjoy the flight."]},
+  {slots:[{id:"action",label:"Việc bạn đã làm",eg:"put my luggage in the overhead compartment"},{id:"problem",label:"Vấn đề gặp phải",eg:"my seat belt is stuck and won't fasten"},{id:"why",label:"Vì sao cần gấp",eg:"the pilot has turned on the 'Fasten Seat Belt' sign"},{id:"solve",label:"Cách giải quyết",eg:"press the call button for the flight attendant"}],frames:["I board the plane, find my seat, {action}, and sit down.","But now I have a problem: {problem}.","I need help quickly because {why}.","So I {solve}. She comes and fixes it right away. Now I feel safe."]},
+  {slots:[{id:"seat",label:"Ghế bạn đang ngồi",eg:"a window seat"},{id:"myseat",label:"Số ghế đúng trên vé",eg:"15B"},{id:"thisseat",label:"Số ghế bạn đang ngồi nhầm",eg:"15A"},{id:"solve",label:"Cách giải quyết",eg:"move to the correct seat"}],frames:["I board the plane and find {seat}. I put my bag away, sit down, and fasten my seat belt.","But another passenger comes and says: \"Excuse me, I think you're in my seat.\"","I check my ticket: my seat is {myseat}, but this is {thisseat}. I'm in the wrong seat!","I say: \"Oh, I'm so sorry!\" Then I {solve}. But that's okay!"]},
+];
+
 /* ================== HELPERS ================== */
 const $=id=>document.getElementById(id);
 function norm(s){return s.toLowerCase().replace(/[\u2018\u2019]/g,"'").replace(/[\u2013\u2014]/g,"-").replace(/\s+/g," ").replace(/\s+([.,?!])/g,"$1").replace(/[.]$/,"").trim();}
@@ -1605,15 +1627,60 @@ $("l3TapeBody").innerHTML=l3Transcripts.map(t=>`
   <div style="font-weight:800;color:var(--forest);font-size:14px;margin:14px 0 6px;">Speaker ${t.num}</div>
   <div class="dialogue-line">${t.en}<span class="vi">${t.vi}</span></div>`).join("");
 
-/* ================== DISCUSSION ================== */
-$("discList").innerHTML=discussionScenarios.map((d,i)=>`<div class="scenario-card">
+/* ================== DISCUSSION + ROLE PLAY BUILDER ================== */
+$("discList").innerHTML=discussionScenarios.map((d,i)=>{
+  const rp=RP_BUILD[i];
+  return `<div class="scenario-card">
   <div class="scenario-header"><span class="sc-ico">${d.emoji}</span><div><h4>${d.title}</h4><div class="sc-sub">${d.vi}</div></div></div>
   <div class="scenario-body">
     <div class="scenario-situation">${d.situation}</div>
     <div class="spk-hints" style="margin:10px 0;">${d.hints.map(h=>`<span class="spk-hint">${h}</span>`).join("")}</div>
-    <button class="btn btn-secondary btn-sm" data-reveal="discM${i}">💡 Model answer</button>
+    <div class="rp-build">
+      <div class="rp-build-head">✏️ Gõ từ khóa — mẫu câu tự hiện ra để bạn nói</div>
+      <div class="rp-grid">
+        ${rp.slots.map((sl,j)=>`<div class="rp-field">
+          <label>${["①","②","③","④","⑤"][j]} ${sl.label} <span class="rp-eg">vd: ${sl.eg}</span></label>
+          <input id="rp${i}_${sl.id}" data-rp="${i}" placeholder="${sl.eg}">
+        </div>`).join("")}
+      </div>
+      <div class="btn-group" style="margin-top:10px;">
+        <button class="btn btn-secondary btn-sm" data-rpex="${i}">✨ Điền ví dụ mẫu</button>
+        <button class="btn btn-outline btn-sm" data-rpclear="${i}">🗑️ Xóa</button>
+      </div>
+      <div class="rp-out" id="rpOut${i}"><span class="rp-placeholder">Gõ từ khóa ở trên, câu chuyện của bạn sẽ hiện ở đây…</span></div>
+      <div class="rp-wc" id="rpWc${i}">0 từ</div>
+    </div>
+    <button class="btn btn-secondary btn-sm" data-reveal="discM${i}" style="margin-top:12px;">💡 Xem bài mẫu hoàn chỉnh</button>
     <div class="sample-response" id="discM${i}">🇬🇧 ${d.model_en}<br><br>🇻🇳 ${d.model_vi}</div>
-  </div></div>`).join("");
+  </div></div>`;
+}).join("");
+
+function rpCap(t){return t.charAt(0).toUpperCase()+t.slice(1);}
+function rpAssemble(i){
+  const rp=RP_BUILD[i];
+  const v={};rp.slots.forEach(sl=>{const el=$("rp"+i+"_"+sl.id);v[sl.id]=el.value.trim();el.classList.toggle("filled",!!v[sl.id]);});
+  const any=rp.slots.some(sl=>v[sl.id]);
+  const out=$("rpOut"+i);
+  if(!any){out.innerHTML='<span class="rp-placeholder">Gõ từ khóa ở trên, câu chuyện của bạn sẽ hiện ở đây…</span>';$("rpWc"+i).textContent="0 từ";return;}
+  const html=rp.frames.map(f=>{
+    // A frame is shown only if all slots it references are filled
+    const needed=[...f.matchAll(/\{(\w+)\}/g)].map(m=>m[1]);
+    if(needed.some(n=>!v[n]))return null;
+    let s=f;needed.forEach(n=>{s=s.replace(new RegExp("\\{"+n+"\\}","g"),`<span class="rp-fill">${v[n]}</span>`);});
+    return s;
+  }).filter(Boolean);
+  if(!html.length){out.innerHTML='<span class="rp-placeholder">Điền thêm từ khóa để hoàn thành câu…</span>';$("rpWc"+i).textContent="0 từ";return;}
+  out.innerHTML=html.map((s,k)=>k===0?rpCap(s):s).join(" ");
+  const words=out.innerText.trim().split(/\s+/).filter(Boolean).length;
+  $("rpWc"+i).textContent=words+" từ"+(words>=40?" ✅ đủ để kể một đoạn":"");
+}
+document.addEventListener("input",e=>{const el=e.target.closest("[data-rp]");if(el)rpAssemble(+el.dataset.rp);});
+document.addEventListener("click",e=>{
+  const ex=e.target.closest("[data-rpex]");
+  if(ex){const i=+ex.dataset.rpex;RP_BUILD[i].slots.forEach(sl=>$("rp"+i+"_"+sl.id).value=sl.eg);rpAssemble(i);return;}
+  const cl=e.target.closest("[data-rpclear]");
+  if(cl){const i=+cl.dataset.rpclear;RP_BUILD[i].slots.forEach(sl=>{$("rp"+i+"_"+sl.id).value="";});rpAssemble(i);return;}
+});
 
 /* ================== QUIZ GAME ================== */
 let qzOrder=[],qzIdx=0,qzScore=0,qzTimerInt=null,qzTimeLeft=10,qzSelected=null,qzAnswered=false;
@@ -1671,6 +1738,7 @@ $("resetFab").addEventListener("click",()=>{
   l2t1Eng.reset();$("l2t1Fb").className="feedback-box";
   l2Locked=false;$("l2t2List").querySelectorAll(".nl-btn").forEach(b=>b.classList.remove("sel","correct","incorrect"));$("l2t2Fb").className="feedback-box";
   l3Locked=false;$("l3Tables").querySelectorAll(".op-pick").forEach(b=>b.classList.remove("sel","correct","incorrect"));$("l3Fb").className="feedback-box";
+  RP_BUILD.forEach((rp,i)=>{rp.slots.forEach(sl=>{const el=$("rp"+i+"_"+sl.id);if(el){el.value="";el.classList.remove("filled");}});rpAssemble(i);});
   document.querySelectorAll(".sample-response").forEach(s=>s.classList.remove("revealed"));
   document.querySelectorAll(".transcript-block").forEach(t=>t.classList.remove("revealed"));
   document.querySelectorAll(".check-item input").forEach(c=>c.checked=false);
@@ -1688,6 +1756,8 @@ $("resetFab").addEventListener("click",()=>{
   console.assert(l2Task2Answers.length===4&&l2Task1Questions.length===4,"L2 must be 4");
   console.assert(JSON.stringify(l2Task2Answers)===JSON.stringify(["later","now","later","now"]),"L2 Task2 key wrong");
   console.assert(l3Speakers.length===4,"L3 must be 4 speakers");
+  console.assert(RP_BUILD.length===4,"RP_BUILD must be 4");
+  console.assert(RP_BUILD.every(r=>r.slots.length>=3&&r.frames.length>=3),"each role play needs slots+frames");
   console.assert(vocabOnboard.length+vocabPeople.length+vocabInflight.length>=30,"vocab count low");
   console.log("[verify] quiz=30 ✓ match=6 ✓ L2=4/4 ✓ L2Task2=later,now,later,now ✓ L3=4×4 ✓ vocab="+(vocabOnboard.length+vocabPeople.length+vocabInflight.length));
 })();
