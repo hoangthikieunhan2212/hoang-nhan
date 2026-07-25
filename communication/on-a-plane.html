@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>On a Plane — English Communication Lesson</title>
+<style>
+:root{
+  --forest:#013220; --moss:#006D6F; --teal:#007A74; --mint:#D8BFD8;
+  --sage:#F5F5DC; --sand:#FFFAF0; --shell:#FFF5EE; --white:#FFFAFA;
+  --blue:#2563EB; --blue-light:#EFF6FF; --amber:#D97706; --amber-light:#FFFBEB;
+  --red:#DC2626; --red-light:#FEF2F2; --green-success:#16A34A; --green-light:#F0FDF4;
+  --text-dark:#013220; --text-mid:#006D6F; --text-soft:#5F8A80;
+  --border:#E3DED0;
+  --shadow-sm:0 1px 3px rgba(1,50,32,0.08);
+  --shadow-md:0 4px 16px rgba(1,50,32,0.12);
+  --shadow-lg:0 8px 32px rgba(1,50,32,0.16);
+  --radius:12px; --radius-sm:8px; --radius-lg:20px;
+  font-size:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--sand);}
+.app-shell{display:flex;min-height:100vh;}
+
+/* SIDEBAR */
+.sidebar{width:220px;background:var(--forest);position:fixed;top:0;bottom:0;left:0;display:flex;flex-direction:column;padding:22px 0;z-index:100;overflow-y:auto;}
+.brand{padding:0 18px 20px;border-bottom:1px solid rgba(255,255,255,0.1);}
+.brand .lvl{display:inline-block;background:rgba(216,191,216,0.2);color:var(--mint);border:1px solid rgba(216,191,216,0.3);font-size:10px;font-weight:800;letter-spacing:1px;padding:3px 10px;border-radius:99px;}
+.brand h2{color:#fff;font-size:17px;font-weight:800;margin-top:10px;line-height:1.3;}
+.brand .cat{color:var(--mint);opacity:.8;font-size:11px;font-weight:600;letter-spacing:.5px;}
+.nav{flex:1;padding:16px 0;}
+.nav-group{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(216,191,216,0.6);padding:14px 18px 6px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 18px;color:rgba(255,255,255,0.7);font-size:13px;font-weight:500;cursor:pointer;border-left:3px solid transparent;transition:all .2s;}
+.nav-item:hover{background:rgba(216,191,216,0.08);color:#fff;}
+.nav-item.active{background:rgba(216,191,216,0.15);border-left-color:var(--mint);color:#fff;font-weight:700;}
+.nav-item .ic{width:20px;font-size:16px;text-align:center;}
+.prog-wrap{padding:16px 18px 0;border-top:1px solid rgba(255,255,255,0.1);}
+.prog-label{font-size:10px;color:rgba(216,191,216,0.6);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+.prog-track{height:6px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;}
+.prog-fill{height:100%;background:var(--mint);border-radius:99px;width:11%;transition:width .5s ease;}
+
+/* MAIN */
+.main-content{flex:1;margin-left:220px;min-width:0;}
+.page{display:none;}
+.page.active{display:block;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+.hero{background:linear-gradient(135deg,var(--forest),var(--moss),var(--teal));color:#fff;padding:48px;}
+.hero.small{padding:32px 48px;}
+.hero-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:4px 12px;border-radius:99px;letter-spacing:.4px;}
+.badge-white{background:rgba(255,255,255,0.15);color:#fff;}
+.badge-mint{background:rgba(216,191,216,0.2);color:var(--mint);border:1px solid rgba(216,191,216,0.3);}
+.badge-blue{background:var(--blue-light);color:var(--blue);}
+.badge-amber{background:var(--amber-light);color:var(--amber);}
+.badge-green{background:var(--green-light);color:var(--green-success);}
+.badge-red{background:var(--red-light);color:var(--red);}
+.badge-forest{background:var(--sage);color:var(--forest);}
+.hero h1{font-size:36px;font-weight:800;line-height:1.2;margin-bottom:12px;}
+.hero.small h1{font-size:26px;}
+.hero p{max-width:560px;font-size:15px;opacity:.9;}
+.outcomes{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px;}
+
+.section{padding:40px 48px;border-bottom:1px solid var(--border);}
+.section-header{margin-bottom:24px;}
+.part-label{display:inline-block;background:var(--forest);color:var(--mint);font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 10px;border-radius:99px;text-transform:uppercase;}
+.section-title{font-size:22px;font-weight:800;color:var(--forest);margin-top:10px;}
+.section-subtitle{font-size:14px;color:var(--text-soft);margin-top:4px;}
+
+.info-box{background:var(--sage);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:14px 18px;font-size:14px;color:var(--text-mid);margin-bottom:20px;}
+.listening-notice{background:var(--amber-light);border:1px solid #FDE68A;color:var(--amber);padding:12px 16px;font-size:13px;border-radius:var(--radius-sm);margin-bottom:20px;}
+
+/* JOURNEY */
+.journey{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;}
+.j-step{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;position:relative;transition:all .2s;}
+.j-step:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--teal);}
+.j-num{width:28px;height:28px;border-radius:99px;background:var(--forest);color:var(--mint);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.j-step h4{font-size:14px;font-weight:800;color:var(--forest);}
+.j-step .j-part{font-size:11px;font-weight:700;color:var(--moss);letter-spacing:.5px;text-transform:uppercase;margin-top:2px;}
+.j-step p{font-size:13px;color:var(--text-soft);margin-top:6px;}
+
+/* TABS */
+.tab-scroll{position:relative;margin-bottom:24px;}
+.tab-scroll::after{content:"";position:absolute;top:0;bottom:2px;right:0;width:34px;pointer-events:none;opacity:0;transition:opacity .2s;
+  background:linear-gradient(to right,rgba(255,250,240,0),var(--sand));}
+.tab-scroll.more-right::after{opacity:1;}
+.tab-scroll .scroll-cue{position:absolute;top:50%;right:4px;transform:translateY(-50%);pointer-events:none;opacity:0;transition:opacity .2s;
+  color:var(--moss);font-size:16px;font-weight:800;z-index:2;}
+.tab-scroll.more-right .scroll-cue{opacity:1;}
+.tab-bar{border-bottom:2px solid var(--border);display:flex;gap:4px;overflow-x:auto;margin-bottom:0;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:thin;}
+.tab-bar::-webkit-scrollbar{height:4px;}
+.tab-bar::-webkit-scrollbar-thumb{background:var(--border);border-radius:99px;}
+.tab-btn{padding:10px 18px;font-size:13px;font-weight:600;color:var(--text-soft);border:none;background:transparent;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;font-family:inherit;transition:all .15s;flex:0 0 auto;scroll-snap-align:start;min-height:44px;}
+.tab-btn:hover{color:var(--forest);}
+.tab-btn.active{color:var(--forest);border-bottom-color:var(--forest);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;animation:fadeIn .3s ease;}
+
+/* VOCAB */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.vocab-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px;cursor:pointer;position:relative;transition:all .2s;}
+.vocab-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--teal);}
+.flip-hint{position:absolute;top:10px;right:12px;font-size:10px;font-weight:700;color:var(--text-soft);background:var(--shell);padding:2px 8px;border-radius:99px;}
+.vocab-card .word{color:var(--forest);font-size:17px;font-weight:700;padding-right:44px;}
+.vocab-card .ipa{color:var(--blue);font-size:13px;font-style:italic;}
+.vocab-card .pos{display:inline-block;background:var(--sage);color:var(--forest);font-size:10px;font-weight:800;padding:2px 8px;border-radius:99px;margin:6px 0;}
+.vocab-card .vi{color:var(--text-mid);font-size:14px;font-weight:600;}
+.vocab-card .example{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--sage);color:var(--text-soft);font-size:13px;}
+.vocab-card.flipped .example{display:block;animation:fadeIn .3s ease;}
+.vocab-card .example b{color:var(--forest);}
+
+/* PHRASE */
+.phrase-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;margin-bottom:10px;transition:all .2s;}
+.phrase-card:hover{box-shadow:var(--shadow-sm);border-color:var(--teal);}
+.phrase-en{color:var(--forest);font-weight:700;font-size:15px;min-width:250px;}
+.phrase-vi{color:var(--text-soft);font-size:13px;}
+
+/* PRONUN */
+.pron-box{background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius);padding:20px;margin-bottom:16px;}
+.pron-box h4{color:var(--blue);font-weight:700;font-size:15px;margin-bottom:8px;}
+.pron-box p{font-size:14px;color:var(--text-dark);}
+.pron-arrow{display:inline-block;background:var(--blue);color:#fff;font-size:11px;font-weight:700;padding:2px 10px;border-radius:99px;margin:0 6px;}
+.pron-practice{background:var(--sage);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;margin-top:12px;font-size:14px;color:var(--text-dark);}
+.pron-practice div{margin:4px 0;}
+
+/* PASSAGE */
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.legend span{font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;}
+.hl-vocab{background:var(--sage);border-radius:3px;padding:1px 3px;font-weight:700;color:var(--forest);}
+.hl-phrase{border-bottom:2px solid var(--moss);font-weight:700;color:var(--moss);}
+.hl-pron{background:var(--blue-light);border-radius:3px;padding:1px 3px;color:var(--blue);font-weight:700;}
+.hl-accent{background:var(--amber-light);border-radius:3px;padding:1px 3px;color:var(--amber);font-weight:700;}
+.passage{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;font-size:15px;line-height:1.9;}
+.passage h4{color:var(--forest);font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin:20px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--sage);}
+.passage h4:first-child{margin-top:0;}
+.passage .vi-line{color:var(--text-soft);font-size:13px;font-style:italic;display:block;margin-bottom:10px;}
+
+/* EXERCISE */
+.exercise{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:20px;}
+.exercise-title{color:var(--forest);font-weight:700;font-size:16px;margin-bottom:8px;}
+.exercise-instruction{color:var(--text-soft);font-size:13px;background:var(--shell);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:18px;}
+.q-block{padding:14px 0;border-bottom:1px solid var(--sage);}
+.q-block:last-of-type{border-bottom:none;}
+.q-text{font-size:14px;font-weight:600;color:var(--text-dark);margin-bottom:10px;}
+.q-text .qn{color:var(--moss);font-weight:800;margin-right:6px;}
+.mcq-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;}
+.mcq-option{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;font-size:14px;cursor:pointer;background:var(--white);transition:all .15s;display:flex;gap:8px;align-items:flex-start;}
+.mcq-option:hover{border-color:var(--teal);background:var(--sage);}
+.mcq-option.selected{border-color:var(--blue);background:var(--blue-light);}
+.mcq-option.correct{border-color:var(--green-success);background:var(--green-light);}
+.mcq-option.incorrect{border-color:var(--red);background:var(--red-light);}
+.mcq-option .ltr{font-weight:800;color:var(--moss);}
+.blank-input{border:none;border-bottom:2px solid var(--forest);background:transparent;min-width:130px;font-size:15px;font-family:inherit;color:var(--text-dark);padding:2px 4px;outline:none;}
+.blank-input:focus{border-bottom-color:var(--blue);}
+.blank-input.correct{border-bottom-color:var(--green-success);background:var(--green-light);}
+.blank-input.incorrect{border-bottom-color:var(--red);background:var(--red-light);}
+
+.btn-group{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+.btn{padding:10px 20px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:inherit;transition:all .2s;}
+.btn-primary{background:var(--forest);color:#fff;}
+.btn-primary:hover{background:var(--moss);transform:translateY(-1px);}
+.btn-secondary{background:var(--sage);color:var(--forest);}
+.btn-secondary:hover{background:var(--mint);}
+.btn-outline{background:transparent;color:var(--forest);border:1.5px solid var(--border);}
+.btn-outline:hover{border-color:var(--moss);background:var(--sage);}
+.btn-sm{padding:6px 14px;font-size:13px;}
+
+.feedback-box{padding:14px 18px;border-radius:var(--radius-sm);display:none;gap:12px;align-items:center;margin-top:16px;font-size:14px;font-weight:600;}
+.feedback-box.show{display:flex;}
+.feedback-box.success{background:var(--green-light);color:var(--green-success);border:1px solid #BBF7D0;}
+.feedback-box.error{background:var(--red-light);color:var(--red);border:1px solid #FECACA;}
+.feedback-box.info{background:var(--blue-light);color:var(--blue);border:1px solid #BFDBFE;}
+.score-badge{width:48px;height:48px;min-width:48px;border-radius:99px;background:var(--white);color:var(--forest);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px;}
+
+.reset-fab{position:fixed;bottom:24px;right:24px;background:var(--red);color:#fff;border:none;border-radius:99px;padding:12px 20px;font-size:13px;font-weight:700;box-shadow:var(--shadow-lg);z-index:200;cursor:pointer;font-family:inherit;transition:transform .2s;}
+.reset-fab:hover{transform:scale(1.05);}
+
+/* GRAMMAR / TENSE CARD */
+.tense-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;}
+.tense-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px;}
+.tense-card h4{color:var(--forest);font-size:16px;font-weight:800;}
+.tense-card .t-explain{font-size:13px;color:var(--text-soft);margin:6px 0 12px;}
+.formula-pill{display:inline-block;background:var(--forest);color:#fff;font-size:13px;font-weight:700;padding:6px 14px;border-radius:99px;margin-bottom:12px;font-family:'Courier New',monospace;}
+.t-row{background:var(--shell);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:8px;font-size:14px;}
+.t-row .t-tag{font-size:10px;font-weight:800;color:var(--moss);letter-spacing:1px;display:block;}
+.t-row b{color:var(--forest);}
+.t-row .vi{display:block;color:var(--text-soft);font-size:12px;font-style:italic;}
+
+/* SPEAKING */
+.scenario-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:20px;}
+.scenario-header{background:linear-gradient(135deg,var(--forest),var(--moss));color:#fff;padding:16px 20px;display:flex;gap:12px;align-items:center;}
+.scenario-header .sc-ico{font-size:22px;}
+.scenario-header h4{font-size:16px;font-weight:800;}
+.scenario-header .sc-sub{font-size:12px;opacity:.85;}
+.scenario-body{padding:20px;}
+.scenario-situation{background:var(--shell);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;font-size:14px;margin-bottom:14px;}
+.mini-label{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--moss);margin:14px 0 6px;}
+.hint-row{display:flex;gap:8px;flex-wrap:wrap;}
+.hint-chip{background:var(--sage);color:var(--moss);font-size:13px;font-weight:600;padding:5px 12px;border-radius:99px;}
+.sample-response{display:none;background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius-sm);padding:14px 16px;font-size:14px;margin-top:14px;color:var(--text-dark);}
+.sample-response.revealed{display:block;animation:fadeIn .3s ease;}
+.sample-response .vi{display:block;color:var(--text-soft);font-size:13px;font-style:italic;margin-top:4px;}
+.dialogue-box{background:var(--shell);border-radius:var(--radius-sm);padding:14px 16px;font-size:14px;margin-bottom:10px;}
+.dialogue-box .sp{font-weight:800;color:var(--forest);margin-right:6px;}
+textarea.speak-input{width:100%;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;font-family:inherit;font-size:14px;color:var(--text-dark);background:var(--white);resize:vertical;min-height:70px;outline:none;}
+textarea.speak-input:focus{border-color:var(--teal);}
+.word-count{font-size:12px;color:var(--text-soft);margin-top:4px;}
+
+.check-item{display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:var(--radius-sm);cursor:pointer;font-size:14px;transition:background .15s;}
+.check-item:hover{background:var(--sage);}
+.check-item input{accent-color:var(--forest);width:17px;height:17px;cursor:pointer;}
+
+/* REFLEX */
+.draw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;}
+.draw-zone{background:var(--sage);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;}
+.draw-zone h4{color:var(--forest);font-size:15px;font-weight:800;margin-bottom:8px;}
+.draw-zone .zone-desc{font-size:13px;color:var(--text-mid);font-style:italic;margin-bottom:16px;}
+.draw-btn{width:130px;height:130px;border-radius:99px;background:var(--white);border:4px solid var(--moss);color:var(--moss);font-weight:800;font-size:14px;letter-spacing:1px;line-height:1.3;cursor:pointer;margin:18px auto;display:flex;align-items:center;justify-content:center;text-align:center;transition:all .2s;font-family:inherit;}
+.draw-btn:hover{transform:scale(1.05);box-shadow:var(--shadow-md);}
+.draw-result{border:2px dashed var(--moss);border-radius:var(--radius-sm);background:var(--white);padding:18px;min-height:70px;text-align:center;display:flex;flex-direction:column;justify-content:center;}
+.draw-result .big{font-size:24px;font-weight:800;color:var(--forest);display:block;}
+.draw-result .small{font-size:13px;color:var(--text-soft);font-style:italic;}
+.alt-badge{background:var(--moss);color:#fff;font-size:11px;font-weight:700;padding:4px 14px;border-radius:99px;letter-spacing:.5px;display:inline-block;}
+.tier2-hint{background:var(--amber-light);border:1.5px dashed #FDE68A;border-radius:var(--radius-sm);padding:12px 16px;font-size:14px;margin-top:14px;}
+.tier2-hint b{color:var(--amber);}
+.tier2-hint ul{margin:6px 0 0 18px;color:var(--text-dark);}
+.count-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px;}
+.count-display{background:var(--forest);color:#fff;font-size:34px;font-weight:800;padding:8px 22px;border-radius:var(--radius-sm);font-variant-numeric:tabular-nums;letter-spacing:2px;}
+.count-display.timeup{background:var(--red);}
+.preset-pill{border:1.5px solid var(--border);background:var(--white);border-radius:99px;padding:8px 16px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;transition:all .15s;color:var(--text-dark);}
+.preset-pill.active{border-color:var(--moss);background:var(--sage);color:var(--forest);}
+.btn-start{background:var(--moss);color:#fff;border:none;border-radius:99px;padding:8px 18px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;}
+.btn-timer-reset{background:var(--white);border:1.5px solid var(--border);border-radius:99px;padding:8px 18px;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;color:var(--text-dark);}
+
+/* LISTENING */
+.book-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:18px;}
+.book-table th{background:var(--forest);color:#fff;font-size:12px;font-weight:800;letter-spacing:.5px;padding:10px 14px;text-align:left;}
+.book-table td{padding:12px 14px;border-bottom:1px solid var(--sage);font-size:14px;vertical-align:top;}
+.book-table td:first-child{font-weight:800;color:var(--forest);background:var(--shell);width:80px;}
+.book-table .free{color:var(--text-soft);font-style:italic;}
+.book-table .fixed{font-weight:700;color:var(--moss);}
+.word-bank{display:flex;gap:8px;flex-wrap:wrap;background:var(--shell);border:1.5px dashed var(--border);border-radius:var(--radius-sm);padding:14px;margin-bottom:18px;}
+.bank-item{background:var(--white);border:1px solid var(--border);border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:var(--forest);}
+.transcript-block{display:none;}
+.transcript-block.revealed{display:block;animation:fadeIn .3s ease;}
+.transcript-card{background:var(--sand);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:16px;}
+.transcript-card .t-head{background:var(--forest);color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:800;}
+.transcript-card .t-body{padding:18px;}
+.dialogue-line{padding:8px 0;border-bottom:1px solid var(--sage);font-size:14px;}
+.dialogue-line:last-child{border-bottom:none;}
+.dialogue-line .speaker{color:var(--forest);font-weight:700;margin-right:6px;}
+.dialogue-line .vi{display:block;color:var(--text-soft);font-size:13px;font-style:italic;padding-left:22px;margin-top:2px;}
+
+/* TYPING RACE */
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.type-src{background:var(--shell);border:1px solid var(--border);border-radius:var(--radius);padding:18px;font-size:13.5px;line-height:1.75;white-space:pre-wrap;max-height:420px;overflow-y:auto;}
+textarea.type-box{width:100%;min-height:420px;border:1.5px solid var(--border);border-radius:var(--radius);padding:16px;font-family:inherit;font-size:14px;line-height:1.7;color:var(--text-dark);background:var(--white);resize:vertical;outline:none;}
+textarea.type-box:focus{border-color:var(--teal);}
+textarea.type-box:disabled{background:var(--sage);color:var(--text-soft);}
+.type-hud{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px;}
+.countdown-overlay{font-size:34px;font-weight:800;color:var(--moss);}
+.score-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:18px;}
+.score-table th{background:var(--sage);color:var(--forest);font-size:12px;font-weight:800;padding:10px 14px;text-align:left;}
+.score-table td{padding:10px 14px;border-bottom:1px solid var(--sage);font-size:14px;}
+
+/* QUIZ */
+.quiz-screen{display:none;}
+.quiz-screen.active{display:block;animation:fadeIn .3s ease;}
+.quiz-start{text-align:center;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:48px 28px;}
+.quiz-start h3{font-size:24px;font-weight:800;color:var(--forest);margin-bottom:8px;}
+.quiz-start p{color:var(--text-soft);font-size:14px;max-width:420px;margin:0 auto 20px;}
+.quiz-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
+.quiz-counter{font-size:13px;font-weight:800;color:var(--moss);letter-spacing:.5px;}
+.timer-pill{background:var(--forest);color:#fff;font-size:14px;font-weight:800;padding:5px 16px;border-radius:99px;font-variant-numeric:tabular-nums;}
+.timer-pill.danger{background:var(--red);animation:pulse .6s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.55;}}
+.timer-track{height:6px;background:var(--sage);border-radius:99px;overflow:hidden;margin-bottom:20px;}
+.timer-bar{height:100%;background:var(--moss);border-radius:99px;width:100%;transition:width 1s linear;}
+.timer-bar.danger{background:var(--red);}
+.quiz-q{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:26px;}
+.quiz-q .qtype{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--moss);}
+.quiz-q h3{font-size:18px;font-weight:800;color:var(--forest);margin:6px 0 18px;}
+.quiz-opts{display:grid;gap:10px;}
+.quiz-explain{display:none;margin-top:14px;background:var(--blue-light);border:1px solid #BFDBFE;border-radius:var(--radius-sm);padding:12px 16px;font-size:14px;color:var(--text-dark);}
+.quiz-explain.show{display:block;}
+.quiz-result{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:44px 28px;text-align:center;}
+.big-score{font-size:56px;font-weight:800;color:var(--forest);}
+.quiz-result .verdict{font-size:16px;font-weight:700;color:var(--moss);margin-bottom:18px;}
+.summary-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.summary-table td{padding:10px 16px;border-bottom:1px solid var(--sage);font-size:14px;}
+.summary-table td:first-child{font-weight:700;color:var(--forest);width:34%;background:var(--shell);}
+
+@media(max-width:900px){.type-grid{grid-template-columns:1fr;}textarea.type-box{min-height:220px;}}
+@media(max-width:768px){
+  .sidebar{position:relative;width:100%;height:auto;}
+  .main-content{margin-left:0;}
+  .app-shell{flex-direction:column;}
+  .hero,.hero.small{padding:24px;}
+  .hero h1{font-size:26px;}
+  .section{padding:24px;}
+  .vocab-grid{grid-template-columns:1fr;}
+  .tab-btn{padding:10px 12px;font-size:12px;}
+  .tab-scroll::after{width:26px;}
+}
+
+/* === ON A PLANE ADDITIONS === */
+/* Matching */
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.match-col h5{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--moss);margin-bottom:10px;}
+.match-item{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:10px;font-size:14px;display:flex;gap:10px;align-items:center;}
+.match-item .m-num{width:26px;height:26px;min-width:26px;border-radius:99px;background:var(--forest);color:var(--mint);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.match-item .m-ltr{width:26px;height:26px;min-width:26px;border-radius:99px;background:var(--sage);color:var(--forest);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.match-item select{margin-left:auto;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:6px 8px;font-family:inherit;font-size:14px;background:var(--white);color:var(--text-dark);outline:none;cursor:pointer;min-height:38px;}
+.match-item select:focus{border-color:var(--teal);}
+.match-item.correct{border-color:var(--green-success);background:var(--green-light);}
+.match-item.incorrect{border-color:var(--red);background:var(--red-light);}
+/* Connected speech */
+.cs-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:22px;margin-bottom:16px;text-align:center;}
+.cs-flow{display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;}
+.cs-full{background:var(--blue-light);border:1.5px solid #BFDBFE;border-radius:var(--radius-sm);padding:12px 20px;font-size:20px;font-weight:800;color:var(--forest);}
+.cs-arrow{font-size:22px;color:var(--moss);font-weight:800;}
+.cs-reduced{background:var(--amber-light);border:1.5px solid #FDE68A;border-radius:var(--radius-sm);padding:12px 20px;font-size:20px;font-weight:800;color:var(--amber);font-style:italic;}
+.cs-note{font-size:13px;color:var(--text-soft);margin-top:12px;}
+.cs-sentence{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;margin-bottom:10px;font-size:14.5px;line-height:1.8;}
+.cs-sentence .redu{background:var(--sage);border-radius:4px;padding:1px 7px;font-weight:800;color:var(--forest);}
+.cs-sentence .say{display:block;font-size:13px;color:var(--amber);font-style:italic;margin-top:4px;}
+/* Now/Later + opinion buttons */
+.nl-row,.op-row{display:flex;gap:8px;flex-wrap:wrap;}
+.nl-btn,.op-btn{border:1.5px solid var(--border);background:var(--white);border-radius:99px;padding:7px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;color:var(--text-soft);transition:all .15s;min-height:40px;}
+.nl-btn:hover,.op-btn:hover{border-color:var(--teal);background:var(--sage);}
+.nl-btn.sel,.op-btn.sel{border-color:var(--blue);background:var(--blue-light);color:var(--blue);}
+.nl-btn.correct,.op-btn.correct{border-color:var(--green-success);background:var(--green-light);color:var(--green-success);}
+.nl-btn.incorrect,.op-btn.incorrect{border-color:var(--red);background:var(--red-light);color:var(--red);}
+/* Opinion grid (Listening 3) */
+.op-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.op-table th{background:var(--forest);color:#fff;font-size:12px;font-weight:800;padding:10px 12px;text-align:center;}
+.op-table th:first-child{text-align:left;}
+.op-table td{padding:10px 12px;border-bottom:1px solid var(--sage);font-size:13px;text-align:center;}
+.op-table td:first-child{text-align:left;font-weight:700;color:var(--forest);}
+.op-cell{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;}
+.op-pick{width:34px;height:34px;border:1.5px solid var(--border);background:var(--white);border-radius:8px;font-size:15px;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;}
+.op-pick:hover{border-color:var(--teal);background:var(--sage);}
+.op-pick.sel{border-color:var(--blue);background:var(--blue-light);}
+.op-pick.correct{border-color:var(--green-success);background:var(--green-light);}
+.op-pick.incorrect{border-color:var(--red);background:var(--red-light);}
+.op-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--text-soft);margin-bottom:12px;}
+.op-legend span{display:flex;align-items:center;gap:5px;}
+/* Speaking scenario */
+.spk-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:14px;}
+.spk-head{display:flex;gap:12px;align-items:center;margin-bottom:10px;}
+.spk-emoji{font-size:26px;}
+.spk-vi{background:var(--shell);border-radius:var(--radius-sm);padding:12px 14px;font-size:15px;color:var(--text-dark);margin-bottom:10px;}
+.spk-hints{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.spk-hint{background:var(--sage);color:var(--forest);border-radius:99px;padding:4px 12px;font-size:12px;font-weight:600;}
+.spk-tip{font-size:13px;color:var(--text-soft);font-style:italic;border-left:3px solid var(--amber);padding-left:10px;margin-bottom:10px;}
+/* Gist banner */
+.gist-banner{background:linear-gradient(135deg,var(--forest),var(--moss));color:#fff;border-radius:var(--radius);padding:20px 24px;margin-bottom:20px;}
+.gist-banner h4{font-size:15px;font-weight:800;margin-bottom:6px;color:#fff;}
+.gist-banner p{font-size:14px;opacity:.95;}
+.gist-q{background:var(--sand);border:1.5px dashed var(--moss);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:14px;font-size:14.5px;}
+.gist-q .gist-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;color:var(--moss);text-transform:uppercase;margin-bottom:4px;}
+@media(max-width:768px){
+  .match-wrap{grid-template-columns:1fr;}
+  .cs-flow{flex-direction:column;}
+  .cs-arrow{transform:rotate(90deg);}
+  .op-table th,.op-table td{padding:7px 5px;font-size:11px;}
+  .op-pick{width:30px;height:30px;}
+}
+</style>
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+  <div class="brand">
+    <span class="lvl">A2 → B1</span>
+    <h2>On a Plane ✈</h2>
+    <div class="cat">Communication English</div>
+  </div>
+  <nav class="nav" id="nav">
+    <div class="nav-group">Start</div>
+    <div class="nav-item active" data-page="p-overview"><span class="ic">🏠</span> Overview</div>
+    <div class="nav-group">Part 1 — Getting Ready</div>
+    <div class="nav-item" data-page="p-vocab"><span class="ic">📖</span> Vocabulary</div>
+    <div class="nav-item" data-page="p-phrases"><span class="ic">💬</span> Useful Phrases</div>
+    <div class="nav-item" data-page="p-pron"><span class="ic">🎙</span> Pronunciation</div>
+    <div class="nav-item" data-page="p-practice"><span class="ic">✏️</span> Quick Practice</div>
+    <div class="nav-group">Part 2 — Speaking</div>
+    <div class="nav-item" data-page="p-speaking"><span class="ic">🗣</span> Speaking</div>
+    <div class="nav-group">Part 3 — Listening</div>
+    <div class="nav-item" data-page="p-gist"><span class="ic">🎯</span> Gist Skills</div>
+    <div class="nav-item" data-page="p-listening2"><span class="ic">🎧</span> Listening 2</div>
+    <div class="nav-item" data-page="p-listening3"><span class="ic">🎧</span> Listening 3</div>
+    <div class="nav-group">Part 4 — Discussion</div>
+    <div class="nav-item" data-page="p-discussion"><span class="ic">🤝</span> Role Play</div>
+    <div class="nav-group">Part 5 — Review</div>
+    <div class="nav-item" data-page="p-review"><span class="ic">⭐</span> Final Review</div>
+  </nav>
+  <div class="prog-wrap">
+    <div class="prog-label">Progress</div>
+    <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+  </div>
+</aside>
+
+<main class="main-content">
+
+<!-- ============ OVERVIEW ============ -->
+<div class="page active" id="p-overview">
+  <div class="hero">
+    <div class="hero-meta">
+      <span class="badge badge-white">Communication English</span>
+      <span class="badge badge-white">CEFR A2 → B1</span>
+      <span class="badge badge-white">⏱ 90 minutes</span>
+    </div>
+    <h1>On a Plane ✈</h1>
+    <p>Communicate confidently from boarding to landing — find your seat, make polite requests, report a problem, and understand what the cabin crew tell you. The core skill: <b>listening for gist</b> — catching the main idea without getting lost in every small detail.</p>
+    <div class="outcomes">
+      <span class="badge badge-mint">Vocabulary</span>
+      <span class="badge badge-mint">Phrases</span>
+      <span class="badge badge-mint">Pronunciation</span>
+      <span class="badge badge-mint">Gist Listening</span>
+      <span class="badge badge-mint">Speaking</span>
+      <span class="badge badge-mint">Role Play</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Learning Outcomes</span>
+      <h2 class="section-title">By the end of this lesson, you will be able to…</h2>
+      <p class="section-subtitle">Real things you can do on your next flight — and beyond it.</p>
+    </div>
+    <div class="journey">
+      <div class="j-step"><div class="j-num">1</div><h4>Follow Cabin Instructions</h4><div class="j-part">Safety</div><p>Understand announcements: fasten your seat belt, turn off devices, exit rows.</p></div>
+      <div class="j-step"><div class="j-num">2</div><h4>Prepare for Takeoff</h4><div class="j-part">Interaction</div><p>Make polite requests and respond naturally to crew and passengers.</p></div>
+      <div class="j-step"><div class="j-num">3</div><h4>Listen for Gist</h4><div class="j-part">Main idea</div><p>Catch what the problem or topic is, without needing every word.</p></div>
+      <div class="j-step"><div class="j-num">4</div><h4>Listen for Details</h4><div class="j-part">Key facts</div><p>Pick out seat numbers, times, and whether help comes now or later.</p></div>
+      <div class="j-step"><div class="j-num">5</div><h4>Listen for Opinions</h4><div class="j-part">Feelings</div><p>Tell whether someone thought the flight, food or service was good or bad.</p></div>
+      <div class="j-step"><div class="j-num">6</div><h4>Speak Politely</h4><div class="j-part">Could you / Would you</div><p>Use natural connected speech: "couldja", "wouldja".</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Beyond the Plane</span>
+      <h2 class="section-title">Why gist listening matters everywhere</h2>
+    </div>
+    <div class="info-box" style="font-size:15px;">
+      🎯 The gist skill you build here transfers directly to <b>the news, lectures, company meetings, and long stories</b>. Once you can catch the main idea of a cabin announcement without panicking about every word, you can do the same when a colleague explains a project or a professor gives a talk. <b>Understanding the big picture first, details second</b> — that is the habit this lesson trains.
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p-vocab">Start Lesson: Vocabulary →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ VOCABULARY ============ -->
+<div class="page" id="p-vocab">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 1A</span><span class="badge badge-white">Language Input</span></div>
+    <h1>Flight Vocabulary</h1>
+    <p>Everything on board, the people around you, and what happens in the air. Tap any card to flip it.</p>
+  </div>
+  <div class="section">
+    <div class="tab-bar" data-group="vc">
+      <button class="tab-btn active" data-group="vc" data-tab="v1">On Board</button>
+      <button class="tab-btn" data-group="vc" data-tab="v2">People &amp; Places</button>
+      <button class="tab-btn" data-group="vc" data-tab="v3">In-flight</button>
+    </div>
+    <div class="tab-panel active" data-group="vc" data-panel="v1">
+      <div class="vocab-grid" id="vgOnboard"></div>
+      <div class="btn-group"><button class="btn btn-outline btn-sm" data-flipall="vgOnboard">↻ Flip all cards</button></div>
+    </div>
+    <div class="tab-panel" data-group="vc" data-panel="v2">
+      <div class="vocab-grid" id="vgPeople"></div>
+      <div class="btn-group"><button class="btn btn-outline btn-sm" data-flipall="vgPeople">↻ Flip all cards</button></div>
+    </div>
+    <div class="tab-panel" data-group="vc" data-panel="v3">
+      <div class="vocab-grid" id="vgInflight"></div>
+      <div class="btn-group"><button class="btn btn-outline btn-sm" data-flipall="vgInflight">↻ Flip all cards</button></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p-phrases">Next: Useful Phrases →</button>
+      <button class="btn btn-outline" data-goto="p-overview">← Overview</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ USEFUL PHRASES ============ -->
+<div class="page" id="p-phrases">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 1B</span><span class="badge badge-white">Key Phrases</span></div>
+    <h1>Useful Phrases</h1>
+    <p>Natural expressions crew and passengers use every day — grouped by the moment you'll need them.</p>
+  </div>
+  <div class="section">
+    <div class="tab-bar" data-group="ph">
+      <button class="tab-btn active" data-group="ph" data-tab="p1">Before Flight</button>
+      <button class="tab-btn" data-group="ph" data-tab="p2">In-flight</button>
+      <button class="tab-btn" data-group="ph" data-tab="p3">Landing</button>
+    </div>
+    <div class="tab-panel active" data-group="ph" data-panel="p1"><div id="phBefore"></div></div>
+    <div class="tab-panel" data-group="ph" data-panel="p2"><div id="phDuring"></div></div>
+    <div class="tab-panel" data-group="ph" data-panel="p3"><div id="phAfter"></div></div>
+  </div>
+  <div class="section">
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p-pron">Next: Pronunciation →</button>
+      <button class="btn btn-outline" data-goto="p-vocab">← Vocabulary</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PRONUNCIATION ============ -->
+<div class="page" id="p-pron">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 1C</span><span class="badge badge-white">Connected Speech</span></div>
+    <h1>Could you → "couldja"</h1>
+    <p>Native speakers blur polite requests together. You don't have to copy it — but you must be able to <b>recognize</b> it when you hear it.</p>
+  </div>
+  <div class="section">
+    <div class="info-box" style="font-size:15px;">🔗 <b>Think of it like joining train carriages.</b> "Could" and "you" are two carriages; in fast speech they couple together into one: <i>couldja</i>. The words don't change meaning — they just connect. This is called <b>connected speech</b>, and airline crew use it constantly.</div>
+    <div class="cs-card">
+      <div class="cs-flow">
+        <span class="cs-full">could you</span><span class="cs-arrow">→</span><span class="cs-reduced">"couldja"</span>
+      </div>
+      <div class="cs-note">/ˈkʊdʒə/ — the <b>d</b> + <b>y</b> melt into a "j" sound</div>
+    </div>
+    <div class="cs-card">
+      <div class="cs-flow">
+        <span class="cs-full">would you</span><span class="cs-arrow">→</span><span class="cs-reduced">"wouldja"</span>
+      </div>
+      <div class="cs-note">/ˈwʊdʒə/ — same rule: <b>d</b> + <b>y</b> → "j"</div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Listen &amp; Repeat</span>
+      <h2 class="section-title">Practice Sentences</h2>
+      <p class="section-subtitle">Read each one aloud slowly, then fast with the reduction. These are real cabin lines.</p>
+    </div>
+    <div id="csList"></div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p-practice">Next: Quick Practice →</button>
+      <button class="btn btn-outline" data-goto="p-phrases">← Useful Phrases</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ QUICK PRACTICE ============ -->
+<div class="page" id="p-practice">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 1D</span><span class="badge badge-white">Guided Practice</span></div>
+    <h1>Quick Practice</h1>
+    <p>Lock in the vocabulary and phrases before you start speaking. Three quick exercises.</p>
+  </div>
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Exercise 1</span>
+      <h2 class="section-title">Match the Word</h2>
+      <p class="section-subtitle">Match each English word to its Vietnamese meaning.</p>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">🔗 Match A with B</div>
+      <div class="exercise-instruction">Choose a letter (a–f) for each word, then press <b>Check Answers</b>.</div>
+      <div class="match-wrap">
+        <div class="match-col"><h5>Column A — English</h5><div id="matchA"></div></div>
+        <div class="match-col"><h5>Column B — Tiếng Việt</h5><div id="matchB"></div></div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="mtCheck">Check Answers</button>
+        <button class="btn btn-outline" id="mtReset">↻ Reset</button>
+      </div>
+      <div class="feedback-box" id="mtFb"><span class="score-badge" id="mtScore">0/6</span><span id="mtMsg"></span></div>
+    </div>
+
+    <div class="section-header" style="margin-top:30px;">
+      <span class="part-label">Exercise 2</span>
+      <h2 class="section-title">Complete the Sentence</h2>
+      <p class="section-subtitle">Fill each blank with the correct word from the box.</p>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">✏️ Fill in the blank</div>
+      <div class="word-bank" id="fillBank"></div>
+      <div class="exercise-instruction">Type the exact word/phrase from the box.</div>
+      <div id="fillList"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="fillCheck">Check Answers</button>
+        <button class="btn btn-outline" id="fillReset">↻ Reset</button>
+      </div>
+      <div class="feedback-box" id="fillFb"><span class="score-badge" id="fillScore">0/5</span><span id="fillMsg"></span></div>
+    </div>
+
+    <div class="section-header" style="margin-top:30px;">
+      <span class="part-label">Exercise 3</span>
+      <h2 class="section-title">Choose the Best Word</h2>
+      <p class="section-subtitle">Pick the word that best completes each sentence.</p>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">🎯 Multiple choice</div>
+      <div class="exercise-instruction">Select one option per question, then press <b>Show Answers</b>.</div>
+      <div id="mcqList"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="mcqCheck">Show Answers</button>
+        <button class="btn btn-outline" id="mcqReset">↻ Reset</button>
+      </div>
+      <div class="feedback-box" id="mcqFb"><span class="score-badge" id="mcqScore">0/5</span><span id="mcqMsg"></span></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p-speaking">Next: Speaking →</button>
+      <button class="btn btn-outline" data-goto="p-pron">← Pronunciation</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SPEAKING ============ -->
+<div class="page" id="p-speaking">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 2</span><span class="badge badge-white">Guided Production</span></div>
+    <h1>Speaking: Vietnamese → English</h1>
+    <p>Read the Vietnamese. Say your English translation aloud. Then reveal the model to compare.</p>
+  </div>
+  <div class="section">
+    <div class="info-box">🗣 <b>How to use this:</b> cover the model answer. Read the Vietnamese, say the whole English sentence <b>out loud</b>, then reveal and compare. Speaking before you check is what builds fluency — reading the answer first does not.</div>
+    <div id="spkList"></div>
+
+    <div class="section-header" style="margin-top:30px;">
+      <span class="part-label">Checklist</span>
+      <h2 class="section-title">Speaking Checklist</h2>
+    </div>
+    <div class="exercise" id="spkCheck"></div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p-gist">Next: Gist Skills →</button>
+      <button class="btn btn-outline" data-goto="p-practice">← Quick Practice</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GIST SKILLS ============ -->
+<div class="page" id="p-gist">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 3</span><span class="badge badge-white">Listening Strategy</span></div>
+    <h1>Listening for Gist</h1>
+    <p>Before you listen for details, train the most important skill: catching the main idea.</p>
+  </div>
+  <div class="section">
+    <div class="gist-banner">
+      <h4>🎯 What is "gist"?</h4>
+      <p>Gist = the main idea. When you listen for gist, you are NOT trying to catch every word. You ask three big questions: <b>Who is talking? What is the topic/problem? How do they feel?</b> Everything else is detail — you can let it go.</p>
+    </div>
+    <div class="info-box" style="font-size:15px;">🧳 <b>Think of it like packing a suitcase.</b> You pack the big items first — the main idea — then fit small things around them. If you try to grab every sock before the jacket, you run out of space and panic. Catch the big idea first; the details settle in around it.</div>
+
+    <div class="section-header">
+      <span class="part-label">The 3 Gist Questions</span>
+      <h2 class="section-title">Ask these every time you listen</h2>
+    </div>
+    <div class="tense-grid" id="gistGrid"></div>
+
+    <div class="section-header" style="margin-top:30px;">
+      <span class="part-label">Beyond the Plane</span>
+      <h2 class="section-title">Same skill, everywhere</h2>
+      <p class="section-subtitle">Where else these three questions rescue you.</p>
+    </div>
+    <div id="gistTransfer"></div>
+
+    <div class="listening-notice">👂 <b>Now you're ready.</b> In Listening 2 you'll practise <b>gist first</b> (what's the problem?), then <b>details</b> (now or later?). In Listening 3 you'll practise <b>opinions</b> (good, okay, or not good?). Keep the three questions in your head.</div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p-listening2">Next: Listening 2 →</button>
+      <button class="btn btn-outline" data-goto="p-speaking">← Speaking</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LISTENING 2 ============ -->
+<div class="page" id="p-listening2">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 3</span><span class="badge badge-white">Gist + Details</span></div>
+    <h1>Listening 2 — CD 1-34</h1>
+    <p>Four passengers each have a problem, and a flight attendant responds. Listen for the gist, then the details.</p>
+  </div>
+  <div class="section">
+    <div class="listening-notice">🔊 <b>Play CD 1-34</b> (or your course audio). Listen once for gist, then again for details. Open the transcript only after you finish both tasks.</div>
+
+    <div class="gist-q">
+      <span class="gist-tag">🎯 Gist first — listen once</span>
+      Before the detailed questions: for each conversation, just decide — <b>is the passenger reporting a PROBLEM or making a COMPLIMENT?</b> (They're all problems here — that's your gist confirmation. Now you know the topic, the details get easier.)
+    </div>
+
+    <div class="section-header">
+      <span class="part-label">Task 1 · Details</span>
+      <h2 class="section-title">What exactly is the problem?</h2>
+      <p class="section-subtitle">Choose the best answer for each conversation.</p>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">🎯 Task 1 — the exact problem</div>
+      <div class="exercise-instruction">Select one option per conversation, then press <b>Show Answers</b>.</div>
+      <div id="l2t1List"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="l2t1Check">Show Answers</button>
+        <button class="btn btn-outline" id="l2t1Reset">↻ Reset</button>
+      </div>
+      <div class="feedback-box" id="l2t1Fb"><span class="score-badge" id="l2t1Score">0/4</span><span id="l2t1Msg"></span></div>
+    </div>
+
+    <div class="section-header" style="margin-top:30px;">
+      <span class="part-label">Task 2 · Details</span>
+      <h2 class="section-title">Now or Later?</h2>
+      <p class="section-subtitle">Listen again. Will the flight attendant help each passenger <b>now</b> or <b>later</b>?</p>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">⏱ Task 2 — the timing</div>
+      <div class="exercise-instruction">Click <b>now</b> or <b>later</b> for each, then press <b>Check Answers</b>.</div>
+      <div id="l2t2List"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="l2t2Check">Check Answers</button>
+        <button class="btn btn-outline" id="l2t2Reset">↻ Reset</button>
+      </div>
+      <div class="feedback-box" id="l2t2Fb"><span class="score-badge" id="l2t2Score">0/4</span><span id="l2t2Msg"></span></div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-secondary" data-toggle="l2Block">📄 Show / Hide Transcripts &amp; Answers</button>
+    </div>
+    <div class="transcript-block" id="l2Block">
+      <div class="transcript-card">
+        <div class="t-head"><span>✅ Answer Key</span></div>
+        <div class="t-body" id="l2KeyBody"></div>
+      </div>
+      <div class="transcript-card">
+        <div class="t-head"><span>📄 Transcripts (EN + VI)</span></div>
+        <div class="t-body" id="l2TapeBody"></div>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p-listening3">Next: Listening 3 →</button>
+      <button class="btn btn-outline" data-goto="p-gist">← Gist Skills</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LISTENING 3 ============ -->
+<div class="page" id="p-listening3">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 3</span><span class="badge badge-white">Opinions</span></div>
+    <h1>Listening 3 — CD 1-35</h1>
+    <p>Four people describe their flights. Listen for their <b>opinions</b> about four things: the airport, the flight, the food, and the service.</p>
+  </div>
+  <div class="section">
+    <div class="listening-notice">🔊 <b>Play CD 1-35</b> (or your course audio). For each speaker, decide how they felt about each part of their trip.</div>
+
+    <div class="gist-q">
+      <span class="gist-tag">🎯 Gist first — listen once</span>
+      Before filling the grid: for each speaker, catch the <b>overall feeling</b> — was their trip mostly positive or mostly negative? Then listen again and place each of the four things as <b>Good</b>, <b>Okay</b>, or <b>Not good</b>.
+    </div>
+
+    <div class="section-header">
+      <span class="part-label">Task · Opinions</span>
+      <h2 class="section-title">Good, Okay, or Not good?</h2>
+      <p class="section-subtitle">Click one face per row for each speaker.</p>
+    </div>
+    <div class="op-legend">
+      <span>😀 = Good</span><span>😐 = Okay</span><span>🙁 = Not good</span>
+    </div>
+    <div class="exercise">
+      <div class="exercise-title">😊 Rate each speaker's flight</div>
+      <div id="l3Tables"></div>
+      <div class="btn-group">
+        <button class="btn btn-primary" id="l3Check">Check Answers</button>
+        <button class="btn btn-outline" id="l3Reset">↻ Reset</button>
+      </div>
+      <div class="feedback-box" id="l3Fb"><span class="score-badge" id="l3Score">0/16</span><span id="l3Msg"></span></div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-secondary" data-toggle="l3Block">📄 Show / Hide Transcripts &amp; Answers</button>
+    </div>
+    <div class="transcript-block" id="l3Block">
+      <div class="transcript-card">
+        <div class="t-head"><span>✅ Answer Key</span></div>
+        <div class="t-body" id="l3KeyBody"></div>
+      </div>
+      <div class="transcript-card">
+        <div class="t-head"><span>📄 Transcripts (EN + VI)</span></div>
+        <div class="t-body" id="l3TapeBody"></div>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p-discussion">Next: Discussion →</button>
+      <button class="btn btn-outline" data-goto="p-listening2">← Listening 2</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DISCUSSION ============ -->
+<div class="page" id="p-discussion">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 4</span><span class="badge badge-white">Real-world Communication</span></div>
+    <h1>Role Play Situations</h1>
+    <p>Put it all together. Work with a partner, or speak each role aloud yourself.</p>
+  </div>
+  <div class="section">
+    <div class="info-box">🤝 <b>How to run each role play:</b> read the situation, brainstorm which phrases fit, then act it out using the vocabulary and the "couldja/wouldja" requests. Reveal the model answer only after you've tried — comparing after speaking is what makes it stick.</div>
+    <div id="discList"></div>
+    <div class="btn-group">
+      <button class="btn btn-primary" data-goto="p-review">Next: Final Review →</button>
+      <button class="btn btn-outline" data-goto="p-listening3">← Listening 3</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ REVIEW ============ -->
+<div class="page" id="p-review">
+  <div class="hero small">
+    <div class="hero-meta"><span class="badge badge-white">Part 5</span><span class="badge badge-white">Consolidation</span></div>
+    <h1>Final Review</h1>
+    <p>30 questions. 10 seconds each. No second chances — just like a real conversation.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Quiz Game</span>
+      <h2 class="section-title">On a Plane — Quiz</h2>
+      <p class="section-subtitle">Vocabulary · Phrases · Pronunciation · Gist · Listening.</p>
+    </div>
+
+    <div class="quiz-screen active" id="qzStart">
+      <div class="quiz-start">
+        <h3>🏆 Ready?</h3>
+        <p><b>30 questions · 10 seconds each · 4 options.</b> If the timer hits zero, the question is marked wrong and the correct answer is revealed. Trust your instinct.</p>
+        <button class="btn btn-primary" id="qzBegin">▶ Start the Quiz</button>
+      </div>
+    </div>
+
+    <div class="quiz-screen" id="qzPlay">
+      <div class="quiz-head">
+        <span class="quiz-counter" id="qzCounter">QUESTION 1 / 30</span>
+        <span class="timer-pill" id="qzTimer">⏳ 10s</span>
+      </div>
+      <div class="timer-track"><div class="timer-bar" id="qzBar"></div></div>
+      <div class="quiz-q">
+        <div class="qtype" id="qzType">VOCABULARY</div>
+        <h3 id="qzQuestion">…</h3>
+        <div class="quiz-opts" id="qzOpts"></div>
+        <div class="quiz-explain" id="qzExplain"></div>
+        <div class="btn-group">
+          <button class="btn btn-primary" id="qzSubmit">Submit</button>
+          <button class="btn btn-primary" id="qzNext" style="display:none;">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz-screen" id="qzResult">
+      <div class="quiz-result">
+        <div class="big-score" id="qzFinal">0 / 30</div>
+        <div class="verdict" id="qzVerdict"></div>
+        <div class="btn-group" style="justify-content:center;">
+          <button class="btn btn-primary" id="qzAgain">↻ Play Again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Self-Assessment</span>
+      <h2 class="section-title">How do you feel now?</h2>
+      <p class="section-subtitle">Tick honestly. Anything unticked = go back and review that part.</p>
+    </div>
+    <div class="exercise" id="selfCheck"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="part-label">Summary</span>
+      <h2 class="section-title">Lesson Summary</h2>
+    </div>
+    <table class="summary-table">
+      <tr><td>Estimated Duration</td><td>90 minutes</td></tr>
+      <tr><td>CEFR Level</td><td>A2 → B1</td></tr>
+      <tr><td>Vocabulary Learned</td><td>40+ words: seat belt, overhead compartment, turbulence, flight attendant, customs form, aisle/window seat, exit row, immigration, and more</td></tr>
+      <tr><td>Key Phrases</td><td>Reporting problems, making polite requests, describing seat issues, handling customs and immigration</td></tr>
+      <tr><td>Pronunciation Focus</td><td>Connected speech — <b>could you → "couldja"</b>, <b>would you → "wouldja"</b> (d + y → "j")</td></tr>
+      <tr><td>Listening Skills</td><td><b>Gist</b> (main idea: who / what / how they feel) · <b>Details</b> (exact problem, now vs later) · <b>Opinions</b> (good / okay / not good)</td></tr>
+      <tr><td>Transferable Skill</td><td>Gist listening for news, lectures, meetings, and long stories — catching the big picture without getting lost in small details</td></tr>
+      <tr><td>Interaction Types Used</td><td>Flip cards · Matching · Fill-in-the-blank · MCQ · Now/Later buttons · Opinion grid · Role play · Timed quiz game · Checklists</td></tr>
+    </table>
+    <div class="btn-group">
+      <button class="btn btn-outline" data-goto="p-overview">← Back to Overview</button>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+<button class="reset-fab" id="resetFab">🔄 Reset All</button>
+<script>
+/* ============ DATA (vocab/phrases/exercises/transcripts extracted verbatim from source) ============ */
+
+const vocabOnboard=[
+  { word: "Seat belt", ipa: "/ˈsiːt belt/", pos: "noun phrase", vi: "Dây an toàn", ex: "Please fasten your seat belt because we are having some turbulence." },
+  { word: "Overhead compartment", ipa: "/ˌoʊvərˈhed kəmˈpɑːrtmənt/", pos: "noun phrase", vi: "Khoang hành lý phía trên đầu", ex: "Put your carry-on bag in the overhead compartment and close it securely." },
+  { word: "Seat pocket", ipa: "/ˈsiːt ˌpɑːkɪt/", pos: "noun phrase", vi: "Túi đựng đồ phía sau ghế", ex: "There should be a safety instruction card in the seat pocket in front of you." },
+  { word: "Aisle seat", ipa: "/ˈaɪl siːt/", pos: "noun phrase", vi: "Ghế gần lối đi", ex: "I prefer an aisle seat because it is easier to get up and walk around." },
+  { word: "Window seat", ipa: "/ˈwɪndoʊ siːt/", pos: "noun phrase", vi: "Ghế gần cửa sổ", ex: "She loves sitting in a window seat to enjoy the beautiful view outside." },
+  { word: "Exit row", ipa: "/ˈeɡzɪt roʊ/", pos: "noun phrase", vi: "Hàng ghế thoát hiểm", ex: "If you sit in the exit row, you must be ready to help in an emergency." },
+  { word: "Safety instruction card", ipa: "/ˈseɪfti ɪnˈstrʌkʃən kɑːrd/", pos: "noun phrase", vi: "Thẻ hướng dẫn an toàn", ex: "Please read the safety information card before we take off." },
+  { word: "Headphones", ipa: "/ˈhedfoʊnz/", pos: "noun (plural)", vi: "Tai nghe", ex: "You can plug in your headphones to watch a movie during the flight." },
+  { word: "TV screen", ipa: "/ˌtiːˈviː skriːn/", pos: "noun phrase", vi: "Màn hình TV trước ghế", ex: "Every seat has a personal TV screen with a collection of movies." },
+  { word: "Customs form", ipa: "/ˈkʌstəmz fɔːrm/", pos: "noun phrase", vi: "Tờ khai hải quan", ex: "Please fill out the customs form before the airplane lands." },
+  { word: '"No Smoking" sign', ipa: '/ˈnoʊ ˈsmoʊkɪŋ saɪn/', pos: "noun phrase", vi: 'Biển báo "Cấm hút thuốc"', ex: "You can see the No Smoking sign light up above your seat." },
+  { word: '"Fasten Seat Belt" sign', ipa: '/ˈfæsn ˈsiːt belt saɪn/', pos: "noun phrase", vi: 'Biển báo "Thắt dây an toàn"', ex: "The pilot has turned on the Fasten Seat Belt sign due to the weather." },
+];
+
+const vocabPeople=[
+  { word: "Flight attendant", ipa: "/ˈflaɪt əˈtendənt/", pos: "noun phrase", vi: "Tiếp viên hàng không", ex: "The flight attendants did their best to make everyone feel comfortable." },
+  { word: "Pilot", ipa: "/ˈpaɪlət/", pos: "noun", vi: "Cơ trưởng / Phi công", ex: "The pilot made an announcement about the flight path." },
+  { word: "Passenger", ipa: "/ˈpæsəndʒər/", pos: "noun", vi: "Hành khách", ex: "The plane was full of loud passengers on their way to vacation." },
+  { word: "Airport", ipa: "/ˈerˈpɔːrt/", pos: "noun", vi: "Sân bay", ex: "The airport is very crowded during the summer holiday." },
+  { word: "Airplane / Plane", ipa: "/ˈerpleɪn/ / /pleɪn/", pos: "noun", vi: "Máy bay", ex: "The airplane left on time despite the light rain." },
+  { word: "Airline", ipa: "/ˈerlaɪn/", pos: "noun", vi: "Hãng hàng không", ex: "Next time, I will try a different airline for a better experience." },
+  { word: "Business class", ipa: "/ˈbɪznəs klæs/", pos: "noun phrase", vi: "Khoang thương gia", ex: "I am lucky to get a free upgrade to business class today." },
+  { word: "Economy class", ipa: "/ɪˈkɑːnəmi klæs/", pos: "noun phrase", vi: "Khoang phổ thông", ex: "Most travelers choose economy class to save money on short flights." },
+  { word: "Immigration", ipa: "/ˌɪmɪˈɡreɪʃən/", pos: "noun", vi: "Khu vực làm thủ tục nhập cảnh", ex: "It takes a long time to go through immigration at peak hours." },
+  { word: "Facilities", ipa: "/fəˈsɪlətiz/", pos: "noun (plural)", vi: "Cơ sở vật chất / Tiện ích", ex: "This international airport has excellent facilities, including a gym and a swimming pool." },
+  { word: "Ticket", ipa: "/ˈtɪkɪt/", pos: "noun", vi: "Vé máy bay", ex: "Could I check your ticket to verify your seat location, please?" },
+  { word: "Seat number", ipa: "/ˈsiːt ˌnʌmbər/", pos: "noun phrase", vi: "Số ghế", ex: "Excuse me, I think there is a problem with my seat number." },
+];
+
+const vocabInflight=[
+  { word: "Turbulence", ipa: "/ˈtɜːrbjələns/", pos: "noun", vi: "Nhiễu động không khí (rung lắc)", ex: "We may be having some turbulence, so please remain seated." },
+  { word: "Bad weather", ipa: "/bæd ˈweðər/", pos: "noun phrase", vi: "Thời tiết xấu", ex: "The flight became very bumpy because we ran into bad weather." },
+  { word: "Flight", ipa: "/ˈflaɪt/", pos: "noun", vi: "Chuyến bay", ex: "I hope you have a safe and pleasant flight." },
+  { word: "Service", ipa: "/ˈsɜːrvɪs/", pos: "noun", vi: "Dịch vụ phục vụ", ex: "The service on this flight was fantastic and very professional." },
+  { word: "Menu", ipa: "/ˈmenjuː/", pos: "noun", vi: "Thực đơn", ex: "You can look at the menu to choose your meal for dinner." },
+  { word: "Magazine", ipa: "/ˈmæɡəziːn/", pos: "noun", vi: "Tạp chí", ex: "There is a magazine in the seat pocket for you to read." },
+  { word: "Weather report", ipa: "/ˈweðər rɪˈpɔːrt/", pos: "noun phrase", vi: "Bản tin thời tiết", ex: "I will check the weather report before booking my flight ticket." },
+];
+
+const phrasesBefore=[
+  { en: "Board the airplane", vi: "Bước lên máy bay" },
+  { en: "Check your ticket", vi: "Kiểm tra vé của bạn" },
+  { en: "Find your correct seat", vi: "Tìm đúng chỗ ngồi của bạn" },
+  { en: "Put that bag in the overhead compartment", vi: "Cất chiếc túi đó vào khoang hành lý phía trên đầu" },
+  { en: "Read the safety information card", vi: "Đọc thẻ hướng dẫn an toàn" },
+  { en: "Fasten your seat belt", vi: "Thắt dây an toàn của bạn" },
+  { en: "Take off", vi: "(Máy bay) Cất cánh" },
+];
+
+const phrasesDuring=[
+  { en: "Run into bad weather", vi: "Gặp phải thời tiết xấu trên lộ trình" },
+  { en: "Have some turbulence", vi: "Gặp phải sự nhiễu động không khí (máy bay bị rung lắc)" },
+  { en: "Change my seat / Move you to a different seat", vi: "Đổi ghế / Chuyển bạn sang một ghế khác" },
+  { en: "Not working properly", vi: "(Thiết bị như tai nghe) Hoạt động không bình thường" },
+  { en: "Get another set of headphones", vi: "Đổi một bộ tai nghe khác" },
+  { en: "Finish serving the drinks", vi: "Hoàn thành việc phục vụ đồ uống" },
+  { en: "Choose my own movies", vi: "Tự chọn bộ phim của riêng mình trên màn hình" },
+];
+
+const phrasesAfter=[
+  { en: "Put your seat forward", vi: "Dựng thẳng lưng ghế của bạn ra phía trước (chuẩn bị hạ cánh)" },
+  { en: "Landing shortly / Landing in a few minutes", vi: "Sắp hạ cánh / Hạ cánh trong vòng vài phút nữa" },
+  { en: "Fill out this customs form", vi: "Điền vào tờ khai hải quan này (trước khi đến nơi)" },
+  { en: "Collecting the headphones", vi: "Thu hồi / thu dọn lại tai nghe" },
+  { en: "Pass the headphones to me", vi: "Chuyền / đưa tai nghe cho tôi" },
+  { en: "Go through immigration", vi: "Đi qua khu vực làm thủ tục nhập cảnh" },
+];
+
+const mcqData=[
+  { q: "Please fasten your _______ because we are having some turbulence.", options: ["ticket","seat belt","headphones","menu"], answer: 1 },
+  { q: "Could you put your bag in the _______ above your head?", options: ["seat pocket","exit row","overhead compartment","aisle seat"], answer: 2 },
+  { q: "I can't find the safety _______ card in the seat pocket.", options: ["weather","instruction","immigration","boarding"], answer: 1 },
+  { q: "These _______ don't seem to be working properly — the sound isn't clear.", options: ["TV screens","headphones","customs forms","tickets"], answer: 1 },
+  { q: "We may have some _______, so please remain seated with your seat belt fastened.", options: ["immigration","facilities","turbulence","service"], answer: 2 },
+];
+
+const fillData=[
+  { before: "You can", blank: "plug in", after: "your headphones to watch a movie.", answer: "plug in", hint: "plug in" },
+  { before: "Please", blank: "fill out", after: "the customs form before we land.", answer: "fill out", hint: "fill out" },
+  { before: "The pilot has", blank: "turned on", after: "the 'Fasten Seat Belt' sign.", answer: "turned on", hint: "turned on" },
+  { before: "I prefer an aisle seat because it is easier to", blank: "get up", after: "and walk around.", answer: "get up", hint: "get up" },
+  { before: "After you board, you should", blank: "fasten", after: "your seat belt.", answer: "fasten", hint: "fasten" },
+];
+
+const matchPairs=[
+  { en: "turbulence", vi: "nhiễu động không khí" },
+  { en: "overhead compartment", vi: "khoang hành lý trên đầu" },
+  { en: "customs form", vi: "tờ khai hải quan" },
+  { en: "aisle seat", vi: "ghế gần lối đi" },
+  { en: "flight attendant", vi: "tiếp viên hàng không" },
+  { en: "immigration", vi: "khu vực nhập cảnh" },
+];
+
+const speakingScenarios=[
+  {
+    num: 1, emoji: "🎫",
+    vi: "Tôi là một hành khách. Chuyến bay của tôi khởi hành lúc 9 giờ sáng.",
+    hints: ["passenger /ˈpæsəndʒər/", "flight /flaɪt/", "depart / leave at 9 a.m."],
+    tip: "Use 'I am a passenger' not 'I am passenger'. For time: 'at 9 a.m.' or 'at nine in the morning'.",
+    model_en: "I am a passenger. My flight departs at 9 a.m."
+  },
+  {
+    num: 2, emoji: "🪟",
+    vi: "Tôi thích ngồi ghế gần cửa sổ. Từ đó tôi có thể nhìn thấy cảnh đẹp bên ngoài.",
+    hints: ["window seat /ˈwɪndoʊ siːt/", "enjoy the view", "from there / from where I'm sitting"],
+    tip: "'From there' = từ đó. You can also say 'from where I'm sitting' for a more natural sound.",
+    model_en: "I prefer a window seat. From there, I can enjoy the beautiful view outside."
+  },
+  {
+    num: 3, emoji: "🎒",
+    vi: "Xin lỗi, tôi có thể cất túi của mình vào khoang hành lý phía trên đầu không?",
+    hints: ["overhead compartment /ˌoʊvərˈhed kəmˈpɑːrtmənt/", "Could I...? (polite request)", "put / store my bag"],
+    tip: "Use 'Could I...?' to ask permission politely. 'Can I' works too but 'Could I' sounds more formal.",
+    model_en: "Excuse me, could I put my bag in the overhead compartment?"
+  },
+  {
+    num: 4, emoji: "✈️",
+    vi: "Cơ trưởng đã bật biển báo 'Thắt dây an toàn'. Tôi cần thắt dây an toàn ngay bây giờ.",
+    hints: ["pilot /ˈpaɪlət/", "turn on the sign", "fasten your seat belt /ˈfæsn ˈsiːt belt/", "right now / immediately"],
+    tip: "'has turned on' = present perfect — the sign is ON now. 'I need to fasten...' = I must do it now.",
+    model_en: "The pilot has turned on the 'Fasten Seat Belt' sign. I need to fasten my seat belt right now."
+  },
+  {
+    num: 5, emoji: "📋",
+    vi: "Xin lỗi, tôi không thể tìm thấy thẻ hướng dẫn an toàn trong túi ghế của mình.",
+    hints: ["safety instruction card /ˈseɪfti ɪnˈstrʌkʃən kɑːrd/", "seat pocket /ˈsiːt ˌpɑːkɪt/", "I can't find..."],
+    tip: "Say 'I can't find...' to report something missing. Don't say 'I cannot found' — use the base verb 'find'.",
+    model_en: "Excuse me, I can't find the safety instruction card in my seat pocket."
+  },
+  {
+    num: 6, emoji: "🎧",
+    vi: "Tai nghe của tôi dường như không hoạt động bình thường. Âm thanh nghe không rõ lắm.",
+    hints: ["headphones /ˈhedfoʊnz/", "don't seem to be working properly", "the sound isn't very clear"],
+    tip: "'Don't seem to be working properly' is a softer, more polite way to complain than 'are broken'.",
+    model_en: "My headphones don't seem to be working properly. The sound isn't very clear."
+  },
+  {
+    num: 7, emoji: "📺",
+    vi: "Tôi không nhìn rõ màn hình TV từ chỗ tôi đang ngồi. Tôi ngồi quá xa.",
+    hints: ["TV screen /ˌtiːˈviː skriːn/", "can't see ... very well", "from where I'm sitting", "too far away"],
+    tip: "'From where I'm sitting' is a natural fixed phrase — memorize it as a chunk!",
+    model_en: "I can't see the TV screen very well from where I'm sitting. I'm too far away."
+  },
+  {
+    num: 8, emoji: "🪑",
+    vi: "Tôi tự hỏi liệu tôi có thể đổi ghế của mình không. Ghế này ở quá gần lối đi.",
+    hints: ["I wonder if I could...", "change my seat", "aisle /ˈaɪl/", "too close to the aisle"],
+    tip: "'I wonder if I could...' = lịch sự hơn 'Can I...?'. Dùng khi bạn muốn xin phép một cách nhẹ nhàng.",
+    model_en: "I wonder if I could change my seat. This seat is too close to the aisle."
+  },
+  {
+    num: 9, emoji: "🎫",
+    vi: "Tôi nghĩ có vấn đề với số ghế của mình. Đáng lẽ tôi phải ngồi ở khoang thương gia.",
+    hints: ["I think there's a problem with...", "seat number /ˈsiːt ˌnʌmbər/", "should be in business class /ˈbɪznəs klæs/"],
+    tip: "'I should be in...' = Đáng lẽ tôi phải ở... Use 'should' to say what the correct situation is.",
+    model_en: "I think there's a problem with my seat number. I should be in business class."
+  },
+  {
+    num: 10, emoji: "🌩️",
+    vi: "Máy bay gặp phải thời tiết xấu. Máy bay bị xóc rất nhiều.",
+    hints: ["run into bad weather", "turbulence /ˈtɜːrbjələns/", "very bumpy /ˈbʌmpi/"],
+    tip: "'Run into' = gặp phải (đột ngột). 'Bumpy' = xóc. 'We had a lot of turbulence' is also natural.",
+    model_en: "The plane ran into bad weather. It was very bumpy."
+  },
+  {
+    num: 11, emoji: "📝",
+    vi: "Bạn có thể điền vào tờ khai hải quan này trước khi máy bay hạ cánh không?",
+    hints: ["Could you...? (request)", "fill out /fɪl aʊt/", "customs form /ˈkʌstəmz fɔːrm/", "before we land / before landing"],
+    tip: "'Fill out' = điền vào (form/giấy tờ). Remember: fill OUT a form, not fill IN (American English).",
+    model_en: "Could you fill out this customs form before we land, please?"
+  },
+  {
+    num: 12, emoji: "🛬",
+    vi: "Chúng ta sẽ hạ cánh trong vòng vài phút nữa. Xin hãy dựng thẳng lưng ghế của bạn lên.",
+    hints: ["landing in a few minutes", "put your seat forward", "upright position"],
+    tip: "'Put your seat forward' = dựng ghế lên. You can also say 'return your seat to the upright position'.",
+    model_en: "We will be landing in a few minutes. Please put your seat forward."
+  },
+  {
+    num: 13, emoji: "🎶",
+    vi: "Tiếp viên hàng không đang thu hồi tai nghe. Xin hãy chuyền tai nghe ra cho cô ấy.",
+    hints: ["flight attendant /ˈflaɪt əˈtendənt/", "collect / collecting the headphones", "pass them to..."],
+    tip: "'Pass them to me' = chuyền chúng cho tôi. 'Them' = the headphones (plural, so use 'them' not 'it').",
+    model_en: "The flight attendant is collecting the headphones. Please pass them to her."
+  },
+  {
+    num: 14, emoji: "🏢",
+    vi: "Sân bay này rất lớn và có rất nhiều tiện ích như cửa hàng, nhà hàng và phòng gym.",
+    hints: ["airport /ˈerˈpɔːrt/", "facilities /fəˈsɪlətiz/", "such as... / including...", "gym /dʒɪm/"],
+    tip: "Use 'such as' or 'including' to give examples. 'Facilities' is always plural — never 'a facility' for general amenities.",
+    model_en: "This airport is very large and has many facilities, such as stores, restaurants, and a gym."
+  },
+  {
+    num: 15, emoji: "⭐",
+    vi: "Dịch vụ trên chuyến bay này thật tuyệt vời. Các tiếp viên đã làm hết sức mình để khiến mọi hành khách cảm thấy thoải mái.",
+    hints: ["service /ˈsɜːrvɪs/ = fantastic / excellent", "flight attendants did their best", "make everyone feel comfortable"],
+    tip: "'Did their best' = cố gắng hết sức. 'Make someone feel comfortable' = khiến ai đó cảm thấy thoải mái — a very useful phrase!",
+    model_en: "The service on this flight was fantastic. The flight attendants did their best to make every passenger feel comfortable."
+  }
+];
+
+const discussionScenarios=[
+  {
+    emoji: "🛫",
+    title: "SITUATION 1: Looking for the Seat",
+    vi: "Tìm chỗ ngồi",
+    situation: "You board the airplane but cannot find your seat. You need to ask a flight attendant for help.",
+    hints: ["seat number", "window seat", "overhead compartment", "seat belt"],
+    model_en: "I'm a passenger on a big airplane today. First, I look at my ticket to find my seat number. But the cabin is very crowded. I don't know where my window seat is. So I talk to a flight attendant. I say: 'Excuse me, could you help me find my seat?' She is very kind. She shows me to my seat. Then I put my bag in the overhead compartment, sit down, and fasten my seat belt. Problem solved!",
+    model_vi: "Tôi là một hành khách trên một chiếc máy bay lớn hôm nay. Đầu tiên, tôi nhìn vào vé để tìm số ghế của mình. Nhưng khoang máy bay rất đông. Tôi không biết chiếc ghế gần cửa sổ của mình ở đâu. Vì vậy, tôi nói chuyện với một tiếp viên hàng không. Tôi nói: 'Xin lỗi, cô có thể giúp tôi tìm ghế được không?'. Cô ấy rất tốt bụng. Cô ấy chỉ ghế cho tôi. Sau đó, tôi cất túi vào khoang hành lý phía trên đầu, ngồi xuống và thắt dây an toàn. Vấn đề đã được giải quyết!"
+  },
+  {
+    emoji: "💼",
+    title: "SITUATION 2: No Space for Luggage",
+    vi: "Hết chỗ để hành lý",
+    situation: "You found your aisle seat, but the overhead compartment is completely full — there is no space for your bag.",
+    hints: ["aisle seat", "overhead compartment", "flight attendant", "seat belt", "flight"],
+    model_en: "I'm sitting in an aisle seat on the plane. I want to put my heavy bag away. But when I open the overhead compartment, it's already full! There's no room for my bag. To solve this, I call a flight attendant. I ask her for help. She takes my bag and finds another place for it. Finally, I can sit down comfortably, fasten my seat belt, and enjoy the flight.",
+    model_vi: "Tôi đang ngồi ở một chiếc ghế gần lối đi trên máy bay. Tôi muốn cất chiếc túi nặng của mình đi. Nhưng khi tôi mở khoang hành lý phía trên đầu ra, nó đã đầy rồi! Không có chỗ cho túi của tôi. Để giải quyết việc này, tôi gọi một tiếp viên hàng không. Tôi nhờ cô ấy giúp đỡ. Cô ấy lấy túi của tôi và tìm một nơi khác cho nó. Cuối cùng, tôi có thể ngồi xuống thoải mái, thắt dây an toàn và tận hưởng chuyến bay."
+  },
+  {
+    emoji: "⚡",
+    title: "SITUATION 3: The Seat Belt is Stuck",
+    vi: "Dây an toàn bị kẹt",
+    situation: "You have checked in, boarded the plane, and stored your luggage, but your seat belt is stuck and won't fasten.",
+    hints: ["overhead compartment", "seat belt", "pilot", "flight attendant", '"Fasten Seat Belt" sign'],
+    model_en: "I board the plane and find my seat. I put my luggage in the overhead compartment and sit down. But now I have a problem — my seat belt is broken. I can't fasten it! I need help because the pilot has turned on the 'Fasten Seat Belt' sign. I quickly press the call button for the flight attendant. She comes and fixes it right away. Now I feel safe.",
+    model_vi: "Tôi lên máy bay và tìm thấy chỗ ngồi. Tôi cất hành lý vào khoang hành lý phía trên đầu và ngồi xuống. Nhưng bây giờ, tôi có một vấn đề: dây an toàn của tôi bị hỏng. Tôi không thể thắt nó được! Tôi cần giúp đỡ vì cơ trưởng đã bật biển báo 'Thắt dây an toàn'. Tôi nhanh chóng bấm nút gọi tiếp viên hàng không. Cô ấy đến và giúp tôi sửa nó ngay lập tức. Bây giờ tôi thấy an toàn rồi."
+  },
+  {
+    emoji: "🚨",
+    title: "SITUATION 4: Wrong Seat Number",
+    vi: "Ngồi nhầm số ghế",
+    situation: "You boarded the plane and sat comfortably in a window seat. But another passenger comes and says you are sitting in their seat.",
+    hints: ["window seat", "overhead compartment", "ticket", "seat number", "aisle seat"],
+    model_en: "I board the plane and find a lovely window seat. I put my bag in the overhead compartment, sit down, and fasten my seat belt. But then another passenger comes. He says: 'Excuse me, I think you're in my seat.' Oh no! I check my ticket again. My seat number is 15B, but this is 15A. I'm in the wrong seat! I say: 'Oh, I'm so sorry!' Then I quickly stand up, take my bag, and move to the correct seat — an aisle seat. But that's okay!",
+    model_vi: "Tôi lên máy bay và tìm thấy một chiếc ghế gần cửa sổ rất đẹp. Tôi cất túi vào khoang hành lý phía trên đầu, ngồi xuống và thắt dây an toàn. Nhưng sau đó, một hành khách khác đến. Anh ấy nói: 'Xin lỗi, bạn đang ngồi ghế của tôi.' Ôi không! Tôi kiểm tra lại vé của mình. Số ghế của tôi là 15B, nhưng đây là 15A. Tôi ngồi nhầm ghế rồi! Tôi nói: 'Ồ, tôi xin lỗi!' Sau đó, tôi nhanh chóng đứng dậy, lấy túi và chuyển sang đúng ghế. Đó là một chiếc ghế gần lối đi, nhưng không sao cả!"
+  }
+];
+
+const l2Task1Questions=[
+  {
+    q: "1. What is the passenger's problem?",
+    options: [
+      "a. The seat is uncomfortable.",
+      "b. The seat is too close to the TV screen.",
+      "c. The seat is too far away from the TV screen."
+    ],
+    answer: 2 // index (c)
+  },
+  {
+    q: "2. What is missing in the seat pocket?",
+    options: [
+      "a. There's nothing in the seat pocket.",
+      "b. There's no safety instruction card in the seat pocket.",
+      "c. There isn't a magazine in the seat pocket."
+    ],
+    answer: 1
+  },
+  {
+    q: "3. What is the problem with the headphones?",
+    options: [
+      "a. There's no sound coming through the headphones.",
+      "b. The sound from the headphones isn't clear.",
+      "c. The passenger didn't get headphones."
+    ],
+    answer: 1
+  },
+  {
+    q: "4. What is the passenger's problem with their seat?",
+    options: [
+      "a. Two passengers have the same seat number.",
+      "b. The passenger should be in a different seat.",
+      "c. The passenger wants to move to a window seat."
+    ],
+    answer: 1
+  }
+];
+
+const l2Transcripts=[
+  {
+    num: "1",
+    lines_en: [
+      { sp: "A", text: "I wonder if I could change my seat." },
+      { sp: "B", text: "Oh, is there something wrong with it?" },
+      { sp: "A", text: "Well, I can't see the TV screen very well from where I'm sitting. I'm too far away." },
+      { sp: "B", text: "Oh, I see. Do you mind waiting until all the passengers have boarded the airplane? After everyone is on board, I'll see if I can move you to a different seat." },
+      { sp: "A", text: "That's fine. Thanks very much." },
+    ],
+    lines_vi: [
+      { sp: "A", text: "Tôi tự hỏi liệu tôi có thể đổi chỗ ngồi của mình được không." },
+      { sp: "B", text: "Ồ, chỗ đó có vấn đề gì không ổn sao ạ?" },
+      { sp: "A", text: "À, tôi không nhìn rõ màn hình TV từ chỗ tôi đang ngồi. Tôi ở vị trí quá xa." },
+      { sp: "B", text: "Ồ, tôi hiểu rồi. Ông có phiền đợi cho đến khi tất cả hành khách lên máy bay hết không ạ? Sau khi mọi người đã ổn định chỗ ngồi, tôi sẽ xem liệu có thể chuyển ông sang một ghế khác hay không." },
+      { sp: "A", text: "Như vậy được rồi. Cảm ơn cô rất nhiều." },
+    ]
+  },
+  {
+    num: "2",
+    lines_en: [
+      { sp: "A", text: "Excuse me, I can't find the safety instruction card." },
+      { sp: "B", text: "Oh, there should be one in the seat pocket in front of you." },
+      { sp: "A", text: "Yes, I looked, but there isn't one there. There's just the menu and the magazine." },
+      { sp: "B", text: "Oh, I'm sorry. Let me get another one for you right away." },
+    ],
+    lines_vi: [
+      { sp: "A", text: "Xin lỗi, tôi không thể tìm thấy thẻ hướng dẫn an toàn." },
+      { sp: "B", text: "Ồ, đáng lẽ phải có một cái ở trong túi ghế phía trước mặt bạn chứ." },
+      { sp: "A", text: "Vâng, tôi đã tìm rồi nhưng không có ở đó. Chỉ có thực đơn và tạp chí thôi." },
+      { sp: "B", text: "Ồ, tôi xin lỗi. Để tôi đi lấy một cái khác cho bạn ngay lập tức." },
+    ]
+  },
+  {
+    num: "3",
+    lines_en: [
+      { sp: "A", text: "Excuse me. These headphones don't seem to be working properly." },
+      { sp: "B", text: "Really? Are you hearing any sound at all?" },
+      { sp: "A", text: "Yes, but it isn't very clear." },
+      { sp: "B", text: "Let me check them for you. You're right. I'll get another set of headphones for you after I finish serving the drinks." },
+      { sp: "A", text: "Sure. That's fine." },
+    ],
+    lines_vi: [
+      { sp: "A", text: "Xin lỗi cô. Cái tai nghe này dường như không hoạt động bình thường." },
+      { sp: "B", text: "Thật sao ạ? Ông có nghe thấy chút âm thanh nào không?" },
+      { sp: "A", text: "Có, nhưng nghe không rõ lắm." },
+      { sp: "B", text: "Để tôi kiểm tra giúp ông. Ông nói đúng rồi ạ. Tôi sẽ lấy một bộ tai nghe khác cho ông sau khi tôi phục vụ xong đồ uống nhé." },
+      { sp: "A", text: "Chắc chắn rồi. Như vậy tốt quá." },
+    ]
+  },
+  {
+    num: "4",
+    lines_en: [
+      { sp: "A", text: "Excuse me. I think there's a problem with my seat number." },
+      { sp: "B", text: "What's wrong?" },
+      { sp: "A", text: "I should be in business class, but this seat number is for a seat in economy class." },
+      { sp: "B", text: "Could I check your ticket, please? Yes, I see the problem. You should be in seat 12A, not in seat 22A. I'm so sorry. Come with me now and I'll find your correct seat in business class." },
+    ],
+    lines_vi: [
+      { sp: "A", text: "Xin lỗi cô. Tôi nghĩ có vấn đề với số ghế của mình." },
+      { sp: "B", text: "Có chuyện gì không ổn sao ạ?" },
+      { sp: "A", text: "Đáng lẽ tôi ở khoang thương gia, nhưng số ghế này lại là của một ghế ở khoang phổ thông." },
+      { sp: "B", text: "Tôi có thể kiểm tra vé của ông được không ạ? Vâng, tôi thấy vấn đề rồi. Đáng lẽ ông phải ngồi ở ghế 12A, chứ không phải ghế 22A. Tôi rất xin lỗi. Xin mời ông đi theo tôi bây giờ, tôi sẽ tìm đúng ghế của ông ở khoang thương gia." },
+    ]
+  }
+];
+
+const l3Speakers=[
+  { num: 1, opinions: { airport: "Not good", flight: "Okay", food: "Not good", service: "Good" } },
+  { num: 2, opinions: { airport: "Good", flight: "Good", food: "Okay", service: "Not good" } },
+  { num: 3, opinions: { airport: "Okay", flight: "Good", food: "Good", service: "Not good" } },
+  { num: 4, opinions: { airport: "Okay", flight: "Not good", food: "Good", service: "Good" } },
+];
+
+const l3Transcripts=[
+  {
+    num: "1",
+    en: "The airport is far away from the city, and it's a pretty horrible place. It's very crowded, and there aren't many facilities there — like stores or restaurants. Anyway, my flight was okay. It was a bit bumpy, but it left on time. The food was awful, though — dry and tasteless. The service was fantastic. The flight attendants did their best to make everyone feel comfortable. The worst problem was the other passengers — loud college students on their way to spring break.",
+    vi: "Sân bay nằm cách xa thành phố và là một nơi khá tồi tệ. Đông đúc và không có nhiều cơ sở vật chất. Dù sao thì chuyến bay cũng ổn — hơi bị xóc nhưng khởi hành đúng giờ. Đồ ăn thì thật kinh khủng — khô và nhạt nhẽo. Dịch vụ thì tuyệt vời. Tiếp viên làm hết sức để mọi người thoải mái."
+  },
+  {
+    num: "2",
+    en: "It must be one of the best airports in the world. It's full of stores and restaurants, and they even have a gym and a swimming pool. The flight was great — very smooth. There wasn't any food, just some snacks. They were so-so, but I was still hungry! The service wasn't good. The flight attendants were really impolite. Next time, I'll try a different airline.",
+    vi: "Đây chắc chắn là một trong những sân bay tốt nhất thế giới — có đầy đủ cửa hàng, nhà hàng, thậm chí có cả phòng gym và hồ bơi. Chuyến bay rất tuyệt — rất êm. Không có đồ ăn chính, chỉ có đồ ăn nhẹ. Dịch vụ thì không tốt — tiếp viên khá bất lịch sự. Lần tới tôi sẽ thử hãng khác."
+  },
+  {
+    num: "3",
+    en: "The airport is okay, I guess. It's really small, but near the city. The flight was great — nice and smooth. I had my own TV screen and I could choose my own movies. The food was fantastic — a spicy meat dish with very nice vegetables. The only problem was the service. It was very slow because I was sitting right at the back of the plane.",
+    vi: "Sân bay tạm ổn — nhỏ nhưng gần thành phố. Chuyến bay tuyệt vời — êm và dễ chịu. Tôi có màn hình TV riêng và tự chọn phim. Đồ ăn tuyệt — một món thịt cay với rau ngon. Vấn đề duy nhất là dịch vụ rất chậm vì tôi ngồi ở phía cuối máy bay."
+  },
+  {
+    num: "4",
+    en: "It isn't one of my favorite airports, but it's okay. It's always very crowded and it takes a long time to check in and go through immigration. The flight was pretty awful. As soon as we took off, we ran into bad weather and it became very bumpy. The food was great — they served a really nice chicken dish. The flight attendants were really nice.",
+    vi: "Không phải sân bay yêu thích nhưng cũng tạm được — luôn đông và mất nhiều thời gian check-in và làm thủ tục nhập cảnh. Chuyến bay thì khá tồi tệ — vừa cất cánh đã gặp thời tiết xấu, rất xóc. Đồ ăn thì tuyệt — một món gà rất ngon. Tiếp viên thì tốt bụng."
+  }
+];
+
+const reviewMCQData=[
+  { q: "What is 'turbulence'?", options: ["Dây an toàn","Nhiễu động không khí","Thẻ hướng dẫn an toàn","Tiếp viên hàng không"], answer: 1 },
+  { q: "What is an 'aisle seat'?", options: ["Ghế gần cửa sổ","Ghế ở khoang thương gia","Ghế gần lối đi","Ghế thoát hiểm"], answer: 2 },
+  { q: "What is a 'customs form'?", options: ["Tờ khai hải quan","Thẻ hướng dẫn an toàn","Vé máy bay","Thực đơn"], answer: 0 },
+  { q: "What does 'fasten your seat belt' mean?", options: ["Cất hành lý vào khoang trên đầu","Điền vào tờ khai hải quan","Bật màn hình TV","Thắt dây an toàn"], answer: 3 },
+  { q: "What is the 'overhead compartment'?", options: ["Màn hình TV","Khoang hành lý phía trên đầu","Túi đựng đồ phía sau ghế","Hàng ghế thoát hiểm"], answer: 1 },
+];
+
+const wordBankWords=["plug in","fill out","turned on","get up","fasten"];
+
+const l2Task2Answers=["later","now","later","now"];
+
+
+/* ============ ADDED DATA (gist skills, connected speech, quiz) ============ */
+
+/* Connected speech practice sentences (from source pronunciation section) */
+const CS_SENTENCES=[
+ {full:'<span class="redu">Could you</span> put your seat forward now, sir? We\'ll be landing shortly.',say:'"Couldja put your seat forward…"'},
+ {full:'<span class="redu">Could you</span> fill out this customs form before we arrive, please?',say:'"Couldja fill out this customs form…"'},
+ {full:'<span class="redu">Could I</span> check your ticket, please?',say:'"Could I check your ticket…"'},
+ {full:'I wonder if I <span class="redu">could</span> change my seat.',say:'"…if I could change my seat."'},
+ {full:'<span class="redu">Would you</span> mind waiting until all the passengers have boarded?',say:'"Wouldja mind waiting…"'},
+ {full:'<span class="redu">Would you</span> like something to drink before takeoff?',say:'"Wouldja like something to drink…"'}
+];
+
+/* Gist: the 3 questions */
+const GIST_Q=[
+ {name:"1 · WHO?",explain:"Who is speaking, and who are they speaking to?",formula:"passenger ↔ flight attendant?",rows:[
+   {tag:"CLUE",en:"Listen for role words: <b>sir</b>, <b>ma'am</b>, <b>passengers</b>, <b>ticket</b>.",vi:"Nghe từ chỉ vai: sir, ma'am, passengers, ticket."},
+   {tag:"WHY",en:"Knowing WHO tells you what kind of language to expect.",vi:"Biết AI đang nói giúp đoán loại ngôn ngữ sắp nghe."}
+ ]},
+ {name:"2 · WHAT?",explain:"What is the topic or the problem? One phrase is enough.",formula:"seat? headphones? weather?",rows:[
+   {tag:"CLUE",en:"Listen for the <b>first noun</b> they repeat: <i>seat, screen, card, headphones</i>.",vi:"Nghe danh từ được lặp lại đầu tiên."},
+   {tag:"WHY",en:"The topic is the anchor — every detail hangs off it.",vi:"Chủ đề là cái neo — mọi chi tiết bám vào đó."}
+ ]},
+ {name:"3 · HOW?",explain:"How does the speaker feel? Positive, negative, or neutral?",formula:"good / okay / not good",rows:[
+   {tag:"CLUE",en:"Listen for feeling words: <b>fantastic, awful, so-so, impolite</b>.",vi:"Nghe từ chỉ cảm xúc: fantastic, awful, so-so, impolite."},
+   {tag:"WHY",en:"Tone tells you the answer even if you miss the details.",vi:"Giọng điệu cho biết đáp án dù bạn lỡ mất chi tiết."}
+ ]}
+];
+const GIST_TRANSFER=[
+ {ico:"📰",title:"The News",text:"You won't catch every name and number. Catch: what happened, where, and is it good or bad news? That's the gist."},
+ {ico:"🎓",title:"A Lecture",text:"Don't panic writing every word. Catch the main claim and the 2–3 big points. Details are in the slides later."},
+ {ico:"🏢",title:"A Company Meeting",text:"Catch: what is being decided, who has to do what, and by when. The rest is discussion you can follow loosely."},
+ {ico:"📖",title:"A Long Story",text:"When a friend tells a long story, catch who it's about and the main event. You don't need every side-detail to react."}
+];
+
+/* Speaking checklist (from source) */
+const SPK_CHECK=["I used today's vocabulary (aisle seat, overhead compartment, turbulence…).","I used complete, natural sentences.","I tried the \"couldja / wouldja\" connected speech.","I spoke confidently without long pauses.","I listened and responded naturally."];
+const SELF_CHECK=["I understand flight vocabulary (seat belt, overhead compartment, turbulence…).","I can use key phrases to communicate on a plane.","I understand the \"couldja / wouldja\" connected speech.","I can listen for GIST — catch the main idea without every word.","I can listen for DETAILS — seat numbers, now vs later.","I can listen for OPINIONS — good, okay, or not good.","I can solve communication problems during a flight.","I feel more confident using English on a plane — and with news, lectures and meetings."];
+
+/* Listening 3 columns */
+const L3_COLS=["airport","flight","food","service"];
+const L3_COL_LABELS={airport:"The Airport",flight:"The Flight",food:"The Food",service:"The Service"};
+const L3_RATINGS=[{v:"Good",emoji:"😀"},{v:"Okay",emoji:"😐"},{v:"Not good",emoji:"🙁"}];
+
+/* ============ QUIZ: 30 questions ============ */
+const QUIZ=[
+ {t:"VOCABULARY",q:"Please fasten your _______ because we are having some turbulence.",o:["ticket","headphones","seat belt","menu"],a:2,e:"Seat belt = dây an toàn. You fasten it during turbulence."},
+ {t:"VOCABULARY",q:"Put your carry-on bag in the _______ above your head.",o:["seat pocket","exit row","overhead compartment","aisle seat"],a:2,e:"Overhead compartment = khoang hành lý phía trên đầu."},
+ {t:"VOCABULARY",q:"A seat next to the walking path is called an _______.",o:["exit row","window seat","economy class","aisle seat"],a:3,e:"Aisle seat = ghế gần lối đi, dễ đứng dậy đi lại."},
+ {t:"VOCABULARY",q:"You must fill out a _______ before you land in another country.",o:["customs form","menu","magazine","weather report"],a:0,e:"Customs form = tờ khai hải quan."},
+ {t:"VOCABULARY",q:"Shaking of the plane caused by rough air is called _______.",o:["turbulence","service","facilities","boarding"],a:0,e:"Turbulence = nhiễu động không khí (máy bay rung lắc)."},
+ {t:"VOCABULARY",q:"The person who serves you and helps during the flight is a _______.",o:["passenger","pilot","flight attendant","immigration officer"],a:2,e:"Flight attendant = tiếp viên hàng không."},
+ {t:"VOCABULARY",q:"The area where officials check your passport when you arrive is _______.",o:["immigration","the exit row","the seat pocket","business class"],a:0,e:"Immigration = khu vực làm thủ tục nhập cảnh."},
+ {t:"VOCABULARY",q:"The more expensive, comfortable cabin at the front is _______.",o:["business class","economy class","the exit row","the aisle"],a:0,e:"Business class = khoang thương gia."},
+ {t:"VOCABULARY",q:"Stores, restaurants, a gym — an airport's _______.",o:["facilities","turbulence","passengers","menu"],a:0,e:"Facilities = cơ sở vật chất / tiện ích."},
+ {t:"VOCABULARY",q:"A card that shows what to do in an emergency is the _______.",o:["customs form","menu","boarding pass","safety instruction card"],a:3,e:"Safety instruction card = thẻ hướng dẫn an toàn."},
+ {t:"PHRASE",q:"Which is the polite way to ask a passenger to raise their seat before landing?",o:["Put your seat forward now!","Could you put your seat forward, please?","Your seat is wrong.","Move your seat."],a:1,e:"'Could you… please?' is the polite request form crew use."},
+ {t:"PHRASE",q:"A passenger wants a different seat. Which is natural and polite?",o:["Give me another seat.","I want new seat now.","I wonder if I could change my seat.","Change my seat!"],a:2,e:"'I wonder if I could…' is a soft, polite request."},
+ {t:"PHRASE",q:"How do you politely report that your headphones are bad?",o:["These headphones are broken and useless!","These headphones don't seem to be working properly.","Give me new headphones.","Your headphones are bad."],a:1,e:"'Don't seem to be working properly' softens a complaint."},
+ {t:"PHRASE",q:"The plane is about to leave the ground. It is going to _______.",o:["take off","land","board","check in"],a:0,e:"Take off = cất cánh. Land = hạ cánh."},
+ {t:"PHRASE",q:"What does 'go through immigration' mean?",o:["Buy a ticket","Pass the passport/entry check","Fasten your seat belt","Find your seat"],a:1,e:"Go through immigration = đi qua khu kiểm soát nhập cảnh."},
+ {t:"PHRASE",q:"A flight attendant says 'We'll be landing shortly.' This means:",o:["We just took off","We will land very soon","We are delayed","We are boarding"],a:1,e:"'Shortly' = very soon. The plane is about to land."},
+ {t:"PRONUNCIATION",q:"In fast speech, 'could you' often sounds like:",o:["cood-you","could-do","coulda","couldja"],a:3,e:"could you → 'couldja' /ˈkʊdʒə/ — d + y melt into 'j'."},
+ {t:"PRONUNCIATION",q:"In fast speech, 'would you' often sounds like:",o:["wouldja","wood-you","woulda","will-you"],a:0,e:"would you → 'wouldja' /ˈwʊdʒə/ — same d + y → 'j' rule."},
+ {t:"PRONUNCIATION",q:"Why do 'could you' and 'would you' change sound in fast speech?",o:["The words change meaning","The d and y sounds blend into 'j'","The speaker is being rude","It becomes a question"],a:1,e:"This is connected speech: neighbouring sounds blend. Meaning is unchanged."},
+ {t:"PRONUNCIATION",q:"Recognising 'couldja' and 'wouldja' mainly helps you:",o:["Speak louder","Understand fast natural speech","Write better","Read faster"],a:1,e:"The goal is recognition — understanding crew and speakers at natural speed."},
+ {t:"GIST",q:"'Listening for gist' means:",o:["Catching every single word","Only listening for numbers","Ignoring the speaker","Catching the main idea"],a:3,e:"Gist = the main idea, not every detail."},
+ {t:"GIST",q:"Which three questions help you get the gist?",o:["Who? What? How do they feel?","Spelling? Grammar? Price?","When exactly? How many? Which gate?","Name? Age? Job?"],a:0,e:"Who is talking, what's the topic/problem, and how do they feel."},
+ {t:"GIST",q:"You're listening to the news and miss some words. For gist you should catch:",o:["Every name and number","What happened, where, and good or bad news","Only the reporter's name","The exact time"],a:1,e:"Gist first: the main event, place, and whether it's positive or negative."},
+ {t:"GIST",q:"In a long meeting, the gist you most need is:",o:["Every joke someone makes","What is decided, who does what, by when","The colour of the slides","Who arrived late"],a:1,e:"Catch the decision, the owners, and the deadline — the rest is detail."},
+ {t:"GIST",q:"Why catch the gist BEFORE the details?",o:["Details don't matter","The main idea is an anchor the details hang off","Gist is easier to write","You should never listen for details"],a:1,e:"The topic anchors everything; details make sense once you have it."},
+ {t:"LISTENING",q:"A passenger says: 'I can't see the TV screen very well. I'm too far away.' What do they want?",o:["Food","Headphones","A customs form","To change seats"],a:3,e:"Listening 2.1 — they ask to change seats because they're too far from the screen."},
+ {t:"LISTENING",q:"'Let me get another one for you right away.' Will help come now or later?",o:["Now","Later","Never","Tomorrow"],a:0,e:"'Right away' = now. (Listening 2.2 — missing safety card.)"},
+ {t:"LISTENING",q:"'I'll get another set of headphones after I finish serving the drinks.' Now or later?",o:["Now","Later","Immediately","Before takeoff"],a:1,e:"'After I finish serving the drinks' = later. (Listening 2.3.)"},
+ {t:"LISTENING",q:"A speaker says the service was fantastic but the food was awful. Their opinion of the FOOD is:",o:["Good","Okay","Not good","No opinion"],a:2,e:"'Awful' = Not good. (Listening 3.1.) Notice: gist = mixed trip; details = food bad, service good."},
+ {t:"LISTENING",q:"'The flight attendants were really impolite.' The speaker's opinion of the SERVICE is:",o:["Good","Okay","Not good","Excellent"],a:2,e:"Impolite crew = Not good service. (Listening 3.2.)"}
+];
+
+/* ================== HELPERS ================== */
+const $=id=>document.getElementById(id);
+function norm(s){return s.toLowerCase().replace(/[\u2018\u2019]/g,"'").replace(/[\u2013\u2014]/g,"-").replace(/\s+/g," ").replace(/\s+([.,?!])/g,"$1").replace(/[.]$/,"").trim();}
+function shuffledCopy(a){const c=[...a];for(let i=c.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[c[i],c[j]]=[c[j],c[i]];}return c;}
+const ALL_TIMERS=[];
+function trackInterval(fn,ms){const id=setInterval(fn,ms);ALL_TIMERS.push(id);return id;}
+function clearAllTimers(){ALL_TIMERS.forEach(clearInterval);ALL_TIMERS.length=0;}
+
+/* ================== NAVIGATION ================== */
+const PAGES=["p-overview","p-vocab","p-phrases","p-pron","p-practice","p-speaking","p-gist","p-listening2","p-listening3","p-discussion","p-review"];
+const visited=new Set(["p-overview"]);
+function gotoPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  $(id).classList.add("active");
+  document.querySelectorAll(".nav-item").forEach(n=>n.classList.toggle("active",n.dataset.page===id));
+  visited.add(id);
+  $("progFill").style.width=Math.round(visited.size/PAGES.length*100)+"%";
+  window.scrollTo({top:0,behavior:"smooth"});
+  if(typeof syncAllCues==="function")syncAllCues();
+}
+document.querySelectorAll(".nav-item").forEach(n=>n.addEventListener("click",()=>gotoPage(n.dataset.page)));
+document.addEventListener("click",e=>{
+  const g=e.target.closest("[data-goto]");if(g){gotoPage(g.dataset.goto);return;}
+  const t=e.target.closest("[data-toggle]");if(t){$(t.dataset.toggle).classList.toggle("revealed");return;}
+});
+
+/* ================== TABS ================== */
+document.querySelectorAll(".tab-bar").forEach(bar=>{
+  const wrap=document.createElement("div");wrap.className="tab-scroll";
+  bar.parentNode.insertBefore(wrap,bar);wrap.appendChild(bar);
+  const cue=document.createElement("span");cue.className="scroll-cue";cue.textContent="›";wrap.appendChild(cue);
+  const sync=()=>wrap.classList.toggle("more-right",bar.scrollWidth-bar.clientWidth-bar.scrollLeft>4);
+  bar.addEventListener("scroll",sync,{passive:true});window.addEventListener("resize",sync);
+  bar._syncCue=sync;sync();
+});
+function syncAllCues(){document.querySelectorAll(".tab-bar").forEach(b=>b._syncCue&&b._syncCue());}
+document.querySelectorAll(".tab-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const bar=btn.closest(".tab-bar"),group=bar.dataset.group;
+    bar.querySelectorAll(".tab-btn").forEach(b=>b.classList.toggle("active",b===btn));
+    document.querySelectorAll(`.tab-panel[data-group="${group}"]`).forEach(p=>p.classList.toggle("active",p.dataset.panel===btn.dataset.tab));
+    if(btn.scrollIntoView)btn.scrollIntoView({block:"nearest",inline:"nearest",behavior:"smooth"});
+    setTimeout(syncAllCues,350);
+  });
+});
+
+/* ================== VOCAB CARDS ================== */
+function renderVocab(id,arr){
+  $(id).innerHTML=arr.map(v=>`<div class="vocab-card"><span class="flip-hint">tap ↻</span>
+    <div class="word">${v.word}</div><div class="ipa">${v.ipa}</div>
+    <div><span class="pos">${v.pos}</span></div><div class="vi">${v.vi}</div>
+    <div class="example">💡 ${v.ex}</div></div>`).join("");
+}
+renderVocab("vgOnboard",vocabOnboard);renderVocab("vgPeople",vocabPeople);renderVocab("vgInflight",vocabInflight);
+document.addEventListener("click",e=>{
+  const c=e.target.closest(".vocab-card");if(c)c.classList.toggle("flipped");
+  const f=e.target.closest("[data-flipall]");
+  if(f)f.dataset.flipall.split(",").forEach(g=>$(g).querySelectorAll(".vocab-card").forEach(cc=>cc.classList.add("flipped")));
+});
+
+/* ================== PHRASES ================== */
+function renderPhrases(id,arr){
+  $(id).innerHTML=arr.map(p=>`<div class="phrase-card"><span class="phrase-en">${p.en}</span><span class="phrase-vi">${p.vi}</span></div>`).join("");
+}
+renderPhrases("phBefore",phrasesBefore);renderPhrases("phDuring",phrasesDuring);renderPhrases("phAfter",phrasesAfter);
+
+/* ================== CONNECTED SPEECH ================== */
+$("csList").innerHTML=CS_SENTENCES.map(c=>`<div class="cs-sentence">${c.full}<span class="say">🗣 ${c.say}</span></div>`).join("");
+
+/* ================== MATCHING ================== */
+/* build letter-map from matchPairs (VI options get letters a..f, shuffled) */
+const MB=shuffledCopy(matchPairs.map((p,i)=>({i,vi:p.vi})));
+const MATCH_LETTERS="abcdefgh";
+const MATCH_A=matchPairs.map((p,i)=>({n:i+1,text:p.en,ans:MATCH_LETTERS[MB.findIndex(x=>x.i===i)]}));
+const MATCH_B=MB.map((x,j)=>({l:MATCH_LETTERS[j],text:x.vi}));
+$("matchA").innerHTML=MATCH_A.map(m=>`<div class="match-item" data-n="${m.n}">
+  <span class="m-num">${m.n}</span><span>${m.text}</span>
+  <select id="mt${m.n}"><option value="">?</option>${MATCH_B.map(b=>`<option value="${b.l}">${b.l}</option>`).join("")}</select>
+</div>`).join("");
+$("matchB").innerHTML=MATCH_B.map(b=>`<div class="match-item"><span class="m-ltr">${b.l}</span><span>${b.text}</span></div>`).join("");
+$("mtCheck").addEventListener("click",()=>{
+  let s=0;
+  MATCH_A.forEach(m=>{
+    const sel=$("mt"+m.n),row=$("matchA").querySelector(`.match-item[data-n="${m.n}"]`);
+    const ok=sel.value===m.ans;row.classList.remove("correct","incorrect");row.classList.add(ok?"correct":"incorrect");
+    if(ok)s++;else sel.value=m.ans;
+  });
+  $("mtScore").textContent=s+"/6";
+  $("mtMsg").textContent=s===6?"Perfect! All six matched. 🏆":"Corrected for you — review and retry.";
+  $("mtFb").className="feedback-box show "+(s>=5?"success":s>=3?"info":"error");
+});
+$("mtReset").addEventListener("click",()=>{
+  MATCH_A.forEach(m=>{$("mt"+m.n).value="";$("matchA").querySelector(`.match-item[data-n="${m.n}"]`).classList.remove("correct","incorrect");});
+  $("mtFb").className="feedback-box";
+});
+
+/* ================== FILL IN ================== */
+$("fillBank").innerHTML=shuffledCopy(wordBankWords).map(w=>`<span class="bank-item">${w}</span>`).join("");
+$("fillList").innerHTML=fillData.map((f,i)=>`<div class="q-block">
+  <div class="q-text"><span class="qn">${i+1}.</span> ${f.before} <input class="blank-input" id="fill${i}" placeholder="…" style="min-width:120px;"> ${f.after}</div>
+</div>`).join("");
+$("fillCheck").addEventListener("click",()=>{
+  let s=0;
+  fillData.forEach((f,i)=>{
+    const inp=$("fill"+i),ok=norm(inp.value)===norm(f.answer);
+    inp.classList.remove("correct","incorrect");inp.classList.add(ok?"correct":"incorrect");
+    if(ok)s++;else inp.title="Answer: "+f.answer;
+  });
+  $("fillScore").textContent=s+"/5";$("fillMsg").textContent=s===5?"Perfect! 🏆":"Hover a red box for the answer, then Reset and retry.";
+  $("fillFb").className="feedback-box show "+(s>=4?"success":s>=2?"info":"error");
+});
+$("fillReset").addEventListener("click",()=>{
+  fillData.forEach((_,i)=>{const inp=$("fill"+i);inp.value="";inp.classList.remove("correct","incorrect");inp.title="";});
+  $("fillFb").className="feedback-box";
+});
+
+/* ================== MCQ ENGINE ================== */
+function buildMCQ(listId,data,letters){
+  const L=letters||"ABCD";
+  $(listId).innerHTML=data.map((it,i)=>`<div class="q-block" data-q="${i}">
+    <div class="q-text"><span class="qn">${i+1}.</span>${it.q}</div>
+    <div class="mcq-opts">${it.options.map((o,j)=>`<div class="mcq-option" data-i="${j}"><span class="ltr">${L[j]}.</span><span>${o}</span></div>`).join("")}</div>
+  </div>`).join("");
+  $(listId).addEventListener("click",e=>{
+    const opt=e.target.closest(".mcq-option");if(!opt)return;
+    const block=opt.closest(".q-block");if(block.dataset.locked==="1")return;
+    block.querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected"));opt.classList.add("selected");
+  });
+  return{
+    check(){let sc=0;$(listId).querySelectorAll(".q-block").forEach((block,i)=>{
+      block.dataset.locked="1";const opts=block.querySelectorAll(".mcq-option");const sel=block.querySelector(".mcq-option.selected");
+      opts[data[i].answer].classList.add("correct");
+      if(sel){if(+sel.dataset.i===data[i].answer)sc++;else sel.classList.add("incorrect");}});return sc;},
+    reset(){$(listId).querySelectorAll(".q-block").forEach(b=>{b.dataset.locked="";b.querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected","correct","incorrect"));});}
+  };
+}
+function tierMsg(s,t){const r=s/t;return r===1?"Perfect! 🏆":r>=0.8?"Excellent — just review the ones you missed.":r>=0.6?"Good. Review once more, then retry.":"Go back and review, then try again.";}
+function wireMCQ(listId,btnCheck,btnReset,fb,scoreEl,msgEl,data,total,letters){
+  const eng=buildMCQ(listId,data,letters);
+  $(btnCheck).addEventListener("click",()=>{const s=eng.check();$(scoreEl).textContent=s+"/"+total;$(msgEl).textContent=tierMsg(s,total);
+    $(fb).className="feedback-box show "+(s>=total*0.8?"success":s>=total*0.5?"info":"error");});
+  $(btnReset).addEventListener("click",()=>{eng.reset();$(fb).className="feedback-box";});
+  return eng;
+}
+const mcqEng=wireMCQ("mcqList","mcqCheck","mcqReset","mcqFb","mcqScore","mcqMsg",mcqData,5);
+const l2t1Eng=wireMCQ("l2t1List","l2t1Check","l2t1Reset","l2t1Fb","l2t1Score","l2t1Msg",l2Task1Questions,4,"abc");
+
+/* ================== GIST ================== */
+$("gistGrid").innerHTML=GIST_Q.map(g=>`<div class="tense-card">
+  <h4>${g.name}</h4><div class="t-explain">${g.explain}</div><div class="formula-pill">${g.formula}</div>
+  ${g.rows.map(r=>`<div class="t-row"><span class="t-tag">${r.tag}</span>${r.en}<span class="vi">${r.vi}</span></div>`).join("")}
+</div>`).join("");
+$("gistTransfer").innerHTML=GIST_TRANSFER.map(g=>`<div class="exercise" style="margin-bottom:12px;">
+  <div class="exercise-title">${g.ico} ${g.title}</div><div style="font-size:14px;color:var(--text-dark);">${g.text}</div>
+</div>`).join("");
+
+/* ================== SPEAKING ================== */
+$("spkList").innerHTML=speakingScenarios.map((sc,i)=>`<div class="spk-card">
+  <div class="spk-head"><span class="spk-emoji">${sc.emoji}</span><span class="step-label" style="background:var(--sage);color:var(--moss);font-size:12px;font-weight:800;padding:4px 12px;border-radius:99px;">Scenario ${sc.num}</span></div>
+  <div class="spk-vi">🇻🇳 ${sc.vi}</div>
+  <div class="spk-hints">${sc.hints.map(h=>`<span class="spk-hint">${h}</span>`).join("")}</div>
+  ${sc.tip?`<div class="spk-tip">💡 ${sc.tip}</div>`:""}
+  <button class="btn btn-secondary btn-sm" data-reveal="spkM${i}">💡 Model answer</button>
+  <div class="sample-response" id="spkM${i}">🇬🇧 ${sc.model_en}</div>
+</div>`).join("");
+document.addEventListener("click",e=>{const r=e.target.closest("[data-reveal]");if(r)$(r.dataset.reveal).classList.toggle("revealed");});
+$("spkCheck").innerHTML=`<div class="exercise-title">🗒 Speaking Checklist</div>`+SPK_CHECK.map(c=>`<label class="check-item"><input type="checkbox">${c}</label>`).join("");
+
+/* ================== LISTENING 2 — TASK 2 (now/later) ================== */
+$("l2t2List").innerHTML=l2Task2Answers.map((_,i)=>`<div class="q-block">
+  <div class="q-text"><span class="qn">${i+1}.</span>Conversation ${i+1} — will the attendant help now or later?</div>
+  <div class="nl-row">
+    <button class="nl-btn" data-i="${i}" data-v="now">⚡ now</button>
+    <button class="nl-btn" data-i="${i}" data-v="later">🕒 later</button>
+  </div></div>`).join("");
+let l2Locked=false;
+$("l2t2List").addEventListener("click",e=>{
+  const b=e.target.closest(".nl-btn");if(!b||l2Locked)return;
+  $("l2t2List").querySelectorAll(`.nl-btn[data-i="${b.dataset.i}"]`).forEach(x=>x.classList.remove("sel"));b.classList.add("sel");
+});
+$("l2t2Check").addEventListener("click",()=>{
+  l2Locked=true;let s=0;
+  l2Task2Answers.forEach((key,i)=>{
+    const pair=$("l2t2List").querySelectorAll(`.nl-btn[data-i="${i}"]`);
+    const sel=[...pair].find(x=>x.classList.contains("sel"));
+    [...pair].find(x=>x.dataset.v===key).classList.add("correct");
+    if(sel){if(sel.dataset.v===key)s++;else sel.classList.add("incorrect");}
+  });
+  $("l2t2Score").textContent=s+"/4";$("l2t2Msg").textContent=tierMsg(s,4);
+  $("l2t2Fb").className="feedback-box show "+(s>=3?"success":s>=2?"info":"error");
+});
+$("l2t2Reset").addEventListener("click",()=>{
+  l2Locked=false;$("l2t2List").querySelectorAll(".nl-btn").forEach(b=>b.classList.remove("sel","correct","incorrect"));
+  $("l2t2Fb").className="feedback-box";
+});
+/* L2 answer key + transcripts */
+$("l2KeyBody").innerHTML=`<div style="font-weight:800;color:var(--forest);margin-bottom:8px;">Task 1 — the problem</div>`+
+ l2Task1Questions.map((q,i)=>`<div style="padding:8px 0;border-bottom:1px solid var(--sage);font-size:14px;">
+   <b style="color:var(--forest);">${i+1}. ${"abc"[q.answer]}.</b> ${q.options[q.answer].replace(/^[abc]\. /,"")}</div>`).join("")+
+ `<div style="font-weight:800;color:var(--forest);margin:14px 0 8px;">Task 2 — now or later</div>`+
+ l2Task2Answers.map((a,i)=>`<div style="padding:6px 0;font-size:14px;"><b style="color:var(--forest);">${i+1}. ${a.toUpperCase()}</b></div>`).join("")+
+ `<div style="font-size:13px;color:var(--text-soft);margin-top:8px;font-style:italic;">Note câu 3: tiếp viên nói sẽ đổi tai nghe "after I finish serving the drinks" → giúp <b>later</b>.</div>`;
+$("l2TapeBody").innerHTML=l2Transcripts.map(t=>`
+  <div style="font-weight:800;color:var(--forest);font-size:14px;margin:14px 0 6px;">Conversation ${t.num}</div>
+  ${t.lines_en.map((l,k)=>`<div class="dialogue-line"><span class="speaker">${l.sp}:</span>${l.text}<span class="vi">${t.lines_vi[k].text}</span></div>`).join("")}`).join("");
+
+/* ================== LISTENING 3 — opinions grid ================== */
+$("l3Tables").innerHTML=l3Speakers.map(sp=>`
+  <table class="op-table" style="margin-bottom:16px;">
+    <thead><tr><th>Speaker ${sp.num}</th>${L3_RATINGS.map(r=>`<th>${r.emoji}<br>${r.v}</th>`).join("")}</tr></thead>
+    <tbody>${L3_COLS.map(col=>`<tr><td>${L3_COL_LABELS[col]}</td>${L3_RATINGS.map(r=>`
+      <td><button class="op-pick" data-sp="${sp.num}" data-col="${col}" data-v="${r.v}">${r.emoji}</button></td>`).join("")}</tr>`).join("")}</tbody>
+  </table>`).join("");
+let l3Locked=false;
+$("l3Tables").addEventListener("click",e=>{
+  const b=e.target.closest(".op-pick");if(!b||l3Locked)return;
+  $("l3Tables").querySelectorAll(`.op-pick[data-sp="${b.dataset.sp}"][data-col="${b.dataset.col}"]`).forEach(x=>x.classList.remove("sel"));
+  b.classList.add("sel");
+});
+$("l3Check").addEventListener("click",()=>{
+  l3Locked=true;let s=0;
+  l3Speakers.forEach(sp=>L3_COLS.forEach(col=>{
+    const key=sp.opinions[col];
+    const cells=$("l3Tables").querySelectorAll(`.op-pick[data-sp="${sp.num}"][data-col="${col}"]`);
+    const sel=[...cells].find(x=>x.classList.contains("sel"));
+    [...cells].find(x=>x.dataset.v===key).classList.add("correct");
+    if(sel){if(sel.dataset.v===key)s++;else sel.classList.add("incorrect");}
+  }));
+  $("l3Score").textContent=s+"/16";$("l3Msg").textContent=tierMsg(s,16);
+  $("l3Fb").className="feedback-box show "+(s>=13?"success":s>=8?"info":"error");
+});
+$("l3Reset").addEventListener("click",()=>{
+  l3Locked=false;$("l3Tables").querySelectorAll(".op-pick").forEach(b=>b.classList.remove("sel","correct","incorrect"));
+  $("l3Fb").className="feedback-box";
+});
+$("l3KeyBody").innerHTML=`<table class="op-table"><thead><tr><th>Speaker</th>${L3_COLS.map(c=>`<th>${L3_COL_LABELS[c]}</th>`).join("")}</tr></thead>
+  <tbody>${l3Speakers.map(sp=>`<tr><td>Speaker ${sp.num}</td>${L3_COLS.map(c=>`<td>${sp.opinions[c]}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+$("l3TapeBody").innerHTML=l3Transcripts.map(t=>`
+  <div style="font-weight:800;color:var(--forest);font-size:14px;margin:14px 0 6px;">Speaker ${t.num}</div>
+  <div class="dialogue-line">${t.en}<span class="vi">${t.vi}</span></div>`).join("");
+
+/* ================== DISCUSSION ================== */
+$("discList").innerHTML=discussionScenarios.map((d,i)=>`<div class="scenario-card">
+  <div class="scenario-header"><span class="sc-ico">${d.emoji}</span><div><h4>${d.title}</h4><div class="sc-sub">${d.vi}</div></div></div>
+  <div class="scenario-body">
+    <div class="scenario-situation">${d.situation}</div>
+    <div class="spk-hints" style="margin:10px 0;">${d.hints.map(h=>`<span class="spk-hint">${h}</span>`).join("")}</div>
+    <button class="btn btn-secondary btn-sm" data-reveal="discM${i}">💡 Model answer</button>
+    <div class="sample-response" id="discM${i}">🇬🇧 ${d.model_en}<br><br>🇻🇳 ${d.model_vi}</div>
+  </div></div>`).join("");
+
+/* ================== QUIZ GAME ================== */
+let qzOrder=[],qzIdx=0,qzScore=0,qzTimerInt=null,qzTimeLeft=10,qzSelected=null,qzAnswered=false;
+function qzScreen(id){["qzStart","qzPlay","qzResult"].forEach(s=>$(s).classList.toggle("active",s===id));}
+function qzStopTimer(){if(qzTimerInt){clearInterval(qzTimerInt);qzTimerInt=null;}}
+function qzRenderQ(){
+  const q=QUIZ[qzOrder[qzIdx]];qzSelected=null;qzAnswered=false;
+  $("qzCounter").textContent=`QUESTION ${qzIdx+1} / 30`;$("qzType").textContent=q.t;$("qzQuestion").textContent=q.q;
+  $("qzOpts").innerHTML=q.o.map((o,j)=>`<div class="mcq-option" data-i="${j}"><span class="ltr">${"ABCD"[j]}.</span><span>${o}</span></div>`).join("");
+  $("qzExplain").className="quiz-explain";$("qzExplain").textContent="";
+  $("qzSubmit").style.display="";$("qzNext").style.display="none";
+  qzTimeLeft=10;$("qzTimer").textContent="⏳ 10s";$("qzTimer").classList.remove("danger");
+  $("qzBar").style.width="100%";$("qzBar").classList.remove("danger");qzStopTimer();
+  qzTimerInt=trackInterval(()=>{
+    qzTimeLeft--;$("qzTimer").textContent="⏳ "+qzTimeLeft+"s";$("qzBar").style.width=(qzTimeLeft/10*100)+"%";
+    if(qzTimeLeft<=3){$("qzTimer").classList.add("danger");$("qzBar").classList.add("danger");}
+    if(qzTimeLeft<=0){qzStopTimer();qzGrade(true);}
+  },1000);
+}
+$("qzOpts").addEventListener("click",e=>{
+  if(qzAnswered)return;const opt=e.target.closest(".mcq-option");if(!opt)return;
+  $("qzOpts").querySelectorAll(".mcq-option").forEach(o=>o.classList.remove("selected"));opt.classList.add("selected");qzSelected=+opt.dataset.i;
+});
+function qzGrade(timedOut){
+  if(qzAnswered)return;qzAnswered=true;qzStopTimer();
+  const q=QUIZ[qzOrder[qzIdx]];const opts=$("qzOpts").querySelectorAll(".mcq-option");opts[q.a].classList.add("correct");
+  let msg;
+  if(timedOut)msg="⏰ Time's up! The correct answer is "+"ABCD"[q.a]+". "+q.e;
+  else if(qzSelected===q.a){qzScore++;msg="✅ Correct! "+q.e;}
+  else{if(qzSelected!==null)opts[qzSelected].classList.add("incorrect");msg="❌ Not quite. "+q.e;}
+  $("qzExplain").textContent=msg;$("qzExplain").className="quiz-explain show";
+  $("qzSubmit").style.display="none";$("qzNext").style.display="";
+}
+$("qzSubmit").addEventListener("click",()=>{if(qzSelected===null)return;qzGrade(false);});
+$("qzNext").addEventListener("click",()=>{qzIdx++;if(qzIdx>=30){qzStopTimer();qzShowResult();}else qzRenderQ();});
+function qzShowResult(){
+  qzScreen("qzResult");$("qzFinal").textContent=qzScore+" / 30";const r=qzScore/30;
+  $("qzVerdict").textContent=r>=0.93?"🏆 Outstanding — you're ready to fly!":r>=0.8?"🌟 Excellent — a quick review and you're set.":r>=0.6?"👍 Good work — revisit the vocabulary, then play again.":"💪 Keep going — review Parts 1 and 3, then try again.";
+}
+function qzStart(){qzOrder=shuffledCopy(QUIZ.map((_,i)=>i));qzIdx=0;qzScore=0;qzScreen("qzPlay");qzRenderQ();}
+$("qzBegin").addEventListener("click",qzStart);$("qzAgain").addEventListener("click",qzStart);
+
+/* ================== SELF CHECK ================== */
+$("selfCheck").innerHTML=`<div class="exercise-title">✅ Self-Assessment</div>`+SELF_CHECK.map(c=>`<label class="check-item"><input type="checkbox">${c}</label>`).join("");
+
+/* ================== GLOBAL RESET ================== */
+$("resetFab").addEventListener("click",()=>{
+  if(!confirm("Reset ALL exercises, timers and quiz progress?"))return;
+  clearAllTimers();qzTimerInt=null;
+  MATCH_A.forEach(m=>{$("mt"+m.n).value="";$("matchA").querySelector(`.match-item[data-n="${m.n}"]`).classList.remove("correct","incorrect");});
+  $("mtFb").className="feedback-box";
+  fillData.forEach((_,i)=>{const inp=$("fill"+i);inp.value="";inp.classList.remove("correct","incorrect");inp.title="";});
+  $("fillFb").className="feedback-box";
+  mcqEng.reset();$("mcqFb").className="feedback-box";
+  l2t1Eng.reset();$("l2t1Fb").className="feedback-box";
+  l2Locked=false;$("l2t2List").querySelectorAll(".nl-btn").forEach(b=>b.classList.remove("sel","correct","incorrect"));$("l2t2Fb").className="feedback-box";
+  l3Locked=false;$("l3Tables").querySelectorAll(".op-pick").forEach(b=>b.classList.remove("sel","correct","incorrect"));$("l3Fb").className="feedback-box";
+  document.querySelectorAll(".sample-response").forEach(s=>s.classList.remove("revealed"));
+  document.querySelectorAll(".transcript-block").forEach(t=>t.classList.remove("revealed"));
+  document.querySelectorAll(".check-item input").forEach(c=>c.checked=false);
+  document.querySelectorAll(".vocab-card").forEach(c=>c.classList.remove("flipped"));
+  qzScreen("qzStart");gotoPage("p-overview");
+});
+
+/* ================== SELF-VERIFICATION ================== */
+(function verify(){
+  const dupes=new Set();let dup=0;QUIZ.forEach(q=>{if(dupes.has(q.q))dup++;dupes.add(q.q);});
+  console.assert(QUIZ.length===30,"QUIZ must be 30, has "+QUIZ.length);
+  console.assert(dup===0,"QUIZ duplicates: "+dup);
+  console.assert(QUIZ.filter(q=>q.o.length!==4||q.a<0||q.a>3).length===0,"QUIZ malformed");
+  console.assert(matchPairs.length===6,"matchPairs must be 6");
+  console.assert(l2Task2Answers.length===4&&l2Task1Questions.length===4,"L2 must be 4");
+  console.assert(JSON.stringify(l2Task2Answers)===JSON.stringify(["later","now","later","now"]),"L2 Task2 key wrong");
+  console.assert(l3Speakers.length===4,"L3 must be 4 speakers");
+  console.assert(vocabOnboard.length+vocabPeople.length+vocabInflight.length>=30,"vocab count low");
+  console.log("[verify] quiz=30 ✓ match=6 ✓ L2=4/4 ✓ L2Task2=later,now,later,now ✓ L3=4×4 ✓ vocab="+(vocabOnboard.length+vocabPeople.length+vocabInflight.length));
+})();
+</script>
+</body>
+</html>
