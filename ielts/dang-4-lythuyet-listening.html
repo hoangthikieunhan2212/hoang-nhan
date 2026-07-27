@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dạng 4: Multiple Choice — IELTS Listening</title>
+<style>
+:root{
+  --forest:#013220; --moss:#006D6F; --teal:#007A74; --mint:#D8BFD8;
+  --sage:#F5F5DC; --sand:#FFFAF0; --shell:#FFF5EE; --white:#FFFAFA;
+  --blue:#2563EB; --blue-light:#EFF6FF; --amber:#D97706; --amber-light:#FFFBEB;
+  --red:#DC2626; --red-light:#FEF2F2; --green-success:#16A34A; --green-light:#F0FDF4;
+  --text-dark:#013220; --text-mid:#006D6F; --text-soft:#5F8A80;
+  --border:#E3DED0;
+  --shadow-sm:0 1px 3px rgba(1,50,32,.08); --shadow-md:0 4px 16px rgba(1,50,32,.12); --shadow-lg:0 8px 32px rgba(1,50,32,.16);
+  --radius:12px; --radius-sm:8px; --radius-lg:20px;
+  font-size:16px;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--sand);}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+.app-header{background:linear-gradient(135deg,var(--forest),var(--moss),var(--teal));color:#fff;padding:26px 40px 0;position:sticky;top:0;z-index:30;box-shadow:var(--shadow-md);}
+.badge{display:inline-block;background:var(--mint);color:var(--forest);font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:99px;margin-bottom:10px;}
+.app-header h1{margin:0;font-size:28px;font-weight:800;}
+.app-header .sub{font-size:13px;opacity:.85;margin-top:4px;margin-bottom:18px;}
+.tabbar{display:flex;gap:4px;flex-wrap:wrap;}
+.tab-btn{background:rgba(255,255,255,.08);border:none;border-bottom:3px solid transparent;color:rgba(255,255,255,.75);
+  padding:12px 22px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;cursor:pointer;font-family:inherit;
+  border-radius:var(--radius-sm) var(--radius-sm) 0 0;transition:all .15s;}
+.tab-btn:hover{color:#fff;background:rgba(255,255,255,.14);}
+.tab-btn.active{color:var(--forest);background:var(--sand);border-bottom-color:var(--mint);}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 40px 80px;}
+.tab-pane{display:none;}
+.tab-pane.active{display:block;animation:fadeIn .3s;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:24px 28px;margin-bottom:20px;}
+.sec-title{font-size:19px;font-weight:800;color:var(--forest);margin:0 0 4px;display:flex;align-items:center;gap:10px;}
+.sec-title .n{width:28px;height:28px;background:var(--forest);color:#fff;border-radius:99px;font-size:14px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;}
+.sub-title{font-size:15px;font-weight:800;color:var(--moss);margin:22px 0 8px;}
+.card p{font-size:14.5px;margin:8px 0;}
+.card ul,.card ol{font-size:14.5px;margin:8px 0;padding-left:22px;}
+.card li{margin:5px 0;}
+.hl{background:var(--sage);color:var(--forest);font-weight:700;padding:1px 5px;border-radius:4px;}
+.vi{font-size:13px;color:var(--text-mid);}
+.callout{border-left:4px solid var(--moss);background:var(--shell);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;margin:12px 0;font-size:14px;}
+.callout.gold{border-color:var(--amber);background:var(--amber-light);}
+.callout.gold b{color:var(--amber);}
+.step-list{counter-reset:st;list-style:none;padding:0;margin:14px 0;}
+.step-list li{position:relative;padding:10px 14px 10px 46px;background:var(--shell);border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:10px;font-size:14px;}
+.step-list li::before{counter-increment:st;content:counter(st);position:absolute;left:12px;top:10px;width:24px;height:24px;background:var(--forest);color:#fff;border-radius:99px;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.instruction{background:var(--shell);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 16px;margin:18px 0 14px;font-size:13.5px;font-weight:600;color:var(--text-mid);}
+.instruction b{color:var(--forest);}
+.q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:20px 24px;margin-bottom:16px;}
+.q-prompt{font-size:15px;font-weight:600;margin-bottom:14px;}
+.mcq-option{display:flex;align-items:center;gap:12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:11px 15px;margin-bottom:9px;cursor:pointer;transition:all .15s;font-size:14px;}
+.mcq-option:hover{border-color:var(--teal);background:var(--sage);}
+.mcq-option .opt-letter{flex:0 0 auto;width:24px;height:24px;border:1.5px solid var(--text-soft);border-radius:99px;font-size:12px;font-weight:800;color:var(--text-soft);display:flex;align-items:center;justify-content:center;}
+.mcq-option.selected{border-color:var(--blue);background:var(--blue-light);}
+.mcq-option.selected .opt-letter{border-color:var(--blue);background:var(--blue);color:#fff;}
+.mcq-option.correct{border-color:var(--green-success);background:var(--green-light);}
+.mcq-option.correct .opt-letter{border-color:var(--green-success);background:var(--green-success);color:#fff;}
+.mcq-option.incorrect{border-color:var(--red);background:var(--red-light);}
+.mcq-option.incorrect .opt-letter{border-color:var(--red);background:var(--red);color:#fff;}
+.mcq-option.locked{pointer-events:none;}
+.reveal-btn{margin-top:6px;background:var(--forest);color:#fff;border:none;border-radius:99px;padding:8px 18px;font-size:12.5px;font-weight:800;letter-spacing:.4px;cursor:pointer;font-family:inherit;transition:all .15s;display:inline-flex;align-items:center;gap:7px;}
+.reveal-btn:hover{background:var(--moss);transform:translateY(-1px);}
+.reveal-panel{display:none;margin-top:16px;border-top:2px dashed var(--border);padding-top:16px;animation:fadeIn .3s;}
+.reveal-panel.open{display:block;}
+.xp-sec{border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:12px;font-size:14px;background:var(--shell);}
+.xp-label{display:block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;color:var(--moss);}
+.key-answer{display:inline-block;font-size:17px;font-weight:800;color:var(--green-success);background:var(--white);border:2px solid var(--green-success);border-radius:var(--radius-sm);padding:5px 18px;}
+.pmap{width:100%;border-collapse:separate;border-spacing:4px;font-size:13px;margin-top:4px;}
+.pmap th{font-size:10px;text-transform:uppercase;color:var(--text-soft);text-align:left;font-weight:800;padding:0 6px;}
+.pm-q{background:var(--blue-light);color:var(--blue);font-weight:700;border-radius:var(--radius-sm);padding:6px 10px;}
+.pm-p{background:var(--green-light);color:var(--green-success);font-weight:700;border-radius:var(--radius-sm);padding:6px 10px;}
+.pm-s{background:var(--sage);color:var(--forest);font-weight:700;border-radius:var(--radius-sm);padding:6px 10px;font-size:11px;white-space:nowrap;}
+.pm-arrow{color:var(--text-soft);text-align:center;font-weight:700;}
+.xp-vi{font-size:13.5px;color:var(--text-mid);line-height:1.9;}
+.xp-vi .a{color:var(--forest);font-weight:700;}
+.trap-box{background:var(--amber-light);border-radius:var(--radius-sm);padding:12px 16px;font-size:13.5px;}
+.trap-box .xp-label{color:var(--amber);}
+.script-toggle{background:var(--forest);color:#fff;border:none;border-radius:99px;padding:10px 22px;font-size:13px;font-weight:800;letter-spacing:.4px;cursor:pointer;font-family:inherit;}
+.script-toggle:hover{background:var(--moss);}
+.transcript{margin-top:18px;display:none;text-align:left;}
+.transcript.open{display:block;animation:fadeIn .3s;}
+.ts-turn{margin-bottom:16px;}
+.ts-speaker{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--moss);margin-bottom:3px;}
+.ts-en{font-size:14px;line-height:1.85;}
+.ts-vi{font-size:13px;color:var(--text-mid);background:var(--white);border-left:3px solid var(--sage);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:6px 12px;margin-top:5px;line-height:1.7;}
+.ev{background:var(--green-light);border-radius:4px;padding:0 3px;box-shadow:inset 0 -2px 0 rgba(22,163,74,.3);}
+.quiz-intro{background:var(--shell);border:1px solid var(--border);border-radius:var(--radius);padding:18px 24px;margin-bottom:22px;}
+.quiz-intro h3{margin:0 0 6px;color:var(--forest);font-size:16px;}
+.quiz-intro em{color:var(--moss);font-style:normal;font-weight:700;}
+.quiz-section-head{font-size:15px;font-weight:800;color:var(--forest);background:var(--sage);border-radius:var(--radius-sm);padding:10px 16px;margin:26px 0 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.quiz-section-head .tag{font-size:10px;background:var(--forest);color:#fff;padding:3px 9px;border-radius:99px;letter-spacing:.4px;}
+.qz-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:16px 20px;margin-bottom:12px;}
+.qz-q{font-size:14px;font-weight:600;margin-bottom:12px;display:flex;gap:10px;}
+.qz-q .qz-n{flex:0 0 auto;width:24px;height:24px;background:var(--forest);color:#fff;border-radius:99px;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.qz-q .prompt em{color:var(--moss);font-style:normal;font-weight:700;}
+.qz-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+@media(max-width:640px){.qz-opts{grid-template-columns:1fr;}}
+.qz-opt{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:9px 13px;font-size:13.5px;cursor:pointer;transition:all .12s;display:flex;align-items:center;gap:9px;}
+.qz-opt:hover{border-color:var(--teal);background:var(--sage);}
+.qz-opt .l{flex:0 0 auto;width:22px;height:22px;border:1.5px solid var(--text-soft);border-radius:99px;font-size:11px;font-weight:800;color:var(--text-soft);display:flex;align-items:center;justify-content:center;}
+.qz-opt.selected{border-color:var(--blue);background:var(--blue-light);}
+.qz-opt.selected .l{border-color:var(--blue);background:var(--blue);color:#fff;}
+.qz-opt.correct{border-color:var(--green-success);background:var(--green-light);}
+.qz-opt.correct .l{border-color:var(--green-success);background:var(--green-success);color:#fff;}
+.qz-opt.incorrect{border-color:var(--red);background:var(--red-light);}
+.qz-opt.incorrect .l{border-color:var(--red);background:var(--red);color:#fff;}
+.qz-opt.locked{pointer-events:none;}
+.qz-note{display:none;margin-top:10px;background:var(--green-light);border-radius:var(--radius-sm);padding:9px 13px;font-size:13px;color:var(--text-dark);}
+.qz-note.show{display:block;}
+.qz-note .lbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--green-success);margin-right:6px;}
+.quiz-bar{position:sticky;bottom:0;background:var(--white);border-top:2px solid var(--border);box-shadow:0 -4px 16px rgba(1,50,32,.08);padding:14px 40px;display:flex;align-items:center;gap:16px;justify-content:center;z-index:20;margin:0 -40px -80px;flex-wrap:wrap;}
+.btn-submit{background:var(--mint);color:var(--forest);border:none;border-radius:99px;padding:12px 34px;font-size:14px;font-weight:800;letter-spacing:.5px;cursor:pointer;font-family:inherit;transition:all .15s;}
+.btn-submit:hover{transform:translateY(-1px);box-shadow:var(--shadow-md);}
+.btn-submit:disabled{opacity:.5;cursor:default;transform:none;box-shadow:none;}
+.btn-ghost{background:transparent;border:1.5px solid var(--border);color:var(--text-mid);border-radius:99px;padding:11px 22px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;}
+.score-chip{font-size:15px;font-weight:800;color:var(--forest);background:var(--sage);border-radius:99px;padding:8px 20px;display:none;}
+.score-chip.show{display:inline-block;}
+.notice{display:none;background:var(--amber-light);color:var(--amber);border:1px solid #FDE68A;border-radius:var(--radius-sm);padding:10px 16px;font-size:13px;font-weight:600;margin-bottom:16px;}
+.notice.show{display:block;}
+</style>
+</head>
+<body>
+<header class="app-header">
+  <span class="badge">IELTS Listening · Dạng 4</span>
+  <h1>Multiple Choice — Chọn đáp án đúng</h1>
+  <div class="sub">Theory · Guided practice with paraphrase reveal · 40-question paraphrase quiz &nbsp;·&nbsp; 🎧 audio played by teacher</div>
+  <nav class="tabbar" id="tabbar">
+    <button class="tab-btn active" data-tab="theory">📚 Theory</button>
+    <button class="tab-btn" data-tab="practice">✍️ Practice</button>
+    <button class="tab-btn" data-tab="quiz">🎮 Paraphrase Quiz</button>
+  </nav>
+</header>
+<div class="wrap">
+<section class="tab-pane active" id="tab-theory">
+  <div class="card">
+    <h2 class="sec-title"><span class="n">1</span> Khái quát</h2>
+    <p>Dạng bài <b>Multiple Choice Question</b> (chọn đáp án đúng) xuất hiện rất phổ biến trong IELTS Listening. Thí sinh phải chọn <span class="hl">1 hoặc nhiều đáp án đúng</span> cho mỗi câu hỏi.</p>
+    <p>Tuy là trắc nghiệm, dạng này <b>dễ nhầm lẫn</b> vì nhiều thông tin được đưa ra cùng lúc. Độ khó phụ thuộc vào độ dài của các đáp án — đáp án càng dài càng khó ghi nhớ và phân biệt.</p>
+  </div>
+  <div class="card">
+    <h2 class="sec-title"><span class="n">2</span> Đặc điểm</h2>
+    <div class="sub-title">Về hình thức</div>
+    <ul>
+      <li>Hoàn thành câu <span class="vi">(complete a sentence)</span></li>
+      <li>Trả lời câu hỏi <span class="vi">(answer a question)</span></li>
+    </ul>
+    <div class="sub-title">Về dạng câu hỏi</div>
+    <ul>
+      <li><b>Chọn 1 đáp án đúng trong 3 lựa chọn (A, B, C)</b> — dạng truyền thống, chỉ được chọn <span class="hl">1 câu đúng nhất</span>.</li>
+      <li><b>Chọn 2–3 đáp án đúng trong 5–6 lựa chọn (A–F)</b> — phải chọn <span class="hl">nhiều đáp án cùng lúc</span> theo yêu cầu đề bài.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2 class="sec-title"><span class="n">3</span> Tóm tắt chiến thuật làm bài</h2>
+    <ol class="step-list">
+      <li><b>Đọc yêu cầu:</b> kiểm tra cần chọn 1 hay nhiều đáp án (tránh chọn thừa/thiếu).</li>
+      <li><b>Phân tích câu hỏi &amp; phân biệt các đáp án:</b> gạch chân từ khóa (Keywords) → nghĩ trước các từ đồng nghĩa (Synonyms/Paraphrase) có thể xuất hiện trong bài nghe.</li>
+      <li><b>Nghe từ đồng nghĩa &amp; bẫy (Distractors):</b> đừng chờ đĩa đọc y hệt từ trong đề — họ sẽ dùng từ đồng nghĩa.</li>
+      <li><b>Dùng phương pháp loại trừ:</b> lắng nghe xem tại sao các câu còn lại sai để chốt đáp án chuẩn xác nhất.</li>
+    </ol>
+    <div class="callout gold"><b>🔑 Chìa khóa vàng:</b> Gạch chân <b>điểm dễ khác nhau nhất</b> giữa các lựa chọn (A, B, C) để lúc nghe không bị hoang mang, lẫn lộn.</div>
+    <div class="callout"><b>⚠️ Cẩn thận bẫy "lật kèo":</b> Người nói thường đưa ra một thông tin rồi phủ nhận ngay sau đó bằng <span class="hl">but</span>, <span class="hl">however</span>, <span class="hl">actually</span>… Bị hấp dẫn bởi đáp án đầu tiên nghe được rất dễ dính bẫy.</div>
+    <div class="callout"><b>⏭ Mẹo xử lý:</b> Nếu lỡ "trôi" mất một câu, hãy đoán nhanh rồi bỏ qua ngay — tuyệt đối không đứng lại suy nghĩ kẻo trễ các câu sau (bạn chỉ được nghe một lần).</div>
+  </div>
+  <div class="card">
+    <h2 class="sec-title"><span class="n">4</span> Một số lưu ý</h2>
+    <ul>
+      <li><b>Luôn đọc câu hỏi trước khi nghe.</b> Tận dụng thời gian check đáp án phần trước để đọc trước câu hỏi phần sau; nếu không đọc trước, não dễ quá tải khi vừa nghe vừa đọc vừa suy luận.</li>
+      <li><b>Sử dụng phương pháp loại trừ</b> để bỏ những đáp án nghĩ là sai và tập trung vào các đáp án còn lại.</li>
+      <li><b>Đánh dấu từ khóa.</b> Từ khóa trong các lựa chọn khác nhau là điểm phân biệt ý nghĩa giữa chúng.</li>
+      <li><b>Không viết câu trả lời đầu tiên nghe được.</b> Người ra đề cố tình đưa nhiều thông tin gây nhiễu — cẩn thận với "but", "however" (thường báo hiệu người nói sắp phủ nhận điều vừa nói).</li>
+      <li><b>Không dành quá nhiều thời gian cho một câu.</b> Không chắc thì suy luận, phỏng đoán và tiếp tục.</li>
+      <li>Nếu các phương án <b>ngắn</b>, đáp án đúng thường được <span class="hl">paraphrase</span>.</li>
+    </ul>
+  </div>
+  <div class="card" style="background:var(--shell);">
+    <h2 class="sec-title"><span class="n">5</span> Vận dụng — Yêu cầu với người học</h2>
+    <ol class="step-list">
+      <li>Đọc kỹ yêu cầu đề bài.</li>
+      <li>Đọc các câu hỏi &amp; phương án, xác định và gạch chân từ khóa ở các câu hỏi.</li>
+      <li>Highlight và chỉ ra các cụm từ được <b>paraphrase</b> cho nhau giữa transcript và câu hỏi.</li>
+    </ol>
+    <p style="margin-top:14px;font-size:13.5px;">👉 Sang tab <b>Practice</b> để luyện với bài <b>Mindset 3 · P.131 · Audio 52</b>. Giáo viên phát audio; bạn tự chọn đáp án, sau đó bấm <b>"Hiện keyword &amp; paraphrase"</b> ở mỗi câu để đối chiếu.</p>
+  </div>
+</section>
+<section class="tab-pane" id="tab-practice">
+  <div class="card" style="background:linear-gradient(135deg,var(--shell),var(--sand));">
+    <h2 class="sec-title">🎧 Practice — Listen &amp; answer questions 1–6</h2>
+    <p style="font-size:13.5px;"><b>Mindset 3 · P.131 · Audio 52</b> — Science &amp; Technology Festival (Prof Dickens, Dylan, Tanya).</p>
+    <p class="vi">Cách học: chọn đáp án của bạn trước → bấm <b>"Hiện keyword &amp; paraphrase"</b> để xem đáp án đúng và cách transcript paraphrase lại câu hỏi. Đáp án chỉ hiện <b>sau khi bạn bấm nút</b>.</p>
+  </div>
+  <div id="practice-root"></div>
+  <div class="card" style="text-align:center;background:var(--shell);">
+    <button class="script-toggle" id="scriptBtn">📜 Hiện Full Transcript (EN + VI)</button>
+    <div class="transcript" id="transcript"></div>
+  </div>
+</section>
+<section class="tab-pane" id="tab-quiz">
+  <div class="quiz-intro">
+    <h3>🎮 Paraphrase Quiz — 40 questions</h3>
+    <p style="font-size:13.5px;margin:6px 0 0;">Review the paraphrase clusters from this lesson. <b>Part A (1–20):</b> read the English explanation and choose the right word — <em>think in English, no Vietnamese here.</em> <b>Part B (21–40):</b> match the question phrase to its transcript paraphrase. Answer all 40, then press <b>Submit</b> to see your score.</p>
+  </div>
+  <div class="notice" id="quizNotice"></div>
+  <div id="quiz-root"></div>
+  <div class="quiz-bar">
+    <button class="btn-submit" id="quizSubmit">Submit — Check my 40 answers</button>
+    <span class="score-chip" id="quizScore"></span>
+    <button class="btn-ghost" id="quizReset" style="display:none;">↺ Reset</button>
+  </div>
+</section>
+</div>
+<script>
+/* DATA grounded in the uploaded lesson. Practice Q1-6 + transcript verbatim from source.
+   Quiz pairs drawn from the transcript vocabulary. */
+const PRACTICE = [
+  {
+    instruction: 'Questions 1–2 · Choose <b>TWO</b> correct answers.',
+    stem: 'Which <b>TWO</b> elements of the Science and Technology Festival do Dylan and Tanya agree were most beneficial?',
+    multi: true,
+    options: [
+      {L:'A', t:'They were able to <b>meet new people</b>.'},
+      {L:'B', t:'They improved their <b>study skills</b>.'},
+      {L:'C', t:'It helped to <b>prepare</b> them for their course.'},
+      {L:'D', t:'It allowed them to become <b>familiar</b> with the <b>university campus</b>.'},
+      {L:'E', t:'It introduced them to <b>new areas of study</b>.'},
+    ],
+    answer: ['A','D'],
+    reveal: {
+      pmap: [
+        {q:'meet new people', p:'meet people who share the same interests as me', s:'Paraphrase (A)'},
+        {q:'familiar with the campus', p:"get a better idea of where everything is / explored the area", s:'Paraphrase (D)'},
+      ],
+      vi:'A: Dylan nói <span class="a">"meet people who share the same interests"</span> = meet new people.<br>D: Tanya + Dylan đồng ý <span class="a">"wander around and get a better idea of where everything is"</span> + <span class="a">"feel more confident now I\'ve explored the area"</span> = familiar with campus.',
+      trap:'B &amp; C là <b>quan điểm riêng</b>, KHÔNG phải cả hai đồng ý. "prepare" (C) chỉ Tanya nói; "note-taking / study skills" (B) chỉ Tanya cải thiện. Câu hỏi yêu cầu điều <b>cả hai đồng ý</b>. E chỉ Dylan quan tâm.'
+    }
+  },
+  {
+    instruction: 'Questions 3–6 · Choose the correct answer.',
+    stem: '3. The <b>professor</b> believes that the <b>main role</b> of the festival is to',
+    options: [
+      {L:'A', t:'make the general public <b>more aware</b> of <b>science and technology</b>.'},
+      {L:'B', t:'have a <b>different focus</b> each year.'},
+      {L:'C', t:'show how <b>both fields</b> of study are <b>equally important</b>.'},
+    ],
+    answer: 'A',
+    reveal:{
+      pmap:[
+        {q:'main role / primary reason', p:"that's the primary reason the festival exists", s:'Synonym'},
+        {q:'make the public more aware', p:'brings these areas to the attention of the wider world', s:'Paraphrase'},
+      ],
+      vi:'Giáo sư nói lễ hội <span class="a">"brings these areas of study to the attention of the wider world"</span> và <span class="a">"that\'s the primary reason the festival exists"</span>.<br>=&gt; mục đích chính = làm công chúng biết đến khoa học &amp; công nghệ =&gt; <b>A</b>.',
+      trap:'B ("different focus each year") và C ("balance") <b>được nhắc tới</b> ("change focus annually", "excellent balance") nhưng KHÔNG phải "main role" — bẫy thông tin đúng-nhưng-không-trả-lời-câu-hỏi.'
+    }
+  },
+  {
+    stem: '4. The <b>university information stands</b> were there to',
+    options: [
+      {L:'A', t:'help people who were <b>lost</b>.'},
+      {L:'B', t:'generate more <b>interest</b> in <b>current research</b>.'},
+      {L:'C', t:'allow the people who attended to <b>meet</b> the <b>lecturers</b>.'},
+    ],
+    answer:'B',
+    reveal:{
+      pmap:[
+        {q:'generate interest in current research', p:'encourage everyone to read the latest studies coming out of our labs', s:'Paraphrase'},
+        {q:'current research', p:'the latest studies', s:'Synonym'},
+      ],
+      vi:'Mục đích các gian là <span class="a">"encourage everyone to read some of the latest studies coming out of our labs and classrooms"</span>.<br>=&gt; tạo sự quan tâm tới nghiên cứu hiện tại =&gt; <b>B</b>.',
+      trap:'A là bẫy: Dylan <b>tưởng</b> ("I assumed the stands were there to provide directions") nhưng đó là hiểu lầm, không phải mục đích thật. Nhân viên "happy to point people in the right direction" chỉ là phụ.'
+    }
+  },
+  {
+    stem: '5. What does <b>Tanya</b> say about the festival guidebook?',
+    options: [
+      {L:'A', t:'The map was <b>confusing</b>.'},
+      {L:'B', t:'There were <b>too many advertisements</b>.'},
+      {L:'C', t:'The <b>schedules</b> for some lectures were <b>wrong</b>.'},
+    ],
+    answer:'C',
+    reveal:{
+      pmap:[
+        {q:'schedules for some lectures were wrong', p:'talks started at different times to what was printed', s:'Paraphrase'},
+        {q:'schedules', p:'the times printed on the page', s:'Synonym'},
+      ],
+      vi:'Tanya nói <span class="a">"one or two of the talks actually started at different times to what was printed on the page"</span>.<br>=&gt; lịch (giờ) một số buổi bị sai =&gt; <b>C</b>.',
+      trap:'A bẫy: "confusing" có xuất hiện nhưng nói về <b>signs quanh campus</b>, không phải map ("we used the map… it was great for that"). B ngược sự thật: guidebook <b>"wasn\'t full of adverts"</b> → cô khen, không chê.'
+    }
+  },
+  {
+    stem: '6. Dylan says that <b>nowadays festivals</b>',
+    options: [
+      {L:'A', t:'have to <b>increase</b> the <b>entry charge</b> every year.'},
+      {L:'B', t:'make a lot of <b>money</b> from the <b>admission fee</b>.'},
+      {L:'C', t:'are <b>mostly paid</b> for through <b>advertising</b>.'},
+    ],
+    answer:'C',
+    reveal:{
+      pmap:[
+        {q:'mostly paid for through advertising', p:'get the majority of that through ads', s:'Paraphrase'},
+        {q:'advertising', p:'ads', s:'Synonym'},
+      ],
+      vi:'Dylan kết luận <span class="a">"they have to make money… so it makes sense to get the majority of that through ads"</span>.<br>=&gt; phần lớn kinh phí từ quảng cáo =&gt; <b>C</b>.',
+      trap:'A đúng một phần ("put the price of entry up each year") nhưng KHÔNG phải ý chính. B ngược lại: <b>"hardly make any money from that"</b> (admission fee) → phủ định B.'
+    }
+  },
+];
+
+const TRANSCRIPT = [
+  {sp:'Prof Dickens', en:"Hi Dylan, hi Tanya, thanks for coming to see me. I'm very interested to hear what you thought about the Science and Technology Festival.", vi:'Chào Dylan, chào Tanya, cảm ơn hai em đã đến gặp thầy. Thầy rất muốn nghe cảm nhận của hai em về Lễ hội Khoa học và Công nghệ.'},
+  {sp:'Dylan', en:"Well, we're both very pleased we went.", vi:'Dạ, cả hai chúng em đều rất mừng vì đã tham gia ạ.'},
+  {sp:'Prof Dickens', en:'Glad to hear it. Was there anything you both found especially useful?', vi:'Thầy rất vui. Có điều gì mà cả hai em đều thấy đặc biệt hữu ích không?'},
+  {sp:'Tanya', en:"Yes, definitely. I saw at least two lectures that directly relate to the subjects I'm studying in this first semester. <span class=\"ev\">I already feel a little more prepared than I did last week.</span>", vi:'Dạ có. Em đã nghe ít nhất hai bài liên quan trực tiếp đến môn em học kỳ này. Em cảm thấy chuẩn bị tốt hơn tuần trước.'},
+  {sp:'Dylan', en:"There wasn't anything that had the same effect on me, but that wasn't my only focus. I saw the festival as a chance to <span class=\"ev\">explore new ideas and other subject areas</span>, so I also tried to attend some lectures that looked interesting.", vi:'Em thì không có bài nào hiệu quả như vậy, nhưng đó không phải mục tiêu duy nhất. Em coi lễ hội là cơ hội khám phá ý tưởng mới và lĩnh vực khác.'},
+  {sp:'Tanya', en:"I'm glad I didn't do that — I get too stressed when I don't concentrate on one thing. But wasn't it great to be able to <span class=\"ev\">wander around the university and get a better idea of where everything is</span>?", vi:'Tớ mừng vì đã không làm vậy — tớ dễ căng thẳng nếu không tập trung. Nhưng chẳng phải thật tuyệt khi được đi dạo quanh trường và biết rõ vị trí mọi thứ sao?'},
+  {sp:'Dylan', en:"Well, <span class=\"ev\">I certainly feel more confident now I've explored the area a bit more</span>. And I also found it very easy to <span class=\"ev\">meet people who share the same interests as me</span>. When I was waiting for lectures to start, I just got talking to whoever was sitting next to me.", vi:'Ừm, chắc chắn giờ tớ tự tin hơn sau khi tìm hiểu khu vực này. Và tớ cũng thấy rất dễ gặp gỡ những người cùng sở thích.'},
+  {sp:'Tanya', en:"I was too busy going through my notes to do that. Going to so many lectures in a short space of time has really helped me to <span class=\"ev\">improve one area of study — my note-taking technique</span>.", vi:'Tớ bận xem lại ghi chép nên không làm vậy. Việc dự nhiều bài giúp tớ cải thiện một kỹ năng học — kỹ năng ghi chú.'},
+  {sp:'Dylan', en:"I wasn't so sure about that originally. But looking at my notes again this morning, I could see how they got better as the week went on.", vi:'Ban đầu tớ không chắc. Nhưng sáng nay xem lại, tớ thấy ghi chép tốt dần qua từng ngày.'},
+  {sp:'Prof Dickens', en:"I'm glad the week was of use to you. <span class=\"ev\">It seems to change focus annually</span>; sometimes the emphasis is more on science, sometimes on technology, but there was an excellent balance this time. It really <span class=\"ev\">brings these areas of study and research to the attention of the wider world</span>. For me, <span class=\"ev\">that's the primary reason the festival exists</span>. You may have noticed a number of university information stands around the campus. Did you see the free reference booklets they were giving out?", vi:'Thầy vui vì tuần qua có ích. Trọng tâm thay đổi theo năm; lúc thiên khoa học, lúc công nghệ, nhưng lần này rất cân bằng. Nó thực sự thu hút sự chú ý của thế giới bên ngoài — đó là lý do chính lễ hội tồn tại. Các em có thấy các gian thông tin và sách tham khảo miễn phí không?'},
+  {sp:'Dylan', en:"No, <span class=\"ev\">I assumed the stands were there to provide people with directions</span> to each talk.", vi:'Dạ không, em tưởng các gian đó để chỉ đường cho mọi người tới từng buổi nói chuyện.'},
+  {sp:'Prof Dickens', en:"Well, their aim was to <span class=\"ev\">encourage everyone to read some of the latest studies coming out of our labs and classrooms</span>. Many of the lecturers actually wrote the studies listed, so the talk and the booklets together are a great introduction to their work. But the staff were certainly happy to point people in the right direction if needed.", vi:'À, mục đích là khuyến khích mọi người đọc các nghiên cứu mới nhất từ phòng lab và giảng đường. Nhân viên cũng sẵn lòng chỉ đường nếu cần.'},
+  {sp:'Tanya', en:"I have to admit, it was quite confusing trying to follow some of the signs around the campus, so we used the map in the festival guidebook to find our way. It was great for that. And, although <span class=\"ev\">one or two of the talks actually started at different times to what was printed on the page</span>, one thing I liked about the guidebook was that it wasn't full of adverts.", vi:'Em thừa nhận việc theo các biển chỉ dẫn khá rối, nên tụi em dùng bản đồ trong guidebook — rất hữu ích. Dù một hai buổi bắt đầu khác giờ in trên trang, em thích là guidebook không đầy quảng cáo.'},
+  {sp:'Dylan', en:"Oh, I agree, but that's always the case with festivals now. I don't mind that if it means the festival is free to enter. And even if there is a fee, the festival organisers <span class=\"ev\">hardly make any money from that</span>, though they do tend to put the price of entry up each year. They have to make money somehow, so it makes sense to <span class=\"ev\">get the majority of that through ads</span>.", vi:'Ồ, tớ đồng ý, nhưng lễ hội giờ đều vậy. Ngay cả khi có phí vào cửa, ban tổ chức cũng khó kiếm tiền từ đó, dù họ hay tăng giá vé mỗi năm. Họ phải kiếm tiền, nên thu phần lớn qua quảng cáo là hợp lý.'},
+  {sp:'Tanya', en:"That's a fair point.", vi:'Đó cũng là một góc nhìn hợp lý.'},
+];
+
+const QUIZ_A = [
+  {def:'To walk around a place slowly with no fixed direction.', ans:'wander', opts:['wander','rush','commute','march']},
+  {def:'A payment you make to be allowed to enter an event.', ans:'admission fee', opts:['admission fee','refund','deposit','salary']},
+  {def:'The most important reason something exists.', ans:'primary reason', opts:['primary reason','minor detail','side effect','random cause']},
+  {def:'Short printed booklets giving information about a subject.', ans:'reference booklets', opts:['reference booklets','contracts','receipts','posters']},
+  {def:'Ready and able to deal with something in advance.', ans:'prepared', opts:['prepared','confused','exhausted','reluctant']},
+  {def:'Feeling sure about your own ability or knowledge.', ans:'confident', opts:['confident','anxious','bored','jealous']},
+  {def:'Advertisements shown to promote a product or event.', ans:'ads', opts:['ads','reviews','lectures','signs']},
+  {def:'Happening or done once every year.', ans:'annually', opts:['annually','weekly','rarely','instantly']},
+  {def:'To make something better than it was before.', ans:'improve', opts:['improve','ignore','delay','cancel']},
+  {def:'The outdoor grounds and buildings of a university.', ans:'campus', opts:['campus','stadium','harbour','factory']},
+  {def:'A talk given to teach people about a subject.', ans:'lecture', opts:['lecture','rehearsal','interview','ceremony']},
+  {def:'To look at or examine something to discover new things.', ans:'explore', opts:['explore','avoid','memorise','repeat']},
+  {def:'Signs or boards that tell you which way to go.', ans:'directions', opts:['directions','decorations','warnings','tickets']},
+  {def:'The newest and most recent studies or work.', ans:'the latest studies', opts:['the latest studies','the oldest records','the missing files','the draft notes']},
+  {def:'A planned list of times when events will happen.', ans:'schedule', opts:['schedule','budget','summary','receipt']},
+  {def:'The general public, or people in the world outside.', ans:'the wider world', opts:['the wider world','a small group','the committee','the organisers']},
+  {def:'To become friendly with people you did not know before.', ans:'meet new people', opts:['meet new people','avoid strangers','call old friends','email colleagues']},
+  {def:'Knowing a place well because you have been there often.', ans:'familiar', opts:['familiar','unaware','curious','doubtful']},
+  {def:'The largest part or greatest number of something.', ans:'the majority', opts:['the majority','a minority','a fraction','none']},
+  {def:'The particular subjects or fields you study.', ans:'areas of study', opts:['areas of study','hobbies','chores','holidays']},
+];
+
+const QUIZ_B = [
+  {q:'meet new people', ans:'meet people who share the same interests', opts:['meet people who share the same interests','provide directions','change focus annually','put the price up']},
+  {q:'familiar with the campus', ans:'get a better idea of where everything is', opts:['get a better idea of where everything is','wrote the studies listed','full of adverts','stressed and busy']},
+  {q:'main role of the festival', ans:'the primary reason the festival exists', opts:['the primary reason the festival exists','free reference booklets','different times to what was printed','a fair point']},
+  {q:'make the public more aware', ans:'brings these areas to the attention of the wider world', opts:['brings these areas to the attention of the wider world','confusing signs','share the same interests','hardly make any money']},
+  {q:'generate interest in current research', ans:'encourage everyone to read the latest studies', opts:['encourage everyone to read the latest studies','provide people with directions','put the price of entry up','change focus annually']},
+  {q:'current research', ans:'the latest studies', opts:['the latest studies','the free booklets','the printed page','the wider world']},
+  {q:'schedules were wrong', ans:'talks started at different times to what was printed', opts:['talks started at different times to what was printed','the map was great','not full of adverts','free to enter']},
+  {q:'mostly paid for through advertising', ans:'get the majority of that through ads', opts:['get the majority of that through ads','put the price of entry up','hardly make any money','free to enter']},
+  {q:'have a different focus each year', ans:'it seems to change focus annually', opts:['it seems to change focus annually','an excellent balance this time','the primary reason it exists','point in the right direction']},
+  {q:'help people who were lost', ans:'provide people with directions to each talk', opts:['provide people with directions to each talk','read the latest studies','wrote the studies listed','improve note-taking']},
+  {q:'prepare them for their course', ans:'feel a little more prepared than last week', opts:['feel a little more prepared than last week','wander around the university','talk to whoever was next to me','change focus annually']},
+  {q:'improved study skills', ans:'improve one area of study — note-taking technique', opts:['improve one area of study — note-taking technique','explore new ideas','feel more confident','free reference booklets']},
+  {q:'new areas of study', ans:'explore new ideas and other subject areas', opts:['explore new ideas and other subject areas','share the same interests','print the schedule','a fair point']},
+  {q:'the admission fee earns little', ans:'hardly make any money from that', opts:['hardly make any money from that','get the majority through ads','put the price up each year','free to enter']},
+  {q:'raise the entry charge yearly', ans:'put the price of entry up each year', opts:['put the price of entry up each year','free to enter','hardly make any money','change focus annually']},
+  {q:'became more confident', ans:"feel more confident now I've explored the area", opts:["feel more confident now I've explored the area",'too stressed to concentrate','busy going through notes','point in the right direction']},
+  {q:'the lecturers wrote the material', ans:'many of the lecturers wrote the studies listed', opts:['many of the lecturers wrote the studies listed','the staff gave directions','the map was in the guidebook','the festival is free']},
+  {q:'the guidebook was not commercial', ans:"it wasn't full of adverts", opts:["it wasn't full of adverts",'the schedule was wrong','the map was confusing','the talks were free']},
+  {q:'good balance of both fields', ans:'an excellent balance this time', opts:['an excellent balance this time','change focus annually','the primary reason','the wider world']},
+  {q:'free to attend', ans:'the festival is free to enter', opts:['the festival is free to enter','put the price up','make a lot of money','through advertising']},
+];
+
+/* ---- Tabs ---- */
+document.getElementById('tabbar').addEventListener('click',function(e){
+  const b=e.target.closest('.tab-btn'); if(!b)return;
+  document.querySelectorAll('.tab-btn').forEach(function(x){x.classList.remove('active');});
+  document.querySelectorAll('.tab-pane').forEach(function(x){x.classList.remove('active');});
+  b.classList.add('active');
+  document.getElementById('tab-'+b.dataset.tab).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+/* ---- Practice ---- */
+(function(){
+  const root=document.getElementById('practice-root');
+  PRACTICE.forEach(function(Q,i){
+    let html='';
+    if(Q.instruction) html+='<div class="instruction">'+Q.instruction+'</div>';
+    html+='<div class="q-card" data-qi="'+i+'">';
+    html+='<div class="q-prompt">'+Q.stem+'</div>';
+    Q.options.forEach(function(o){
+      html+='<div class="mcq-option" data-l="'+o.L+'"><span class="opt-letter">'+o.L+'</span><span>'+o.t+'</span></div>';
+    });
+    html+='<button class="reveal-btn" data-reveal="'+i+'">🔍 Hiện keyword &amp; paraphrase</button>';
+    html+='<div class="reveal-panel" id="rev-'+i+'">';
+    const ansTxt=Array.isArray(Q.answer)?Q.answer.join(' + '):Q.answer;
+    html+='<div class="xp-sec" style="background:var(--green-light);"><span class="xp-label" style="color:var(--green-success);">✅ Key Answer</span><span class="key-answer">'+ansTxt+'</span></div>';
+    html+='<div class="xp-sec"><span class="xp-label">🔗 Paraphrase Mapping — Question ↔ Transcript</span>';
+    html+='<table class="pmap"><thead><tr><th>Question / Option</th><th></th><th>Transcript</th><th>Skill</th></tr></thead><tbody>';
+    Q.reveal.pmap.forEach(function(p){
+      html+='<tr><td class="pm-q">'+p.q+'</td><td class="pm-arrow">→</td><td class="pm-p">'+p.p+'</td><td class="pm-s">'+p.s+'</td></tr>';
+    });
+    html+='</tbody></table></div>';
+    html+='<div class="xp-sec"><span class="xp-label">🧭 Giải thích (VI)</span><div class="xp-vi">'+Q.reveal.vi+'</div></div>';
+    if(Q.reveal.trap) html+='<div class="trap-box"><span class="xp-label">⚠️ Common Trap</span>'+Q.reveal.trap+'</div>';
+    html+='</div></div>';
+    root.insertAdjacentHTML('beforeend',html);
+  });
+
+  root.addEventListener('click',function(e){
+    const opt=e.target.closest('.mcq-option');
+    if(opt){
+      const card=opt.closest('.q-card'); const qi=+card.dataset.qi; const Q=PRACTICE[qi];
+      if(opt.classList.contains('locked'))return;
+      if(Q.multi){ opt.classList.toggle('selected'); }
+      else{ card.querySelectorAll('.mcq-option').forEach(function(o){o.classList.remove('selected');}); opt.classList.add('selected'); }
+      return;
+    }
+    const rb=e.target.closest('.reveal-btn');
+    if(rb){
+      const qi=+rb.dataset.reveal; const Q=PRACTICE[qi];
+      const panel=document.getElementById('rev-'+qi); const card=rb.closest('.q-card');
+      panel.classList.toggle('open');
+      if(panel.classList.contains('open')){
+        rb.innerHTML='🔽 Ẩn paraphrase';
+        const ans=Array.isArray(Q.answer)?Q.answer:[Q.answer];
+        card.querySelectorAll('.mcq-option').forEach(function(o){
+          o.classList.add('locked');
+          if(ans.indexOf(o.dataset.l)>-1) o.classList.add('correct');
+          else if(o.classList.contains('selected')) o.classList.add('incorrect');
+        });
+      }else{
+        rb.innerHTML='🔍 Hiện keyword &amp; paraphrase';
+        card.querySelectorAll('.mcq-option').forEach(function(o){o.classList.remove('locked','correct','incorrect');});
+      }
+    }
+  });
+})();
+
+/* ---- Transcript ---- */
+(function(){
+  const t=document.getElementById('transcript'); let html='';
+  TRANSCRIPT.forEach(function(turn){
+    html+='<div class="ts-turn"><div class="ts-speaker">'+turn.sp+'</div><div class="ts-en">'+turn.en+'</div><div class="ts-vi">'+turn.vi+'</div></div>';
+  });
+  t.innerHTML=html;
+  document.getElementById('scriptBtn').addEventListener('click',function(){
+    t.classList.toggle('open');
+    this.textContent=t.classList.contains('open')?'📜 Ẩn Full Transcript':'📜 Hiện Full Transcript (EN + VI)';
+  });
+})();
+
+/* ---- Quiz ---- */
+const QUIZ_STATE={picks:{}, submitted:false};
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const tmp=a[i];a[i]=a[j];a[j]=tmp;}return a;}
+function qzCard(part,i,prompt,opts,ans){
+  const key=part+i; const num=(part==='A'?i+1:i+21);
+  let h='<div class="qz-card" data-key="'+key+'" data-ans="'+encodeURIComponent(ans)+'">';
+  h+='<div class="qz-q"><span class="qz-n">'+num+'</span><span class="prompt">'+prompt+'</span></div>';
+  h+='<div class="qz-opts">';
+  const letters=['A','B','C','D'];
+  opts.forEach(function(op,k){ h+='<div class="qz-opt" data-val="'+encodeURIComponent(op)+'"><span class="l">'+letters[k]+'</span><span>'+op+'</span></div>'; });
+  h+='</div>';
+  h+='<div class="qz-note"><span class="lbl">Answer</span><b>'+ans+'</b></div>';
+  h+='</div>';
+  return h;
+}
+(function(){
+  const root=document.getElementById('quiz-root'); let html='';
+  html+='<div class="quiz-section-head"><span class="tag">PART A</span> Read the English explanation and choose the right word. <span style="font-weight:600;color:var(--text-soft);font-size:12px;">— No Vietnamese here. Think in English.</span></div>';
+  QUIZ_A.forEach(function(it,i){ html+=qzCard('A',i,it.def,shuffle(it.opts),it.ans); });
+  html+='<div class="quiz-section-head"><span class="tag">PART B</span> Match the question phrase to its transcript paraphrase.</div>';
+  QUIZ_B.forEach(function(it,i){ html+=qzCard('B',i,'Which transcript phrase paraphrases: <em>'+it.q+'</em>?',shuffle(it.opts),it.ans); });
+  root.innerHTML=html;
+  root.addEventListener('click',function(e){
+    const o=e.target.closest('.qz-opt'); if(!o)return;
+    if(QUIZ_STATE.submitted)return;
+    const card=o.closest('.qz-card'); const key=card.dataset.key;
+    card.querySelectorAll('.qz-opt').forEach(function(x){x.classList.remove('selected');});
+    o.classList.add('selected');
+    QUIZ_STATE.picks[key]=decodeURIComponent(o.dataset.val);
+  });
+})();
+
+document.getElementById('quizSubmit').addEventListener('click',function(){
+  if(QUIZ_STATE.submitted)return;
+  const cards=document.querySelectorAll('#quiz-root .qz-card');
+  const total=cards.length;
+  const answered=Object.keys(QUIZ_STATE.picks).length;
+  const notice=document.getElementById('quizNotice');
+  if(answered<total && this.dataset.warned!=='1'){
+    notice.textContent='⚠️ Bạn còn '+(total-answered)+' câu chưa trả lời. Bấm Submit lần nữa để nộp luôn, hoặc làm nốt.';
+    notice.classList.add('show'); this.dataset.warned='1';
+    window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'}); return;
+  }
+  QUIZ_STATE.submitted=true;
+  let score=0;
+  cards.forEach(function(card){
+    const key=card.dataset.key; const ans=decodeURIComponent(card.dataset.ans); const pick=QUIZ_STATE.picks[key];
+    card.querySelectorAll('.qz-opt').forEach(function(o){
+      o.classList.add('locked');
+      const val=decodeURIComponent(o.dataset.val);
+      if(val===ans) o.classList.add('correct');
+      else if(o.classList.contains('selected')) o.classList.add('incorrect');
+    });
+    card.querySelector('.qz-note').classList.add('show');
+    if(pick===ans) score++;
+  });
+  notice.classList.remove('show');
+  const chip=document.getElementById('quizScore');
+  chip.textContent='Score: '+score+' / '+total+'  ('+Math.round(score/total*100)+'%)';
+  chip.classList.add('show');
+  this.disabled=true; this.textContent='✓ Submitted';
+  document.getElementById('quizReset').style.display='inline-block';
+});
+
+document.getElementById('quizReset').addEventListener('click',function(){
+  QUIZ_STATE.submitted=false; QUIZ_STATE.picks={};
+  document.querySelectorAll('#quiz-root .qz-opt').forEach(function(o){o.classList.remove('locked','correct','incorrect','selected');});
+  document.querySelectorAll('#quiz-root .qz-note').forEach(function(n){n.classList.remove('show');});
+  const sb=document.getElementById('quizSubmit'); sb.disabled=false; sb.textContent='Submit — Check my 40 answers'; sb.dataset.warned='0';
+  document.getElementById('quizScore').classList.remove('show');
+  this.style.display='none';
+  document.getElementById('quizNotice').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+</script>
+</body>
+</html>
