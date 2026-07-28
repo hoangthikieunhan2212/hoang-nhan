@@ -235,14 +235,15 @@ const PRACTICE = [
       {L:'E', t:'It introduced them to <b>new areas of study</b>.'},
     ],
     turn:6,
-    answer: ['A','D'],
+    mergeTurns:[5,6,7,8],
+    answer: ['B','D'],
     reveal: {
       pmap: [
-        {q:'meet new people', p:'meet people who share the same interests as me', s:'Paraphrase (A)'},
-        {q:'familiar with the campus', p:"get a better idea of where everything is / explored the area", s:'Paraphrase (D)'},
+        {q:'familiar with the campus (D)', p:'wander around… get a better idea of where everything is / explored the area', s:'Paraphrase (D)'},
+        {q:'improved study skills (B)', p:'improve one area of study — my note-taking technique', s:'Paraphrase (B)'},
       ],
-      vi:'A: Dylan nói <span class="a">"meet people who share the same interests"</span> = meet new people.<br>D: Tanya + Dylan đồng ý <span class="a">"wander around and get a better idea of where everything is"</span> + <span class="a">"feel more confident now I\'ve explored the area"</span> = familiar with campus.',
-      trap:'B &amp; C là <b>quan điểm riêng</b>, KHÔNG phải cả hai đồng ý. "prepare" (C) chỉ Tanya nói; "note-taking / study skills" (B) chỉ Tanya cải thiện. Câu hỏi yêu cầu điều <b>cả hai đồng ý</b>. E chỉ Dylan quan tâm.'
+      vi:'<b>D ✓</b> — cả hai đồng ý: Tanya <span class="a">"wander around and get a better idea of where everything is"</span> + Dylan <span class="a">"feel more confident now I\'ve explored the area"</span> = làm quen với khuôn viên trường.<br><b>B ✓</b> — cả hai đồng ý: Tanya <span class="a">"improve one area of study — my note-taking technique"</span>; Dylan ban đầu nghi ngờ nhưng <span class="a">"looking at my notes again… I could see how they got better"</span> → note-taking có ích cho cả hai.',
+      trap:'A (meet people) và E (new areas of study) <b>chỉ Dylan</b> nói → không phải "cả hai đồng ý". C (prepare) <b>chỉ Tanya</b> ("feel more prepared") → cũng bị loại. Câu hỏi yêu cầu điều <b>CẢ HAI đồng ý là có lợi</b> ⇒ chỉ B và D.'
     }
   },
   {
@@ -329,7 +330,7 @@ const TRANSCRIPT = [
   {sp:'Tanya', en:"I'm glad I didn't do that — I get too stressed when I don't concentrate on one thing. But wasn't it great to be able to <span class=\"ev\">wander around the university and get a better idea of where everything is</span>?", vi:'Tớ mừng vì đã không làm vậy — tớ dễ căng thẳng nếu không tập trung. Nhưng chẳng phải thật tuyệt khi được đi dạo quanh trường và biết rõ vị trí mọi thứ sao?'},
   {sp:'Dylan', en:"Well, <span class=\"ev\">I certainly feel more confident now I've explored the area a bit more</span>. And I also found it very easy to <span class=\"ev\">meet people who share the same interests as me</span>. When I was waiting for lectures to start, I just got talking to whoever was sitting next to me.", vi:'Ừm, chắc chắn giờ tớ tự tin hơn sau khi tìm hiểu khu vực này. Và tớ cũng thấy rất dễ gặp gỡ những người cùng sở thích.'},
   {sp:'Tanya', en:"I was too busy going through my notes to do that. Going to so many lectures in a short space of time has really helped me to <span class=\"ev\">improve one area of study — my note-taking technique</span>.", vi:'Tớ bận xem lại ghi chép nên không làm vậy. Việc dự nhiều bài giúp tớ cải thiện một kỹ năng học — kỹ năng ghi chú.'},
-  {sp:'Dylan', en:"I wasn't so sure about that originally. But looking at my notes again this morning, I could see how they got better as the week went on.", vi:'Ban đầu tớ không chắc. Nhưng sáng nay xem lại, tớ thấy ghi chép tốt dần qua từng ngày.'},
+  {sp:'Dylan', en:"I wasn't so sure about that originally. But <span class=\"ev\">looking at my notes again this morning, I could see how they got better as the week went on</span>.", vi:'Ban đầu tớ không chắc. Nhưng sáng nay xem lại, tớ thấy ghi chép tốt dần qua từng ngày.'},
   {sp:'Prof Dickens', en:"I'm glad the week was of use to you. <span class=\"ev\">It seems to change focus annually</span>; sometimes the emphasis is more on science, sometimes on technology, but there was an excellent balance this time. It really <span class=\"ev\">brings these areas of study and research to the attention of the wider world</span>. For me, <span class=\"ev\">that's the primary reason the festival exists</span>. You may have noticed a number of university information stands around the campus. Did you see the free reference booklets they were giving out?", vi:'Thầy vui vì tuần qua có ích. Trọng tâm thay đổi theo năm; lúc thiên khoa học, lúc công nghệ, nhưng lần này rất cân bằng. Nó thực sự thu hút sự chú ý của thế giới bên ngoài — đó là lý do chính lễ hội tồn tại. Các em có thấy các gian thông tin và sách tham khảo miễn phí không?'},
   {sp:'Dylan', en:"No, <span class=\"ev\">I assumed the stands were there to provide people with directions</span> to each talk.", vi:'Dạ không, em tưởng các gian đó để chỉ đường cho mọi người tới từng buổi nói chuyện.'},
   {sp:'Prof Dickens', en:"Well, their aim was to <span class=\"ev\">encourage everyone to read some of the latest studies coming out of our labs and classrooms</span>. Many of the lecturers actually wrote the studies listed, so the talk and the booklets together are a great introduction to their work. But the staff were certainly happy to point people in the right direction if needed.", vi:'À, mục đích là khuyến khích mọi người đọc các nghiên cứu mới nhất từ phòng lab và giảng đường. Nhân viên cũng sẵn lòng chỉ đường nếu cần.'},
@@ -398,8 +399,16 @@ document.getElementById('tabbar').addEventListener('click',function(e){
 (function(){
   const root=document.getElementById('practice-root');
   PRACTICE.forEach(function(Q,i){
-    const turn=TRANSCRIPT[Q.turn];
-    const fullEn=turn.en;
+    var turnsToShow = Q.mergeTurns ? Q.mergeTurns : [Q.turn];
+    var speakerLabel = TRANSCRIPT[turnsToShow[0]].sp + (turnsToShow.length>1 ? ' …' : '');
+    var fullEn = turnsToShow.map(function(ti){
+      var t=TRANSCRIPT[ti];
+      return (turnsToShow.length>1 ? '<b>'+t.sp+':</b> ' : '') + t.en;
+    }).join('<br><br>');
+    var viText = turnsToShow.map(function(ti){
+      var t=TRANSCRIPT[ti];
+      return (turnsToShow.length>1 ? t.sp+': ' : '') + t.vi;
+    }).join('<br>');
     const plainEn=fullEn.replace(/<span class="ev">/g,'').replace(/<\/span>/g,'');
     let html='';
     if(Q.instruction) html+='<div class="instruction">'+Q.instruction+'</div>';
@@ -408,11 +417,11 @@ document.getElementById('tabbar').addEventListener('click',function(e){
     Q.options.forEach(function(o){
       html+='<div class="mcq-option" data-l="'+o.L+'"><span class="opt-letter">'+o.L+'</span><span>'+o.t+'</span></div>';
     });
-    // full transcript turn shown PLAIN under the question; highlighted version swapped in on reveal
-    html+='<div class="quote-box"><span class="ql">📍 Transcript · '+turn.sp+'</span>'
+    // full transcript turn(s) shown PLAIN under the question; highlighted version swapped in on reveal
+    html+='<div class="quote-box"><span class="ql">📍 Transcript · '+speakerLabel+'</span>'
         +'<span class="q-plain ts-en">'+plainEn+'</span>'
         +'<span class="q-marked ts-en" style="display:none;">'+fullEn+'</span>'
-        +'<div class="ts-vi" style="margin-top:6px;">'+turn.vi+'</div></div>';
+        +'<div class="ts-vi" style="margin-top:6px;">'+viText+'</div></div>';
     html+='<div class="reveal-bar"><button class="reveal-btn" data-reveal="'+i+'">🔍 Hiện keyword &amp; paraphrase</button></div>';
     html+='<div class="reveal-panel" id="rev-'+i+'">';
     const ansTxt=Array.isArray(Q.answer)?Q.answer.join(' + '):Q.answer;
