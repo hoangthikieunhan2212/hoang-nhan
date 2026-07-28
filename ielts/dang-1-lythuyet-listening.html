@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dạng 1: Form · Note · Table · Flowchart · Summary Completion — IELTS Listening</title>
+<style>
+:root{
+  --forest:#013220; --moss:#006D6F; --teal:#007A74; --mint:#D8BFD8;
+  --sage:#F5F5DC; --sand:#FFFAF0; --shell:#FFF5EE; --white:#FFFAFA;
+  --blue:#2563EB; --blue-light:#EFF6FF; --amber:#D97706; --amber-light:#FFFBEB;
+  --red:#DC2626; --red-light:#FEF2F2; --green-success:#16A34A; --green-light:#F0FDF4;
+  --text-dark:#013220; --text-mid:#006D6F; --text-soft:#5F8A80;
+  --border:#E3DED0;
+  --shadow-sm:0 1px 3px rgba(1,50,32,.08); --shadow-md:0 4px 16px rgba(1,50,32,.12); --shadow-lg:0 8px 32px rgba(1,50,32,.16);
+  --radius:12px; --radius-sm:8px; --radius-lg:20px;
+  font-size:16px;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--sand);}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+.app-header{background:linear-gradient(135deg,var(--forest),var(--moss),var(--teal));color:#fff;padding:26px 40px 0;position:sticky;top:0;z-index:30;box-shadow:var(--shadow-md);}
+.badge{display:inline-block;background:var(--mint);color:var(--forest);font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:99px;margin-bottom:10px;}
+.app-header h1{margin:0;font-size:26px;font-weight:800;line-height:1.25;}
+.app-header .sub{font-size:13px;opacity:.85;margin-top:6px;margin-bottom:18px;}
+.tabbar{display:flex;gap:4px;flex-wrap:wrap;}
+.tab-btn{background:rgba(255,255,255,.08);border:none;border-bottom:3px solid transparent;color:rgba(255,255,255,.75);
+  padding:12px 22px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;cursor:pointer;font-family:inherit;
+  border-radius:var(--radius-sm) var(--radius-sm) 0 0;transition:all .15s;}
+.tab-btn:hover{color:#fff;background:rgba(255,255,255,.14);}
+.tab-btn.active{color:var(--forest);background:var(--sand);border-bottom-color:var(--mint);}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 40px 80px;}
+.tab-pane{display:none;}
+.tab-pane.active{display:block;animation:fadeIn .3s;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:24px 28px;margin-bottom:20px;}
+.sec-title{font-size:19px;font-weight:800;color:var(--forest);margin:0 0 4px;display:flex;align-items:center;gap:10px;}
+.sec-title .n{width:28px;height:28px;background:var(--forest);color:#fff;border-radius:99px;font-size:14px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;}
+.sub-title{font-size:15px;font-weight:800;color:var(--moss);margin:22px 0 8px;}
+.card p{font-size:14.5px;margin:8px 0;}
+.card ul,.card ol{font-size:14.5px;margin:8px 0;padding-left:22px;}
+.card li{margin:5px 0;}
+.hl{background:var(--sage);color:var(--forest);font-weight:700;padding:1px 5px;border-radius:4px;}
+.vi{font-size:13px;color:var(--text-mid);}
+.callout{border-left:4px solid var(--moss);background:var(--shell);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;margin:12px 0;font-size:14px;}
+.callout.gold{border-color:var(--amber);background:var(--amber-light);}
+.callout.gold b{color:var(--amber);}
+.step-list{counter-reset:st;list-style:none;padding:0;margin:14px 0;}
+.step-list li{position:relative;padding:10px 14px 10px 46px;background:var(--shell);border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:10px;font-size:14px;}
+.step-list li::before{counter-increment:st;content:counter(st);position:absolute;left:12px;top:10px;width:24px;height:24px;background:var(--forest);color:#fff;border-radius:99px;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.mini-table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0;}
+.mini-table th,.mini-table td{border:1px solid var(--border);padding:7px 11px;text-align:left;}
+.mini-table th{background:var(--sage);color:var(--forest);font-weight:800;font-size:12px;}
+.act-box{background:var(--blue-light);border:1px solid #cfe0ff;border-radius:var(--radius-sm);padding:14px 18px;margin:14px 0;font-size:13.5px;}
+.act-box .act-lbl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--blue);display:block;margin-bottom:8px;}
+.act-key{margin-top:8px;font-size:12.5px;color:var(--green-success);font-weight:700;}
+.wl-pill{display:inline-block;background:var(--forest);color:#fff;font-size:11px;font-weight:800;letter-spacing:.3px;padding:3px 11px;border-radius:99px;}
+/* practice */
+.instruction{background:var(--shell);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 16px;margin:18px 0 14px;font-size:13.5px;font-weight:600;color:var(--text-mid);}
+.instruction b{color:var(--forest);}
+.p-block{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:22px 26px;margin-bottom:16px;}
+.p-block h3{margin:0 0 4px;color:var(--forest);font-size:17px;}
+.p-block .p-meta{font-size:12.5px;color:var(--text-soft);margin-bottom:14px;}
+/* body layout: form / note / table / flowchart */
+.body-block{background:var(--sand);border:1px solid var(--border);border-radius:var(--radius-sm);padding:18px 22px;margin:12px 0 4px;font-size:14px;line-height:2.1;}
+.body-block .bt{font-size:15px;font-weight:800;color:var(--forest);text-align:center;margin-bottom:12px;letter-spacing:.3px;}
+.body-block .grp{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:var(--moss);margin:14px 0 4px;}
+.body-block .grp .en{color:var(--text-soft);font-weight:600;text-transform:none;font-size:11.5px;}
+.body-block ul{list-style:none;padding-left:4px;margin:4px 0;}
+.body-block li{margin:6px 0;}
+.body-block table{border-collapse:collapse;width:100%;margin:8px 0;}
+.body-block td,.body-block th{border:1px solid var(--border);padding:8px 12px;text-align:left;font-size:13.5px;background:var(--white);}
+.body-block th{background:var(--sage);color:var(--forest);font-weight:800;}
+.blank-num{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 5px;background:var(--forest);color:#fff;border-radius:99px;font-size:10px;font-weight:800;margin-right:3px;vertical-align:middle;}
+.blank-input{width:140px;border:none;border-bottom:2px solid var(--teal);background:transparent;font-size:14px;font-family:inherit;color:var(--forest);font-weight:700;padding:1px 6px;text-align:center;}
+.blank-input:focus{outline:none;border-bottom-color:var(--moss);background:var(--sage);}
+.blank-input.correct{border-bottom-color:var(--green-success);color:var(--green-success);background:var(--green-light);}
+.blank-input.incorrect{border-bottom-color:var(--red);color:var(--red);background:var(--red-light);}
+.blank-input:disabled{opacity:1;}
+.hint-type{font-size:11px;color:var(--text-soft);font-style:italic;}
+/* per-question blocks (image-style: question + quote box under it) */
+.q-list{margin-top:22px;border-top:2px solid var(--border);padding-top:16px;}
+.q-item{margin-bottom:22px;padding-bottom:20px;border-bottom:1px dashed var(--border);}
+.q-item:last-child{border-bottom:none;margin-bottom:0;}
+.q-item-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
+.q-item-head .qn{flex:0 0 auto;width:26px;height:26px;background:var(--forest);color:#fff;border-radius:99px;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.q-item-prompt{font-size:15px;font-weight:700;color:var(--text-dark);padding-top:2px;}
+.q-item .quote-box{margin:0 0 6px 36px;}
+.q-item .quote-box .q-plain,.q-item .quote-box .q-marked{display:block;font-size:14px;line-height:1.85;color:var(--text-dark);}
+.q-item .reveal-bar{margin:8px 0 0 36px;}
+.q-item .reveal-panel{margin:12px 0 0 36px;border-top:none;padding-top:0;}
+.rev-q-head{margin-bottom:8px;font-size:14px;font-weight:700;}
+.ka-lbl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--green-success);}
+.rev-q-head .ka{background:var(--white);border:2px solid var(--green-success);color:var(--green-success);border-radius:var(--radius-sm);padding:3px 14px;font-size:15px;font-weight:800;margin-left:6px;}
+/* flowchart pick */
+.fc-list{background:var(--white);border:1px dashed var(--teal);border-radius:var(--radius-sm);padding:12px 16px;margin:10px 0;font-size:13px;}
+.fc-list .fl-lbl{font-size:11px;font-weight:800;text-transform:uppercase;color:var(--moss);margin-bottom:6px;display:block;}
+.fc-list ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:4px 18px;}
+.fc-list li{margin:2px 0;}
+.fc-list b{color:var(--forest);}
+.fc-step{display:flex;align-items:center;gap:10px;margin:6px 0;}
+.fc-arrow{text-align:center;color:var(--text-soft);font-size:14px;margin:2px 0;}
+.pick-select{border:2px solid var(--teal);border-radius:var(--radius-sm);background:var(--white);font-family:inherit;font-size:13.5px;font-weight:700;color:var(--forest);padding:5px 8px;}
+.pick-select:focus{outline:2px solid var(--teal);outline-offset:1px;}
+.pick-select.correct{border-color:var(--green-success);background:var(--green-light);color:var(--green-success);}
+.pick-select.incorrect{border-color:var(--red);background:var(--red-light);color:var(--red);}
+/* reveal */
+.reveal-bar{margin:14px 0 2px;}
+.reveal-btn{background:var(--forest);color:#fff;border:none;border-radius:99px;padding:9px 20px;font-size:12.5px;font-weight:800;letter-spacing:.4px;cursor:pointer;font-family:inherit;transition:all .15s;display:inline-flex;align-items:center;gap:7px;}
+.reveal-btn:hover{background:var(--moss);transform:translateY(-1px);}
+.reveal-panel{display:none;margin-top:14px;border-top:2px dashed var(--border);padding-top:14px;animation:fadeIn .3s;}
+.reveal-panel.open{display:block;}
+.rev-q{margin-bottom:16px;}
+.rev-q-head{font-size:13px;font-weight:800;color:var(--forest);display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.rev-q-head .qn{width:22px;height:22px;background:var(--forest);color:#fff;border-radius:99px;font-size:11px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+.rev-q-head .ka{background:var(--white);border:2px solid var(--green-success);color:var(--green-success);border-radius:var(--radius-sm);padding:2px 12px;font-size:13px;}
+.quote-box{background:var(--shell);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:9px 13px;margin:6px 0;font-size:13px;line-height:1.7;}
+.quote-box .ql{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--moss);display:block;margin-bottom:3px;}
+.quote-box mark{background:var(--green-light);color:var(--green-success);font-weight:700;padding:0 3px;border-radius:3px;}
+.pmap{width:100%;border-collapse:separate;border-spacing:4px;font-size:12.5px;margin:6px 0;}
+.pmap th{font-size:9.5px;text-transform:uppercase;color:var(--text-soft);text-align:left;font-weight:800;padding:0 6px;}
+.pm-q{background:var(--blue-light);color:var(--blue);font-weight:700;border-radius:var(--radius-sm);padding:5px 9px;}
+.pm-p{background:var(--green-light);color:var(--green-success);font-weight:700;border-radius:var(--radius-sm);padding:5px 9px;}
+.pm-s{background:var(--sage);color:var(--forest);font-weight:700;border-radius:var(--radius-sm);padding:5px 9px;font-size:10.5px;white-space:nowrap;}
+.pm-arrow{color:var(--text-soft);text-align:center;font-weight:700;}
+.rev-vi{font-size:13px;color:var(--text-mid);line-height:1.8;margin-top:5px;}
+.rev-vi .a{color:var(--forest);font-weight:700;}
+/* transcript */
+.script-toggle{background:var(--forest);color:#fff;border:none;border-radius:99px;padding:10px 22px;font-size:13px;font-weight:800;letter-spacing:.4px;cursor:pointer;font-family:inherit;}
+.script-toggle:hover{background:var(--moss);}
+.transcript{margin-top:18px;display:none;text-align:left;}
+.transcript.open{display:block;animation:fadeIn .3s;}
+.ts-turn{margin-bottom:15px;}
+.ts-speaker{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--moss);margin-bottom:3px;}
+.ts-en{font-size:14px;line-height:1.85;}
+.ts-vi{font-size:13px;color:var(--text-mid);background:var(--white);border-left:3px solid var(--sage);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:6px 12px;margin-top:5px;line-height:1.7;}
+.ev{background:var(--green-light);border-radius:4px;padding:0 3px;box-shadow:inset 0 -2px 0 rgba(22,163,74,.3);}
+/* quiz */
+.quiz-intro{background:var(--shell);border:1px solid var(--border);border-radius:var(--radius);padding:18px 24px;margin-bottom:22px;}
+.quiz-intro h3{margin:0 0 6px;color:var(--forest);font-size:16px;}
+.quiz-intro em{color:var(--moss);font-style:normal;font-weight:700;}
+.quiz-section-head{font-size:15px;font-weight:800;color:var(--forest);background:var(--sage);border-radius:var(--radius-sm);padding:10px 16px;margin:26px 0 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.quiz-section-head .tag{font-size:10px;background:var(--forest);color:#fff;padding:3px 9px;border-radius:99px;letter-spacing:.4px;}
+.qz-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:16px 20px;margin-bottom:12px;}
+.qz-q{font-size:14px;font-weight:600;margin-bottom:12px;display:flex;gap:10px;}
+.qz-q .qz-n{flex:0 0 auto;width:24px;height:24px;background:var(--forest);color:#fff;border-radius:99px;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.qz-q .prompt em{color:var(--moss);font-style:normal;font-weight:700;}
+.qz-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+@media(max-width:640px){.qz-opts{grid-template-columns:1fr;}}
+.qz-opt{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:9px 13px;font-size:13.5px;cursor:pointer;transition:all .12s;display:flex;align-items:center;gap:9px;}
+.qz-opt:hover{border-color:var(--teal);background:var(--sage);}
+.qz-opt .l{flex:0 0 auto;width:22px;height:22px;border:1.5px solid var(--text-soft);border-radius:99px;font-size:11px;font-weight:800;color:var(--text-soft);display:flex;align-items:center;justify-content:center;}
+.qz-opt.selected{border-color:var(--blue);background:var(--blue-light);}
+.qz-opt.selected .l{border-color:var(--blue);background:var(--blue);color:#fff;}
+.qz-opt.correct{border-color:var(--green-success);background:var(--green-light);}
+.qz-opt.correct .l{border-color:var(--green-success);background:var(--green-success);color:#fff;}
+.qz-opt.incorrect{border-color:var(--red);background:var(--red-light);}
+.qz-opt.incorrect .l{border-color:var(--red);background:var(--red);color:#fff;}
+.qz-opt.locked{pointer-events:none;}
+.qz-note{display:none;margin-top:10px;background:var(--green-light);border-radius:var(--radius-sm);padding:9px 13px;font-size:13px;color:var(--text-dark);}
+.qz-note.show{display:block;}
+.qz-note .lbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--green-success);margin-right:6px;}
+.quiz-bar{position:sticky;bottom:0;background:var(--white);border-top:2px solid var(--border);box-shadow:0 -4px 16px rgba(1,50,32,.08);padding:14px 40px;display:flex;align-items:center;gap:16px;justify-content:center;z-index:20;margin:0 -40px -80px;flex-wrap:wrap;}
+.btn-submit{background:var(--mint);color:var(--forest);border:none;border-radius:99px;padding:12px 34px;font-size:14px;font-weight:800;letter-spacing:.5px;cursor:pointer;font-family:inherit;transition:all .15s;}
+.btn-submit:hover{transform:translateY(-1px);box-shadow:var(--shadow-md);}
+.btn-submit:disabled{opacity:.5;cursor:default;transform:none;box-shadow:none;}
+.btn-ghost{background:transparent;border:1.5px solid var(--border);color:var(--text-mid);border-radius:99px;padding:11px 22px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;}
+.score-chip{font-size:15px;font-weight:800;color:var(--forest);background:var(--sage);border-radius:99px;padding:8px 20px;display:none;}
+.score-chip.show{display:inline-block;}
+.notice{display:none;background:var(--amber-light);color:var(--amber);border:1px solid #FDE68A;border-radius:var(--radius-sm);padding:10px 16px;font-size:13px;font-weight:600;margin-bottom:16px;}
+.notice.show{display:block;}
+</style>
+</head>
+<body>
+<header class="app-header">
+  <span class="badge">IELTS Listening · Dạng 1</span>
+  <h1>Form · Note · Table · Flowchart · Summary Completion</h1>
+  <div class="sub">Theory · Guided practice with quote &amp; paraphrase reveal · 40-question paraphrase quiz &nbsp;·&nbsp; 🎧 audio played by teacher</div>
+  <nav class="tabbar" id="tabbar">
+    <button class="tab-btn active" data-tab="theory">📚 Theory</button>
+    <button class="tab-btn" data-tab="practice">✍️ Practice</button>
+    <button class="tab-btn" data-tab="quiz">🎮 Paraphrase Quiz</button>
+  </nav>
+</header>
+<div class="wrap">
+
+<!-- ============ THEORY ============ -->
+<section class="tab-pane active" id="tab-theory">
+  <div class="card">
+    <h2 class="sec-title"><span class="n">1</span> Tổng quan</h2>
+    <p>Ở dạng bài này, người nghe được cung cấp một bản tóm tắt nội dung bài nghe dưới dạng <b>summary</b>, <b>note</b>, <b>bảng (table)</b>, hoặc <b>biểu đồ (flowchart)</b> với những chỗ trống cần điền. Nhiệm vụ là nghe đoạn băng và điền từ ngữ thích hợp để hoàn thành chỗ trống.</p>
+    <ul>
+      <li>Note / Form completion</li>
+      <li>Summary completion</li>
+      <li>Table completion</li>
+      <li>Flow-chart completion</li>
+    </ul>
+    <div class="callout"><b>Lưu ý:</b> Với Flow-chart completion, đề bài <span class="hl">có thể cho sẵn một list từ</span> — người nghe dựa vào dữ kiện trong băng và chọn từ có sẵn trong danh sách để hoàn thành flowchart.</div>
+  </div>
+
+  <div class="card">
+    <h2 class="sec-title"><span class="n">2</span> Các bước làm bài</h2>
+    <div class="sub-title">Trước khi nghe</div>
+    <ol class="step-list">
+      <li><b>Đọc kỹ đề bài &amp; xác định số từ cho phép (word limit).</b> Nếu điền thừa từ thì dù nội dung đúng, đáp án cũng <b>không được tính điểm</b>.</li>
+      <li><b>Đọc trước câu hỏi / biểu đồ / tóm tắt / note và xác định từ khóa.</b> Chú ý <b>tiêu đề (title)</b> để hiểu bối cảnh và hình dung tổng quan cấu trúc bài.</li>
+      <li><b>Dự đoán về câu trả lời</b> — từ loại (danh/động/tính từ), đặc điểm (số ít/nhiều), thậm chí nội dung (tích cực/tiêu cực; chỉ người / địa điểm / thời gian / số).</li>
+    </ol>
+    <div class="sub-title">Trong &amp; sau khi nghe</div>
+    <ol class="step-list" style="counter-reset:st 3;">
+      <li><b>Tập trung nghe từ khóa &amp; từ đồng nghĩa của chúng.</b> Khi nghe được paraphrase của từ khóa đã xác định → báo hiệu đáp án sắp xuất hiện. Cẩn thận <b>Distractors</b> và chú ý <b>ending sounds</b>.</li>
+      <li><b>Viết câu trả lời cẩn thận:</b> đúng chính tả · đúng word limit · câu hoàn thiện đúng ngữ pháp.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2 class="sec-title"><span class="n">3</span> Word limit — quy tắc đếm từ</h2>
+    <p>VD với yêu cầu <span class="wl-pill">NO MORE THAN TWO WORDS AND/OR A NUMBER</span>, câu trả lời chấp nhận được: <span class="hl">one word</span>, one word + a number, two words, two words + a number, a number.</p>
+    <div class="callout gold"><b>Cách đếm:</b> số viết bằng chữ tính theo từ (25 = a number; twenty-five = two words; 12th July = one number + one word). Từ nối bằng dấu gạch ngang tính là <b>một</b> từ (state-of-the-art, son-in-law).</div>
+  </div>
+
+  <div class="card">
+    <h2 class="sec-title"><span class="n">4</span> Từ khóa — cố định vs biến đổi</h2>
+    <table class="mini-table">
+      <tr><th>Loại từ khóa</th><th>Đặc điểm</th><th>Ví dụ</th></tr>
+      <tr><td><b>Cố định</b></td><td>Không thể bị biến đổi</td><td>Tên riêng, số liệu, ngày tháng, tên khoa học</td></tr>
+      <tr><td><b>Biến đổi</b></td><td>Có khả năng bị paraphrase → nghĩ trước từ đồng nghĩa</td><td>Danh từ, động từ, tính từ quan trọng</td></tr>
+    </table>
+    <div class="act-box">
+      <span class="act-lbl">Ví dụ paraphrase</span>
+      "Number of employees" → có thể nghe thành <b>how many</b>, <b>staff</b>.<br>
+      "produces" → synonym: <b>make</b>, <b>manufacture</b>…
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="sec-title"><span class="n">5</span> Activities luyện phản xạ</h2>
+    <div class="act-box">
+      <span class="act-lbl">Activity A · Match headings 1–5 with questions a–e</span>
+      <b>Headings:</b> 1. Country of origin · 2. Dangers · 3. Diet · 4. Habitat · 5. Physical description<br>
+      <b>Questions:</b> a. What does it eat? · b. Where does it come from? · c. Where does it live? · d. What does it look like? · e. What threats does it face?
+      <div class="act-key">🔑 Key: 1-b · 2-e · 3-a · 4-c · 5-d</div>
+    </div>
+    <div class="act-box">
+      <span class="act-lbl">Activity B · Dự đoán loại từ cho mỗi chỗ trống (hồ sơ Sanjay)</span>
+      1 spell a word (name) · 2 write a number (age) · 3 write the name of a job · 4 write the name of a place · 5 write the name of a place (mountain) · 6 an activity/course · 7 write a language · 8 a subject of study · 9–10 write a spare-time activity
+    </div>
+    <div class="act-box">
+      <span class="act-lbl">Activity C · Choose the correct grammatical answer</span>
+      Anna has got a job as a <b>store assistant</b> (đếm được, số ít).<br>
+      She completed a course in <b>information technology</b> (danh từ không đếm — không "informations").<br>
+      New department name: <b>Moving Images</b> (đúng số nhiều theo băng).
+    </div>
+    <div class="callout"><b>Một số lưu ý:</b> câu trả lời xuất hiện <b>theo trình tự</b> câu hỏi · kiểm tra lại ngữ pháp &amp; word limit sau khi làm · luôn chuẩn bị nghe 2 câu liền nhau · luyện vừa nghe vừa điền.</div>
+  </div>
+
+  <div class="card" style="background:var(--shell);">
+    <p style="margin:0;font-size:13.5px;">👉 Sang tab <b>Practice</b> để luyện 3 bài: <b>American Bullfrog</b> (notes) · <b>Healthy Eating Society</b> (table + notes) · <b>How a newspaper is made</b> (flowchart, chọn A–H). Bạn tự điền/chọn đáp án trước; box trích dẫn transcript hiện ngay bên cạnh; bấm <b>"Hiện keyword &amp; paraphrase"</b> để đối chiếu.</p>
+  </div>
+</section>
+
+<!-- ============ PRACTICE ============ -->
+<section class="tab-pane" id="tab-practice">
+  <div class="card" style="background:linear-gradient(135deg,var(--shell),var(--sand));">
+    <h2 class="sec-title">🎧 Practice — Listen &amp; complete</h2>
+    <p class="vi">Cách học: đọc trước → dự đoán loại từ → tự điền/chọn đáp án khi giáo viên phát audio. <b>Box trích dẫn transcript hiện song song</b> giúp bạn định vị. Sau đó bấm <b>"Hiện keyword &amp; paraphrase"</b> ở mỗi câu để xem Key Answer và cách transcript paraphrase lại đề.</p>
+  </div>
+  <div id="practice-root"></div>
+  <div class="card" style="text-align:center;background:var(--shell);">
+    <button class="script-toggle" id="scriptBtn">📜 Hiện Full Transcript (EN + VI)</button>
+    <div class="transcript" id="transcript"></div>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section class="tab-pane" id="tab-quiz">
+  <div class="quiz-intro">
+    <h3>🎮 Paraphrase Quiz — 40 questions</h3>
+    <p style="font-size:13.5px;margin:6px 0 0;">Review the paraphrase clusters from these three practices. <b>Part A (1–20):</b> read the English explanation and choose the right word — <em>think in English, no Vietnamese here.</em> <b>Part B (21–40):</b> match the question phrase to its transcript paraphrase. Answer all 40, then press <b>Submit</b> to see your score.</p>
+  </div>
+  <div class="notice" id="quizNotice"></div>
+  <div id="quiz-root"></div>
+  <div class="quiz-bar">
+    <button class="btn-submit" id="quizSubmit">Submit — Check my 40 answers</button>
+    <span class="score-chip" id="quizScore"></span>
+    <button class="btn-ghost" id="quizReset" style="display:none;">↺ Reset</button>
+  </div>
+</section>
+</div>
+<script>
+/* DATA grounded in the uploaded Dạng 1 lesson.
+   Practice bodies & transcripts verbatim from source (VI translated by assistant).
+   Quiz pairs drawn from the three transcripts. */
+
+/* Each practice: body = HTML with {{n}} blank tokens (or select tokens for flowchart).
+   questions[]: {id, answer(str|array), type:'blank'|'pick', choices(for pick),
+                 quote (EN, evidence <mark>), quoteVi, pmap[], vi } */
+
+const PRACTICE = [
+  {
+    id:'p1', title:'Practice 1 — The American Bullfrog', meta:'Note completion · Mindset 1 · P.160 · Audio 68 · Write ONE WORD AND/OR A NUMBER',
+    instruction:'Complete the notes below. Write <b>ONE WORD AND/OR A NUMBER</b> for each answer.',
+    body:`<div class="bt">THE AMERICAN BULLFROG</div>
+      <div class="grp">Origin <span class="en">(Nguồn gốc)</span></div>
+      <ul>
+        <li>East United States</li>
+        <li>was introduced into the UK at the beginning of the {{1}} <span class="hint-type">(number — thế kỷ)</span> century.</li>
+      </ul>
+      <div class="grp">Physical description <span class="en">(đặc điểm ngoại hình)</span></div>
+      <ul>
+        <li>female weighs up to {{2}} <span class="hint-type">(number)</span> grams</li>
+        <li>has a green and brown body</li>
+        <li>has a flat {{3}} <span class="hint-type">(body part)</span></li>
+        <li>male frog has a {{4}} <span class="hint-type">(colour)</span> coloured throat</li>
+      </ul>
+      <div class="grp">Reasons for unpopularity <span class="en">(lý do loài này ít được ưa)</span></div>
+      <ul>
+        <li>breeds rapidly, so numbers are increasing</li>
+        <li>eats the food of native British frogs — insects, fish, birds and animals including {{5}} <span class="hint-type">(animal)</span> — and also eats the frogs themselves!</li>
+        <li>carries a disease that can kill other frogs</li>
+        <li>financial cost — a total of £{{6}} <span class="hint-type">(number)</span> already spent on research.</li>
+      </ul>`,
+    questions:[
+      {id:1, turn:0, prompt:'was introduced into the UK at the beginning of the ___ century.', answer:['19th','19'], type:'blank',
+        quote:'it was brought to Britain in <mark>the early 19th century</mark>',
+        quoteVi:'nó được đưa tới Anh vào <b>đầu thế kỷ 19</b>.',
+        pmap:[{q:'introduced into the UK', p:'brought to Britain', s:'Synonym'},{q:'at the beginning of', p:'in the early', s:'Synonym'}],
+        vi:'"introduced into the UK" → <span class="a">brought to Britain</span>; "beginning of" → <span class="a">early</span>. Nghe "early 19th century" =&gt; <b>19th</b>.'},
+      {id:2, turn:1, prompt:'female weighs up to ___ grams.', answer:['750'], type:'blank',
+        quote:'they can weigh up to <mark>750 grams</mark>, whereas the males only go up to about 600 grams',
+        quoteVi:'con cái có thể nặng tới <b>750 gram</b>, trong khi con đực chỉ khoảng 600 gram.',
+        pmap:[{q:'female weighs up to ___ grams', p:'they can weigh up to 750 grams', s:'Direct'}],
+        vi:'Bẫy distractor: <span class="a">600</span> là của con đực (males). Con cái (female) = <b>750</b>.'},
+      {id:3, turn:1, prompt:'has a flat ___ (body part).', answer:['head'], type:'blank',
+        quote:"Take a look at its <mark>head</mark> — it's really broad and flat",
+        quoteVi:'Nhìn vào <b>đầu</b> của nó — thật sự rộng và phẳng.',
+        pmap:[{q:'has a flat ___', p:'its head… broad and flat', s:'Paraphrase'}],
+        vi:'"flat" trong đề khớp "broad and flat" trong băng → bộ phận phẳng đó là <b>head</b>.'},
+      {id:4, turn:2, prompt:'male frog has a ___ coloured throat.', answer:['yellow'], type:'blank',
+        quote:"the male's throat is <mark>yellow</mark> but the female has a white one instead",
+        quoteVi:'cổ họng con đực màu <b>vàng</b>, còn con cái có màu trắng.',
+        pmap:[{q:'male frog has a ___ coloured throat', p:"the male's throat is yellow", s:'Direct'}],
+        vi:'Bẫy: <span class="a">white</span> là của con cái. Đề hỏi <b>male</b> =&gt; <b>yellow</b>.'},
+      {id:5, turn:3, prompt:'eats … animals including ___.', answer:['snakes','snake'], type:'blank',
+        quote:'they eat insects, fish and have even been known to eat birds and <mark>snakes</mark>',
+        quoteVi:'chúng ăn côn trùng, cá và thậm chí cả chim và <b>rắn</b>.',
+        pmap:[{q:'animals including ___', p:'birds and snakes', s:'Listing'}],
+        vi:'Liệt kê con mồi: insects, fish, birds, <b>snakes</b>. Từ còn thiếu = <b>snakes</b>.'},
+      {id:6, turn:3, prompt:'financial cost — a total of £___ spent on research.', answer:['100,000','100000'], type:'blank',
+        quote:'Around £<mark>100,000</mark> has been spent monitoring the American bullfrog',
+        quoteVi:'Khoảng <b>100.000</b> bảng đã được chi để theo dõi loài ếch bò Mỹ.',
+        pmap:[{q:'total spent on research', p:'£100,000 has been spent monitoring', s:'Synonym'}],
+        vi:'"research" ↔ <span class="a">monitoring</span>; "total spent" ↔ "has been spent" =&gt; <b>100,000</b>.'},
+    ],
+    transcript:[
+      {sp:'Lecturer', en:"Good morning, everyone. In today's lecture, I want to talk to you about a very unpopular animal here in Britain — one of our least loved animals! <span class=\"ev\">It's called the American bullfrog</span> and yes, it does in fact come from America — the east of America, to be exact — and <span class=\"ev\">it was brought to Britain in the early 19th century</span>, so it's been here for quite a long time. It wasn't brought here on purpose — it actually arrived in a big container of aquatic plants. In other words, it was accidentally introduced into Britain.",
+        vi:"Chào buổi sáng cả lớp. Bài giảng hôm nay tôi muốn nói về một loài vật rất không được ưa ở Anh — một trong những loài ít được yêu thích nhất! Nó tên là ếch bò Mỹ, và đúng vậy, nó đến từ Mỹ — phía đông nước Mỹ — và được đưa tới Anh vào đầu thế kỷ 19, nên đã ở đây khá lâu. Nó không được mang tới có chủ đích — mà tình cờ đến trong một thùng lớn chứa cây thủy sinh."},
+      {sp:'Lecturer', en:"Now, I'll tell you about its appearance. The American bullfrog is a very large — and ugly — species. Interestingly, female American bullfrogs are usually much larger than the males. In fact, <span class=\"ev\">they can weigh up to 750 grams</span>, whereas the males only go up to about 600 grams. <span class=\"ev\">Take a look at its head</span> — it's really broad and flat, isn't it? Its mouth is quite large too.",
+        vi:"Giờ nói về ngoại hình. Ếch bò Mỹ rất to — và xấu. Điều thú vị là con cái thường to hơn con đực nhiều. Chúng có thể nặng tới 750 gram, trong khi con đực chỉ khoảng 600 gram. Nhìn vào cái đầu — thật sự rộng và phẳng, phải không? Miệng cũng khá to."},
+      {sp:'Lecturer', en:"Both the male and female have green or brown bodies with dark spots on top. But there's one important difference: <span class=\"ev\">the male's throat is yellow</span> but the female has a white one instead. And their eardrums, just behind the eyes — those of the male are much larger than the female's.",
+        vi:"Cả con đực lẫn con cái đều có thân xanh hoặc nâu với đốm đen ở trên. Nhưng có một khác biệt quan trọng: cổ họng con đực màu vàng, còn con cái màu trắng. Và màng nhĩ ngay sau mắt — của con đực lớn hơn con cái nhiều."},
+      {sp:'Lecturer', en:"So, why do we dislike it? Because it has threatened our own native frogs. Firstly, it breeds very quickly — females can lay up to 25,000 eggs every season. Secondly, it's very greedy — they eat just about anything. As well as other frogs, <span class=\"ev\">they eat insects, fish and have even been known to eat birds and snakes</span>! So they eat the food sources of our native species. Thirdly, they carry a disease dangerous to other frogs. And finally, they cause financial damage too. <span class=\"ev\">Around £100,000 has been spent monitoring the American bullfrog</span> in the wild. So we can learn a lesson about the dangers of introducing any living species into a new environment.",
+        vi:"Vậy tại sao ta không ưa nó? Vì nó đe dọa các loài ếch bản địa. Thứ nhất, nó sinh sản rất nhanh — con cái đẻ tới 25.000 trứng mỗi mùa. Thứ hai, nó rất tham ăn — ăn gần như mọi thứ. Ngoài ếch khác, chúng ăn côn trùng, cá và cả chim, rắn! Nên chúng cướp nguồn thức ăn của loài bản địa. Thứ ba, chúng mang bệnh nguy hiểm cho ếch khác. Cuối cùng, gây thiệt hại tài chính — khoảng 100.000 bảng đã được chi để theo dõi loài này. Đây là bài học về nguy cơ đưa một loài mới vào môi trường mới."},
+    ]
+  },
+  {
+    id:'p2', title:'Practice 2 — Healthy Eating Society Weekly Plan', meta:'Table + Note completion · Mindset 3 · P.46 · Audio 13 · NO MORE THAN TWO WORDS AND/OR A NUMBER',
+    instruction:'Questions 1–5 · Complete the table. Questions 6–10 · Complete the notes. Write <b>NO MORE THAN TWO WORDS AND/OR A NUMBER</b> for each answer.',
+    body:`<div class="bt">Healthy Eating Society — Weekly Plan</div>
+      <table>
+        <tr><th>Day</th><th>Activity</th><th>Time</th><th>Location of meal</th></tr>
+        <tr><td>Wednesday</td><td>Restaurant: {{1}} food</td><td>7.30</td><td>High Street</td></tr>
+        <tr><td>Thursday</td><td>Prepare a meal together</td><td>8.00</td><td>{{2}}</td></tr>
+        <tr><td>Friday</td><td>Restaurant: European food</td><td>{{3}}</td><td>{{4}}</td></tr>
+        <tr><td>Saturday</td><td>{{5}}</td><td>12.00</td><td>canteen</td></tr>
+      </table>
+      <div class="grp" style="margin-top:16px;">Extra information for members</div>
+      <ul>
+        <li>Cost of membership: {{6}}</li>
+        <li>Average length of restaurant dinner: {{7}}</li>
+        <li>Leave the waiters an extra: {{8}}</li>
+        <li>To book a place, best to send Catherine: {{9}}</li>
+        <li>Rule — never talk about: {{10}}</li>
+      </ul>`,
+    questions:[
+      {id:1, turn:3, prompt:'Wednesday restaurant serves ___ food.', answer:['vegetarian'], type:'blank',
+        quote:"it's always somewhere that serves <mark>vegetarian</mark> food",
+        quoteVi:'luôn là nơi phục vụ đồ ăn <b>chay</b>.',
+        pmap:[{q:'Wednesday restaurant: ___ food', p:'serves vegetarian food', s:'Direct'}],
+        vi:'Thứ Tư luôn ăn ở nơi phục vụ <b>vegetarian</b> food.'},
+      {id:2, turn:5, prompt:'Thursday — location of the meal: ___.', answer:['Wednesford'], type:'blank',
+        quote:'She lives in <mark>Wednesford</mark>… spelt W-E-D-N-E-S-F-O-R-D',
+        quoteVi:'Cô ấy sống ở <b>Wednesford</b>… đánh vần W-E-D-N-E-S-F-O-R-D.',
+        pmap:[{q:'Thursday meal location', p:'She lives in Wednesford (spelled out)', s:'Spelling'}],
+        vi:'Bữa thứ Năm ở nhà dì, tại <b>Wednesford</b> — được đánh vần rõ trong băng.'},
+      {id:3, turn:7, prompt:'Friday — time they sit down to eat: ___.', answer:['7.00','7','seven','7pm','7 pm'], type:'blank',
+        quote:'We always sit down to eat at <mark>7.00</mark>',
+        quoteVi:'Chúng tôi luôn ngồi ăn lúc <b>7.00</b>.',
+        pmap:[{q:'Friday time of meal', p:'sit down to eat at 7.00', s:'Direct'}],
+        vi:'Bẫy: gặp nhau lúc 6.00 ở juice bar, nhưng "sit down to eat" (giờ ăn) = <b>7.00</b>.'},
+      {id:4, turn:9, prompt:'Friday — location of the meal: ___.', answer:['covered market','the covered market'], type:'blank',
+        quote:'The restaurant we go to is round the corner in the <mark>covered market</mark>',
+        quoteVi:'Nhà hàng nằm ngay góc phố trong <b>chợ có mái che</b>.',
+        pmap:[{q:'Friday location of meal', p:'in the covered market', s:'Direct'}],
+        vi:'Bẫy: juice bar ở Central Square; nhưng nơi ĂN (restaurant) là <b>covered market</b>.'},
+      {id:5, turn:11, prompt:'Saturday — activity: ___.', answer:['Coffee Club','coffee club'], type:'blank',
+        quote:'the only thing we do is meet at midday for what we <mark>call Coffee Club</mark>',
+        quoteVi:'điều duy nhất làm thứ Bảy là gặp nhau buổi trưa cho cái gọi là <b>Coffee Club</b>.',
+        pmap:[{q:'Saturday activity', p:'meet at midday… Coffee Club', s:'Naming'}],
+        vi:'"12.00" ↔ <span class="a">midday</span>; hoạt động thứ Bảy = <b>Coffee Club</b>.'},
+      {id:6, turn:13, prompt:'Cost of membership: ___.', answer:['free','nothing'], type:'blank',
+        quote:"it's actually <mark>free</mark> to be a member",
+        quoteVi:'thực ra làm thành viên là <b>miễn phí</b>.',
+        pmap:[{q:'cost of membership', p:"it's actually free", s:'Paraphrase'}],
+        vi:'Bẫy: từng nghĩ thu £5/tuần và £40, nhưng chốt lại phí thành viên = <b>free</b>.'},
+      {id:7, turn:17, prompt:'Average length of restaurant dinner: ___.', answer:['2 hours','two hours','2hrs'], type:'blank',
+        quote:"We're usually in a restaurant for <mark>two hours</mark> having dinner",
+        quoteVi:'Chúng tôi thường ở nhà hàng khoảng <b>hai tiếng</b> để ăn tối.',
+        pmap:[{q:'average length of dinner', p:'in a restaurant for two hours', s:'Direct'}],
+        vi:'Bẫy: cả buổi tối ~3 tiếng, nhưng riêng bữa tối = <b>two hours</b>.'},
+      {id:8, turn:19, prompt:'Leave the waiters an extra: ___.', answer:['10%','10 %','ten percent'], type:'blank',
+        quote:'We always try to make sure we give our waiters <mark>10%</mark>',
+        quoteVi:'Chúng tôi luôn cố gắng để lại cho phục vụ <b>10%</b>.',
+        pmap:[{q:'leave the waiters an extra', p:'give our waiters 10%', s:'Synonym'}],
+        vi:'Bẫy: người ta thường tip 12–15%, nhưng nhóm này để lại <b>10%</b>.'},
+      {id:9, turn:21, prompt:'To book a place, best to send Catherine: ___.', answer:['(an) email','email','an email'], type:'blank',
+        quote:'The most reliable way to contact me is to send an <mark>email</mark>',
+        quoteVi:'Cách liên lạc đáng tin cậy nhất là gửi <b>email</b>.',
+        pmap:[{q:'best to send Catherine ___', p:'the most reliable way… send an email', s:'Paraphrase'}],
+        vi:'Bẫy: gọi điện (không nghe máy) và text (dễ quên) đều bị loại → <b>email</b>.'},
+      {id:10, turn:23, prompt:'Rule — never talk about: ___.', answer:['celebrity chefs','celebrity chef'], type:'blank',
+        quote:'try to avoid talking about <mark>celebrity chefs</mark>',
+        quoteVi:'cố tránh nói về <b>các đầu bếp nổi tiếng</b>.',
+        pmap:[{q:'never talk about', p:'avoid talking about celebrity chefs', s:'Synonym'}],
+        vi:'"never talk about" ↔ <span class="a">avoid talking about</span> =&gt; <b>celebrity chefs</b>.'},
+    ],
+    transcript:[
+      {sp:'Claude', en:"Hello, is that the Healthy Eating Society?", vi:"Xin chào, có phải Hội Ăn uống Lành mạnh không ạ?"},
+      {sp:'Catherine', en:"Yes, it is. Catherine speaking. How can I help?", vi:"Đúng vậy. Catherine nghe đây. Tôi giúp gì được?"},
+      {sp:'Claude', en:"I got one of your leaflets and I'm interested in joining. I know you go out for dinner twice a week, but what else do you do?", vi:"Tôi có tờ rơi của hội và muốn tham gia. Tôi biết các bạn đi ăn tối hai lần một tuần, còn làm gì khác nữa?"},
+      {sp:'Catherine', en:"Well, we don't do anything on Sundays, Mondays, or Tuesdays, but every Wednesday is our first restaurant visit. It's not always the same place — sometimes The Red Tomato, other times Herbs and Flowers — but <span class=\"ev\">it's always somewhere that serves vegetarian food</span>. We meet at half past seven on the High Street.", vi:"Chủ nhật, thứ Hai, thứ Ba thì không có gì, nhưng thứ Tư nào cũng là buổi tới nhà hàng đầu tuần. Không cố định một chỗ — khi thì The Red Tomato, khi thì Herbs and Flowers — nhưng luôn là nơi phục vụ đồ chay. Gặp nhau lúc 7 rưỡi ở High Street."},
+      {sp:'Claude', en:"Sounds good. What about Thursdays?", vi:"Nghe hay đấy. Còn thứ Năm?"},
+      {sp:'Catherine', en:"On Thursdays we usually go to my aunt's house. She lends us her kitchen and we all prepare a meal together — a big curry or something. There's a limit of twelve people, so put your name down. We get there for eight o'clock. <span class=\"ev\">She lives in Wednesford</span>, so you'll need money for the bus fare.", vi:"Thứ Năm bọn tôi tới nhà dì. Dì cho mượn bếp và cả nhóm cùng nấu — một nồi cà ri to chẳng hạn. Giới hạn 12 người nên phải đăng ký. Tới đó lúc 8 giờ. Dì sống ở Wednesford nên cần tiền vé xe buýt."},
+      {sp:'Claude', en:"Wednesford? That's funny — like 'When's the food?'", vi:"Wednesford à? Buồn cười thật — nghe như 'When's the food?'"},
+      {sp:'Catherine', en:"Ha! No, it's spelt <span class=\"ev\">W-E-D-N-E-S-F-O-R-D</span>. A village a few miles out of town. Anyway, Friday is our other restaurant evening — not vegetarian this time. We usually meet around six o'clock in a juice bar, and once everyone's arrived we head to a restaurant that serves European food. <span class=\"ev\">We always sit down to eat at 7.00.</span>", vi:"Ha! Không, đánh vần là W-E-D-N-E-S-F-O-R-D. Một ngôi làng cách thị trấn vài dặm. Thứ Sáu là buổi nhà hàng còn lại — lần này không phải đồ chay. Bọn tôi thường gặp lúc 6 giờ ở quầy nước ép, khi mọi người đến đủ thì đi tới nhà hàng đồ Âu. Luôn ngồi vào ăn lúc 7.00."},
+      {sp:'Claude', en:"And that's in town?", vi:"Chỗ đó ở trung tâm à?"},
+      {sp:'Catherine', en:"Right in the centre — get the bus to Central Square, where the juice bar is, next to the little theatre. <span class=\"ev\">The restaurant we go to is round the corner in the covered market</span>, opposite the cinema.", vi:"Ngay trung tâm — bắt xe buýt tới Central Square, nơi có quầy nước ép, cạnh nhà hát nhỏ. Nhà hàng thì ở ngay góc phố trong chợ có mái che, đối diện rạp chiếu phim."},
+      {sp:'Claude', en:"Do you do anything over the weekend?", vi:"Cuối tuần các bạn có làm gì không?"},
+      {sp:'Catherine', en:"Not a lot. It gets busy in town on a Saturday night, so <span class=\"ev\">the only thing we do is meet at midday</span> for what we call Coffee Club, just in the canteen in the Students' Union. Good pastries.", vi:"Không nhiều. Thị trấn đông vào tối thứ Bảy, nên điều duy nhất bọn tôi làm là gặp nhau buổi trưa cho cái gọi là Coffee Club, ngay ở căng-tin của Hội Sinh viên. Bánh ngọt ngon lắm."},
+      {sp:'Claude', en:"How much does it cost to join?", vi:"Tham gia tốn bao nhiêu?"},
+      {sp:'Catherine', en:"It depends. Going to everything every week can cost around £40 or more. I thought about charging £5 per week as a membership fee, but it takes so much time to collect that it's not worth it. So <span class=\"ev\">it's actually free to be a member</span>.", vi:"Còn tùy. Đi hết mọi hoạt động mỗi tuần có thể tốn khoảng £40 hoặc hơn. Tôi từng định thu £5/tuần làm phí thành viên, nhưng thu mất nhiều thời gian quá nên không bõ. Vậy nên làm thành viên thực ra là miễn phí."},
+      {sp:'Claude', en:"£40 is a bit above my budget.", vi:"£40 hơi quá ngân sách của tôi."},
+      {sp:'Catherine', en:"Don't worry — you don't have to come to everything, or every week. It's up to you.", vi:"Đừng lo — bạn không phải đi hết, cũng không phải tuần nào cũng đi. Tùy bạn thôi."},
+      {sp:'Claude', en:"How long do you usually take to have dinner?", vi:"Bữa tối thường kéo dài bao lâu?"},
+      {sp:'Catherine', en:"<span class=\"ev\">We're usually in a restaurant for two hours having dinner</span>, so the whole evening lasts about three hours if you include the drink in the juice bar beforehand.", vi:"Bọn tôi thường ở nhà hàng khoảng hai tiếng để ăn tối, nên cả buổi tối kéo dài chừng ba tiếng nếu tính cả đồ uống ở quầy nước ép trước đó."},
+      {sp:'Claude', en:"What about the service charge? Do people here usually give extra for the waiters?", vi:"Còn phí phục vụ thì sao? Ở đây mọi người có hay boa thêm cho phục vụ không?"},
+      {sp:'Catherine', en:"Generally people leave a tip of about 12–15% of the bill, or nothing if service was bad. <span class=\"ev\">We always try to make sure we give our waiters 10%</span>. We'd like to give 15 or 20%, but we're only students.", vi:"Thường mọi người boa khoảng 12–15% hóa đơn, hoặc không gì nếu phục vụ kém. Bọn tôi luôn cố để lại cho phục vụ 10%. Muốn cho 15–20% nhưng chỉ là sinh viên thôi."},
+      {sp:'Claude', en:"How do I book a place? Shall I call you?", vi:"Tôi đặt chỗ thế nào? Gọi điện cho bạn nhé?"},
+      {sp:'Catherine', en:"No, I don't always answer my phone. Some members text me, which is fine, but I get so many I might forget yours. <span class=\"ev\">The most reliable way to contact me is to send an email.</span>", vi:"Không, tôi không phải lúc nào cũng nghe máy. Vài thành viên nhắn tin, cũng được, nhưng tôi nhận nhiều quá nên có thể quên. Cách đáng tin cậy nhất là gửi email."},
+      {sp:'Claude', en:"Anything else I need to know?", vi:"Còn gì tôi cần biết nữa không?"},
+      {sp:'Catherine', en:"Oh, one more thing — really important. A lot of people have strong opinions about the best restaurant, the best national dish, which country has the best cooks. That's fine, but if you want to fit in, <span class=\"ev\">try to avoid talking about celebrity chefs</span>. That's when the arguments start!", vi:"À, một điều nữa — rất quan trọng. Nhiều người có quan điểm gay gắt về nhà hàng ngon nhất, món quốc dân ngon nhất, nước nào có đầu bếp giỏi nhất. Chuyện đó ổn, nhưng muốn hòa nhập thì cố tránh nói về các đầu bếp nổi tiếng. Cãi nhau bắt đầu từ đó đấy!"},
+    ]
+  },
+  {
+    id:'p3', title:'Practice 3 — How a newspaper is put together', meta:'Flow-chart completion · Mindset 3 · Unit 7 · P.153 · Audio 62 · Choose SIX answers A–H',
+    instruction:'Complete the flow-chart below. Choose <b>SIX</b> answers from the list (A–H) and write the correct letter next to Questions 6–10.',
+    optionList:['A. plate','B. colour','C. journalist','D. size','E. news gathering','F. prototype','G. layout','H. printing press'],
+    body:`<div class="bt">How a newspaper is put together</div>
+      <div class="fc-list"><span class="fl-lbl">List — choose SIX (A–H)</span>
+        <ul>
+          <li><b>A.</b> plate</li><li><b>B.</b> colour</li>
+          <li><b>C.</b> journalist</li><li><b>D.</b> size</li>
+          <li><b>E.</b> news gathering</li><li><b>F.</b> prototype</li>
+          <li><b>G.</b> layout</li><li><b>H.</b> printing press</li>
+        </ul>
+      </div>
+      <div class="fc-step">Journalists collect &amp; write stories; ads positioned — the {{6}} stage.</div>
+      <div class="fc-arrow">↓</div>
+      <div class="fc-step">Editing: each editor uses a contrasting {{7}} to mark their changes.</div>
+      <div class="fc-arrow">↓</div>
+      <div class="fc-step">Pre-press (layout): a {{8}} of each page is made.</div>
+      <div class="fc-arrow">↓</div>
+      <div class="fc-step">Press stage: stories &amp; adverts registered on a metal {{9}}.</div>
+      <div class="fc-arrow">↓</div>
+      <div class="fc-step">Impression: plates hung on the {{10}}; final copies printed.</div>`,
+    questions:[
+      {id:6, turn:0, prompt:'Journalists collect & write stories; ads positioned — the ___ stage.', answer:['E'], type:'pick', choices:['A','B','C','D','E','F','G','H'],
+        quote:'This is known as the <mark>news gathering</mark> stage',
+        quoteVi:'Giai đoạn này gọi là <b>news gathering</b> (thu thập tin tức).',
+        pmap:[{q:'collecting & writing stories + positioning ads', p:'the news gathering stage', s:'Naming'}],
+        vi:'Nhà báo thu thập &amp; viết tin, marketing đặt quảng cáo → gọi là <b>E. news gathering</b>.'},
+      {id:7, turn:1, prompt:'Editing: each editor uses a contrasting ___ to mark changes.', answer:['B'], type:'pick', choices:['A','B','C','D','E','F','G','H'],
+        quote:'each editor needs to use a <mark>contrasting colour</mark> to edit',
+        quoteVi:'mỗi biên tập viên dùng một <b>màu</b> tương phản để sửa.',
+        pmap:[{q:'editors mark their own changes with different ___', p:'use a contrasting colour', s:'Direct'}],
+        vi:'Ví dụ: sub-editor dùng đỏ, chief sub dùng xanh dương, editor dùng xanh lá → phân biệt bằng <b>B. colour</b>.'},
+      {id:8, turn:2, prompt:'Pre-press (layout): a ___ of each page is made.', answer:['F'], type:'pick', choices:['A','B','C','D','E','F','G','H'],
+        quote:'A <mark>prototype</mark> — or first version — of each page is made',
+        quoteVi:'Một <b>prototype</b> — bản đầu tiên — của mỗi trang được tạo ra.',
+        pmap:[{q:'after layout, a ___ is made', p:'a prototype — or first version — is made', s:'Direct'}],
+        vi:'Sau khi dàn trang (layout), tạo ra <b>F. prototype</b> (mẫu / bản đầu tiên).'},
+      {id:9, turn:3, prompt:'Press stage: stories & adverts registered on a metal ___.', answer:['A'], type:'pick', choices:['A','B','C','D','E','F','G','H'],
+        quote:'registered on a <mark>plate</mark> — an iron sheet in the size and shape of the newspaper',
+        quoteVi:'được ghi lên một <b>plate</b> — tấm sắt có kích thước và hình dạng của tờ báo.',
+        pmap:[{q:'pages transferred to a metal ___', p:'a plate — an iron sheet', s:'Synonym'}],
+        vi:'"metal" ↔ <span class="a">iron sheet</span> → tấm kim loại là <b>A. plate</b>.'},
+      {id:10, turn:4, prompt:'Impression: plates hung on the ___; final copies printed.', answer:['H'], type:'pick', choices:['A','B','C','D','E','F','G','H'],
+        quote:'The plates are hung on the <mark>printing press</mark>, and the final copies are printed',
+        quoteVi:'Các bản plate được treo lên <b>printing press</b>, rồi bản in cuối cùng được in ra.',
+        pmap:[{q:'plates put into ___; newspaper printed', p:'hung on the printing press', s:'Direct'}],
+        vi:'Bản plate được đưa lên máy in → <b>H. printing press</b>.'},
+    ],
+    transcript:[
+      {sp:'Lecturer', en:"So, now to the second part of my talk — the process of putting together an edition of a printed newspaper. The first stage is a continuous process in which journalists are collecting and writing up stories, and the marketing people are positioning the advertisements. <span class=\"ev\">This is known as the news gathering stage.</span>", vi:"Giờ sang phần hai — quy trình làm một số báo in. Giai đoạn đầu là một quá trình liên tục: nhà báo thu thập và viết tin, còn bộ phận marketing sắp đặt quảng cáo. Giai đoạn này gọi là news gathering (thu thập tin tức)."},
+      {sp:'Lecturer', en:"As soon as an article is finished, it's passed to the second stage — editing. Both content and language have to be edited. Facts are checked; language is changed to fit the newspaper's style. There may be several editors, depending on the size of the newspaper, and <span class=\"ev\">each editor needs to use a contrasting colour</span> to edit so it's easy to see who made changes. For example, sub-editors use red, the chief sub-editor uses blue, and the editor uses green.", vi:"Ngay khi một bài xong, nó chuyển sang giai đoạn hai — biên tập. Cả nội dung lẫn ngôn ngữ đều phải sửa. Kiểm tra dữ kiện; chỉnh ngôn ngữ cho hợp phong cách báo. Có thể nhiều biên tập viên, tùy quy mô báo, và mỗi người dùng một màu tương phản để sửa cho dễ biết ai chỉnh gì. Ví dụ sub-editor dùng đỏ, chief sub dùng xanh dương, editor dùng xanh lá."},
+      {sp:'Lecturer', en:"Once editing is finished, we move to pre-press, concerned with layout. Each page is laid out with stories, pictures and adverts. <span class=\"ev\">A prototype — or first version — of each page is made.</span> Nowadays these are transformed into digital form by graphic designers.", vi:"Xong biên tập thì tới pre-press, lo phần dàn trang (layout). Mỗi trang được bố trí với tin, ảnh và quảng cáo. Một prototype — bản đầu tiên — của mỗi trang được tạo ra. Ngày nay chúng được chuyển sang dạng số bởi các nhà thiết kế đồ họa."},
+      {sp:'Lecturer', en:"The pre-press stage is followed by the press or lithographic stage. Traditionally, the stories and adverts are registered on a <span class=\"ev\">plate — an iron sheet in the size and shape of the newspaper</span>.", vi:"Sau pre-press là giai đoạn in (lithographic). Theo cách truyền thống, tin và quảng cáo được ghi lên một plate — tấm sắt có kích thước và hình dạng của tờ báo."},
+      {sp:'Lecturer', en:"Next comes the impression stage. <span class=\"ev\">The plates are hung on the printing press</span>, and the final copies are printed out. For national newspapers this can be thousands of copies that need collecting and ordering before the final stage — circulation, when newspapers are distributed across the country. The process typically takes about 12 hours — a fast-moving business.", vi:"Tiếp theo là giai đoạn impression. Các plate được treo lên máy in, và bản in cuối cùng được in ra. Với báo quốc gia có thể là hàng nghìn bản cần thu gom và sắp thứ tự trước giai đoạn cuối — phát hành, khi báo được đưa đi khắp cả nước. Toàn bộ quy trình thường mất khoảng 12 tiếng — một ngành rất nhanh."},
+    ]
+  },
+];
+
+/* ---------- QUIZ (grounded in the 3 transcripts) ---------- */
+const QUIZ_A = [
+  {def:'To bring a plant or animal into a new place, often by accident.', ans:'introduce', opts:['introduce','remove','protect','export']},
+  {def:'To produce young; to reproduce.', ans:'breed', opts:['breed','feed','hunt','sleep']},
+  {def:'Wanting more food or things than you need.', ans:'greedy', opts:['greedy','generous','shy','calm']},
+  {def:'An illness that can spread and cause harm.', ans:'disease', opts:['disease','recipe','habit','budget']},
+  {def:'Belonging naturally to a particular place.', ans:'native', opts:['native','foreign','artificial','modern']},
+  {def:'Wide from side to side.', ans:'broad', opts:['broad','narrow','tall','deep']},
+  {def:'Relating to money.', ans:'financial', opts:['financial','musical','physical','digital']},
+  {def:'The front part of the neck where you swallow.', ans:'throat', opts:['throat','elbow','ankle','wrist']},
+  {def:'Eating no meat or fish.', ans:'vegetarian', opts:['vegetarian','spicy','frozen','organic']},
+  {def:'Costing no money at all.', ans:'free', opts:['free','cheap','expensive','refundable']},
+  {def:'Extra money given to a waiter for good service.', ans:'tip', opts:['tip','fine','bill','fee']},
+  {def:'A regular payment to belong to a club.', ans:'membership fee', opts:['membership fee','deposit','salary','discount']},
+  {def:'That you can depend on; trustworthy.', ans:'reliable', opts:['reliable','random','careless','temporary']},
+  {def:'To stay away from something on purpose.', ans:'avoid', opts:['avoid','seek','repeat','enjoy']},
+  {def:'A famous cook who appears on TV.', ans:'celebrity chef', opts:['celebrity chef','head waiter','food critic','farmer']},
+  {def:'To gather news and information.', ans:'news gathering', opts:['news gathering','proofreading','advertising','printing']},
+  {def:'A first model or version made to test a design.', ans:'prototype', opts:['prototype','summary','receipt','sketch']},
+  {def:'The way text and images are arranged on a page.', ans:'layout', opts:['layout','headline','caption','margin']},
+  {def:'A machine that prints newspapers.', ans:'printing press', opts:['printing press','vending machine','photocopier','scanner']},
+  {def:'To check and correct a piece of writing.', ans:'edit', opts:['edit','translate','delete','publish']},
+];
+
+const QUIZ_B = [
+  {q:'introduced into the UK', ans:'brought to Britain', opts:['brought to Britain','sent to America','removed from Britain','sold in the UK']},
+  {q:'at the beginning of the century', ans:'in the early 19th century', opts:['in the early 19th century','at the end of the year','in the middle ages','a century ago']},
+  {q:'has a flat ___ (body part)', ans:'its head is broad and flat', opts:['its head is broad and flat','its legs are long','its eyes are large','its body is green']},
+  {q:'total spent on research', ans:'£100,000 has been spent monitoring', opts:['£100,000 has been spent monitoring','earned from tickets','saved in the bank','paid to farmers']},
+  {q:'animals including ___', ans:'birds and snakes', opts:['birds and snakes','cats and dogs','plants and trees','fish only']},
+  {q:'serves ___ food (Wednesday)', ans:'somewhere that serves vegetarian food', opts:['somewhere that serves vegetarian food','a European restaurant','a fast-food place','a juice bar']},
+  {q:'time of the Friday meal', ans:'we always sit down to eat at 7.00', opts:['we always sit down to eat at 7.00','we meet at six in a juice bar','we finish at nine','breakfast at eight']},
+  {q:'location of the Friday meal', ans:'round the corner in the covered market', opts:['round the corner in the covered market','next to the little theatre','on the High Street','at my aunt\u2019s house']},
+  {q:'cost of membership', ans:"it's actually free to be a member", opts:["it's actually free to be a member",'about £40 a week','£5 per week','15% of the bill']},
+  {q:'average length of dinner', ans:'in a restaurant for two hours', opts:['in a restaurant for two hours','three hours in total','all evening','about ninety minutes']},
+  {q:'leave the waiters an extra', ans:'we give our waiters 10%', opts:['we give our waiters 10%','a tip of 12\u201315%','nothing at all','a fixed £5']},
+  {q:'best way to book a place', ans:'send an email', opts:['send an email','call my phone','send a text','come in person']},
+  {q:'never talk about', ans:'avoid talking about celebrity chefs', opts:['avoid talking about celebrity chefs','the best restaurant','national dishes','the bus fare']},
+  {q:'Thursday meal location', ans:'she lives in Wednesford', opts:['she lives in Wednesford','on the High Street','in the covered market','at Central Square']},
+  {q:'Saturday activity', ans:'meet at midday for Coffee Club', opts:['meet at midday for Coffee Club','prepare a meal together','European restaurant','a juice bar']},
+  {q:'collecting and writing stories', ans:'the news gathering stage', opts:['the news gathering stage','the editing stage','the pre-press stage','the impression stage']},
+  {q:'editors mark changes with different ___', ans:'use a contrasting colour', opts:['use a contrasting colour','use a bigger size','use a new plate','use a prototype']},
+  {q:'after layout a ___ is made', ans:'a prototype, or first version, is made', opts:['a prototype, or first version, is made','a plate is printed','the colour is chosen','the press is started']},
+  {q:'pages transferred to a metal ___', ans:'a plate — an iron sheet', opts:['a plate — an iron sheet','a printing press','a prototype page','a colour proof']},
+  {q:'plates are put into the ___', ans:'hung on the printing press', opts:['hung on the printing press','placed in the market','sent to circulation','stored in the office']},
+];
+
+/* ================= RENDER ================= */
+document.getElementById('tabbar').addEventListener('click',function(e){
+  const b=e.target.closest('.tab-btn'); if(!b)return;
+  document.querySelectorAll('.tab-btn').forEach(function(x){x.classList.remove('active');});
+  document.querySelectorAll('.tab-pane').forEach(function(x){x.classList.remove('active');});
+  b.classList.add('active');
+  document.getElementById('tab-'+b.dataset.tab).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+/* ----- Practice ----- */
+(function(){
+  const root=document.getElementById('practice-root');
+  PRACTICE.forEach(function(P){
+    // build body with tokens replaced by inputs/selects
+    let body=P.body;
+    P.questions.forEach(function(q){
+      const token='{{'+q.id+'}}';
+      let el;
+      if(q.type==='pick'){
+        let o='<option value=""></option>';
+        q.choices.forEach(function(c){o+='<option value="'+c+'">'+c+'</option>';});
+        el='<span class="blank-num">'+q.id+'</span><select class="pick-select" data-p="'+P.id+'" data-q="'+q.id+'">'+o+'</select>';
+      }else{
+        el='<span class="blank-num">'+q.id+'</span><input class="blank-input" data-p="'+P.id+'" data-q="'+q.id+'" autocomplete="off" spellcheck="false">';
+      }
+      body=body.split(token).join(el);
+    });
+    let html='<div class="p-block" data-p="'+P.id+'">';
+    html+='<h3>'+P.title+'</h3><div class="p-meta">'+P.meta+'</div>';
+    html+='<div class="instruction">'+P.instruction+'</div>';
+    html+='<div class="body-block">'+body+'</div>';
+    // per-question blocks: prompt + plain quote box (answer hidden) + reveal button + hidden answer/paraphrase
+    html+='<div class="q-list">';
+    P.questions.forEach(function(q){
+      const turn=P.transcript[q.turn];
+      const fullEn=turn.en;                                   // contains <span class="ev">…</span>
+      const plainEn=fullEn.replace(/<span class="ev">/g,'').replace(/<\/span>/g,'');
+      const ansTxt=Array.isArray(q.answer)?q.answer[0]:q.answer;
+      html+='<div class="q-item" data-p="'+P.id+'" data-q="'+q.id+'">';
+      html+='<div class="q-item-head"><span class="qn">'+q.id+'</span><span class="q-item-prompt">'+q.prompt+'</span></div>';
+      // quote box = full transcript turn; plain by default, highlighted (.ev) after reveal
+      html+='<div class="quote-box"><span class="ql">📍 Transcript · '+turn.sp+'</span>'
+          +'<span class="q-plain ts-en">'+plainEn+'</span>'
+          +'<span class="q-marked ts-en" style="display:none;">'+fullEn+'</span>'
+          +'<div class="ts-vi" style="margin-top:6px;">'+turn.vi+'</div></div>';
+      html+='<div class="reveal-bar"><button class="reveal-btn" data-reveal-q="'+P.id+'-'+q.id+'">🔍 Hiện keyword &amp; paraphrase</button></div>';
+      html+='<div class="reveal-panel" id="rev-'+P.id+'-'+q.id+'">';
+      html+='<div class="rev-q-head"><span class="ka-lbl">✅ Key Answer:</span> <span class="ka">'+ansTxt+'</span></div>';
+      html+='<table class="pmap"><thead><tr><th>Question</th><th></th><th>Transcript</th><th>Skill</th></tr></thead><tbody>';
+      q.pmap.forEach(function(p){html+='<tr><td class="pm-q">'+p.q+'</td><td class="pm-arrow">→</td><td class="pm-p">'+p.p+'</td><td class="pm-s">'+p.s+'</td></tr>';});
+      html+='</tbody></table>';
+      html+='<div class="rev-vi">'+q.vi+'</div>';
+      html+='</div></div>';
+    });
+    html+='</div></div>';
+    root.insertAdjacentHTML('beforeend',html);
+  });
+
+  const norm=function(s){return (s||'').toString().trim().toLowerCase().replace(/[.,;:!?]+$/,'');};
+  root.addEventListener('click',function(e){
+    const rb=e.target.closest('.reveal-btn'); if(!rb)return;
+    const ref=rb.dataset.revealQ;                 // "p1-2"
+    const dash=ref.lastIndexOf('-');
+    const pid=ref.slice(0,dash); const qid=ref.slice(dash+1);
+    const item=rb.closest('.q-item');
+    const panel=document.getElementById('rev-'+ref);
+    const P=PRACTICE.find(function(x){return x.id===pid;});
+    const q=P.questions.find(function(x){return String(x.id)===String(qid);});
+    panel.classList.toggle('open');
+    if(panel.classList.contains('open')){
+      rb.innerHTML='🔽 Ẩn keyword &amp; paraphrase';
+      // highlight paraphrase in the quote box
+      item.querySelector('.q-plain').style.display='none';
+      item.querySelector('.q-marked').style.display='';
+      // grade the matching input/select in the body
+      const acc=(Array.isArray(q.answer)?q.answer:[q.answer]).map(norm);
+      const field=document.querySelector('.body-block [data-p="'+pid+'"][data-q="'+qid+'"]');
+      if(field){
+        field.disabled=true;
+        const val=norm(field.value);
+        field.classList.remove('correct','incorrect');
+        if(val && acc.indexOf(val)>-1) field.classList.add('correct'); else field.classList.add('incorrect');
+      }
+    }else{
+      rb.innerHTML='🔍 Hiện keyword &amp; paraphrase';
+      item.querySelector('.q-plain').style.display='';
+      item.querySelector('.q-marked').style.display='none';
+      const field=document.querySelector('.body-block [data-p="'+pid+'"][data-q="'+qid+'"]');
+      if(field){field.disabled=false;field.classList.remove('correct','incorrect');}
+    }
+  });
+})();
+
+/* ----- Transcript (all 3 practices) ----- */
+(function(){
+  const t=document.getElementById('transcript'); let html='';
+  PRACTICE.forEach(function(P){
+    html+='<div style="font-size:13px;font-weight:800;color:var(--forest);background:var(--sage);border-radius:var(--radius-sm);padding:8px 14px;margin:16px 0 10px;">'+P.title+'</div>';
+    P.transcript.forEach(function(turn){
+      html+='<div class="ts-turn"><div class="ts-speaker">'+turn.sp+'</div><div class="ts-en">'+turn.en+'</div><div class="ts-vi">'+turn.vi+'</div></div>';
+    });
+  });
+  t.innerHTML=html;
+  document.getElementById('scriptBtn').addEventListener('click',function(){
+    t.classList.toggle('open');
+    this.textContent=t.classList.contains('open')?'📜 Ẩn Full Transcript':'📜 Hiện Full Transcript (EN + VI)';
+  });
+})();
+
+/* ----- Quiz ----- */
+const QUIZ_STATE={picks:{}, submitted:false};
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const tmp=a[i];a[i]=a[j];a[j]=tmp;}return a;}
+function qzCard(part,i,prompt,opts,ans){
+  const key=part+i; const num=(part==='A'?i+1:i+21);
+  let h='<div class="qz-card" data-key="'+key+'" data-ans="'+encodeURIComponent(ans)+'">';
+  h+='<div class="qz-q"><span class="qz-n">'+num+'</span><span class="prompt">'+prompt+'</span></div>';
+  h+='<div class="qz-opts">';
+  const letters=['A','B','C','D'];
+  opts.forEach(function(op,k){h+='<div class="qz-opt" data-val="'+encodeURIComponent(op)+'"><span class="l">'+letters[k]+'</span><span>'+op+'</span></div>';});
+  h+='</div><div class="qz-note"><span class="lbl">Answer</span><b>'+ans+'</b></div></div>';
+  return h;
+}
+(function(){
+  const root=document.getElementById('quiz-root'); let html='';
+  html+='<div class="quiz-section-head"><span class="tag">PART A</span> Read the English explanation and choose the right word. <span style="font-weight:600;color:var(--text-soft);font-size:12px;">— No Vietnamese here. Think in English.</span></div>';
+  QUIZ_A.forEach(function(it,i){html+=qzCard('A',i,it.def,shuffle(it.opts),it.ans);});
+  html+='<div class="quiz-section-head"><span class="tag">PART B</span> Match the question phrase to its transcript paraphrase.</div>';
+  QUIZ_B.forEach(function(it,i){html+=qzCard('B',i,'Which transcript phrase paraphrases: <em>'+it.q+'</em>?',shuffle(it.opts),it.ans);});
+  root.innerHTML=html;
+  root.addEventListener('click',function(e){
+    const o=e.target.closest('.qz-opt'); if(!o)return;
+    if(QUIZ_STATE.submitted)return;
+    const card=o.closest('.qz-card'); const key=card.dataset.key;
+    card.querySelectorAll('.qz-opt').forEach(function(x){x.classList.remove('selected');});
+    o.classList.add('selected');
+    QUIZ_STATE.picks[key]=decodeURIComponent(o.dataset.val);
+  });
+})();
+
+document.getElementById('quizSubmit').addEventListener('click',function(){
+  if(QUIZ_STATE.submitted)return;
+  const cards=document.querySelectorAll('#quiz-root .qz-card');
+  const total=cards.length; const answered=Object.keys(QUIZ_STATE.picks).length;
+  const notice=document.getElementById('quizNotice');
+  if(answered<total && this.dataset.warned!=='1'){
+    notice.textContent='⚠️ Bạn còn '+(total-answered)+' câu chưa trả lời. Bấm Submit lần nữa để nộp luôn, hoặc làm nốt.';
+    notice.classList.add('show'); this.dataset.warned='1';
+    window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'}); return;
+  }
+  QUIZ_STATE.submitted=true; let score=0;
+  cards.forEach(function(card){
+    const key=card.dataset.key; const ans=decodeURIComponent(card.dataset.ans); const pick=QUIZ_STATE.picks[key];
+    card.querySelectorAll('.qz-opt').forEach(function(o){
+      o.classList.add('locked');
+      const val=decodeURIComponent(o.dataset.val);
+      if(val===ans) o.classList.add('correct');
+      else if(o.classList.contains('selected')) o.classList.add('incorrect');
+    });
+    card.querySelector('.qz-note').classList.add('show');
+    if(pick===ans) score++;
+  });
+  notice.classList.remove('show');
+  const chip=document.getElementById('quizScore');
+  chip.textContent='Score: '+score+' / '+total+'  ('+Math.round(score/total*100)+'%)';
+  chip.classList.add('show');
+  this.disabled=true; this.textContent='✓ Submitted';
+  document.getElementById('quizReset').style.display='inline-block';
+});
+document.getElementById('quizReset').addEventListener('click',function(){
+  QUIZ_STATE.submitted=false; QUIZ_STATE.picks={};
+  document.querySelectorAll('#quiz-root .qz-opt').forEach(function(o){o.classList.remove('locked','correct','incorrect','selected');});
+  document.querySelectorAll('#quiz-root .qz-note').forEach(function(n){n.classList.remove('show');});
+  const sb=document.getElementById('quizSubmit'); sb.disabled=false; sb.textContent='Submit — Check my 40 answers'; sb.dataset.warned='0';
+  document.getElementById('quizScore').classList.remove('show');
+  this.style.display='none'; document.getElementById('quizNotice').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+</script>
+</body>
+</html>
