@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dạng 1: Form · Note · Table · Flowchart · Summary Completion — IELTS Listening</title>
+<style>
+:root{
+  --forest:#013220; --moss:#006D6F; --teal:#007A74; --mint:#D8BFD8;
+  --sage:#F5F5DC; --sand:#FFFAF0; --shell:#FFF5EE; --white:#FFFAFA;
+  --blue:#2563EB; --blue-light:#EFF6FF; --amber:#D97706; --amber-light:#FFFBEB;
+  --red:#DC2626; --red-light:#FEF2F2; --green-success:#16A34A; --green-light:#F0FDF4;
+  --text-dark:#013220; --text-mid:#006D6F; --text-soft:#5F8A80;
+  --border:#E3DED0;
+  --shadow-sm:0 1px 3px rgba(1,50,32,.08); --shadow-md:0 4px 16px rgba(1,50,32,.12); --shadow-lg:0 8px 32px rgba(1,50,32,.16);
+  --radius:12px; --radius-sm:8px; --radius-lg:20px;
+  font-size:16px;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-dark);line-height:1.6;background:var(--sand);}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+.app-header{background:linear-gradient(135deg,var(--forest),var(--moss),var(--teal));color:#fff;padding:26px 40px 0;position:sticky;top:0;z-index:30;box-shadow:var(--shadow-md);}
+.badge{display:inline-block;background:var(--mint);color:var(--forest);font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:99px;margin-bottom:10px;}
+.app-header h1{margin:0;font-size:26px;font-weight:800;line-height:1.25;}
+.app-header .sub{font-size:13px;opacity:.85;margin-top:6px;margin-bottom:18px;}
+.tabbar{display:flex;gap:4px;flex-wrap:wrap;}
+.tab-btn{background:rgba(255,255,255,.08);border:none;border-bottom:3px solid transparent;color:rgba(255,255,255,.75);
+  padding:12px 22px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;cursor:pointer;font-family:inherit;
+  border-radius:var(--radius-sm) var(--radius-sm) 0 0;transition:all .15s;}
+.tab-btn:hover{color:#fff;background:rgba(255,255,255,.14);}
+.tab-btn.active{color:var(--forest);background:var(--sand);border-bottom-color:var(--mint);}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 40px 80px;}
+.tab-pane{display:none;}
+.tab-pane.active{display:block;animation:fadeIn .3s;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:24px 28px;margin-bottom:20px;}
+.sec-title{font-size:19px;font-weight:800;color:var(--forest);margin:0 0 4px;display:flex;align-items:center;gap:10px;}
+.sec-title .n{width:28px;height:28px;background:var(--forest);color:#fff;border-radius:99px;font-size:14px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;}
+.sub-title{font-size:15px;font-weight:800;color:var(--moss);margin:22px 0 8px;}
+.card p{font-size:14.5px;margin:8px 0;}
+.card ul,.card ol{font-size:14.5px;margin:8px 0;padding-left:22px;}
+.card li{margin:5px 0;}
+.hl{background:var(--sage);color:var(--forest);font-weight:700;padding:1px 5px;border-radius:4px;}
+.vi{font-size:13px;color:var(--text-mid);}
+.callout{border-left:4px solid var(--moss);background:var(--shell);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;margin:12px 0;font-size:14px;}
+.callout.gold{border-color:var(--amber);background:var(--amber-light);}
+.callout.gold b{color:var(--amber);}
+.step-list{counter-reset:st;list-style:none;padding:0;margin:14px 0;}
+.step-list li{position:relative;padding:10px 14px 10px 46px;background:var(--shell);border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:10px;font-size:14px;}
+.step-list li::before{counter-increment:st;content:counter(st);position:absolute;left:12px;top:10px;width:24px;height:24px;background:var(--forest);color:#fff;border-radius:99px;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.mini-table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0;}
+.mini-table th,.mini-table td{border:1px solid var(--border);padding:7px 11px;text-align:left;}
+.mini-table th{background:var(--sage);color:var(--forest);font-weight:800;font-size:12px;}
+.act-box{background:var(--blue-light);border:1px solid #cfe0ff;border-radius:var(--radius-sm);padding:14px 18px;margin:14px 0;font-size:13.5px;}
+.act-box .act-lbl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--blue);display:block;margin-bottom:8px;}
+.act-key{margin-top:8px;font-size:12.5px;color:var(--green-success);font-weight:700;}
+.wl-pill{display:inline-block;background:var(--forest);color:#fff;font-size:11px;font-weight:800;letter-spacing:.3px;padding:3px 11px;border-radius:99px;}
+/* practice */
+.instruction{background:var(--shell);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 16px;margin:18px 0 14px;font-size:13.5px;font-weight:600;color:var(--text-mid);}
+.instruction b{color:var(--forest);}
+.p-block{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:22px 26px;margin-bottom:16px;}
+.p-block h3{margin:0 0 4px;color:var(--forest);font-size:17px;}
+.p-block .p-meta{font-size:12.5px;color:var(--text-soft);margin-bottom:14px;}
+/* body layout: form / note / table / flowchart */
+.body-block{background:var(--sand);border:1px solid var(--border);border-radius:var(--radius-sm);padding:18px 22px;margin:12px 0 4px;font-size:14px;line-height:2.1;}
+.body-block .bt{font-size:15px;font-weight:800;color:var(--forest);text-align:center;margin-bottom:12px;letter-spacing:.3px;}
+.body-block .grp{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:var(--moss);margin:14px 0 4px;}
+.body-block .grp .en{color:var(--text-soft);font-weight:600;text-transform:none;font-size:11.5px;}
+.body-block ul{list-style:none;padding-left:4px;margin:4px 0;}
+.body-block li{margin:6px 0;}
+.body-block table{border-collapse:collapse;width:100%;margin:8px 0;}
+.body-block td,.body-block th{border:1px solid var(--border);padding:8px 12px;text-align:left;font-size:13.5px;background:var(--white);}
+.body-block th{background:var(--sage);color:var(--forest);font-weight:800;}
+.blank-num{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 5px;background:var(--forest);color:#fff;border-radius:99px;font-size:10px;font-weight:800;margin-right:3px;vertical-align:middle;}
+.blank-input{width:140px;border:none;border-bottom:2px solid var(--teal);background:transparent;font-size:14px;font-family:inherit;color:var(--forest);font-weight:700;padding:1px 6px;text-align:center;}
+.blank-input:focus{outline:none;border-bottom-color:var(--moss);background:var(--sage);}
+.blank-input.correct{border-bottom-color:var(--green-success);color:var(--green-success);background:var(--green-light);}
+.blank-input.incorrect{border-bottom-color:var(--red);color:var(--red);background:var(--red-light);}
+.blank-input:disabled{opacity:1;}
+.hint-type{font-size:11px;color:var(--text-soft);font-style:italic;}
+/* per-question blocks (image-style: question + quote box under it) */
+.q-list{margin-top:22px;border-top:2px solid var(--border);padding-top:16px;}
+.q-item{margin-bottom:22px;padding-bottom:20px;border-bottom:1px dashed var(--border);}
+.q-item:last-child{border-bottom:none;margin-bottom:0;}
+.q-item-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
+.q-item-head .qn{flex:0 0 auto;width:26px;height:26px;background:var(--forest);color:#fff;border-radius:99px;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.q-item-prompt{font-size:15px;font-weight:700;color:var(--text-dark);padding-top:2px;}
+.q-item .quote-box{margin:0 0 6px 36px;}
+.q-item .quote-box .q-plain,.q-item .quote-box .q-marked{display:block;font-size:14px;line-height:1.85;color:var(--text-dark);}
+.q-item .reveal-bar{margin:8px 0 0 36px;}
+.q-item .reveal-panel{margin:12px 0 0 36px;border-top:none;padding-top:0;}
+.rev-q-head{margin-bottom:8px;font-size:14px;font-weight:700;}
+.ka-lbl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--green-success);}
+.rev-q-head .ka{background:var(--white);border:2px solid var(--green-success);color:var(--green-success);border-radius:var(--radius-sm);padding:3px 14px;font-size:15px;font-weight:800;margin-left:6px;}
+/* flowchart pick */
+.fc-list{background:var(--white);border:1px dashed var(--teal);border-radius:var(--radius-sm);padding:12px 16px;margin:10px 0;font-size:13px;}
+.fc-list .fl-lbl{font-size:11px;font-weight:800;text-transform:uppercase;color:var(--moss);margin-bottom:6px;display:block;}
+.fc-list ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:4px 18px;}
+.fc-list li{margin:2px 0;}
+.fc-list b{color:var(--forest);}
+.fc-step{display:flex;align-items:center;gap:10px;margin:6px 0;}
+.fc-arrow{text-align:center;color:var(--text-soft);font-size:14px;margin:2px 0;}
+.pick-select{border:2px solid var(--teal);border-radius:var(--radius-sm);background:var(--white);font-family:inherit;font-size:13.5px;font-weight:700;color:var(--forest);padding:5px 8px;}
+.pick-select:focus{outline:2px solid var(--teal);outline-offset:1px;}
+.pick-select.correct{border-color:var(--green-success);background:var(--green-light);color:var(--green-success);}
+.pick-select.incorrect{border-color:var(--red);background:var(--red-light);color:var(--red);}
+/* reveal */
+.reveal-bar{margin:14px 0 2px;}
+.reveal-btn{background:var(--forest);color:#fff;border:none;border-radius:99px;padding:9px 20px;font-size:12.5px;font-weight:800;letter-spacing:.4px;cursor:pointer;font-family:inherit;transition:all .15s;display:inline-flex;align-items:center;gap:7px;}
+.reveal-btn:hover{background:var(--moss);transform:translateY(-1px);}
+.reveal-panel{display:none;margin-top:14px;border-top:2px dashed var(--border);padding-top:14px;animation:fadeIn .3s;}
+.reveal-panel.open{display:block;}
+.rev-q{margin-bottom:16px;}
+.rev-q-head{font-size:13px;font-weight:800;color:var(--forest);display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.rev-q-head .qn{width:22px;height:22px;background:var(--forest);color:#fff;border-radius:99px;font-size:11px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+.rev-q-head .ka{background:var(--white);border:2px solid var(--green-success);color:var(--green-success);border-radius:var(--radius-sm);padding:2px 12px;font-size:13px;}
+.quote-box{background:var(--shell);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:9px 13px;margin:6px 0;font-size:13px;line-height:1.7;}
+.quote-box .ql{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--moss);display:block;margin-bottom:3px;}
+.quote-box mark{background:var(--green-light);color:var(--green-success);font-weight:700;padding:0 3px;border-radius:3px;}
+.pmap{width:100%;border-collapse:separate;border-spacing:4px;font-size:12.5px;margin:6px 0;}
+.pmap th{font-size:9.5px;text-transform:uppercase;color:var(--text-soft);text-align:left;font-weight:800;padding:0 6px;}
+.pm-q{background:var(--blue-light);color:var(--blue);font-weight:700;border-radius:var(--radius-sm);padding:5px 9px;}
+.pm-p{background:var(--green-light);color:var(--green-success);font-weight:700;border-radius:var(--radius-sm);padding:5px 9px;}
+.pm-s{background:var(--sage);color:var(--forest);font-weight:700;border-radius:var(--radius-sm);padding:5px 9px;font-size:10.5px;white-space:nowrap;}
+.pm-arrow{color:var(--text-soft);text-align:center;font-weight:700;}
+.rev-vi{font-size:13px;color:var(--text-mid);line-height:1.8;margin-top:5px;}
+.rev-vi .a{color:var(--forest);font-weight:700;}
+/* transcript */
+.script-toggle{background:var(--forest);color:#fff;border:none;border-radius:99px;padding:10px 22px;font-size:13px;font-weight:800;letter-spacing:.4px;cursor:pointer;font-family:inherit;}
+.script-toggle:hover{background:var(--moss);}
+.transcript{margin-top:18px;display:none;text-align:left;}
+.transcript.open{display:block;animation:fadeIn .3s;}
+.ts-turn{margin-bottom:15px;}
+.ts-speaker{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--moss);margin-bottom:3px;}
+.ts-en{font-size:14px;line-height:1.85;}
+.ts-vi{font-size:13px;color:var(--text-mid);background:var(--white);border-left:3px solid var(--sage);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:6px 12px;margin-top:5px;line-height:1.7;}
+.ev{background:var(--green-light);border-radius:4px;padding:0 3px;box-shadow:inset 0 -2px 0 rgba(22,163,74,.3);}
+/* quiz */
+.quiz-intro{background:var(--shell);border:1px solid var(--border);border-radius:var(--radius);padding:18px 24px;margin-bottom:22px;}
+.quiz-intro h3{margin:0 0 6px;color:var(--forest);font-size:16px;}
+.quiz-intro em{color:var(--moss);font-style:normal;font-weight:700;}
+.quiz-section-head{font-size:15px;font-weight:800;color:var(--forest);background:var(--sage);border-radius:var(--radius-sm);padding:10px 16px;margin:26px 0 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.quiz-section-head .tag{font-size:10px;background:var(--forest);color:#fff;padding:3px 9px;border-radius:99px;letter-spacing:.4px;}
+.qz-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:16px 20px;margin-bottom:12px;}
+.qz-q{font-size:14px;font-weight:600;margin-bottom:12px;display:flex;gap:10px;}
+.qz-q .qz-n{flex:0 0 auto;width:24px;height:24px;background:var(--forest);color:#fff;border-radius:99px;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.qz-q .prompt em{color:var(--moss);font-style:normal;font-weight:700;}
+.qz-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+@media(max-width:640px){.qz-opts{grid-template-columns:1fr;}}
+.qz-opt{border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:9px 13px;font-size:13.5px;cursor:pointer;transition:all .12s;display:flex;align-items:center;gap:9px;}
+.qz-opt:hover{border-color:var(--teal);background:var(--sage);}
+.qz-opt .l{flex:0 0 auto;width:22px;height:22px;border:1.5px solid var(--text-soft);border-radius:99px;font-size:11px;font-weight:800;color:var(--text-soft);display:flex;align-items:center;justify-content:center;}
+.qz-opt.selected{border-color:var(--blue);background:var(--blue-light);}
+.qz-opt.selected .l{border-color:var(--blue);background:var(--blue);color:#fff;}
+.qz-opt.correct{border-color:var(--green-success);background:var(--green-light);}
+.qz-opt.correct .l{border-color:var(--green-success);background:var(--green-success);color:#fff;}
+.qz-opt.incorrect{border-color:var(--red);background:var(--red-light);}
+.qz-opt.incorrect .l{border-color:var(--red);background:var(--red);color:#fff;}
+.qz-opt.locked{pointer-events:none;}
+.qz-note{display:none;margin-top:10px;background:var(--green-light);border-radius:var(--radius-sm);padding:9px 13px;font-size:13px;color:var(--text-dark);}
+.qz-note.show{display:block;}
+.qz-note .lbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--green-success);margin-right:6px;}
+.quiz-bar{position:sticky;bottom:0;background:var(--white);border-top:2px solid var(--border);box-shadow:0 -4px 16px rgba(1,50,32,.08);padding:14px 40px;display:flex;align-items:center;gap:16px;justify-content:center;z-index:20;margin:0 -40px -80px;flex-wrap:wrap;}
+.btn-submit{background:var(--mint);color:var(--forest);border:none;border-radius:99px;padding:12px 34px;font-size:14px;font-weight:800;letter-spacing:.5px;cursor:pointer;font-family:inherit;transition:all .15s;}
+.btn-submit:hover{transform:translateY(-1px);box-shadow:var(--shadow-md);}
+.btn-submit:disabled{opacity:.5;cursor:default;transform:none;box-shadow:none;}
+.btn-ghost{background:transparent;border:1.5px solid var(--border);color:var(--text-mid);border-radius:99px;padding:11px 22px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;}
+.score-chip{font-size:15px;font-weight:800;color:var(--forest);background:var(--sage);border-radius:99px;padding:8px 20px;display:none;}
+.score-chip.show{display:inline-block;}
+.notice{display:none;background:var(--amber-light);color:var(--amber);border:1px solid #FDE68A;border-radius:var(--radius-sm);padding:10px 16px;font-size:13px;font-weight:600;margin-bottom:16px;}
+.notice.show{display:block;}
+</style>
+</head>
+<body>
+<header class="app-header">
+  <span class="badge">IELTS Listening · Dạng 2</span>
+  <h1>Sentence Completion — Hoàn thành câu</h1>
+  <div class="sub">Theory · Guided practice with quote &amp; paraphrase reveal · 40-question paraphrase quiz &nbsp;·&nbsp; 🎧 audio played by teacher</div>
+  <nav class="tabbar" id="tabbar">
+    <button class="tab-btn active" data-tab="theory">📚 Theory</button>
+    <button class="tab-btn" data-tab="practice">✍️ Practice</button>
+    <button class="tab-btn" data-tab="quiz">🎮 Paraphrase Quiz</button>
+  </nav>
+</header>
+<div class="wrap">
+
+<!-- ============ THEORY ============ -->
+<section class="tab-pane active" id="tab-theory">
+  <div class="card">
+    <h2 class="sec-title"><span class="n">1</span> Tổng quan</h2>
+    <p><b>Sentence completion</b> là dạng bài yêu cầu nghe và điền vào chỗ trống ở những <b>câu riêng lẻ</b> (hoặc một đoạn văn cho sẵn), với từ được lấy <b>từ trong đoạn băng</b> sao cho logic và đúng nội dung bài.</p>
+    <ul>
+      <li>Cần <b>xác định loại từ</b> cần điền.</li>
+      <li>Từ điền vào ô trống: <span class="hl">không điền quá số từ cho phép</span>, không tự ý thay đổi từ ngữ.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2 class="sec-title"><span class="n">2</span> Các bước làm bài</h2>
+    <div class="sub-title">Trước khi nghe</div>
+    <ol class="step-list">
+      <li><b>Scan yêu cầu đề</b>, lưu ý giới hạn từ (word limit).</li>
+      <li><b>Lướt nhanh phần chỗ trống</b> cần điền → xác định từ khóa.</li>
+      <li><b>Dự đoán</b>: từ loại (danh/động/tính từ) · đặc điểm (số ít/nhiều) · nội dung (tích cực/tiêu cực; chỉ người/địa điểm/thời gian/số).</li>
+    </ol>
+    <div class="sub-title">Từ để hỏi → thông tin nhắm đến</div>
+    <table class="mini-table">
+      <tr><th>Từ hỏi</th><th>Thông tin</th><th>Nghĩa</th></tr>
+      <tr><td>What / Which</td><td>a thing</td><td>cái gì / cái nào</td></tr>
+      <tr><td>Why</td><td>a reason</td><td>tại sao</td></tr>
+      <tr><td>When</td><td>a time</td><td>khi nào</td></tr>
+      <tr><td>Where</td><td>a place</td><td>ở đâu</td></tr>
+      <tr><td>How</td><td>a way / method</td><td>như thế nào</td></tr>
+      <tr><td>How many</td><td>a number</td><td>bao nhiêu</td></tr>
+    </table>
+    <p class="vi">Khi xác định từ khóa cần chú ý: <b>tên, số, ngày tháng và địa điểm</b>.</p>
+    <div class="sub-title">Trong &amp; sau khi nghe</div>
+    <ol class="step-list" style="counter-reset:st 3;">
+      <li><b>Tập trung nghe từ khóa &amp; từ đồng nghĩa</b> của chúng. Học thêm paraphrase; đọc lại kỹ năng về <b>distractors</b> để tránh thông tin nhiễu; chú ý <b>ending sounds</b>.</li>
+      <li><b>Viết câu trả lời cẩn thận</b>: đúng chính tả · đủ word limit · câu hoàn thiện đúng ngữ pháp.</li>
+    </ol>
+    <div class="callout"><b>⚠️ Từ liên kết tương phản</b> có thể "lật kèo" quyết định của người nói: <span class="hl">but</span>, <span class="hl">however</span>… thường báo hiệu người nói sắp phủ nhận điều vừa nói.</div>
+  </div>
+
+  <div class="card">
+    <h2 class="sec-title"><span class="n">3</span> Một số lưu ý</h2>
+    <ul>
+      <li><b>Luôn đọc kỹ đề trước khi làm.</b> Vượt quá giới hạn từ → câu trả lời tính là <b>sai</b>.</li>
+      <li><b>Đáp án xuất hiện theo đúng thứ tự</b> các câu hỏi được đưa ra.</li>
+      <li><b>Đánh dấu từ khóa</b> — chúng giúp phân biệt ý nghĩa giữa các lựa chọn.</li>
+      <li>Học thêm về <b>từ liên kết tương phản</b> ("but", "however") — thường phủ nhận điều nói trước đó.</li>
+      <li><b>Kiểm tra lại chính tả &amp; ngữ pháp</b> sau khi hoàn thành.</li>
+    </ul>
+  </div>
+
+  <div class="card" style="background:var(--shell);">
+    <p style="margin:0;font-size:13.5px;">👉 Sang tab <b>Practice</b> để luyện 3 bài: <b>Food Photography</b> (câu 1–6) · <b>Repairs</b> (lọc thông tin, câu 1–5) · <b>What is news?</b> (câu 1–5). Bạn tự điền đáp án; đoạn transcript chứa đáp án hiện ngay dưới mỗi câu; bấm <b>"Hiện keyword &amp; paraphrase"</b> để đối chiếu.</p>
+  </div>
+</section>
+
+<section class="tab-pane" id="tab-practice">
+  <div class="card" style="background:linear-gradient(135deg,var(--shell),var(--sand));">
+    <h2 class="sec-title">🎧 Practice — Listen &amp; complete</h2>
+    <p class="vi">Cách học: đọc trước → dự đoán loại từ → tự điền/chọn đáp án khi giáo viên phát audio. <b>Box trích dẫn transcript hiện song song</b> giúp bạn định vị. Sau đó bấm <b>"Hiện keyword &amp; paraphrase"</b> ở mỗi câu để xem Key Answer và cách transcript paraphrase lại đề.</p>
+  </div>
+  <div id="practice-root"></div>
+  <div class="card" style="text-align:center;background:var(--shell);">
+    <button class="script-toggle" id="scriptBtn">📜 Hiện Full Transcript (EN + VI)</button>
+    <div class="transcript" id="transcript"></div>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section class="tab-pane" id="tab-quiz">
+  <div class="quiz-intro">
+    <h3>🎮 Paraphrase Quiz — 40 questions</h3>
+    <p style="font-size:13.5px;margin:6px 0 0;">Review the paraphrase clusters from these three practices. <b>Part A (1–20):</b> read the English explanation and choose the right word — <em>think in English, no Vietnamese here.</em> <b>Part B (21–40):</b> match the question phrase to its transcript paraphrase. Answer all 40, then press <b>Submit</b> to see your score.</p>
+  </div>
+  <div class="notice" id="quizNotice"></div>
+  <div id="quiz-root"></div>
+  <div class="quiz-bar">
+    <button class="btn-submit" id="quizSubmit">Submit — Check my 40 answers</button>
+    <span class="score-chip" id="quizScore"></span>
+    <button class="btn-ghost" id="quizReset" style="display:none;">↺ Reset</button>
+  </div>
+</section>
+</div>
+<script>
+/* DATA grounded in the uploaded Dạng 1 lesson.
+   Practice bodies & transcripts verbatim from source (VI translated by assistant).
+   Quiz pairs drawn from the three transcripts. */
+
+/* Each practice: body = HTML with {{n}} blank tokens (or select tokens for flowchart).
+   questions[]: {id, answer(str|array), type:'blank'|'pick', choices(for pick),
+                 quote (EN, evidence <mark>), quoteVi, pmap[], vi } */
+
+const PRACTICE = [
+  {
+    id:'p1', title:'Bài 1 (Cơ bản) — Food Photography Course', meta:'Sentence completion · Mindset 1 · P.57 · Audio 28 · NO MORE THAN TWO WORDS AND/OR A NUMBER',
+    instruction:'Complete the sentences. Write <b>NO MORE THAN TWO WORDS AND/OR A NUMBER</b> for each answer.',
+    body:`<ul>
+      <li>1. The title of the course the speaker wants to do is {{1}} <span class="hint-type">(proper noun — tên khóa học)</span></li>
+      <li>2. The course starts at {{2}} <span class="hint-type">(time — giờ bắt đầu)</span></li>
+      <li>3. It lasts for a period of {{3}} <span class="hint-type">(number — tổng số giờ)</span> hours in total.</li>
+      <li>4. The course aims to teach people how to use different {{4}} <span class="hint-type">(plural noun — sau "different")</span></li>
+      <li>5. Part of the course is held at a nearby {{5}} <span class="hint-type">(place noun — nơi chốn gần đó)</span></li>
+      <li>6. The total cost of the course is {{6}} <span class="hint-type">(number + unit $)</span></li>
+    </ul>`,
+    questions:[
+      {id:1, turn:2, prompt:'The title of the course the speaker wants to do is ___.', type:'blank',
+        answer:['Food Photography','food photography'],
+        pmap:[{q:'the title of the course', p:"it's called Food Photography", s:'Naming'}],
+        vi:'Người học đọc từ tờ rơi: <span class="a">"it\'s called Food Photography"</span> =&gt; tên khóa = <b>Food Photography</b>.'},
+      {id:2, turn:3, prompt:'The course starts at ___.', type:'blank',
+        answer:['half past nine','9.30','9:30','nine thirty','half past 9'],
+        pmap:[{q:'starts at', p:'It begins at half past nine', s:'Synonym'},{q:'the course', p:'it', s:'Reference'}],
+        vi:'"starts" ↔ <span class="a">begins</span>. Lễ tân xác nhận <span class="a">"It begins at half past nine"</span> =&gt; <b>half past nine</b> (9.30).'},
+      {id:3, turn:3, prompt:'It lasts for a period of ___ hours in total.', type:'blank',
+        answer:['seven','7'],
+        pmap:[{q:'lasts for a period of ___ hours', p:"it's seven hours long", s:'Paraphrase'}],
+        vi:'"lasts for … hours in total" ↔ <span class="a">"seven hours long"</span> =&gt; <b>seven</b>. Bẫy: "a couple of hours" là nói về các khóa cuối tuần KHÁC, không phải khóa này.'},
+      {id:4, turn:5, prompt:'The course aims to teach people how to use different ___.', type:'blank',
+        answer:['camera angles','camera angle'],
+        pmap:[{q:'teach people how to use different ___', p:'train you in the basics of using a range of camera angles', s:'Paraphrase'},{q:'different', p:'a range of', s:'Synonym'}],
+        vi:'"different" ↔ <span class="a">"a range of"</span>; "use" ↔ "using". =&gt; <b>camera angles</b>.'},
+      {id:5, turn:7, prompt:'Part of the course is held at a nearby ___.', type:'blank',
+        answer:['hotel'],
+        pmap:[{q:'held at a nearby ___', p:"spend some of the day on location in a local hotel", s:'Paraphrase'},{q:'nearby', p:'just round the corner from the college', s:'Synonym'}],
+        vi:'"nearby" ↔ <span class="a">"just round the corner"</span>; "held at" ↔ "on location in". =&gt; <b>hotel</b>.'},
+      {id:6, turn:9, prompt:'The total cost of the course is ___.', type:'blank',
+        answer:['$55','55','$ 55'],
+        pmap:[{q:'total cost of the course', p:'The full fee for the course is $55', s:'Synonym'}],
+        vi:'"total cost" ↔ <span class="a">"full fee"</span>. =&gt; <b>$55</b>. Bẫy: "$10" là tiền tự mang đồ ăn/uống, không phải học phí.'},
+    ],
+    transcript:[
+      {sp:'Student', en:'Now can I just check the details of the course?', vi:'Cho em kiểm tra lại thông tin khóa học được không ạ?'},
+      {sp:'Receptionist', en:'Sure, go ahead.', vi:'Được chứ, em cứ hỏi.'},
+      {sp:'Student', en:"Now it says on the leaflet … um, let me find it … OK, got it! Right, so <span class=\"ev\">it's called Food Photography</span>, and I've got here that it begins at nine thirty.", vi:'Trên tờ rơi ghi… để em tìm… đây rồi! Khóa tên là Food Photography, và em thấy ghi bắt đầu lúc chín rưỡi.'},
+      {sp:'Receptionist', en:"That's right – it's an early start. <span class=\"ev\">It begins at half past nine</span> and goes on until four thirty. Most of our weekend courses are quite short and so they're over in a couple of hours – this course is longer. According to the information I've got up here on screen, <span class=\"ev\">it's seven hours long</span>.", vi:'Đúng vậy – bắt đầu sớm. Khóa bắt đầu lúc chín rưỡi và kéo dài đến bốn rưỡi. Phần lớn khóa cuối tuần của bên mình khá ngắn, chỉ vài tiếng – khóa này dài hơn. Theo thông tin trên màn hình, nó dài bảy tiếng.'},
+      {sp:'Student', en:"Oh, I'm glad it lasts for more than a few hours. I don't think I'd be able to learn how to take good pictures in less than seven hours.", vi:'Ồ, em mừng vì nó kéo dài hơn vài tiếng. Chắc em không học chụp ảnh đẹp nổi trong dưới bảy tiếng.'},
+      {sp:'Receptionist', en:"Now, I'll just give you a bit more information about the course itself. Basically, you'll learn how to take good photos of food using a digital camera. So it'll <span class=\"ev\">train you in the basics of using a range of camera angles</span>.", vi:'Giờ mình nói thêm về khóa học. Cơ bản, em sẽ học chụp ảnh món ăn đẹp bằng máy ảnh số. Khóa sẽ dạy em kiến thức nền về việc dùng nhiều góc máy khác nhau.'},
+      {sp:'Student', en:'Camera angles?', vi:'Góc máy ạ?'},
+      {sp:'Receptionist', en:"Yes, you'll learn how to photograph food using close-ups, wide-angle shots and shots taken from above, that sort of thing. […] It's really hands-on session – in fact, you'll <span class=\"ev\">spend some of the day on location in a local hotel</span>. It's just round the corner from the college – the Lincoln Hotel – so you'll have the opportunity to practice taking photographs using real dishes!", vi:'Đúng vậy, em sẽ học chụp cận cảnh, góc rộng, chụp từ trên xuống, đại loại vậy. […] Đây là buổi thực hành – thực ra em sẽ dành một phần thời gian tác nghiệp tại một khách sạn gần đây. Nó ngay góc phố cạnh trường – Lincoln Hotel – nên em được thực hành chụp món ăn thật!'},
+      {sp:'Student', en:"That's great – a practical course is exactly what I'm looking for!", vi:'Tuyệt quá – một khóa thực hành đúng thứ em đang tìm!'},
+      {sp:'Receptionist', en:"Now just a few more things. <span class=\"ev\">The full fee for the course is $55</span> and that includes a light lunch and refreshments at the hotel.", vi:'Còn vài điều nữa. Học phí trọn gói là $55, đã bao gồm bữa trưa nhẹ và đồ giải khát tại khách sạn.'},
+      {sp:'Student', en:"Oh, that's really good. That means I don't have to worry about bringing along my own drinks and snacks on the day. That would probably cost me at least $10.", vi:'Ồ, tốt quá. Vậy em không phải lo mang theo đồ ăn uống. Chỗ đó chắc cũng tốn ít nhất $10.'},
+      {sp:'Receptionist', en:"OK, I think that's everything, so I'll just take your details so we can confirm your place on the course.", vi:'Được rồi, chắc là đủ thông tin. Giờ mình lấy thông tin của em để xác nhận chỗ nhé.'},
+    ]
+  },
+  {
+    id:'p2', title:'Bài 2 (Nâng cao lọc thông tin) — Additional Details Concerning Repairs', meta:'Sentence completion · NO MORE THAN TWO WORDS (KHÔNG điền số)',
+    instruction:'Complete the sentences. Write <b>NO MORE THAN TWO WORDS</b> for each answer.',
+    body:`<ul>
+      <li>1. The stained walls will be painted {{1}}.</li>
+      <li>2. Extra paint will be left in the {{2}}.</li>
+      <li>3. The baby birds will be given to a {{3}}.</li>
+      <li>4. The fallen tree will be used as {{4}}.</li>
+      <li>5. The smaller parts of the tree will be put in a {{5}}.</li>
+    </ul>`,
+    questions:[
+      {id:1, turn:2, prompt:'The stained walls will be painted ___.', type:'blank',
+        answer:['yellow'],
+        pmap:[{q:'the stained walls will be painted ___', p:"I'd prefer it to be yellow", s:'Paraphrase'}],
+        vi:'Bẫy "lật kèo": thợ nói sơn <b>white</b>, nhưng officer phủ nhận: <span class="a">"I\'d prefer it to be yellow"</span> =&gt; <b>yellow</b>. (Furniture màu cam nhưng vàng hợp hơn.)'},
+      {id:2, turn:3, prompt:'Extra paint will be left in the ___.', type:'blank',
+        answer:['garden shed','shed'],
+        pmap:[{q:'extra paint will be left in the ___', p:"leave the paint can… in the garden shed", s:'Paraphrase'},{q:'extra paint', p:'the paint can', s:'Synonym'}],
+        vi:'"leave the paint can with you… in the garden shed" =&gt; <b>garden shed</b>. Bẫy: "blue in my kitchen" là chuyện nhà thợ, không liên quan.'},
+      {id:3, turn:3, prompt:'The baby birds will be given to a ___.', type:'blank',
+        answer:['wildlife reserve','wildlife park','reserve'],
+        pmap:[{q:'the baby birds will be given to a ___', p:'we can give them to a wildlife reserve', s:'Direct'}],
+        vi:'Officer gợi ý đưa cho "one of our teachers", nhưng thợ chốt <span class="a">"the wildlife reserve is a better option"</span> =&gt; <b>wildlife reserve</b>.'},
+      {id:4, turn:4, prompt:'The fallen tree will be used as ___.', type:'blank',
+        answer:['firewood'],
+        pmap:[{q:'the fallen tree will be used as ___', p:'cut it up into small pieces and that can be firewood', s:'Paraphrase'}],
+        vi:'"the fallen tree will be used as" ↔ <span class="a">"cut it up… that can be firewood"</span> =&gt; <b>firewood</b>.'},
+      {id:5, turn:4, prompt:'The smaller parts of the tree will be put in a ___.', type:'blank',
+        answer:['garden bin','bin'],
+        pmap:[{q:'smaller parts of the tree', p:'the smaller items — leaves and sticks and bark', s:'Paraphrase'},{q:'put in a ___', p:'a garden bin… dispose of material in that', s:'Synonym'}],
+        vi:'"smaller parts" ↔ <span class="a">"smaller items — leaves and sticks and bark"</span>; bỏ vào <span class="a">garden bin</span>. Bẫy: "waste piles" không được tái chế, nên chọn <b>garden bin</b>.'},
+    ],
+    transcript:[
+      {sp:'Officer', en:'I certainly appreciate all the effort you and your team are taking to fix things here, but I do have one request.', vi:'Tôi rất cảm kích công sức của anh và đội sửa chữa ở đây, nhưng tôi có một yêu cầu.'},
+      {sp:'Worker', en:'And what is that?', vi:'Yêu cầu gì vậy ạ?'},
+      {sp:'Officer / Worker', en:"Officer: You said you're going to paint the back wall in my office. Will it be the same colour as before? — Worker: Yes, we'll make it a nice white colour. — Officer: Well that's the point. <span class=\"ev\">I'd prefer it to be yellow</span>, to match the furniture. The furniture is orange, actually, but I think yellow is a nice match. Can you do that?", vi:'Officer: Anh nói sẽ sơn bức tường sau trong văn phòng tôi. Có cùng màu như trước không? — Worker: Vâng, bọn tôi sẽ sơn màu trắng đẹp. — Officer: Vấn đề là ở đó. Tôi muốn màu vàng, cho hợp nội thất. Nội thất màu cam, nhưng tôi thấy vàng hợp. Làm được không?'},
+      {sp:'Worker', en:"We can certainly do that. Yellow it is. […] And we can leave the paint can with you, in case you need to do some touch-ups, or if the stain reappears. I'll just <span class=\"ev\">leave it in the garden shed</span>, the one next to the main classroom. And incidentally, about those birds in the ceiling… there must be some young ones in a nest. I just thought you'd like to know that <span class=\"ev\">we can give them to a wildlife reserve</span>. There's one in the next suburb.", vi:'Chắc chắn làm được. Vậy màu vàng nhé. […] Bọn tôi để lại hộp sơn cho anh, phòng khi cần dặm lại hoặc vết ố hiện lại. Tôi sẽ để trong nhà kho ngoài vườn, cái cạnh phòng học chính. À, về mấy con chim trên trần… chắc có chim non trong tổ. Tôi nghĩ anh nên biết là bọn tôi có thể đưa chúng cho một khu bảo tồn động vật hoang dã. Có một khu ở khu ngoại ô kế bên.'},
+      {sp:'Worker', en:"I would say the wildlife reserve is a better option, since the people there are used to dealing with animals, and as for that fallen tree, we'll cut it up into small pieces and that can be <span class=\"ev\">firewood</span> in my house… I've noticed also that the university has a garden bin, for <span class=\"ev\">the smaller items — leaves and sticks and bark</span>, and so on, so we can dispose of material in that. You do have some waste piles out the back, but a proper <span class=\"ev\">garden bin</span> means that the material will be recycled, and that's better for the environment.", vi:'Tôi nghĩ khu bảo tồn là lựa chọn tốt hơn, vì người ở đó quen xử lý động vật. Còn cái cây đổ, bọn tôi sẽ cắt nhỏ và dùng làm củi ở nhà tôi… Tôi cũng để ý trường có một thùng rác vườn, cho các mẩu nhỏ — lá, cành, vỏ cây… nên có thể bỏ vào đó. Phía sau có mấy đống phế thải, nhưng thùng rác vườn đúng nghĩa thì vật liệu sẽ được tái chế, tốt cho môi trường hơn.'},
+    ]
+  },
+  {
+    id:'p3', title:'Bài 3 — What is news? (Decision-making behind news stories)', meta:'Sentence completion · Mindset 3 · P.153 · Audio 62 · Unit 7 · NO MORE THAN TWO WORDS',
+    instruction:'Complete the sentences. Write <b>NO MORE THAN TWO WORDS</b> for each answer.',
+    body:`<ul>
+      <li>1. A basic definition of the news story is {{1}}.</li>
+      <li>2. A key difference between TV and print news stories is that TV editors must be {{2}}.</li>
+      <li>3. Nowadays news stories engage the reader if they have {{3}}.</li>
+      <li>4. What an editor chooses to report is highly dependent on their {{4}}.</li>
+      <li>5. A good news editor also needs to pay attention to the stories being published by {{5}}.</li>
+    </ul>`,
+    questions:[
+      {id:1, turn:1, prompt:'A basic definition of the news story is ___.', type:'blank',
+        answer:['anything new'],
+        pmap:[{q:'basic definition', p:'to put it in very simple terms', s:'Paraphrase'},{q:'the news story is ___', p:"it is 'anything new'", s:'Direct'}],
+        vi:'"basic" ↔ <span class="a">"very simple terms"</span>; "definition" ↔ "it is…". =&gt; <b>anything new</b>.'},
+      {id:2, turn:2, prompt:'…TV editors must be ___.', type:'blank',
+        answer:['more selective'],
+        pmap:[{q:'key difference', p:"it's a slightly different process for TV", s:'Synonym'},{q:'TV editors must be ___', p:'TV editors have to be more selective', s:'Direct'}],
+        vi:'"editors must be" ↔ <span class="a">"editors have to be more selective"</span> =&gt; <b>more selective</b>.'},
+      {id:3, turn:3, prompt:'Nowadays news stories engage the reader if they have ___.', type:'blank',
+        answer:['personal relevance'],
+        pmap:[{q:'engage the reader', p:'grabs the attention and makes you want to interact with the story', s:'Paraphrase'},{q:'if they have ___', p:'anything with personal relevance for the reader', s:'Direct'}],
+        vi:'"engage the reader" ↔ <span class="a">"grabs the attention… interact with the story"</span> =&gt; điều thu hút = <b>personal relevance</b>.'},
+      {id:4, turn:4, prompt:'What an editor chooses to report is highly dependent on their ___.', type:'blank',
+        answer:['audience'],
+        pmap:[{q:'highly dependent on', p:'it very much depends on', s:'Synonym'},{q:'their ___', p:'your audience', s:'Direct'}],
+        vi:'"highly dependent on" ↔ <span class="a">"very much depends on"</span>. =&gt; <b>audience</b>.'},
+      {id:5, turn:5, prompt:'…pay attention to the stories being published by ___.', type:'blank',
+        answer:['competition','the competition','competitors'],
+        pmap:[{q:'pay attention to', p:'keep an eye on', s:'Synonym'},{q:'stories published by ___', p:'the competition… other newspapers or news channels', s:'Paraphrase'}],
+        vi:'"pay attention to" ↔ <span class="a">"keep an eye on"</span>; "published by" ↔ đối thủ. =&gt; <b>competition</b>.'},
+    ],
+    transcript:[
+      {sp:'Lecturer', en:"Good afternoon, everyone. So today's talk is divided into two parts. In the first part, I'm going to try to explain the decision-making process behind choosing what stories to publish in a newspaper. Later, in the second part, I will explain the process of producing a print newspaper.", vi:'Chào buổi chiều cả lớp. Bài nói hôm nay chia hai phần. Phần một, tôi giải thích quá trình ra quyết định chọn tin để đăng báo. Phần hai, tôi nói về quy trình in báo.'},
+      {sp:'Lecturer', en:"So, first of all, I'd like to consider the question: What is news? […] Well, <span class=\"ev\">to put it in very simple terms, it is 'anything new'</span>. However, that definition is extremely vague and open to interpretation. In other words, it doesn't really help a newspaper editor decide what stories to include.", vi:'Trước hết, câu hỏi: Tin tức là gì? […] Nói thật đơn giản, đó là "bất cứ điều gì mới". Tuy nhiên định nghĩa đó rất mơ hồ và dễ hiểu theo nhiều cách. Nói cách khác, nó không giúp biên tập viên quyết định chọn tin nào.'},
+      {sp:'Lecturer', en:"So a better question: What factors help editors decide which stories make it into their newspaper? Well, it's a slightly different process for TV news programmes because <span class=\"ev\">TV editors have to be more selective</span> about what to include. TV news shows are restricted by length and can be as short as five minutes. Newspapers don't have these restrictions…", vi:'Vậy câu hỏi hay hơn: Yếu tố nào giúp biên tập viên chọn tin để đăng? Với tin truyền hình thì hơi khác, vì biên tập viên TV phải chọn lọc kỹ hơn về nội dung. Bản tin TV bị giới hạn thời lượng, có thể chỉ năm phút. Báo in không bị giới hạn vậy…'},
+      {sp:'Lecturer', en:"What is it that grabs the attention and makes you want to interact with the story? Basically, it is <span class=\"ev\">anything with personal relevance for the reader</span>.", vi:'Điều gì thu hút sự chú ý và khiến bạn muốn tương tác với tin? Về cơ bản, đó là bất cứ điều gì có liên quan cá nhân với người đọc.'},
+      {sp:'Lecturer', en:"How do we decide what is relevant, and what makes a story personal? The answer is that <span class=\"ev\">it very much depends on your audience</span>. A good newspaper editor chooses stories based on their relevance and personal interest to their audience. He or she needs to know what sells their newspaper…", vi:'Làm sao quyết định điều gì liên quan, điều gì mang tính cá nhân? Câu trả lời là nó phụ thuộc rất nhiều vào độc giả của bạn. Một biên tập viên giỏi chọn tin dựa trên mức độ liên quan và sự quan tâm cá nhân của độc giả. Họ cần biết điều gì bán được báo…'},
+      {sp:'Lecturer', en:"A successful editor doesn't just think about their audience; they also need to <span class=\"ev\">keep an eye on the competition</span>. To clarify, the competition is other newspapers or news channels. If a story is getting a lot of attention elsewhere, then, as an editor, you need to find a way to include it in your newspaper.", vi:'Biên tập viên thành công không chỉ nghĩ về độc giả; họ còn phải để mắt tới đối thủ cạnh tranh. Nói rõ hơn, đối thủ là các báo hoặc kênh tin khác. Nếu một tin đang được chú ý nhiều ở nơi khác, thì với vai trò biên tập, bạn cần tìm cách đưa nó vào báo mình.'},
+    ]
+  },
+];
+
+const QUIZ_A = [
+  {def:'The name given to something, e.g. a course or a book.', ans:'title', opts:['title','fee','angle','shed']},
+  {def:'A short printed sheet advertising something.', ans:'leaflet', opts:['leaflet','licence','ceiling','suburb']},
+  {def:'The amount of money you pay for a service or course.', ans:'fee', opts:['fee','angle','nest','bark']},
+  {def:'The position or direction from which a photo is taken.', ans:'camera angle', opts:['camera angle','close-up','refreshment','touch-up']},
+  {def:'Involving doing things yourself rather than just watching.', ans:'hands-on', opts:['hands-on','vague','restricted','stained']},
+  {def:'A small building in a garden for storing tools.', ans:'shed', opts:['shed','hotel','bin','reserve']},
+  {def:'Marked or discoloured, e.g. a dirty patch on a wall.', ans:'stained', opts:['stained','light','local','early']},
+  {def:'Wood that is burned to make a fire.', ans:'firewood', opts:['firewood','furniture','feathers','fittings']},
+  {def:'A protected area where wild animals live safely.', ans:'wildlife reserve', opts:['wildlife reserve','garden bin','print edition','waste pile']},
+  {def:'A container for garden waste like leaves and sticks.', ans:'garden bin', opts:['garden bin','paint can','close-up','nest']},
+  {def:'To process material so it can be used again.', ans:'recycle', opts:['recycle','publish','interpret','restrict']},
+  {def:'Choosing carefully; not including everything.', ans:'selective', opts:['selective','vague','personal','local']},
+  {def:'Not clear; open to more than one interpretation.', ans:'vague', opts:['vague','selective','stained','hands-on']},
+  {def:'The people who read, watch, or listen to something.', ans:'audience', opts:['audience','editor','competition','reader']},
+  {def:'A person who decides what goes into a newspaper.', ans:'editor', opts:['editor','officer','worker','receptionist']},
+  {def:'Rival companies or papers doing the same thing.', ans:'competition', opts:['competition','audience','relevance','definition']},
+  {def:'Connected to you personally; of personal interest.', ans:'personal relevance', opts:['personal relevance','print edition','light lunch','early start']},
+  {def:'A short statement of what a word or thing means.', ans:'definition', opts:['definition','decision','description','direction']},
+  {def:'Limited by rules or physical limits such as length.', ans:'restricted', opts:['restricted','recycled','relevant','reappeared']},
+  {def:'To attract and hold someone’s attention or interest.', ans:'engage', opts:['engage','edit','enter','erase']},
+];
+
+const QUIZ_B = [
+  {q:'starts at', ans:'begins at half past nine', opts:['begins at half past nine','goes on until four thirty','over in a couple of hours','an early start']},
+  {q:'lasts for a period of ___ hours', ans:"it's seven hours long", opts:["it's seven hours long",'a couple of hours','less than seven hours','more than a few hours']},
+  {q:'the title of the course', ans:"it's called Food Photography", opts:["it's called Food Photography",'a digital camera','real dishes','a light lunch']},
+  {q:'different (camera) ___', ans:'a range of camera angles', opts:['a range of camera angles','close-ups and wide-angle','the basics of editing','photos of food']},
+  {q:'held at a nearby ___', ans:'on location in a local hotel', opts:['on location in a local hotel','round the corner','the Lincoln Hotel','a practical course']},
+  {q:'total cost of the course', ans:'the full fee for the course is $55', opts:['the full fee for the course is $55','at least $10','a light lunch','refreshments included']},
+  {q:'the stained walls will be painted ___', ans:"I'd prefer it to be yellow", opts:["I'd prefer it to be yellow",'a nice white colour','the furniture is orange','the blue in my kitchen']},
+  {q:'extra paint will be left in the ___', ans:'leave the paint can in the garden shed', opts:['leave the paint can in the garden shed','next to the main classroom','do some touch-ups','the stain reappears']},
+  {q:'baby birds given to a ___', ans:'give them to a wildlife reserve', opts:['give them to a wildlife reserve','one of our teachers','birds in the ceiling','the next suburb']},
+  {q:'the fallen tree will be used as ___', ans:'cut it up… that can be firewood', opts:['cut it up… that can be firewood','a special licence','the smoke will pollute','the fireplace']},
+  {q:'smaller parts of the tree', ans:'smaller items — leaves and sticks and bark', opts:['smaller items — leaves and sticks and bark','waste piles out the back','a garden bin','better for the environment']},
+  {q:'put in a ___ (recycled)', ans:'a proper garden bin', opts:['a proper garden bin','waste piles','the wildlife reserve','the paint can']},
+  {q:'basic definition', ans:'to put it in very simple terms', opts:['to put it in very simple terms','open to interpretation','extremely vague','a better question']},
+  {q:'the news story is ___', ans:"anything new", opts:['anything new','anything relevant','a print edition','a slightly different process']},
+  {q:'TV editors must be ___', ans:'have to be more selective', opts:['have to be more selective','restricted by length','as short as five minutes','vying for attention']},
+  {q:'engage the reader', ans:'grabs the attention and makes you want to interact', opts:['grabs the attention and makes you want to interact','open to interpretation','restricted by length','sells their newspaper']},
+  {q:'if they have ___ (news)', ans:'personal relevance for the reader', opts:['personal relevance for the reader','a slightly different process','a lot of attention','other news channels']},
+  {q:'highly dependent on their ___', ans:'it very much depends on your audience', opts:['it very much depends on your audience','what sells their newspaper','personal interest','the competition']},
+  {q:'pay attention to', ans:'keep an eye on the competition', opts:['keep an eye on the competition','think about their audience','include it in your newspaper','getting a lot of attention']},
+  {q:'stories published by ___', ans:'other newspapers or news channels', opts:['other newspapers or news channels','your audience','a good editor','the final edition']},
+];
+
+/* ================= RENDER ================= */
+document.getElementById('tabbar').addEventListener('click',function(e){
+  const b=e.target.closest('.tab-btn'); if(!b)return;
+  document.querySelectorAll('.tab-btn').forEach(function(x){x.classList.remove('active');});
+  document.querySelectorAll('.tab-pane').forEach(function(x){x.classList.remove('active');});
+  b.classList.add('active');
+  document.getElementById('tab-'+b.dataset.tab).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+/* ----- Practice ----- */
+(function(){
+  const root=document.getElementById('practice-root');
+  PRACTICE.forEach(function(P){
+    // build body with tokens replaced by inputs/selects
+    let body=P.body;
+    P.questions.forEach(function(q){
+      const token='{{'+q.id+'}}';
+      let el;
+      if(q.type==='pick'){
+        let o='<option value=""></option>';
+        q.choices.forEach(function(c){o+='<option value="'+c+'">'+c+'</option>';});
+        el='<span class="blank-num">'+q.id+'</span><select class="pick-select" data-p="'+P.id+'" data-q="'+q.id+'">'+o+'</select>';
+      }else{
+        el='<span class="blank-num">'+q.id+'</span><input class="blank-input" data-p="'+P.id+'" data-q="'+q.id+'" autocomplete="off" spellcheck="false">';
+      }
+      body=body.split(token).join(el);
+    });
+    let html='<div class="p-block" data-p="'+P.id+'">';
+    html+='<h3>'+P.title+'</h3><div class="p-meta">'+P.meta+'</div>';
+    html+='<div class="instruction">'+P.instruction+'</div>';
+    html+='<div class="body-block">'+body+'</div>';
+    // per-question blocks: prompt + plain quote box (answer hidden) + reveal button + hidden answer/paraphrase
+    html+='<div class="q-list">';
+    P.questions.forEach(function(q){
+      const turn=P.transcript[q.turn];
+      const fullEn=turn.en;                                   // contains <span class="ev">…</span>
+      const plainEn=fullEn.replace(/<span class="ev">/g,'').replace(/<\/span>/g,'');
+      const ansTxt=Array.isArray(q.answer)?q.answer[0]:q.answer;
+      html+='<div class="q-item" data-p="'+P.id+'" data-q="'+q.id+'">';
+      html+='<div class="q-item-head"><span class="qn">'+q.id+'</span><span class="q-item-prompt">'+q.prompt+'</span></div>';
+      // quote box = full transcript turn; plain by default, highlighted (.ev) after reveal
+      html+='<div class="quote-box"><span class="ql">📍 Transcript · '+turn.sp+'</span>'
+          +'<span class="q-plain ts-en">'+plainEn+'</span>'
+          +'<span class="q-marked ts-en" style="display:none;">'+fullEn+'</span>'
+          +'<div class="ts-vi" style="margin-top:6px;">'+turn.vi+'</div></div>';
+      html+='<div class="reveal-bar"><button class="reveal-btn" data-reveal-q="'+P.id+'-'+q.id+'">🔍 Hiện keyword &amp; paraphrase</button></div>';
+      html+='<div class="reveal-panel" id="rev-'+P.id+'-'+q.id+'">';
+      html+='<div class="rev-q-head"><span class="ka-lbl">✅ Key Answer:</span> <span class="ka">'+ansTxt+'</span></div>';
+      html+='<table class="pmap"><thead><tr><th>Question</th><th></th><th>Transcript</th><th>Skill</th></tr></thead><tbody>';
+      q.pmap.forEach(function(p){html+='<tr><td class="pm-q">'+p.q+'</td><td class="pm-arrow">→</td><td class="pm-p">'+p.p+'</td><td class="pm-s">'+p.s+'</td></tr>';});
+      html+='</tbody></table>';
+      html+='<div class="rev-vi">'+q.vi+'</div>';
+      html+='</div></div>';
+    });
+    html+='</div></div>';
+    root.insertAdjacentHTML('beforeend',html);
+  });
+
+  const norm=function(s){return (s||'').toString().trim().toLowerCase().replace(/[.,;:!?]+$/,'');};
+  root.addEventListener('click',function(e){
+    const rb=e.target.closest('.reveal-btn'); if(!rb)return;
+    const ref=rb.dataset.revealQ;                 // "p1-2"
+    const dash=ref.lastIndexOf('-');
+    const pid=ref.slice(0,dash); const qid=ref.slice(dash+1);
+    const item=rb.closest('.q-item');
+    const panel=document.getElementById('rev-'+ref);
+    const P=PRACTICE.find(function(x){return x.id===pid;});
+    const q=P.questions.find(function(x){return String(x.id)===String(qid);});
+    panel.classList.toggle('open');
+    if(panel.classList.contains('open')){
+      rb.innerHTML='🔽 Ẩn keyword &amp; paraphrase';
+      // highlight paraphrase in the quote box
+      item.querySelector('.q-plain').style.display='none';
+      item.querySelector('.q-marked').style.display='';
+      // grade the matching input/select in the body
+      const acc=(Array.isArray(q.answer)?q.answer:[q.answer]).map(norm);
+      const field=document.querySelector('.body-block [data-p="'+pid+'"][data-q="'+qid+'"]');
+      if(field){
+        field.disabled=true;
+        const val=norm(field.value);
+        field.classList.remove('correct','incorrect');
+        if(val && acc.indexOf(val)>-1) field.classList.add('correct'); else field.classList.add('incorrect');
+      }
+    }else{
+      rb.innerHTML='🔍 Hiện keyword &amp; paraphrase';
+      item.querySelector('.q-plain').style.display='';
+      item.querySelector('.q-marked').style.display='none';
+      const field=document.querySelector('.body-block [data-p="'+pid+'"][data-q="'+qid+'"]');
+      if(field){field.disabled=false;field.classList.remove('correct','incorrect');}
+    }
+  });
+})();
+
+/* ----- Transcript (all 3 practices) ----- */
+(function(){
+  const t=document.getElementById('transcript'); let html='';
+  PRACTICE.forEach(function(P){
+    html+='<div style="font-size:13px;font-weight:800;color:var(--forest);background:var(--sage);border-radius:var(--radius-sm);padding:8px 14px;margin:16px 0 10px;">'+P.title+'</div>';
+    P.transcript.forEach(function(turn){
+      html+='<div class="ts-turn"><div class="ts-speaker">'+turn.sp+'</div><div class="ts-en">'+turn.en+'</div><div class="ts-vi">'+turn.vi+'</div></div>';
+    });
+  });
+  t.innerHTML=html;
+  document.getElementById('scriptBtn').addEventListener('click',function(){
+    t.classList.toggle('open');
+    this.textContent=t.classList.contains('open')?'📜 Ẩn Full Transcript':'📜 Hiện Full Transcript (EN + VI)';
+  });
+})();
+
+/* ----- Quiz ----- */
+const QUIZ_STATE={picks:{}, submitted:false};
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const tmp=a[i];a[i]=a[j];a[j]=tmp;}return a;}
+function qzCard(part,i,prompt,opts,ans){
+  const key=part+i; const num=(part==='A'?i+1:i+21);
+  let h='<div class="qz-card" data-key="'+key+'" data-ans="'+encodeURIComponent(ans)+'">';
+  h+='<div class="qz-q"><span class="qz-n">'+num+'</span><span class="prompt">'+prompt+'</span></div>';
+  h+='<div class="qz-opts">';
+  const letters=['A','B','C','D'];
+  opts.forEach(function(op,k){h+='<div class="qz-opt" data-val="'+encodeURIComponent(op)+'"><span class="l">'+letters[k]+'</span><span>'+op+'</span></div>';});
+  h+='</div><div class="qz-note"><span class="lbl">Answer</span><b>'+ans+'</b></div></div>';
+  return h;
+}
+(function(){
+  const root=document.getElementById('quiz-root'); let html='';
+  html+='<div class="quiz-section-head"><span class="tag">PART A</span> Read the English explanation and choose the right word. <span style="font-weight:600;color:var(--text-soft);font-size:12px;">— No Vietnamese here. Think in English.</span></div>';
+  QUIZ_A.forEach(function(it,i){html+=qzCard('A',i,it.def,shuffle(it.opts),it.ans);});
+  html+='<div class="quiz-section-head"><span class="tag">PART B</span> Match the question phrase to its transcript paraphrase.</div>';
+  QUIZ_B.forEach(function(it,i){html+=qzCard('B',i,'Which transcript phrase paraphrases: <em>'+it.q+'</em>?',shuffle(it.opts),it.ans);});
+  root.innerHTML=html;
+  root.addEventListener('click',function(e){
+    const o=e.target.closest('.qz-opt'); if(!o)return;
+    if(QUIZ_STATE.submitted)return;
+    const card=o.closest('.qz-card'); const key=card.dataset.key;
+    card.querySelectorAll('.qz-opt').forEach(function(x){x.classList.remove('selected');});
+    o.classList.add('selected');
+    QUIZ_STATE.picks[key]=decodeURIComponent(o.dataset.val);
+  });
+})();
+
+document.getElementById('quizSubmit').addEventListener('click',function(){
+  if(QUIZ_STATE.submitted)return;
+  const cards=document.querySelectorAll('#quiz-root .qz-card');
+  const total=cards.length; const answered=Object.keys(QUIZ_STATE.picks).length;
+  const notice=document.getElementById('quizNotice');
+  if(answered<total && this.dataset.warned!=='1'){
+    notice.textContent='⚠️ Bạn còn '+(total-answered)+' câu chưa trả lời. Bấm Submit lần nữa để nộp luôn, hoặc làm nốt.';
+    notice.classList.add('show'); this.dataset.warned='1';
+    window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'}); return;
+  }
+  QUIZ_STATE.submitted=true; let score=0;
+  cards.forEach(function(card){
+    const key=card.dataset.key; const ans=decodeURIComponent(card.dataset.ans); const pick=QUIZ_STATE.picks[key];
+    card.querySelectorAll('.qz-opt').forEach(function(o){
+      o.classList.add('locked');
+      const val=decodeURIComponent(o.dataset.val);
+      if(val===ans) o.classList.add('correct');
+      else if(o.classList.contains('selected')) o.classList.add('incorrect');
+    });
+    card.querySelector('.qz-note').classList.add('show');
+    if(pick===ans) score++;
+  });
+  notice.classList.remove('show');
+  const chip=document.getElementById('quizScore');
+  chip.textContent='Score: '+score+' / '+total+'  ('+Math.round(score/total*100)+'%)';
+  chip.classList.add('show');
+  this.disabled=true; this.textContent='✓ Submitted';
+  document.getElementById('quizReset').style.display='inline-block';
+});
+document.getElementById('quizReset').addEventListener('click',function(){
+  QUIZ_STATE.submitted=false; QUIZ_STATE.picks={};
+  document.querySelectorAll('#quiz-root .qz-opt').forEach(function(o){o.classList.remove('locked','correct','incorrect','selected');});
+  document.querySelectorAll('#quiz-root .qz-note').forEach(function(n){n.classList.remove('show');});
+  const sb=document.getElementById('quizSubmit'); sb.disabled=false; sb.textContent='Submit — Check my 40 answers'; sb.dataset.warned='0';
+  document.getElementById('quizScore').classList.remove('show');
+  this.style.display='none'; document.getElementById('quizNotice').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+</script>
+</body>
+</html>
