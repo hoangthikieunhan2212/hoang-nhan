@@ -51,7 +51,13 @@ body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:va
 .instruction{background:var(--shell);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 16px;margin:18px 0 14px;font-size:13.5px;font-weight:600;color:var(--text-mid);}
 .instruction b{color:var(--forest);}
 .q-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:20px 24px;margin-bottom:16px;}
-.q-prompt{font-size:15px;font-weight:600;margin-bottom:14px;}
+.q-prompt{font-size:15px;font-weight:700;}
+.q-item{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:20px 24px;margin-bottom:16px;}
+.q-item-head{margin-bottom:14px;}
+.quote-box{background:var(--shell);border-left:4px solid var(--moss);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:11px 15px;margin:14px 0 2px;font-size:13px;line-height:1.7;}
+.quote-box .ql{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--moss);display:block;margin-bottom:5px;}
+.quote-box .q-plain,.quote-box .q-marked{display:block;font-size:14px;line-height:1.85;color:var(--text-dark);}
+.reveal-bar{margin-top:10px;}
 .mcq-option{display:flex;align-items:center;gap:12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:11px 15px;margin-bottom:9px;cursor:pointer;transition:all .15s;font-size:14px;}
 .mcq-option:hover{border-color:var(--teal);background:var(--sage);}
 .mcq-option .opt-letter{flex:0 0 auto;width:24px;height:24px;border:1.5px solid var(--text-soft);border-radius:99px;font-size:12px;font-weight:800;color:var(--text-soft);display:flex;align-items:center;justify-content:center;}
@@ -62,7 +68,7 @@ body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:va
 .mcq-option.incorrect{border-color:var(--red);background:var(--red-light);}
 .mcq-option.incorrect .opt-letter{border-color:var(--red);background:var(--red);color:#fff;}
 .mcq-option.locked{pointer-events:none;}
-.reveal-btn{margin-top:6px;background:var(--forest);color:#fff;border:none;border-radius:99px;padding:8px 18px;font-size:12.5px;font-weight:800;letter-spacing:.4px;cursor:pointer;font-family:inherit;transition:all .15s;display:inline-flex;align-items:center;gap:7px;}
+.reveal-btn{background:var(--forest);color:#fff;border:none;border-radius:99px;padding:8px 18px;font-size:12.5px;font-weight:800;letter-spacing:.4px;cursor:pointer;font-family:inherit;transition:all .15s;display:inline-flex;align-items:center;gap:7px;}
 .reveal-btn:hover{background:var(--moss);transform:translateY(-1px);}
 .reveal-panel{display:none;margin-top:16px;border-top:2px dashed var(--border);padding-top:16px;animation:fadeIn .3s;}
 .reveal-panel.open{display:block;}
@@ -228,6 +234,7 @@ const PRACTICE = [
       {L:'D', t:'It allowed them to become <b>familiar</b> with the <b>university campus</b>.'},
       {L:'E', t:'It introduced them to <b>new areas of study</b>.'},
     ],
+    turn:6,
     answer: ['A','D'],
     reveal: {
       pmap: [
@@ -246,6 +253,7 @@ const PRACTICE = [
       {L:'B', t:'have a <b>different focus</b> each year.'},
       {L:'C', t:'show how <b>both fields</b> of study are <b>equally important</b>.'},
     ],
+    turn:9,
     answer: 'A',
     reveal:{
       pmap:[
@@ -263,6 +271,7 @@ const PRACTICE = [
       {L:'B', t:'generate more <b>interest</b> in <b>current research</b>.'},
       {L:'C', t:'allow the people who attended to <b>meet</b> the <b>lecturers</b>.'},
     ],
+    turn:11,
     answer:'B',
     reveal:{
       pmap:[
@@ -280,6 +289,7 @@ const PRACTICE = [
       {L:'B', t:'There were <b>too many advertisements</b>.'},
       {L:'C', t:'The <b>schedules</b> for some lectures were <b>wrong</b>.'},
     ],
+    turn:12,
     answer:'C',
     reveal:{
       pmap:[
@@ -297,6 +307,7 @@ const PRACTICE = [
       {L:'B', t:'make a lot of <b>money</b> from the <b>admission fee</b>.'},
       {L:'C', t:'are <b>mostly paid</b> for through <b>advertising</b>.'},
     ],
+    turn:13,
     answer:'C',
     reveal:{
       pmap:[
@@ -387,14 +398,22 @@ document.getElementById('tabbar').addEventListener('click',function(e){
 (function(){
   const root=document.getElementById('practice-root');
   PRACTICE.forEach(function(Q,i){
+    const turn=TRANSCRIPT[Q.turn];
+    const fullEn=turn.en;
+    const plainEn=fullEn.replace(/<span class="ev">/g,'').replace(/<\/span>/g,'');
     let html='';
     if(Q.instruction) html+='<div class="instruction">'+Q.instruction+'</div>';
-    html+='<div class="q-card" data-qi="'+i+'">';
-    html+='<div class="q-prompt">'+Q.stem+'</div>';
+    html+='<div class="q-item" data-qi="'+i+'">';
+    html+='<div class="q-item-head"><span class="q-prompt">'+Q.stem+'</span></div>';
     Q.options.forEach(function(o){
       html+='<div class="mcq-option" data-l="'+o.L+'"><span class="opt-letter">'+o.L+'</span><span>'+o.t+'</span></div>';
     });
-    html+='<button class="reveal-btn" data-reveal="'+i+'">🔍 Hiện keyword &amp; paraphrase</button>';
+    // full transcript turn shown PLAIN under the question; highlighted version swapped in on reveal
+    html+='<div class="quote-box"><span class="ql">📍 Transcript · '+turn.sp+'</span>'
+        +'<span class="q-plain ts-en">'+plainEn+'</span>'
+        +'<span class="q-marked ts-en" style="display:none;">'+fullEn+'</span>'
+        +'<div class="ts-vi" style="margin-top:6px;">'+turn.vi+'</div></div>';
+    html+='<div class="reveal-bar"><button class="reveal-btn" data-reveal="'+i+'">🔍 Hiện keyword &amp; paraphrase</button></div>';
     html+='<div class="reveal-panel" id="rev-'+i+'">';
     const ansTxt=Array.isArray(Q.answer)?Q.answer.join(' + '):Q.answer;
     html+='<div class="xp-sec" style="background:var(--green-light);"><span class="xp-label" style="color:var(--green-success);">✅ Key Answer</span><span class="key-answer">'+ansTxt+'</span></div>';
@@ -413,28 +432,32 @@ document.getElementById('tabbar').addEventListener('click',function(e){
   root.addEventListener('click',function(e){
     const opt=e.target.closest('.mcq-option');
     if(opt){
-      const card=opt.closest('.q-card'); const qi=+card.dataset.qi; const Q=PRACTICE[qi];
+      const item=opt.closest('.q-item'); const qi=+item.dataset.qi; const Q=PRACTICE[qi];
       if(opt.classList.contains('locked'))return;
       if(Q.multi){ opt.classList.toggle('selected'); }
-      else{ card.querySelectorAll('.mcq-option').forEach(function(o){o.classList.remove('selected');}); opt.classList.add('selected'); }
+      else{ item.querySelectorAll('.mcq-option').forEach(function(o){o.classList.remove('selected');}); opt.classList.add('selected'); }
       return;
     }
     const rb=e.target.closest('.reveal-btn');
     if(rb){
       const qi=+rb.dataset.reveal; const Q=PRACTICE[qi];
-      const panel=document.getElementById('rev-'+qi); const card=rb.closest('.q-card');
+      const panel=document.getElementById('rev-'+qi); const item=rb.closest('.q-item');
       panel.classList.toggle('open');
       if(panel.classList.contains('open')){
-        rb.innerHTML='🔽 Ẩn paraphrase';
+        rb.innerHTML='🔽 Ẩn keyword &amp; paraphrase';
+        item.querySelector('.q-plain').style.display='none';
+        item.querySelector('.q-marked').style.display='';
         const ans=Array.isArray(Q.answer)?Q.answer:[Q.answer];
-        card.querySelectorAll('.mcq-option').forEach(function(o){
+        item.querySelectorAll('.mcq-option').forEach(function(o){
           o.classList.add('locked');
           if(ans.indexOf(o.dataset.l)>-1) o.classList.add('correct');
           else if(o.classList.contains('selected')) o.classList.add('incorrect');
         });
       }else{
         rb.innerHTML='🔍 Hiện keyword &amp; paraphrase';
-        card.querySelectorAll('.mcq-option').forEach(function(o){o.classList.remove('locked','correct','incorrect');});
+        item.querySelector('.q-plain').style.display='';
+        item.querySelector('.q-marked').style.display='none';
+        item.querySelectorAll('.mcq-option').forEach(function(o){o.classList.remove('locked','correct','incorrect');});
       }
     }
   });
