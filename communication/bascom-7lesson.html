@@ -2639,7 +2639,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-
 
         <div class="quiz-screen" id="l5qzPlay">
           <div class="quiz-head">
-            <span class="quiz-counter" id="l5qzCounter">QUESTION 1 / 30</span>
+            <span class="quiz-counter" id="l5qzCounter">QUESTION 1 / 40</span>
             <span class="timer-pill" id="l5qzTimer">⏳ 10s</span>
           </div>
           <div class="timer-track"><div class="timer-bar" id="l5qzBar"></div></div>
@@ -2657,7 +2657,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-
 
         <div class="quiz-screen" id="l5qzResult">
           <div class="quiz-result">
-            <div class="big-score" id="l5qzScore">0 / 30</div>
+            <div class="big-score" id="l5qzScore">0 / 40</div>
             <div class="verdict" id="l5qzVerdict">…</div>
             <button class="btn btn-primary" onclick="l5QzStart()">↺ Play again</button>
           </div>
@@ -3566,20 +3566,20 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-
         <div class="section-header">
           <span class="part-label">Part 5 · Reflection &amp; review</span>
           <h2 class="section-title">Vocabulary Quiz Game</h2>
-          <p class="section-subtitle">30 questions · 10 seconds each · answer before the bar runs out. Lock in every word about company culture, environment and people.</p>
+          <p class="section-subtitle">40 questions · 10 seconds each · answer before the bar runs out. At least 20 are “what does it mean?” vocabulary questions about company culture, environment and people.</p>
         </div>
 
         <div class="quiz-screen active" id="l6qzStart">
           <div class="quiz-start">
             <h3>🎮 Ready to test workplace culture?</h3>
-            <p>30 quick questions on the four cultures, working environments and personality traits. Each question gives you 10 seconds — if the timer runs out, it counts as wrong and shows the answer.</p>
+            <p>40 quick questions: 20 ask “what does a word mean?” and 20 cover the four cultures, working environments and traits. Each question gives you 10 seconds — if the timer runs out, it counts as wrong and shows the answer.</p>
             <button class="btn btn-primary" onclick="l6QzStart()">▶ Start Quiz</button>
           </div>
         </div>
 
         <div class="quiz-screen" id="l6qzPlay">
           <div class="quiz-head">
-            <span class="quiz-counter" id="l6qzCounter">QUESTION 1 / 30</span>
+            <span class="quiz-counter" id="l6qzCounter">QUESTION 1 / 40</span>
             <span class="timer-pill" id="l6qzTimer">⏳ 10s</span>
           </div>
           <div class="timer-track"><div class="timer-bar" id="l6qzBar"></div></div>
@@ -3597,7 +3597,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-
 
         <div class="quiz-screen" id="l6qzResult">
           <div class="quiz-result">
-            <div class="big-score" id="l6qzScore">0 / 30</div>
+            <div class="big-score" id="l6qzScore">0 / 40</div>
             <div class="verdict" id="l6qzVerdict">…</div>
             <button class="btn btn-primary" onclick="l6QzStart()">↺ Play again</button>
           </div>
@@ -5553,35 +5553,47 @@ var REFLEX_SITUATIONS=[
 
 /* ---------- DATA: QUIZ (30 unique) ---------- */
 var QUIZ=[
- {t:"DEFINITION",q:'What does “take somebody on” mean?',o:['To carry somebody','To employ somebody','To fire somebody','To promote somebody'],a:1,e:'“Take somebody on” = to employ / hire them.'},
- {t:"DEFINITION",q:'To “appoint” somebody means to…',o:['choose them officially for a post','give them a warning','ask them to leave','train them'],a:0,e:'Appoint = officially choose someone, often for a senior post.'},
+ /* ===== 20 VOCABULARY questions — meaning-first, 20 distinct job-cycle terms (A2 definitions) ===== */
+ {t:"VOCABULARY",q:'"take somebody on" what does it mean?',o:['It means to give somebody a job; to employ them.','It means to fire somebody from a job.','It means to carry a heavy box for somebody.','It means to teach a new worker.'],a:0,e:'Take somebody on = employ / hire them.'},
+ {t:"VOCABULARY",q:'"appoint" what does it mean?',o:['It means to warn a worker about a problem.','It means to choose somebody officially for a job or post.','It means to ask somebody to leave a job.','It means to work extra hours.'],a:1,e:'Appoint = officially choose for a (senior) post.'},
+ {t:"VOCABULARY",q:'"contract somebody for" what does it mean?',o:['It means to end somebody\'s job.','It means to pay somebody\'s salary.','It means to sign a contract to hire somebody for a post.','It means to give somebody a holiday.'],a:2,e:'Contract somebody for a post = sign a contract to hire them.'},
+ {t:"VOCABULARY",q:'"get to work" what does it mean?',o:['It means to travel to your workplace.','It means to finish your job.','It means to start a meeting.','It means to be given a job.'],a:0,e:'Get to work = travel to your workplace.'},
+ {t:"VOCABULARY",q:'"get in" (at work) what does it mean?',o:['It means to make progress.','It means to arrive at work.','It means to manage with little money.','It means to be promoted.'],a:1,e:'Get in = arrive at work.'},
+ {t:"VOCABULARY",q:'"attend meetings" what does it mean?',o:['It means to plan the office party.','It means to write long reports.','It means to go to and take part in meetings.','It means to leave the office early.'],a:2,e:'Attend meetings = go to and join meetings.'},
+ {t:"VOCABULARY",q:'"do overtime" what does it mean?',o:['It means to work extra hours beyond your normal time.','It means to take a long lunch break.','It means to arrive late for work.','It means to change to a new job.'],a:0,e:'Do overtime = work extra hours.'},
+ {t:"VOCABULARY",q:'"take bookings" what does it mean?',o:['It means to read a lot of books.','It means to accept reservations, for example on the phone.','It means to buy tickets for yourself.','It means to cancel an appointment.'],a:1,e:'Take bookings = accept reservations.'},
+ {t:"VOCABULARY",q:'"handle customer complaints" what does it mean?',o:['It means to sell products to new customers.','It means to design a new product.','It means to deal with problems that customers report.','It means to deliver goods to customers.'],a:2,e:'Handle complaints = deal with customer problems.'},
+ {t:"VOCABULARY",q:'"write up reports" what does it mean?',o:['It means to finish and write out reports in full.','It means to read the news every morning.','It means to answer the office phone.','It means to book a meeting room.'],a:0,e:'Write up reports = finish/write them fully.'},
+ {t:"VOCABULARY",q:'"managing director" what does it mean?',o:['It is a brand-new trainee at a company.','It is the most senior manager who runs a company.','It is a part-time worker.','It is a customer of the company.'],a:1,e:'Managing director = the senior manager who runs the company.'},
+ {t:"VOCABULARY",q:'"president" (of a company) what does it mean?',o:['It is the newest employee.','It is a person who cleans the office.','It is the head of a company or organization.','It is a visitor to the office.'],a:2,e:'President = the head of a company/organization.'},
+ {t:"VOCABULARY",q:'"in charge of" what does it mean?',o:['It means having control of a team, area or task.','It means paying for something.','It means being new to a job.','It means working from home.'],a:0,e:'In charge of = having control/responsibility.'},
+ {t:"VOCABULARY",q:'"head of…" what does it mean?',o:['It is the oldest worker in the office.','It is the leader of a team or department.','It is a type of meeting.','It is a company car.'],a:1,e:'Head of… = the leader of a team/department.'},
+ {t:"VOCABULARY",q:'"responsible for" what does it mean?',o:['It means being paid a lot of money.','It means being new at a company.','It means having the duty to deal with something.','It means working part-time.'],a:2,e:'Responsible for = it is your duty.'},
+ {t:"VOCABULARY",q:'"get fired" what does it mean?',o:['It means to be told to leave your job, often for a fault.','It means to be given a pay rise.','It means to start a new job.','It means to go on holiday.'],a:0,e:'Get fired = be dismissed from your job.'},
+ {t:"VOCABULARY",q:'"get the boot" what does it mean?',o:['It means to buy new work shoes.','It means to be dismissed or fired (very informal).','It means to be promoted quickly.','It means to arrive at work early.'],a:1,e:'Get the boot = (informal) be fired.'},
+ {t:"VOCABULARY",q:'"get let go" what does it mean?',o:['It means to be allowed to go home early.','It means to be given a longer holiday.','It means to be dismissed from a job (a softer way to say it).','It means to be sent to a meeting.'],a:2,e:'Get let go = a softer way to say “dismissed”.'},
+ {t:"VOCABULARY",q:'"cut back on the workforce" what does it mean?',o:['It means to reduce the number of workers, usually to save money.','It means to hire many new workers.','It means to give everyone a pay rise.','It means to move to a bigger office.'],a:0,e:'Cut back on the workforce = fewer workers.'},
+ {t:"VOCABULARY",q:'"work-life balance" what does it mean?',o:['It means working two jobs at once.','It means a healthy split between work and personal life.','It means a type of work contract.','It means a weekly company meeting.'],a:1,e:'Work-life balance = healthy split between work and life.'},
+ /* ===== 20 OTHER questions — grammar (adverb order, tenses, prepositions), context & action ===== */
+ {t:"GRAMMAR",q:'Adverbs of frequency (often, usually, always) usually go…',o:['at the very end of the sentence','before the main verb','before the subject','after the object'],a:1,e:'Frequency adverbs go before the main verb: She OFTEN handles complaints.'},
+ {t:"GRAMMAR",q:'In “She handles complaints calmly”, “calmly” is an adverb of…',o:['frequency','manner','place','time'],a:1,e:'Manner adverbs answer “How?” and often follow the object.'},
+ {t:"GRAMMAR",q:'To add a PURPOSE to a sentence, you use…',o:['to + verb (to keep customers happy)','a frequency adverb','a place phrase','the past simple'],a:0,e:'Purpose = to + verb, and it goes last.'},
+ {t:"GRAMMAR",q:'“I\'ve ___ working here for six months.”',o:['being','been','be','was'],a:1,e:'Present perfect continuous: I\'ve BEEN working… (up to now).'},
+ {t:"GRAMMAR",q:'“I ___ after just three months.” (a finished past action)',o:['leave','leaving','left','leaves'],a:2,e:'Past simple for a finished action: I LEFT.'},
+ {t:"GRAMMAR",q:'“I get to work ___ bus.”',o:['by','on','with','in'],a:0,e:'BY + vehicle, no article: by bus, by car, by train.'},
+ {t:"GRAMMAR",q:'Walking to work is the exception: “I get to work ___.”',o:['by foot','on foot','with foot','in foot'],a:1,e:'Walking = ON FOOT (not “by foot”).'},
+ {t:"GRAMMAR",q:'“He\'s ___ charge of the design team.”',o:['on','in','at','for'],a:1,e:'In charge of = managing / controlling.'},
+ {t:"GRAMMAR",q:'“She\'s responsible ___ quality control.”',o:['of','for','to','with'],a:1,e:'Responsible FOR something = your duty.'},
  {t:"CONTEXT",q:'“They ___ her for the post of marketing manager.”',o:['left','contracted','quit','fired'],a:1,e:'Contract somebody for a post = sign a contract to hire them.'},
- {t:"DEFINITION",q:'“get in” at work means to…',o:['make progress','arrive at work','manage with little money','get promoted'],a:1,e:'Get in = arrive at work. (get on = progress; get by = manage.)'},
- {t:"CONTEXT",q:'“I get to work ___ bus.”',o:['by','on','with','in'],a:0,e:'Use BY + vehicle with no article: by bus, by car, by train.'},
- {t:"CONTEXT",q:'Walking to work is the exception: “I get to work ___.”',o:['by foot','on foot','with foot','in foot'],a:1,e:'Walking = ON FOOT (not “by foot”).'},
- {t:"CONTEXT",q:'“The journey ___ about 20 minutes.”',o:['makes','does','takes','gets'],a:2,e:'The journey TAKES about 20 minutes = needs roughly that time.'},
- {t:"ACTION",q:'You accept a reservation on the phone. You…',o:['write up a report','take a booking','do overtime','attend a meeting'],a:1,e:'Take bookings = accept reservations.'},
- {t:"DEFINITION",q:'“do overtime” means to…',o:['work extra hours','arrive late','take a long break','change jobs'],a:0,e:'Do overtime = work beyond your normal hours.'},
- {t:"ACTION",q:'A customer is angry about a problem. Your job is to…',o:['handle the complaint','appoint a manager','get the boot','take a booking'],a:0,e:'Handle customer complaints = deal with customer problems.'},
+ {t:"CONTEXT",q:'“The journey ___ about 20 minutes.”',o:['makes','does','takes','gets'],a:2,e:'The journey TAKES about 20 minutes.'},
  {t:"CONTEXT",q:'“I have to ___ reports once a week.”',o:['write up','get in','take on','cut back'],a:0,e:'Write up reports = finish/write them in full.'},
- {t:"DEFINITION",q:'The “managing director” is…',o:['a new trainee','the most senior manager','a customer','a part-time worker'],a:1,e:'Managing director = the senior manager who runs the company.'},
- {t:"CONTEXT",q:'“He\'s ___ charge of the design team.”',o:['on','in','at','for'],a:1,e:'In charge of = managing / controlling something.'},
- {t:"CONTEXT",q:'“She\'s responsible ___ quality control.”',o:['of','for','to','with'],a:1,e:'Responsible FOR something = it is your duty.'},
- {t:"DEFINITION",q:'The “head of the sales team” is the…',o:['newest member','leader of that team','company owner','customer'],a:1,e:'Head of… = the leader of a team or department.'},
- {t:"DEFINITION",q:'“get the boot” means to…',o:['get a new shoe','be dismissed / fired','be promoted','arrive early'],a:1,e:'Get the boot = (very informal) be fired.'},
- {t:"DEFINITION",q:'“get let go” is a polite way to say…',o:['be released for the day','be dismissed from a job','be given a holiday','be sent to a meeting'],a:1,e:'Let go = a softer way to say “dismissed / fired”.'},
- {t:"CONTEXT",q:'“The company had to ___ on its workforce.”',o:['cut back','write up','take on','get in'],a:0,e:'Cut back on the workforce = reduce the number of workers.'},
- {t:"DEFINITION",q:'“cut back on the workforce” means the company…',o:['hired more people','reduced the number of workers','gave everyone a raise','moved office'],a:1,e:'Cut back on the workforce = fewer workers, usually to save money.'},
- {t:"DEFINITION",q:'To “leave a job” (your own choice) is closest to…',o:['be fired','quit','be appointed','do overtime'],a:1,e:'Leave a job = stop working there by your own choice ≈ quit.'},
+ {t:"CONTEXT",q:'“The company had to ___ on its workforce.”',o:['cut back','write up','take on','get in'],a:0,e:'Cut back on the workforce = reduce workers.'},
  {t:"CONTEXT",q:'Minh ___ her job to have a better work-life balance.',o:['was taken on','quit','was appointed','got in'],a:1,e:'She quit = she chose to leave.'},
- {t:"DEFINITION",q:'“work-life balance” is…',o:['working two jobs','a healthy split between work and personal life','a type of contract','a company meeting'],a:1,e:'Work-life balance = a healthy balance between work and personal life.'},
- {t:"CONTEXT",q:'“I\'ve ___ working at the company for six months.”',o:['been','being','be','was'],a:0,e:'Present perfect continuous: I\'ve BEEN working… (up to now).'},
- {t:"CONTEXT",q:'“I ___ after just three months.”',o:['leave','left','leaving','leaves'],a:1,e:'Past simple for a finished action: I LEFT after three months.'},
- {t:"ACTION",q:'The company officially chooses a senior manager. They…',o:['appoint her','get the boot','take a booking','do overtime'],a:0,e:'Appoint = officially choose for a (senior) post.'},
  {t:"CONTEXT",q:'A red flag at a job: “high ___”, meaning many workers keep leaving.',o:['turnover','salary','ceiling','season'],a:0,e:'High turnover = many workers leave and are replaced.'},
- {t:"DEFINITION",q:'To “cover for someone” at work means to…',o:['hide their mistake','do their work while they are away','pay for their lunch','give them a ride'],a:1,e:'Cover for someone = do their work for them.'},
+ {t:"ACTION",q:'You accept a reservation on the phone. You…',o:['write up a report','take a booking','do overtime','attend a meeting'],a:1,e:'Take bookings = accept reservations.'},
+ {t:"ACTION",q:'A customer is angry about a problem. Your job is to…',o:['handle the complaint','appoint a manager','get the boot','take a booking'],a:0,e:'Handle customer complaints = deal with customer problems.'},
+ {t:"ACTION",q:'The company officially chooses a senior manager. They…',o:['appoint her','get the boot','take a booking','do overtime'],a:0,e:'Appoint = officially choose for a (senior) post.'},
  {t:"ACTION",q:'You arrive at the office before everyone to avoid traffic. You…',o:['get in early','get the boot','write up reports','cut back'],a:0,e:'Get in early = arrive at work early.'},
- {t:"CONTEXT",q:'Rish lost his job, so now he ___ as a delivery driver.',o:['earns a living','gets the boot','takes bookings','appoints'],a:0,e:'Earn a living = make money to support yourself.'},
  {t:"ACTION",q:'You choose to leave your stressful job for your health. You…',o:['get fired','quit','get let go','get appointed'],a:1,e:'Quit = you decide to leave the job yourself.'}
 ];
 
@@ -5751,7 +5763,7 @@ window.l5QzStart=function(){
 function qzRender(){
  qzAnswered=false;
  var q=QUIZ[qzOrder[qzIdx]];
- $("l5qzCounter").textContent="QUESTION "+(qzIdx+1)+" / 30";
+ $("l5qzCounter").textContent="QUESTION "+(qzIdx+1)+" / 40";
  $("l5qzType").textContent=q.t;
  $("l5qzQ").textContent=q.q;
  $("l5qzOpts").innerHTML=q.o.map(function(o,i){return '<div class="mcq-option" data-oi="'+i+'" onclick="l5QzPick(this)"><span class="ltr">'+String.fromCharCode(65+i)+'.</span> <span>'+o+'</span></div>';}).join('');
@@ -5793,19 +5805,19 @@ function qzGrade(pick){
  ex.innerHTML=(pick===q.a?"✅ Correct! ":(pick===-1?"⏰ Time's up! ":"❌ Not quite. "))+"The answer is "+String.fromCharCode(65+q.a)+". "+q.e;
  ex.classList.add("show");
  $("l5qzSubmit").style.display="none";$("l5qzNext").style.display="";
- if(qzIdx===29)$("l5qzNext").textContent="See result →";
+ if(qzIdx===39)$("l5qzNext").textContent="See result →";
 }
 window.l5QzNext=function(){
- if(qzIdx>=29){qzShowResult();return;}
+ if(qzIdx>=39){qzShowResult();return;}
  qzIdx++;qzRender();
 };
 function qzShowResult(){
  qzStopTimer();qzScreen("l5qzResult");
- $("l5qzScore").textContent=qzScore+" / 30";
+ $("l5qzScore").textContent=qzScore+" / 40";
  var v;
- if(qzScore>=27)v="🏆 Outstanding! You've mastered the job cycle.";
- else if(qzScore>=21)v="👏 Great work — a few words to review.";
- else if(qzScore>=15)v="👍 Good start. Revisit Tab 2 and try again.";
+ if(qzScore>=36)v="🏆 Outstanding! You've mastered the job cycle.";
+ else if(qzScore>=28)v="👏 Great work — a few words to review.";
+ else if(qzScore>=20)v="👍 Good start. Revisit Tab 2 and try again.";
  else v="💪 Keep going — replay the vocabulary and quiz.";
  $("l5qzVerdict").textContent=v;
 }
@@ -6835,36 +6847,48 @@ window.l6ResetTimer=function(){if(tInt){clearInterval(tInt);tInt=null;}tLeft=tPr
 
 /* ---------- QUIZ (30) ---------- */
 var QUIZ=[
- {t:"CULTURE",q:'“Uninvolved culture” = low expectations + …',o:['low support','high support','high pay','strict rules'],a:0,e:'Uninvolved = low expectations + low support.'},
- {t:"CULTURE",q:'A simpler name for “uninvolved culture” is…',o:['strict culture','lazy / careless culture','supportive culture','too-kind culture'],a:1,e:'Uninvolved ≈ lazy / careless culture.'},
- {t:"CULTURE",q:'“Permissive culture” = low expectations + …',o:['low support','high support','no support','strict rules'],a:1,e:'Permissive = low expectations + high support.'},
- {t:"CULTURE",q:'A simpler name for “permissive culture” is…',o:['too-kind / easy culture','strict culture','lazy culture','scary culture'],a:0,e:'Permissive ≈ easy / too-kind culture.'},
- {t:"CULTURE",q:'“Authoritarian culture” = high expectations + …',o:['high support','low support','high pay','no goals'],a:1,e:'Authoritarian = high expectations + low support.'},
- {t:"CULTURE",q:'A simpler name for “authoritarian culture” is…',o:['supportive culture','strict / scary culture','lazy culture','easy culture'],a:1,e:'Authoritarian ≈ strict / scary culture.'},
- {t:"CULTURE",q:'“Authoritative culture” = high expectations + …',o:['low support','no support','high support','low pay'],a:2,e:'Authoritative = high expectations + high support (the best).'},
- {t:"CULTURE",q:'A simpler name for “authoritative culture” is…',o:['supportive / good-leader culture','strict culture','lazy culture','too-kind culture'],a:0,e:'Authoritative ≈ supportive / good-leader culture.'},
+ /* ===== 20 VOCABULARY questions — meaning-first, 20 distinct terms (A2 definitions) ===== */
+ {t:"VOCABULARY",q:'"uninvolved culture" what does it mean?',o:['It is a culture where the boss neither pushes you nor helps you (low expectations, low support).','It is a culture with very strict rules and heavy pressure.','It is the best, most supportive culture in a company.','It is a warm culture with lots of help but few rules.'],a:0,e:'Uninvolved = low expectations + low support.'},
+ {t:"VOCABULARY",q:'"permissive culture" what does it mean?',o:['It is a strict, controlling culture with high demands.','It is a warm, friendly culture with lots of support but few rules or standards.','It is a culture where the boss ignores everyone.','It is a culture with high goals and strong support.'],a:1,e:'Permissive = low expectations + high support (too kind).'},
+ {t:"VOCABULARY",q:'"authoritarian culture" what does it mean?',o:['It is a relaxed culture with no rules.','It is the ideal, supportive culture.','It is a strict, controlling culture with high demands but little support.','It is a culture where the boss does nothing.'],a:2,e:'Authoritarian = high expectations + low support (strict).'},
+ {t:"VOCABULARY",q:'"authoritative culture" what does it mean?',o:['It is a lazy culture with no goals.','It is a scary culture with heavy pressure.','It is a culture that is too kind and free.','It is the best culture: high standards together with strong support.'],a:3,e:'Authoritative = high expectations + high support (the best).'},
+ {t:"VOCABULARY",q:'"workplace culture" what does it mean?',o:['It is the shared way of working and behaving in a company.','It is the salary a company pays.','It is the building where you work.','It is a company holiday party.'],a:0,e:'Workplace culture = the shared way of working/behaving.'},
+ {t:"VOCABULARY",q:'"expectations" what does it mean?',o:['It is the money you earn each month.','It is how much the boss asks you to do.','It is the number of workers in a team.','It is the time you start work.'],a:1,e:'Expectations = how much the boss asks of you.'},
+ {t:"VOCABULARY",q:'"support" (at work) what does it mean?',o:['It is a type of meeting.','It is a company rule.','It is how much help you get at work.','It is the size of the office.'],a:2,e:'Support = how much help you get.'},
+ {t:"VOCABULARY",q:'"burned out" what does it mean?',o:['It means newly hired and excited.','It means recently promoted.','It means very relaxed and calm.','It means exhausted from too much work and pressure.'],a:3,e:'Burned out = exhausted from overwork.'},
+ {t:"VOCABULARY",q:'"not very talkative" what does it mean?',o:['A person who rarely talks or says much.','A person who talks all the time.','A person who tells many jokes.','A person who shouts a lot.'],a:0,e:'Not very talkative = quiet, says little.'},
+ {t:"VOCABULARY",q:'"shy" what does it mean?',o:['Feeling confident in front of a crowd.','Feeling nervous and timid, especially with new people.','Being very angry with others.','Being very loud and social.'],a:1,e:'Shy = nervous, timid, especially with strangers.'},
+ {t:"VOCABULARY",q:'"irresponsible" what does it mean?',o:['Always finishing every task carefully.','Being very kind to customers.','Avoiding your duties and blaming others.','Working extra hours every day.'],a:2,e:'Irresponsible = avoids duties, shifts blame.'},
+ {t:"VOCABULARY",q:'"easygoing" what does it mean?',o:['Getting angry very quickly.','Working under heavy pressure.','Being strict about every rule.','Being relaxed and calm, rarely stressed.'],a:3,e:'Easygoing = relaxed, calm.'},
+ {t:"VOCABULARY",q:'"sociable" what does it mean?',o:['Enjoying meeting and mixing with other people.','Preferring to work completely alone.','Being afraid of other people.','Never speaking in meetings.'],a:0,e:'Sociable = enjoys company and mixing with people.'},
+ {t:"VOCABULARY",q:'"funny" what does it mean?',o:['Being very serious and quiet.','Making people laugh, often telling jokes.','Being unkind to coworkers.','Being late for work.'],a:1,e:'Funny = makes people laugh.'},
+ {t:"VOCABULARY",q:'"serious" (personality) what does it mean?',o:['Laughing at everything.','Being very lazy at work.','Being tense and focused, and rarely smiling.','Being very talkative and social.'],a:2,e:'Serious = tense, focused, rarely jokes.'},
+ {t:"VOCABULARY",q:'"micromanaging" what does it mean?',o:['Giving workers total freedom.','Never checking anyone\'s work.','Only working on big ideas.','Controlling every tiny detail of others\' work.'],a:3,e:'Micromanaging = controlling every small detail.'},
+ {t:"VOCABULARY",q:'"two-faced" what does it mean?',o:['Acting friendly to your face but not being sincere.','Having two different jobs.','Always telling the truth.','Working in two offices.'],a:0,e:'Two-faced = insincere; nice to your face only.'},
+ {t:"VOCABULARY",q:'"selfish" what does it mean?',o:['Sharing everything with the team.','Caring only about oneself.','Helping everyone all the time.','Being very shy.'],a:1,e:'Selfish = cares only about oneself.'},
+ {t:"VOCABULARY",q:'"competent" what does it mean?',o:['New and still learning everything.','Lazy and unreliable.','Skilled, capable and reliable at work.','Friendly but not good at the job.'],a:2,e:'Competent = skilled, capable, reliable.'},
+ {t:"VOCABULARY",q:'"open-minded" what does it mean?',o:['Refusing to listen to anyone.','Only trusting your own ideas.','Getting angry at new ideas.','Willing to listen and welcome new ideas.'],a:3,e:'Open-minded = willing to listen to new ideas.'},
+ /* ===== 20 OTHER questions — culture mapping, environment, reading & context ===== */
+ {t:"CULTURE",q:'"Uninvolved culture" = low expectations + …',o:['low support','high support','high pay','strict rules'],a:0,e:'Uninvolved = low expectations + low support.'},
+ {t:"CULTURE",q:'A simpler name for "uninvolved culture" is…',o:['strict culture','lazy / careless culture','supportive culture','too-kind culture'],a:1,e:'Uninvolved ≈ lazy / careless culture.'},
+ {t:"CULTURE",q:'"Permissive culture" = low expectations + …',o:['low support','high support','no support','strict rules'],a:1,e:'Permissive = low expectations + high support.'},
+ {t:"CULTURE",q:'A simpler name for "permissive culture" is…',o:['too-kind / easy culture','strict culture','lazy culture','scary culture'],a:0,e:'Permissive ≈ easy / too-kind culture.'},
+ {t:"CULTURE",q:'"Authoritarian culture" = high expectations + …',o:['high support','low support','high pay','no goals'],a:1,e:'Authoritarian = high expectations + low support.'},
+ {t:"CULTURE",q:'A simpler name for "authoritarian culture" is…',o:['supportive culture','strict / scary culture','lazy culture','easy culture'],a:1,e:'Authoritarian ≈ strict / scary culture.'},
+ {t:"CULTURE",q:'"Authoritative culture" = high expectations + …',o:['low support','no support','high support','low pay'],a:2,e:'Authoritative = high expectations + high support (the best).'},
+ {t:"CULTURE",q:'A simpler name for "authoritative culture" is…',o:['supportive / good-leader culture','strict culture','lazy culture','too-kind culture'],a:0,e:'Authoritative ≈ supportive / good-leader culture.'},
  {t:"CULTURE",q:'Which culture is described as the BEST for a company?',o:['Uninvolved','Permissive','Authoritarian','Authoritative'],a:3,e:'Authoritative = high goals WITH strong support.'},
  {t:"READING",q:'Workplace culture is sorted by two things: support and…',o:['salary','expectations','location','age'],a:1,e:'Expectations (how much the boss asks) × Support.'},
  {t:"ENVIRONMENT",q:'The environment of an uninvolved culture is…',o:['stagnant','toxic','transparent','too free'],a:0,e:'Uninvolved → stagnant environment.'},
- {t:"ENVIRONMENT",q:'“friendly, comfortable but too free” describes which culture?',o:['authoritarian','permissive','authoritative','uninvolved'],a:1,e:'Permissive → friendly but too free.'},
- {t:"ENVIRONMENT",q:'“high-pressure and toxic” describes which culture?',o:['authoritative','permissive','authoritarian','uninvolved'],a:2,e:'Authoritarian → high-pressure and toxic.'},
- {t:"ENVIRONMENT",q:'“professional, clear and transparent” describes which culture?',o:['authoritative','authoritarian','uninvolved','permissive'],a:0,e:'Authoritative → professional, clear and transparent.'},
- {t:"DEFINITION",q:'“stagnant” means the environment is…',o:['not growing / still','very fast','very kind','very strict'],a:0,e:'Stagnant = not moving or growing.'},
- {t:"DEFINITION",q:'“burned out” means…',o:['newly hired','exhausted from work','recently promoted','very relaxed'],a:1,e:'Burned out = exhausted from too much work/pressure.'},
- {t:"TRAIT",q:'A boss who controls every tiny detail is…',o:['open-minded','micromanaging','easygoing','competent'],a:1,e:'Micromanaging = controlling every small thing.'},
- {t:"TRAIT",q:'Someone friendly to your face but not sincere is…',o:['two-faced','helpful','competent','sociable'],a:0,e:'Two-faced = insincere, “bằng mặt không bằng lòng”.'},
- {t:"TRAIT",q:'A person who cares only about themselves is…',o:['kind','selfish','open-minded','talkative'],a:1,e:'Selfish = cares only about oneself.'},
- {t:"TRAIT",q:'Skilled, capable and reliable at work means…',o:['competent','shy','irresponsible','two-faced'],a:0,e:'Competent = skilled and reliable.'},
- {t:"TRAIT",q:'Someone willing to listen to new ideas is…',o:['micromanaging','open-minded','selfish','serious'],a:1,e:'Open-minded = willing to listen.'},
- {t:"TRAIT",q:'In an authoritative culture, colleagues are often…',o:['two-faced and selfish','helpful and kind','shy and silent','irresponsible'],a:1,e:'Supportive culture → helpful and kind people.'},
- {t:"TRAIT",q:'In an uninvolved culture, colleagues are often…',o:['not very talkative and shy','competent and open-minded','micromanaging','sociable and funny'],a:0,e:'Stagnant office → quiet, shy, disengaged people.'},
- {t:"TRAIT",q:'In a permissive culture, people are usually…',o:['serious and tense','sociable, talkative and funny','two-faced','micromanaging'],a:1,e:'Relaxed culture → sociable, talkative, funny.'},
- {t:"TRAIT",q:'In an authoritarian culture, people often become…',o:['serious and hard to know','helpful and kind','open-minded','easygoing'],a:0,e:'Pressure → serious, defensive, hard to know.'},
- {t:"TRAIT",q:'“shift blame” means to…',o:['do extra work','blame others for problems','help a coworker','set clear goals'],a:1,e:'Shift blame = push fault onto others.'},
+ {t:"ENVIRONMENT",q:'"friendly, comfortable but too free" describes which culture?',o:['authoritarian','permissive','authoritative','uninvolved'],a:1,e:'Permissive → friendly but too free.'},
+ {t:"ENVIRONMENT",q:'"high-pressure and toxic" describes which culture?',o:['authoritative','permissive','authoritarian','uninvolved'],a:2,e:'Authoritarian → high-pressure and toxic.'},
+ {t:"ENVIRONMENT",q:'"professional, clear and transparent" describes which culture?',o:['authoritative','authoritarian','uninvolved','permissive'],a:0,e:'Authoritative → professional, clear and transparent.'},
  {t:"CONTEXT",q:'In an uninvolved culture, hard-working people eventually…',o:['get promoted','leave the company','become the boss','work overtime happily'],a:1,e:'Good people leave a stagnant, unsupported culture.'},
  {t:"CONTEXT",q:'Under an authoritarian culture, over time people…',o:['feel cared for','get burned out and quit','become easygoing','set their own goals'],a:1,e:'High pressure + low support → burnout → quitting.'},
- {t:"CONTEXT",q:'“My boss is competent and open-minded.” This fits a/an…',o:['authoritative culture','uninvolved culture','authoritarian culture','lazy culture'],a:0,e:'Competent + open-minded boss → authoritative culture.'},
- {t:"CONTEXT",q:'“The working environment is stagnant, and people shift blame.” This is a/an…',o:['authoritative culture','permissive culture','uninvolved culture','strict culture'],a:2,e:'Stagnant + blame-shifting → uninvolved culture.'}
+ {t:"CONTEXT",q:'"My boss is competent and open-minded." This fits a/an…',o:['authoritative culture','uninvolved culture','authoritarian culture','lazy culture'],a:0,e:'Competent + open-minded boss → authoritative culture.'},
+ {t:"CONTEXT",q:'"The working environment is stagnant, and people shift blame." This is a/an…',o:['authoritative culture','permissive culture','uninvolved culture','strict culture'],a:2,e:'Stagnant + blame-shifting → uninvolved culture.'},
+ {t:"READING",q:'"shift blame" means to…',o:['do extra work','blame others for problems','help a coworker','set clear goals'],a:1,e:'Shift blame = push fault onto others.'},
+ {t:"READING",q:'In an authoritative culture, colleagues are often…',o:['two-faced and selfish','helpful and kind','shy and silent','irresponsible'],a:1,e:'Supportive culture → helpful and kind people.'}
 ];
 var qOrder=[],qIdx=0,qScore=0,qInt=null,qLeft=10,qAns=false;
 function qScreen(id){["l6qzStart","l6qzPlay","l6qzResult"].forEach(function(s){$(s).classList.toggle("active",s===id);});}
@@ -6872,7 +6896,7 @@ function qStop(){if(qInt){clearInterval(qInt);qInt=null;}}
 window.l6QzStart=function(){qOrder=shuffle(QUIZ.map(function(_,i){return i;}));qIdx=0;qScore=0;qScreen("l6qzPlay");qRender();};
 function qRender(){
  qAns=false;var q=QUIZ[qOrder[qIdx]];
- $("l6qzCounter").textContent="QUESTION "+(qIdx+1)+" / 30";
+ $("l6qzCounter").textContent="QUESTION "+(qIdx+1)+" / 40";
  $("l6qzType").textContent=q.t;$("l6qzQ").textContent=q.q;
  $("l6qzOpts").innerHTML=q.o.map(function(o,i){return '<div class="mcq-option" data-oi="'+i+'" onclick="l6QzPick(this)"><span class="ltr">'+String.fromCharCode(65+i)+'.</span> <span>'+o+'</span></div>';}).join('');
  var ex=$("l6qzExplain");ex.classList.remove("show");ex.textContent="";
@@ -6894,15 +6918,15 @@ function qGrade(pick){
  ex.innerHTML=(pick===q.a?"✅ Correct! ":(pick===-1?"⏰ Time's up! ":"❌ Not quite. "))+"The answer is "+String.fromCharCode(65+q.a)+". "+q.e;
  ex.classList.add("show");
  $("l6qzSubmit").style.display="none";$("l6qzNext").style.display="";
- if(qIdx===29)$("l6qzNext").textContent="See result →";
+ if(qIdx===39)$("l6qzNext").textContent="See result →";
 }
-window.l6QzNext=function(){if(qIdx>=29){qResult();return;}qIdx++;qRender();};
+window.l6QzNext=function(){if(qIdx>=39){qResult();return;}qIdx++;qRender();};
 function qResult(){
- qStop();qScreen("l6qzResult");$("l6qzScore").textContent=qScore+" / 30";
+ qStop();qScreen("l6qzResult");$("l6qzScore").textContent=qScore+" / 40";
  var v;
- if(qScore>=27)v="🏆 Outstanding! You've mastered describing companies.";
- else if(qScore>=21)v="👏 Great work — a few words to review.";
- else if(qScore>=15)v="👍 Good start. Revisit Tab 2 and try again.";
+ if(qScore>=36)v="🏆 Outstanding! You've mastered describing companies.";
+ else if(qScore>=28)v="👏 Great work — a few words to review.";
+ else if(qScore>=20)v="👍 Good start. Revisit Tab 2 and try again.";
  else v="💪 Keep going — replay the vocabulary and quiz.";
  $("l6qzVerdict").textContent=v;
 }
@@ -6987,7 +7011,9 @@ window.l6Reset=function(){
 
 /* ---------- VERIFY ---------- */
 function verify(){
- console.assert(QUIZ.length===30,"L6 quiz must be 30, got "+QUIZ.length);
+ console.assert(QUIZ.length===40,"L6 quiz must be 40, got "+QUIZ.length);
+ var l6vq=QUIZ.filter(function(q){return q.t==="VOCABULARY";});console.assert(l6vq.length>=20,"L6 quiz needs >=20 vocab");
+ var l6vw={};l6vq.forEach(function(q){l6vw[q.q]=1;});console.assert(Object.keys(l6vw).length===l6vq.length,"L6 vocab questions distinct");
  console.assert(RD.length===5&&L1Q.length===5,"L6 MCQ counts");
  console.assert(PARAS.length===5,"L6 passage 5 paras");
  console.assert(REFLEX_WORDS.length>=18&&REFLEX_WORDS.length<=25,"reflex words range");
