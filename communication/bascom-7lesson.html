@@ -4061,17 +4061,17 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-
         <div class="section-header">
           <span class="part-label">Part 6 · Reflection &amp; review</span>
           <h2 class="section-title">Time &amp; Schedule Quiz Game</h2>
-          <p class="section-subtitle">30 questions · 10 seconds each · answer before the bar runs out. Lock in prepositions, time, dates and ordinals.</p>
+          <p class="section-subtitle">40 questions · 10 seconds each · answer before the bar runs out. At least 20 are “what does it mean?” vocabulary questions, plus prepositions, time, dates and ordinals.</p>
         </div>
         <div class="quiz-screen active" id="l7qzStart">
           <div class="quiz-start">
             <h3>🎮 Ready to test time &amp; schedule?</h3>
-            <p>30 quick questions on telling the time, prepositions, months, days, years and ordinals. Each question gives you 10 seconds — if the timer runs out, it counts as wrong and shows the answer.</p>
+            <p>40 quick questions: 20 ask “what does a word mean?” and 20 cover prepositions, telling the time, months, days, years and ordinals. Each question gives you 10 seconds — if the timer runs out, it counts as wrong and shows the answer.</p>
             <button class="btn btn-primary" onclick="l7QzStart()">▶ Start Quiz</button>
           </div>
         </div>
         <div class="quiz-screen" id="l7qzPlay">
-          <div class="quiz-head"><span class="quiz-counter" id="l7qzCounter">QUESTION 1 / 30</span><span class="timer-pill" id="l7qzTimer">⏳ 10s</span></div>
+          <div class="quiz-head"><span class="quiz-counter" id="l7qzCounter">QUESTION 1 / 40</span><span class="timer-pill" id="l7qzTimer">⏳ 10s</span></div>
           <div class="timer-track"><div class="timer-bar" id="l7qzBar"></div></div>
           <div class="quiz-q">
             <div class="qtype" id="l7qzType">PREPOSITION</div>
@@ -4086,7 +4086,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text-
         </div>
         <div class="quiz-screen" id="l7qzResult">
           <div class="quiz-result">
-            <div class="big-score" id="l7qzScore">0 / 30</div>
+            <div class="big-score" id="l7qzScore">0 / 40</div>
             <div class="verdict" id="l7qzVerdict">…</div>
             <button class="btn btn-primary" onclick="l7QzStart()">↺ Play again</button>
           </div>
@@ -7340,44 +7340,57 @@ window.l7HideAll=function(){renderDisc();};
 
 /* ---------- QUIZ (30) ---------- */
 var QUIZ=[
- {t:"TIME",q:'How do you say 7:00?',o:['seven o\'clock','seven hour','the seven','o\'clock seven'],a:0,e:'Exact hour = hour + o\'clock.'},
- {t:"TIME",q:'How do you say 7:30?',o:['seven half','half past seven','thirty seven','seven and half'],a:1,e:'30 minutes = half past + hour.'},
- {t:"TIME",q:'“a quarter past” means how many minutes past the hour?',o:['10','15','20','25'],a:1,e:'Quarter = 15 minutes.'},
- {t:"TIME",q:'The simplest way to say 9:45 is…',o:['nine forty-five','forty-five nine','nine four five','quarter nine'],a:0,e:'Just read the numbers: nine forty-five.'},
+ /* ===== 20 VOCABULARY questions — meaning-first, 20 distinct words (A2 definitions) ===== */
+ {t:"VOCABULARY",q:'"Summer" what does it mean?',o:['It is one of the four seasons, after spring and before autumn.','It is the coldest season, with snow and ice.','It is the first month of the year.','It is twelve o\'clock at night.'],a:0,e:'Summer = the warm season after spring.'},
+ {t:"VOCABULARY",q:'"Autumn" what does it mean?',o:['It is the warmest season of the year.','It is the season after summer, when the leaves fall.','It is the last day of the week.','It is a period of ten years.'],a:1,e:'Autumn (fall) comes after summer.'},
+ {t:"VOCABULARY",q:'"January" what does it mean?',o:['It is the first month of the year.','It is the last month of the year.','It is the middle day of the working week.','It is fifteen minutes past the hour.'],a:0,e:'January = month 1.'},
+ {t:"VOCABULARY",q:'"December" what does it mean?',o:['It is the first month of the year.','It is a season of the year.','It is the twelfth and last month of the year.','It is twelve o\'clock in the day.'],a:2,e:'December = month 12 (last).'},
+ {t:"VOCABULARY",q:'"Wednesday" what does it mean?',o:['It is the middle day of the working week.','It is the first day of the weekend.','It is the last month of the year.','It is a plan of when things happen.'],a:0,e:'Wednesday sits in the middle of Mon–Fri.'},
+ {t:"VOCABULARY",q:'"Sunday" what does it mean?',o:['It is the first working day of the week.','It is twelve o\'clock at night.','It is a period of one hundred years.','It is the second day of the weekend, after Saturday.'],a:3,e:'Sunday = the second weekend day.'},
+ {t:"VOCABULARY",q:'"Weekend" what does it mean?',o:['It is Saturday and Sunday, when most people do not work.','It is the five working days from Monday to Friday.','It is the last month of the year.','It is a number that shows order.'],a:0,e:'Weekend = Saturday + Sunday.'},
+ {t:"VOCABULARY",q:'"Midnight" what does it mean?',o:['It is twelve o\'clock in the day.','It is twelve o\'clock at night.','It is fifteen minutes past the hour.','It is the first month of the year.'],a:1,e:'Midnight = 12:00 at night.'},
+ {t:"VOCABULARY",q:'"Noon" what does it mean?',o:['It is twelve o\'clock in the middle of the day.','It is twelve o\'clock at night.','It is the season after summer.','It is thirty minutes past the hour.'],a:0,e:'Noon (midday) = 12:00 in the day.'},
+ {t:"VOCABULARY",q:'"Half past" what does it mean?',o:['It is fifteen minutes past the hour.','It is twelve o\'clock at night.','It is thirty minutes past the hour.','It is the middle of the year.'],a:2,e:'Half past = 30 minutes past.'},
+ {t:"VOCABULARY",q:'"Schedule" what does it mean?',o:['It is a plan that shows when things will happen.','It is a season of the year.','It is the last day of the week.','It is a period of ten years.'],a:0,e:'Schedule = a plan of times/dates.'},
+ {t:"VOCABULARY",q:'"Appointment" what does it mean?',o:['It is the first month of the year.','It is a time you arrange to meet someone or do something.','It is twelve o\'clock at night.','It is Saturday and Sunday together.'],a:1,e:'Appointment = an arranged meeting time.'},
+ {t:"VOCABULARY",q:'"Reschedule" what does it mean?',o:['It means to change the time or date of a plan.','It means to say a plan will definitely happen.','It means to read the year aloud.','It means to plan a party.'],a:0,e:'Reschedule = move a plan to a new time.'},
+ {t:"VOCABULARY",q:'"Confirm" what does it mean?',o:['It means to change a meeting to another day.','It means to arrive late.','It means to say that something will definitely happen.','It means to cancel a plan.'],a:2,e:'Confirm = say it will definitely happen.'},
+ {t:"VOCABULARY",q:'"Decade" what does it mean?',o:['It is a period of ten years.','It is a period of one hundred years.','It is a period of three months.','It is twelve months.'],a:0,e:'Decade = 10 years.'},
+ {t:"VOCABULARY",q:'"Century" what does it mean?',o:['It is a period of ten years.','It is one year.','It is the middle of the day.','It is a period of one hundred years.'],a:3,e:'Century = 100 years.'},
+ {t:"VOCABULARY",q:'"An ordinal number" what does it mean?',o:['It is a number that shows order, like first, second, third.','It is a number you use to count, like one, two, three.','It is the name of a month.','It is a clock time.'],a:0,e:'Ordinal = order (1st, 2nd, 3rd).'},
+ {t:"VOCABULARY",q:'"Birthday" what does it mean?',o:['It is the first day of a new year.','It is the day each year when you celebrate the date you were born.','It is a day you go to work.','It is a period of ten years.'],a:1,e:'Birthday = the yearly day you were born.'},
+ {t:"VOCABULARY",q:'"Calendar" what does it mean?',o:['It shows the days, weeks and months of the year.','It is a plan for one single meeting.','It is a clock that shows the time.','It is the last month of the year.'],a:0,e:'Calendar = shows days/weeks/months.'},
+ {t:"VOCABULARY",q:'"Season" what does it mean?',o:['It is one of the twelve months of the year.','It is a period of seven days.','It is one of the four parts of the year: spring, summer, autumn, winter.','It is fifteen minutes.'],a:2,e:'Season = one of the 4 parts of the year.'},
+ /* ===== 20 OTHER questions — grammar (prepositions), time-reading, ordinals, years, dates ===== */
  {t:"PREPOSITION",q:'See you ___ Friday.',o:['at','in','on','from'],a:2,e:'on + day of the week.'},
  {t:"PREPOSITION",q:'The match is ___ 4 o\'clock.',o:['at','in','on','to'],a:0,e:'at + clock time.'},
  {t:"PREPOSITION",q:'I brush my teeth ___ the morning.',o:['at','on','in','from'],a:2,e:'in the morning/afternoon/evening.'},
  {t:"PREPOSITION",q:'He was born ___ 1995.',o:['on','at','in','to'],a:2,e:'in + year.'},
  {t:"PREPOSITION",q:'My birthday is ___ the 10th of January.',o:['at','on','in','from'],a:1,e:'on + a specific date.'},
  {t:"PREPOSITION",q:'They always get together ___ Christmas.',o:['at','on','in','to'],a:0,e:'at + a holiday period.'},
- {t:"PREPOSITION",q:'We usually stay home ___ Easter.',o:['on','in','at','from'],a:2,e:'at Easter (holiday period).'},
- {t:"PREPOSITION",q:'I don\'t work ___ Christmas Day.',o:['at','in','on','to'],a:2,e:'on + a day with “Day”.'},
  {t:"PREPOSITION",q:'Is your neighbourhood quiet ___ night?',o:['at','in','on','by'],a:0,e:'Exception: at night.'},
- {t:"PREPOSITION",q:'I usually go to bed ___ midnight.',o:['on','in','at','to'],a:2,e:'at + a fixed point (midnight).'},
- {t:"PREPOSITION",q:'You can plant these flowers ___ the autumn.',o:['at','on','in','from'],a:2,e:'in + a season.'},
- {t:"PREPOSITION",q:'This happened ___ the 80s.',o:['at','on','in','to'],a:2,e:'in + a decade.'},
  {t:"PREPOSITION",q:'Complete: We work ___ 9:00 a.m. ___ 5:00 p.m.',o:['at…on','from…to','in…at','on…in'],a:1,e:'from (start) … to (end).'},
- {t:"PREPOSITION",q:'“at the moment” is a fixed phrase meaning…',o:['tomorrow','now','last week','next month'],a:1,e:'at the moment = right now.'},
- {t:"PREPOSITION",q:'We will decide ___ the future.',o:['at','on','in','by'],a:2,e:'Fixed phrase: in the future.'},
- {t:"DATE",q:'“on the 10th of January” — 10th is a/an…',o:['cardinal number','ordinal number','year','quarter'],a:1,e:'Dates use ordinals (10th).'},
- {t:"ORDINAL",q:'The written form “3rd” is read as…',o:['three','third','thirds','threeth'],a:1,e:'3 → third (3rd).'},
- {t:"ORDINAL",q:'“fifth” is written as…',o:['5th','4th','5rd','5st'],a:0,e:'fifth = 5th.'},
+ {t:"TIME",q:'How do you say 7:00?',o:['seven o\'clock','seven hour','the seven','o\'clock seven'],a:0,e:'Exact hour = hour + o\'clock.'},
+ {t:"TIME",q:'How do you say 7:30?',o:['seven half','half past seven','thirty seven','seven and half'],a:1,e:'30 minutes = half past + hour.'},
+ {t:"TIME",q:'"a quarter past" means how many minutes past the hour?',o:['10','15','20','25'],a:1,e:'Quarter = 15 minutes.'},
+ {t:"TIME",q:'The simplest way to say 9:45 is…',o:['nine forty-five','forty-five nine','nine four five','quarter nine'],a:0,e:'Just read the numbers: nine forty-five.'},
+ {t:"ORDINAL",q:'The written form "3rd" is read as…',o:['three','third','thirds','threeth'],a:1,e:'3 → third (3rd).'},
  {t:"ORDINAL",q:'Which is correct for 22?',o:['twenty-twoth','twenty-second','twenty-two-th','second-twenty'],a:1,e:'22 → twenty-second (22nd).'},
- {t:"ORDINAL",q:'“40th” is read as…',o:['fourty','fourtieth','fortieth','forty'],a:2,e:'40th = fortieth.'},
- {t:"ORDINAL",q:'“ninth” is written as…',o:['9th','19th','90th','1st'],a:0,e:'ninth = 9th.'},
+ {t:"ORDINAL",q:'"40th" is read as…',o:['fourty','fourtieth','fortieth','forty'],a:2,e:'40th = fortieth.'},
  {t:"YEAR",q:'How do you read the year 1995?',o:['one nine nine five','nineteen ninety-five','nineteen nine five','one thousand nine ninety-five'],a:1,e:'Split into two pairs: nineteen ninety-five.'},
- {t:"YEAR",q:'How do you read 1905?',o:['nineteen five','nineteen oh five','one nine zero five','nineteen hundred five'],a:1,e:'Zero in the middle = “oh”.'},
+ {t:"YEAR",q:'How do you read 1905?',o:['nineteen five','nineteen oh five','one nine zero five','nineteen hundred five'],a:1,e:'Zero in the middle = "oh".'},
  {t:"YEAR",q:'How do you read 2008?',o:['twenty oh eight','two thousand and eight','twenty zero eight','two oh oh eight'],a:1,e:'2000s → two thousand + number.'},
  {t:"MONTH",q:'Which months are in Quarter 1 (Q1)?',o:['Jan–Mar','Apr–Jun','Jul–Sep','Oct–Dec'],a:0,e:'Q1 = January, February, March.'},
- {t:"DAY",q:'Which is the weekend?',o:['Monday & Tuesday','Wednesday & Thursday','Saturday & Sunday','Thursday & Friday'],a:2,e:'Weekend = Saturday & Sunday.'}
+ {t:"DATE",q:'"on the 10th of January" — 10th is a/an…',o:['cardinal number','ordinal number','year','quarter'],a:1,e:'Dates use ordinals (10th).'}
 ];
+
 var qOrder=[],qIdx=0,qScore=0,qInt=null,qLeft=10,qAns=false;
 function qScreen(id){["l7qzStart","l7qzPlay","l7qzResult"].forEach(function(s){$(s).classList.toggle("active",s===id);});}
 function qStop(){if(qInt){clearInterval(qInt);qInt=null;}}
 window.l7QzStart=function(){qOrder=shuffle(QUIZ.map(function(_,i){return i;}));qIdx=0;qScore=0;qScreen("l7qzPlay");qRender();};
 function qRender(){
  qAns=false;var q=QUIZ[qOrder[qIdx]];
- $("l7qzCounter").textContent="QUESTION "+(qIdx+1)+" / 30";
+ $("l7qzCounter").textContent="QUESTION "+(qIdx+1)+" / 40";
  $("l7qzType").textContent=q.t;$("l7qzQ").textContent=q.q;
  $("l7qzOpts").innerHTML=q.o.map(function(o,i){return '<div class="mcq-option" data-oi="'+i+'" onclick="l7QzPick(this)"><span class="ltr">'+String.fromCharCode(65+i)+'.</span> <span>'+o+'</span></div>';}).join('');
  var ex=$("l7qzExplain");ex.classList.remove("show");ex.textContent="";
@@ -7399,15 +7412,15 @@ function qGrade(pick){
  ex.innerHTML=(pick===q.a?"✅ Correct! ":(pick===-1?"⏰ Time's up! ":"❌ Not quite. "))+"The answer is "+String.fromCharCode(65+q.a)+". "+q.e;
  ex.classList.add("show");
  $("l7qzSubmit").style.display="none";$("l7qzNext").style.display="";
- if(qIdx===29)$("l7qzNext").textContent="See result →";
+ if(qIdx===39)$("l7qzNext").textContent="See result →";
 }
-window.l7QzNext=function(){if(qIdx>=29){qResult();return;}qIdx++;qRender();};
+window.l7QzNext=function(){if(qIdx>=39){qResult();return;}qIdx++;qRender();};
 function qResult(){
- qStop();qScreen("l7qzResult");$("l7qzScore").textContent=qScore+" / 30";
+ qStop();qScreen("l7qzResult");$("l7qzScore").textContent=qScore+" / 40";
  var v;
- if(qScore>=27)v="🏆 Outstanding! Time &amp; schedule mastered.";
- else if(qScore>=21)v="👏 Great work — a few points to review.";
- else if(qScore>=15)v="👍 Good start. Revisit Tabs 2–3 and try again.";
+ if(qScore>=36)v="🏆 Outstanding! Time &amp; schedule mastered.";
+ else if(qScore>=28)v="👏 Great work — a few points to review.";
+ else if(qScore>=20)v="👍 Good start. Revisit Tabs 2–3 and try again.";
  else v="💪 Keep going — replay the vocabulary, grammar and quiz.";
  $("l7qzVerdict").textContent=v;
 }
@@ -7635,7 +7648,9 @@ window.l7Reset=function(){
 
 /* ---------- VERIFY ---------- */
 function verify(){
- console.assert(QUIZ.length===30,"L7 quiz must be 30, got "+QUIZ.length);
+ console.assert(QUIZ.length===40,"L7 quiz must be 40, got "+QUIZ.length);
+ var l7vq=QUIZ.filter(function(q){return q.t==="VOCABULARY";});console.assert(l7vq.length>=20,"L7 quiz needs >=20 vocab, got "+l7vq.length);
+ var l7vw={};l7vq.forEach(function(q){l7vw[q.q]=1;});console.assert(Object.keys(l7vw).length===l7vq.length,"L7 vocab questions must be distinct words");
  console.assert(EX1.length===10&&EX2.length===10,"L7 ex1/ex2 = 10");
  var g3=0;EX3.forEach(function(x){g3+=x.g.length;});console.assert(g3===12,"L7 ex3 = 12 gaps, got "+g3);
  console.assert(DICT.length===15,"L7 dictation = 15");
