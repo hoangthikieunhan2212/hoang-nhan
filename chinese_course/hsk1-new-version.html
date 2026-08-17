@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New HSK 1 · Bài học · Chủ đề · Ngữ pháp</title>
+<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js"></script>
+<style>
+:root{
+  --forest:#013220; --moss:#006D6F; --teal:#007A74;
+  --mint:#D8BFD8; --sage:#F5F5DC; --sand:#FFFAF0; --shell:#FFF5EE; --white:#FFFAFA;
+  --blue:#2563EB; --blue-light:#EFF6FF;
+  --amber:#D97706; --amber-light:#FFFBEB;
+  --red:#DC2626; --green-success:#16A34A; --green-light:#F0FDF4;
+  --text-dark:#013220; --text-mid:#006D6F; --text-soft:#5F8A80;
+  --border:#E3DED0;
+  --shadow-sm:0 1px 3px rgba(1,50,32,.08);
+  --shadow-md:0 4px 16px rgba(1,50,32,.12);
+  --shadow-lg:0 8px 32px rgba(1,50,32,.16);
+  --radius:12px; --radius-sm:8px; --radius-lg:20px;
+  --t1:#c0392b; --t2:#d19a00; --t3:#1f8a4c; --t4:#2657c9; --t5:#8a8f99;
+  font-size:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+  color:var(--text-dark);line-height:1.6;background:var(--sand)}
+a{color:inherit;text-decoration:none}
+
+.app-shell{display:flex;min-height:100vh}
+.sidebar{width:250px;flex-shrink:0;background:var(--forest);color:var(--white);
+  position:fixed;top:0;left:0;height:100vh;display:flex;flex-direction:column;z-index:100;transition:transform .25s ease}
+.brand{padding:20px 20px 14px;border-bottom:1px solid rgba(255,255,255,.1)}
+.level-badge{display:inline-block;background:rgba(216,191,216,.2);color:var(--mint);
+  border:1px solid rgba(216,191,216,.3);font-size:10px;font-weight:800;letter-spacing:.5px;padding:3px 9px;border-radius:99px;text-transform:uppercase}
+.brand h1{font-size:16px;font-weight:800;margin-top:9px;color:#fff}
+.brand .cat{font-size:12px;color:var(--mint);opacity:.85;margin-top:2px}
+
+/* section tabs */
+.sec-tabs{display:flex;gap:2px;padding:10px 12px 0}
+.sec-tab{flex:1;text-align:center;font-size:12px;font-weight:700;padding:8px 4px;color:rgba(255,255,255,.6);
+  border-radius:8px 8px 0 0;cursor:pointer;transition:all .2s}
+.sec-tab.active{background:rgba(216,191,216,.15);color:#fff}
+.sec-tab:hover:not(.active){color:#fff}
+
+.nav{flex:1;overflow-y:auto;padding:8px 0 10px}
+.nav-list{display:none}
+.nav-list.active{display:block}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 18px;font-size:13px;font-weight:500;
+  color:rgba(255,255,255,.72);cursor:pointer;border-left:3px solid transparent;transition:all .2s}
+.nav-item:hover{background:rgba(216,191,216,.08);color:#fff}
+.nav-item.active{background:rgba(216,191,216,.15);color:#fff;border-left-color:var(--mint);font-weight:700}
+.nav-num{width:24px;height:24px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.1);border-radius:6px;font-size:11px;font-weight:800}
+.nav-item.active .nav-num{background:var(--mint);color:var(--forest)}
+.nav-txt{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nav-count{font-size:11px;color:rgba(216,191,216,.7)}
+
+.main{flex:1;margin-left:250px;min-width:0}
+.topbar{display:none;align-items:center;gap:12px;padding:12px 16px;background:var(--forest);color:#fff;position:sticky;top:0;z-index:90}
+.hamburger{font-size:22px;cursor:pointer;background:none;border:none;color:#fff;line-height:1}
+.topbar .tt{font-size:15px;font-weight:700}
+
+.hero{background:linear-gradient(135deg,var(--forest),var(--moss),var(--teal));color:#fff;padding:36px 48px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.hero .meta span{background:rgba(255,255,255,.15);color:#fff;font-size:12px;font-weight:600;padding:4px 12px;border-radius:99px}
+.hero h2{font-size:30px;font-weight:800;line-height:1.25}
+.hero .zh{font-size:22px;font-weight:700;color:var(--mint);margin-top:6px}
+.hero .sub{font-size:14px;opacity:.9;margin-top:12px;max-width:560px}
+
+.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:16px 48px;border-bottom:1px solid var(--border);background:var(--white)}
+.btn{padding:9px 18px;border-radius:var(--radius-sm);font-size:13px;font-weight:700;border:none;cursor:pointer;transition:all .2s;font-family:inherit}
+.btn-primary{background:var(--forest);color:#fff}
+.btn-primary:hover{background:var(--moss);transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--forest);border:1.5px solid var(--border)}
+.btn-outline:hover{border-color:var(--moss);background:var(--sage)}
+.btn-outline.on{border-color:var(--moss);background:var(--sage)}
+.spacer{flex:1}
+.legend{display:flex;gap:12px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--text-soft)}
+.legend .tone{display:inline-flex;align-items:center;gap:5px}
+.legend .dot{width:11px;height:11px;border-radius:50%}
+
+.section{padding:30px 48px 70px}
+
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.vcard{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px 18px 16px;position:relative;
+  display:flex;flex-direction:column;gap:6px;transition:all .2s}
+.vcard:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);border-color:var(--teal)}
+.vcard .hz{font-size:30px;font-weight:700;color:var(--forest);line-height:1.15;cursor:pointer}
+.vcard .py{font-size:15px;font-style:italic;font-weight:500}
+.vcard .py .syl{margin-right:2px}
+.vcard.hide-py .py{visibility:hidden}
+.vcard .vi{font-size:14px;color:var(--text-mid);font-weight:600;margin-top:2px}
+.vcard .actions{position:absolute;top:12px;right:12px;display:flex;gap:6px}
+.icon-btn{width:30px;height:30px;border-radius:50%;background:var(--sage);color:var(--forest);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .2s;padding:0}
+.icon-btn:hover{background:var(--mint)}
+.vcard.learned{border-color:var(--green-success);background:var(--green-light)}
+.vcard .check{margin-top:4px;font-size:12px;color:var(--text-soft);display:flex;align-items:center;gap:5px;user-select:none;cursor:pointer}
+.vcard .check input{accent-color:var(--forest);width:15px;height:15px}
+.tone1{color:var(--t1)} .tone2{color:var(--t2)} .tone3{color:var(--t3)} .tone4{color:var(--t4)} .tone5{color:var(--t5)}
+
+/* grammar */
+.gcard{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px}
+.gcard .g-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.gcard .g-num{background:var(--forest);color:#fff;font-size:12px;font-weight:800;width:26px;height:26px;border-radius:7px;
+  display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.gcard .g-title{font-size:18px;font-weight:800;color:var(--forest)}
+.gcard .g-lesson{font-size:11px;font-weight:700;color:var(--moss);background:var(--sage);padding:3px 9px;border-radius:99px}
+.g-structure{background:var(--forest);color:var(--mint);font-family:'PingFang SC','Microsoft YaHei',monospace;font-size:14px;
+  padding:10px 14px;border-radius:var(--radius-sm);margin-bottom:12px;font-weight:600}
+.g-exp{font-size:14px;color:var(--text-dark);margin-bottom:12px}
+.g-examples{background:var(--shell);border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:12px}
+.g-ex{padding:7px 0;border-bottom:1px solid var(--border)}
+.g-ex:last-child{border-bottom:none}
+.g-ex .ex-zh{font-size:17px;font-weight:700;color:var(--forest);cursor:pointer;display:inline-block}
+.g-ex .ex-zh:hover{color:var(--moss)}
+.g-ex .ex-py{font-size:13px;font-style:italic;color:var(--blue);margin:2px 0}
+.g-ex .ex-vi{font-size:13px;color:var(--text-soft)}
+.g-meta{display:flex;flex-direction:column;gap:8px}
+.g-tip,.g-note{font-size:13px;padding:9px 14px;border-radius:var(--radius-sm);display:flex;gap:8px}
+.g-tip{background:var(--blue-light);color:var(--blue);border:1px solid #BFDBFE}
+.g-note{background:var(--amber-light);color:var(--amber);border:1px solid #FDE68A}
+.g-tip b,.g-note b{white-space:nowrap}
+
+/* writer modal */
+.modal-back{position:fixed;inset:0;background:rgba(1,50,32,.45);display:none;align-items:center;justify-content:center;z-index:300;padding:16px}
+.modal-back.show{display:flex}
+.modal{background:var(--white);border-radius:var(--radius-lg);max-width:440px;width:100%;padding:26px 26px 22px;box-shadow:var(--shadow-lg);position:relative;max-height:94vh;overflow-y:auto}
+.modal .close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;color:var(--text-soft);cursor:pointer;line-height:1}
+.modal .m-title{font-size:15px;font-weight:800;color:var(--forest);margin-bottom:4px;padding-right:24px}
+.modal .m-word{text-align:center;margin-top:10px}
+.modal .m-word .zh{font-size:30px;font-weight:700;color:var(--forest)}
+.modal .m-word .py{font-size:15px;font-style:italic;color:var(--blue);margin-top:2px}
+.modal .m-word .vi{font-size:14px;color:var(--text-soft);margin-top:2px}
+.m-charcount{text-align:center;font-size:13px;color:var(--text-soft);margin:14px 0 6px}
+.writer-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:6px 0 14px}
+.writer-cell{width:130px;height:130px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--shell);position:relative}
+.writer-cell svg{display:block}
+.m-controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:6px}
+.m-hint{text-align:center;font-size:12px;color:var(--text-soft);margin-top:12px}
+
+.progress-wrap{padding:12px 20px;border-top:1px solid rgba(255,255,255,.1)}
+.progress-wrap .lbl{font-size:11px;color:rgba(255,255,255,.7);margin-bottom:6px;display:flex;justify-content:space-between}
+.progress-track{height:6px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden}
+.progress-fill{height:100%;background:var(--mint);width:0;transition:width .5s ease}
+
+.hero-practice{margin-top:16px;background:var(--mint);color:var(--forest);font-weight:800}
+.hero-practice:hover{background:#e8d4e8;transform:translateY(-1px)}
+
+/* practice modal (full) */
+.pr-back{position:fixed;inset:0;background:rgba(1,50,32,.55);display:none;z-index:400;padding:0}
+.pr-back.show{display:block}
+.pr-modal{background:var(--sand);position:absolute;inset:0;display:flex;flex-direction:column}
+.pr-top{display:flex;align-items:center;gap:14px;padding:16px 24px;background:var(--forest);color:#fff;flex-shrink:0}
+.pr-top .pr-title{font-size:16px;font-weight:800}
+.pr-top .pr-sub{font-size:12px;color:var(--mint);opacity:.9}
+.pr-top .close{margin-left:auto;background:rgba(255,255,255,.12);border:none;color:#fff;width:34px;height:34px;border-radius:8px;font-size:20px;cursor:pointer}
+.pr-tabs{display:flex;gap:6px;padding:12px 24px;background:var(--white);border-bottom:1px solid var(--border);overflow-x:auto;flex-shrink:0}
+.pr-tab{white-space:nowrap;font-size:12px;font-weight:700;padding:8px 12px;border-radius:99px;border:1.5px solid var(--border);color:var(--text-mid);background:transparent;cursor:pointer;transition:all .2s}
+.pr-tab.active{background:var(--forest);color:#fff;border-color:var(--forest)}
+.pr-tab:hover:not(.active){border-color:var(--moss)}
+.pr-body{flex:1;overflow-y:auto;padding:24px;max-width:820px;margin:0 auto;width:100%}
+.pr-scorebar{display:flex;align-items:center;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.pr-scorebar .stat{font-size:13px;color:var(--text-soft)}
+.pr-scorebar .stat b{color:var(--forest);font-size:16px}
+.pr-q{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:14px}
+.pr-q .q-prompt{font-size:15px;color:var(--text-dark);margin-bottom:12px}
+.pr-q .q-prompt .big{font-size:30px;font-weight:700;color:var(--forest);display:block;margin-bottom:4px}
+.pr-q .q-prompt .py{font-size:15px;font-style:italic;color:var(--blue)}
+.pr-input{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:16px;font-family:inherit;color:var(--text-dark)}
+.pr-input:focus{outline:none;border-color:var(--moss)}
+.pr-input.ok{border-color:var(--green-success);background:var(--green-light)}
+.pr-input.bad{border-color:var(--red);background:#FEF2F2}
+.pr-choices{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.pr-choice{padding:10px 18px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--white);cursor:pointer;font-size:18px;font-weight:600;color:var(--forest);transition:all .15s;font-family:inherit}
+.pr-choice:hover{border-color:var(--moss);background:var(--sage)}
+.pr-choice.ok{border-color:var(--green-success);background:var(--green-light)}
+.pr-choice.bad{border-color:var(--red);background:#FEF2F2}
+.pr-choice.pick{border-color:var(--forest);background:var(--sage)}
+.pr-tokens{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.pr-token{padding:9px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--white);cursor:pointer;font-size:18px;font-weight:600;color:var(--forest);user-select:none}
+.pr-token:hover{border-color:var(--moss)}
+.pr-token.used{opacity:.3;pointer-events:none}
+.pr-answer-line{min-height:52px;border:1.5px dashed var(--border);border-radius:var(--radius-sm);padding:9px 12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:var(--shell);margin-bottom:6px}
+.pr-answer-line .slot{padding:6px 14px;background:var(--forest);color:#fff;border-radius:6px;font-size:17px;cursor:pointer}
+.pr-tone-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:8px}
+.pr-tone-syl{display:flex;flex-direction:column;align-items:center;gap:4px}
+.pr-tone-syl .base{font-size:15px;font-style:italic;color:var(--text-soft)}
+.pr-tone-syl select{padding:6px;border:1.5px solid var(--border);border-radius:6px;font-size:14px}
+.pr-match{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.pr-match .col-h{font-size:11px;font-weight:800;color:var(--text-soft);text-transform:uppercase;text-align:center;margin-bottom:4px}
+.pr-mtile{padding:10px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--white);cursor:pointer;text-align:center;font-size:15px;margin-bottom:8px;transition:all .15s}
+.pr-mtile.pick{border-color:var(--forest);background:var(--sage)}
+.pr-mtile.done{border-color:var(--green-success);background:var(--green-light);pointer-events:none;opacity:.75}
+.pr-mtile .hz{font-size:22px;font-weight:700;color:var(--forest)}
+.pr-mtile.mtile-hz{font-size:26px;font-weight:700;color:var(--forest);font-family:'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;line-height:1.3}
+.pr-fb{margin-top:10px;font-size:13px;font-weight:600;padding:8px 12px;border-radius:var(--radius-sm);display:none}
+.pr-fb.ok{display:block;background:var(--green-light);color:var(--green-success)}
+.pr-fb.bad{display:block;background:#FEF2F2;color:var(--red)}
+.pr-actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.pr-empty{text-align:center;color:var(--text-soft);padding:40px 20px;font-size:14px}
+.pr-done-card{text-align:center;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:40px 24px}
+.pr-done-card .big{font-size:44px;font-weight:800;color:var(--forest)}
+.pr-done-card p{color:var(--text-soft);margin:8px 0 18px}
+
+.backdrop{display:none;position:fixed;inset:0;background:rgba(1,50,32,.4);z-index:99}
+@media(max-width:880px){
+  .sidebar{transform:translateX(-100%);width:80vw;max-width:280px}
+  .sidebar.open{transform:translateX(0)}
+  .backdrop.show{display:block}
+  .main{margin-left:0}
+  .topbar{display:flex}
+  .hero{padding:24px 20px}.hero h2{font-size:24px}
+  .toolbar{padding:14px 20px}
+  .section{padding:22px 20px 70px}
+  .vocab-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <span class="level-badge">新 HSK 1</span>
+      <h1>Thư viện New HSK 1</h1>
+      <div class="cat">15 bài · 24 chủ đề · 40 ngữ pháp</div>
+    </div>
+    <div class="sec-tabs">
+      <div class="sec-tab active" data-sec="lessons">Bài học</div>
+      <div class="sec-tab" data-sec="topics">Chủ đề</div>
+      <div class="sec-tab" data-sec="grammar">Ngữ pháp</div>
+    </div>
+    <nav class="nav">
+      <div class="nav-list active" id="nav-lessons"></div>
+      <div class="nav-list" id="nav-topics"></div>
+      <div class="nav-list" id="nav-grammar"></div>
+    </nav>
+    <div class="progress-wrap">
+      <div class="lbl"><span>Tiến độ mục này</span><span id="progText">0/0 · 0%</span></div>
+      <div class="progress-track"><div class="progress-fill" id="progFill"></div></div>
+    </div>
+  </aside>
+  <div class="backdrop" id="backdrop"></div>
+
+  <main class="main">
+    <div class="topbar">
+      <button class="hamburger" id="ham">☰</button>
+      <span class="tt" id="topTitle">Bài 1</span>
+    </div>
+
+    <div class="hero">
+      <div class="meta">
+        <span id="heroKind">Bài học</span>
+        <span id="heroNum">Bài 1</span>
+        <span id="heroCount">12 từ vựng</span>
+      </div>
+      <h2 id="heroVi"></h2>
+      <div class="zh" id="heroZh"></div>
+      <p class="sub" id="heroSub">Nhấp vào chữ Hán để luyện viết từng nét · nhấn 🔊 để nghe phát âm.</p>
+      <button class="btn hero-practice" id="heroPractice">🎯 Luyện tập bài này</button>
+    </div>
+
+    <div class="toolbar" id="toolbar">
+      <button class="btn btn-outline on" id="togglePy">Ẩn pinyin</button>
+      <button class="btn btn-outline" id="resetItem">Bỏ đánh dấu mục này</button>
+      <div class="spacer"></div>
+      <div class="legend">
+        <span class="tone"><span class="dot" style="background:var(--t1)"></span>Thanh 1</span>
+        <span class="tone"><span class="dot" style="background:var(--t2)"></span>Thanh 2</span>
+        <span class="tone"><span class="dot" style="background:var(--t3)"></span>Thanh 3</span>
+        <span class="tone"><span class="dot" style="background:var(--t4)"></span>Thanh 4</span>
+        <span class="tone"><span class="dot" style="background:var(--t5)"></span>Nhẹ</span>
+      </div>
+    </div>
+
+    <section class="section" id="content"></section>
+  </main>
+</div>
+
+<!-- Writing practice modal -->
+<div class="modal-back" id="modalBack">
+  <div class="modal">
+    <button class="close" id="modalClose">×</button>
+    <div class="m-title" id="mTitle">Luyện viết</div>
+    <div class="m-word">
+      <div class="zh" id="mZh"></div>
+      <div class="py" id="mPy"></div>
+      <div class="vi" id="mVi"></div>
+    </div>
+    <div class="m-charcount" id="mCount"></div>
+    <div class="writer-row" id="writerRow"></div>
+    <div class="m-controls">
+      <button class="btn btn-primary" id="mAnimate">▶ Xem nét</button>
+      <button class="btn btn-outline" id="mQuiz">✎ Tự viết</button>
+      <button class="btn btn-outline" id="mReset">↻ Lại</button>
+    </div>
+    <div class="m-hint" id="mHint">Nhấn “Xem nét” để xem thứ tự viết từng nét, hoặc “Tự viết” để luyện.</div>
+  </div>
+</div>
+
+<!-- Practice modal -->
+<div class="pr-back" id="prBack">
+  <div class="pr-modal">
+    <div class="pr-top">
+      <div>
+        <div class="pr-title" id="prTitle">Luyện tập</div>
+        <div class="pr-sub" id="prSub"></div>
+      </div>
+      <button class="close" id="prClose">×</button>
+    </div>
+    <div class="pr-tabs" id="prTabs"></div>
+    <div class="pr-body" id="prBody"></div>
+  </div>
+</div>
+
+<audio id="player"></audio>
+
+<script>
+const DATA = {"lessons": [{"id": 1, "tv": "AI Tiểu Ngữ, xin chào!", "tz": "AI小语，你好！", "words": [{"hz": "你好", "py": [["nǐ", 3], ["hǎo", 3]], "vi": "Chào bạn"}, {"hz": "王老师", "py": [["Wáng", 2], ["lǎo", 3], ["shī", 1]], "vi": "Thầy/Cô Vương"}, {"hz": "大家", "py": [["dà", 4], ["jiā", 1]], "vi": "Mọi người"}, {"hz": "好", "py": [["hǎo", 3]], "vi": "Tốt, khoẻ"}, {"hz": "学生", "py": [["xué", 2], ["sheng", 5]], "vi": "Học sinh, sinh viên"}, {"hz": "们", "py": [["men", 5]], "vi": "(Dùng sau đại từ/danh từ chỉ người để tạo số nhiều)"}, {"hz": "老师", "py": [["lǎo", 3], ["shī", 1]], "vi": "Giáo viên"}, {"hz": "您", "py": [["nín", 2]], "vi": "Ông, bà, ngài (ngôi thứ 2 số ít, trang trọng)"}, {"hz": "你们", "py": [["nǐ", 3], ["men", 5]], "vi": "Các bạn"}, {"hz": "谢谢", "py": [["xiè", 4], ["xie", 5]], "vi": "Cảm ơn"}, {"hz": "不客气", "py": [["bú", 2], ["kèqi", 4]], "vi": "Đừng khách khí, không có gì"}, {"hz": "同学", "py": [["tóng", 2], ["xué", 2]], "vi": "Bạn học"}, {"hz": "再见", "py": [["zài", 4], ["jiàn", 4]], "vi": "Tạm biệt"}]}, {"id": 2, "tv": "Tôi tên là Lý Văn", "tz": "我叫李文", "words": [{"hz": "请问", "py": [["qǐng", 3], ["wèn", 4]], "vi": "Xin hỏi"}, {"hz": "你", "py": [["nǐ", 3]], "vi": "Bạn, anh, chị"}, {"hz": "叫", "py": [["jiào", 4]], "vi": "Gọi là, tên là"}, {"hz": "什么", "py": [["shén", 2], ["me", 5]], "vi": "Cái gì"}, {"hz": "名字", "py": [["míng", 2], ["zi", 5]], "vi": "Tên"}, {"hz": "我", "py": [["wǒ", 3]], "vi": "Tôi, mình, tớ"}, {"hz": "不", "py": [["bù", 4]], "vi": "Không"}, {"hz": "是", "py": [["shì", 4]], "vi": "Là"}, {"hz": "对不起", "py": [["duì", 4], ["bu", 5], ["qǐ", 3]], "vi": "Xin lỗi"}, {"hz": "没关系", "py": [["méi", 2], ["guānxi", 1]], "vi": "Không sao, không có chi"}, {"hz": "没事", "py": [["méi", 2], ["shì", 4]], "vi": "Không có việc gì, không sao"}, {"hz": "很", "py": [["hěn", 3]], "vi": "Rất"}, {"hz": "高兴", "py": [["gāo", 1], ["xìng", 4]], "vi": "Vui mừng"}, {"hz": "认识", "py": [["rèn", 4], ["shi", 5]], "vi": "Quen biết"}, {"hz": "也", "py": [["yě", 3]], "vi": "Cũng"}]}, {"id": 3, "tv": "Tôi là người Trung Quốc", "tz": "我是中国人", "words": [{"hz": "人", "py": [["rén", 2]], "vi": "Người"}, {"hz": "的", "py": [["de", 5]], "vi": "Của (trợ từ kết cấu)"}, {"hz": "中国", "py": [["Zhōng", 1], ["guó", 2]], "vi": "Trung Quốc"}, {"hz": "法国", "py": [["Fǎ", 3], ["guó", 2]], "vi": "Pháp"}, {"hz": "中文", "py": [["Zhōng", 1], ["wén", 2]], "vi": "Tiếng Trung"}, {"hz": "这", "py": [["zhè", 4]], "vi": "Đây, này"}, {"hz": "谁", "py": [["shéi", 2], ["/", 5], ["shuí", 2]], "vi": "Ai"}, {"hz": "女朋友", "py": [["nǚ", 3], ["péng", 2], ["you", 5]], "vi": "Bạn gái"}, {"hz": "哪", "py": [["nǎ", 3]], "vi": "Nào"}, {"hz": "国", "py": [["guó", 2]], "vi": "Quốc gia"}, {"hz": "她", "py": [["tā", 1]], "vi": "Cô ấy, bà ấy"}, {"hz": "泰国", "py": [["Tài", 4], ["guó", 2]], "vi": "Thái Lan"}, {"hz": "喂", "py": [["wèi", 4]], "vi": "Alô (nghe máy)"}, {"hz": "姐姐", "py": [["jiě", 3], ["jie", 5]], "vi": "Chị gái"}, {"hz": "工作", "py": [["gōng", 1], ["zuò", 4]], "vi": "Công việc/Làm việc"}, {"hz": "忙", "py": [["máng", 2]], "vi": "Bận rộn"}, {"hz": "吗", "py": [["ma", 5]], "vi": "Không? (dùng cuối câu hỏi)"}, {"hz": "还", "py": [["hái", 2]], "vi": "Còn, vẫn"}, {"hz": "对", "py": [["duì", 4]], "vi": "Đúng"}, {"hz": "太", "py": [["tài", 4]], "vi": "Quá, lắm"}, {"hz": "我们", "py": [["wǒ", 3], ["men", 5]], "vi": "Chúng tôi"}, {"hz": "想", "py": [["xiǎng", 3]], "vi": "Nhớ, muốn"}]}, {"id": 4, "tv": "Tôi có hai đứa con", "tz": "我有两个孩子", "words": [{"hz": "有", "py": [["yǒu", 3]], "vi": "Có"}, {"hz": "多少", "py": [["duō", 1], ["shao", 5]], "vi": "Bao nhiêu"}, {"hz": "个", "py": [["gè", 4]], "vi": "Cái, chiếc (lượng từ chung)"}, {"hz": "哥哥", "py": [["gē", 1], ["ge", 5]], "vi": "Anh trai"}, {"hz": "呢", "py": [["ne", 5]], "vi": "Nhỉ, nhé (trợ từ ngữ khí)"}, {"hz": "没有", "py": [["méi", 2], ["yǒu", 3]], "vi": "Không có"}, {"hz": "家", "py": [["jiā", 1]], "vi": "Gia đình, nhà"}, {"hz": "几", "py": [["jǐ", 3]], "vi": "Mấy"}, {"hz": "口", "py": [["kǒu", 3]], "vi": "Miệng (lượng từ cho nhân khẩu trong nhà)"}, {"hz": "爸爸", "py": [["bà", 4], ["ba", 5]], "vi": "Bố, ba"}, {"hz": "妈妈", "py": [["mā", 1], ["ma", 5]], "vi": "Mẹ"}, {"hz": "妹妹", "py": [["mèi", 4], ["mei", 5]], "vi": "Em gái"}, {"hz": "和", "py": [["hé", 2]], "vi": "Và"}, {"hz": "儿子", "py": [["ér", 2], ["zi", 5]], "vi": "Con trai"}, {"hz": "孩子", "py": [["hái", 2], ["zi", 5]], "vi": "Con cái, trẻ em"}, {"hz": "女儿", "py": [["nǚ", 3], ["ér", 2]], "vi": "Con gái"}, {"hz": "岁", "py": [["suì", 4]], "vi": "Tuổi"}, {"hz": "他", "py": [["tā", 1]], "vi": "Anh ấy, ông ấy"}, {"hz": "今年", "py": [["jīn", 1], ["nián", 2]], "vi": "Năm nay"}, {"hz": "多", "py": [["duō", 1]], "vi": "Bao nhiêu (trong câu hỏi mức độ)"}, {"hz": "大", "py": [["dà", 4]], "vi": "Lớn, to"}]}, {"id": 5, "tv": "Hôm nay tôi nghỉ", "tz": "今天我休息", "words": [{"hz": "今天", "py": [["jīn", 1], ["tiān", 1]], "vi": "Hôm nay"}, {"hz": "号", "py": [["hào", 4]], "vi": "Ngày (khẩu ngữ)"}, {"hz": "月", "py": [["yuè", 4]], "vi": "Tháng"}, {"hz": "日", "py": [["rì", 4]], "vi": "Ngày (văn viết)"}, {"hz": "星期", "py": [["xīng", 1], ["qī", 1]], "vi": "Thứ, tuần"}, {"hz": "星期日/天", "py": [["xīng", 1], ["qī", 1], ["rì", 4], ["/", 5], ["tiān", 1]], "vi": "Chủ nhật"}, {"hz": "休息", "py": [["xiū", 1], ["xi", 5]], "vi": "Nghỉ ngơi"}, {"hz": "会", "py": [["huì", 4]], "vi": "Biết (thông qua học tập)"}, {"hz": "做饭", "py": [["zuò", 4], ["fàn", 4]], "vi": "Nấu cơm"}, {"hz": "做", "py": [["zuò", 4]], "vi": "Làm"}, {"hz": "面条儿", "py": [["miàn", 4], ["tiáo", 2], ["r", 5]], "vi": "Mì"}, {"hz": "饺子", "py": [["jiǎo", 3], ["zi", 5]], "vi": "Sủi cảo"}, {"hz": "一些", "py": [["yì", 4], ["xiē", 1]], "vi": "Một số, một ít"}, {"hz": "菜", "py": [["cài", 4]], "vi": "Món ăn, rau"}, {"hz": "下班", "py": [["xià", 4], ["bān", 1]], "vi": "Tan làm"}, {"hz": "新", "py": [["xīn", 1]], "vi": "Mới"}, {"hz": "电脑", "py": [["diàn", 4], ["nǎo", 3]], "vi": "Máy tính"}, {"hz": "真", "py": [["zhēn", 1]], "vi": "Thật, thật là"}, {"hz": "好看", "py": [["hǎo", 3], ["kàn", 4]], "vi": "Đẹp, dễ nhìn"}, {"hz": "喜欢", "py": [["xǐ", 3], ["huān", 1]], "vi": "Thích"}, {"hz": "它", "py": [["tā", 1]], "vi": "Nó (chỉ đồ vật, con vật)"}]}, {"id": 6, "tv": "Số điện thoại của bạn là bao nhiêu?", "tz": "你的手机号是多少？", "words": [{"hz": "手机", "py": [["shǒu", 3], ["jī", 1]], "vi": "điện thoại di động"}, {"hz": "电话", "py": [["diàn", 4], ["huà", 4]], "vi": "điện thoại (cố định); cuộc gọi"}, {"hz": "号", "py": [["hào", 4]], "vi": "số / số điện thoại"}, {"hz": "多少", "py": [["duō", 1], ["shao", 5]], "vi": "bao nhiêu"}, {"hz": "明天", "py": [["míng", 2], ["tiān", 1]], "vi": "ngày mai"}, {"hz": "去", "py": [["qù", 4]], "vi": "đi"}, {"hz": "哪儿", "py": [["nǎ", 3], ["r", 5]], "vi": "đâu, ở đâu"}, {"hz": "想", "py": [["xiǎng", 3]], "vi": "muốn, định, nghĩ"}, {"hz": "超市", "py": [["chāo", 1], ["shì", 4]], "vi": "siêu thị"}, {"hz": "买", "py": [["mǎi", 3]], "vi": "mua"}, {"hz": "东西", "py": [["dōng", 1], ["xi", 5]], "vi": "đồ đạc, vật phẩm"}, {"hz": "些", "py": [["xiē", 1]], "vi": "một số, một vài"}, {"hz": "牛奶", "py": [["niú", 2], ["nǎi", 3]], "vi": "sữa bò"}, {"hz": "吃", "py": [["chī", 1]], "vi": "ăn"}, {"hz": "晚饭", "py": [["wǎn", 3], ["fàn", 4]], "vi": "cơm tối"}, {"hz": "那边", "py": [["nà", 4], ["bian", 5]], "vi": "bên kia, đằng kia"}, {"hz": "包子", "py": [["bāo", 1], ["zi", 5]], "vi": "bánh bao nhân thịt"}, {"hz": "非常", "py": [["fēi", 1], ["cháng", 2]], "vi": "vô cùng, rất"}, {"hz": "好吃", "py": [["hǎo", 3], ["chī", 1]], "vi": "ngon, ngon miệng"}, {"hz": "米饭", "py": [["mǐ", 3], ["fàn", 4]], "vi": "cơm"}, {"hz": "怎么", "py": [["zěn", 3], ["me", 5]], "vi": "thế nào, bằng cách nào"}, {"hz": "坐", "py": [["zuò", 4]], "vi": "ngồi, đi (xe, máy bay...)"}, {"hz": "出租车", "py": [["chū", 1], ["zhū", 1], ["chē", 1]], "vi": "xe taxi"}]}, {"id": 7, "tv": "Tôi tan làm lúc 6 giờ rưỡi tối", "tz": "我晚上六点半下班", "words": [{"hz": "现在", "py": [["xiàn", 4], ["zài", 4]], "vi": "bây giờ, hiện tại"}, {"hz": "点", "py": [["diǎn", 3]], "vi": "giờ (o'clock)"}, {"hz": "早上", "py": [["zǎo", 3], ["shang", 5]], "vi": "buổi sáng sớm"}, {"hz": "上午", "py": [["shàng", 4], ["wǔ", 3]], "vi": "buổi sáng (9h - 11h)"}, {"hz": "分", "py": [["fēn", 1]], "vi": "phút"}, {"hz": "课", "py": [["kè", 4]], "vi": "tiết học, bài học"}, {"hz": "下午", "py": [["xià", 4], ["wǔ", 3]], "vi": "buổi chiều"}, {"hz": "见", "py": [["jiàn", 4]], "vi": "gặp, thấy"}, {"hz": "吧", "py": [["ba", 5]], "vi": "nhé, đi (đề nghị)"}, {"hz": "电影院", "py": [["diàn", 4], ["yǐng", 3], ["yuàn", 4]], "vi": "rạp chiếu phim"}, {"hz": "看", "py": [["kàn", 4]], "vi": "xem, nhìn, đọc"}, {"hz": "电影", "py": [["diàn", 4], ["yǐng", 3]], "vi": "phim, điện ảnh"}, {"hz": "事", "py": [["shì", 4]], "vi": "việc, sự việc"}, {"hz": "上课", "py": [["shàng", 4], ["kè", 4]], "vi": "vào học, lên lớp"}, {"hz": "呢", "py": [["ne", 5]], "vi": "đấy, cơ (khẳng định/hỏi ngược)"}, {"hz": "半", "py": [["bàn", 4]], "vi": "rưỡi, một nửa"}, {"hz": "下课", "py": [["xià", 4], ["kè", 4]], "vi": "tan học"}, {"hz": "在", "py": [["zài", 4]], "vi": "ở, tại"}, {"hz": "家", "py": [["jiā", 1]], "vi": "nhà, gia đình"}, {"hz": "里", "py": [["lǐ", 3]], "vi": "bên trong, trong"}, {"hz": "晚上", "py": [["wǎn", 3], ["shang", 5]], "vi": "buổi tối"}, {"hz": "上班", "py": [["shàng", 4], ["bān", 1]], "vi": "đi làm"}, {"hz": "店", "py": [["diàn", 4]], "vi": "cửa hàng"}, {"hz": "菜", "py": [["cài", 4]], "vi": "rau, món ăn"}, {"hz": "分钟", "py": [["fēn", 1], ["zhōng", 1]], "vi": "phút (khoảng thời gian)"}, {"hz": "后", "py": [["hòu", 4]], "vi": "sau, sau khi"}]}, {"id": 8, "tv": "Bố tôi cũng làm việc ở bệnh viện", "tz": "我爸爸也在医院工作", "words": [{"hz": "房间", "py": [["fáng", 2], ["jiān", 1]], "vi": "phòng"}, {"hz": "外", "py": [["wài", 4]], "vi": "bên ngoài"}, {"hz": "只", "py": [["zhī", 1]], "vi": "con (lượng từ cho mèo, chim...)"}, {"hz": "小", "py": [["xiǎo", 3]], "vi": "nhỏ, bé"}, {"hz": "猫", "py": [["māo", 1]], "vi": "con mèo"}, {"hz": "没", "py": [["méi", 2]], "vi": "không, chưa (phủ định \"有\")"}, {"hz": "看见", "py": [["kàn", 4], ["jiàn", 4]], "vi": "nhìn thấy, trông thấy"}, {"hz": "桌子", "py": [["zhuō", 1], ["zi", 5]], "vi": "cái bàn"}, {"hz": "下", "py": [["xià", 4]], "vi": "dưới, phía dưới"}, {"hz": "漂亮", "py": [["piào", 4], ["liang", 5]], "vi": "đẹp, xinh đẹp"}, {"hz": "在", "py": [["zài", 4]], "vi": "ở, tại"}, {"hz": "学校", "py": [["xué", 2], ["xiào", 4]], "vi": "trường học"}, {"hz": "书店", "py": [["shū", 1], ["diàn", 4]], "vi": "nhà sách, cửa hàng sách"}, {"hz": "前", "py": [["qián", 2]], "vi": "phía trước"}, {"hz": "能", "py": [["néng", 2]], "vi": "có thể (năng lực/hoàn cảnh)"}, {"hz": "到", "py": [["dào", 4]], "vi": "đến"}, {"hz": "午饭", "py": [["wǔ", 3], ["fàn", 4]], "vi": "cơm trưa"}, {"hz": "饭", "py": [["fàn", 4]], "vi": "cơm, bữa ăn"}, {"hz": "大", "py": [["dà", 4]], "vi": "to, lớn"}, {"hz": "病人", "py": [["bìng", 4], ["rén", 2]], "vi": "bệnh nhân, người bệnh"}, {"hz": "医生", "py": [["yī", 1], ["shēng", 1]], "vi": "bác sĩ"}, {"hz": "工作", "py": [["gōng", 1], ["zuò", 4]], "vi": "công việc / làm việc"}]}, {"id": 9, "tv": "Sáng mai tôi học ở trường", "tz": "我明天上午在学校学习", "words": [{"hz": "前边", "py": [["qián", 2], ["bian", 5]], "vi": "phía trước"}, {"hz": "边", "py": [["bian", 5]], "vi": "bên, phía (phương vị)"}, {"hz": "家", "py": [["jiā", 1]], "vi": "nhà, quán (cho cửa hàng, rạp phim...)"}, {"hz": "那个", "py": [["nà", 4], ["ge", 5]], "vi": "cái kia, cái đó"}, {"hz": "外边", "py": [["wài", 4], ["bian", 5]], "vi": "phía ngoài, bên ngoài"}, {"hz": "椅子", "py": [["yǐ", 3], ["zi", 5]], "vi": "cái ghế"}, {"hz": "上", "py": [["shang", 5]], "vi": "trên, phía trên"}, {"hz": "本", "py": [["běn", 3]], "vi": "quyển, cuốn (lượng từ cho sách)"}, {"hz": "书", "py": [["shū", 1]], "vi": "sách"}, {"hz": "第", "py": [["dì", 4]], "vi": "thứ (dùng tạo số thứ tự)"}, {"hz": "学习", "py": [["xué", 2], ["xí", 2]], "vi": "học tập, học"}, {"hz": "做", "py": [["zuò", 4]], "vi": "làm"}, {"hz": "白天", "py": [["bái", 2], ["tiān", 1]], "vi": "ban ngày"}, {"hz": "读书", "py": [["dú", 2], ["shū", 1]], "vi": "đọc sách, học bài"}, {"hz": "和", "py": [["hé", 2]], "vi": "và, với"}, {"hz": "朋友", "py": [["péng", 2], ["you", 5]], "vi": "bạn bè, bạn"}, {"hz": "唱", "py": [["chàng", 4]], "vi": "hát"}, {"hz": "歌", "py": [["gē", 1]], "vi": "bài hát, ca khúc"}, {"hz": "好听", "py": [["hǎo", 3], ["tīng", 1]], "vi": "hay, dễ nghe"}, {"hz": "电视", "py": [["diàn", 4], ["shì", 4]], "vi": "tivi, vô tuyến"}, {"hz": "狗", "py": [["gǒu", 3]], "vi": "con chó"}, {"hz": "玩", "py": [["wán", 2]], "vi": "chơi, đùa nghịch"}]}, {"id": 10, "tv": "Táo ở đây rẻ thật!", "tz": "这儿的苹果真便宜！", "words": [{"hz": "杯子", "py": [["bēi", 1], ["zi", 5]], "vi": "cái ly, cái cốc"}, {"hz": "售货员", "py": [["shòu", 4], ["huò", 4], ["yuán", 2]], "vi": "nhân viên bán hàng"}, {"hz": "这边", "py": [["zhè", 4], ["biān", 1]], "vi": "bên này, đằng này"}, {"hz": "钱", "py": [["qián", 2]], "vi": "tiền"}, {"hz": "这些", "py": [["zhè", 4], ["xiē", 1]], "vi": "những cái này"}, {"hz": "块", "py": [["kuài", 4]], "vi": "đồng, tệ (khẩu ngữ)"}, {"hz": "那些", "py": [["nà", 4], ["xiē", 1]], "vi": "những cái kia"}, {"hz": "这儿", "py": [["zhèr", 4]], "vi": "ở đây, chỗ này"}, {"hz": "水果", "py": [["shuǐ", 3], ["guǒ", 3]], "vi": "hoa quả, trái cây"}, {"hz": "少", "py": [["shǎo", 3]], "vi": "ít"}, {"hz": "斤", "py": [["jin", 5]], "vi": "cân (Trung Quốc = 500g)"}, {"hz": "苹果", "py": [["píng", 2], ["guǒ", 3]], "vi": "quả táo"}, {"hz": "便宜", "py": [["pián", 2], ["yi", 5]], "vi": "rẻ"}, {"hz": "商店", "py": [["shāng", 1], ["diàn", 4]], "vi": "cửa hàng"}, {"hz": "衣服", "py": [["yī", 1], ["fu", 5]], "vi": "quần áo"}, {"hz": "件", "py": [["jiàn", 4]], "vi": "chiếc, bộ (cho quần áo)"}, {"hz": "元", "py": [["yuán", 2]], "vi": "đồng (đơn vị văn viết của tiền tệ)"}, {"hz": "怎么样", "py": [["zěn", 3], ["me", 5], ["yàng", 4]], "vi": "như thế nào, ra sao"}, {"hz": "贵", "py": [["guì", 4]], "vi": "đắt, quý"}, {"hz": "穿", "py": [["chuān", 1]], "vi": "mặc (quần áo), đi (giày dép)"}, {"hz": "女", "py": [["nǚ", 3]], "vi": "nữ, con gái"}, {"hz": "男", "py": [["nán", 2]], "vi": "nam, con trai"}, {"hz": "那儿", "py": [["nà", 4], ["r", 5]], "vi": "chỗ kia, nơi đó"}]}, {"id": 11, "tv": "Tôi đang học đại học", "tz": "我读大学呢", "words": [{"hz": "时候", "py": [["shí", 2], ["hou", 5]], "vi": "lúc, khi, thời gian"}, {"hz": "饭店", "py": [["fàn", 4], ["diàn", 4]], "vi": "nhà hàng, khách sạn lớn"}, {"hz": "知道", "py": [["zhī", 1], ["dào", 4]], "vi": "biết"}, {"hz": "正在", "py": [["zhèng", 4], ["zài", 4]], "vi": "đang (hành động đang diễn ra)"}, {"hz": "找", "py": [["zhǎo", 3]], "vi": "tìm, tìm kiếm"}, {"hz": "开车", "py": [["kāi", 1], ["chē", 1]], "vi": "lái xe"}, {"hz": "车", "py": [["chē", 1]], "vi": "xe, xe cộ"}, {"hz": "在", "py": [["zài", 4]], "vi": "đang (hành động đang diễn ra)"}, {"hz": "读", "py": [["dú", 2]], "vi": "đọc, học (đại học...)"}, {"hz": "大学", "py": [["dà", 4], ["xué", 2]], "vi": "trường đại học"}, {"hz": "大学生", "py": [["dà", 4], ["xué", 2], ["sheng", 5]], "vi": "sinh viên đại học"}, {"hz": "学", "py": [["xué", 2]], "vi": "học, học tập"}, {"hz": "医", "py": [["yī", 1]], "vi": "y học, y khoa"}, {"hz": "弟弟", "py": [["dì", 4], ["di", 5]], "vi": "em trai"}, {"hz": "起床", "py": [["qǐ", 3], ["chuáng", 2]], "vi": "ngủ dậy, thức dậy"}, {"hz": "睡觉", "py": [["shuì", 4], ["jiào", 4]], "vi": "đi ngủ"}, {"hz": "睡", "py": [["shuì", 4]], "vi": "ngủ"}, {"hz": "那里", "py": [["nà", 4], ["li", 5]], "vi": "chỗ kia, nơi đó (bằng 那儿)"}, {"hz": "哪里", "py": [["nǎ", 3], ["li", 5]], "vi": "chỗ nào, đâu (bằng 哪儿)"}, {"hz": "昨天", "py": [["zuó", 2], ["tiān", 1]], "vi": "ngày hôm qua"}, {"hz": "问", "py": [["wèn", 4]], "vi": "hỏi"}, {"hz": "对", "py": [["duì", 4]], "vi": "đúng, chính xác / đối mặt"}, {"hz": "说", "py": [["shuō", 1]], "vi": "nói"}, {"hz": "要", "py": [["yào", 4]], "vi": "muốn, định, cần"}, {"hz": "小Point / 小朋友", "py": [["xiǎo", 3], ["péng", 2], ["yǒu", 3]], "vi": "bạn nhỏ, trẻ em"}]}, {"id": 12, "tv": "Hôm qua tuyết rơi", "tz": "昨天下雪了", "words": [{"hz": "下雨", "py": [["xià", 4], ["yǔ", 3]], "vi": "trời mưa"}, {"hz": "雨", "py": [["yǔ", 3]], "vi": "mưa, cơn mưa"}, {"hz": "了", "py": [["le", 5]], "vi": "rồi (biểu thị sự thay đổi)"}, {"hz": "下雪", "py": [["xià", 4], ["xuě", 3]], "vi": "tuyết rơi"}, {"hz": "雪", "py": [["xuě", 3]], "vi": "tuyết"}, {"hz": "天", "py": [["tiān", 1]], "vi": "ngày / bầu trời"}, {"hz": "这里", "py": [["zhè", 4], ["li", 5]], "vi": "nơi đây, chỗ này (bằng 这儿)"}, {"hz": "天气", "py": [["tiān", 1], ["qì", 4]], "vi": "thời tiết"}, {"hz": "有点儿", "py": [["yǒu", 3], ["diǎn", 3], ["r", 5]], "vi": "một chút, hơi (vẻ không hài lòng)"}, {"hz": "觉得", "py": [["jué", 2], ["de", 5]], "vi": "cảm thấy, thấy rằng"}, {"hz": "冷", "py": [["lěng", 3]], "vi": "lạnh"}, {"hz": "病", "py": [["bìng", 4]], "vi": "bệnh, ốm / mắc bệnh"}, {"hz": "一点儿", "py": [["yì", 4], ["diǎn", 3], ["r", 5]], "vi": "một chút (đứng sau tính từ/danh từ)"}, {"hz": "药", "py": [["yào", 4]], "vi": "thuốc (chữa bệnh)"}, {"hz": "天", "py": [["tiān", 1]], "vi": "ngày (lượng từ đếm ngày)"}, {"hz": "回", "py": [["huí", 2]], "vi": "trở về, quay lại"}, {"hz": "再", "py": [["zài", 4]], "vi": "lại, nữa (l lặp lại trong tương lai)"}, {"hz": "喝", "py": [["hē", 1]], "vi": "uống"}, {"hz": "热", "py": [["rè", 4]], "vi": "nóng"}, {"hz": "水", "py": [["shuǐ", 3]], "vi": "nước"}]}, {"id": 13, "tv": "Cho tôi một cốc trà", "tz": "请给我一杯茶", "words": [{"hz": "可以", "py": [["kě", 3], ["yǐ", 3]], "vi": "có thể (cho phép/được phép)"}, {"hz": "再", "py": [["zài", 4]], "vi": "lại, nữa, tiếp tục"}, {"hz": "问题", "py": [["wèn", 4], ["tí", 2]], "vi": "câu hỏi, vấn đề"}, {"hz": "卖", "py": [["mài", 4]], "vi": "bán"}, {"hz": "打电话", "py": [["dǎ", 3], ["diàn", 4], ["huà", 4]], "vi": "gọi điện thoại"}, {"hz": "一下", "py": [["yí", 2], ["xià", 4]], "vi": "một lát, thử xem (sau động từ)"}, {"hz": "服务员", "py": [["fú", 2], ["wù", 4], ["yuán", 2]], "vi": "nhân viên phục vụ, bồi bàn"}, {"hz": "女士", "py": [["nǚ", 3], ["shì", 4]], "vi": "quý bà, quý cô"}, {"hz": "请", "py": [["qǐng", 3]], "vi": "mời, xin, làm ơn"}, {"hz": "坐", "py": [["zuò", 4]], "vi": "ngồi"}, {"hz": "给", "py": [["gěi", 3]], "vi": "cho, đưa cho"}, {"hz": "杯", "py": [["bēi", 1]], "vi": "cốc, tách, ly (nước)"}, {"hz": "茶", "py": [["chá", 2]], "vi": "trà, chè"}, {"hz": "要", "py": [["yào", 4]], "vi": "cần, muốn, lấy (đồ)"}, {"hz": "早饭", "py": [["zǎo", 3], ["fàn", 4]], "vi": "bữa sáng, cơm sáng"}, {"hz": "这个", "py": [["zhè", 4], ["ge", 5]], "vi": "cái này"}, {"hz": "面包", "py": [["miàn", 4], ["bāo", 1]], "vi": "bánh mì"}, {"hz": "鸡蛋", "py": [["jī", 1], ["dàn", 4]], "vi": "trứng gà"}, {"hz": "先生", "py": [["xiān", 1], ["sheng", 5]], "vi": "ông, ngài, anh (lịch sự)"}, {"hz": "一半", "py": [["yí", 2], ["bàn", 4]], "vi": "một nửa"}, {"hz": "饺子", "py": [["jiǎo", 3], ["zi", 5]], "vi": "bánh sủi cảo, bánh chẻo"}]}, {"id": 14, "tv": "Tôi đã xem một bộ phim", "tz": "我看了一个电影", "words": [{"hz": "上", "py": [["shàng", 4]], "vi": "lên (lên xe, lên tàu)"}, {"hz": "火车", "py": [["huǒ", 3], ["chē", 1]], "vi": "tàu hỏa, xe lửa"}, {"hz": "中午", "py": [["zhōng", 1], ["wǔ", 3]], "vi": "buổi trưa (12h)"}, {"hz": "开", "py": [["kāi", 1]], "vi": "khởi hành, chạy (tàu, xe)"}, {"hz": "有些", "py": [["yǒu", 3], ["xiē", 1]], "vi": "một số, một vài"}, {"hz": "有的", "py": [["yǒu", 3], ["de", 5]], "vi": "có người, có cái (trong nhóm)"}, {"hz": "了", "py": [["le", 5]], "vi": "đã (biểu thị hoàn thành hành động)"}, {"hz": "写", "py": [["xiě", 3]], "vi": "viết"}, {"hz": "都", "py": [["dōu", 1]], "vi": "đều, tất cả"}, {"hz": "听见", "py": [["tīng", 1], ["jiàn", 4]], "vi": "nghe thấy, nghe được"}, {"hz": "不要", "py": [["bú", 2], ["yào", 4]], "vi": "không được, đừng"}, {"hz": "说话", "py": [["shuō", 1], ["huà", 4]], "vi": "nói chuyện, trò chuyện"}, {"hz": "听", "py": [["tīng", 1]], "vi": "nghe"}, {"hz": "哪些", "py": [["nǎ", 3], ["xiē", 1]], "vi": "những cái nào, những ai"}, {"hz": "字", "py": [["zì", 4]], "vi": "chữ, ký tự"}, {"hz": "明年", "py": [["míng", 2], ["nián", 2]], "vi": "năm sau, sang năm"}, {"hz": "中学", "py": [["zhōng", 1], ["xué", 2]], "vi": "trường trung học (cấp 2, 3)"}, {"hz": "小学", "py": [["xiǎo", 3], ["xué", 2]], "vi": "trường tiểu học"}, {"hz": "中学生", "py": [["zhōng", 1], ["xué", 2], ["sheng", 5]], "vi": "học sinh trung học"}, {"hz": "小学生", "py": [["xiǎo", 3], ["xué", 2], ["sheng", 5]], "vi": "học sinh tiểu học"}, {"hz": "上学", "py": [["shàng", 4], ["xué", 2]], "vi": "đi học, đến trường"}, {"hz": "他们", "py": [["tā", 1], ["men", 5]], "vi": "họ (chỉ nam hoặc tập thể chung)"}, {"hz": "她们", "py": [["tā", 1], ["men", 5]], "vi": "họ (chỉ toàn nữ giới)"}, {"hz": "它们", "py": [["tā", 1], ["men", 5]], "vi": "chúng nó (chỉ đồ vật, con vật)"}, {"hz": "晚", "py": [["wǎn", 3]], "vi": "muộn, trễ / tối"}]}, {"id": 15, "tv": "Hẹn gặp ở sân bay Đại Hưng!", "tz": "大兴机场见！", "words": [{"hz": "爱", "py": [["ài", 4]], "vi": "yêu, thích"}, {"hz": "哪个", "py": [["nǎ", 3], ["ge", 5]], "vi": "cái nào, người nào"}, {"hz": "去年", "py": [["qùn", 4], ["ián", 2]], "vi": "năm ngoái"}, {"hz": "男朋友", "py": [["nán", 2], ["péng", 2], ["you", 5]], "vi": "bạn trai"}, {"hz": "几", "py": [["jǐ", 3]], "vi": "mấy, một vài (<10)"}, {"hz": "年", "py": [["nián", 2]], "vi": "năm"}, {"hz": "好玩儿", "py": [["hǎo", 3], ["wán", 2], ["r", 5]], "vi": "vui, thú vị"}, {"hz": "飞机", "py": [["fēi", 1], ["jī", 1]], "vi": "máy bay"}, {"hz": "要", "py": [["yào", 4]], "vi": "cần, mất (mất bao nhiêu thời gian)"}, {"hz": "小时", "py": [["xiǎo", 3], ["shí", 2]], "vi": "tiếng đồng hồ"}, {"hz": "家人", "py": [["jiā", 1], ["rén", 2]], "vi": "người nhà, người trong gia đình"}, {"hz": "时间", "py": [["shí", 2], ["jiān", 1]], "vi": "thời gian"}, {"hz": "机场", "py": [["jī", 1], ["cháng", 2]], "vi": "sân bay, phi trường"}, {"hz": "楼", "py": [["lóu", 2]], "vi": "tòa nhà, tầng nhà"}, {"hz": "住", "py": [["zhù", 4]], "vi": "trú ngụ, ở, sống"}, {"hz": "早", "py": [["zǎo", 3]], "vi": "sớm"}, {"hz": "那", "py": [["nà", 4]], "vi": "thế thì, vậy thì"}]}], "topics": [{"slug": "dat-cau-hoi", "title": "Đặt câu hỏi và đo lường từ ngữ", "words": [{"hz": "哪", "py": [["nǎ", 3]], "vi": "nào?"}, {"hz": "什么", "py": [["shén", 2], ["me", 5]], "vi": "gì?"}, {"hz": "怎么", "py": [["zěn", 3], ["me", 5]], "vi": "Sao? Tại sao?"}, {"hz": "干什么", "py": [["gàn", 4], ["shén", 2], ["me", 5]], "vi": "làm gì?"}, {"hz": "几", "py": [["jǐ", 3]], "vi": "bao nhiêu"}, {"hz": "多少", "py": [["duō", 1], ["shao", 5]], "vi": "bao nhiêu"}, {"hz": "吗", "py": [["ma", 5]], "vi": "một từ nghi vấn"}, {"hz": "谁", "py": [["shéi", 2]], "vi": "ai"}, {"hz": "呢", "py": [["ne", 5]], "vi": "trợ từ nghi vấn"}, {"hz": "那", "py": [["nà", 4]], "vi": "đó"}, {"hz": "哪些", "py": [["nǎ", 3], ["xiē", 1]], "vi": "Những cái nào?"}, {"hz": "块", "py": [["kuài", 4]], "vi": "đồng (tệ); miếng"}, {"hz": "口", "py": [["kǒu", 3]], "vi": "lượng từ (người trong nhà)"}, {"hz": "本", "py": [["běn", 3]], "vi": "lượng từ (sách)"}, {"hz": "个", "py": [["gè", 4]], "vi": "cái (lượng từ)"}, {"hz": "次", "py": [["cì", 4]], "vi": "lần"}, {"hz": "下次", "py": [["xià", 4], ["cì", 4]], "vi": "lần sau"}, {"hz": "上次", "py": [["shàng", 4], ["cì", 4]], "vi": "lần trước"}, {"hz": "元", "py": [["yuán", 2]], "vi": "đồng (nhân dân tệ)"}, {"hz": "间", "py": [["jiān", 1]], "vi": "phòng (lượng từ)"}, {"hz": "杯", "py": [["bēi", 1]], "vi": "cái cốc"}, {"hz": "毛", "py": [["máo", 2]], "vi": "hào (tiền)"}, {"hz": "岁", "py": [["suì", 4]], "vi": "tuổi"}]}, {"slug": "mon-an", "title": "Món ăn", "words": [{"hz": "菜", "py": [["cài", 4]], "vi": "món ăn; rau"}, {"hz": "茶", "py": [["chá", 2]], "vi": "trà"}, {"hz": "吃", "py": [["chī", 1]], "vi": "ăn"}, {"hz": "喝", "py": [["hē", 1]], "vi": "uống"}, {"hz": "杯子", "py": [["bēi", 1], ["zi", 5]], "vi": "cốc"}, {"hz": "米饭", "py": [["mǐ", 3], ["fàn", 4]], "vi": "cơm"}, {"hz": "苹果", "py": [["píng", 2], ["guǒ", 3]], "vi": "táo"}, {"hz": "水", "py": [["shuǐ", 3]], "vi": "nước"}, {"hz": "水果", "py": [["shuǐ", 3], ["guǒ", 3]], "vi": "trái cây"}, {"hz": "面包", "py": [["miàn", 4], ["bāo", 1]], "vi": "bánh mì"}, {"hz": "面条", "py": [["miàn", 4], ["tiáo", 2]], "vi": "mì"}, {"hz": "牛奶", "py": [["niú", 2], ["nǎi", 3]], "vi": "sữa"}, {"hz": "鸡蛋", "py": [["jī", 1], ["dàn", 4]], "vi": "trứng gà"}, {"hz": "饭", "py": [["fàn", 4]], "vi": "bữa ăn"}, {"hz": "吃饭", "py": [["chī", 1], ["fàn", 4]], "vi": "ăn cơm"}, {"hz": "好吃", "py": [["hǎo", 3], ["chī", 1]], "vi": "ngon"}, {"hz": "饿", "py": [["è", 4]], "vi": "đói"}, {"hz": "包子", "py": [["bāo", 1], ["zi", 5]], "vi": "bánh bao"}, {"hz": "午饭", "py": [["wǔ", 3], ["fàn", 4]], "vi": "bữa trưa"}, {"hz": "肉", "py": [["ròu", 4]], "vi": "thịt"}, {"hz": "晚饭", "py": [["wǎn", 3], ["fàn", 4]], "vi": "bữa tối"}, {"hz": "早饭", "py": [["zǎo", 3], ["fàn", 4]], "vi": "bữa sáng"}, {"hz": "渴", "py": [["kě", 3]], "vi": "khát"}, {"hz": "奶", "py": [["nǎi", 3]], "vi": "sữa"}, {"hz": "面条儿", "py": [["miàn", 4], ["tiáor", 2]], "vi": "mì sợi"}]}, {"slug": "gia-dinh", "title": "Gia đình", "words": [{"hz": "妈妈", "py": [["mā", 1], ["ma", 5]], "vi": "mẹ"}, {"hz": "女儿", "py": [["nǚ", 3], ["ér", 2]], "vi": "con gái"}, {"hz": "爸爸", "py": [["bà", 4], ["ba", 5]], "vi": "bố"}, {"hz": "儿子", "py": [["ér", 2], ["zi", 5]], "vi": "con trai"}, {"hz": "家", "py": [["jiā", 1]], "vi": "gia đình, nhà"}, {"hz": "狗", "py": [["gǒu", 3]], "vi": "con chó"}, {"hz": "爱", "py": [["ài", 4]], "vi": "yêu; tình yêu"}, {"hz": "住", "py": [["zhù", 4]], "vi": "sống, cư trú"}, {"hz": "弟弟", "py": [["dì", 4], ["di", 5]], "vi": "em trai"}, {"hz": "家人", "py": [["jiā", 1], ["rén", 2]], "vi": "thành viên gia đình"}, {"hz": "奶奶", "py": [["nǎi", 3], ["nai", 5]], "vi": "bà nội"}, {"hz": "姐姐", "py": [["jiě", 3], ["jie", 5]], "vi": "chị gái"}, {"hz": "小孩", "py": [["xiǎo", 3], ["hái", 2]], "vi": "trẻ em"}, {"hz": "爷爷", "py": [["yé", 2], ["ye", 5]], "vi": "ông nội"}, {"hz": "哥哥", "py": [["gē", 1], ["ge", 5]], "vi": "anh trai"}, {"hz": "小朋友", "py": [["xiǎo", 3], ["péng", 2], ["you", 5]], "vi": "bé trai/bé gái"}, {"hz": "妹妹", "py": [["mèi", 4], ["mei", 5]], "vi": "em gái"}, {"hz": "孩子", "py": [["hái", 2], ["zi", 5]], "vi": "trẻ em"}]}, {"slug": "chu-so", "title": "Chữ số", "words": [{"hz": "一", "py": [["yī", 1]], "vi": "một"}, {"hz": "二", "py": [["èr", 4]], "vi": "hai"}, {"hz": "三", "py": [["sān", 1]], "vi": "ba"}, {"hz": "四", "py": [["sì", 4]], "vi": "bốn"}, {"hz": "五", "py": [["wǔ", 3]], "vi": "năm"}, {"hz": "六", "py": [["liù", 4]], "vi": "sáu"}, {"hz": "七", "py": [["qī", 1]], "vi": "bảy"}, {"hz": "八", "py": [["bā", 1]], "vi": "tám"}, {"hz": "九", "py": [["jiǔ", 3]], "vi": "chín"}, {"hz": "十", "py": [["shí", 2]], "vi": "mười"}, {"hz": "零", "py": [["líng", 2]], "vi": "không"}, {"hz": "两", "py": [["liǎng", 3]], "vi": "hai"}, {"hz": "半", "py": [["bàn", 4]], "vi": "nửa"}, {"hz": "第", "py": [["dì", 4]], "vi": "thứ"}, {"hz": "百", "py": [["bǎi", 3]], "vi": "Trăm"}, {"hz": "一半", "py": [["yī", 1], ["bàn", 4]], "vi": "một nửa"}]}, {"slug": "nghien-cuu", "title": "Nghiên cứu", "words": [{"hz": "中学", "py": [["zhōng", 1], ["xué", 2]], "vi": "trường THCS"}, {"hz": "放学", "py": [["fàng", 4], ["xué", 2]], "vi": "tan học"}, {"hz": "大学", "py": [["dà", 4], ["xué", 2]], "vi": "đại học"}, {"hz": "中学生", "py": [["zhōng", 1], ["xué", 2], ["shēng", 1]], "vi": "học sinh trung học"}, {"hz": "同学", "py": [["tóng", 2], ["xué", 2]], "vi": "bạn học"}, {"hz": "大学生", "py": [["dà", 4], ["xué", 2], ["shēng", 1]], "vi": "sinh viên đại học"}, {"hz": "小学", "py": [["xiǎo", 3], ["xué", 2]], "vi": "trường tiểu học"}, {"hz": "学生", "py": [["xué", 2], ["shēng", 1]], "vi": "học sinh"}, {"hz": "读书", "py": [["dú", 2], ["shū", 1]], "vi": "học tập"}, {"hz": "老师", "py": [["lǎo", 3], ["shī", 1]], "vi": "giáo viên"}, {"hz": "放假", "py": [["fàng", 4], ["jià", 4]], "vi": "nghỉ phép"}, {"hz": "小学生", "py": [["xiǎo", 3], ["xué", 2], ["shēng", 1]], "vi": "học sinh tiểu học"}, {"hz": "教", "py": [["jiāo", 1]], "vi": "giảng dạy"}, {"hz": "上课", "py": [["shàng", 4], ["kè", 4]], "vi": "đi học/dạy học"}, {"hz": "上学", "py": [["shàng", 4], ["xué", 2]], "vi": "đi học"}, {"hz": "下课", "py": [["xià", 4], ["kè", 4]], "vi": "tan lớp"}, {"hz": "考", "py": [["kǎo", 3]], "vi": "thi"}, {"hz": "考试", "py": [["kǎo", 3], ["shì", 4]], "vi": "kỳ thi"}, {"hz": "男生", "py": [["nán", 2], ["shēng", 1]], "vi": "nam sinh"}, {"hz": "女生", "py": [["nǚ", 3], ["shēng", 1]], "vi": "nữ sinh"}, {"hz": "班", "py": [["bān", 1]], "vi": "lớp; ca"}, {"hz": "学校", "py": [["xué", 2], ["xiào", 4]], "vi": "trường học"}]}, {"slug": "trong-lop", "title": "Trong lớp", "words": [{"hz": "听写", "py": [["tīng", 1], ["xiě", 3]], "vi": "nghe viết"}, {"hz": "准备", "py": [["zhǔn", 3], ["bèi", 4]], "vi": "chuẩn bị"}, {"hz": "汉字", "py": [["hàn", 4], ["zì", 4]], "vi": "chữ Hán"}, {"hz": "学习", "py": [["xué", 2], ["xí", 2]], "vi": "học"}, {"hz": "汉语", "py": [["hàn", 4], ["yǔ", 3]], "vi": "tiếng Trung"}, {"hz": "看", "py": [["kàn", 4]], "vi": "nhìn, xem"}, {"hz": "课", "py": [["kè", 4]], "vi": "bài học"}, {"hz": "外语", "py": [["wài", 4], ["yǔ", 3]], "vi": "ngoại ngữ"}, {"hz": "读", "py": [["dú", 2]], "vi": "đọc"}, {"hz": "课本", "py": [["kè", 4], ["běn", 3]], "vi": "sách giáo khoa"}, {"hz": "书", "py": [["shū", 1]], "vi": "sách"}, {"hz": "字", "py": [["zì", 4]], "vi": "chữ"}, {"hz": "课文", "py": [["kè", 4], ["wén", 2]], "vi": "bài khoá"}, {"hz": "页", "py": [["yè", 4]], "vi": "trang"}, {"hz": "听", "py": [["tīng", 1]], "vi": "nghe"}, {"hz": "学", "py": [["xué", 2]], "vi": "học"}, {"hz": "中文", "py": [["zhōng", 1], ["wén", 2]], "vi": "tiếng Trung"}, {"hz": "写", "py": [["xiě", 3]], "vi": "viết"}, {"hz": "知识", "py": [["zhī", 1], ["shi", 5]], "vi": "kiến thức"}, {"hz": "书包", "py": [["shū", 1], ["bāo", 1]], "vi": "cặp sách"}, {"hz": "本子", "py": [["běn", 3], ["zi", 5]], "vi": "vở bài tập"}, {"hz": "回答", "py": [["huí", 2], ["dá", 2]], "vi": "trả lời"}]}, {"slug": "cac-toa-nha", "title": "Các tòa nhà", "words": [{"hz": "商场", "py": [["shāng", 1], ["chǎng", 3]], "vi": "trung tâm mua sắm"}, {"hz": "书店", "py": [["shū", 1], ["diàn", 4]], "vi": "hiệu sách"}, {"hz": "楼", "py": [["lóu", 2]], "vi": "tòa nhà; tầng"}, {"hz": "图书馆", "py": [["tú", 2], ["shū", 1], ["guǎn", 3]], "vi": "thư viện"}, {"hz": "医院", "py": [["yī", 1], ["yuàn", 4]], "vi": "bệnh viện"}, {"hz": "教学楼", "py": [["jiào", 4], ["xué", 2], ["lóu", 2]], "vi": "tòa nhà dạy học"}, {"hz": "地方", "py": [["dì", 4], ["fang", 5]], "vi": "nơi"}, {"hz": "楼上", "py": [["lóu", 2], ["shàng", 4]], "vi": "tầng trên"}, {"hz": "楼下", "py": [["lóu", 2], ["xià", 4]], "vi": "tầng dưới"}, {"hz": "地点", "py": [["dì", 4], ["diǎn", 3]], "vi": "địa điểm"}, {"hz": "商店", "py": [["shāng", 1], ["diàn", 4]], "vi": "cửa hàng"}, {"hz": "机场", "py": [["jī", 1], ["chǎng", 3]], "vi": "sân bay"}, {"hz": "火车站", "py": [["huǒ", 3], ["chē", 1], ["zhàn", 4]], "vi": "ga xe lửa"}, {"hz": "饭馆", "py": [["fàn", 4], ["guǎn", 3]], "vi": "nhà hàng"}, {"hz": "饭店", "py": [["fàn", 4], ["diàn", 4]], "vi": "nhà hàng, khách sạn"}, {"hz": "学院", "py": [["xué", 2], ["yuàn", 4]], "vi": "học viện"}, {"hz": "车站", "py": [["chē", 1], ["zhàn", 4]], "vi": "trạm xe"}, {"hz": "门口", "py": [["mén", 2], ["kǒu", 3]], "vi": "lối vào, cửa"}, {"hz": "房子", "py": [["fáng", 2], ["zi", 5]], "vi": "nhà, căn hộ"}, {"hz": "房间", "py": [["fáng", 2], ["jiān", 1]], "vi": "phòng"}, {"hz": "洗手间", "py": [["xǐ", 3], ["shǒu", 3], ["jiān", 1]], "vi": "nhà vệ sinh"}]}, {"slug": "van-chuyen", "title": "Vận chuyển", "words": [{"hz": "车", "py": [["chē", 1]], "vi": "xe"}, {"hz": "车票", "py": [["chē", 1], ["piào", 4]], "vi": "vé xe"}, {"hz": "车上", "py": [["chē", 1], ["shang", 5]], "vi": "trên xe"}, {"hz": "上车", "py": [["shàng", 4], ["chē", 1]], "vi": "lên xe"}, {"hz": "下车", "py": [["xià", 4], ["chē", 1]], "vi": "xuống xe"}, {"hz": "机票", "py": [["jī", 1], ["piào", 4]], "vi": "vé máy bay"}, {"hz": "汽车", "py": [["qì", 4], ["chē", 1]], "vi": "xe ô tô"}, {"hz": "火车", "py": [["huǒ", 3], ["chē", 1]], "vi": "tàu hỏa"}, {"hz": "走路", "py": [["zǒu", 3], ["lù", 4]], "vi": "đi bộ"}, {"hz": "出租车", "py": [["chū", 1], ["zū", 1], ["chē", 1]], "vi": "taxi"}, {"hz": "飞机", "py": [["fēi", 1], ["jī", 1]], "vi": "máy bay"}, {"hz": "路上", "py": [["lù", 4], ["shàng", 4]], "vi": "trên đường"}, {"hz": "站", "py": [["zhàn", 4]], "vi": "đứng; trạm"}, {"hz": "马路", "py": [["mǎ", 3], ["lù", 4]], "vi": "đường"}, {"hz": "路口", "py": [["lù", 4], ["kǒu", 3]], "vi": "ngã tư"}, {"hz": "路", "py": [["lù", 4]], "vi": "đường"}, {"hz": "开车", "py": [["kāi", 1], ["chē", 1]], "vi": "lái xe"}, {"hz": "开", "py": [["kāi", 1]], "vi": "lái xe; mở"}, {"hz": "打车", "py": [["dǎ", 3], ["chē", 1]], "vi": "đón xe"}]}, {"slug": "su-chuyen-dong", "title": "Sự chuyển động", "words": [{"hz": "进", "py": [["jìn", 4]], "vi": "vào"}, {"hz": "来到", "py": [["lái", 2], ["dào", 4]], "vi": "đến"}, {"hz": "回去", "py": [["huí", 2], ["qù", 4]], "vi": "trở về"}, {"hz": "进来", "py": [["jìn", 4], ["lái", 2]], "vi": "vào"}, {"hz": "回到", "py": [["huí", 2], ["dào", 4]], "vi": "trở lại"}, {"hz": "出", "py": [["chū", 1]], "vi": "ra ngoài"}, {"hz": "进去", "py": [["jìn", 4], ["qù", 4]], "vi": "đi vào"}, {"hz": "回家", "py": [["huí", 2], ["jiā", 1]], "vi": "trở về nhà"}, {"hz": "出来", "py": [["chū", 1], ["lai", 5]], "vi": "ra ngoài"}, {"hz": "走", "py": [["zǒu", 3]], "vi": "đi bộ"}, {"hz": "回来", "py": [["huí", 2], ["lai", 5]], "vi": "quay lại"}, {"hz": "出去", "py": [["chū", 1], ["qu", 5]], "vi": "ra ngoài"}, {"hz": "回", "py": [["huí", 2]], "vi": "trở về"}, {"hz": "跑", "py": [["pǎo", 3]], "vi": "chạy"}, {"hz": "飞", "py": [["fēi", 1]], "vi": "bay"}, {"hz": "来", "py": [["lái", 2]], "vi": "đến"}, {"hz": "去", "py": [["qù", 4]], "vi": "đi"}, {"hz": "到", "py": [["dào", 4]], "vi": "đến"}, {"hz": "起来", "py": [["qǐ", 3], ["lái", 2]], "vi": "đứng lên"}]}, {"slug": "dai-tu", "title": "Đại từ", "words": [{"hz": "这边", "py": [["zhè", 4], ["biān", 1]], "vi": "ở đây, bên này"}, {"hz": "他们", "py": [["tā", 1], ["men", 5]], "vi": "họ"}, {"hz": "您", "py": [["nín", 2]], "vi": "Ngài"}, {"hz": "那边", "py": [["nà", 4], ["biān", 1]], "vi": "ở đó"}, {"hz": "她们", "py": [["tā", 1], ["men", 5]], "vi": "họ (nữ)"}, {"hz": "你", "py": [["nǐ", 3]], "vi": "bạn"}, {"hz": "这里", "py": [["zhè", 4], ["li", 5]], "vi": "ở đây"}, {"hz": "这些", "py": [["zhè", 4], ["xiē", 1]], "vi": "những cái này"}, {"hz": "他", "py": [["tā", 1]], "vi": "anh ấy"}, {"hz": "这儿", "py": [["zhèr", 4]], "vi": "ở đây"}, {"hz": "一些", "py": [["yì", 4], ["xiē", 1]], "vi": "một vài"}, {"hz": "她", "py": [["tā", 1]], "vi": "cô ấy"}, {"hz": "那里", "py": [["nà", 4], ["li", 5]], "vi": "ở đó"}, {"hz": "有些", "py": [["yǒu", 3], ["xiē", 1]], "vi": "một số"}, {"hz": "我", "py": [["wǒ", 3]], "vi": "tôi"}, {"hz": "那儿", "py": [["nàr", 4]], "vi": "ở đó, ở kia"}, {"hz": "你们", "py": [["nǐ", 3], ["men", 5]], "vi": "các bạn"}, {"hz": "我们", "py": [["wǒ", 3], ["men", 5]], "vi": "chúng tôi"}, {"hz": "有的", "py": [["yǒu", 3], ["de", 5]], "vi": "một số"}, {"hz": "那些", "py": [["nà", 4], ["xiē", 1]], "vi": "những cái đó"}, {"hz": "这", "py": [["zhè", 4]], "vi": "điều này"}, {"hz": "些", "py": [["xiē", 1]], "vi": "một vài"}, {"hz": "都", "py": [["dōu", 1]], "vi": "tất cả"}, {"hz": "别的", "py": [["bié", 2], ["de", 5]], "vi": "khác"}, {"hz": "那", "py": [["nà", 4]], "vi": "đó"}, {"hz": "别人", "py": [["bié", 2], ["rén", 2]], "vi": "người khác"}, {"hz": "哪里", "py": [["nǎ", 3], ["lǐ", 3]], "vi": "ở đâu"}, {"hz": "哪儿", "py": [["nǎr", 3]], "vi": "ở đâu"}, {"hz": "那个", "py": [["nà", 4], ["ge", 5]], "vi": "cái đó, cái kia"}, {"hz": "这个", "py": [["zhè", 4], ["ge", 5]], "vi": "cái này"}, {"hz": "哪个", "py": [["nǎ", 3], ["ge", 5]], "vi": "cái nào"}, {"hz": "中", "py": [["zhōng", 1]], "vi": "trong; giữa"}]}, {"slug": "pho-tu", "title": "Phó từ", "words": [{"hz": "太", "py": [["tài", 4]], "vi": "quá"}, {"hz": "很", "py": [["hěn", 3]], "vi": "rất"}, {"hz": "最好", "py": [["zuì", 4], ["hǎo", 3]], "vi": "tốt nhất"}, {"hz": "一样", "py": [["yī", 1], ["yàng", 4]], "vi": "giống nhau"}, {"hz": "非常", "py": [["fēi", 1], ["cháng", 2]], "vi": "cực kỳ, rất"}, {"hz": "马上", "py": [["mǎ", 3], ["shàng", 4]], "vi": "ngay lập tức"}, {"hz": "一起", "py": [["yī", 1], ["qǐ", 3]], "vi": "cùng nhau"}, {"hz": "身上", "py": [["shēn", 1], ["shàng", 4]], "vi": "trên người"}, {"hz": "也", "py": [["yě", 3]], "vi": "cũng"}, {"hz": "一下", "py": [["yī", 1], ["xià", 4]], "vi": "một lát"}, {"hz": "一点儿", "py": [["yì", 4], ["diǎnr", 3]], "vi": "một chút"}, {"hz": "不对", "py": [["bù", 4], ["duì", 4]], "vi": "sai"}, {"hz": "不大", "py": [["bù", 4], ["dà", 4]], "vi": "không lớn"}, {"hz": "真", "py": [["zhēn", 1]], "vi": "thật"}, {"hz": "再", "py": [["zài", 4]], "vi": "lại"}, {"hz": "先", "py": [["xiān", 1]], "vi": "trước"}, {"hz": "最", "py": [["zuì", 4]], "vi": "nhất"}, {"hz": "正", "py": [["zhèng", 4]], "vi": "đang; chính"}, {"hz": "最后", "py": [["zuì", 4], ["hòu", 4]], "vi": "cuối cùng"}, {"hz": "别", "py": [["bié", 2]], "vi": "đừng"}, {"hz": "不", "py": [["bù", 4]], "vi": "không"}, {"hz": "还", "py": [["hái", 2]], "vi": "vẫn, thêm nữa"}, {"hz": "没", "py": [["méi", 2]], "vi": "không có"}, {"hz": "没有", "py": [["méi", 2], ["yǒu", 3]], "vi": "không có"}, {"hz": "一边", "py": [["yī", 1], ["biān", 1]], "vi": "một bên"}, {"hz": "正在", "py": [["zhèng", 4], ["zài", 4]], "vi": "đang"}, {"hz": "有点儿", "py": [["yǒu", 3], ["diǎnr", 3]], "vi": "hơi, có chút"}]}, {"slug": "tinh-tu", "title": "Tính từ", "words": [{"hz": "多", "py": [["duō", 1]], "vi": "nhiều"}, {"hz": "大", "py": [["dà", 4]], "vi": "lớn"}, {"hz": "老", "py": [["lǎo", 3]], "vi": "già"}, {"hz": "漂亮", "py": [["piào", 4], ["liang", 5]], "vi": "đẹp"}, {"hz": "好", "py": [["hǎo", 3]], "vi": "tốt"}, {"hz": "少", "py": [["shǎo", 3]], "vi": "ít"}, {"hz": "好听", "py": [["hǎo", 3], ["tīng", 1]], "vi": "dễ nghe"}, {"hz": "高", "py": [["gāo", 1]], "vi": "cao"}, {"hz": "难", "py": [["nán", 2]], "vi": "khó"}, {"hz": "重要", "py": [["zhòng", 4], ["yào", 4]], "vi": "quan trọng"}, {"hz": "贵", "py": [["guì", 4]], "vi": "đắt"}, {"hz": "新", "py": [["xīn", 1]], "vi": "mới"}, {"hz": "有用", "py": [["yǒu", 3], ["yòng", 4]], "vi": "hữu ích"}, {"hz": "高兴", "py": [["gāo", 1], ["xìng", 4]], "vi": "vui vẻ"}, {"hz": "小", "py": [["xiǎo", 3]], "vi": "nhỏ"}, {"hz": "重", "py": [["zhòng", 4]], "vi": "nặng"}, {"hz": "白", "py": [["bái", 2]], "vi": "trắng"}, {"hz": "干净", "py": [["gān", 1], ["jìng", 4]], "vi": "sạch sẽ"}, {"hz": "好看", "py": [["hǎo", 3], ["kàn", 4]], "vi": "đẹp"}, {"hz": "有名", "py": [["yǒu", 3], ["míng", 2]], "vi": "nổi tiếng"}, {"hz": "慢", "py": [["màn", 4]], "vi": "chậm"}, {"hz": "真的", "py": [["zhēn", 1], ["de", 5]], "vi": "thật"}, {"hz": "差", "py": [["chà", 4]], "vi": "kém, khác"}, {"hz": "错", "py": [["cuò", 4]], "vi": "sai"}, {"hz": "对", "py": [["duì", 4]], "vi": "đúng"}, {"hz": "干", "py": [["gān", 1]], "vi": "khô"}, {"hz": "坏", "py": [["huài", 4]], "vi": "xấu, hỏng"}, {"hz": "快", "py": [["kuài", 4]], "vi": "nhanh"}, {"hz": "累", "py": [["lèi", 4]], "vi": "mệt"}, {"hz": "冷", "py": [["lěng", 3]], "vi": "lạnh"}, {"hz": "忙", "py": [["máng", 2]], "vi": "bận"}, {"hz": "热", "py": [["rè", 4]], "vi": "nóng"}, {"hz": "认真", "py": [["rèn", 4], ["zhēn", 1]], "vi": "chăm chỉ"}, {"hz": "生气", "py": [["shēng", 1], ["qì", 4]], "vi": "nổi giận"}, {"hz": "远", "py": [["yuǎn", 3]], "vi": "xa"}, {"hz": "好玩儿", "py": [["hǎo", 3], ["wánr", 2]], "vi": "vui, thú vị"}, {"hz": "有意思", "py": [["yǒu", 3], ["yì", 4], ["si", 5]], "vi": "thú vị"}]}, {"slug": "tu-chuc-nang", "title": "Từ chức năng", "words": [{"hz": "中", "py": [["zhōng", 1]], "vi": "trong"}, {"hz": "们", "py": [["men", 5]], "vi": "hậu tố số nhiều"}, {"hz": "是不是", "py": [["shì", 4], ["bu", 5], ["shì", 4]], "vi": "có phải không?"}, {"hz": "不用", "py": [["bù", 4], ["yòng", 4]], "vi": "không cần"}, {"hz": "起", "py": [["qǐ", 3]], "vi": "bắt đầu; dậy"}, {"hz": "吧", "py": [["ba", 5]], "vi": "(trợ từ ngữ khí)"}, {"hz": "比", "py": [["bǐ", 3]], "vi": "so sánh; hơn"}, {"hz": "从", "py": [["cóng", 2]], "vi": "từ"}, {"hz": "地", "py": [["de", 5]], "vi": "trợ từ (sau trạng ngữ)"}, {"hz": "的", "py": [["de", 5]], "vi": "trợ từ sở hữu"}, {"hz": "跟", "py": [["gēn", 1]], "vi": "với; theo"}, {"hz": "过", "py": [["guò", 4]], "vi": "đã qua"}, {"hz": "还是", "py": [["hái", 2], ["shi", 5]], "vi": "hoặc (trong câu hỏi)"}, {"hz": "还有", "py": [["hái", 2], ["yǒu", 3]], "vi": "còn có, ngoài ra"}, {"hz": "和", "py": [["hé", 2]], "vi": "và"}, {"hz": "就", "py": [["jiù", 4]], "vi": "ngay lập tức"}, {"hz": "了", "py": [["le", 5]], "vi": "trợ từ le"}, {"hz": "是", "py": [["shì", 4]], "vi": "là"}, {"hz": "在", "py": [["zài", 4]], "vi": "ở, tại"}, {"hz": "着", "py": [["zhe", 5]], "vi": "(trợ từ tiếp diễn)"}, {"hz": "医", "py": [["yī", 1]], "vi": "y, chữa bệnh"}, {"hz": "一点儿", "py": [["yì", 4], ["diǎnr", 3]], "vi": "một chút, một ít"}]}, {"slug": "thoi-gian", "title": "Thời gian", "words": [{"hz": "半天", "py": [["bàn", 4], ["tiān", 1]], "vi": "một thời gian dài"}, {"hz": "早", "py": [["zǎo", 3]], "vi": "sớm"}, {"hz": "白天", "py": [["bái", 2], ["tiān", 1]], "vi": "ban ngày"}, {"hz": "晚", "py": [["wǎn", 3]], "vi": "muộn"}, {"hz": "有时候", "py": [["yǒu", 3], ["shí", 2], ["hou", 5]], "vi": "đôi khi"}, {"hz": "常常", "py": [["cháng", 2], ["cháng", 2]], "vi": "thường xuyên"}, {"hz": "常", "py": [["cháng", 2]], "vi": "thường"}, {"hz": "点", "py": [["diǎn", 3]], "vi": "giờ"}, {"hz": "分", "py": [["fēn", 1]], "vi": "phút"}, {"hz": "上午", "py": [["shàng", 4], ["wǔ", 3]], "vi": "buổi sáng"}, {"hz": "时候", "py": [["shí", 2], ["hou", 5]], "vi": "thời gian"}, {"hz": "时间", "py": [["shí", 2], ["jiān", 1]], "vi": "thời gian"}, {"hz": "天", "py": [["tiān", 1]], "vi": "ngày; trời"}, {"hz": "晚上", "py": [["wǎn", 3], ["shang", 5]], "vi": "buổi tối"}, {"hz": "下午", "py": [["xià", 4], ["wǔ", 3]], "vi": "buổi chiều"}, {"hz": "现在", "py": [["xiàn", 4], ["zài", 4]], "vi": "bây giờ"}, {"hz": "小时", "py": [["xiǎo", 3], ["shí", 2]], "vi": "giờ (tiếng)"}, {"hz": "一会儿", "py": [["yī", 1], ["huìr", 4]], "vi": "một lát"}, {"hz": "早上", "py": [["zǎo", 3], ["shang", 5]], "vi": "buổi sáng"}, {"hz": "中午", "py": [["zhōng", 1], ["wǔ", 3]], "vi": "buổi trưa"}]}, {"slug": "lich", "title": "Lịch", "words": [{"hz": "明年", "py": [["míng", 2], ["nián", 2]], "vi": "năm sau"}, {"hz": "今年", "py": [["jīn", 1], ["nián", 2]], "vi": "năm nay"}, {"hz": "半年", "py": [["bàn", 4], ["nián", 2]], "vi": "nửa năm"}, {"hz": "前天", "py": [["qián", 2], ["tiān", 1]], "vi": "hôm kia"}, {"hz": "后天", "py": [["hòu", 4], ["tiān", 1]], "vi": "ngày mốt"}, {"hz": "新年", "py": [["xīn", 1], ["nián", 2]], "vi": "Năm mới"}, {"hz": "星期日", "py": [["xīng", 1], ["qī", 1], ["rì", 4]], "vi": "Chủ nhật"}, {"hz": "星期天", "py": [["xīng", 1], ["qī", 1], ["tiān", 1]], "vi": "Chủ nhật"}, {"hz": "号", "py": [["hào", 4]], "vi": "ngày"}, {"hz": "今天", "py": [["jīn", 1], ["tiān", 1]], "vi": "hôm nay"}, {"hz": "明天", "py": [["míng", 2], ["tiān", 1]], "vi": "ngày mai"}, {"hz": "年", "py": [["nián", 2]], "vi": "năm"}, {"hz": "去年", "py": [["qù", 4], ["nián", 2]], "vi": "năm ngoái"}, {"hz": "日", "py": [["rì", 4]], "vi": "ngày; mặt trời"}, {"hz": "日期", "py": [["rì", 4], ["qī", 1]], "vi": "ngày (tháng)"}, {"hz": "生日", "py": [["shēng", 1], ["rì", 4]], "vi": "sinh nhật"}, {"hz": "星期", "py": [["xīng", 1], ["qī", 1]], "vi": "Tuần"}, {"hz": "月", "py": [["yuè", 4]], "vi": "Tháng"}, {"hz": "昨天", "py": [["zuó", 2], ["tiān", 1]], "vi": "hôm qua"}]}, {"slug": "thoi-gian-ranh-roi", "title": "Thời gian rảnh rỗi", "words": [{"hz": "电影院", "py": [["diàn", 4], ["yǐng", 3], ["yuàn", 4]], "vi": "rạp chiếu phim"}, {"hz": "球", "py": [["qiú", 2]], "vi": "quả bóng"}, {"hz": "打球", "py": [["dǎ", 3], ["qiú", 2]], "vi": "chơi bóng"}, {"hz": "网上", "py": [["wǎng", 3], ["shàng", 4]], "vi": "trực tuyến"}, {"hz": "玩儿", "py": [["wánr", 2]], "vi": "chơi, giải trí"}, {"hz": "电话", "py": [["diàn", 4], ["huà", 4]], "vi": "điện thoại"}, {"hz": "歌", "py": [["gē", 1]], "vi": "bài hát"}, {"hz": "电视机", "py": [["diàn", 4], ["shì", 4], ["jī", 1]], "vi": "TV"}, {"hz": "唱", "py": [["chàng", 4]], "vi": "hát"}, {"hz": "家里", "py": [["jiā", 1], ["li", 5]], "vi": "ở nhà"}, {"hz": "在家", "py": [["zài", 4], ["jiā", 1]], "vi": "ở nhà"}, {"hz": "爱好", "py": [["ài", 4], ["hào", 4]], "vi": "sở thích"}, {"hz": "唱歌", "py": [["chàng", 4], ["gē", 1]], "vi": "hát"}, {"hz": "打电话", "py": [["dǎ", 3], ["diàn", 4], ["huà", 4]], "vi": "gọi điện thoại"}, {"hz": "电视", "py": [["diàn", 4], ["shì", 4]], "vi": "TV, truyền hình"}, {"hz": "电影", "py": [["diàn", 4], ["yǐng", 3]], "vi": "phim"}, {"hz": "开玩笑", "py": [["kāi", 1], ["wán", 2], ["xiào", 4]], "vi": "đùa cợt"}, {"hz": "上网", "py": [["shàng", 4], ["wǎng", 3]], "vi": "lướt web"}]}, {"slug": "dia-diem", "title": "Địa điểm", "words": [{"hz": "外边", "py": [["wài", 4], ["biān", 1]], "vi": "bên ngoài"}, {"hz": "里边", "py": [["lǐ", 3], ["biān", 1]], "vi": "bên trong"}, {"hz": "前边", "py": [["qián", 2], ["bian", 5]], "vi": "phía trước"}, {"hz": "下边", "py": [["xià", 4], ["biān", 1]], "vi": "bên dưới"}, {"hz": "地上", "py": [["dì", 4], ["shàng", 4]], "vi": "mặt đất"}, {"hz": "后边", "py": [["hòu", 4], ["biān", 1]], "vi": "đằng sau"}, {"hz": "地", "py": [["dì", 4]], "vi": "đất"}, {"hz": "后", "py": [["hòu", 4]], "vi": "sau"}, {"hz": "里", "py": [["lǐ", 3]], "vi": "trong"}, {"hz": "旁边", "py": [["páng", 2], ["biān", 1]], "vi": "bên cạnh"}, {"hz": "前", "py": [["qián", 2]], "vi": "trước"}, {"hz": "上", "py": [["shàng", 4]], "vi": "trên"}, {"hz": "上边", "py": [["shàng", 4], ["biān", 1]], "vi": "bên trên"}, {"hz": "外", "py": [["wài", 4]], "vi": "bên ngoài"}, {"hz": "下", "py": [["xià", 4]], "vi": "dưới"}, {"hz": "右", "py": [["yòu", 4]], "vi": "phải"}, {"hz": "右边", "py": [["yòu", 4], ["biān", 1]], "vi": "bên phải"}, {"hz": "中间", "py": [["zhōng", 1], ["jiān", 1]], "vi": "giữa"}, {"hz": "左", "py": [["zuǒ", 3]], "vi": "trái"}, {"hz": "左边", "py": [["zuǒ", 3], ["biān", 1]], "vi": "bên trái"}]}, {"slug": "dia-ly", "title": "Địa lý", "words": [{"hz": "国外", "py": [["guó", 2], ["wài", 4]], "vi": "nước ngoài"}, {"hz": "国", "py": [["guó", 2]], "vi": "quốc gia"}, {"hz": "外国", "py": [["wài", 4], ["guó", 2]], "vi": "nước ngoài"}, {"hz": "北边", "py": [["běi", 3], ["biān", 1]], "vi": "phía bắc"}, {"hz": "南边", "py": [["nán", 2], ["biān", 1]], "vi": "phía nam"}, {"hz": "山", "py": [["shān", 1]], "vi": "núi"}, {"hz": "东边", "py": [["dōng", 1], ["biān", 1]], "vi": "phía đông"}, {"hz": "北", "py": [["běi", 3]], "vi": "bắc"}, {"hz": "西边", "py": [["xī", 1], ["biān", 1]], "vi": "phía tây"}, {"hz": "北京", "py": [["Běi", 3], ["jīng", 1]], "vi": "Bắc Kinh"}, {"hz": "地图", "py": [["dì", 4], ["tú", 2]], "vi": "bản đồ"}, {"hz": "东", "py": [["dōng", 1]], "vi": "đông"}, {"hz": "国家", "py": [["guó", 2], ["jiā", 1]], "vi": "quốc gia"}, {"hz": "南", "py": [["nán", 2]], "vi": "nam"}, {"hz": "西", "py": [["xī", 1]], "vi": "tây"}, {"hz": "中国", "py": [["Zhōng", 1], ["guó", 2]], "vi": "Trung Quốc"}, {"hz": "法国", "py": [["Fǎ", 3], ["guó", 2]], "vi": "nước Pháp"}, {"hz": "泰国", "py": [["Tài", 4], ["guó", 2]], "vi": "nước Thái Lan"}, {"hz": "西安", "py": [["Xī", 1], ["ān", 1]], "vi": "Tây An"}]}, {"slug": "nhung-tu-ngu-lich-su", "title": "Những từ ngữ lịch sự", "words": [{"hz": "请坐", "py": [["qǐng", 3], ["zuò", 4]], "vi": "mời ngồi"}, {"hz": "没什么", "py": [["méi", 2], ["shén", 2], ["me", 5]], "vi": "không có gì"}, {"hz": "没事儿", "py": [["méi", 2], ["shìr", 4]], "vi": "không sao đâu"}, {"hz": "请进", "py": [["qǐng", 3], ["jìn", 4]], "vi": "mời vào"}, {"hz": "请问", "py": [["qǐng", 3], ["wèn", 4]], "vi": "xin hỏi"}, {"hz": "不客气", "py": [["bù", 4], ["kè", 4], ["qi", 5]], "vi": "không có chi"}, {"hz": "对不起", "py": [["duì", 4], ["bu", 5], ["qǐ", 3]], "vi": "xin lỗi"}, {"hz": "没关系", "py": [["méi", 2], ["guān", 1], ["xi", 5]], "vi": "không sao"}, {"hz": "请", "py": [["qǐng", 3]], "vi": "mời"}, {"hz": "请假", "py": [["qǐng", 3], ["jià", 4]], "vi": "xin nghỉ phép"}, {"hz": "谢谢", "py": [["xiè", 4], ["xie", 5]], "vi": "cảm ơn"}, {"hz": "再见", "py": [["zài", 4], ["jiàn", 4]], "vi": "tạm biệt"}, {"hz": "你好", "py": [["nǐ", 3], ["hǎo", 3]], "vi": "xin chào"}, {"hz": "没事", "py": [["méi", 2], ["shì", 4]], "vi": "không sao"}]}, {"slug": "dong-tu", "title": "Động từ", "words": [{"hz": "关上", "py": [["guān", 1], ["shàng", 4]], "vi": "đóng"}, {"hz": "忘", "py": [["wàng", 4]], "vi": "quên"}, {"hz": "记", "py": [["jì", 4]], "vi": "ghi lại"}, {"hz": "听见", "py": [["tīng", 1], ["jiàn", 4]], "vi": "nghe thấy"}, {"hz": "知道", "py": [["zhī", 1], ["dào", 4]], "vi": "biết"}, {"hz": "试", "py": [["shì", 4]], "vi": "thử"}, {"hz": "能", "py": [["néng", 2]], "vi": "có thể"}, {"hz": "有", "py": [["yǒu", 3]], "vi": "có"}, {"hz": "想", "py": [["xiǎng", 3]], "vi": "nghĩ; muốn"}, {"hz": "得到", "py": [["dé", 2], ["dào", 4]], "vi": "nhận được"}, {"hz": "关", "py": [["guān", 1]], "vi": "đóng; tắt"}, {"hz": "帮", "py": [["bāng", 1]], "vi": "giúp"}, {"hz": "帮忙", "py": [["bāng", 1], ["máng", 2]], "vi": "giúp đỡ"}, {"hz": "等", "py": [["děng", 3]], "vi": "đợi"}, {"hz": "干", "py": [["gàn", 4]], "vi": "làm việc"}, {"hz": "告诉", "py": [["gào", 4], ["su", 5]], "vi": "báo, nói"}, {"hz": "给", "py": [["gěi", 3]], "vi": "cho"}, {"hz": "还", "py": [["huán", 2]], "vi": "trả lại"}, {"hz": "会", "py": [["huì", 4]], "vi": "có thể; biết"}, {"hz": "记得", "py": [["jì", 4], ["de", 5]], "vi": "nhớ"}, {"hz": "记住", "py": [["jì", 4], ["zhù", 4]], "vi": "ghi nhớ"}, {"hz": "见面", "py": [["jiàn", 4], ["miàn", 4]], "vi": "gặp mặt"}, {"hz": "介绍", "py": [["jiè", 4], ["shào", 4]], "vi": "giới thiệu"}, {"hz": "觉得", "py": [["jué", 2], ["de", 5]], "vi": "cảm thấy"}, {"hz": "看见", "py": [["kàn", 4], ["jiàn", 4]], "vi": "thấy"}, {"hz": "明白", "py": [["míng", 2], ["bai", 5]], "vi": "hiểu"}, {"hz": "认识", "py": [["rèn", 4], ["shi", 5]], "vi": "biết, quen"}, {"hz": "忘记", "py": [["wàng", 4], ["jì", 4]], "vi": "quên"}, {"hz": "喜欢", "py": [["xǐ", 3], ["huan", 5]], "vi": "thích"}, {"hz": "行", "py": [["xíng", 2]], "vi": "được"}, {"hz": "休息", "py": [["xiū", 1], ["xi", 5]], "vi": "nghỉ ngơi"}, {"hz": "要", "py": [["yào", 4]], "vi": "muốn"}, {"hz": "用", "py": [["yòng", 4]], "vi": "sử dụng"}]}, {"slug": "dong-tu-thuong-le", "title": "Động từ thường lệ", "words": [{"hz": "睡", "py": [["shuì", 4]], "vi": "ngủ"}, {"hz": "坐下", "py": [["zuò", 4], ["xià", 4]], "vi": "ngồi xuống"}, {"hz": "打开", "py": [["dǎ", 3], ["kāi", 1]], "vi": "mở"}, {"hz": "看到", "py": [["kàn", 4], ["dào", 4]], "vi": "nhìn thấy"}, {"hz": "听到", "py": [["tīng", 1], ["dào", 4]], "vi": "nghe thấy"}, {"hz": "找到", "py": [["zhǎo", 3], ["dào", 4]], "vi": "tìm thấy"}, {"hz": "说", "py": [["shuō", 1]], "vi": "nói"}, {"hz": "打", "py": [["dǎ", 3]], "vi": "đánh; chơi"}, {"hz": "动", "py": [["dòng", 4]], "vi": "di chuyển"}, {"hz": "看病", "py": [["kàn", 4], ["bìng", 4]], "vi": "đi khám bác sĩ"}, {"hz": "见", "py": [["jiàn", 4]], "vi": "gặp"}, {"hz": "穿", "py": [["chuān", 1]], "vi": "mặc"}, {"hz": "放", "py": [["fàng", 4]], "vi": "đặt"}, {"hz": "叫", "py": [["jiào", 4]], "vi": "gọi"}, {"hz": "买", "py": [["mǎi", 3]], "vi": "mua"}, {"hz": "拿", "py": [["ná", 2]], "vi": "lấy, cầm"}, {"hz": "起床", "py": [["qǐ", 3], ["chuáng", 2]], "vi": "thức dậy"}, {"hz": "睡觉", "py": [["shuì", 4], ["jiào", 4]], "vi": "đi ngủ"}, {"hz": "说话", "py": [["shuō", 1], ["huà", 4]], "vi": "nói chuyện"}, {"hz": "送", "py": [["sòng", 4]], "vi": "tặng"}, {"hz": "问", "py": [["wèn", 4]], "vi": "hỏi"}, {"hz": "洗", "py": [["xǐ", 3]], "vi": "rửa"}, {"hz": "笑", "py": [["xiào", 4]], "vi": "cười"}, {"hz": "找", "py": [["zhǎo", 3]], "vi": "tìm kiếm"}, {"hz": "坐", "py": [["zuò", 4]], "vi": "ngồi"}, {"hz": "做", "py": [["zuò", 4]], "vi": "làm"}]}, {"slug": "cong-viec", "title": "Công việc", "words": [{"hz": "事", "py": [["shì", 4]], "vi": "việc"}, {"hz": "工作", "py": [["gōng", 1], ["zuò", 4]], "vi": "công việc"}, {"hz": "开会", "py": [["kāi", 1], ["huì", 4]], "vi": "họp"}, {"hz": "上班", "py": [["shàng", 4], ["bān", 1]], "vi": "đi làm"}, {"hz": "下班", "py": [["xià", 4], ["bān", 1]], "vi": "tan làm"}]}, {"slug": "danh-tu", "title": "Danh từ", "words": [{"hz": "东西", "py": [["dōng", 1], ["xi", 5]], "vi": "đồ"}, {"hz": "电", "py": [["diàn", 4]], "vi": "điện"}, {"hz": "钱包", "py": [["qián", 2], ["bāo", 1]], "vi": "ví"}, {"hz": "话", "py": [["huà", 4]], "vi": "câu nói"}, {"hz": "门票", "py": [["mén", 2], ["piào", 4]], "vi": "vé vào cửa"}, {"hz": "病人", "py": [["bìng", 4], ["rén", 2]], "vi": "bệnh nhân"}, {"hz": "病", "py": [["bìng", 4]], "vi": "bệnh"}, {"hz": "雨", "py": [["yǔ", 3]], "vi": "mưa"}, {"hz": "风", "py": [["fēng", 1]], "vi": "gió"}, {"hz": "包", "py": [["bāo", 1]], "vi": "gói; túi"}, {"hz": "床", "py": [["chuáng", 2]], "vi": "giường"}, {"hz": "电脑", "py": [["diàn", 4], ["nǎo", 3]], "vi": "máy tính"}, {"hz": "动作", "py": [["dòng", 4], ["zuò", 4]], "vi": "động tác, hành động"}, {"hz": "花", "py": [["huā", 1]], "vi": "hoa"}, {"hz": "门", "py": [["mén", 2]], "vi": "cửa, cổng"}, {"hz": "名字", "py": [["míng", 2], ["zi", 5]], "vi": "tên"}, {"hz": "票", "py": [["piào", 4]], "vi": "vé"}, {"hz": "钱", "py": [["qián", 2]], "vi": "tiền"}, {"hz": "身体", "py": [["shēn", 1], ["tǐ", 3]], "vi": "cơ thể"}, {"hz": "生病", "py": [["shēng", 1], ["bìng", 4]], "vi": "bị ốm"}, {"hz": "手", "py": [["shǒu", 3]], "vi": "tay"}, {"hz": "手机", "py": [["shǒu", 3], ["jī", 1]], "vi": "điện thoại di động"}, {"hz": "树", "py": [["shù", 4]], "vi": "cây"}, {"hz": "天气", "py": [["tiān", 1], ["qì", 4]], "vi": "thời tiết"}, {"hz": "下雨", "py": [["xià", 4], ["yǔ", 3]], "vi": "mưa rơi"}, {"hz": "衣服", "py": [["yī", 1], ["fu", 5]], "vi": "quần áo"}, {"hz": "桌子", "py": [["zhuō", 1], ["zi", 5]], "vi": "bàn"}]}, {"slug": "nhung-nguoi", "title": "Những người", "words": [{"hz": "女朋友", "py": [["nǚ", 3], ["péng", 2], ["you", 5]], "vi": "bạn gái"}, {"hz": "网友", "py": [["wǎng", 3], ["yǒu", 3]], "vi": "bạn qua mạng"}, {"hz": "男孩子", "py": [["nán", 2], ["hái", 2], ["zi", 5]], "vi": "cậu bé"}, {"hz": "老人", "py": [["lǎo", 3], ["rén", 2]], "vi": "người già"}, {"hz": "女孩儿", "py": [["nǚ", 3], ["háir", 2]], "vi": "con gái (bé)"}, {"hz": "工人", "py": [["gōng", 1], ["rén", 2]], "vi": "công nhân"}, {"hz": "男", "py": [["nán", 2]], "vi": "nam"}, {"hz": "男朋友", "py": [["nán", 2], ["péng", 2], ["you", 5]], "vi": "bạn trai"}, {"hz": "男人", "py": [["nán", 2], ["rén", 2]], "vi": "đàn ông"}, {"hz": "女", "py": [["nǚ", 3]], "vi": "nữ"}, {"hz": "女人", "py": [["nǚ", 3], ["rén", 2]], "vi": "phụ nữ"}, {"hz": "朋友", "py": [["péng", 2], ["you", 5]], "vi": "bạn"}, {"hz": "人", "py": [["rén", 2]], "vi": "người"}, {"hz": "先生", "py": [["xiān", 1], ["sheng", 5]], "vi": "ông, ngài"}, {"hz": "小姐", "py": [["xiǎo", 3], ["jiě", 3]], "vi": "cô"}, {"hz": "医生", "py": [["yī", 1], ["shēng", 1]], "vi": "bác sĩ"}]}], "grammar": [{"lesson": 2, "title": "Trật tự từ cơ bản trong câu", "structure": "Chủ ngữ (S) + Vị ngữ/Động từ (V) + Tân ngữ (O)", "explanation": "Trong tiếng Trung, câu đơn thường theo trật tự: Chủ ngữ đứng trước, tiếp theo là Vị ngữ (thường là động từ) và cuối cùng là Tân ngữ. Đây là cấu trúc cơ bản nhất để tạo câu hoàn chỉnh.", "tip": "Động từ luôn đứng trước tân ngữ, khác với một số cấu trúc trong tiếng Việt.", "note": "Không đảo vị trí động từ và tân ngữ vì sẽ làm sai nghĩa hoặc sai ngữ pháp.", "examples": [{"zh": "我叫陈天中。", "py": "wǒ jiào chén tiān zhōng", "vi": "Tôi tên là Trần Thiên Trung."}, {"zh": "我叫白家月。", "py": "wǒ jiào bái jiā yuè", "vi": "Tôi tên là Bạch Gia Nguyệt."}, {"zh": "我是学生。", "py": "wǒ shì xué shēng", "vi": "Tôi là học sinh."}]}, {"lesson": 3, "title": "Câu chữ 是 (shì) – Câu khẳng định", "structure": "S + 是 + Danh từ/Đại từ", "explanation": "从 是 đóng vai trò như động từ \"là\", nối chủ ngữ với danh từ hoặc cụm danh từ, dùng để xác định danh tính, nghề nghiệp, quốc tịch hoặc sự vật.", "tip": "Muốn phủ định, thêm 不 trước 是 thành 不是 (không phải là).", "note": "Không dùng 是 đứng trước tính từ (không nói 是好 mà nói 很好).", "examples": [{"zh": "我是学生。", "py": "wǒ shì xué shēng", "vi": "Tôi là học sinh."}, {"zh": "他是中国人。", "py": "tā shì zhōng guó rén", "vi": "Anh ấy là người Trung Quốc."}]}, {"lesson": 3, "title": "Trợ từ kết cấu 的", "structure": "Định ngữ + 的 + Trung tâm ngữ", "explanation": "Trợ từ 的 nối định ngữ và trung tâm ngữ, biểu thị quan hệ sở hữu hoặc tính chất. Đặt từ chỉ sở hữu/đặc điểm lên trước, thêm 的 rồi mới đến danh từ chính.", "tip": "Nếu định ngữ là người thân hoặc đơn vị công tác, có thể lược bỏ 的.", "note": "Đừng quên 的 khi định ngữ là danh từ/đại từ chỉ người khác.", "examples": [{"zh": "我的中文老师", "py": "wǒ de zhōng wén lǎo shī", "vi": "Giáo viên tiếng Trung của tôi"}, {"zh": "她的中文老师", "py": "tā de zhōng wén lǎo shī", "vi": "Giáo viên tiếng Trung của cô ấy"}]}, {"lesson": 3, "title": "Câu hỏi nghi vấn với 吗", "structure": "Câu trần thuật + 吗?", "explanation": "Để biến câu trần thuật thành câu hỏi Có/Không, thêm trợ từ ngữ khí 吗 vào cuối câu, không cần đổi trật tự từ.", "tip": "Trả lời câu hỏi 吗 bằng cách lặp lại động từ hoặc dùng 是/不是, 有/没有.", "note": "Không dùng 吗 khi câu đã có từ nghi vấn khác như 什么, 谁, 哪儿.", "examples": [{"zh": "你是学生吗？", "py": "nǐ shì xué shēng ma", "vi": "Bạn có phải là học sinh không?"}, {"zh": "你工作还忙吗？", "py": "nǐ gōng zuò hái máng ma", "vi": "Công việc của bạn vẫn bận chứ?"}]}, {"lesson": 4, "title": "Câu chữ 有 (biểu thị sở hữu)", "structure": "S + 有 + Tân ngữ", "explanation": "Câu chữ 有 biểu thị sự sở hữu người/vật, dịch là 'có'. 有 là động từ chính của câu.", "tip": "Phủ định (không có) thì thay 有 bằng 没有.", "note": "Phủ định tuyệt đối không dùng 不有, phải dùng 没有.", "examples": [{"zh": "她有十个学生。", "py": "tā yǒu shí gè xué shēng", "vi": "Cô ấy có mười học sinh."}, {"zh": "她有一个姐姐。", "py": "tā yǒu yī gè jiě jiě", "vi": "Cô ấy có một người chị gái."}]}, {"lesson": 4, "title": "Cách đọc và biểu đạt con số", "structure": "Số đếm + (Lượng từ/Danh từ) đơn vị", "explanation": "Số đếm 1-10 là nền tảng tạo số lớn hơn. Khi biểu đạt con số kèm đơn vị, đặt số đếm trước lượng từ hoặc danh từ đơn vị (thời gian, tiền tệ, tuổi tác).", "tip": "Số tiền lớn thường lấy mốc 4 số 0 là 万 (vạn); 100.000 đọc là 十万.", "note": "Thứ tự thời gian đi từ lớn đến nhỏ: Năm → Tháng → Ngày → Thứ → Giờ → Phút.", "examples": [{"zh": "二十二", "py": "èr shí èr", "vi": "Hai mươi hai"}, {"zh": "九百九十九", "py": "jiǔ bǎi jiǔ shí jiǔ", "vi": "Chín trăm chín mươi chín"}]}, {"lesson": 4, "title": "Trợ từ nghi vấn 呢 (hỏi lại tình huống)", "structure": "A..., B 呢? (câu hỏi tỉnh lược)", "explanation": "呢 đặt cuối câu để hỏi lại một tình huống đã nhắc trước đó, là cách nói tắt giúp câu ngắn gọn, tự nhiên hơn.", "tip": "Dùng khi muốn hỏi ngược lại cùng chủ đề: '我吃了，你呢？'", "note": "Không dùng 呢 thay 吗; 呢 chỉ dùng cho câu hỏi tỉnh lược/liệt kê.", "examples": [{"zh": "我是学生, 你呢？", "py": "wǒ shì xué shēng nǐ ne", "vi": "Tôi là học sinh, còn bạn thì sao?"}, {"zh": "我是中国人, 你呢？", "py": "wǒ shì zhōng guó rén nǐ ne", "vi": "Tôi là người Trung Quốc, còn bạn?"}]}, {"lesson": 4, "title": "Cấu trúc Số từ + Lượng từ + Danh từ", "structure": "[Số từ] + [Lượng từ] + [Danh từ]", "explanation": "Muốn chỉ số lượng của vật, phải thêm lượng từ giữa số từ và danh từ. Lượng từ 个 phổ biến nhất, dùng cho nhiều danh từ khi chưa biết lượng từ riêng.", "tip": "Chưa thuộc lượng từ chuyên biệt thì dùng tạm 个.", "note": "Đừng bỏ qua lượng từ khi đi kèm số đếm; danh từ không đứng ngay sau số từ.", "examples": [{"zh": "一个", "py": "yī gè", "vi": "Một cái/chiếc"}, {"zh": "五口人", "py": "wǔ kǒu rén", "vi": "Năm người (dùng trong gia đình)"}]}, {"lesson": 5, "title": "Thứ tự biểu đạt thời gian", "structure": "Năm (年) + Tháng (月) + Ngày (日/号) + Thứ (星期)", "explanation": "Khi diễn đạt thời gian, luôn đi từ đơn vị lớn nhất đến nhỏ nhất: 年 → 月 → 日/号 → 星期.", "tip": "Ghi nhớ quy tắc 'từ lớn đến bé', ngược với tiếng Việt.", "note": "Khẩu ngữ thường dùng 号, văn viết dùng 日.", "examples": [{"zh": "2025年1月1日, 星期三", "py": "nián yuè rì xīng qī sān", "vi": "Thứ Tư, ngày 1 tháng 1 năm 2025"}, {"zh": "今天9月8号。", "py": "jīn tiān yuè hào", "vi": "Hôm nay ngày 8 tháng 9."}]}, {"lesson": 5, "title": "Câu vị ngữ danh từ", "structure": "S + Danh từ/Cụm danh từ (vị ngữ)", "explanation": "Vị ngữ là danh từ/cụm danh từ (không phải động từ hay tính từ), thường dùng chỉ ngày tháng, thời gian, tuổi tác, giá tiền.", "tip": "Nói ngày tháng nhớ quy tắc lớn đến nhỏ: Năm → Tháng → Ngày → Thứ.", "note": "Không thêm 是 vào giữa chủ ngữ và vị ngữ.", "examples": [{"zh": "今天星期四。", "py": "jīn tiān xīng qī sì", "vi": "Hôm nay là thứ Năm."}, {"zh": "明天是2024年8月18号。", "py": "míng tiān shì nián yuè hào", "vi": "Ngày mai là ngày 18 tháng 8 năm 2024."}]}, {"lesson": 5, "title": "Động từ năng nguyện 会 (biết)", "structure": "S + 会 + Động từ (+ Tân ngữ)", "explanation": "会 diễn tả năng lực/kỹ năng có được thông qua học tập, rèn luyện. Ví dụ 我会说汉语 (Tôi biết nói tiếng Trung).", "tip": "会 nhấn mạnh khả năng biết làm nhờ học hỏi.", "note": "Đừng nhầm 会 với 能; 能 chỉ khả năng dựa trên điều kiện thực tế.", "examples": [{"zh": "我会做饭。", "py": "wǒ huì zuò fàn", "vi": "Tôi biết nấu ăn."}, {"zh": "你会做饭吗？", "py": "nǐ huì zuò fàn ma", "vi": "Bạn biết nấu ăn không?"}]}, {"lesson": 6, "title": "Động từ năng nguyện 想 (muốn)", "structure": "S + 想 + Động từ + (Tân ngữ)", "explanation": "想 biểu thị nguyện vọng, mong muốn hoặc dự định làm gì, đứng trước động từ chính.", "tip": "Phủ định thêm 不 trước 想 (不想 - không muốn).", "note": "Không dùng 想 như tính từ; chỉ dùng để biểu thị ý định làm việc.", "examples": [{"zh": "我想去超市。", "py": "wǒ xiǎng qù chāo shì", "vi": "Tôi muốn đi siêu thị."}, {"zh": "我哥哥不想休息。", "py": "wǒ gē gē bù xiǎng xiū xī", "vi": "Anh trai tôi không muốn nghỉ ngơi."}]}, {"lesson": 6, "title": "Câu liên động", "structure": "S + V1 + O1 + V2 + O2", "explanation": "Câu có từ hai động từ trở lên cùng làm vị ngữ, thường diễn tả mục đích/trình tự; động từ thứ hai giải thích lý do làm động từ thứ nhất.", "tip": "Hành động xảy ra trước đứng trước, hành động mục đích đứng sau.", "note": "Không dùng từ liên kết như 和 hay 然后 giữa hai động từ.", "examples": [{"zh": "我去超市买东西。", "py": "wǒ qù chāo shì mǎi dōng xī", "vi": "Tôi đi siêu thị mua đồ."}, {"zh": "我们坐出租车去西安饭店。", "py": "wǒ men zuò chū zū chē qù xī ān fàn diàn", "vi": "Chúng tôi đi taxi đến nhà hàng Tây An."}]}, {"lesson": 6, "title": "Đại từ nghi vấn 怎么 (làm thế nào)", "structure": "S + 怎么 + V + (O)?", "explanation": "怎么 dùng trước động từ để hỏi phương thức/cách thức thực hiện hành động, tương đương 'làm thế nào', 'làm sao'.", "tip": "Hỏi cách làm/cách dùng: 这个字怎么写？(Chữ này viết thế nào?).", "note": "Phân biệt 怎么 (hỏi cách làm) với 什么 (hỏi sự vật, sự việc).", "examples": [{"zh": "你怎么去超市？", "py": "nǐ zěn me qù chāo shì", "vi": "Bạn đi siêu thị bằng cách nào?"}, {"zh": "我们怎么去？", "py": "wǒ men zěn me qù", "vi": "Chúng ta đi bằng cách nào?"}]}, {"lesson": 7, "title": "Cách nói giờ giấc cụ thể", "structure": "Số + 点 (giờ) + Số + 分 (phút)", "explanation": "Đặt số đếm trước 点 (giờ) và 分 (phút), thứ tự từ lớn đến nhỏ. Ví dụ 八点三十分 (8 giờ 30).", "tip": "30 phút có thể dùng 半: 8 giờ rưỡi là 八点半.", "note": "Dùng 两 thay 二 khi nói '2 giờ' (两点), không dùng 二点.", "examples": [{"zh": "上午十点", "py": "shàng wǔ shí diǎn", "vi": "Mười giờ sáng"}, {"zh": "我晚上六点半下班。", "py": "wǒ wǎn shàng liù diǎn bàn xià bān", "vi": "Tôi tan làm lúc 6 giờ rưỡi tối."}]}, {"lesson": 7, "title": "Trợ từ ngữ khí 吧 (đề nghị)", "structure": "Câu + 吧", "explanation": "吧 đứng cuối câu để đưa ra lời đề nghị, gợi ý hoặc yêu cầu nhẹ nhàng, giúp câu lịch sự hơn.", "tip": "Dùng 吧 khi rủ ai làm gì cùng: 我们走吧 (Chúng ta đi thôi).", "note": "Không dùng 吧 trong câu hỏi cần xác nhận như câu hỏi 吗.", "examples": [{"zh": "我们上课吧。", "py": "wǒ men shàng kè ba", "vi": "Chúng ta lên lớp thôi."}, {"zh": "我们中午下课吧。", "py": "wǒ men zhōng wǔ xià kè ba", "vi": "Trưa nay chúng ta tan học đi."}]}, {"lesson": 7, "title": "Vị trí của trạng ngữ trong câu", "structure": "Trạng ngữ + Động từ/Tính từ", "explanation": "Từ chỉ thời gian hoặc phó từ thường đứng trước động từ/tính từ để bổ nghĩa. Nhớ quy tắc 'thời gian đứng trước hành động'.", "tip": "Trạng ngữ thời gian có thể đặt đầu câu trước chủ ngữ hoặc ngay sau chủ ngữ.", "note": "Không đặt trạng ngữ thời gian sau động từ như tiếng Việt.", "examples": [{"zh": "我下午不去学校。", "py": "wǒ xià wǔ bù qù xué xiào", "vi": "Chiều nay tôi không đi học."}, {"zh": "妹妹很高兴。", "py": "mèi mèi hěn gāo xīng", "vi": "Em gái rất vui."}]}, {"lesson": 7, "title": "Trợ từ ngữ khí 呢 (xác nhận sự thật)", "structure": "Câu trần thuật + 呢", "explanation": "呢 đặt cuối câu trần thuật để nhấn mạnh, xác nhận một sự thật/tình trạng đang diễn ra, tương đương 'nhỉ', 'đấy', 'cơ'.", "tip": "Dùng 呢 giúp câu bớt khô khan, thể hiện thái độ khẳng định.", "note": "Phân biệt với 呢 trong câu hỏi tỉnh lược ('Còn tôi thì sao?').", "examples": [{"zh": "我下午还有课呢。", "py": "wǒ xià wǔ hái yǒu kè ne", "vi": "Chiều nay tôi vẫn còn tiết học đấy."}, {"zh": "李文晚上还有事呢。", "py": "lǐ wén wǎn shàng hái yǒu shì ne", "vi": "Lý Văn buổi tối vẫn còn việc đấy."}]}, {"lesson": 8, "title": "Danh từ chỉ phương hướng và vị trí", "structure": "[Danh từ/Đại từ] + [Danh từ phương vị: 上, 下, 前, 后, 里, 外...]", "explanation": "Để chỉ vị trí một vật, đặt danh từ chỉ vật đó trước từ chỉ phương vị. 上 (trên), 下 (dưới), 里 (trong) luôn đứng sau danh từ gốc.", "tip": "Từ chỉ phương vị như 'vệ tinh' luôn bám sau danh từ chính.", "note": "Danh từ luôn đứng trước từ phương vị, ngược với tiếng Việt.", "examples": [{"zh": "在桌子上", "py": "zài zhuō zi shàng", "vi": "Ở trên bàn"}, {"zh": "房间外有一只小猫。", "py": "fáng jiān wài yǒu yī zhǐ xiǎo māo", "vi": "Bên ngoài phòng có một chú mèo nhỏ."}]}, {"lesson": 8, "title": "Giới từ chỉ địa điểm 在", "structure": "S + 在 + Địa điểm + Động từ", "explanation": "在 chỉ nơi chốn hành động diễn ra. Đặt 在 cùng địa điểm ngay trước động từ.", "tip": "Trả lời cho câu hỏi 'làm gì ở đâu': 我在学校学习 (Tôi học ở trường).", "note": "Đặt 在 trước động từ, tránh đặt sau động từ như tiếng Việt.", "examples": [{"zh": "我在学校学习。", "py": "wǒ zài xué xiào xué xí", "vi": "Tôi học ở trường."}, {"zh": "我爸爸也在医院工作。", "py": "wǒ bà bà yě zài yī yuàn gōng zuò", "vi": "Bố tôi cũng làm việc ở bệnh viện."}]}, {"lesson": 8, "title": "Động từ năng nguyện 能", "structure": "S + 能 + Động từ + (Tân ngữ)", "explanation": "能 đứng trước động từ để biểu thị khả năng hoặc sự cho phép làm việc gì, tương đương 'có thể'.", "tip": "Phủ định thêm 不 thành 不能 (không thể).", "note": "Khác 会 (biết nhờ học tập), 能 thiên về khả năng khách quan/sự cho phép.", "examples": [{"zh": "我能去。", "py": "wǒ néng qù", "vi": "Tôi có thể đi."}, {"zh": "星期五前能回家吗？", "py": "xīng qī wǔ qián néng huí jiā ma", "vi": "Trước thứ Sáu có thể về nhà không?"}]}, {"lesson": 9, "title": "Câu tồn tại với 有 và 是", "structure": "[Địa điểm] + 有/是 + [Danh từ]", "explanation": "Diễn tả sự tồn tại của người/vật tại địa điểm. 有 nghĩa 'có cái gì ở đâu', 是 mang nghĩa 'là'/sự hiện diện.", "tip": "Đặt từ chỉ vị trí lên đầu câu để xác định phạm vi tồn tại.", "note": "Phủ định với 有 bắt buộc dùng 没有, không dùng 不有.", "examples": [{"zh": "桌子上有/是一本书。", "py": "zhuō zi shàng yǒu shì yī běn shū", "vi": "Trên bàn có một quyển sách."}, {"zh": "学校前边有一家电影院。", "py": "xué xiào qián biān yǒu yī jiā diàn yǐng yuàn", "vi": "Phía trước trường học có một rạp chiếu phim."}]}, {"lesson": 9, "title": "Thứ tự trạng ngữ thời gian và địa điểm", "structure": "S + Trạng ngữ thời gian + Trạng ngữ địa điểm + Động từ", "explanation": "Khi nói cả thời gian và địa điểm, đặt trạng ngữ thời gian trước trạng ngữ địa điểm.", "tip": "Nhớ mẹo 'Thời gian đi trước, nơi chốn theo sau'.", "note": "Không đặt trạng ngữ thời gian ở cuối câu như tiếng Việt.", "examples": [{"zh": "我们上午十点在书店见吧。", "py": "wǒ men shàng wǔ shí diǎn zài shū diàn jiàn ba", "vi": "Mười giờ sáng chúng ta gặp ở nhà sách nhé."}, {"zh": "我明天上午在学校学习。", "py": "wǒ míng tiān shàng wǔ zài xué xiào xué xí", "vi": "Tôi học ở trường vào sáng mai."}]}, {"lesson": 9, "title": "Số thứ tự với 第", "structure": "第 + Số đếm + (Lượng từ) + Danh từ", "explanation": "Thêm tiền tố 第 vào trước số đếm để thành số thứ tự. 第一 (thứ nhất), 第二 (thứ hai). Dùng chỉ thứ tự, xếp hạng.", "tip": "Nói về số lần thêm lượng từ 次 sau số: 第一次 (lần thứ nhất).", "note": "第 chỉ dùng cho số đếm, không dùng cho số ước chừng 几.", "examples": [{"zh": "第一, 第一个, 第一个学生", "py": "dì yī dì yī gè dì yī gè xué shēng", "vi": "Thứ nhất, cái đầu tiên, học sinh đầu tiên"}, {"zh": "这是我的第二本中文书。", "py": "zhè shì wǒ de dì èr běn zhōng wén shū", "vi": "Đây là quyển sách tiếng Trung thứ hai của tôi."}]}, {"lesson": 10, "title": "Cách đọc tiền tệ trong tiếng Trung", "structure": "Số + Đơn vị (元/角/分 hoặc 块/毛/分)", "explanation": "Đơn vị chính là 元, 角, 分. Khẩu ngữ thường dùng 块 thay 元 và 毛 thay 角. 分 giữ nguyên cả nói và viết.", "tip": "Quy đổi: 1 元 (块) = 10 角 (毛) = 100 分.", "note": "Không dùng lẫn đơn vị văn viết và văn nói trong cùng cụm.", "examples": [{"zh": "三块", "py": "sān kuài", "vi": "Ba tệ"}, {"zh": "三块二", "py": "sān kuài èr", "vi": "Ba tệ hai hào"}]}, {"lesson": 10, "title": "Câu vị ngữ tính từ", "structure": "S + (phó từ mức độ) + Tính từ", "explanation": "Tính từ làm vị ngữ thay động từ. Thường thêm phó từ mức độ như 很 (rất) trước tính từ cho tự nhiên.", "tip": "Tiếng Việt không dịch 很 nhưng nên thêm để câu không bị cụt.", "note": "Không thêm động từ 是 trước tính từ.", "examples": [{"zh": "这个苹果很好吃。", "py": "zhè gè píng guǒ hěn hǎo chī", "vi": "Quả táo này rất ngon."}, {"zh": "我的房间不大。", "py": "wǒ de fáng jiān bù dà", "vi": "Phòng của tôi không lớn."}]}, {"lesson": 10, "title": "Đại từ nghi vấn 怎么样", "structure": "S + 怎么样？", "explanation": "怎么样 hỏi về tính chất, tình trạng của người/vật, hoặc dùng hỏi ý kiến, đưa đề xuất.", "tip": "Dịch là 'như thế nào', 'thế nào'.", "note": "Không dùng 怎么样 hỏi số lượng/giá cả (vốn dùng 多少).", "examples": [{"zh": "这件衣服怎么样？", "py": "zhè jiàn yī fú zěn me yàng", "vi": "Bộ quần áo này thế nào?"}, {"zh": "这个杯子怎么样？", "py": "zhè gè bēi zi zěn me yàng", "vi": "Cái ly này thế nào?"}]}, {"lesson": 11, "title": "Câu hỏi chính phản", "structure": "Động từ/Tính từ + 不 + Động từ/Tính từ", "explanation": "Dùng hình thức khẳng định và phủ định cạnh nhau tạo câu hỏi, không cần 吗 cuối câu. Ví dụ 你去不去？(Bạn có đi không?).", "tip": "Cấu trúc này trực diện, tự nhiên hơn so với dùng 吗.", "note": "Không thêm 吗 cuối câu khi đã dùng dạng chính phản.", "examples": [{"zh": "好不好？", "py": "hǎo bù hǎo", "vi": "Tốt không?"}, {"zh": "你去不去学校？", "py": "nǐ qù bù qù xué xiào", "vi": "Bạn có đi học không?"}]}, {"lesson": 11, "title": "Diễn tả hành động đang tiếp diễn", "structure": "S + (正/正在/在) + Động từ + (呢)", "explanation": "正, 正在 hoặc 在 đặt trước động từ diễn tả hành động đang xảy ra. Thêm 呢 cuối câu để nhấn mạnh trạng thái tiếp diễn.", "tip": "Nhấn mạnh thời điểm chính xác thì ưu tiên 正在 hoặc 正...呢.", "note": "Phân biệt 在 (đang) với 在 (ở): 我在家 khác 我正在看书.", "examples": [{"zh": "他在休息呢。", "py": "tā zài xiū xī ne", "vi": "Anh ấy đang nghỉ ngơi."}, {"zh": "我正在看电视。", "py": "wǒ zhèng zài kàn diàn shì", "vi": "Tôi đang xem tivi."}]}, {"lesson": 11, "title": "Động từ năng nguyện 要", "structure": "S + 要 + Động từ + (Tân ngữ)", "explanation": "要 diễn tả mong muốn, ý định hoặc dự định làm gì. Ngoài ra còn thể hiện yêu cầu bắt buộc hoặc dự báo việc sắp xảy ra.", "tip": "Phủ định thêm 不 trước 要 thành 不要 (không muốn/không cần).", "note": "Phân biệt 要 với 想; 要 mang sắc thái quyết tâm/yêu cầu mạnh hơn.", "examples": [{"zh": "我要睡觉。", "py": "wǒ yào shuì jué", "vi": "Tôi muốn đi ngủ."}, {"zh": "他今天要和小朋友玩。", "py": "tā jīn tiān yào hé xiǎo péng yǒu wán", "vi": "Hôm nay nó muốn chơi với các bạn nhỏ."}]}, {"lesson": 12, "title": "Câu phi chủ vị", "structure": "Danh từ/Động từ/Tính từ (không cần chủ ngữ)", "explanation": "Câu ngắn gọn không có chủ ngữ rõ ràng, dùng mô tả hiện tượng tự nhiên (下雨了) hoặc lời chào, cảm thán (你好).", "tip": "Tập trung ghi nhớ các cụm cố định trong giao tiếp vì thường không cần chủ ngữ.", "note": "Đừng cố thêm chủ ngữ vào câu cảm thán/miêu tả hiện tượng tự nhiên.", "examples": [{"zh": "下雨了。", "py": "xià yǔ le", "vi": "Mưa rồi."}, {"zh": "对不起！", "py": "duì bù qǐ", "vi": "Xin lỗi!"}]}, {"lesson": 12, "title": "Trợ từ ngữ khí 了 (le)", "structure": "Câu + 了", "explanation": "了 đặt cuối câu biểu thị tình huống đã thay đổi hoặc trạng thái mới vừa xuất hiện; cũng nhấn mạnh hành động đã xảy ra/hoàn thành.", "tip": "了 như dấu hiệu cho thấy tình hình hiện tại đã khác trước đây.", "note": "Phân biệt 了 trạng thái (cuối câu) và 了 hoàn thành (sau động từ).", "examples": [{"zh": "我去上课了。", "py": "wǒ qù shàng kè le", "vi": "Tôi đi học đây."}, {"zh": "下雨了。", "py": "xià yǔ le", "vi": "Mưa rồi - tình trạng đã thay đổi."}]}, {"lesson": 12, "title": "Cấu trúc cảm thán 太...了", "structure": "太 + [tính từ/động từ tâm lý] + 了", "explanation": "Biểu thị mức độ cao vượt bình thường hoặc cảm thán, nghĩa 'quá', 'lắm', 'thật là'. Ví dụ 太好了 (Tốt quá rồi).", "tip": "Thêm 真 hoặc 实在 trước 太 để tăng sắc thái biểu cảm.", "note": "Câu khẳng định 太...了 nhất định phải có 了 cuối câu.", "examples": [{"zh": "太冷了！", "py": "tài lěng le", "vi": "Lạnh quá!"}, {"zh": "这个杯子太小了。", "py": "zhè gè bēi zi tài xiǎo le", "vi": "Cái ly này nhỏ quá."}]}, {"lesson": 13, "title": "Động từ năng nguyện 可以", "structure": "S + 可以 + Động từ + (Tân ngữ)", "explanation": "可以 biểu thị sự cho phép hoặc khả năng thực hiện hành động, đứng ngay trước động từ chính.", "tip": "Phủ định thêm 不 thành 不可以 (không được phép).", "note": "Đừng nhầm 可以 (cho phép) với 会 (biết do học) hoặc 能 (năng lực/điều kiện).", "examples": [{"zh": "我可以吃吗？", "py": "wǒ kě yǐ chī ma", "vi": "Tôi có thể ăn không?"}, {"zh": "你可以看这本书。", "py": "nǐ kě yǐ kàn zhè běn shū", "vi": "Bạn có thể xem quyển sách này."}]}, {"lesson": 13, "title": "Động từ + 一下 (hành động ngắn)", "structure": "Động từ + 一下 (yíxià)", "explanation": "Diễn tả hành động diễn ra trong thời gian rất ngắn hoặc mang tính thử nghiệm. Thêm 一下 giúp câu nhẹ nhàng, lịch sự hơn.", "tip": "Giảm sự cứng nhắc của câu mệnh lệnh: 看一下 (xem một chút) thay vì 看.", "note": "Không dùng 一下 sau động từ trạng thái tâm lý như 爱, 喜欢, 知道.", "examples": [{"zh": "看一下", "py": "kàn yī xià", "vi": "Xem một chút"}, {"zh": "你可以打电话问一下。", "py": "nǐ kě yǐ dǎ diàn huà wèn yī xià", "vi": "Bạn có thể gọi điện hỏi một chút."}]}, {"lesson": 13, "title": "Câu có hai tân ngữ", "structure": "S + Động từ + Tân ngữ gián tiếp (người) + Tân ngữ trực tiếp (vật)", "explanation": "Một số động từ như 给 (đưa cho), 问 (hỏi) mang cùng lúc hai tân ngữ; tân ngữ chỉ người đứng trước, tân ngữ chỉ vật đứng sau.", "tip": "Nhớ quy tắc: người đứng trước, vật đứng sau.", "note": "Chỉ động từ biểu thị trao đổi/cung cấp thông tin mới dùng được cấu trúc này.", "examples": [{"zh": "给我一杯水。", "py": "gěi wǒ yī bēi shuǐ", "vi": "Cho tôi một ly nước."}, {"zh": "白家月给安妮一个苹果。", "py": "bái jiā yuè gěi ān nī yī gè píng guǒ", "vi": "Bạch Gia Nguyệt cho Annie một quả táo."}]}, {"lesson": 14, "title": "Trợ từ động thái 了 (biểu thị hoàn thành)", "structure": "Động từ + 了 + (tân ngữ)", "explanation": "了 đặt ngay sau động từ nhấn mạnh hành động đã hoàn thành/đã xảy ra. Câu mang ý khẳng định việc gì đó đã thực hiện xong.", "tip": "Nếu có số lượng từ/tân ngữ cụ thể đi kèm, bắt buộc dùng 了 để chỉ rõ hoàn tất.", "note": "Phủ định không dùng 了, phải bỏ đi và thay bằng 没(有) trước động từ.", "examples": [{"zh": "读了一本书", "py": "dú le yī běn shū", "vi": "Đã đọc một quyển sách"}, {"zh": "我看了一个电影。", "py": "wǒ kàn le yī gè diàn yǐng", "vi": "Tôi đã xem một bộ phim."}]}, {"lesson": 14, "title": "Động từ ly hợp (Separable Verbs)", "structure": "Động từ (A) + Thành phần chèn + Tân ngữ (B)", "explanation": "Một số động từ có cấu trúc Động từ + Tân ngữ. Muốn thêm bổ ngữ thời lượng, số lượng hay trạng từ, có thể tách hai phần chèn vào giữa.", "tip": "Với 睡觉, có thể nói 睡了一个小时觉 (ngủ một tiếng đồng hồ).", "note": "Không đặt bổ ngữ/tân ngữ sau toàn bộ cụm ly hợp mà phải tách ra.", "examples": [{"zh": "吃了饭, 睡一觉", "py": "chī le fàn shuì yī jué", "vi": "Ăn cơm rồi, ngủ một giấc"}, {"zh": "睡了觉", "py": "shuì le jué", "vi": "Đã ngủ"}]}, {"lesson": 14, "title": "Phó từ chỉ phạm vi 都 (đều)", "structure": "S + 都 + Động từ/Tính từ", "explanation": "都 nhấn mạnh tất cả đối tượng trong phạm vi đều có chung đặc điểm/hành động, đặt ngay trước động từ/tính từ.", "tip": "Cấu trúc 每 + lượng từ + 都 rất phổ biến: 每天都 (ngày nào cũng).", "note": "Phủ định: 不 trước 都 (không phải cái nào cũng) hoặc sau 都 (cái nào cũng không).", "examples": [{"zh": "我们都来了。", "py": "wǒ men dōu lái le", "vi": "Chúng tôi đều đến rồi."}]}, {"lesson": 15, "title": "Câu phức song song với 还/也", "structure": "S1 + V1 + O1, (S1) + 还/也 + V2 + O2", "explanation": "Diễn tả một người/vật đồng thời có hai trạng thái hoặc thực hiện hai hành động. 还 hoặc 也 nhấn mạnh sự bổ sung thêm tính chất/hành động mới.", "tip": "Có thể bỏ chủ ngữ ở vế thứ hai nếu chủ ngữ hai vế giống nhau.", "note": "还/也 phải đặt trước động từ của vế thứ hai, không đặt trước chủ ngữ.", "examples": [{"zh": "我喜欢看书, 也喜欢看电影。", "py": "wǒ xǐ huān kàn shū yě xǐ huān kàn diàn yǐng", "vi": "Tôi thích đọc sách, cũng thích xem phim."}, {"zh": "王老师是北京人, 李文也是北京人。", "py": "wáng lǎo shī shì běi jīng rén lǐ wén yě shì běi jīng rén", "vi": "Thầy Vương là người Bắc Kinh, Lý Văn cũng là người Bắc Kinh."}]}], "sentences": {"1": {"sents": [{"zh": "老师好！", "py": "lǎo shī hǎo", "vi": "Chào thầy/cô!", "blank": "老师", "segs": [["老师", "lǎo shī"], ["好", "hǎo"]]}, {"zh": "你好，同学。", "py": "nǐ hǎo tóng xué", "vi": "Chào bạn học.", "blank": "同学", "segs": [["你好", "nǐ hǎo"], ["同学", "tóng xué"]]}, {"zh": "谢谢你们。", "py": "xiè xie nǐ men", "vi": "Cảm ơn các bạn.", "blank": "谢谢", "segs": [["谢谢", "xiè xie"], ["你们", "nǐ men"]]}, {"zh": "老师，再见！", "py": "lǎo shī zài jiàn", "vi": "Thầy/cô, tạm biệt!", "blank": "再见", "segs": [["老师", "lǎo shī"], ["再见", "zài jiàn"]]}, {"zh": "大家好。", "py": "dà jiā hǎo", "vi": "Chào mọi người.", "blank": "大家", "segs": [["大家", "dà jiā"], ["好", "hǎo"]]}], "qa": [{"q_zh": "谢谢！", "q_py": "xiè xie", "q_vi": "Cảm ơn!", "a_zh": "不客气。", "a_py": "bú kè qi", "a_vi": "Không có gì."}, {"q_zh": "老师好！", "q_py": "lǎo shī hǎo", "q_vi": "Chào thầy!", "a_zh": "你们好！", "a_py": "nǐ men hǎo", "a_vi": "Chào các em!"}, {"q_zh": "再见！", "q_py": "zài jiàn", "q_vi": "Tạm biệt!", "a_zh": "再见！", "a_py": "zài jiàn", "a_vi": "Tạm biệt!"}]}, "2": {"sents": [{"zh": "你叫什么名字？", "py": "nǐ jiào shén me míng zi", "vi": "Bạn tên là gì?", "blank": "名字", "segs": [["你", "nǐ"], ["叫", "jiào"], ["什么", "shén me"], ["名字", "míng zi"]]}, {"zh": "我很高兴。", "py": "wǒ hěn gāo xìng", "vi": "Tôi rất vui.", "blank": "高兴", "segs": [["我", "wǒ"], ["很", "hěn"], ["高兴", "gāo xìng"]]}, {"zh": "认识你，我很高兴。", "py": "rèn shi nǐ wǒ hěn gāo xìng", "vi": "Rất vui được biết bạn.", "blank": "认识", "segs": [["认识", "rèn shi"], ["你", "nǐ"], ["我", "wǒ"], ["很", "hěn"], ["高兴", "gāo xìng"]]}, {"zh": "对不起。", "py": "duì bu qǐ", "vi": "Xin lỗi.", "blank": "对不起", "segs": [["对不起", "duì bu qǐ"]]}, {"zh": "请问，你是谁？", "py": "qǐng wèn nǐ shì shéi", "vi": "Xin hỏi, bạn là ai?", "blank": "请问", "segs": [["请问", "qǐng wèn"], ["你", "nǐ"], ["是", "shì"], ["谁", "shéi / shuí"]]}], "qa": [{"q_zh": "你叫什么名字？", "q_py": "nǐ jiào shén me míng zi", "q_vi": "Bạn tên gì?", "a_zh": "我叫李文。", "a_py": "wǒ jiào lǐ wén", "a_vi": "Tôi tên Lý Văn."}, {"q_zh": "对不起。", "q_py": "duì bu qǐ", "q_vi": "Xin lỗi.", "a_zh": "没关系。", "a_py": "méi guān xi", "a_vi": "Không sao."}, {"q_zh": "你好吗？", "q_py": "nǐ hǎo ma", "q_vi": "Bạn khỏe không?", "a_zh": "我很好。", "a_py": "wǒ hěn hǎo", "a_vi": "Tôi khỏe."}]}, "3": {"sents": [{"zh": "我是中国人。", "py": "wǒ shì zhōng guó rén", "vi": "Tôi là người Trung Quốc.", "blank": "中国", "segs": [["我", "wǒ"], ["是", "shì"], ["中国", "Zhōng guó"], ["人", "rén"]]}, {"zh": "你是哪国人？", "py": "nǐ shì nǎ guó rén", "vi": "Bạn là người nước nào?", "blank": "哪", "segs": [["你", "nǐ"], ["是", "shì"], ["哪", "nǎ"], ["国", "guó"], ["人", "rén"]]}, {"zh": "她是我姐姐。", "py": "tā shì wǒ jiě jie", "vi": "Cô ấy là chị tôi.", "blank": "姐姐", "segs": [["她", "tā"], ["是", "shì"], ["我", "wǒ"], ["姐姐", "jiě jie"]]}, {"zh": "我工作很忙。", "py": "wǒ gōng zuò hěn máng", "vi": "Công việc của tôi rất bận.", "blank": "忙", "segs": [["我", "wǒ"], ["工作", "gōng zuò"], ["很", "hěn"], ["忙", "máng"]]}, {"zh": "我们是学生。", "py": "wǒ men shì xué sheng", "vi": "Chúng tôi là học sinh.", "blank": "我们", "segs": [["我们", "wǒ men"], ["是", "shì"], ["学生", "xué sheng"]]}], "qa": [{"q_zh": "你是哪国人？", "q_py": "nǐ shì nǎ guó rén", "q_vi": "Bạn là người nước nào?", "a_zh": "我是中国人。", "a_py": "wǒ shì zhōng guó rén", "a_vi": "Tôi là người Trung Quốc."}, {"q_zh": "她是谁？", "q_py": "tā shì shéi", "q_vi": "Cô ấy là ai?", "a_zh": "她是我姐姐。", "a_py": "tā shì wǒ jiě jie", "a_vi": "Cô ấy là chị tôi."}, {"q_zh": "你忙吗？", "q_py": "nǐ máng ma", "q_vi": "Bạn bận không?", "a_zh": "我很忙。", "a_py": "wǒ hěn máng", "a_vi": "Tôi rất bận."}]}, "4": {"sents": [{"zh": "我有两个孩子。", "py": "wǒ yǒu liǎng gè hái zi", "vi": "Tôi có hai đứa con.", "blank": "两", "segs": [["我", "wǒ"], ["有", "yǒu"], ["两", "liǎng"], ["个", "gè"], ["孩子", "hái zi"]]}, {"zh": "你家有几口人？", "py": "nǐ jiā yǒu jǐ kǒu rén", "vi": "Nhà bạn có mấy người?", "blank": "几", "segs": [["你", "nǐ"], ["家", "jiā"], ["有", "yǒu"], ["几", "jǐ"], ["口", "kǒu"], ["人", "rén"]]}, {"zh": "我有一个哥哥。", "py": "wǒ yǒu yí gè gē ge", "vi": "Tôi có một anh trai.", "blank": "哥哥", "segs": [["我", "wǒ"], ["有", "yǒu"], ["一", "yī"], ["个", "gè"], ["哥哥", "gē ge"]]}, {"zh": "我今年二十岁。", "py": "wǒ jīn nián èr shí suì", "vi": "Năm nay tôi 20 tuổi.", "blank": "岁", "segs": [["我", "wǒ"], ["今年", "jīn nián"], ["二", "èr"], ["十", "shí"], ["岁", "suì"]]}, {"zh": "她没有妹妹。", "py": "tā méi yǒu mèi mei", "vi": "Cô ấy không có em gái.", "blank": "没有", "segs": [["她", "tā"], ["没有", "méi yǒu"], ["妹妹", "mèi mei"]]}], "qa": [{"q_zh": "你家有几口人？", "q_py": "nǐ jiā yǒu jǐ kǒu rén", "q_vi": "Nhà bạn mấy người?", "a_zh": "我家有四口人。", "a_py": "wǒ jiā yǒu sì kǒu rén", "a_vi": "Nhà tôi bốn người."}, {"q_zh": "你今年多大？", "q_py": "nǐ jīn nián duō dà", "q_vi": "Năm nay bạn bao nhiêu tuổi?", "a_zh": "我二十岁。", "a_py": "wǒ èr shí suì", "a_vi": "Tôi 20 tuổi."}, {"q_zh": "你有哥哥吗？", "q_py": "nǐ yǒu gē ge ma", "q_vi": "Bạn có anh trai không?", "a_zh": "我有一个哥哥。", "a_py": "wǒ yǒu yí gè gē ge", "a_vi": "Tôi có một anh."}]}, "5": {"sents": [{"zh": "今天我休息。", "py": "jīn tiān wǒ xiū xi", "vi": "Hôm nay tôi nghỉ.", "blank": "休息", "segs": [["今天", "jīn tiān"], ["我", "wǒ"], ["休息", "xiū xi"]]}, {"zh": "我喜欢做饭。", "py": "wǒ xǐ huan zuò fàn", "vi": "Tôi thích nấu ăn.", "blank": "喜欢", "segs": [["我", "wǒ"], ["喜欢", "xǐ huān"], ["做饭", "zuò fàn"]]}, {"zh": "今天星期日。", "py": "jīn tiān xīng qī rì", "vi": "Hôm nay Chủ nhật.", "blank": "星期日", "segs": [["今天", "jīn tiān"], ["星期日", "xīng qī rì"]]}, {"zh": "这个菜真好看。", "py": "zhè ge cài zhēn hǎo kàn", "vi": "Món này trông đẹp thật.", "blank": "好看", "segs": [["这个", "zhè ge"], ["菜", "cài"], ["真", "zhēn"], ["好看", "hǎo kàn"]]}, {"zh": "我会做饺子。", "py": "wǒ huì zuò jiǎo zi", "vi": "Tôi biết làm sủi cảo.", "blank": "会", "segs": [["我", "wǒ"], ["会", "huì"], ["做", "zuò"], ["饺子", "jiǎo zi"]]}], "qa": [{"q_zh": "今天星期几？", "q_py": "jīn tiān xīng qī jǐ", "q_vi": "Hôm nay thứ mấy?", "a_zh": "今天星期日。", "a_py": "jīn tiān xīng qī rì", "a_vi": "Hôm nay Chủ nhật."}, {"q_zh": "你喜欢做饭吗？", "q_py": "nǐ xǐ huan zuò fàn ma", "q_vi": "Bạn thích nấu ăn không?", "a_zh": "我很喜欢。", "a_py": "wǒ hěn xǐ huan", "a_vi": "Tôi rất thích."}, {"q_zh": "你会做饺子吗？", "q_py": "nǐ huì zuò jiǎo zi ma", "q_vi": "Bạn biết làm sủi cảo không?", "a_zh": "我会做。", "a_py": "wǒ huì zuò", "a_vi": "Tôi biết làm."}]}, "6": {"sents": [{"zh": "我想去超市。", "py": "wǒ xiǎng qù chāo shì", "vi": "Tôi muốn đi siêu thị.", "blank": "超市", "segs": [["我", "wǒ"], ["想", "xiǎng"], ["去", "qù"], ["超市", "chāo shì"]]}, {"zh": "我去买东西。", "py": "wǒ qù mǎi dōng xi", "vi": "Tôi đi mua đồ.", "blank": "买", "segs": [["我", "wǒ"], ["去", "qù"], ["买", "mǎi"], ["东西", "dōng xi"]]}, {"zh": "这个包子很好吃。", "py": "zhè ge bāo zi hěn hǎo chī", "vi": "Bánh bao này rất ngon.", "blank": "好吃", "segs": [["这个", "zhè ge"], ["包子", "bāo zi"], ["很", "hěn"], ["好吃", "hǎo chī"]]}, {"zh": "我坐出租车去。", "py": "wǒ zuò chū zū chē qù", "vi": "Tôi đi taxi.", "blank": "出租车", "segs": [["我", "wǒ"], ["坐", "zuò"], ["出租车", "chū zhū chē"], ["去", "qù"]]}, {"zh": "你的电话号码是多少？", "py": "nǐ de diàn huà hào mǎ shì duō shao", "vi": "Số điện thoại của bạn là bao nhiêu?", "blank": "电话", "segs": [["你", "nǐ"], ["的", "de"], ["电话", "diàn huà"], ["号码", "hào mǎ"], ["是", "shì"], ["多少", "duō shao"]]}], "qa": [{"q_zh": "你想去哪儿？", "q_py": "nǐ xiǎng qù nǎr", "q_vi": "Bạn muốn đi đâu?", "a_zh": "我想去超市。", "a_py": "wǒ xiǎng qù chāo shì", "a_vi": "Tôi muốn đi siêu thị."}, {"q_zh": "你怎么去？", "q_py": "nǐ zěn me qù", "q_vi": "Bạn đi bằng gì?", "a_zh": "我坐出租车去。", "a_py": "wǒ zuò chū zū chē qù", "a_vi": "Tôi đi taxi."}, {"q_zh": "你买什么？", "q_py": "nǐ mǎi shén me", "q_vi": "Bạn mua gì?", "a_zh": "我买牛奶。", "a_py": "wǒ mǎi niú nǎi", "a_vi": "Tôi mua sữa."}]}, "7": {"sents": [{"zh": "我下午六点下班。", "py": "wǒ xià wǔ liù diǎn xià bān", "vi": "Tôi tan làm lúc 6 giờ chiều.", "blank": "下班", "segs": [["我", "wǒ"], ["下午", "xià wǔ"], ["六", "liù"], ["点", "diǎn"], ["下班", "xià bān"]]}, {"zh": "我们上午上课。", "py": "wǒ men shàng wǔ shàng kè", "vi": "Buổi sáng chúng tôi học.", "blank": "上课", "segs": [["我们", "wǒ men"], ["上午", "shàng wǔ"], ["上课", "shàng kè"]]}, {"zh": "现在几点？", "py": "xiàn zài jǐ diǎn", "vi": "Bây giờ mấy giờ?", "blank": "现在", "segs": [["现在", "xiàn zài"], ["几", "jǐ"], ["点", "diǎn"]]}, {"zh": "晚上我们看电影吧。", "py": "wǎn shàng wǒ men kàn diàn yǐng ba", "vi": "Tối nay chúng ta xem phim nhé.", "blank": "电影", "segs": [["晚上", "wǎn shang"], ["我们", "wǒ men"], ["看", "kàn"], ["电影", "diàn yǐng"], ["吧", "ba"]]}, {"zh": "我在家看书。", "py": "wǒ zài jiā kàn shū", "vi": "Tôi đọc sách ở nhà.", "blank": "在", "segs": [["我", "wǒ"], ["在家", "zài jiā"], ["看", "kàn"], ["书", "shū"]]}], "qa": [{"q_zh": "现在几点？", "q_py": "xiàn zài jǐ diǎn", "q_vi": "Bây giờ mấy giờ?", "a_zh": "现在六点。", "a_py": "xiàn zài liù diǎn", "a_vi": "Bây giờ 6 giờ."}, {"q_zh": "你几点下班？", "q_py": "nǐ jǐ diǎn xià bān", "q_vi": "Mấy giờ bạn tan làm?", "a_zh": "我六点下班。", "a_py": "wǒ liù diǎn xià bān", "a_vi": "Tôi tan làm lúc 6 giờ."}, {"q_zh": "晚上你做什么？", "q_py": "wǎn shàng nǐ zuò shén me", "q_vi": "Tối bạn làm gì?", "a_zh": "我看电影。", "a_py": "wǒ kàn diàn yǐng", "a_vi": "Tôi xem phim."}]}, "8": {"sents": [{"zh": "我爸爸在医院工作。", "py": "wǒ bà ba zài yī yuàn gōng zuò", "vi": "Bố tôi làm ở bệnh viện.", "blank": "医院", "segs": [["我", "wǒ"], ["爸爸", "bà ba"], ["在", "zài"], ["医院", "yī yuàn"], ["工作", "gōng zuò"]]}, {"zh": "桌子上有一本书。", "py": "zhuō zi shàng yǒu yì běn shū", "vi": "Trên bàn có một quyển sách.", "blank": "桌子", "segs": [["桌子", "zhuō zi"], ["上", "shang"], ["有", "yǒu"], ["一", "yī"], ["本", "běn"], ["书", "shū"]]}, {"zh": "我看见一只猫。", "py": "wǒ kàn jiàn yì zhī māo", "vi": "Tôi thấy một con mèo.", "blank": "看见", "segs": [["我", "wǒ"], ["看见", "kàn jiàn"], ["一", "yī"], ["只", "zhī"], ["猫", "māo"]]}, {"zh": "她的房间很漂亮。", "py": "tā de fáng jiān hěn piào liang", "vi": "Phòng cô ấy rất đẹp.", "blank": "漂亮", "segs": [["她", "tā"], ["的", "de"], ["房间", "fáng jiān"], ["很", "hěn"], ["漂亮", "piào liang"]]}, {"zh": "我在学校吃午饭。", "py": "wǒ zài xué xiào chī wǔ fàn", "vi": "Tôi ăn trưa ở trường.", "blank": "午饭", "segs": [["我", "wǒ"], ["在", "zài"], ["学校", "xué xiào"], ["吃", "chī"], ["午饭", "wǔ fàn"]]}], "qa": [{"q_zh": "你爸爸在哪儿工作？", "q_py": "nǐ bà ba zài nǎr gōng zuò", "q_vi": "Bố bạn làm ở đâu?", "a_zh": "他在医院工作。", "a_py": "tā zài yī yuàn gōng zuò", "a_vi": "Bố tôi làm ở bệnh viện."}, {"q_zh": "桌子上有什么？", "q_py": "zhuō zi shàng yǒu shén me", "q_vi": "Trên bàn có gì?", "a_zh": "有一本书。", "a_py": "yǒu yì běn shū", "a_vi": "Có một quyển sách."}, {"q_zh": "房间大吗？", "q_py": "fáng jiān dà ma", "q_vi": "Phòng có to không?", "a_zh": "房间不大。", "a_py": "fáng jiān bú dà", "a_vi": "Phòng không to."}]}, "9": {"sents": [{"zh": "我明天在学校学习。", "py": "wǒ míng tiān zài xué xiào xué xí", "vi": "Mai tôi học ở trường.", "blank": "学习", "segs": [["我", "wǒ"], ["明天", "míng tiān"], ["在", "zài"], ["学校", "xué xiào"], ["学习", "xué xí"]]}, {"zh": "前边有一个书店。", "py": "qián bian yǒu yí gè shū diàn", "vi": "Phía trước có một hiệu sách.", "blank": "前边", "segs": [["前边", "qián bian"], ["有", "yǒu"], ["一", "yī"], ["个", "gè"], ["书店", "shū diàn"]]}, {"zh": "我喜欢唱歌。", "py": "wǒ xǐ huan chàng gē", "vi": "Tôi thích hát.", "blank": "唱", "segs": [["我", "wǒ"], ["喜欢", "xǐ huān"], ["唱歌", "chàng gē"]]}, {"zh": "这是我的第一本书。", "py": "zhè shì wǒ de dì yī běn shū", "vi": "Đây là quyển sách đầu tiên của tôi.", "blank": "第", "segs": [["这", "zhè"], ["是", "shì"], ["我", "wǒ"], ["的", "de"], ["第", "dì"], ["一", "yī"], ["本", "běn"], ["书", "shū"]]}, {"zh": "我和朋友看电视。", "py": "wǒ hé péng you kàn diàn shì", "vi": "Tôi xem tivi với bạn.", "blank": "朋友", "segs": [["我", "wǒ"], ["和", "hé"], ["朋友", "péng you"], ["看", "kàn"], ["电视", "diàn shì"]]}], "qa": [{"q_zh": "你在哪儿学习？", "q_py": "nǐ zài nǎr xué xí", "q_vi": "Bạn học ở đâu?", "a_zh": "我在学校学习。", "a_py": "wǒ zài xué xiào xué xí", "a_vi": "Tôi học ở trường."}, {"q_zh": "你喜欢做什么？", "q_py": "nǐ xǐ huan zuò shén me", "q_vi": "Bạn thích làm gì?", "a_zh": "我喜欢唱歌。", "a_py": "wǒ xǐ huan chàng gē", "a_vi": "Tôi thích hát."}, {"q_zh": "书店在哪儿？", "q_py": "shū diàn zài nǎr", "q_vi": "Hiệu sách ở đâu?", "a_zh": "在前边。", "a_py": "zài qián bian", "a_vi": "Ở phía trước."}]}, "10": {"sents": [{"zh": "这儿的苹果很便宜。", "py": "zhèr de píng guǒ hěn pián yi", "vi": "Táo ở đây rất rẻ.", "blank": "便宜", "segs": [["这儿", "zhèr"], ["的", "de"], ["苹果", "píng guǒ"], ["很", "hěn"], ["便宜", "pián yi"]]}, {"zh": "这件衣服很贵。", "py": "zhè jiàn yī fu hěn guì", "vi": "Bộ quần áo này rất đắt.", "blank": "贵", "segs": [["这", "zhè"], ["件", "jiàn"], ["衣服", "yī fu"], ["很", "hěn"], ["贵", "guì"]]}, {"zh": "一斤苹果多少钱？", "py": "yì jīn píng guǒ duō shao qián", "vi": "Một cân táo bao nhiêu tiền?", "blank": "钱", "segs": [["一", "yī"], ["斤", "jin"], ["苹果", "píng guǒ"], ["多少", "duō shao"], ["钱", "qián"]]}, {"zh": "这个杯子怎么样？", "py": "zhè ge bēi zi zěn me yàng", "vi": "Cái cốc này thế nào?", "blank": "怎么样", "segs": [["这个", "zhè ge"], ["杯子", "bēi zi"], ["怎么样", "zěn me yàng"]]}, {"zh": "我买三块钱的水果。", "py": "wǒ mǎi sān kuài qián de shuǐ guǒ", "vi": "Tôi mua 3 tệ trái cây.", "blank": "块", "segs": [["我", "wǒ"], ["买", "mǎi"], ["三", "sān"], ["块", "kuài"], ["钱", "qián"], ["的", "de"], ["水果", "shuǐ guǒ"]]}], "qa": [{"q_zh": "苹果多少钱一斤？", "q_py": "píng guǒ duō shao qián yì jīn", "q_vi": "Táo bao nhiêu một cân?", "a_zh": "三块钱一斤。", "a_py": "sān kuài qián yì jīn", "a_vi": "Ba tệ một cân."}, {"q_zh": "这件衣服贵吗？", "q_py": "zhè jiàn yī fu guì ma", "q_vi": "Áo này đắt không?", "a_zh": "很贵。", "a_py": "hěn guì", "a_vi": "Rất đắt."}, {"q_zh": "这个杯子怎么样？", "q_py": "zhè ge bēi zi zěn me yàng", "q_vi": "Cốc này thế nào?", "a_zh": "很漂亮。", "a_py": "hěn piào liang", "a_vi": "Rất đẹp."}]}, "11": {"sents": [{"zh": "我正在上大学。", "py": "wǒ zhèng zài shàng dà xué", "vi": "Tôi đang học đại học.", "blank": "大学", "segs": [["我", "wǒ"], ["正在", "zhèng zài"], ["上", "shang"], ["大学", "dà xué"]]}, {"zh": "我弟弟在读书。", "py": "wǒ dì di zài dú shū", "vi": "Em trai tôi đang học.", "blank": "弟弟", "segs": [["我", "wǒ"], ["弟弟", "dì di"], ["在", "zài"], ["读书", "dú shū"]]}, {"zh": "我每天七点起床。", "py": "wǒ měi tiān qī diǎn qǐ chuáng", "vi": "Tôi dậy lúc 7 giờ mỗi ngày.", "blank": "起床", "segs": [["我", "wǒ"], ["每天", "měi tiān"], ["七", "qī"], ["点", "diǎn"], ["起床", "qǐ chuáng"]]}, {"zh": "昨天我睡得很晚。", "py": "zuó tiān wǒ shuì de hěn wǎn", "vi": "Hôm qua tôi ngủ muộn.", "blank": "昨天", "segs": [["昨天", "zuó tiān"], ["我", "wǒ"], ["睡", "shuì"], ["得", "de"], ["很", "hěn"], ["晚", "wǎn"]]}, {"zh": "我要问一个问题。", "py": "wǒ yào wèn yí gè wèn tí", "vi": "Tôi muốn hỏi một câu.", "blank": "问", "segs": [["我", "wǒ"], ["要", "yào"], ["问", "wèn"], ["一", "yī"], ["个", "gè"], ["问题", "wèn tí"]]}], "qa": [{"q_zh": "你在做什么？", "q_py": "nǐ zài zuò shén me", "q_vi": "Bạn đang làm gì?", "a_zh": "我正在读书。", "a_py": "wǒ zhèng zài dú shū", "a_vi": "Tôi đang học."}, {"q_zh": "你几点起床？", "q_py": "nǐ jǐ diǎn qǐ chuáng", "q_vi": "Mấy giờ bạn dậy?", "a_zh": "我七点起床。", "a_py": "wǒ qī diǎn qǐ chuáng", "a_vi": "Tôi dậy lúc 7 giờ."}, {"q_zh": "你是大学生吗？", "q_py": "nǐ shì dà xué shēng ma", "q_vi": "Bạn là sinh viên à?", "a_zh": "是，我上大学。", "a_py": "shì wǒ shàng dà xué", "a_vi": "Vâng, tôi học đại học."}]}, "12": {"sents": [{"zh": "昨天下雪了。", "py": "zuó tiān xià xuě le", "vi": "Hôm qua tuyết rơi.", "blank": "雪", "segs": [["昨天", "zuó tiān"], ["下雪", "xià xuě"], ["了", "le"]]}, {"zh": "今天很冷。", "py": "jīn tiān hěn lěng", "vi": "Hôm nay rất lạnh.", "blank": "冷", "segs": [["今天", "jīn tiān"], ["很", "hěn"], ["冷", "lěng"]]}, {"zh": "我有点儿不舒服。", "py": "wǒ yǒu diǎnr bù shū fu", "vi": "Tôi hơi khó chịu.", "blank": "有点儿", "segs": [["我", "wǒ"], ["有点儿", "yǒu diǎn r"], ["不", "bù"], ["舒服", "shū fu"]]}, {"zh": "我想喝水。", "py": "wǒ xiǎng hē shuǐ", "vi": "Tôi muốn uống nước.", "blank": "喝", "segs": [["我", "wǒ"], ["想", "xiǎng"], ["喝", "hē"], ["水", "shuǐ"]]}, {"zh": "生病了要吃药。", "py": "shēng bìng le yào chī yào", "vi": "Ốm thì phải uống thuốc.", "blank": "药", "segs": [["生病", "shēng bìng"], ["了", "le"], ["要", "yào"], ["吃", "chī"], ["药", "yào"]]}], "qa": [{"q_zh": "今天天气怎么样？", "q_py": "jīn tiān tiān qì zěn me yàng", "q_vi": "Hôm nay thời tiết thế nào?", "a_zh": "今天很冷。", "a_py": "jīn tiān hěn lěng", "a_vi": "Hôm nay rất lạnh."}, {"q_zh": "你怎么了？", "q_py": "nǐ zěn me le", "q_vi": "Bạn sao vậy?", "a_zh": "我生病了。", "a_py": "wǒ shēng bìng le", "a_vi": "Tôi bị ốm."}, {"q_zh": "你想喝什么？", "q_py": "nǐ xiǎng hē shén me", "q_vi": "Bạn muốn uống gì?", "a_zh": "我想喝水。", "a_py": "wǒ xiǎng hē shuǐ", "a_vi": "Tôi muốn uống nước."}]}, "13": {"sents": [{"zh": "给我一杯茶。", "py": "gěi wǒ yì bēi chá", "vi": "Cho tôi một cốc trà.", "blank": "茶", "segs": [["给", "gěi"], ["我", "wǒ"], ["一", "yī"], ["杯", "bēi"], ["茶", "chá"]]}, {"zh": "我可以问一下吗？", "py": "wǒ kě yǐ wèn yí xià ma", "vi": "Tôi hỏi một chút được không?", "blank": "可以", "segs": [["我", "wǒ"], ["可以", "kě yǐ"], ["问", "wèn"], ["一下", "yí xià"], ["吗", "ma"]]}, {"zh": "请给我一个面包。", "py": "qǐng gěi wǒ yí gè miàn bāo", "vi": "Cho tôi một cái bánh mì.", "blank": "面包", "segs": [["请", "qǐng"], ["给", "gěi"], ["我", "wǒ"], ["一", "yī"], ["个", "gè"], ["面包", "miàn bāo"]]}, {"zh": "服务员，买单。", "py": "fú wù yuán mǎi dān", "vi": "Phục vụ ơi, tính tiền.", "blank": "服务员", "segs": [["服务员", "fú wù yuán"], ["买单", "mǎi dān"]]}, {"zh": "我要一个鸡蛋。", "py": "wǒ yào yí gè jī dàn", "vi": "Tôi muốn một quả trứng.", "blank": "鸡蛋", "segs": [["我", "wǒ"], ["要", "yào"], ["一", "yī"], ["个", "gè"], ["鸡蛋", "jī dàn"]]}], "qa": [{"q_zh": "你要喝什么？", "q_py": "nǐ yào hē shén me", "q_vi": "Bạn muốn uống gì?", "a_zh": "给我一杯茶。", "a_py": "gěi wǒ yì bēi chá", "a_vi": "Cho tôi một cốc trà."}, {"q_zh": "我可以坐这儿吗？", "q_py": "wǒ kě yǐ zuò zhèr ma", "q_vi": "Tôi ngồi đây được không?", "a_zh": "可以。", "a_py": "kě yǐ", "a_vi": "Được."}, {"q_zh": "你要什么？", "q_py": "nǐ yào shén me", "q_vi": "Bạn cần gì?", "a_zh": "我要一个面包。", "a_py": "wǒ yào yí gè miàn bāo", "a_vi": "Tôi cần một cái bánh mì."}]}, "14": {"sents": [{"zh": "我看了一个电影。", "py": "wǒ kàn le yí gè diàn yǐng", "vi": "Tôi đã xem một bộ phim.", "blank": "了", "segs": [["我", "wǒ"], ["看", "kàn"], ["了", "le"], ["一", "yī"], ["个", "gè"], ["电影", "diàn yǐng"]]}, {"zh": "我们都会说汉语。", "py": "wǒ men dōu huì shuō hàn yǔ", "vi": "Chúng tôi đều biết nói tiếng Trung.", "blank": "都", "segs": [["我们", "wǒ men"], ["都", "dōu"], ["会", "huì"], ["说", "shuō"], ["汉语", "hàn yǔ"]]}, {"zh": "他写汉字写得很好。", "py": "tā xiě hàn zì xiě de hěn hǎo", "vi": "Anh ấy viết chữ Hán rất đẹp.", "blank": "汉字", "segs": [["他", "tā"], ["写", "xiě"], ["汉字", "hàn zì"], ["写", "xiě"], ["得", "de"], ["很", "hěn"], ["好", "hǎo"]]}, {"zh": "明年我要学汉语。", "py": "míng nián wǒ yào xué hàn yǔ", "vi": "Năm sau tôi sẽ học tiếng Trung.", "blank": "明年", "segs": [["明年", "míng nián"], ["我", "wǒ"], ["要", "yào"], ["学", "xué"], ["汉语", "hàn yǔ"]]}, {"zh": "中午我们一起吃饭。", "py": "zhōng wǔ wǒ men yì qǐ chī fàn", "vi": "Trưa chúng tôi ăn cùng nhau.", "blank": "中午", "segs": [["中午", "zhōng wǔ"], ["我们", "wǒ men"], ["一起", "yī qǐ"], ["吃饭", "chī fàn"]]}], "qa": [{"q_zh": "你看了什么？", "q_py": "nǐ kàn le shén me", "q_vi": "Bạn đã xem gì?", "a_zh": "我看了一个电影。", "a_py": "wǒ kàn le yí gè diàn yǐng", "a_vi": "Tôi đã xem một bộ phim."}, {"q_zh": "你会说汉语吗？", "q_py": "nǐ huì shuō hàn yǔ ma", "q_vi": "Bạn biết nói tiếng Trung không?", "a_zh": "我会说。", "a_py": "wǒ huì shuō", "a_vi": "Tôi biết nói."}, {"q_zh": "你明年学什么？", "q_py": "nǐ míng nián xué shén me", "q_vi": "Năm sau bạn học gì?", "a_zh": "我学汉语。", "a_py": "wǒ xué hàn yǔ", "a_vi": "Tôi học tiếng Trung."}]}, "15": {"sents": [{"zh": "我们在机场见吧。", "py": "wǒ men zài jī chǎng jiàn ba", "vi": "Chúng ta gặp ở sân bay nhé.", "blank": "机场", "segs": [["我们", "wǒ men"], ["在", "zài"], ["机场", "jī cháng"], ["见", "jiàn"], ["吧", "ba"]]}, {"zh": "我去年去了北京。", "py": "wǒ qù nián qù le běi jīng", "vi": "Năm ngoái tôi đến Bắc Kinh.", "blank": "北京", "segs": [["我", "wǒ"], ["去年", "qùn ián"], ["去", "qù"], ["了", "le"], ["北京", "Běi jīng"]]}, {"zh": "坐飞机要多长时间？", "py": "zuò fēi jī yào duō cháng shí jiān", "vi": "Đi máy bay mất bao lâu?", "blank": "飞机", "segs": [["坐", "zuò"], ["飞机", "fēi jī"], ["要", "yào"], ["多长", "duō cháng"], ["时间", "shí jiān"]]}, {"zh": "我的家人来接我。", "py": "wǒ de jiā rén lái jiē wǒ", "vi": "Người nhà đến đón tôi.", "blank": "接", "segs": [["我", "wǒ"], ["的", "de"], ["家人", "jiā rén"], ["来", "lái"], ["接", "jiē"], ["我", "wǒ"]]}, {"zh": "这个地方很好玩儿。", "py": "zhè ge dì fang hěn hǎo wánr", "vi": "Nơi này rất vui.", "blank": "好玩儿", "segs": [["这个", "zhè ge"], ["地方", "dì fang"], ["很", "hěn"], ["好玩儿", "hǎo wán r"]]}], "qa": [{"q_zh": "我们在哪儿见？", "q_py": "wǒ men zài nǎr jiàn", "q_vi": "Chúng ta gặp ở đâu?", "a_zh": "在机场见。", "a_py": "zài jī chǎng jiàn", "a_vi": "Gặp ở sân bay."}, {"q_zh": "谁来接你？", "q_py": "shéi lái jiē nǐ", "q_vi": "Ai đến đón bạn?", "a_zh": "我的家人。", "a_py": "wǒ de jiā rén", "a_vi": "Người nhà tôi."}, {"q_zh": "你去年去哪儿了？", "q_py": "nǐ qù nián qù nǎr le", "q_vi": "Năm ngoái bạn đi đâu?", "a_zh": "我去了北京。", "a_py": "wǒ qù le běi jīng", "a_vi": "Tôi đến Bắc Kinh."}]}}};
+const AUDIO_BASE = "https://static.xiehanzi.com/word_audios/";
+const learned = {};   // key: kind:id:hanzi
+let cur = {kind:"lessons", idx:0};
+
+const player = document.getElementById('player');
+const content = document.getElementById('content');
+
+function keyFor(kind,id,hz){return kind+":"+id+":"+hz;}
+function playAudio(hz){player.src=AUDIO_BASE+encodeURIComponent(hz)+".mp3";player.play().catch(()=>{});}
+function renderPinyin(parts){return parts.map(([s,t])=>`<span class="syl tone${t}">${s}</span>`).join('');}
+
+/* ---------- sidebar ---------- */
+function buildNav(){
+  // lessons
+  const nl=document.getElementById('nav-lessons');
+  DATA.lessons.forEach((L,i)=>{
+    const it=document.createElement('div');
+    it.className='nav-item'+(i===0?' active':'');
+    it.innerHTML=`<span class="nav-num">${String(L.id).padStart(2,'0')}</span><span class="nav-txt">${L.tv}</span><span class="nav-count">${L.words.length}</span>`;
+    it.onclick=()=>{select('lessons',i);closeSidebar();};
+    nl.appendChild(it);
+  });
+  // topics
+  const nt=document.getElementById('nav-topics');
+  DATA.topics.forEach((T,i)=>{
+    const it=document.createElement('div');
+    it.className='nav-item';
+    it.innerHTML=`<span class="nav-num">${String(i+1).padStart(2,'0')}</span><span class="nav-txt">${T.title}</span><span class="nav-count">${T.words.length}</span>`;
+    it.onclick=()=>{select('topics',i);closeSidebar();};
+    nt.appendChild(it);
+  });
+  // grammar
+  const ng=document.getElementById('nav-grammar');
+  DATA.grammar.forEach((G,i)=>{
+    const it=document.createElement('div');
+    it.className='nav-item';
+    it.innerHTML=`<span class="nav-num">${i+1}</span><span class="nav-txt">${G.title}</span><span class="nav-count">B${G.lesson}</span>`;
+    it.onclick=()=>{select('grammar',i);closeSidebar();};
+    ng.appendChild(it);
+  });
+}
+
+function setActiveNav(kind,idx){
+  document.querySelectorAll('.nav-list').forEach(l=>l.classList.remove('active'));
+  document.getElementById('nav-'+kind).classList.add('active');
+  document.querySelectorAll('.sec-tab').forEach(t=>t.classList.toggle('active',t.dataset.sec===kind));
+  const items=document.getElementById('nav-'+kind).querySelectorAll('.nav-item');
+  items.forEach((el,i)=>el.classList.toggle('active',i===idx));
+}
+
+/* ---------- render ---------- */
+let showPy=true;
+function select(kind,idx){
+  cur={kind,idx};
+  setActiveNav(kind,idx);
+  const toolbar=document.getElementById('toolbar');
+  if(kind==='grammar'){toolbar.style.display='none';renderGrammar(idx);}
+  else{toolbar.style.display='flex';renderVocab(kind,idx);}
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderVocab(kind,idx){
+  const item = kind==='lessons'?DATA.lessons[idx]:DATA.topics[idx];
+  const title = kind==='lessons'?item.tv:item.title;
+  const zh = kind==='lessons'?item.tz:'';
+  const num = kind==='lessons'?('Bài '+item.id):('Chủ đề '+(idx+1));
+  document.getElementById('heroKind').textContent = kind==='lessons'?'Bài học':'Chủ đề';
+  document.getElementById('heroNum').textContent = num;
+  document.getElementById('heroCount').textContent = item.words.length+' từ vựng';
+  document.getElementById('heroVi').textContent = title;
+  document.getElementById('heroZh').textContent = zh;
+  document.getElementById('heroZh').style.display = zh?'block':'none';
+  document.getElementById('heroSub').textContent='Nhấp vào chữ Hán để luyện viết từng nét · nhấn 🔊 để nghe phát âm · tick để đánh dấu đã học.';
+  document.getElementById('heroPractice').style.display = kind==='lessons'?'inline-block':'none';
+  document.getElementById('topTitle').textContent=num;
+
+  const idVal = kind==='lessons'?item.id:item.slug;
+  let html='<div class="vocab-grid">';
+  item.words.forEach((w,wi)=>{
+    const k=keyFor(kind,idVal,w.hz);
+    html+=`<div class="vcard ${showPy?'':'hide-py'} ${learned[k]?'learned':''}" data-wi="${wi}">
+      <div class="actions">
+        <button class="icon-btn a-audio" title="Nghe">🔊</button>
+        <button class="icon-btn a-write" title="Luyện viết">✎</button>
+      </div>
+      <div class="hz a-hz">${w.hz}</div>
+      <div class="py">${renderPinyin(w.py)}</div>
+      <div class="vi">${w.vi}</div>
+      <label class="check"><input type="checkbox" ${learned[k]?'checked':''}> đã học</label>
+    </div>`;
+  });
+  html+='</div>';
+  content.innerHTML=html;
+
+  content.querySelectorAll('.vcard').forEach(card=>{
+    const wi=+card.dataset.wi, w=item.words[wi], k=keyFor(kind,idVal,w.hz);
+    card.querySelector('.a-audio').onclick=e=>{e.stopPropagation();playAudio(w.hz);};
+    card.querySelector('.a-write').onclick=e=>{e.stopPropagation();openWriter(w);};
+    card.querySelector('.a-hz').onclick=e=>{e.stopPropagation();openWriter(w);};
+    const cb=card.querySelector('input');
+    cb.onclick=e=>e.stopPropagation();
+    cb.onchange=()=>{if(cb.checked){learned[k]=true;card.classList.add('learned');}else{delete learned[k];card.classList.remove('learned');}updateProgress();};
+  });
+  updateProgress();
+}
+
+function renderGrammar(idx){
+  const G=DATA.grammar[idx];
+  document.getElementById('heroKind').textContent='Ngữ pháp';
+  document.getElementById('heroNum').textContent='Điểm '+(idx+1);
+  document.getElementById('heroCount').textContent='Bài '+G.lesson;
+  document.getElementById('heroVi').textContent=G.title;
+  document.getElementById('heroZh').style.display='none';
+  document.getElementById('heroSub').textContent='Cấu trúc, giải thích và ví dụ · nhấp câu tiếng Trung để nghe.';
+  document.getElementById('heroPractice').style.display='none';
+  document.getElementById('topTitle').textContent='Ngữ pháp '+(idx+1);
+
+  let ex='';
+  G.examples.forEach(e=>{
+    ex+=`<div class="g-ex"><span class="ex-zh" data-zh="${e.zh}">${e.zh} 🔊</span>
+      <div class="ex-py">${e.py}</div><div class="ex-vi">${e.vi}</div></div>`;
+  });
+  let meta='';
+  if(G.tip) meta+=`<div class="g-tip"><b>💡 Mẹo:</b><span>${G.tip}</span></div>`;
+  if(G.note) meta+=`<div class="g-note"><b>⚠️ Lưu ý:</b><span>${G.note}</span></div>`;
+
+  content.innerHTML=`<div class="gcard">
+    <div class="g-head"><span class="g-num">${idx+1}</span><span class="g-title">${G.title}</span><span class="g-lesson">Bài ${G.lesson}</span></div>
+    <div class="g-structure">${G.structure}</div>
+    <div class="g-exp">${G.explanation}</div>
+    <div class="g-examples">${ex}</div>
+    <div class="g-meta">${meta}</div>
+  </div>`;
+
+  content.querySelectorAll('.ex-zh').forEach(el=>{
+    el.onclick=()=>{
+      // play the first character audio as a best-effort (word-level audio may not exist for full sentences)
+      const zh=el.dataset.zh.replace(/[，。！？、]/g,'');
+      if(zh) playAudio(zh);
+    };
+  });
+}
+
+function updateProgress(){
+  if(cur.kind==='grammar'){document.getElementById('progText').textContent='—';document.getElementById('progFill').style.width='0%';return;}
+  const item=cur.kind==='lessons'?DATA.lessons[cur.idx]:DATA.topics[cur.idx];
+  const idVal=cur.kind==='lessons'?item.id:item.slug;
+  let done=0;item.words.forEach(w=>{if(learned[keyFor(cur.kind,idVal,w.hz)])done++;});
+  const pct=item.words.length?Math.round(done/item.words.length*100):0;
+  document.getElementById('progText').textContent=`${done}/${item.words.length} · ${pct}%`;
+  document.getElementById('progFill').style.width=pct+'%';
+}
+
+/* ---------- toolbar ---------- */
+document.getElementById('togglePy').onclick=function(){
+  showPy=!showPy;this.textContent=showPy?'Ẩn pinyin':'Hiện pinyin';this.classList.toggle('on',showPy);
+  document.querySelectorAll('.vcard').forEach(c=>c.classList.toggle('hide-py',!showPy));
+};
+document.getElementById('resetItem').onclick=()=>{
+  if(cur.kind==='grammar')return;
+  const item=cur.kind==='lessons'?DATA.lessons[cur.idx]:DATA.topics[cur.idx];
+  const idVal=cur.kind==='lessons'?item.id:item.slug;
+  item.words.forEach(w=>{delete learned[keyFor(cur.kind,idVal,w.hz)];});
+  renderVocab(cur.kind,cur.idx);
+};
+
+/* ---------- section tabs ---------- */
+document.querySelectorAll('.sec-tab').forEach(t=>{
+  t.onclick=()=>select(t.dataset.sec,0);
+});
+
+/* ---------- sidebar mobile ---------- */
+const sidebar=document.getElementById('sidebar'),backdrop=document.getElementById('backdrop');
+function closeSidebar(){sidebar.classList.remove('open');backdrop.classList.remove('show');}
+document.getElementById('ham').onclick=()=>{sidebar.classList.add('open');backdrop.classList.add('show');};
+backdrop.onclick=closeSidebar;
+
+/* ---------- Hanzi Writer modal ---------- */
+const modalBack=document.getElementById('modalBack');
+let writers=[];
+function clearWriters(){writers=[];document.getElementById('writerRow').innerHTML='';}
+function chars(str){return Array.from(str).filter(c=>/[\u3400-\u9FFF]/.test(c));}
+
+function openWriter(w){
+  const cs=chars(w.hz);
+  document.getElementById('mTitle').textContent='Luyện viết · '+w.hz;
+  document.getElementById('mZh').textContent=w.hz;
+  document.getElementById('mPy').textContent=w.py.map(p=>p[0]).join(' ');
+  document.getElementById('mVi').textContent=w.vi;
+  document.getElementById('mCount').textContent=cs.length+' chữ · viết theo đúng thứ tự nét';
+  clearWriters();
+  const row=document.getElementById('writerRow');
+  cs.forEach(ch=>{
+    const cell=document.createElement('div');cell.className='writer-cell';
+    row.appendChild(cell);
+    if(typeof HanziWriter!=='undefined'){
+      const wr=HanziWriter.create(cell,ch,{
+        width:130,height:130,padding:8,
+        strokeColor:'#013220',radicalColor:'#006D6F',
+        outlineColor:'#E3DED0',drawingColor:'#007A74',
+        showOutline:true,strokeAnimationSpeed:1,delayBetweenStrokes:180,
+        charDataLoader:(c,onLoad,onError)=>{
+          fetch('https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0/'+c+'.json')
+            .then(r=>r.json()).then(onLoad).catch(onError);
+        }
+      });
+      writers.push(wr);
+    } else {
+      cell.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:56px;color:var(--forest)">'+ch+'</div>';
+    }
+  });
+  document.getElementById('mHint').textContent = writers.length?
+    'Nhấn “Xem nét” để xem thứ tự viết, hoặc “Tự viết” để luyện trực tiếp.':
+    'Không tải được dữ liệu nét (cần kết nối mạng). Vẫn có thể xem mặt chữ.';
+  modalBack.classList.add('show');
+}
+function closeModal(){modalBack.classList.remove('show');writers.forEach(w=>{try{w.cancelQuiz&&w.cancelQuiz();}catch(e){}});}
+document.getElementById('modalClose').onclick=closeModal;
+modalBack.onclick=e=>{if(e.target===modalBack)closeModal();};
+document.getElementById('mAnimate').onclick=()=>{
+  let d=0;writers.forEach(w=>{w.hideCharacter();w.animateCharacter({onComplete:()=>{}});});
+};
+document.getElementById('mReset').onclick=()=>{writers.forEach(w=>{w.showCharacter();w.showOutline();});};
+document.getElementById('mQuiz').onclick=()=>{
+  writers.forEach(w=>{w.quiz({showHintAfterMisses:1});});
+  document.getElementById('mHint').textContent='Dùng chuột/ngón tay viết theo đúng thứ tự nét. Viết sai sẽ được gợi ý.';
+};
+
+/* ================= PRACTICE ENGINE ================= */
+const prBack=document.getElementById('prBack');
+const prBody=document.getElementById('prBody');
+const prTabs=document.getElementById('prTabs');
+const TONE_MAP={a:['ā','á','ǎ','à','a'],e:['ē','é','ě','è','e'],i:['ī','í','ǐ','ì','i'],
+  o:['ō','ó','ǒ','ò','o'],u:['ū','ú','ǔ','ù','u'],'ü':['ǖ','ǘ','ǚ','ǜ','ü'],v:['ǖ','ǘ','ǚ','ǜ','ü']};
+
+const PR_MODES=[
+  {id:'type',   label:'1 · Gõ pinyin'},
+  {id:'listen', label:'2 · Nghe gõ từ'},
+  {id:'tone',   label:'3 · Điền thanh điệu'},
+  {id:'match',  label:'4 · Nối từ'},
+  {id:'choice', label:'5 · Điền vào chỗ trống'},
+  {id:'order',  label:'6 · Sắp xếp câu'},
+  {id:'qa',     label:'7 · Nối hỏi–đáp'},
+];
+let prLesson=0, prMode='type';
+
+function stripTones(s){
+  return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim().toLowerCase();
+}
+function pyPlain(parts){ // parts = [[syl,tone],...]  -> "ni hao" no tones
+  return parts.map(p=>stripTones(p[0])).join(' ');
+}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];}return a;}
+function cjkChars(str){return Array.from(str).filter(c=>/[\u3400-\u9FFF]/.test(c));}
+
+function openPractice(lessonIdx){
+  prLesson=lessonIdx; prMode='type';
+  const L=DATA.lessons[lessonIdx];
+  document.getElementById('prTitle').textContent='Luyện tập · Bài '+L.id;
+  document.getElementById('prSub').textContent=L.tv+' · '+L.words.length+' từ';
+  prTabs.innerHTML='';
+  PR_MODES.forEach(m=>{
+    const t=document.createElement('button');
+    t.className='pr-tab'+(m.id===prMode?' active':'');
+    t.textContent=m.label; t.onclick=()=>{prMode=m.id;
+      prTabs.querySelectorAll('.pr-tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');
+      renderPractice();};
+    prTabs.appendChild(t);
+  });
+  prBack.classList.add('show');
+  renderPractice();
+}
+function closePractice(){prBack.classList.remove('show');prBody.innerHTML='';}
+document.getElementById('prClose').onclick=closePractice;
+document.getElementById('heroPractice').onclick=()=>{ if(cur.kind==='lessons') openPractice(cur.idx); };
+
+function scoreBar(state){
+  return `<div class="pr-scorebar"><span class="stat">Đúng: <b>${state.correct}</b></span>
+    <span class="stat">Tổng: <b>${state.total}</b></span>
+    <span class="stat">Độ chính xác: <b>${state.total?Math.round(state.correct/state.total*100):0}%</b></span></div>`;
+}
+
+function renderPractice(){
+  const L=DATA.lessons[prLesson];
+  const words=L.words;
+  const sb=DATA.sentences[String(L.id)];
+  prBody.innerHTML='';
+  if(prMode==='type')   return mType(words);
+  if(prMode==='listen') return mListen(words);
+  if(prMode==='tone')   return mTone(words);
+  if(prMode==='match')  return mMatch(words);
+  if(prMode==='choice') return mChoice(sb,words);
+  if(prMode==='order')  return mOrder(sb);
+  if(prMode==='qa')     return mQA(sb);
+}
+
+/* ---- Dạng 1: gõ pinyin từ chữ Hán ---- */
+function mType(words){
+  const items=shuffle(words).slice(0,Math.min(12,words.length));
+  const st={correct:0,total:0};
+  const wrap=document.createElement('div');
+  wrap.innerHTML=scoreBar(st)+'<p class="pr-empty" style="padding:0 0 14px;text-align:left">Nhìn chữ Hán + nghĩa, gõ <b>pinyin không dấu</b> rồi Enter. 🔊 để nghe.</p>';
+  const sc=wrap.querySelector('.pr-scorebar');
+  items.forEach(w=>{
+    const q=document.createElement('div');q.className='pr-q';
+    q.innerHTML=`<div class="q-prompt"><span class="big">${w.hz}</span><span>${w.vi}</span>
+      <button class="icon-btn" style="margin-left:8px" title="Nghe">🔊</button></div>
+      <input class="pr-input" placeholder="pinyin không dấu, vd: ni hao">
+      <div class="pr-fb"></div>`;
+    const inp=q.querySelector('input'),fb=q.querySelector('.pr-fb');
+    q.querySelector('.icon-btn').onclick=()=>playAudio(w.hz);
+    let done=false;
+    inp.addEventListener('keydown',e=>{
+      if(e.key!=='Enter'||done)return;
+      const ans=stripTones(inp.value), corr=pyPlain(w.py);
+      st.total++;done=true;inp.disabled=true;
+      if(ans===corr){st.correct++;inp.classList.add('ok');fb.className='pr-fb ok';fb.textContent='✓ Chính xác: '+w.py.map(p=>p[0]).join(' ');}
+      else{inp.classList.add('bad');fb.className='pr-fb bad';fb.textContent='✗ Đáp án: '+w.py.map(p=>p[0]).join(' ')+' ('+corr+')';}
+      sc.outerHTML=scoreBar(st);
+    });
+    wrap.appendChild(q);
+  });
+  prBody.appendChild(wrap);
+}
+
+/* ---- Dạng 2: nghe gõ từ ---- */
+function mListen(words){
+  const items=shuffle(words).slice(0,Math.min(12,words.length));
+  const st={correct:0,total:0};
+  const wrap=document.createElement('div');
+  wrap.innerHTML=scoreBar(st)+'<p class="pr-empty" style="padding:0 0 14px;text-align:left">Nghe audio 🔊 rồi gõ lại <b>chữ Hán</b>. Cần kết nối mạng để phát âm.</p>';
+  const sc=wrap.querySelector('.pr-scorebar');
+  items.forEach(w=>{
+    const q=document.createElement('div');q.className='pr-q';
+    q.innerHTML=`<div class="q-prompt"><button class="btn btn-primary">🔊 Nghe lại</button>
+      <span style="margin-left:10px;color:var(--text-soft);font-size:13px">${w.vi}</span></div>
+      <input class="pr-input" placeholder="gõ chữ Hán bạn nghe được">
+      <div class="pr-fb"></div>`;
+    const inp=q.querySelector('input'),fb=q.querySelector('.pr-fb');
+    q.querySelector('.btn').onclick=()=>playAudio(w.hz);
+    playAudio; // noop
+    let done=false;
+    inp.addEventListener('keydown',e=>{
+      if(e.key!=='Enter'||done)return;
+      st.total++;done=true;inp.disabled=true;
+      if(inp.value.trim()===w.hz){st.correct++;inp.classList.add('ok');fb.className='pr-fb ok';fb.textContent='✓ '+w.hz+' · '+w.py.map(p=>p[0]).join(' ');}
+      else{inp.classList.add('bad');fb.className='pr-fb bad';fb.textContent='✗ Đáp án: '+w.hz+' · '+w.py.map(p=>p[0]).join(' ');}
+      sc.outerHTML=scoreBar(st);
+    });
+    wrap.appendChild(q);
+  });
+  prBody.appendChild(wrap);
+}
+
+/* ---- Dạng 3: điền thanh điệu ---- */
+function toneOf(syl){
+  const d=syl.normalize('NFD');
+  if(/\u0304/.test(d))return 1; if(/\u0301/.test(d))return 2;
+  if(/\u030c/.test(d))return 3; if(/\u0300/.test(d))return 4; return 5;
+}
+function applyTone(plain,tone){
+  if(tone===5)return plain;
+  // choose vowel to mark: a,o,e priority; else last vowel; iu->u, ui->i
+  let idx=-1,order=['a','o','e'];
+  for(const v of order){const i=plain.indexOf(v);if(i>=0){idx=i;break;}}
+  if(idx<0){for(let i=plain.length-1;i>=0;i--){if('iuü'.includes(plain[i])){idx=i;break;}}}
+  if(idx<0)return plain;
+  const ch=plain[idx], marks=TONE_MAP[ch]; if(!marks)return plain;
+  return plain.slice(0,idx)+marks[tone-1]+plain.slice(idx+1);
+}
+function mTone(words){
+  const items=shuffle(words).slice(0,Math.min(10,words.length));
+  const st={correct:0,total:0};
+  const wrap=document.createElement('div');
+  wrap.innerHTML=scoreBar(st)+'<p class="pr-empty" style="padding:0 0 14px;text-align:left">Nghe 🔊, chọn thanh điệu cho mỗi âm tiết (1 2 3 4 hoặc nhẹ). Rồi bấm Kiểm tra.</p>';
+  const sc=wrap.querySelector('.pr-scorebar');
+  items.forEach(w=>{
+    const q=document.createElement('div');q.className='pr-q';
+    const syls=w.py.map(p=>p[0]);
+    let row='<div class="pr-tone-row">';
+    syls.forEach((s,i)=>{
+      const plain=stripTones(s);
+      row+=`<div class="pr-tone-syl"><span class="base" data-i="${i}">${plain}</span>
+        <select data-i="${i}"><option value="0">?</option><option value="1">1 ¯</option><option value="2">2 ´</option><option value="3">3 ˇ</option><option value="4">4 \`</option><option value="5">nhẹ</option></select></div>`;
+    });
+    row+='</div>';
+    q.innerHTML=`<div class="q-prompt"><span class="big">${w.hz}</span>
+      <button class="btn btn-primary" style="padding:6px 12px">🔊</button>
+      <span style="margin-left:8px;color:var(--text-soft);font-size:13px">${w.vi}</span></div>
+      ${row}<div class="pr-actions"><button class="btn btn-outline chk">Kiểm tra</button></div><div class="pr-fb"></div>`;
+    q.querySelector('.btn-primary').onclick=()=>playAudio(w.hz);
+    const fb=q.querySelector('.pr-fb');let done=false;
+    q.querySelector('.chk').onclick=()=>{
+      if(done)return;done=true;st.total++;
+      let ok=true;const sels=q.querySelectorAll('select');
+      sels.forEach((sel,i)=>{
+        const want=w.py[i][1], got=+sel.value;
+        const base=q.querySelector(`.base[data-i="${i}"]`);
+        if(got===want){base.textContent=applyTone(stripTones(syls[i]),want);base.style.color='var(--green-success)';}
+        else{ok=false;base.textContent=w.py[i][0];base.style.color='var(--red)';}
+        sel.disabled=true;
+      });
+      if(ok){st.correct++;fb.className='pr-fb ok';fb.textContent='✓ Chuẩn: '+w.py.map(p=>p[0]).join(' ');}
+      else{fb.className='pr-fb bad';fb.textContent='✗ Đáp án: '+w.py.map(p=>p[0]).join(' ');}
+      sc.outerHTML=scoreBar(st);
+    };
+    wrap.appendChild(q);
+  });
+  prBody.appendChild(wrap);
+}
+
+/* ---- Dạng 4: nối Hán – pinyin – nghĩa ---- */
+function mMatch(words){
+  const pool=shuffle(words).slice(0,Math.min(6,words.length));
+  const st={correct:0,total:pool.length};
+  const wrap=document.createElement('div');
+  wrap.innerHTML=scoreBar(st)+'<p class="pr-empty" style="padding:0 0 14px;text-align:left">Bấm 1 ô Pinyin, rồi bấm ô Nghĩa tương ứng. Ghép đúng là thắng cặp đó.</p>';
+  const grid=document.createElement('div');grid.className='pr-match';grid.style.gridTemplateColumns='1fr 1fr';
+  const cP=document.createElement('div'),cV=document.createElement('div');
+  cP.innerHTML='<div class="col-h">Pinyin</div>';cV.innerHTML='<div class="col-h">Nghĩa</div>';
+  const pinyins=shuffle(pool), viet=shuffle(pool);
+  pinyins.forEach(w=>{const t=document.createElement('div');t.className='pr-mtile';t.dataset.hz=w.hz;t.textContent=w.py.map(p=>p[0]).join(' ');cP.appendChild(t);});
+  viet.forEach(w=>{const t=document.createElement('div');t.className='pr-mtile';t.dataset.hz=w.hz;t.textContent=w.vi;cV.appendChild(t);});
+  grid.append(cP,cV);wrap.appendChild(grid);
+  const fb=document.createElement('div');fb.className='pr-fb';wrap.appendChild(fb);
+  prBody.appendChild(wrap);
+  const sc=wrap.querySelector('.pr-scorebar');
+  let stage=0,target=null; // stage:0 pick Pinyin, 1 pick Nghĩa
+  function reset(){stage=0;target=null;wrap.querySelectorAll('.pr-mtile.pick').forEach(x=>x.classList.remove('pick'));}
+  grid.querySelectorAll('.pr-mtile').forEach(tile=>{
+    tile.onclick=()=>{
+      if(tile.classList.contains('done'))return;
+      const colIdx=[cP,cV].indexOf(tile.parentElement);
+      if(colIdx!==stage)return;
+      if(stage===0){target=tile.dataset.hz;wrap.querySelectorAll('.pr-mtile.pick').forEach(x=>x.classList.remove('pick'));tile.classList.add('pick');stage=1;return;}
+      if(tile.dataset.hz!==target){fb.className='pr-fb bad';fb.textContent='✗ Chưa đúng, thử lại.';reset();return;}
+      tile.classList.add('pick');
+      wrap.querySelectorAll('.pr-mtile.pick').forEach(x=>{x.classList.remove('pick');x.classList.add('done');});
+      st.correct++;sc.outerHTML=scoreBar(st);fb.className='pr-fb ok';fb.textContent='✓ Đúng!';reset();
+      if(st.correct===st.total){fb.textContent='🎉 Hoàn thành tất cả!';}
+    };
+  });
+}
+
+/* ---- Dạng 5: chọn từ điền vào chỗ trống ---- */
+function mChoice(sb,words){
+  if(!sb||!sb.sents.length){prBody.innerHTML='<div class="pr-empty">Bài này chưa có câu luyện tập.</div>';return;}
+  const items=shuffle(sb.sents).slice(0,Math.min(6,sb.sents.length));
+  const st={correct:0,total:0};
+  const wrap=document.createElement('div');wrap.innerHTML=scoreBar(st)+'<p class="pr-empty" style="padding:0 0 14px;text-align:left">Chọn từ đúng điền vào chỗ trống.</p>';
+  const sc=wrap.querySelector('.pr-scorebar');
+  items.forEach(s=>{
+    const q=document.createElement('div');q.className='pr-q';
+    const blanked=s.zh.replace(s.blank,'____');
+    // distractors: other words from lesson, not equal
+    const others=shuffle(words.filter(w=>w.hz!==s.blank)).slice(0,2).map(w=>w.hz);
+    const choices=shuffle([s.blank,...others]);
+    q.innerHTML=`<div class="q-prompt"><span class="big">${blanked}</span><span class="py">${s.py}</span>
+      <div style="color:var(--text-soft);font-size:13px;margin-top:4px">${s.vi}</div></div>
+      <div class="pr-choices"></div><div class="pr-fb"></div>`;
+    const cwrap=q.querySelector('.pr-choices'),fb=q.querySelector('.pr-fb');let done=false;
+    choices.forEach(c=>{
+      const b=document.createElement('button');b.className='pr-choice';b.textContent=c;
+      b.onclick=()=>{
+        if(done)return;done=true;st.total++;
+        if(c===s.blank){b.classList.add('ok');st.correct++;fb.className='pr-fb ok';fb.textContent='✓ '+s.zh;}
+        else{b.classList.add('bad');fb.className='pr-fb bad';fb.textContent='✗ Đáp án: '+s.blank+' → '+s.zh;
+          cwrap.querySelectorAll('.pr-choice').forEach(x=>{if(x.textContent===s.blank)x.classList.add('ok');});}
+        cwrap.querySelectorAll('.pr-choice').forEach(x=>x.style.pointerEvents='none');
+        sc.outerHTML=scoreBar(st);
+      };
+      cwrap.appendChild(b);
+    });
+    wrap.appendChild(q);
+  });
+  prBody.appendChild(wrap);
+}
+
+/* ---- Dạng 6: sắp xếp câu ---- */
+function mOrder(sb){
+  if(!sb||!sb.sents.length){prBody.innerHTML='<div class="pr-empty">Bài này chưa có câu luyện tập.</div>';return;}
+  const items=shuffle(sb.sents).slice(0,Math.min(5,sb.sents.length));
+  const st={correct:0,total:0};
+  const wrap=document.createElement('div');wrap.innerHTML=scoreBar(st)+'<p class="pr-empty" style="padding:0 0 14px;text-align:left">Đọc nghĩa tiếng Việt, bấm các mảnh <b>pinyin</b> theo đúng thứ tự để tạo câu. Bấm mảnh trong ô đáp án để bỏ ra. 🔊 để nghe.</p>';
+  const sc=wrap.querySelector('.pr-scorebar');
+  items.forEach(s=>{
+    const q=document.createElement('div');q.className='pr-q';
+    const segs=s.segs;                    // [[hz,py],...] đúng thứ tự
+    const order=shuffle(segs.map((_,i)=>i)); // thứ tự xáo trộn của token
+    q.innerHTML=`<div class="q-prompt">
+        <div style="font-size:16px;font-weight:600;color:var(--forest)">${s.vi}</div>
+        <button class="btn btn-primary" style="padding:6px 12px;margin-top:6px">🔊 Nghe</button>
+      </div>
+      <div class="pr-answer-line"></div>
+      <div class="pr-tokens"></div>
+      <div class="pr-actions"><button class="btn btn-outline chk">Kiểm tra</button><button class="btn btn-outline rst">Làm lại</button></div>
+      <div class="pr-fb"></div>`;
+    const line=q.querySelector('.pr-answer-line'),tokBox=q.querySelector('.pr-tokens'),fb=q.querySelector('.pr-fb');
+    q.querySelector('.btn-primary').onclick=()=>{
+      // phát âm best-effort: đọc lần lượt từng từ
+      const first=cjkChars(s.zh)[0]; if(first) playAudio(s.zh.replace(/[，。！？、]/g,''));
+    };
+    let picked=[];
+    function render(){
+      tokBox.innerHTML='';
+      order.forEach((segIdx,pos)=>{
+        const used=picked.includes(pos);
+        const b=document.createElement('div');b.className='pr-token'+(used?' used':'');
+        b.textContent=segs[segIdx][1];       // hiển thị PINYIN
+        b.onclick=()=>{if(!used){picked.push(pos);render();}};
+        tokBox.appendChild(b);
+      });
+      line.innerHTML='';
+      picked.forEach((pos,slotOrder)=>{
+        const segIdx=order[pos];
+        const sp=document.createElement('span');sp.className='slot';sp.textContent=segs[segIdx][1];
+        sp.onclick=()=>{picked.splice(slotOrder,1);render();};
+        line.appendChild(sp);
+      });
+    }
+    render();
+    q.querySelector('.rst').onclick=()=>{picked=[];fb.className='pr-fb';render();};
+    let done=false;
+    q.querySelector('.chk').onclick=()=>{
+      if(done)return;
+      // dãy segIdx người dùng chọn
+      const chosen=picked.map(pos=>order[pos]);
+      const correct=segs.map((_,i)=>i);
+      const ok = chosen.length===correct.length && chosen.every((v,i)=>v===correct[i]);
+      st.total++;
+      if(ok){done=true;st.correct++;fb.className='pr-fb ok';
+        fb.innerHTML='✓ '+s.zh+' <span style="font-weight:400">· '+segs.map(x=>x[1]).join(' ')+'</span>';}
+      else{fb.className='pr-fb bad';
+        fb.innerHTML='✗ Chưa đúng. Đáp án: <b>'+segs.map(x=>x[1]).join(' ')+'</b> → '+s.zh;}
+      sc.outerHTML=scoreBar(st);
+    };
+    wrap.appendChild(q);
+  });
+  prBody.appendChild(wrap);
+}
+
+/* ---- Dạng 7: nối hỏi–đáp ---- */
+function mQA(sb){
+  if(!sb||!sb.qa.length){prBody.innerHTML='<div class="pr-empty">Bài này chưa có cặp hỏi–đáp.</div>';return;}
+  const pairs=sb.qa.slice(0,Math.min(4,sb.qa.length));
+  const st={correct:0,total:pairs.length};
+  const wrap=document.createElement('div');wrap.innerHTML=scoreBar(st)+'<p class="pr-empty" style="padding:0 0 14px;text-align:left">Bấm 1 câu hỏi bên trái, rồi bấm câu trả lời đúng bên phải.</p>';
+  const sc=wrap.querySelector('.pr-scorebar');
+  const grid=document.createElement('div');grid.className='pr-match';grid.style.gridTemplateColumns='1fr 1fr';
+  const cQ=document.createElement('div'),cA=document.createElement('div');
+  cQ.innerHTML='<div class="col-h">Câu hỏi</div>';cA.innerHTML='<div class="col-h">Trả lời</div>';
+  pairs.forEach((p,i)=>{const t=document.createElement('div');t.className='pr-mtile';t.dataset.i=i;
+    t.innerHTML=`<div style="font-weight:700;color:var(--forest)">${p.q_zh}</div><div style="font-size:12px;color:var(--text-soft)">${p.q_vi}</div>`;cQ.appendChild(t);});
+  shuffle(pairs.map((p,i)=>({p,i}))).forEach(({p,i})=>{const t=document.createElement('div');t.className='pr-mtile';t.dataset.i=i;
+    t.innerHTML=`<div style="font-weight:700;color:var(--forest)">${p.a_zh}</div><div style="font-size:12px;color:var(--text-soft)">${p.a_vi}</div>`;cA.appendChild(t);});
+  grid.append(cQ,cA);wrap.appendChild(grid);
+  const fb=document.createElement('div');fb.className='pr-fb';wrap.appendChild(fb);
+  prBody.appendChild(wrap);
+  let pickQ=null;
+  cQ.querySelectorAll('.pr-mtile').forEach(t=>t.onclick=()=>{
+    cQ.querySelectorAll('.pr-mtile').forEach(x=>x.classList.remove('pick'));t.classList.add('pick');pickQ=t.dataset.i;});
+  cA.querySelectorAll('.pr-mtile').forEach(t=>t.onclick=()=>{
+    if(pickQ===null){fb.className='pr-fb bad';fb.textContent='Chọn câu hỏi trước.';return;}
+    if(t.dataset.i===pickQ){
+      const q=cQ.querySelector(`.pr-mtile[data-i="${pickQ}"]`);
+      q.classList.remove('pick');q.classList.add('done');t.classList.add('done');
+      st.correct++;sc.outerHTML=scoreBar(st);fb.className='pr-fb ok';fb.textContent='✓ Đúng!';
+      if(st.correct===st.total)fb.textContent='🎉 Hoàn thành!';
+    }else{fb.className='pr-fb bad';fb.textContent='✗ Chưa đúng, thử lại.';}
+    pickQ=null;cQ.querySelectorAll('.pr-mtile').forEach(x=>x.classList.remove('pick'));
+  });
+}
+
+prBack.onclick=e=>{if(e.target===prBack)closePractice();};
+
+/* ---------- init ---------- */
+buildNav();
+select('lessons',0);
+</script>
+</body>
+</html>
